@@ -1,0 +1,72 @@
+.container {
+    border: 1px solid;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 2px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    border: 1px solid;
+
+    > .icon-container {
+        padding-left: 7px;
+    }
+    > .icon-container,
+    > .icon-container div {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+    }
+    > .text {
+        color: var(--text-default);
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        height: 20px;
+        line-height: 20px;
+        padding-right: 7px;
+    }
+}
+
+::slotted([slot="icon"]) {
+    width: 20px;
+    height: 20px;
+}
+
+:host([rounded]) > .container {
+    border-radius: 100px;
+}
+
+.container,
+:host([status="neutral"]) > .container,
+:host([status="neutral"]) > .container svg {
+    fill: var(--icon-subtle);
+    border-color: var(--border-default-subtle);
+    background: var(--surface-default-subtle);
+
+}
+:host([status="info"]) > .container,
+:host([status="info"]) > .container svg {
+    border-color: var(--border-info-subtle);
+    background: var(--surface-info-subtle);
+    fill: var(--icon-info);
+}
+:host([status="positive"]) > .container,
+:host([status="positive"]) > .container svg {
+    border-color: var(--border-positive-subtle);
+    background: var(--surface-positive-subtle);
+    fill: var(--icon-positive);
+}
+:host([status="warning"]) > .container,
+:host([status="warning"]) > .container svg {
+    border-color: var(--border-warning-subtle);
+    background: var(--surface-warning-subtle);
+    fill: var(--icon-warning);
+}
+:host([status="negative"]) > .container,
+:host([status="negative"]) > .container svg {
+    border-color: var(--border-negative-subtle);
+    background: var(--surface-negative-subtle);
+    fill: var(--icon-negative);
+}

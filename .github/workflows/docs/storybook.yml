@@ -1,0 +1,37 @@
+name: Build Storybook
+on:
+  workflow_call:
+    secrets:
+      PAT:
+        required: true
+
+jobs:
+  build_react:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5 #${{ vars.REACT_TIMEOUT }}
+    steps:
+      - name: Checkout Zeta
+        uses: actions/checkout@v3
+      - name: TODO - Unfinished. Failing
+        run: exit 1
+#      - name: Cache Storybook
+#        uses: actions/cache@v3
+#        id: cache-storybook
+#        env:
+#          cache-name: cache-storybook
+#        with:
+#          path: build/storybook
+#          key: build-${{ env.cache-name }}-${{ hashFiles('yarn.lock') }}
+#      - uses: actions/setup-node@v3
+#        if: steps.cache-storybook.outputs.cache-hit != 'true'
+#        with:
+#          node-version: "18"
+#          cache: "yarn"
+#          cache-dependency-path: "yarn.lock"
+#      - name: React - Storybook
+#        if: steps.cache-storybook.outputs.cache-hit != 'true'
+#        run: |
+#          cd .react
+#          yarn install --immutable
+#          yarn build:storybook ../build/react/storybook
+#          cd ..

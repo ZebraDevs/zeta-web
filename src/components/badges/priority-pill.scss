@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  display: inline-flex;
+  align-items: center;
+  background: var(--surface-accent-subtle);
+  white-space: nowrap;
+  line-height: 20px;
+  
+  >.number {
+    display: flex;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    background: var(--surface-accent);
+    color: var(--text-on-accent);
+
+  }
+  
+  >.text {
+    color: var(--text-default);
+    padding: 4px 8px;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    height: 20px;
+  }
+}
+
+:host([rounded])>.container,
+:host([rounded])>.container>.number {
+  border-radius: 100px;
+}

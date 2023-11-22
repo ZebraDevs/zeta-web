@@ -1,0 +1,128 @@
+:host {
+  width: fit-content;
+  height: fit-content;
+
+  > button {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: ellipsis;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    border: none;
+  }
+}
+
+:host([size="large"]) > button {
+  padding: 12px 24px;
+}
+
+:host > button,
+:host([size="medium"]) > button {
+  padding: 8px 16px;
+}
+
+:host([size="small"]) > button {
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+:host([size="large"][condensed]) > button {
+  padding: inherit 16px;
+}
+
+:host([size="medium"][condensed]) > button {
+  padding: inherit 12px;
+}
+
+:host([size="small"][condensed]) > button {
+  padding: inherit 8px;
+}
+
+:host(:focus) > button {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-border-focused);
+}
+
+:host > button,
+:host([flavor="primary"]) > button {
+  background-color: var(--action-primary);
+  color: var(--text-on-action-primary);
+
+  &:hover:not([disabled]) {
+    background-color: var(--action-primary-hovered);
+  }
+
+  &:active:not([disabled]) {
+    background-color: var(--action-primary-pressed);
+  }
+
+  &:focus:not([disabled]) {
+    background-color: var(--action-primary-focused);
+  }
+}
+
+
+:host([flavor="primary-variant"]) > button {
+  background-color: var(--action-primary-variant);
+  color: var(--text-on-primary-variant);
+
+  &:hover:not([disabled]) {
+    background-color: var(--action-primary-variant-hovered);
+  }
+
+  &:active:not([disabled]) {
+    background-color: var(--action-primary-variant-pressed);
+  }
+
+  &:focus:not([disabled]) {
+    background-color: var(--action-primary-variant-focused);
+  }
+}
+
+
+:host([flavor="negative"]) > button {
+  background-color: var(--action-negative);
+  color: var(--text-on-action-negative);
+
+  &:hover:not([disabled]) {
+    background-color: var(--action-negative-hovered);
+  }
+
+  &:active:not([disabled]) {
+    background-color: var(--action-negative-pressed);
+  }
+
+  &:focus:not([disabled]) {
+    background-color: var(--action-negative-focused);
+  }
+}
+
+
+:host([flavor="outline"]) > button {
+  background-color: var(--action-outline);
+  color: var(--text-accent);
+  border: 1px solid var(--action-primary-outline-border);
+
+  &:hover:not([disabled]) {
+    background-color: var(--action-outline-hovered);
+  }
+
+  &:active:not([disabled]) {
+    background-color: var(--action-outline-pressed);
+  }
+
+  &:focus:not([disabled]) {
+    background-color: var(--action-outline-focused);
+  }
+}
+
+:host([disabled]) > button {
+  cursor: not-allowed;
+  background: var(--action-disabled);
+  color: var(--text-on-action-disabled);
+}

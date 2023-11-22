@@ -1,0 +1,18 @@
+import { Canvas } from '@storybook/blocks';
+
+import * as SystemBannerStories from './system-banner.stories';
+import * as InPageBannerStories from './in-page-banner.stories';
+
+# Banners
+<br/><br/>
+## System Banner
+<Canvas of={SystemBannerStories.BannerDualIcon} />
+A banner displays an important, succinct message, and provides action for users to address.
+It draws the attention to the message by displaying it at the top in various colors.
+
+<br/><br/>
+## In Page Banner
+<Canvas of={InPageBannerStories.BannerDualAction} />
+In page banners display an important, succinct message, and may provide actions for users to address.
+Banners should be displayed at the top of the screen, below a top app bar.
+Only one banner should be shown at a time.

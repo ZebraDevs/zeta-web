@@ -1,0 +1,9 @@
+{
+  "search.exclude": {
+    "**/.yarn": true,
+    "**/.pnp.*": true
+  },
+
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "files.associations": { "*.json": "jsonc" }
+}

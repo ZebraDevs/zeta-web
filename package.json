@@ -1,0 +1,109 @@
+{
+  "name": "zeta-web",
+  "files": [
+    "dist"
+  ],
+  "main": "./index.js",
+  "module": "./index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/zeta-web.js",
+      "require": "./dist/zeta-web.umd.cjs"
+    },
+    "./tokens.css": {
+      "import": "./tokens.css",
+      "require": "./tokens.css"
+    }
+  },
+  "version": "0.0.1+1",
+  "description": "Zebra Zeta Design System - Web Components",
+  "repository": "https://github.com/zebratechnologies/zeta-web",
+  "author": "Ben Kennedy",
+  "license": "MIT",
+  "type": "module",
+  "declaration": "true",
+  "declarationMap": "true",
+  "scripts": {
+    "analyze": "cem analyze --litelement --globs \"src/**/*.ts\"",
+    "analyze:watch": "cem analyze --litelement --globs \"src/**/*.ts\" --watch",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "docs": "npx typedoc",
+    "olddocs": "yarn docs:clean && yarn build && yarn analyze && yarn docs:build && yarn docs:assets && yarn docs:gen",
+    "olddocs:clean": "rimraf docs",
+    "olddocs:gen": "eleventy --config=.eleventy.cjs",
+    "olddocs:gen:watch": "eleventy --config=.eleventy.cjs --watch",
+    "olddocs:build": "rollup -c --file docs/my-element.bundled.js",
+    "olddocs:assets": "cp node_modules/prismjs/themes/prism-okaidia.css docs/",
+    "olddocs:serve": "wds --root-dir=docs --node-resolve --watch",
+    "lint": "eslint --ignore-path .gitignore --ext .ts,.js \"**/*.{ts,js}\"",
+    "lintnew": "eslint -f unix \"src/**/*.{ts,tsx}\"",
+    "lint:lit-analyzer": "lit-analyzer",
+    "prettier": "prettier {*,src/*,src/**/*} --write --ignore-unknown",
+    "start": "web-dev-server --node-resolve --open ./demo/ --watch",
+    "storybook": "storybook dev -p 6006",
+    "test": "web-test-runner \"test/**/*.test.js\" --node-resolve",
+    "build-storybook": "storybook build",
+    "react-gen": "cd scripts && node reactify.js",
+    "create": "cd scripts && node makeWebComponentTemplate.js"
+  },
+  "devDependencies": {
+    "@custom-elements-manifest/analyzer": "^0.9.0",
+    "@storybook/addon-a11y": "^7.0.24",
+    "@storybook/addon-actions": "^7.4.6",
+    "@storybook/addon-essentials": "^7.4.6",
+    "@storybook/addon-links": "^7.4.6",
+    "@storybook/blocks": "^7.4.6",
+    "@storybook/theming": "^7.4.6",
+    "@storybook/web-components": "^7.5.3",
+    "@storybook/web-components-vite": "^7.5.3",
+    "@types/node": "^20.3.3",
+    "@typescript-eslint/eslint-plugin": "^6.7.5",
+    "@typescript-eslint/parser": "^6.7.5",
+    "@web/dev-server": "^0.2.3",
+    "@web/test-runner": "^0.16.1",
+    "eslint": "^8.51.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-storybook": "^0.6.15",
+    "eslint-plugin-tsdoc": "^0.2.17",
+    "eslint-plugin-wc": "^2.0.4",
+    "lit-analyzer": "^2.0.1",
+    "prettier": "3.0.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "rollup-plugin-postcss-lit": "^2.1.0",
+    "sass": "^1.69.5",
+    "storybook": "^7.4.6",
+    "typescript": "^5.2.2",
+    "vite": "^4.5.0",
+    "vite-plugin-cp": "^4.0.1",
+    "vite-plugin-dts": "^3.6.3"
+  },
+  "dependencies": {
+    "@fontsource/ibm-plex-sans": "^5.0.15",
+    "@fontsource/ibm-plex-sans-condensed": "^5.0.8",
+    "@zebra-fed/zeta-icons": "^0.0.1",
+    "lit": "^3.0.0"  
+  },
+  "overrides": {
+    "rollup-plugin-scss-lit": {
+      "lit": "^3.0.0"
+    }
+  },
+  "resolutions": {
+    "react-router-dom": "^6.3.0",
+    "react-router": "^6.3.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

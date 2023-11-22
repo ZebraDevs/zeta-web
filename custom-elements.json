@@ -1,0 +1,498 @@
+{
+  "schemaVersion": "1.0.0",
+  "readme": "",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "src/index.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "./components/button/button.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "./components/system-banner/system-banner.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/typography.ts",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/types/corner-radius.ts",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/button/button-styles.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "ButtonBase",
+          "members": [],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ButtonBase",
+          "declaration": {
+            "name": "ButtonBase",
+            "module": "src/components/button/button-styles.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/button/button.stories.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "meta",
+          "type": {
+            "text": "Meta<ZetaButton>"
+          },
+          "default": "{\r\n  component: \"zeta-button\",\r\n  args: {\r\n    condensed: false,\r\n    disabled: false,\r\n    text: \"Button\",\r\n  },\r\n  argTypes: {\r\n    type: {\r\n      options: Object.values(ButtonType),\r\n      control: {\r\n        type: \"select\",\r\n      },\r\n    },\r\n    shape: {\r\n      options: Object.values(ButtonShape),\r\n      control: { type: \"radio\" },\r\n    },\r\n    size: {\r\n      options: Object.values(ButtonSize),\r\n      control: {\r\n        type: \"select\",\r\n      },\r\n    },\r\n    onClick: { action: \"clicked\" },\r\n    name: { control: \"text\" },\r\n  },\r\n}"
+        },
+        {
+          "kind": "variable",
+          "name": "ButtonWithText",
+          "type": {
+            "text": "StoryObj<ZetaButton>"
+          },
+          "default": "{}"
+        },
+        {
+          "kind": "variable",
+          "name": "ButtonWithTextAndIcon",
+          "type": {
+            "text": "StoryObj"
+          },
+          "default": "{\r\n  args: {\r\n    trailingIcon: false,\r\n  },\r\n  render: (args) => {\r\n    return html` <zeta-button\r\n      text=${args.text}\r\n      type=${args.type}\r\n      shape=${args.shape}\r\n      size=${args.size}\r\n      .condensed=${args.condensed}\r\n      .disabled=${args.disabled}\r\n      .trailingIcon=${args.trailingIcon}\r\n      .onClick=${args.onClick}\r\n      name=${args.name}\r\n      text=${args.text}\r\n    >\r\n      <svg slot=\"icon\" viewBox=\"0 0 48 48\">\r\n        <path\r\n          d=\"M9 42q-1.2 0-2.1-.9Q6 40.2 6 39V9q0-1.2.9-2.1Q7.8 6 9 6h13.95v3H9v30h30V25.05h3V39q0 1.2-.9 2.1-.9.9-2.1.9Zm10.1-10.95L17 28.9 36.9 9H25.95V6H42v16.05h-3v-10.9Z\"\r\n        />\r\n      </svg>\r\n    </zeta-button>`;\r\n  },\r\n}"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "meta",
+            "module": "src/components/button/button.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "ButtonWithText",
+          "declaration": {
+            "name": "ButtonWithText",
+            "module": "src/components/button/button.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "ButtonWithTextAndIcon",
+          "declaration": {
+            "name": "ButtonWithTextAndIcon",
+            "module": "src/components/button/button.stories.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/button/button.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Zeta Button web component.\r\n\r\nSlotted children:\r\n\r\n- text\r\n- icon",
+          "name": "ZetaButton",
+          "members": [
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "ButtonType"
+              },
+              "default": "\"primary\"",
+              "description": "Type of button.",
+              "attribute": "type"
+            },
+            {
+              "kind": "field",
+              "name": "shape",
+              "type": {
+                "text": "CornerRadius"
+              },
+              "default": "\"rounded\"",
+              "description": "Shape of button. See CornerRadius| CornerRadius. Defaults to `CornerRadius.rounded`. TODO: App wide default?",
+              "attribute": "shape"
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "ButtonSize"
+              },
+              "default": "\"medium\"",
+              "description": "Size of button. See ButtonSize| ButtonSize. Defaults to `\"medium\"`.",
+              "attribute": "size"
+            },
+            {
+              "kind": "field",
+              "name": "condensed",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "If button is of condensed size. Reduces button height and internal padding, and changes font to condensed. Defaults to false.",
+              "attribute": "condensed"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disabling the button changes the style and cursor, and removes functionality. Defaults to false.",
+              "attribute": "disabled"
+            },
+            {
+              "kind": "field",
+              "name": "onClick",
+              "type": {
+                "text": "undefined | (() => void)"
+              },
+              "description": "Function run on click of button.",
+              "attribute": "onClick"
+            },
+            {
+              "kind": "field",
+              "name": "trailingIcon",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "If the slotted icon is shown trailing the text. Defaults to false (icon is leading).",
+              "attribute": "trailingIcon"
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "Name for the button, used if the button is in a form. TODO: Does this even work in a form?",
+              "attribute": "name"
+            },
+            {
+              "kind": "field",
+              "name": "text",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "Text to be displayed on the button. Can also be populated with text slot.",
+              "attribute": "text"
+            },
+            {
+              "kind": "field",
+              "name": "icon",
+              "type": {
+                "text": "HTMLElement | undefined"
+              },
+              "description": "Icon to be displayed in the button, either leading or trailing. Can also be populated with icon slot. Icon defaults to being in the leading position.",
+              "attribute": "icon"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "type",
+              "type": {
+                "text": "ButtonType"
+              },
+              "default": "\"primary\"",
+              "description": "Type of button.",
+              "fieldName": "type"
+            },
+            {
+              "name": "shape",
+              "type": {
+                "text": "CornerRadius"
+              },
+              "default": "\"rounded\"",
+              "description": "Shape of button. See CornerRadius| CornerRadius. Defaults to `CornerRadius.rounded`. TODO: App wide default?",
+              "fieldName": "shape"
+            },
+            {
+              "name": "size",
+              "type": {
+                "text": "ButtonSize"
+              },
+              "default": "\"medium\"",
+              "description": "Size of button. See ButtonSize| ButtonSize. Defaults to `\"medium\"`.",
+              "fieldName": "size"
+            },
+            {
+              "name": "condensed",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "If button is of condensed size. Reduces button height and internal padding, and changes font to condensed. Defaults to false.",
+              "fieldName": "condensed"
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disabling the button changes the style and cursor, and removes functionality. Defaults to false.",
+              "fieldName": "disabled"
+            },
+            {
+              "name": "onClick",
+              "type": {
+                "text": "undefined | (() => void)"
+              },
+              "description": "Function run on click of button.",
+              "fieldName": "onClick"
+            },
+            {
+              "name": "trailingIcon",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "If the slotted icon is shown trailing the text. Defaults to false (icon is leading).",
+              "fieldName": "trailingIcon"
+            },
+            {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "Name for the button, used if the button is in a form. TODO: Does this even work in a form?",
+              "fieldName": "name"
+            },
+            {
+              "name": "text",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "Text to be displayed on the button. Can also be populated with text slot.",
+              "fieldName": "text"
+            },
+            {
+              "name": "icon",
+              "type": {
+                "text": "HTMLElement | undefined"
+              },
+              "description": "Icon to be displayed in the button, either leading or trailing. Can also be populated with icon slot. Icon defaults to being in the leading position.",
+              "fieldName": "icon"
+            }
+          ],
+          "superclass": {
+            "name": "ButtonBase",
+            "module": "/src/components/button/button-styles.js"
+          },
+          "tagName": "zeta-button",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ZetaButton",
+          "declaration": {
+            "name": "ZetaButton",
+            "module": "src/components/button/button.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "zeta-button",
+          "declaration": {
+            "name": "ZetaButton",
+            "module": "src/components/button/button.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/system-banner/system-banner.stories.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "meta",
+          "type": {
+            "text": "Meta<ZetaSystemBanner>"
+          },
+          "default": "{\r\n  component: \"zeta-system-banner\",\r\n  args: {\r\n    text: \"Banner title\",\r\n  },\r\n  argTypes: {\r\n    type: {\r\n      options: Object.values(BannerType),\r\n      control: {\r\n        type: \"select\",\r\n      },\r\n    },\r\n  },\r\n}"
+        },
+        {
+          "kind": "variable",
+          "name": "Banner",
+          "type": {
+            "text": "StoryObj<ZetaSystemBanner>"
+          },
+          "default": "{}"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "meta",
+            "module": "src/components/system-banner/system-banner.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Banner",
+          "declaration": {
+            "name": "Banner",
+            "module": "src/components/system-banner/system-banner.stories.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/system-banner/system-banner.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Zeta system banner component.",
+          "name": "ZetaSystemBanner",
+          "members": [
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "BannerType"
+              },
+              "attribute": "type"
+            },
+            {
+              "kind": "field",
+              "name": "align",
+              "type": {
+                "text": "BannerAlign"
+              },
+              "attribute": "align"
+            },
+            {
+              "kind": "field",
+              "name": "text",
+              "type": {
+                "text": "string | undefined"
+              },
+              "attribute": "text"
+            },
+            {
+              "kind": "field",
+              "name": "icon",
+              "type": {
+                "text": "HTMLElement | undefined"
+              },
+              "attribute": "icon"
+            },
+            {
+              "kind": "field",
+              "name": "getBackground",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "getColor",
+              "privacy": "private"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "type",
+              "type": {
+                "text": "BannerType"
+              },
+              "fieldName": "type"
+            },
+            {
+              "name": "align",
+              "type": {
+                "text": "BannerAlign"
+              },
+              "fieldName": "align"
+            },
+            {
+              "name": "text",
+              "type": {
+                "text": "string | undefined"
+              },
+              "fieldName": "text"
+            },
+            {
+              "name": "icon",
+              "type": {
+                "text": "HTMLElement | undefined"
+              },
+              "fieldName": "icon"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "zeta-system-banner",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ZetaSystemBanner",
+          "declaration": {
+            "name": "ZetaSystemBanner",
+            "module": "src/components/system-banner/system-banner.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "zeta-system-banner",
+          "declaration": {
+            "name": "ZetaSystemBanner",
+            "module": "src/components/system-banner/system-banner.ts"
+          }
+        }
+      ]
+    }
+  ]
+}

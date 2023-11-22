@@ -1,0 +1,22 @@
+name: Update Zeta Icons
+
+on:
+  repository_dispatch:
+    types: [update-icons]
+    
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+    - name: Update Zeta Icons
+      run: npm update zeta-icons
+    - name: Commit
+      run: |
+        git config --global user.name "zeta-icons-bot"
+        git config --global user.email "zeta-icons-bot@github.com"
+        git add -A
+        git commit -m "Updating icons" --no-edit
+        git push -f
+        echo "newSha=$(git rev-parse origin/main)" >>  $GITHUB_ENV

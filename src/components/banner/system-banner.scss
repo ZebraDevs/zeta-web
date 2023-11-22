@@ -1,0 +1,58 @@
+.system-banner {
+    height: 24px;
+    line-height: 24px;
+    white-space: nowrap;
+    padding: 8px 16px;
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    > div {
+        display: flex;
+    }
+    > .text,
+    > .icon {
+        font-size: 16px;
+        text-align: "center";
+        font-style: normal;
+        font-weight: 500;
+        line-height: 24px;
+    }
+    .leading,
+    ::slotted([slot="leading icon"]) {
+        padding-inline-end: 8px;
+    }
+
+    .trailing,
+    ::slotted([slot="trailing icon"]) {
+        padding-inline-start: 8px;
+        justify-self: end;
+    }
+}
+
+.system-banner,
+:host([status="default"]) > .system-banner {
+    background: var(--surface-accent);
+    color: var(--text-on-accent);
+    fill: var(--text-on-accent);
+}
+
+:host([status="positive"]) > .system-banner {
+    background: var(--surface-positive);
+    color: var(--text-on-positive);
+    fill: var(--text-on-positive);
+}
+:host([status="warning"]) > .system-banner {
+    background: var(--surface-warning);
+    color: var(--text-on-warning);
+    fill: var(--text-on-warning);
+}
+:host([status="negative"]) > .system-banner {
+    background: var(--surface-negative);
+    color: var(--text-on-negative);
+    fill: var(--text-on-negative);
+}
+
+:host([rounded]) > .system-banner {
+    border-radius: 0px !important;
+}
+

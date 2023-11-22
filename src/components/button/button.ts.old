@@ -1,0 +1,214 @@
+import { html, nothing, css } from "lit";
+import { customElement, property } from "lit/decorators.js";
+import { CornerRadius } from "../../types/corner-radius.js";
+import { ButtonBase } from "./button-styles.js";
+
+import "@fontsource/ibm-plex-sans";
+import "@fontsource/ibm-plex-sans-condensed";
+// TODO: Integrate with icon library
+// TODO: Work out which default button props need to be overriden
+
+/**
+ * Zeta Button web component.
+ *
+ * Slotted children:
+ *
+ * - text
+ * - icon
+ *
+ * @public
+ */
+@customElement("zeta-button")
+export class ZetaButton extends ButtonBase {
+  /** Shape of button. See {@link CornerRadius | CornerRadius}. Defaults to `CornerRadius.rounded`. TODO: App wide default? */
+  @property({ type: String })
+  shape: CornerRadius = "rounded";
+
+  /** If button is of condensed size. Reduces button height and internal padding, and changes font to condensed. Defaults to false. */
+  @property({ type: Boolean })
+  condensed: boolean = false;
+
+  /** Disabling the button changes the style and cursor, and removes functionality. Defaults to false. */
+  @property({ type: Boolean })
+  disabled: boolean = false;
+
+  /** Function run on click of button.*/
+  @property({ type: Function })
+  onClick: undefined | (() => void);
+
+  /** If the slotted icon is shown trailing the text. Defaults to false (icon is leading). */
+  @property({ type: Boolean })
+  trailingIcon: boolean = false;
+
+  /** Text to be displayed on the button. Can also be populated with text slot. */
+  @property({ type: String })
+  text: string = "";
+
+  //TODO: How is this supposed to work?
+  /** Icon to be displayed in the button, either leading or trailing. Can also be populated with icon slot. Icon defaults to being in the leading position. */
+  @property({ type: HTMLElement })
+  icon: HTMLElement | undefined;
+
+  /// I now realize this is a dart-y way of doing things, rather than using classes? Not sure what best practice is here.
+  // private getForegroundColor = (): string => {
+  //   switch (this.type) {
+  //     case "primaryVariant":
+  //       return "var(--text-on-accent-variant, #1D1E23)";
+  //     case "negative":
+  //       return "var(--text-on-negative, #FFF)";
+  //     case "outline":
+  //     case "text":
+  //       return "var(--text-accent, #0073E6)";
+  //     case "outlineSubtle":
+  //       return "var(--text-default, #1D1E23)";
+  //     case "textInverse":
+  //       return "var(--text-inverse-accent, #7EBEFF)";
+  //     case "primary":
+  //     default:
+  //       return "var(--text-on-accent, #FFF)";
+  //   }
+  // };
+
+  // private getBackgroundColor = () => {
+  //   switch (this.type) {
+  //     case "primaryVariant":
+  //       return "var(--action-primary-variant, #FFD200)";
+  //     case "negative":
+  //       return "var(--action-negative, #D70015)";
+  //     case "outline":
+  //     case "outlineSubtle":
+  //     case "text":
+  //     case "textInverse":
+  //       return "transparent";
+  //     case "primary":
+  //     default:
+  //       return "var(--action-primary, #0073E6)";
+  //   }
+  // };
+
+  // private getBackgroundColorHover = () => {
+  //   if (!this.disabled) {
+  //     switch (this.type) {
+  //       case "primaryVariant":
+  //         return "var(--action-primary-variant-hovered, #F6BD00)";
+  //       case "negative":
+  //         return "var(--action-negative-hovered, #B50012)";
+  //       case "outline":
+  //         return "var(--action-basic-1-hovered, #F3F6FA)";
+  //       case "outlineSubtle":
+  //       case "text":
+  //         return "var(--action-basic-1-hovered, #F3F6FA);";
+  //       case "textInverse":
+  //         return "var(--action-basic-2-hovered, #2C2F36)";
+  //       case "primary":
+  //       default:
+  //         return "var(--action-primary-hovered, #0061C2)";
+  //     }
+  //   }
+  //   return "none";
+  // };
+
+  // private getBackgroundColorActive = () => {
+  //   if (!this.disabled) {
+  //     switch (this.type) {
+  //       case "primaryVariant":
+  //         return "var(--action-primary-variant-pressed, #C29500)";
+  //       case "negative":
+  //         return "var(--action-negative-pressed, #8F000E)";
+  //       case "outline":
+  //         return " var(--action-basic-1-pressed, #EDEFF4)";
+  //       case "outlineSubtle":
+  //       case "text":
+  //         return "var(--action-basic-1-pressed, #F3F6FA);";
+  //       case "textInverse":
+  //         return "var(--action-basic-2-pressed, #2C2F36)";
+  //       case "primary":
+  //       default:
+  //         return "var(--action-primary-pressed, #004D99)";
+  //     }
+  //   }
+  //   return "none";
+  // };
+
+  // private getButtonHeight = (): string => {
+  //   if (this.condensed) {
+  //     switch (this.size) {
+  //       case "small":
+  //         return "32px";
+  //       case "large":
+  //         return "48px";
+  //       default:
+  //       case "medium":
+  //         return "40px";
+  //     }
+  //   }
+  //   switch (this.size) {
+  //     case "small":
+  //       return "32px";
+  //     case "large":
+  //       return "48px";
+  //     default:
+  //     case "medium":
+  //       return "40px";
+  //   }
+  // };
+
+  // private getPadding = (): string => {
+  //   if (this.condensed) {
+  //     switch (this.size) {
+  //       case "small":
+  //         return "0px 8px";
+  //       case "large":
+  //         return "0px 16px";
+  //       default:
+  //       case "medium":
+  //         return "0px 12px";
+  //     }
+  //   }
+  //   switch (this.size) {
+  //     case "small":
+  //       return "0px 12px";
+  //     case "large":
+  //       return "0px 24px";
+  //     default:
+  //     case "medium":
+  //       return "0px 16px";
+  //   }
+  // };
+
+  // private getIconPadding = (isStart: boolean): number => {
+  //   const val = this.size == "small" ? 4 : 8;
+  //   if ((this.trailingIcon && isStart) || (!this.trailingIcon && !isStart)) {
+  //     return val;
+  //   }
+  //   return 0;
+  // };
+
+  //TODO: Tidy this up. Maybe put only tokens into the css.ts file?
+  static styles = [
+    super.styles,
+    css`color:red`
+  ];
+
+  protected render() {
+    const icon = this.icon ? this.icon : html`<slot name="icon"></slot>`;
+    return html`
+  <button class="${this.disabled ? "disabled" : ""}" @click=${this.onClick} name=${this.name}>
+    <div>
+      ${this.trailingIcon ? nothing : icon}
+      <div>
+      ${this.text}
+        <slot></slot>
+      <div/>
+      ${this.trailingIcon ? icon : nothing}
+    <div/>
+  </button>
+    `;
+  }
+}
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "zeta-button": ZetaButton;
+  }
+}

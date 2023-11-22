@@ -1,0 +1,42 @@
+
+
+
+:host .icon {
+  display: inline-block;
+  flex-shrink: 0;
+  line-height: 1;
+  max-width: initial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "liga";
+  user-select: none;
+}
+
+:host .icon.rounded {
+  @font-face {
+    font-family: "zeta-icons-round";
+    src: url(@zebra-fed/zeta-icons/fonts/zeta-icons_round.woff2) format("woff2");
+  }
+
+  font-family: "zeta-icons-round" !important;
+}
+:host .icon.sharp {
+  @font-face {
+    font-family: "zeta-icons-sharp";
+    src: url(@zebra-fed/zeta-icons/fonts/zeta-icons_sharp.woff2) format("woff2");
+  }
+
+  font-family: "zeta-icons-sharp" !important;
+}
