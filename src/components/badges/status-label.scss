@@ -8,9 +8,11 @@
     padding-top: 1px;
     padding-bottom: 1px;
     border: 1px solid;
+    line-height :10px;
 
     > .icon-container {
         padding-left: 7px;
+        max-height: 20px;
     }
     > .icon-container,
     > .icon-container div {
@@ -28,12 +30,6 @@
         padding-right: 7px;
     }
 }
-
-::slotted([slot="icon"]) {
-    width: 20px;
-    height: 20px;
-}
-
 :host([rounded]) > .container {
     border-radius: 100px;
 }
@@ -42,31 +38,31 @@
 :host([status="neutral"]) > .container,
 :host([status="neutral"]) > .container svg {
     fill: var(--icon-subtle);
-    border-color: var(--border-default-subtle);
-    background: var(--surface-default-subtle);
+    border-color: var(--border-subtle);
+    background: var(--surface-cool);
 
 }
 :host([status="info"]) > .container,
 :host([status="info"]) > .container svg {
-    border-color: var(--border-info-subtle);
+    border-color: var(--border-info);
     background: var(--surface-info-subtle);
     fill: var(--icon-info);
 }
 :host([status="positive"]) > .container,
 :host([status="positive"]) > .container svg {
-    border-color: var(--border-positive-subtle);
+    border-color: var(--border-positive);
     background: var(--surface-positive-subtle);
     fill: var(--icon-positive);
 }
 :host([status="warning"]) > .container,
 :host([status="warning"]) > .container svg {
-    border-color: var(--border-warning-subtle);
+    border-color: var(--border-warning);
     background: var(--surface-warning-subtle);
     fill: var(--icon-warning);
 }
 :host([status="negative"]) > .container,
 :host([status="negative"]) > .container svg {
-    border-color: var(--border-negative-subtle);
+    border-color: var(--border-negative);
     background: var(--surface-negative-subtle);
     fill: var(--icon-negative);
 }

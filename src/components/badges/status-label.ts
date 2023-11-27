@@ -1,8 +1,9 @@
-import { html, nothing, svg } from "lit";
-import { customElement, property, queryAssignedElements } from "lit/decorators.js";
+import { html, svg } from "lit";
+import { customElement, property } from "lit/decorators.js";
 import { BadgeStatus } from "../../types.js";
 import { ContourableCondensableElement } from "../../mixins/condense.js";
-import  styles  from "./status-label.scss";
+import styles from "./status-label.scss";
+import { ZetaIconName } from "@zebra-fed/zeta-icons/build_files/icon-types.js";
 
 /** ZetaStatusLabel web component.
  *
@@ -25,22 +26,26 @@ export class ZetaStatusLabel extends ContourableCondensableElement {
    * Can also be slotted. */
   @property({ type: String }) text: string | undefined;
 
-  /** Link to slotted icon. */
-  @queryAssignedElements({ slot: "icon" }) hasIcon: Array<HTMLElement> | undefined;
-
+  /** Icon leading the component. @see {ZetaIconName}.
+   *
+   * @defaultValue `undefined`. This will render an indicator circle.
+   */
+  @property({ type: String }) icon: ZetaIconName | undefined;
   static styles = [super.styles ?? [], styles];
 
+  getColor = () => {
+    return "var(--icon-" + this.status + ")";
+  };
   protected override render() {
-    const noIcon = svg`
+    const icon = this.icon
+      ? html`<zeta-icon size="20" color=${this.getColor()} .rounded=${this.rounded}>${this.icon}</zeta-icon> `
+      : svg`
     <svg xmlns="http://www.w3.org/2000/svg" width="8" height="20" viewBox="0 0 8 8" >
     <circle cx="4" cy="4" r="4" />
     </svg>`;
     return html`
       <div class="container">
-        <div class="icon-container">
-          ${this.hasIcon == undefined || this.hasIcon.length == 0 ? noIcon : nothing}
-          <slot name="icon" @slotchange=${() => this.requestUpdate()}></slot>
-        </div>
+        <div class="icon-container">${icon}</div>
         <div class="text">${this.text ? this.text : html`<slot class="text" name="text"></slot>`}</div>
       </div>
     `;

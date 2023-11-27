@@ -55,9 +55,8 @@
 .banner,
 :host([status="default"]) > .banner {
     border-color: var(--border-default);
-    background: var(--surface-default-subtle);
+    background: var(--surface-default);
     fill: var(--icon-default);
-
 }
 
 :host([status="info"]) > .banner {
@@ -88,5 +87,3 @@
 ::slotted([slot="trailing-action"]) {
     margin-top: 16px;
 }
-
-

@@ -4,9 +4,10 @@ import "./icon";
 const meta: Meta<typeof ZetaIcon> = {
   component: ZetaIcon,
   args: {
-    name: "check-box",
-    size: 24,
-    color: "red"
+    name: "alarm",
+    size: "20rem",
+    color: "red",
+    rounded: false
   },
   argTypes: {}
 };

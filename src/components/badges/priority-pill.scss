@@ -2,7 +2,7 @@
   display: flex;
   display: inline-flex;
   align-items: center;
-  background: var(--surface-accent-subtle);
+  background: var(--surface-primary-subtle);
   white-space: nowrap;
   line-height: 20px;
   
@@ -17,9 +17,8 @@
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
-    background: var(--surface-accent);
-    color: var(--text-on-accent);
-
+    background: var(--surface-primary);
+    color: var(--text-inverse);
   }
   
   >.text {

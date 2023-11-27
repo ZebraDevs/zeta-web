@@ -1,485 +1,490 @@
-export type IconName = 
-  | "check-box" 
-  | "check-box-empty" 
-  | "indeterminate-check-box" 
-  | "radio-button-checked" 
-  | "radio-button-unchecked" 
-  | "toggle-off" 
-  | "toggle-on" 
-  | "star" 
-  | "star-outline" 
-  | "star-half" 
-  | "barcode-settings" 
-  | "barcode-bluetooth" 
-  | "barcode-scanner-down" 
-  | "barcode-qr-code" 
-  | "calculator" 
-  | "barcode" 
-  | "card-with-chip" 
-  | "card-orientation" 
-  | "credit-card-swipe" 
-  | "contactless-pay" 
-  | "tap-to-pay" 
-  | "planogram" 
-  | "issue-audit" 
-  | "barcode-done" 
-  | "barcode-image-scan" 
-  | "factory" 
-  | "retail" 
-  | "receipt" 
-  | "scan-rate" 
-  | "performance" 
-  | "enterprise-diagnostics" 
-  | "eas" 
-  | "zero-scale" 
-  | "road-map" 
-  | "rules" 
-  | "choices" 
-  | "strategy" 
-  | "shape-recognition" 
-  | "solutions" 
-  | "environmental" 
-  | "productivity-apps" 
-  | "certificate" 
-  | "steps" 
-  | "freezer" 
-  | "life-guard" 
-  | "mobility-dna" 
-  | "tekspeech-pro" 
-  | "enterprise-browser" 
-  | "appgallery" 
-  | "workforce-connect" 
-  | "simulscan" 
-  | "power-precision" 
-  | "mobility-security" 
-  | "stagenow" 
-  | "emdk" 
-  | "enterprise-keyboard" 
-  | "mdm-toolkit" 
-  | "mx" 
-  | "rx" 
-  | "setting-tool" 
-  | "data-wedge" 
-  | "application-analytics" 
-  | "swipe-assist" 
-  | "smartdex" 
-  | "direct-connect" 
-  | "remote-control" 
-  | "asset-tracker-lite" 
-  | "voice-wedge" 
-  | "device-tracker" 
-  | "workstation-connect" 
-  | "oem-config" 
-  | "gms-restricted-mode" 
-  | "zero-touch" 
-  | "smart-tek" 
-  | "ocr" 
-  | "smart-te" 
-  | "smart-te-lite" 
-  | "przm" 
-  | "multi-code-data-formatting" 
-  | "remote-management" 
-  | "preferred-symbol" 
-  | "intelligent-document-capture" 
-  | "scan-to-connect" 
-  | "scanner-control-application" 
-  | "scan-speed-analytics" 
-  | "remote-diagnostics" 
-  | "blood-bag-plus" 
-  | "label-plus" 
-  | "virtual-tether" 
-  | "link-os" 
-  | "mdm-connectors" 
-  | "browser-print" 
-  | "cloud-connect" 
-  | "virtual-devices" 
-  | "enterprise-connectors" 
-  | "pairing-solutions" 
-  | "scan-and-pair" 
-  | "zebra-designer" 
-  | "pdf-direct" 
-  | "print-station" 
-  | "printer-profile-manager" 
-  | "zebra-setup-utility" 
-  | "bluetooth-management" 
-  | "zebra-onecare" 
-  | "visibility-services" 
-  | "print-secure" 
-  | "design-tools" 
-  | "do-not-disturb" 
-  | "sim-card" 
-  | "phone-bluetooth-speaker" 
-  | "phone-in-talk" 
-  | "priority" 
-  | "sync" 
-  | "sync-disabled" 
-  | "sd-card" 
-  | "phone" 
-  | "add-call" 
-  | "end-call" 
-  | "email-alt" 
-  | "person-search" 
-  | "dialpad" 
-  | "conversation" 
-  | "message" 
-  | "sms" 
-  | "chat-bubble" 
-  | "chat-bubble-outline" 
-  | "email" 
-  | "email-outline" 
-  | "qr-code" 
-  | "qr-code-scan" 
-  | "rss-feed" 
-  | "dollar" 
-  | "volte" 
-  | "bluetooth" 
-  | "bluetooth-searching" 
-  | "bluetooth-disabled" 
-  | "location" 
-  | "uhf-rfid" 
-  | "antenna" 
-  | "location-point" 
-  | "light-mode" 
-  | "dark-mode" 
-  | "night" 
-  | "cellular-signal" 
-  | "network-signal" 
-  | "restart-alt" 
-  | "screen-rotation" 
-  | "devices" 
-  | "usb" 
-  | "usb-alt" 
-  | "usb-alt-device" 
-  | "brightness" 
-  | "battery-alert" 
-  | "battery" 
-  | "battery-charging" 
-  | "flight-mode" 
-  | "ethernet" 
-  | "nfc" 
-  | "chain" 
-  | "hdmi" 
-  | "mobile-friendly" 
-  | "contrast" 
-  | "add-alert" 
-  | "auto-delete" 
-  | "error" 
-  | "error-outline" 
-  | "important-notification" 
-  | "warning-outline" 
-  | "warning" 
-  | "alert" 
-  | "group" 
-  | "switch-user" 
-  | "add-person" 
-  | "person-outline" 
-  | "remove-person" 
-  | "person" 
-  | "add-group" 
-  | "remove-group" 
-  | "groups" 
-  | "ios-share" 
-  | "notifications-active" 
-  | "notifications-outline" 
-  | "notifications" 
-  | "world-map" 
-  | "share" 
-  | "medium" 
-  | "youtube" 
-  | "instagram" 
-  | "facebook" 
-  | "twitter" 
-  | "blog" 
-  | "linkedin" 
-  | "like" 
-  | "bad-mood" 
-  | "happy" 
-  | "sad" 
-  | "satisfied" 
-  | "very-satisfied" 
-  | "dislike" 
-  | "layers" 
-  | "offer" 
-  | "near-me" 
-  | "place" 
-  | "map" 
-  | "my-location" 
-  | "navigation" 
-  | "zoom-in-map" 
-  | "zoom-out-map" 
-  | "bus" 
-  | "light-rail-train" 
-  | "train" 
-  | "car" 
-  | "taxi" 
-  | "local-shipping" 
-  | "flight" 
-  | "ship" 
-  | "cafe" 
-  | "world" 
-  | "file-upload" 
-  | "file-download" 
-  | "finished-download" 
-  | "downloading" 
-  | "cloud" 
-  | "cloud-done" 
-  | "cloud-download" 
-  | "cloud-outline" 
-  | "cloud-upload" 
-  | "cloud-off" 
-  | "attachment" 
-  | "folder" 
-  | "create-new-folder" 
-  | "folder-outline" 
-  | "shared-folder" 
-  | "grid-view" 
-  | "upload-file" 
-  | "jpg-attach" 
-  | "pdf-attach" 
-  | "png-attach" 
-  | "doc-attach" 
-  | "ppt-attach" 
-  | "font-size-decrease" 
-  | "font-size-increase" 
-  | "bold" 
-  | "italic" 
-  | "edit" 
-  | "no-color" 
-  | "color-fill" 
-  | "type" 
-  | "strikethrough" 
-  | "underline" 
-  | "align-horizontal-center" 
-  | "align-vertical-center" 
-  | "align-horizontal-right" 
-  | "align-horizontal-left" 
-  | "align-vertical-bottom" 
-  | "align-vertical-top" 
-  | "checklist" 
-  | "indent-decrease" 
-  | "indent-increase" 
-  | "bullet-list" 
-  | "distribute-vertical" 
-  | "distribute-horizontal" 
-  | "line-spacing" 
-  | "numbered-list" 
-  | "align-left" 
-  | "align-right" 
-  | "align-center" 
-  | "justify" 
-  | "edit-border" 
-  | "format-shapes" 
-  | "attach" 
-  | "link" 
-  | "text-color" 
-  | "home" 
-  | "search" 
-  | "settings" 
-  | "info" 
-  | "check-circle-outline-alt" 
-  | "check-circle-outline" 
-  | "check-circle" 
-  | "check-mark" 
-  | "love" 
-  | "love-outline" 
-  | "unlock-alt" 
-  | "lock-alt" 
-  | "unlock" 
-  | "lock" 
-  | "world-action" 
-  | "filter" 
-  | "filter-alt" 
-  | "like-action" 
-  | "dislike-action" 
-  | "trending-up" 
-  | "trending-down" 
-  | "user-settings" 
-  | "user-circle" 
-  | "user" 
-  | "history" 
-  | "update" 
-  | "visibility" 
-  | "visibility-off" 
-  | "clipboard" 
-  | "pin" 
-  | "renew" 
-  | "sync-action" 
-  | "delete-forever" 
-  | "build" 
-  | "alarm" 
-  | "bookmark" 
-  | "bookmark-outline" 
-  | "ar" 
-  | "cached" 
-  | "document" 
-  | "pending" 
-  | "open-in-full" 
-  | "label" 
-  | "price" 
-  | "open-in-new-window" 
-  | "delete-outline" 
-  | "security-check" 
-  | "clock-outline" 
-  | "clock" 
-  | "upload" 
-  | "download" 
-  | "delete" 
-  | "log-out" 
-  | "log-in" 
-  | "zoom-in" 
-  | "zoom-out" 
-  | "touch" 
-  | "hand" 
-  | "credit-card" 
-  | "calendar-available" 
-  | "calendar-cancel" 
-  | "calendar-edit" 
-  | "calendar-range" 
-  | "calendar-yearly" 
-  | "calendar-monthly-alt" 
-  | "calendar-monthly" 
-  | "calendar-weekly-alt" 
-  | "calendar-weekly" 
-  | "calendar-3-day" 
-  | "calendar-day" 
-  | "calendar-alt-2" 
-  | "calendar-alt-1" 
-  | "calendar" 
-  | "verified" 
-  | "play" 
-  | "play-circle" 
-  | "play-outline" 
-  | "stop-circle" 
-  | "pause-circle" 
-  | "stop" 
-  | "pause" 
-  | "fast-forward" 
-  | "fast-rewind" 
-  | "skip-next" 
-  | "skip-previous" 
-  | "volume-down" 
-  | "volume-mute" 
-  | "volume-off" 
-  | "volume-up" 
-  | "microphone" 
-  | "microphone-outline" 
-  | "microphone-off" 
-  | "loop" 
-  | "replay" 
-  | "block" 
-  | "closed-caption" 
-  | "video-camera" 
-  | "camera" 
-  | "flip-camera" 
-  | "visibility-image" 
-  | "visibility-off-image" 
-  | "camera-shutter" 
-  | "image-library" 
-  | "image" 
-  | "eye-dropper" 
-  | "contrast-image" 
-  | "portrait" 
-  | "hdr" 
-  | "rotate-left" 
-  | "rotate-right" 
-  | "slide-show" 
-  | "straighten" 
-  | "adjustments" 
-  | "crop" 
-  | "pro" 
-  | "auto" 
-  | "iso" 
-  | "wb" 
-  | "awb" 
-  | "wb-image" 
-  | "grid-on" 
-  | "grid-off" 
-  | "timer" 
-  | "apps" 
-  | "columns" 
-  | "cancel" 
-  | "drop-down-circle" 
-  | "close" 
-  | "check" 
-  | "more-vertical" 
-  | "more-horizontal" 
-  | "chevron-left" 
-  | "chevron-right" 
-  | "expand-less" 
-  | "expand-more" 
-  | "caret-down" 
-  | "caret-up" 
-  | "caret-left" 
-  | "caret-right" 
-  | "full-screen-exit" 
-  | "full-screen" 
-  | "hamburger-menu" 
-  | "hamburger-menu-thick" 
-  | "hamburger-menu-navigation-rail" 
-  | "refresh" 
-  | "arrow-up" 
-  | "arrow-forward" 
-  | "arrow-down" 
-  | "arrow-back" 
-  | "unfold-more" 
-  | "unfold-less" 
-  | "caret-sort" 
-  | "first-page" 
-  | "last-page" 
-  | "dashboard" 
-  | "cancel-outline" 
-  | "list-alt" 
-  | "list" 
-  | "help-outline" 
-  | "help" 
-  | "add" 
-  | "link-content" 
-  | "sort" 
-  | "filter-list" 
-  | "create" 
-  | "mail" 
-  | "content" 
-  | "clear" 
-  | "copy-file" 
-  | "remove-circle-outline" 
-  | "add-circle-outline" 
-  | "remove-circle" 
-  | "block-content" 
-  | "add-circle" 
-  | "remove" 
-  | "android" 
-  | "add-box" 
-  | "remove-box" 
-  | "push-pin" 
-  | "send" 
-  | "backspace" 
-  | "flag" 
-  | "save" 
-  | "reply" 
-  | "redo" 
-  | "save-alt" 
-  | "undo" 
-  | "analysis" 
-  | "scanner" 
-  | "printer" 
-  | "cast" 
-  | "cast-connected" 
-  | "desktop" 
-  | "devices-ecosystem" 
-  | "device-settings" 
-  | "headphones" 
-  | "keyboard" 
-  | "laptop" 
-  | "memory" 
-  | "monitor" 
-  | "phone-android" 
-  | "phone-iphone" 
-  | "phonelink" 
-  | "security" 
-  | "video-play" 
-  | "smart-phone" 
-  | "speaker" 
-  | "tablet" 
-  | "tablet-mac" 
-  | "tv" 
-  | "watch"; 
+export const IconNameList = [
+  "check_box",
+  "check_box_empty",
+  "indeterminate_check_box",
+  "radio_button_checked",
+  "radio_button_unchecked",
+  "toggle_off",
+  "toggle_on",
+  "star",
+  "star_outline",
+  "star_half",
+  "barcode_settings",
+  "barcode_bluetooth",
+  "barcode_scanner_down",
+  "barcode_qr_code",
+  "calculator",
+  "barcode",
+  "card_with_chip",
+  "card_orientation",
+  "credit_card_swipe",
+  "contactless_pay",
+  "tap_to_pay",
+  "planogram",
+  "issue_audit",
+  "barcode_done",
+  "barcode_image_scan",
+  "factory",
+  "retail",
+  "receipt",
+  "scan_rate",
+  "performance",
+  "enterprise_diagnostics",
+  "eas",
+  "zero_scale",
+  "road_map",
+  "rules",
+  "choices",
+  "strategy",
+  "shape_recognition",
+  "solutions",
+  "environmental",
+  "productivity_apps",
+  "certificate",
+  "steps",
+  "freezer",
+  "life_guard",
+  "mobility_dna",
+  "tekspeech_pro",
+  "enterprise_browser",
+  "appgallery",
+  "workforce_connect",
+  "simulscan",
+  "power_precision",
+  "mobility_security",
+  "stagenow",
+  "emdk",
+  "enterprise_keyboard",
+  "mdm_toolkit",
+  "mx",
+  "rx",
+  "setting_tool",
+  "data_wedge",
+  "application_analytics",
+  "swipe_assist",
+  "smartdex",
+  "direct_connect",
+  "remote_control",
+  "asset_tracker_lite",
+  "voice_wedge",
+  "device_tracker",
+  "workstation_connect",
+  "oem_config",
+  "gms_restricted_mode",
+  "zero_touch",
+  "smart_tek",
+  "ocr",
+  "smart_te",
+  "smart_te_lite",
+  "przm",
+  "multi_code_data_formatting",
+  "remote_management",
+  "preferred_symbol",
+  "intelligent_document_capture",
+  "scan_to_connect",
+  "scanner_control_application",
+  "scan_speed_analytics",
+  "remote_diagnostics",
+  "blood_bag_plus",
+  "label_plus",
+  "virtual_tether",
+  "link_os",
+  "mdm_connectors",
+  "browser_print",
+  "cloud_connect",
+  "virtual_devices",
+  "enterprise_connectors",
+  "pairing_solutions",
+  "scan_and_pair",
+  "zebra_designer",
+  "pdf_direct",
+  "print_station",
+  "printer_profile_manager",
+  "zebra_setup_utility",
+  "bluetooth_management",
+  "zebra_onecare",
+  "visibility_services",
+  "print_secure",
+  "design_tools",
+  "do_not_disturb",
+  "sim_card",
+  "phone_bluetooth_speaker",
+  "phone_in_talk",
+  "priority",
+  "sync",
+  "sync_disabled",
+  "sd_card",
+  "phone",
+  "add_call",
+  "end_call",
+  "email_alt",
+  "person_search",
+  "dialpad",
+  "conversation",
+  "message",
+  "sms",
+  "chat_bubble",
+  "chat_bubble_outline",
+  "email",
+  "email_outline",
+  "qr_code",
+  "qr_code_scan",
+  "rss_feed",
+  "dollar",
+  "volte",
+  "bluetooth",
+  "bluetooth_searching",
+  "bluetooth_disabled",
+  "location",
+  "uhf_rfid",
+  "antenna",
+  "location_point",
+  "light_mode",
+  "dark_mode",
+  "night",
+  "cellular_signal",
+  "network_signal",
+  "restart_alt",
+  "screen_rotation",
+  "devices",
+  "usb",
+  "usb_alt",
+  "usb_alt_device",
+  "brightness",
+  "battery_alert",
+  "battery",
+  "battery_charging",
+  "flight_mode",
+  "ethernet",
+  "nfc",
+  "chain",
+  "hdmi",
+  "mobile_friendly",
+  "contrast",
+  "add_alert",
+  "auto_delete",
+  "error",
+  "error_outline",
+  "important_notification",
+  "warning_outline",
+  "warning",
+  "alert",
+  "group",
+  "switch_user",
+  "add_person",
+  "person_outline",
+  "remove_person",
+  "person",
+  "add_group",
+  "remove_group",
+  "groups",
+  "ios_share",
+  "notifications_active",
+  "notifications_outline",
+  "notifications",
+  "world_map",
+  "share",
+  "medium",
+  "youtube",
+  "instagram",
+  "facebook",
+  "twitter",
+  "blog",
+  "linkedin",
+  "like",
+  "bad_mood",
+  "happy",
+  "sad",
+  "satisfied",
+  "very_satisfied",
+  "dislike",
+  "layers",
+  "offer",
+  "near_me",
+  "place",
+  "map",
+  "my_location",
+  "navigation",
+  "zoom_in_map",
+  "zoom_out_map",
+  "bus",
+  "light_rail_train",
+  "train",
+  "car",
+  "taxi",
+  "local_shipping",
+  "flight",
+  "ship",
+  "cafe",
+  "world",
+  "file_upload",
+  "file_download",
+  "finished_download",
+  "downloading",
+  "cloud",
+  "cloud_done",
+  "cloud_download",
+  "cloud_outline",
+  "cloud_upload",
+  "cloud_off",
+  "attachment",
+  "folder",
+  "create_new_folder",
+  "folder_outline",
+  "shared_folder",
+  "grid_view",
+  "upload_file",
+  "jpg_attach",
+  "pdf_attach",
+  "png_attach",
+  "doc_attach",
+  "ppt_attach",
+  "font_size_decrease",
+  "font_size_increase",
+  "bold",
+  "italic",
+  "edit",
+  "no_color",
+  "color_fill",
+  "type",
+  "strikethrough",
+  "underline",
+  "align_horizontal_center",
+  "align_vertical_center",
+  "align_horizontal_right",
+  "align_horizontal_left",
+  "align_vertical_bottom",
+  "align_vertical_top",
+  "checklist",
+  "indent_decrease",
+  "indent_increase",
+  "bullet_list",
+  "distribute_vertical",
+  "distribute_horizontal",
+  "line_spacing",
+  "numbered_list",
+  "align_left",
+  "align_right",
+  "align_center",
+  "justify",
+  "edit_border",
+  "format_shapes",
+  "attach",
+  "link",
+  "text_color",
+  "home",
+  "search",
+  "settings",
+  "info",
+  "check_circle_outline_alt",
+  "check_circle_outline",
+  "check_circle",
+  "check_mark",
+  "love",
+  "love_outline",
+  "unlock_alt",
+  "lock_alt",
+  "unlock",
+  "lock",
+  "world_action",
+  "filter",
+  "filter_alt",
+  "like_action",
+  "dislike_action",
+  "trending_up",
+  "trending_down",
+  "user_settings",
+  "user_circle",
+  "user",
+  "history",
+  "update",
+  "visibility",
+  "visibility_off",
+  "clipboard",
+  "pin",
+  "renew",
+  "sync_action",
+  "delete_forever",
+  "build",
+  "alarm",
+  "bookmark",
+  "bookmark_outline",
+  "ar",
+  "cached",
+  "document",
+  "pending",
+  "open_in_full",
+  "label",
+  "price",
+  "open_in_new_window",
+  "delete_outline",
+  "security_check",
+  "clock_outline",
+  "clock",
+  "upload",
+  "download",
+  "delete",
+  "log_out",
+  "log_in",
+  "zoom_in",
+  "zoom_out",
+  "touch",
+  "hand",
+  "credit_card",
+  "calendar_available",
+  "calendar_cancel",
+  "calendar_edit",
+  "calendar_range",
+  "calendar_yearly",
+  "calendar_monthly_alt",
+  "calendar_monthly",
+  "calendar_weekly_alt",
+  "calendar_weekly",
+  "calendar_3_day",
+  "calendar_day",
+  "calendar_alt_2",
+  "calendar_alt_1",
+  "calendar",
+  "verified",
+  "play",
+  "play_circle",
+  "play_outline",
+  "stop_circle",
+  "pause_circle",
+  "stop",
+  "pause",
+  "fast_forward",
+  "fast_rewind",
+  "skip_next",
+  "skip_previous",
+  "volume_down",
+  "volume_mute",
+  "volume_off",
+  "volume_up",
+  "microphone",
+  "microphone_outline",
+  "microphone_off",
+  "loop",
+  "replay",
+  "block",
+  "closed_caption",
+  "video_camera",
+  "camera",
+  "flip_camera",
+  "visibility_image",
+  "visibility_off_image",
+  "camera_shutter",
+  "image_library",
+  "image",
+  "eye_dropper",
+  "contrast_image",
+  "portrait",
+  "hdr",
+  "rotate_left",
+  "rotate_right",
+  "slide_show",
+  "straighten",
+  "adjustments",
+  "crop",
+  "pro",
+  "auto",
+  "iso",
+  "wb",
+  "awb",
+  "wb_image",
+  "grid_on",
+  "grid_off",
+  "timer",
+  "apps",
+  "columns",
+  "cancel",
+  "drop_down_circle",
+  "close",
+  "check",
+  "more_vertical",
+  "more_horizontal",
+  "chevron_left",
+  "chevron_right",
+  "expand_less",
+  "expand_more",
+  "caret_down",
+  "caret_up",
+  "caret_left",
+  "caret_right",
+  "full_screen_exit",
+  "full_screen",
+  "hamburger_menu",
+  "hamburger_menu_thick",
+  "hamburger_menu_navigation_rail",
+  "refresh",
+  "arrow_up",
+  "arrow_forward",
+  "arrow_down",
+  "arrow_back",
+  "unfold_more",
+  "unfold_less",
+  "caret_sort",
+  "first_page",
+  "last_page",
+  "dashboard",
+  "cancel_outline",
+  "list_alt",
+  "list",
+  "help_outline",
+  "help",
+  "add",
+  "link_content",
+  "sort",
+  "filter_list",
+  "create",
+  "mail",
+  "content",
+  "clear",
+  "copy_file",
+  "remove_circle_outline",
+  "add_circle_outline",
+  "remove_circle",
+  "block_content",
+  "add_circle",
+  "remove",
+  "android",
+  "add_box",
+  "remove_box",
+  "push_pin",
+  "send",
+  "backspace",
+  "flag",
+  "save",
+  "reply",
+  "redo",
+  "save_alt",
+  "undo",
+  "analysis",
+  "scanner",
+  "printer",
+  "cast",
+  "cast_connected",
+  "desktop",
+  "devices_ecosystem",
+  "device_settings",
+  "headphones",
+  "keyboard",
+  "laptop",
+  "memory",
+  "monitor",
+  "phone_android",
+  "phone_iphone",
+  "phonelink",
+  "security",
+  "video_play",
+  "smart_phone",
+  "speaker",
+  "tablet",
+  "tablet_mac",
+  "tv",
+  "watch"
+];
+
+type IconNameTuple = typeof IconNameList;
+export type IconNames = IconNameTuple[number];
+

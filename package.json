@@ -44,12 +44,12 @@
     "storybook": "storybook dev -p 6006",
     "test": "web-test-runner \"test/**/*.test.js\" --node-resolve",
     "build-storybook": "storybook build",
-    "react-gen": "cd scripts && node reactify.js",
+    "react-gen": "npx vite build && cd scripts && node reactify.js",
     "create": "cd scripts && node makeWebComponentTemplate.js"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.9.0",
-    "@storybook/addon-a11y": "^7.0.24",
+    "@storybook/addon-a11y": "^7.5.3",
     "@storybook/addon-actions": "^7.4.6",
     "@storybook/addon-essentials": "^7.4.6",
     "@storybook/addon-links": "^7.4.6",
@@ -83,7 +83,8 @@
     "@fontsource/ibm-plex-sans": "^5.0.15",
     "@fontsource/ibm-plex-sans-condensed": "^5.0.8",
     "@zebra-fed/zeta-icons": "^0.0.1",
-    "lit": "^3.0.0"  
+    "lit": "^3.0.0",
+    "vite-dts": "^1.0.4"
   },
   "overrides": {
     "rollup-plugin-scss-lit": {

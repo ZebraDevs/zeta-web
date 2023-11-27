@@ -28,28 +28,28 @@
         justify-self: end;
     }
 }
-
+// TODO: Component specific tokens needed here, foreground color is wrong.
 .system-banner,
 :host([status="default"]) > .system-banner {
-    background: var(--surface-accent);
-    color: var(--text-on-accent);
-    fill: var(--text-on-accent);
+    background: var(--surface-primary);
+    color: var(--text-inverse);
+    fill: var(--text-inverse);
 }
 
 :host([status="positive"]) > .system-banner {
     background: var(--surface-positive);
-    color: var(--text-on-positive);
-    fill: var(--text-on-positive);
+    color: var(--text-inverse);
+    fill: var(--text-inverse);
 }
 :host([status="warning"]) > .system-banner {
     background: var(--surface-warning);
-    color: var(--text-on-warning);
-    fill: var(--text-on-warning);
+    color: var(--text-default);
+    fill: var(--text-default);
 }
 :host([status="negative"]) > .system-banner {
     background: var(--surface-negative);
-    color: var(--text-on-negative);
-    fill: var(--text-on-negative);
+    color: var(--text-inverse);
+    fill: var(--text-inverse);
 }
 
 :host([rounded]) > .system-banner {
