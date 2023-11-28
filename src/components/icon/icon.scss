@@ -27,7 +27,7 @@
 :host .icon.rounded {
   @font-face {
     font-family: "zeta-icons-round";
-    src: url(@zebra-fed/zeta-icons/fonts/zeta-icons_round.woff2) format("woff2");
+    src: url(@zebra-fed/zeta-icons/fonts/zeta-icons-round.woff2) format("woff2");
   }
 
   font-family: "zeta-icons-round" !important;
@@ -35,7 +35,7 @@
 :host .icon.sharp {
   @font-face {
     font-family: "zeta-icons-sharp";
-    src: url(@zebra-fed/zeta-icons/fonts/zeta-icons_sharp.woff2) format("woff2");
+    src: url(@zebra-fed/zeta-icons/fonts/zeta-icons-sharp.woff2) format("woff2");
   }
 
   font-family: "zeta-icons-sharp" !important;

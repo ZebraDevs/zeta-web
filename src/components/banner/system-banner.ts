@@ -2,7 +2,9 @@ import { html, nothing } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { Alignment, BannerStatus } from "../../types.js";
 import { ContourableCondensableElement } from "../../mixins/condense.js";
-import styles  from "./system-banner.scss";
+import styles from "./system-banner.scss";
+
+// TODO: Update to use zeta-icon
 
 /** Zeta system banner component.
  *
@@ -48,3 +50,4 @@ declare global {
     "zeta-system-banner": ZetaSystemBanner;
   }
 }
+
