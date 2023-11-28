@@ -8,7 +8,7 @@ import { styleMap } from "lit/directives/style-map.js";
 @customElement("zeta-icon")
 export class ZetaIcon extends ContourableElement {
   /**The name of the icon. Full list of icons can be found at https://zeta-icons.web.app/. */
-  @property({ type: String }) name: ZetaIconName | ZetaIconName[] | undefined = undefined;
+  @property({ type: String }) name: ZetaIconName | undefined = undefined;
 
   /** Size of icon as css variable.
    *

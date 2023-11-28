@@ -6,7 +6,7 @@ import styles from "./button.scss"; //TODO: Vite CLI not happy about this
 import { ContourableCondensableInteractiveElement } from "../../mixins/interactive.js";
 
 //TODO text overflow broken
-
+//TODO: Fix icon button
 export class ButtonBase extends ContourableCondensableInteractiveElement {
   static override shadowRootOptions: ShadowRootInit = {
     mode: "open",

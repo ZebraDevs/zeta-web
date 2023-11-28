@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import "../../index.js";
 import { ZetaStatusLabel } from "./status-label.js";
-import { IconNameList } from "../icon/icon-types.js";
+import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
 const meta: Meta<ZetaStatusLabel> = {
   component: "zeta-status-label",
   args: {
@@ -19,7 +19,7 @@ const meta: Meta<ZetaStatusLabel> = {
       }
     },
     icon: {
-      options: IconNameList,
+      options: ZetaIconNameList,
       control: {
         type: "select"
       }

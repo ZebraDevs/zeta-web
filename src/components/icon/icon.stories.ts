@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaIcon } from "./icon.js";
 import "./icon";
+import { ZetaIconNameList } from "@zebra-fed/zeta-icons/build_files/icon-types.js";
 
 const meta: Meta<ZetaIcon> = {
   component: "zeta-icon",
@@ -10,7 +11,14 @@ const meta: Meta<ZetaIcon> = {
     color: "red",
     rounded: false
   },
-  argTypes: {}
+  argTypes: {
+    name: {
+      options: ZetaIconNameList,
+      control: {
+        type: "select"
+      }
+    }
+  }
 };
 export default meta;
 

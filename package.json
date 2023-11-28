@@ -82,7 +82,7 @@
   "dependencies": {
     "@fontsource/ibm-plex-sans": "^5.0.15",
     "@fontsource/ibm-plex-sans-condensed": "^5.0.8",
-    "@zebra-fed/zeta-icons": "^0.0.1",
+    "@zebra-fed/zeta-icons": "^0.1.45",
     "lit": "^3.0.0",
     "vite-dts": "^1.0.4"
   },
