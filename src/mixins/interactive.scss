@@ -1,3 +1,8 @@
+:host(:not([disabled])) > :first-child {
+  cursor: pointer;
+  user-select: none;
+}
+
 :host([disabled]) > * {
   cursor: not-allowed;
   background: var(--surface-disabled);

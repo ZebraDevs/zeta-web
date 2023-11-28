@@ -33,12 +33,9 @@ export class ZetaStatusLabel extends ContourableCondensableElement {
   @property({ type: String }) icon: ZetaIconName | undefined;
   static styles = [super.styles ?? [], styles];
 
-  getColor = () => {
-    return "var(--icon-" + this.status + ")";
-  };
   protected override render() {
     const icon = this.icon
-      ? html`<zeta-icon size="20" color=${this.getColor()} .rounded=${this.rounded}>${this.icon}</zeta-icon> `
+      ? html`<zeta-icon size="20" color="var(--icon-" + ${this.status} + ")" .rounded=${this.rounded}>${this.icon}</zeta-icon> `
       : svg`
     <svg xmlns="http://www.w3.org/2000/svg" width="8" height="20" viewBox="0 0 8 8" >
     <circle cx="4" cy="4" r="4" />
