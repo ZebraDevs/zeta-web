@@ -12,9 +12,12 @@ import "../src/components/banner/in-page-banner.ts";
 import "../src/components/banner/system-banner.ts";
 import "../src/components/button/button.ts";
 import "../src/components/icon/icon.ts";
+import "../src/components/tag/tag.ts";
 export * from "../src/components/badges/priority-pill.js";
 export * from "../src/components/badges/status-label.js";
 export * from "../src/components/banner/in-page-banner.js";
 export * from "../src/components/banner/system-banner.js";
 export * from "../src/components/button/button.js";
 export * from "../src/components/icon/icon.js";
+export * from "../src/components/tag/tag.js";
+

@@ -1,0 +1,54 @@
+:host([point="left"]) > .tag .point {
+  transform: rotate(180deg);
+}
+
+:host([point="left"]) > .tag {
+  flex-direction: row-reverse;
+}
+
+:host([point="left"][rounded]) > .tag .text {
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+:host([point="right"][rounded]) > .tag .text {
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
+.tag {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  height: fit-content;
+}
+
+.point {
+  @media (prefers-color-scheme: light) {
+    & path {
+      fill: var(--color-cool-20);
+    }
+  }
+  @media (prefers-color-scheme: dark) {
+    & path {
+      fill: var(--color-warm-10);
+    }
+  }
+}
+
+.text {
+  color: var(--color-cool-90);
+  background: var(--color-cool-20);
+  padding: 4px 8px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+
+  @media (prefers-color-scheme: dark) {
+    & {
+      color: var(--color-cool-90);
+      background: var(--color-warm-10);
+    }
+  }
+}
