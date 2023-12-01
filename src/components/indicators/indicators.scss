@@ -1,0 +1,87 @@
+:host([size="small"]) .container {
+  min-width: 8px;
+  min-height: 8px;
+}
+
+:host([size="medium"]) .container {
+  width: 14px;
+  height: 14px;
+
+  .count{
+    font-size: 12px;
+  }
+}
+
+:host([size="large"]) .container {
+  width: 20px;
+  height: 20px;
+  
+ .icon{
+  top: 1px;
+ }
+}
+
+:host([size="small"]) .container{
+  .count,.icon{display: none;}
+}
+
+:host([inverse]) .container {
+  @media (prefers-color-scheme: light) {
+    border:2px solid #000000;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    border:2px solid #ffffff;
+  }
+}
+
+ :host{ 
+  width: fit-content;
+  display: block;
+
+  .container {
+   border-radius: 50%;
+   width: fit-content;
+   height: fit-content;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   position: relative;
+ }
+}
+
+.container.icon{
+  background-color: blue;
+}
+
+.container.notification{
+  background-color: red;
+}
+
+:host .container .icon.rounded {
+  @font-face {
+    font-family: "zeta-icons-round";
+    src: url(@zebra-fed/zeta-icons/fonts/zeta-icons-round.woff2) format("woff2");
+  }
+
+  font-family: "zeta-icons-round" !important;
+}
+:host .container .icon.sharp {
+  @font-face {
+    font-family: "zeta-icons-sharp";
+    src: url(@zebra-fed/zeta-icons/fonts/zeta-icons-sharp.woff2) format("woff2");
+  }
+
+  font-family: "zeta-icons-sharp" !important;
+}
+
+:host .container {
+ .icon,.count {
+    position: absolute;
+    color: #ffffff;
+  }
+}
+
+
+
+

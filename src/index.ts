@@ -10,6 +10,8 @@ import "../src/components/badges/priority-pill.ts";
 import "../src/components/badges/status-label.ts";
 import "../src/components/banner/in-page-banner.ts";
 import "../src/components/banner/system-banner.ts";
+import "./components/indicators/icon-indicator/icon-indicator.ts";
+import "./components/indicators/notification-indicator/notification-indicator.ts";
 import "../src/components/button/button.ts";
 import "../src/components/icon/icon.ts";
 export * from "../src/components/badges/priority-pill.js";
@@ -18,3 +20,6 @@ export * from "../src/components/banner/in-page-banner.js";
 export * from "../src/components/banner/system-banner.js";
 export * from "../src/components/button/button.js";
 export * from "../src/components/icon/icon.js";
+export * from "./components/indicators/icon-indicator/icon-indicator.js";
+export * from "./components/indicators/notification-indicator/notification-indicator.js";
+
