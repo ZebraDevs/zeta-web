@@ -30,6 +30,9 @@
   --radius-xxl: 128px;
   --radius-xxxl: 360px;
 
+  --color-border-focused: var(--color-blue-50);
+
+  font-family: var(--type-family-regular)
 }
 
 /* Primitives (Dark) */

@@ -37,16 +37,6 @@ export class ZetaInPageBanner extends ContourableCondensableElement {
     }
   };
 
-  private getCloseIcon = () => {
-    return html`<svg id="close" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
-      <g clip-path="url(#clip0_1016_14731)">
-        <path
-          d="M15.2496 4.75834C14.9246 4.43334 14.3996 4.43334 14.0746 4.75834L9.99961 8.82501L5.92461 4.75001C5.59961 4.42501 5.07461 4.42501 4.74961 4.75001C4.42461 5.07501 4.42461 5.60001 4.74961 5.92501L8.82461 10L4.74961 14.075C4.42461 14.4 4.42461 14.925 4.74961 15.25C5.07461 15.575 5.59961 15.575 5.92461 15.25L9.99961 11.175L14.0746 15.25C14.3996 15.575 14.9246 15.575 15.2496 15.25C15.5746 14.925 15.5746 14.4 15.2496 14.075L11.1746 10L15.2496 5.92501C15.5663 5.60834 15.5663 5.07501 15.2496 4.75834Z"
-        />
-      </g>
-    </svg>`;
-  };
-
   @queryAssignedElements({ slot: "leading-action", flatten: true }) leadingAction!: Array<Node>;
   @queryAssignedElements({ slot: "trailing-action", flatten: true }) trailingAction!: Array<Node>;
 
@@ -71,12 +61,12 @@ export class ZetaInPageBanner extends ContourableCondensableElement {
     return html`
       <div class="banner">
         <div class="leading">
-          <zeta-icon size="20" color="var(--icon-${this.status})">${this.getIcon()}</zeta-icon>
+          <zeta-icon size="20" .rounded=${this.rounded} color="var(--icon-${this.status})">${this.getIcon()}</zeta-icon>
         </div>
         <div class="trailing">
           <div class="header">
             <div class="title">${this.title}</div>
-            <zeta-icon id="close" .onclick=${() => this.remove()}>close </zeta-icon>
+            <zeta-icon id="close" .rounded=${this.rounded} .onclick=${() => this.remove()}>close </zeta-icon>
           </div>
           <div class="body">${this.body}</div>
           <div class="footer ">
@@ -94,4 +84,3 @@ declare global {
     "zeta-in-page-banner": ZetaInPageBanner;
   }
 }
-

@@ -1,1 +1,0 @@
-{"version":3,"file":"_utils.js","sourceRoot":"","sources":["../../src/mixins/_utils.ts"],"names":[],"mappings":"","sourcesContent":["import { LitElement } from \"lit\";\r\n\r\n// eslint-disable-next-line @typescript-eslint/no-explicit-any\r\nexport type Constructor<T extends LitElement> = new (...args: any[]) => T;\r\n\r\n"]}

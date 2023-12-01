@@ -60,4 +60,3 @@ declare global {
     "zeta-button": ZetaButton;
   }
 }
-
