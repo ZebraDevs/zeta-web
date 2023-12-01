@@ -1,0 +1,46 @@
+name: CI
+on: pull_request
+jobs:
+  code-quality:
+    name: Check the code quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x.x
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - name: Install playwright browsers
+        run: npx playwright install --with-deps
+      - name: Run eslint
+        run: npm run lintnew
+        continue-on-error: true
+      - name: Run lit-analyzer
+        run: npm run lint:lit-analyzer
+        continue-on-error: true
+      - name: Run tests
+        run: npm run test
+    # deploy-preview:
+    # TODO: We need to connect the repository to a firebase project in order to deploy previews
+    #    name: Deploy preview version of the storybook on firebase
+    #    runs-on: ubuntu-latest
+    #    steps:
+    #      - uses: actions/checkout@v4
+    #      - name: Setup node
+    #        if: needs.changes.outputs.frontend == 'true'
+    #        uses: actions/setup-node@v3
+    #        with:
+    #          node-version: 18.x.x
+    #          cache: 'npm'
+    #      - name: Install dependencies
+    #        run: npm ci
+    #      - name: Build storybook
+    #        run: npm run build-storybook
+    #      - uses: FirebaseExtended/action-hosting-deploy@v0
+    #        with:
+    #          repoToken: "${{ secrets.PAT }}"
+    #          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
+    #          projectId: project-id
