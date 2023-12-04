@@ -2,6 +2,7 @@ import { html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { BadgeStatus } from "../../../types.js";
 import { ContourableCondensableElement } from "../../../mixins/condense.js";
+import styles from "./text-badge.scss";
 
 /** ZetaTextLabel web component.
  *
@@ -23,13 +24,7 @@ export class ZetaTextBadge extends ContourableCondensableElement {
    * Can also be slotted. */
   @property({ type: String }) text: string | undefined;
 
-  readonly statuses = {
-    neutral: "neutral",
-    info: "info",
-    positive: "positive",
-    warning: "warning",
-    negative: "negative"
-  };
+  static styles = [styles, super.styles ?? []];
 
   protected override render() {
     return html`

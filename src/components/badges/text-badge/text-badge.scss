@@ -1,10 +1,45 @@
+:host([status = "info"]) .container {
+  background: var(--color-purple-40);
+}
+
+:host([status = "positive"]) .container {
+  background: var(--color-green-50);
+
+  .text{
+    color: #1D1E23;
+  }
+}
+
+:host([status = "warning"]) .container {
+  background: var(--color-orange-110);
+}
+
+:host([status = "negative"]) .container {
+  background: var(--color-red-50);
+}
+
+:host([status = "neutral"]) .container {
+  background: var(--color-cool-110);
+
+  .text{
+    color: #F3F6FA;
+  }
+}
+
+:host([rounded]) .container {
+  border-radius: 4px;
+}
+
 .container {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--surface-primary-subtle);
   white-space: nowrap;
   line-height: 20px;
+  width: fit-content;
 
-
+  .text{
+    padding: 2px 4px;
+    color: var(--color-cool-20);
+  }
 }
