@@ -6,10 +6,10 @@
 :host([disabled]) > * {
   cursor: not-allowed;
   background: var(--surface-disabled);
-  color: var(--text-disabled);
+  color: var(--text-disabled);  
 }
 
-:host(:focus) > button {
+:host(:focus) > :first-child {
   outline: none;
   box-shadow: 0 0 0 2px var(--border-primary);
 }

@@ -30,12 +30,16 @@ export class ZetaIcon extends ContourableElement {
       lineHeight: size
     });
 
-    return html` <span class="icon ${this.rounded ? "rounded" : "sharp"}" style=${styles}>
-      <slot @slotchange=${() => this.requestUpdate()}></slot>
-      ${this.name}
-    </span>`;
+    return html` <style>
+        :host {
+          height: ${size};
+        }
+      </style>
+      <span class="icon ${this.rounded ? "rounded" : "sharp"}" style=${styles}>
+        <slot @slotchange=${() => this.requestUpdate()}></slot>
+        ${this.name}
+      </span>`;
   }
 
   static styles = [styles];
 }
-

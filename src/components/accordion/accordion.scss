@@ -1,0 +1,36 @@
+.accordion {
+  &:hover:not([disabled]) {
+    background-color: var(--surface-hover);  
+  }  
+}
+
+:not([open]).body {
+  display: none;
+}
+
+:host([open]).body {
+  display: block;
+}
+
+:host([contained]) .accordion {
+  border: 1px solid var(--border-default);
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 500;
+  padding: var(--spacing-4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.body {
+  padding: var(--spacing-2) 0;
+  ::slotted(li) {
+    padding: var(--spacing-2) var(--spacing-4);
+    list-style-type: none;
+    font-size: 16px;
+    font-weight: 500; 
+  }    
+}

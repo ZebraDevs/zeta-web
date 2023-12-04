@@ -14,6 +14,8 @@ import "./components/indicators/icon-indicator/icon-indicator.ts";
 import "./components/indicators/notification-indicator/notification-indicator.ts";
 import "../src/components/button/button.ts";
 import "../src/components/icon/icon.ts";
+import "../src/components/tag/tag.ts";
+import "../src/components/accordion/accordion.ts";
 export * from "../src/components/badges/priority-pill.js";
 export * from "../src/components/badges/status-label.js";
 export * from "../src/components/banner/in-page-banner.js";
@@ -22,4 +24,5 @@ export * from "../src/components/button/button.js";
 export * from "../src/components/icon/icon.js";
 export * from "./components/indicators/icon-indicator/icon-indicator.js";
 export * from "./components/indicators/notification-indicator/notification-indicator.js";
-
+export * from "../src/components/tag/tag.js";
+export * from "../src/components/accordion/accordion.js";
