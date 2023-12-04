@@ -13,6 +13,7 @@ import "../src/components/banner/system-banner.ts";
 import "../src/components/button/button.ts";
 import "../src/components/icon/icon.ts";
 import "../src/components/tag/tag.ts";
+import "../src/components/badges/text-badge/text-badge.ts";
 import "../src/components/accordion/accordion.ts";
 export * from "../src/components/badges/priority-pill.js";
 export * from "../src/components/badges/status-label.js";
@@ -22,3 +23,5 @@ export * from "../src/components/button/button.js";
 export * from "../src/components/icon/icon.js";
 export * from "../src/components/tag/tag.js";
 export * from "../src/components/accordion/accordion.js";
+export * from "../src/components/badges/text-badge/text-badge.js";
+
