@@ -23,9 +23,15 @@ export class ZetaTextBadge extends ContourableCondensableElement {
    * Can also be slotted. */
   @property({ type: String }) text: string | undefined;
 
-  protected override render() {
-    console.log(this.status);
+  readonly statuses = {
+    neutral: "neutral",
+    info: "info",
+    positive: "positive",
+    warning: "warning",
+    negative: "negative"
+  };
 
+  protected override render() {
     return html`
       <div class="container">
         <div class="text">${this.text && this.text}</div>
