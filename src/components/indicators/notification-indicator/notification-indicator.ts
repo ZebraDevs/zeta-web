@@ -2,6 +2,7 @@ import { html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { ContourableCondensableElement } from "../../../mixins/condense.js";
 import styles from "../indicators.scss";
+import { Size } from "../../../types.js";
 
 /** Zeta Notification Indicator web component.
  *
@@ -17,7 +18,7 @@ export class ZetaNotificationIndicator extends ContourableCondensableElement {
   }
 
   /** Indicators' sizes.*/
-  @property({ type: String, reflect: true }) size: "small" | "medium" | "large";
+  @property({ type: String, reflect: true }) size: Size = "medium";
 
   /** Indicators' inverse.*/
   @property({ type: Boolean, reflect: true }) inverse: boolean = false;

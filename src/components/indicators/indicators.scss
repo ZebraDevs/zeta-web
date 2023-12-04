@@ -26,13 +26,7 @@
 }
 
 :host([inverse]) .container {
-  @media (prefers-color-scheme: light) {
-    border:2px solid #000000;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    border:2px solid #ffffff;
-  }
+  border:2px solid var(--surface-default-inverse);
 }
 
  :host{ 
@@ -56,23 +50,6 @@
 
 .container.notification{
   background-color: red;
-}
-
-:host .container .icon.rounded {
-  @font-face {
-    font-family: "zeta-icons-round";
-    src: url(@zebra-fed/zeta-icons/fonts/zeta-icons-round.woff2) format("woff2");
-  }
-
-  font-family: "zeta-icons-round" !important;
-}
-:host .container .icon.sharp {
-  @font-face {
-    font-family: "zeta-icons-sharp";
-    src: url(@zebra-fed/zeta-icons/fonts/zeta-icons-sharp.woff2) format("woff2");
-  }
-
-  font-family: "zeta-icons-sharp" !important;
 }
 
 :host .container {
