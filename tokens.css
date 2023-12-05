@@ -44,7 +44,8 @@
     --color-pure-0: #000000;
 
     /* Cool Grey */
-    --color-cool-100: #f8fbff;
+    --color-cool-110:#e8eBF1;
+    --color-cool-100:#f8fbff;
     --color-cool-90: #f3f6fa;
     --color-cool-80: #e0e3e9;
     --color-cool-70: #ced2db;
@@ -104,8 +105,9 @@
     --color-red-10: #220f11;
 
     /* Orange */
+    --color-orange-110:#ff9500;
+    --color-orange-100:#ffe7c6;
     --zeta-dark-orange-100: #FEF2E2;
-    --color-orange-100: #ffe7c6;
     --color-orange-90: #ffd292;
     --color-orange-80: #ffb348;
     --color-orange-70: #f5a230;
@@ -185,7 +187,8 @@
     --color-cool-70: #545963;
     --color-cool-80: #2c2f36;
     --color-cool-90: #1d1e23;
-    --color-cool-100: #0c0d0e;
+    --color-cool-100:#0c0d0e;
+    --color-cool-110:#3c414b;
 
     /* Warm Grey */
     --color-warm-10: #fafafa;
@@ -246,7 +249,8 @@
     --color-orange-70: #965802;
     --color-orange-80: #764502;
     --color-orange-90: #402600;
-    --color-orange-100: #1e1100;
+    --color-orange-100:#1e1100;
+    --color-orange-110:#ffa82e;
 
     /* Purple */
     --color-purple-10: #f7f0ff;

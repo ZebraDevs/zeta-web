@@ -15,6 +15,7 @@ import "./components/indicators/notification-indicator/notification-indicator.ts
 import "../src/components/button/button.ts";
 import "../src/components/icon/icon.ts";
 import "../src/components/tag/tag.ts";
+import "../src/components/badges/text-badge/text-badge.ts";
 import "../src/components/accordion/accordion.ts";
 import "../src/components/workcloud-indicator/workcloud-indicator.ts";
 export * from "../src/components/badges/priority-pill.js";
@@ -27,5 +28,6 @@ export * from "./components/indicators/icon-indicator/icon-indicator.js";
 export * from "./components/indicators/notification-indicator/notification-indicator.js";
 export * from "../src/components/tag/tag.js";
 export * from "../src/components/accordion/accordion.js";
+export * from "../src/components/badges/text-badge/text-badge.js";
 export * from "../src/components/workcloud-indicator/workcloud-indicator.js";
 

@@ -1,0 +1,33 @@
+:host([status = "info"]) .container {
+  background: var(--color-purple-40);
+}
+
+:host([status = "positive"]) .container {
+  background: var(--color-green-50);
+}
+
+:host([status = "warning"]) .container {
+  background: var(--color-orange-110);
+}
+
+:host([status = "negative"]) .container {
+  background: var(--color-red-50);
+}
+
+:host([status = "neutral"]) .container {
+  background: var(--color-cool-110);
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  line-height: 20px;
+  width: fit-content;
+
+  .text{
+    padding: 2px 4px;
+    color: var(--color-cool-20);
+  }
+}
