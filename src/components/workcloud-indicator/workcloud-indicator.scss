@@ -1,0 +1,133 @@
+@media (prefers-color-scheme: light) {
+  :host([priority="urgent"]) {
+    .number {
+      background: var(--color-red-60);
+    }
+    .container {
+      background: var(--color-red-20);
+    }
+  }
+
+  :host([priority="high"]) {
+    .number {
+      background: var(--color-orange-40);
+    }
+    .container {
+      background: var(--zeta-light-orange-10);
+    }
+  }
+
+  :host([priority="medium"]) {
+    .number {
+      background: var(--color-blue-60);
+    }
+    .container {
+      background: var(--color-blue-20);
+    }
+  }
+
+  :host([priority="low"]) {
+    .number {
+      background: var(--color-green-60);
+    }
+    .container {
+      background: var(--color-green-20);
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :host([priority="urgent"]) {
+    .number {
+      color: var(--color-red-100);
+      background: var(--color-red-40);
+    }
+    .text {
+      color: var(--color-cool-90);
+    }
+    .container {
+      background: var(--color-red-20);
+    }
+  }
+
+  :host([priority="high"]) {
+    .number {
+      color: var(--zeta-dark-orange-100);
+      background: var(--color-orange-40);
+    }
+    .text {
+      color: var(--color-cool-90);
+    }
+    .container {
+      background: var(--color-orange-20);
+    }
+  }
+
+  :host([priority="medium"]) {
+    .number {
+      color: var(--color-blue-100);
+      background: var(--color-blue-40);
+    }
+    .text {
+      color: var(--color-cool-90);
+    }
+    .container {
+      background: var(--color-blue-20);
+    }
+  }
+
+  :host([priority="low"]) {
+    .number {
+      color: var(--color-green-100);
+      background: var(--color-green-40);
+    }
+    .text {
+      color: var(--color-cool-90);
+    }
+    .container {
+      background: var(--color-green-20);
+    }
+  }
+}
+
+:host([size="medium"]){
+  .text {
+    padding: 2px 8px 2px 4px;
+  }
+  .number {
+    font-size: 14px;
+    width: 24px;
+    height: 24px;
+  }
+}
+
+:host([size="small"]){
+  .text {
+    font-size: 12px;
+    line-height: 16px;
+  }
+  .number {
+    font-size: 12px;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+:host([size="xs"]){
+  .text {
+    display: none;
+  }
+  .number {
+    font-size: 12px;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+:host {
+  .text {
+    height: auto;
+    text-transform: capitalize;
+    padding: 0 8px 0 4px;
+  }
+}

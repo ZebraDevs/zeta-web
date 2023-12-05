@@ -1,7 +1,7 @@
 import { html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { ContourableCondensableElement } from "../../mixins/condense.js";
-import  styles  from "./priority-pill.scss";
+import styles from "./priority-pill.scss";
 
 /** ZetaPriorityPill web component.
  *

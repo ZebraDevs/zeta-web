@@ -1,0 +1,64 @@
+:host([size="small"]) .container {
+  min-width: 8px;
+  min-height: 8px;
+}
+
+:host([size="medium"]) .container {
+  width: 14px;
+  height: 14px;
+
+  .count{
+    font-size: 12px;
+  }
+}
+
+:host([size="large"]) .container {
+  width: 20px;
+  height: 20px;
+  
+ .icon{
+  top: 1px;
+ }
+}
+
+:host([size="small"]) .container{
+  .count,.icon{display: none;}
+}
+
+:host([inverse]) .container {
+  border:2px solid var(--surface-default-inverse);
+}
+
+ :host{ 
+  width: fit-content;
+  display: block;
+
+  .container {
+   border-radius: 50%;
+   width: fit-content;
+   height: fit-content;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   position: relative;
+ }
+}
+
+.container.icon{
+  background-color: blue;
+}
+
+.container.notification{
+  background-color: red;
+}
+
+:host .container {
+ .icon,.count {
+    position: absolute;
+    color: #ffffff;
+  }
+}
+
+
+
+

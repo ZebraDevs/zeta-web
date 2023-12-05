@@ -107,6 +107,7 @@
     /* Orange */
     --color-orange-110:#ff9500;
     --color-orange-100:#ffe7c6;
+    --zeta-dark-orange-100: #FEF2E2;
     --color-orange-90: #ffd292;
     --color-orange-80: #ffb348;
     --color-orange-70: #f5a230;
@@ -238,6 +239,7 @@
     --color-red-100: #220f11;
 
     /* Orange */
+    --zeta-light-orange-10: #FEF2E2;
     --color-orange-10: #ffe7c6;
     --color-orange-20: #ffd292;
     --color-orange-30: #ffb348;
