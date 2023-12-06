@@ -1,17 +1,23 @@
 name: Update Zeta Icons
 
 on:
+  workflow_dispatch:
   repository_dispatch:
     types: [update-icons]
-    
+
 jobs:
   update:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v3
+    - name: Setup node
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18.x.x
+        cache: 'npm'
     - name: Update Zeta Icons
-      run: npm update zeta-icons
+      run: npm update @zebra-fed/zeta-icons
     - name: Commit
       run: |
         git config --global user.name "zeta-icons-bot"
