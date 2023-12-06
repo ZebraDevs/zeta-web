@@ -18,6 +18,7 @@ import "../src/components/tag/tag.ts";
 import "../src/components/badges/text-badge/text-badge.ts";
 import "../src/components/accordion/accordion.ts";
 import "../src/components/workcloud-indicator/workcloud-indicator.ts";
+import "../src/components/bottom-sheets/sheet-header/sheet-header.ts";
 import "../src/components/tooltip/tooltip.ts";
 export * from "../src/components/badges/priority-pill.js";
 export * from "../src/components/badges/status-label.js";
@@ -31,5 +32,7 @@ export * from "../src/components/tag/tag.js";
 export * from "../src/components/accordion/accordion.js";
 export * from "../src/components/badges/text-badge/text-badge.js";
 export * from "../src/components/workcloud-indicator/workcloud-indicator.js";
+export * from "../src/components/bottom-sheets/sheet-header/sheet-header.js";
 export * from "../src/components/tooltip/tooltip.js";
+
 
