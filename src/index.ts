@@ -20,6 +20,7 @@ import "../src/components/accordion/accordion.ts";
 import "../src/components/workcloud-indicator/workcloud-indicator.ts";
 import "../src/components/bottom-sheets/sheet-header/sheet-header.ts";
 import "../src/components/tooltip/tooltip.ts";
+import "../src/components/switch/switch.ts";
 export * from "../src/components/badges/priority-pill.js";
 export * from "../src/components/badges/status-label.js";
 export * from "../src/components/banner/in-page-banner.js";
@@ -34,5 +35,6 @@ export * from "../src/components/badges/text-badge/text-badge.js";
 export * from "../src/components/workcloud-indicator/workcloud-indicator.js";
 export * from "../src/components/bottom-sheets/sheet-header/sheet-header.js";
 export * from "../src/components/tooltip/tooltip.js";
+export * from "../src/components/switch/switch.js";
 
 

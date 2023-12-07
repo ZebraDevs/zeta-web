@@ -46,6 +46,7 @@
 /* Primitives (Dark) */
 @media (prefers-color-scheme: dark) {
   :root {
+    --border-focused: var(--color-blue-70);
 
     /* Pure */
     --color-pure-1000: #ffffff;
@@ -173,6 +174,15 @@
     --color-pink-30: #840054;
     --color-pink-20: #640040;
     --color-pink-10: #2e001e;
+
+    /* Interactive */
+    --interactive-disabled: #2C2F36;
+    --interactive-subtle: #4F5561;
+    --interactive-selected: #0073E6;
+
+    /* Icon */
+    --icon-on-interactive: #FFFFFF;
+    --icon-on-interactive-disabled: #99A1B2;
   }
 }
 
@@ -180,6 +190,7 @@
 @media (prefers-color-scheme: light) {
   :root {
     /* Colors */
+    --border-focused: var(--color-blue-50);
 
     /* Pure */
     --color-pure-0: #ffffff;
@@ -309,7 +320,14 @@
     --color-pink-100: #2e001e;
 
 
+    /* Interactive */
+    --interactive-disabled: #E8EBF1;
+    --interactive-subtle: #AFB6C2;
+    --interactive-selected: #0073E6;
 
+    /* Icon */
+    --icon-on-interactive: #F3F6FA;
+    --icon-on-interactive-disabled: #8D95A3;
   }
 }
 

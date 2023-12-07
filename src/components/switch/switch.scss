@@ -1,0 +1,61 @@
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  border-radius: 100px;
+}
+
+.indicator rect {
+  fill: var(--interactive-subtle);  
+}
+
+.indicator rect {
+  transition: all 0.2s ease-out;
+}
+
+.indicator circle {
+  transition: all 0.2s ease-out;
+  fill: var(--icon-on-interactive);
+}
+
+.container:focus {
+  outline: 2px solid var(--border-focused);
+}
+
+.container:disabled {
+  .indicator circle {
+    fill: var(--icon-on-interactive-disabled);
+  }
+
+  .indicator rect {
+    fill: var(--interactive-disabled)
+  }
+}
+
+:host([active]) {
+  zeta-icon {
+    transform: translateX(-24px);
+  }
+
+  .indicator rect {
+    fill: var(--interactive-selected);
+  }
+
+  .indicator circle {
+    transform: translateX(32px);
+  }
+}
+
+zeta-icon {
+  width: fit-content;
+  transition: all 0.2s ease-out;
+  position: absolute;
+  right: 8px;
+}
+
