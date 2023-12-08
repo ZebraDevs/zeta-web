@@ -3,7 +3,7 @@ import { customElement, property } from "lit/decorators.js";
 import { BadgeStatus } from "../../types.js";
 import { ContourableCondensableElement } from "../../mixins/condense.js";
 import styles from "./status-label.scss";
-import { ZetaIconName } from "@zebra-fed/zeta-icons/build_files/icon-types.js";
+import { ZetaIconName } from "@zebra-fed/zeta-icons";
 
 /** ZetaStatusLabel web component.
  *
@@ -30,7 +30,7 @@ export class ZetaStatusLabel extends ContourableCondensableElement {
    *
    * @defaultValue `undefined`. This will render an indicator circle.
    */
-  @property({ type: String }) icon: ZetaIconName | undefined;
+  @property({ type: String }) icon?: ZetaIconName;
   static styles = [super.styles ?? [], styles];
 
   protected override render() {
