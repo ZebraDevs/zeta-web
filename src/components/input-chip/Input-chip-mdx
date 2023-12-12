@@ -2,7 +2,7 @@ import { Canvas } from "@storybook/blocks";
 
 import * as InputChip from "./input-chip.stories";
 
-# Sheet Handle
+# Input Chip
 <br/><br/>
 <Canvas of={InputChip} />
 Bottom sheets are surfaces containing supplementary content that are anchored to the bottom of the screen.
