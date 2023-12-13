@@ -23,6 +23,7 @@ import "../src/components/tooltip/tooltip.ts";
 import "../src/components/switch/switch.ts";
 import "../src/components/bottom-sheets/sheet-handle/sheet-handle.ts";
 import "../src/components/input-chip/input-chip.ts";
+import "../src/components/status-chip/status-chip.ts";
 export * from "../src/components/badges/priority-pill.js";
 export * from "../src/components/badges/status-label.js";
 export * from "../src/components/banner/in-page-banner.js";
@@ -40,4 +41,5 @@ export * from "../src/components/tooltip/tooltip.js";
 export * from "../src/components/switch/switch.js";
 export * from "../src/components/bottom-sheets/sheet-handle/sheet-handle.js";
 export * from "../src/components/input-chip/input-chip.js";
+export * from "../src/components/status-chip/status-chip.js";
 
