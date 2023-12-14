@@ -1,5 +1,3 @@
-// indicators.stories.ts
-
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaIconIndicator } from "./icon-indicator.js";
 
