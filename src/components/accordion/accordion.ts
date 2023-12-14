@@ -34,7 +34,7 @@ export class ZetaAccordion extends CondensableInteractiveElement {
     return html`
       <div class="title">
         <div>${this.accordionTitle}</div>
-        <zeta-icon color="${this.disabled ? "var(--text-disabled)" : ""} .rounded=${this.rounded} size="24"
+        <zeta-icon color="${this.disabled ? "var(--icon-disabled)" : ""} .rounded=${this.rounded} size="24"
           >${this.open ? "remove" : "add"}</zeta-icon
         >
       </div>

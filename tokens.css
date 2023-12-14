@@ -498,7 +498,6 @@
     --surface-negative-subtle: var(--color-red-10);
     --surface-info: var(--color-purple-60);
     --surface-info-subtle: var(--color-purple-10);
-
   }
 }
 
@@ -527,4 +526,6 @@
 
   --border-outline: var(--color-blue-60);
   --border-outline-subtle: var(--color-cool-40);
+
+  --on-surface-primary: var(--color-pure-0);
 }
