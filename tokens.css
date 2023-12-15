@@ -42,6 +42,8 @@
   --elevation-4: 0px 8px 16px 0px rgba(96, 104, 112, 0.16), 0px 2px 4px 0px rgba(40, 51, 61, 0.04);
   --elevation-5: 0px 16px 24px 0px rgba(96, 104, 112, 0.16), 0px 2px 8px 0px rgba(40, 51, 61, 0.04);
   --elevation-6: 0px 20px 32px 0px rgba(96, 104, 112, 0.24), 0px 2px 8px 0px rgba(40, 51, 61, 0.08);
+
+  --foundation-accent: #0073E6; 
 }
 
 /* Primitives (Dark) */

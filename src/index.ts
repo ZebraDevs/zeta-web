@@ -26,6 +26,7 @@ import "../src/components/input-chip/input-chip.ts";
 import "../src/components/text-input/text-input.ts";
 import "../src/components/dialog/dialog.ts";
 
+import "../src/components/search/search.ts";
 export * from "../src/components/badges/priority-pill.js";
 export * from "../src/components/badges/status-label.js";
 export * from "../src/components/banner/in-page-banner.js";
@@ -45,4 +46,5 @@ export * from "../src/components/bottom-sheets/sheet-handle/sheet-handle.js";
 export * from "../src/components/input-chip/input-chip.js";
 export * from "../src/components/text-input/text-input.js";
 export * from "../src/components/dialog/dialog.js";
+export * from "../src/components/search/search.js";
 
