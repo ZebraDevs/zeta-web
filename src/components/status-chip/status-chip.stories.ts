@@ -1,5 +1,4 @@
-// indicators.stories.ts
-
+import "./status-chip.js";
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaStatusChip } from "./status-chip.js";
 
