@@ -1,6 +1,7 @@
 :host {
-  width: fit-content;
+  display: flex;
   height: fit-content;
+  width: fit-content;
 
   > button {
     cursor: pointer;
@@ -13,6 +14,7 @@
     font-weight: 500;
     line-height: 24px;
     border: 1px solid transparent;
+    width: 100%;
     &:active:not([disabled]) {
       border-color: var(--border-primary);
     }

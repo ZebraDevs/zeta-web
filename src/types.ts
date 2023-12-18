@@ -31,4 +31,3 @@ export type Status = "positive" | "warning" | "negative";
 export type BannerStatus = "default" | "info" | Status;
 
 export type BadgeStatus = Status | "neutral" | "info" | "positive" | "warning" | "negative";
-

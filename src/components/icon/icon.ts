@@ -1,14 +1,14 @@
 import { html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./icon.scss";
-import { ZetaIconName } from "@zebra-fed/zeta-icons/build_files/icon-types.js";
+import { ZetaIconName } from "@zebra-fed/zeta-icons";
 import { ContourableElement } from "../../mixins/contour.js";
 import { styleMap } from "lit/directives/style-map.js";
 
 @customElement("zeta-icon")
 export class ZetaIcon extends ContourableElement {
   /**The name of the icon. Full list of icons can be found at https://zeta-icons.web.app/. */
-  @property({ type: String }) name: ZetaIconName | undefined = undefined;
+  @property({ type: String }) name?: ZetaIconName;
 
   /** Size of icon as css variable.
    *

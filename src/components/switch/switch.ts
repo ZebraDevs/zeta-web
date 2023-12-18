@@ -22,11 +22,11 @@ export class ZetaSwitch extends ContourableElement {
   /**
    * Icon name to display when switch is ON
    */
-  @property({ type: String }) activeIcon: ZetaIconName | undefined;
+  @property({ type: String }) activeIcon?: ZetaIconName;
   /**
    * Icon name to display when switch is OFF
    */
-  @property({ type: String }) inactiveIcon: ZetaIconName | undefined;
+  @property({ type: String }) inactiveIcon?: ZetaIconName;
 
   @query("button")
   private readonly buttonElement!: HTMLElement | null;

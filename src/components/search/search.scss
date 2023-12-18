@@ -1,0 +1,122 @@
+:host {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  height: fit-content;
+}
+
+:host([disabled]){
+  .search-container {
+    pointer-events: none;
+    background-color: var(--color-cool-30);  
+  }
+
+  input {
+    color: var(--color-cool-60);
+  }
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  border-radius: inherit;
+  min-width: 328px;
+  height: fit-content;
+  outline: 1px solid var(--border-default) ;
+  background-color: var(--color-cool-10);
+
+  &:hover {
+    outline-color: var(--border-hover);
+  }
+
+  &:focus-within {
+    box-shadow: 0px 0px 0px 4px var(--border-focused);
+    outline-width: 2px;
+    outline-color: var(--color-blue-50);
+  }
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }
+
+input {
+  background-color: inherit;
+  border: none;
+  outline: none;
+  caret-color: var(--foundation-accent);
+  color: var(--color-cool-90);
+  flex: 1;
+  padding: 0;
+  margin: 0;
+
+  ::placeholder {
+    font-size: inherit;
+    line-height: inherit;
+  }
+}
+
+.divider {
+  display: flex;
+  width: 1px;
+  background-color: var(--border-default);
+  margin: 0 8px;
+}
+
+zeta-icon[name="search"]{
+  margin-right: 8px;
+}
+
+zeta-icon[name="cancel"]{
+  margin-left: 8px;
+}
+
+/* SIZE */
+:host([size="small"]){
+  .search-container {
+    padding: 6px 12px;
+  }
+
+  .divider {
+    height: 20px;
+  }
+
+  input  {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+  }
+}
+
+:host([size="medium"]){
+  .search-container {
+    padding: 8px 12px;
+  }
+
+  .divider {
+    height: 24px;
+  }
+
+  input {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+}
+
+:host([size="large"]){
+  .search-container {
+    padding: 12px;
+  }
+
+  .divider {
+    height: 24px;
+  }
+
+  input {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+}

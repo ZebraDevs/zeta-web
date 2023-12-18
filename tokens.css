@@ -1,5 +1,6 @@
 :root {
   /* Primitives */
+  --mobile: 1024px;
 
   /* Typography */
   --type-family-regular: "IBM Plex Sans";
@@ -41,12 +42,15 @@
   --elevation-4: 0px 8px 16px 0px rgba(96, 104, 112, 0.16), 0px 2px 4px 0px rgba(40, 51, 61, 0.04);
   --elevation-5: 0px 16px 24px 0px rgba(96, 104, 112, 0.16), 0px 2px 8px 0px rgba(40, 51, 61, 0.04);
   --elevation-6: 0px 20px 32px 0px rgba(96, 104, 112, 0.24), 0px 2px 8px 0px rgba(40, 51, 61, 0.08);
+
+  --foundation-accent: #0073E6; 
 }
 
 /* Primitives (Dark) */
 @media (prefers-color-scheme: dark) {
   :root {
     --border-focused: var(--color-blue-70);
+    --surface-overlay: rgba(0, 0, 0, 0.70);
 
     /* Pure */
     --color-pure-1000: #ffffff;
@@ -126,6 +130,7 @@
     --color-orange-30: #764502;
     --color-orange-20: #402600;
     --color-orange-10: #1e1100;
+    --icon-warning: #FFD396;
 
     /* Purple */
     --color-purple-100: #f7f0ff;
@@ -189,6 +194,7 @@
 /* Primitives (Light) */
 @media (prefers-color-scheme: light) {
   :root {
+    --surface-overlay: rgba(0, 0, 0, 0.30);
     /* Colors */
     --border-focused: var(--color-blue-50);
 
@@ -270,6 +276,7 @@
     --color-orange-90: #402600;
     --color-orange-100:#1e1100;
     --color-orange-110:#ffa82e;
+    --icon-warning: #AE6500;
 
     /* Purple */
     --color-purple-10: #f7f0ff;
@@ -493,7 +500,6 @@
     --surface-negative-subtle: var(--color-red-10);
     --surface-info: var(--color-purple-60);
     --surface-info-subtle: var(--color-purple-10);
-
   }
 }
 
@@ -523,4 +529,5 @@
   --border-outline: var(--color-blue-60);
   --border-outline-subtle: var(--color-cool-40);
 
+  --on-surface-primary: var(--color-pure-0);
 }

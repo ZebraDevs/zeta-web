@@ -1,0 +1,110 @@
+@import "../../mixins/breakpoints.scss";
+
+dialog {
+  padding: 0;
+  border: none;
+  border-radius: inherit;
+  background-color: var(--surface-default);
+  color: var(--text-default);
+  box-shadow: var(--elevation-6);
+  width: fit-content;
+  height: fit-content;
+  overflow: visible;
+  width: 100%;
+  max-width: 480px;
+
+  @include sm {
+    max-width: 312px;
+  }
+}
+
+dialog::backdrop {
+  background-color: var(--surface-overlay);
+}
+
+.container {
+  width: 100%;
+  flex-direction: column;
+  display: flex;
+
+  &.centered {
+    header {
+      align-items: center;
+    }
+  }
+
+  &.col3 {
+    footer {
+      justify-content: space-between;
+
+      @include sm {
+        flex-direction: column-reverse;
+
+        .actions {
+          flex-direction: column-reverse;
+        }
+      }
+    }
+  }
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 24px 12px;
+  row-gap: 8px;
+}
+
+footer {
+  display: flex;
+  padding: 16px 24px 24px 24px;
+  gap: 16px;
+  justify-content: flex-end;
+  margin-top: 24px;
+
+  ::slotted(zeta-button){
+    width: 100%;
+  }
+
+  .actions { 
+    display: flex;
+    gap: 16px;
+    width: fit-content;
+  }
+
+  @include sm {
+    .actions {
+      width: 100%;
+    }
+
+    padding: 16px 24px;
+  }
+}
+
+::slotted([slot="other"]){
+  display: flex;
+  width: fit-content;
+
+  @include sm {
+    width: 100%;
+  }
+}
+
+.dialog-title {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 32px; 
+  margin: 0;
+  padding: 0;
+}
+
+::slotted([slot="dialog-body"]){
+  padding: 8px 24px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px; 
+}
+
+dialog[open] {
+  display: flex;
+}
