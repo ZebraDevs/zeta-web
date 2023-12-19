@@ -1,0 +1,172 @@
+.steps {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  width: fit-content;
+}
+
+li {
+  display: flex;
+}
+
+.step-container:last-of-type {
+  .bar {
+    display: none;
+  }
+}
+
+.bar {
+  display: flex;
+  height: 32px;
+  width: 96px;
+  align-items: center;
+  justify-content: center;
+
+  &:after {
+    content: '';
+    display: flex;
+    width: 100%;
+    height: 2px;
+    border-radius: inherit;
+    background-color: var(--text-disabled);
+  }
+
+  &:not(.show){
+    &::after {
+      display: none !important;
+    }
+  }
+
+  &.active {
+    &:after {
+      background-color: #0073E6;
+    }
+  }
+
+  &.completed {
+    &:after {
+      background-color: #00864F;
+    }
+  }
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 16px;
+
+  &:not(.active):not(.completed) {
+    color: var(--text-disabled);
+  }
+
+  &.active {
+    .step-label {
+      color: #0073E6;
+    }
+
+    .step-number {
+      background-color: #0073E6;
+    }
+  }
+
+  &.completed {
+    .step-label {
+      color: #00864F;
+    }
+    
+    .step-number {
+      background-color: #00864F;
+    }
+  }
+}
+
+.step-content { 
+  display: flex;
+  flex-direction: column;
+
+  .step-title {
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px
+  }
+
+  .step-label {
+    display: none;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+}
+
+.step-number {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--text-disabled);
+  color: #FFF;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+:host([rounded]) {
+  .step-number { 
+    border-radius: 50%;
+  }
+
+  .bar {
+    border-radius: 2px;
+  }
+}
+
+:host([variant="vertical"]) {
+  .steps {
+    flex-direction: column;
+  }
+
+  .step-container {
+    flex-direction: column;
+  }
+
+  .step {
+    flex-direction: row;
+    text-align: left;
+    padding: 0;
+  }
+
+  .bar {
+    height: 48px;
+    width: 48px;
+  
+    &:after {
+      content: '';
+      width: 4px;
+      height: 100%;
+    }
+  }
+
+  .step-title {
+    margin-top: 4px;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 28px;
+  }
+
+  .step-label {
+    display: flex;
+  }
+
+  .step-number { 
+    width: 48px;
+    height: 48px;
+    font-size: 18px;
+    margin-right: 24px;
+  }
+}

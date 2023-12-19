@@ -2,7 +2,6 @@
 import { expect, assert } from "@open-wc/testing";
 import { ZetaTextInput } from "../../src/index.js";
 import { setup } from "./setup.ts";
-import { text } from "stream/consumers";
 
 describe("Zeta Input", () => {
   it("creates from document.createElement", function () {
