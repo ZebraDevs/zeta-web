@@ -27,6 +27,7 @@ import "../src/components/status-chip/status-chip.ts";
 import "../src/components/text-input/text-input.ts";
 import "../src/components/dialog/dialog.ts";
 import "../src/components/stepper/stepper.ts";
+import "../src/components/progress-circle/progress-circle.js";
 import "../src/components/search/search.ts";
 
 export * from "../src/components/badges/priority-pill.js";
@@ -51,4 +52,5 @@ export * from "../src/components/text-input/text-input.js";
 export * from "../src/components/dialog/dialog.js";
 export * from "../src/components/search/search.js";
 export * from "../src/components/stepper/stepper.js";
+export * from "../src/components/progress-circle/progress-circle.js";
 

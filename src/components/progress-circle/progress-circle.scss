@@ -1,0 +1,18 @@
+:host {
+  display: block;
+  width: fit-content;
+  height: fit-content;
+}
+
+svg.loading {
+  @keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+  } 
+
+  animation: rotation 1s linear infinite;
+}
