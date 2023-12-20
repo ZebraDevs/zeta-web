@@ -16,3 +16,44 @@ svg.loading {
 
   animation: rotation 1s linear infinite;
 }
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.percentage {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  color: var(--color-cool-90);
+}
+
+.cancel {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  background-color: var(--color-cool-20);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.uploading {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    .percentage {
+      display: none;
+    }
+
+    .cancel {
+      display: flex;
+    }
+  }
+}

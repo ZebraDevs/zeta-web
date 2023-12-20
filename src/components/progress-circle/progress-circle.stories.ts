@@ -7,7 +7,8 @@ const meta: Meta<ZetaProgressCircle> = {
     progress: 75,
     size: 64,
     rounded: false,
-    loading: false
+    loading: false,
+    uploading: true
   },
   argTypes: {
     size: {

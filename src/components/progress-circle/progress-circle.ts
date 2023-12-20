@@ -1,6 +1,6 @@
 import { customElement, property } from "lit/decorators.js";
 import { ContourableElement } from "../../mixins/contour.js";
-import { html } from "lit";
+import { html, nothing } from "lit";
 import styles from "./progress-circle.scss";
 import { classMap } from "lit/directives/class-map.js";
 
@@ -30,6 +30,10 @@ export class ZetaProgressCircle extends ContourableElement {
    * Animated state
    */
   @property({ type: Boolean }) loading = false;
+  /**
+   * Uploading state
+   */
+  @property({ type: Boolean }) uploading = false;
 
   set progress(value: number) {
     if (value <= 0 || !value) {
@@ -50,7 +54,8 @@ export class ZetaProgressCircle extends ContourableElement {
 
   private getStrokeDasharray = () => {
     // circumference = 2 × π × radius
-    return 2 * 3.14 * (Number(this.size) / 2 - this.strokeWidth);
+    const size = this.uploading ? 48 : this.size;
+    return 2 * 3.14 * (size / 2 - this.strokeWidth);
   };
 
   private getStrokeDashoffset = () => {
@@ -59,32 +64,54 @@ export class ZetaProgressCircle extends ContourableElement {
     return `${(this.getStrokeDasharray() * (100 - offset)) / 100}`;
   };
 
+  private renderUploading = () => {
+    return this.uploading
+      ? html`
+          <div class="uploading">
+            <span class="percentage"> ${this.progress}% </span>
+            <div
+              @click=${() => {
+                this.dispatchEvent(new CustomEvent("cancel-upload", { bubbles: true, composed: true }));
+                this.uploading = false;
+              }}
+              class="cancel"
+            >
+              <zeta-icon name="close" size="20" color="var(--color-cool-90)"></zeta-icon>
+            </div>
+          </div>
+        `
+      : nothing;
+  };
+
   protected render() {
     const animateClass = classMap({
-      loading: this.loading
+      loading: this.loading && !this.uploading
     });
+
+    const size = this.uploading ? 48 : this.size;
+    const r = size / 2 - this.strokeWidth;
+    const cx = size / 2;
+    const cy = size / 2;
+    const trackColor = this.uploading ? "var(--color-cool-30)" : "transparent";
+
     return html`
-      <svg class=${animateClass} width="${this.size}" height="${this.size}" viewBox="0 0 ${this.size} ${this.size}" style="transform:rotate(-90deg)">
-        <circle
-          r=${Number(this.size) / 2 - this.strokeWidth}
-          cx=${Number(this.size) / 2}
-          cy=${Number(this.size) / 2}
-          fill="transparent"
-          stroke="#FFF"
-          stroke-width="${this.strokeWidth}px"
-        ></circle>
-        <circle
-          r=${Number(this.size) / 2 - this.strokeWidth}
-          cx=${Number(this.size) / 2}
-          cy=${Number(this.size) / 2}
-          stroke="var(--foundation-accent)"
-          stroke-linecap=${this.rounded ? "round" : "square"}
-          fill="transparent"
-          stroke-width="${this.strokeWidth}px"
-          stroke-dasharray="${this.getStrokeDasharray()}px"
-          stroke-dashoffset="${this.getStrokeDashoffset()}px"
-        ></circle>
-      </svg>
+      <div class="container">
+        <svg class=${animateClass} width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" style="transform:rotate(-90deg)">
+          <circle r=${r} cx=${cx} cy=${cy} fill="transparent" stroke="${trackColor}" stroke-width="${this.strokeWidth}px"></circle>
+          <circle
+            r=${r}
+            cx=${cx}
+            cy=${cy}
+            stroke="var(--foundation-accent)"
+            stroke-linecap=${this.rounded ? "round" : "square"}
+            fill="transparent"
+            stroke-width="${this.strokeWidth}px"
+            stroke-dasharray="${this.getStrokeDasharray()}px"
+            stroke-dashoffset="${this.getStrokeDashoffset()}px"
+          ></circle>
+        </svg>
+        ${this.renderUploading()}
+      </div>
     `;
   }
 }
