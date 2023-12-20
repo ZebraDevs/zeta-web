@@ -21,9 +21,9 @@ jobs:
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v5
       with:
-        commit-message: 'Update zeta-icons library'
+        commit-message: 'deps: Update zeta-icons library'
         branch: 'update-zeta-icons'
         base: 'main'
         delete-branch: true
-        title: 'Update zeta-icons library'
+        title: 'deps: Update zeta-icons library'
         labels: 'icons'
