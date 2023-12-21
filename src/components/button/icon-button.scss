@@ -1,0 +1,32 @@
+:host > button {
+  border: none;
+}
+
+:host([size="large"]) > button {
+  padding: 12px;
+}
+
+:host > button,
+:host([size="medium"]) > button {
+  padding: 8px;
+}
+
+:host([size="small"]) > button {
+  padding: 6px;
+}
+
+:host([size="large"][condensed]) > button {
+  padding: 10px;
+}
+
+:host([flavor="basic"]) > button:enabled, :host([flavor="basic-negative"]) > button:enabled {
+  background-color: var(--surface-basic);  
+}
+
+:host(:hover[flavor="basic"]) > button:enabled, :host(:hover[flavor="basic-negative"]) > button:enabled {
+  background-color: var(--surface-basic-hover);
+}
+
+:host(:active[flavor="basic"]) > button:enabled, :host(:active[flavor="basic-negative"]) > button:enabled {
+  background-color: var(--surface-basic-active);
+}

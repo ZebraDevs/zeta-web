@@ -44,6 +44,7 @@
     "storybook": "storybook dev -p 6006",
     "test-storybook": "test-storybook",
     "test": "web-test-runner \"test/**/*.test.ts\" --node-resolve",
+    "test:watch": "web-test-runner \"test/**/*.test.ts\" --node-resolve --watch",
     "build-storybook": "storybook build",
     "react-gen": "npx vite build && cd scripts && node reactify.js",
     "create": "cd scripts && node makeWebComponentTemplate.js"

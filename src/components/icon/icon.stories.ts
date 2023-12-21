@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaIcon } from "./icon.js";
 import "./icon";
-import { ZetaIconNameList } from "@zebra-fed/zeta-icons/build_files/icon-types.js";
+import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
 
 const meta: Meta<ZetaIcon> = {
   component: "zeta-icon",
@@ -23,4 +23,3 @@ const meta: Meta<ZetaIcon> = {
 export default meta;
 
 export const Icon: StoryObj<ZetaIcon> = {};
-

@@ -1,6 +1,6 @@
 import "../../../src/components/bottom-sheets/sheet-handle/sheet-handle.ts";
 import { fixture, html, expect, unsafeStatic } from "@open-wc/testing";
-import { ZetaSheetHandle } from "../../../src/components/bottom-sheets/sheet-handle/sheet-handle.ts";
+import { ZetaSheetHandle } from "../../../src/components/bottom-sheets/sheet-handle/sheet-handle.js";
 
 describe("ZetaSheetHandle", () => {
   let subject: ZetaSheetHandle;
@@ -17,4 +17,3 @@ describe("ZetaSheetHandle", () => {
     await expect(subject).shadowDom.to.be.accessible();
   });
 });
-

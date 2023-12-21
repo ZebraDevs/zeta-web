@@ -510,21 +510,21 @@
   /* Button */
   --surface-primary-hover: var(--color-blue-70);
   --surface-primary-active: var(--color-blue-80);
-  --surface-primary-focus: var(--color-blue-60);
 
   --surface-primary-variant: #ffd200;
   --surface-primary-variant-hover: #F6BD00;
   --surface-primary-variant-active: #C29500;
-  --surface-primary-variant-focus: #ffd200;
 
   --surface-negative-hover: var(--color-red-70);
   --surface-negative-active: var(--color-red-80);
-  --surface-negative-focus: var(--color-red-60);
 
   --surface-outline: transparent;
   --surface-outline-hover: var(--color-cool-20);
   --surface-outline-active: #EDEFF4;
-  --surface-outline-focus: transparent;
+
+  --surface-basic: transparent;
+  --surface-basic-hover: var(--color-cool-20);
+  --surface-basic-active: #EDEFF4;
 
   --border-outline: var(--color-blue-60);
   --border-outline-subtle: var(--color-cool-40);

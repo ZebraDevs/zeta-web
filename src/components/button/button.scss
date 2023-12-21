@@ -15,9 +15,6 @@
     line-height: 24px;
     border: 1px solid transparent;
     width: 100%;
-    &:active:not([disabled]) {
-      border-color: var(--border-primary);
-    }
   }
 }
 

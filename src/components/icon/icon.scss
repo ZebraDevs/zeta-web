@@ -1,8 +1,5 @@
-
-
-
-:host .icon {
-  display: inline-block;
+:host {
+  display: block;
   flex-shrink: 0;
   line-height: 1;
   max-width: initial;
@@ -10,7 +7,6 @@
   -moz-osx-font-smoothing: grayscale;
   font-weight: normal;
   font-style: normal;
-  display: inline-block;
   line-height: 1;
   text-transform: none;
   letter-spacing: normal;
