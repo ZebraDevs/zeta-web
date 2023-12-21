@@ -1,0 +1,33 @@
+
+
+:host([condensed]) .container {
+  padding: 2px 4px;
+}
+
+.container { 
+ width: fit-content;
+ padding: 2px 8px;
+ background-color: var(--surface-outline-active) !important;
+ border: none;
+ transition: background-color 0.2s ease-out;
+
+&:focus{
+  box-shadow: 0 0 0 4px var(--color-blue-50);
+}
+
+&:active {
+  background-color: var(--color-cool-70) !important;
+}
+
+&:hover {
+  background-color: var(--color-cool-80) !important;
+}
+
+&:disabled {
+  background-color: var(--color-cool-110) !important;
+}
+
+  .icon {
+    display: block;
+  }
+}
