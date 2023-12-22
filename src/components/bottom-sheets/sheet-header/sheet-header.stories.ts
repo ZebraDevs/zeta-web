@@ -16,5 +16,5 @@ const meta: Meta<ZetaSheetHeader> = {
 
 export default meta;
 
-export const NotificationIndicator: StoryObj<ZetaSheetHeader> = {};
+export const SheetHeader: StoryObj<ZetaSheetHeader> = {};
 

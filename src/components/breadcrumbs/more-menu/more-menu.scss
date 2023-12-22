@@ -7,12 +7,16 @@
 .container { 
  width: fit-content;
  padding: 2px 8px;
- background-color: var(--surface-outline-active) !important;
+ background-color: var(--color-cool-120) !important;
  border: none;
  transition: background-color 0.2s ease-out;
 
-&:focus{
+&:focus-within {
   box-shadow: 0 0 0 4px var(--color-blue-50);
+}
+
+&:focus-visible {
+  outline:none;
 }
 
 &:active {
@@ -22,9 +26,9 @@
 &:hover {
   background-color: var(--color-cool-80) !important;
 }
-
+ 
 &:disabled {
-  background-color: var(--color-cool-110) !important;
+  background-color: var(--color-cool-30) !important;
 }
 
   .icon {

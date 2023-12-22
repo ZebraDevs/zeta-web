@@ -11,5 +11,5 @@ const meta: Meta<ZetaSheetHandle> = {
 
 export default meta;
 
-export const NotificationIndicator: StoryObj<ZetaSheetHandle> = {};
+export const SheetHandle: StoryObj<ZetaSheetHandle> = {};
 

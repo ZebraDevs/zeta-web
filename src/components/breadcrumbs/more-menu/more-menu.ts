@@ -18,7 +18,7 @@ export class ZetaMoreMenu extends ContourableCondensableInteractiveElement {
   protected override render() {
     return html`
       <button class="container" ?disabled=${this.disabled} .onclick=${() => this.handleOpen()}>
-        <zeta-icon size="16" color=${this.disabled ? "var(--color-cool-60)" : "var(--color-cool-20)"} class="icon"> ${this.icon}</zeta-icon>
+        <zeta-icon size="16" color=${this.disabled ? "var(--color-cool-50)" : "var(--color-cool-90)"} class="icon"> ${this.icon}</zeta-icon>
       </button>
     `;
   }

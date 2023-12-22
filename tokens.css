@@ -57,10 +57,11 @@
     --color-pure-0: #000000;
 
     /* Cool Grey */
+    --color-cool-120:#3C414B;
     --color-cool-110:#e8eBF1;
     --color-cool-100:#f8fbff;
     --color-cool-90: #f3f6fa;
-    --color-cool-80: #e0e3e9;
+    --color-cool-80: #4f5561;
     --color-cool-70: #ced2db;
     --color-cool-60: #8d95a3;
     --color-cool-50: #7a8190;
@@ -210,10 +211,11 @@
     --color-cool-50: #8d95a3;
     --color-cool-60: #7a8190;
     --color-cool-70: #545963;
-    --color-cool-80: #2c2f36;
+    --color-cool-80: #e0e3e9;
     --color-cool-90: #1d1e23;
     --color-cool-100:#0c0d0e;
     --color-cool-110:#3c414b;
+    --color-cool-120:#edeff4;
 
     /* Warm Grey */
     --color-warm-10: #fafafa;
