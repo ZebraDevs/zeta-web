@@ -1,0 +1,36 @@
+
+:host([rounded]) .container{
+  border-radius: 100px;
+}
+
+.container{
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: 6px var(--spacing-3);
+  box-shadow: 0 0 0 2px var(--color-cool-70);
+  outline-width: 1px;
+  color:var(--color-cool-20);
+  transition: background-color 0.2s ease-out;
+
+  &:hover{
+    background-color: var(--color-cool-90);
+  }
+
+  &:active,
+  &:focus-within {
+    box-shadow: 0 0 0 2px var(--border-focused);
+    outline-width: 2px;
+    outline-color: var(--color-blue-50);
+  }
+
+  button{
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+    border: none;
+  }
+}
