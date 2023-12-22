@@ -79,5 +79,24 @@ export const TextArea: StoryObj<ZetaTextInput> = {
   }
 };
 
+export const PasswordField: StoryObj<ZetaTextInput> = {
+  name: "Password field",
+  args: {
+    error: false,
+    disabled: false,
+    required: false,
+    label: "Label",
+    hintText: "Hint text",
+    type: "password"
+  },
+  argTypes: {
+    type: {
+      table: {
+        disable: true
+      }
+    }
+  }
+};
+
 export default meta;
 

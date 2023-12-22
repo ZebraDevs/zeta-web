@@ -13,6 +13,7 @@ import { live } from "lit/directives/live.js";
 @customElement("zeta-text-input")
 export class ZetaTextInput extends ContourableCondensableElement {
   static override shadowRootOptions: ShadowRootInit = { delegatesFocus: true, mode: "open" };
+  static styles = [styles, super.styles ?? []];
   @query("input") private readonly inputEl!: HTMLElement | null;
   /**
    * Error state
@@ -65,7 +66,7 @@ export class ZetaTextInput extends ContourableCondensableElement {
   /**
    * Type of field
    */
-  @property() type: "text" | "textarea" = "text";
+  @property() type: "text" | "textarea" | "password" = "text";
 
   override focus() {
     this.inputEl?.focus();
@@ -73,6 +74,22 @@ export class ZetaTextInput extends ContourableCondensableElement {
 
   override blur() {
     this.inputEl?.blur();
+  }
+
+  protected render() {
+    const containerClass = classMap({
+      "input-container": true,
+      "text-area": this.type === "textarea"
+    });
+    return html`
+      <div>
+        ${this.renderLabel()}
+        <div class=${containerClass}>
+          ${this.renderLeftIcon()} ${this.renderPrefix()} ${this.renderField()} ${this.renderRightIcon()} ${this.renderSuffix()}
+        </div>
+        ${this.renderHintText()}
+      </div>
+    `;
   }
 
   private renderLabel() {
@@ -95,23 +112,35 @@ export class ZetaTextInput extends ContourableCondensableElement {
   }
 
   private renderLeftIcon() {
-    return this.iconPosition === "left" && this.icon && this.type === "text"
+    return this.iconPosition === "left" && this.icon && this.type === "text" && !this.toggled
       ? html` <zeta-icon class="left" color=${this.getIconColor()} size=${this.getIconSize()} .rounded=${this.rounded} name=${this.icon}></zeta-icon> `
       : nothing;
   }
 
   private renderRightIcon() {
-    return this.iconPosition === "right" && this.icon && this.type === "text"
+    return this.iconPosition === "right" && this.icon && this.type === "text" && !this.toggled
       ? html` <zeta-icon class="right" color=${this.getIconColor()} size=${this.getIconSize()} .rounded=${this.rounded} name=${this.icon}></zeta-icon> `
+      : this.type === "password" || this.toggled
+      ? html`<zeta-icon
+          @click=${() => {
+            this.toggled = !this.toggled;
+            this.type = this.type === "text" ? "password" : "text";
+          }}
+          class="right"
+          color=${this.getIconColor()}
+          size=${this.getIconSize()}
+          .rounded=${this.rounded}
+          name=${this.toggled ? "visibility" : "visibility_off"}
+        ></zeta-icon>`
       : nothing;
   }
 
   private renderPrefix() {
-    return this.prefixText && this.type === "text" ? html`<span class="left affix">${this.prefixText}</span>` : nothing;
+    return this.prefixText && this.type === "text" && !this.toggled ? html`<span class="left affix">${this.prefixText}</span>` : nothing;
   }
 
   private renderSuffix() {
-    return this.suffix && this.type === "text" ? html`<span class="right affix">${this.suffix}</span>` : nothing;
+    return this.suffix && this.type === "text" && !this.toggled ? html`<span class="right affix">${this.suffix}</span>` : nothing;
   }
 
   private handleInput = (event: Event) => {
@@ -129,6 +158,10 @@ export class ZetaTextInput extends ContourableCondensableElement {
 
   private getHintColor() {
     return this.disabled ? "var(--color-cool-60)" : this.error ? "var(--color-red-60)" : "var(--color-cool-70)";
+  }
+
+  private getPlaceholder() {
+    return this.type === "password" ? "Password" : this.placeholder;
   }
 
   private renderField() {
@@ -154,30 +187,15 @@ export class ZetaTextInput extends ContourableCondensableElement {
             .value=${live(this.value)}
             ?required=${this.required}
             ?disabled=${this.disabled}
-            placeholder=${this.placeholder}
+            placeholder=${this.getPlaceholder()}
             autocomplete="off"
             spellcheck="false"
+            type=${this.type}
           />
         `;
   }
 
-  static styles = [styles, super.styles ?? []];
-
-  protected render() {
-    const containerClass = classMap({
-      "input-container": true,
-      "text-area": this.type === "textarea"
-    });
-    return html`
-      <div>
-        ${this.renderLabel()}
-        <div class=${containerClass}>
-          ${this.renderLeftIcon()} ${this.renderPrefix()} ${this.renderField()} ${this.renderRightIcon()} ${this.renderSuffix()}
-        </div>
-        ${this.renderHintText()}
-      </div>
-    `;
-  }
+  private toggled = false;
 }
 
 declare global {

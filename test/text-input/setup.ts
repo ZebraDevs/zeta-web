@@ -13,7 +13,7 @@ interface Props {
   iconPos?: "left" | "right";
   label?: string;
   hint?: string;
-  type?: "text" | "textarea";
+  type?: "text" | "textarea" | "password";
 }
 
 export async function setup({

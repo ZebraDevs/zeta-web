@@ -119,18 +119,18 @@
   align-items: center;
   min-width: 328px;
   height: fit-content;
-  border: 1px solid var(--border-default) ;
+  outline: 1px solid var(--border-default) ;
   background-color: var(--surface-primary-input);
   padding: 12px;
 
   &:hover {
-    border-color: var(--border-hovered);
+    outline-color: var(--border-hover);
   }
 
   &:focus-within {
-    outline: 2px solid var(--border-focused);
-    border-color: var(--border-accent);
-    border-width: 2px;
+    box-shadow: 0px 0px 0px 4px var(--border-focused);
+    outline-width: 2px;
+    outline-color: var(--color-blue-50);
   }
   
   input, textarea {

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import { expect, assert } from "@open-wc/testing";
-import { ZetaTextInput } from "../../src/index.js";
+import { ZetaIcon, ZetaTextInput } from "../../src/index.js";
 import { setup } from "./setup.ts";
 
 describe("Zeta Input", () => {
@@ -88,6 +88,24 @@ describe("Zeta Input", () => {
     const el = await setup({ type: "textarea" });
     const textarea = el.shadowRoot?.querySelector("textarea");
     expect(textarea).not.to.be.null;
+  });
+
+  it("should apply password type", async () => {
+    const el = await setup({ type: "password" });
+    const input = el.shadowRoot?.querySelector("input");
+    assert.equal(input?.type, "password");
+  });
+
+  it("should toggle password visibility", async () => {
+    const el = await setup({ type: "password" });
+    const input = el.shadowRoot?.querySelector("input");
+    input!.value = "password";
+    input?.dispatchEvent(new Event("change", { bubbles: true }));
+    const icon = el.shadowRoot?.querySelector("zeta-icon") as ZetaIcon;
+    icon.click();
+    await el.updateComplete;
+    assert.equal(el.type, "text");
+    assert.equal(el.value, "password");
   });
 });
 
