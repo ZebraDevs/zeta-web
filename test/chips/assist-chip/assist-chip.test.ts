@@ -1,5 +1,5 @@
-import { ZetaAssistChip } from "../../../src/components/assist-chip/assist-chip.ts";
-import "../../../src/components/assist-chip/assist-chip.ts";
+import { ZetaAssistChip } from "../../../src/components/assist-chip/assist-chip.js";
+import "../../../src/components/assist-chip/assist-chip.js";
 import { fixture, html, expect, unsafeStatic } from "@open-wc/testing";
 
 describe("ZetaAssistChip", () => {
