@@ -31,9 +31,11 @@ import "../src/components/status-chip/status-chip.ts";
 import "../src/components/text-input/text-input.ts";
 import "../src/components/dialog/dialog.ts";
 import "../src/components/stepper/stepper.ts";
-import "../src/components/progress-circle/progress-circle.js";
+import "../src/components/progress-circle/progress-circle.ts";
 import "../src/components/search/search.ts";
 import "../src/components/breadcrumbs/breadcrumb-truncated/breadcrumb-truncated.ts";
+import "../src/components/pagination/pagination.ts";
+
 export * from "../src/components/badges/priority-pill.js";
 export * from "../src/components/badges/status-label.js";
 export * from "../src/components/banner/in-page-banner.js";
@@ -62,3 +64,5 @@ export * from "../src/components/search/search.js";
 export * from "../src/components/stepper/stepper.js";
 export * from "../src/components/progress-circle/progress-circle.js";
 export * from "../src/components/breadcrumbs/breadcrumb-truncated/breadcrumb-truncated.js";
+export * from "../src/components/pagination/pagination.js";
+
