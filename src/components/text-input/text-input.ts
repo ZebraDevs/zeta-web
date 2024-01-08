@@ -206,7 +206,7 @@ export class ZetaTextInput extends ContourableCondensableElement {
     return this.type === "textarea"
       ? html` <textarea
           @change=${this.handleInput}
-          id="text-input"
+          id=${this.id}
           aria-describedby="hint-text"
           aria-label="text input"
           .value=${live(this.value)}
@@ -218,8 +218,8 @@ export class ZetaTextInput extends ContourableCondensableElement {
         ></textarea>`
       : html`
           <input
+            id=${this.id}
             @change=${this.handleInput}
-            id="text-input"
             aria-describedby="hint-text"
             aria-label="text input"
             .value=${live(this.value)}

@@ -36,6 +36,7 @@ import "../src/components/search/search.ts";
 import "../src/components/breadcrumbs/breadcrumb-truncated/breadcrumb-truncated.ts";
 import "../src/components/pagination/pagination.ts";
 
+import "../src/components/stepper-input/stepper-input.ts";
 export * from "../src/components/badges/priority-pill.js";
 export * from "../src/components/badges/status-label.js";
 export * from "../src/components/banner/in-page-banner.js";
@@ -65,4 +66,5 @@ export * from "../src/components/stepper/stepper.js";
 export * from "../src/components/progress-circle/progress-circle.js";
 export * from "../src/components/breadcrumbs/breadcrumb-truncated/breadcrumb-truncated.js";
 export * from "../src/components/pagination/pagination.js";
+export * from "../src/components/stepper-input/stepper-input.js";
 

@@ -6,6 +6,7 @@
 :host([disabled]) > * {
   cursor: not-allowed;
   background: var(--surface-disabled);
+  border: 1px solid transparent;
   color: var(--text-disabled);  
 }
 
