@@ -6,6 +6,7 @@ import { ContourableCondensableElement } from "../../mixins/condense.js";
 import { ZetaIconName } from "@zebra-fed/zeta-icons";
 import { classMap } from "lit/directives/class-map.js";
 import { live } from "lit/directives/live.js";
+import "../../index.js";
 
 /**
  * Text input component with icon, affix, label and hint text
@@ -14,7 +15,7 @@ import { live } from "lit/directives/live.js";
 export class ZetaTextInput extends ContourableCondensableElement {
   static override shadowRootOptions: ShadowRootInit = { delegatesFocus: true, mode: "open" };
   static styles = [styles, super.styles ?? []];
-  @query("input") private readonly inputEl!: HTMLElement | null;
+  @query("input") private readonly inputEl!: HTMLInputElement | null;
   /**
    * Error state
    */
@@ -55,6 +56,11 @@ export class ZetaTextInput extends ContourableCondensableElement {
    * Hint text
    */
   @property({ attribute: "hint-text" }) hintText = "";
+
+  /**
+   * Hint text
+   */
+  @property({ attribute: "error-text" }) errorText = "";
   /**
    * Is input required
    */
@@ -66,7 +72,7 @@ export class ZetaTextInput extends ContourableCondensableElement {
   /**
    * Type of field
    */
-  @property() type: "text" | "textarea" | "password" = "text";
+  @property() type: "text" | "textarea" | "password" | "time" | "date" = "text";
 
   override focus() {
     this.inputEl?.focus();
@@ -87,7 +93,7 @@ export class ZetaTextInput extends ContourableCondensableElement {
         <div class=${containerClass}>
           ${this.renderLeftIcon()} ${this.renderPrefix()} ${this.renderField()} ${this.renderRightIcon()} ${this.renderSuffix()}
         </div>
-        ${this.renderHintText()}
+        ${this.error ? this.renderErrorText() : this.renderHintText()}
       </div>
     `;
   }
@@ -111,6 +117,17 @@ export class ZetaTextInput extends ContourableCondensableElement {
       : nothing;
   }
 
+  private renderErrorText() {
+    return this.errorText
+      ? html`
+          <div class="hint-text error">
+            <zeta-icon .rounded=${this.rounded} color=${this.getErrorHintColor()} size="16" name="info"></zeta-icon>
+            <span id="hint-text">${this.errorText}</span>
+          </div>
+        `
+      : this.renderHintText();
+  }
+
   private renderLeftIcon() {
     return this.iconPosition === "left" && this.icon && this.type === "text" && !this.toggled
       ? html` <zeta-icon class="left" color=${this.getIconColor()} size=${this.getIconSize()} .rounded=${this.rounded} name=${this.icon}></zeta-icon> `
@@ -131,6 +148,24 @@ export class ZetaTextInput extends ContourableCondensableElement {
           size=${this.getIconSize()}
           .rounded=${this.rounded}
           name=${this.toggled ? "visibility" : "visibility_off"}
+        ></zeta-icon>`
+      : this.type === "time"
+      ? html`<zeta-icon
+          @click=${() => this.inputEl!.showPicker()}
+          class="right"
+          color=${this.getIconColor()}
+          size=${this.getIconSize()}
+          .rounded=${this.rounded}
+          name="clock_outline"
+        ></zeta-icon>`
+      : this.type === "date"
+      ? html`<zeta-icon
+          @click=${() => this.inputEl!.showPicker()}
+          class="right"
+          color=${this.getIconColor()}
+          size=${this.getIconSize()}
+          .rounded=${this.rounded}
+          name="calendar_3_day"
         ></zeta-icon>`
       : nothing;
   }
@@ -157,7 +192,10 @@ export class ZetaTextInput extends ContourableCondensableElement {
   }
 
   private getHintColor() {
-    return this.disabled ? "var(--color-cool-60)" : this.error ? "var(--color-red-60)" : "var(--color-cool-70)";
+    return this.disabled ? "var(--color-cool-60)" : "var(--color-cool-70)";
+  }
+  private getErrorHintColor() {
+    return this.disabled ? "var(--color-cool-60)" : "var(--color-red-60)";
   }
 
   private getPlaceholder() {

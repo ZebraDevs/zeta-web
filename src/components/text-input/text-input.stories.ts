@@ -1,11 +1,15 @@
-import type { Meta, Story, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaTextInput } from "./text-input.js";
+import "./text-input.js";
 
 const meta: Meta<ZetaTextInput> = {
   component: "zeta-text-input",
   args: {
     value: "Typing",
-    placeholder: "Placeholder"
+    placeholder: "Placeholder",
+    hintText: "hint",
+    error: false,
+    errorText: "Error!"
   },
   argTypes: {
     icon: {
@@ -22,6 +26,44 @@ export const TextInput: StoryObj<ZetaTextInput> = {
     size: {
       options: ["small", "medium", "large"],
       control: { type: "inline-radio" }
+    }
+  }
+};
+
+export const TimeInput: StoryObj<ZetaTextInput> = {
+  name: "Time input",
+  args: {
+    type: "time",
+    disabled: false,
+    error: false,
+    required: false,
+    label: "",
+    hintText: ""
+  },
+  argTypes: {
+    type: {
+      table: {
+        disable: true
+      }
+    }
+  }
+};
+
+export const DataInput: StoryObj<ZetaTextInput> = {
+  name: "Date input",
+  args: {
+    type: "date",
+    disabled: false,
+    error: false,
+    required: false,
+    label: "",
+    hintText: ""
+  },
+  argTypes: {
+    type: {
+      table: {
+        disable: true
+      }
     }
   }
 };

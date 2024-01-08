@@ -13,7 +13,8 @@ interface Props {
   iconPos?: "left" | "right";
   label?: string;
   hint?: string;
-  type?: "text" | "textarea" | "password";
+  errorText?: string;
+  type?: "text" | "date" | "textarea" | "password" | "time";
 }
 
 export async function setup({
@@ -26,7 +27,8 @@ export async function setup({
   prefix = "",
   required = false,
   suffix = "",
-  type = "text"
+  type = "text",
+  errorText = undefined
 }: Props) {
   return await fixture<ZetaTextInput>(
     html`<zeta-text-input
@@ -39,6 +41,7 @@ export async function setup({
       icon-position=${iconPos}
       ?disabled=${disabled}
       icon=${icon}
+      error-text=${errorText}
       type=${type}
     ></zeta-text-input>`
   );

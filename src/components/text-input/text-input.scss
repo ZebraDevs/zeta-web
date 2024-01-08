@@ -37,7 +37,7 @@
     border-color: var(--border-accent);
   }
 
-  .hint-text {
+  .hint-text.error {
     span {
       color: var(--color-red-60);
     }
@@ -151,6 +151,14 @@
       outline: none;
     }
   }
+}
+
+input[type='date']::-webkit-calendar-picker-indicator {
+  display: none !important;
+}
+
+input[type='time']::-webkit-calendar-picker-indicator {
+  display: none !important;
 }
 
 .left {

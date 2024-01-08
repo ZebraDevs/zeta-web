@@ -66,7 +66,7 @@ describe("Zeta Input", () => {
   });
 
   it("should render error hint text", async () => {
-    const el = await setup({ error: true, hint: "hint" });
+    const el = await setup({ error: true, hint: "hint", disabled: false, errorText: "error" });
     assert.equal(el.shadowRoot?.querySelector(".hint-text zeta-icon")?.getAttribute("color"), "var(--color-red-60)");
   });
 
@@ -84,13 +84,13 @@ describe("Zeta Input", () => {
     assert.equal(el.value, "change");
   });
 
-  it("should apply type", async () => {
+  it("should apply type textarea", async () => {
     const el = await setup({ type: "textarea" });
     const textarea = el.shadowRoot?.querySelector("textarea");
     expect(textarea).not.to.be.null;
   });
 
-  it("should apply password type", async () => {
+  it("should apply type password", async () => {
     const el = await setup({ type: "password" });
     const input = el.shadowRoot?.querySelector("input");
     assert.equal(input?.type, "password");
@@ -106,6 +106,16 @@ describe("Zeta Input", () => {
     await el.updateComplete;
     assert.equal(el.type, "text");
     assert.equal(el.value, "password");
+  });
+
+  it("should apply type time", async () => {
+    const el = await setup({ type: "time" });
+    assert.equal(el.shadowRoot?.querySelector("zeta-icon")?.getAttribute("name"), "clock_outline");
+  });
+
+  it("should apply type data", async () => {
+    const el = await setup({ type: "date" });
+    assert.equal(el.shadowRoot?.querySelector("zeta-icon")?.getAttribute("name"), "calendar_3_day");
   });
 });
 
