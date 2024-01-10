@@ -2,9 +2,10 @@ import { LitElement } from "lit";
 import { property } from "lit/decorators.js";
 import { Constructor } from "./_utils.js";
 import { Contourable } from "./contour.js";
-import { Condensable } from "./condense.js";
 import styles from "./interactive.scss";
 import { Flavor, Size } from "../types.js";
+import { Focusable } from "./focus.js";
+import { Condensable } from "./condense.js";
 
 // Define the interface for the mixin
 export declare class InteractiveInterface {
@@ -36,10 +37,10 @@ export const Interactive = <T extends Constructor<LitElement>>(superClass: T) =>
 };
 
 /** Extendable class for creating an interactive Zeta element. */
-export const InteractiveElement = Interactive(LitElement);
+export const InteractiveElement = Interactive(Focusable(LitElement));
 
 /** Extendable class for creating an interactive and contourable Zeta element. */
-export const CondensableInteractiveElement = Contourable(Interactive(LitElement));
+export const CondensableInteractiveElement = Contourable(Interactive(Focusable(LitElement)));
 
 /** Extendable class for creating an interactive, contourable, condesable Zeta element. */
-export const ContourableCondensableInteractiveElement = Contourable(Condensable(Interactive(LitElement)));
+export const ContourableCondensableInteractiveElement = Condensable(Contourable(Interactive(Focusable(LitElement))));

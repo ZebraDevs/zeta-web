@@ -1,13 +1,13 @@
 import { html } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { ContourableCondensableElement } from "../../mixins/condense.js";
 import styles from "./input-chip.scss";
+import { FocusableContourableCondensableElement } from "../../mixins/focus.js";
 
 /** Zeta Input Chip web component.
  *
  * @public */
 @customElement("zeta-input-chip")
-export class ZetaInputChip extends ContourableCondensableElement {
+export class ZetaInputChip extends FocusableContourableCondensableElement {
   constructor() {
     super();
     this.text = "Label";
@@ -71,4 +71,3 @@ declare global {
     "zeta-input-chip": ZetaInputChip;
   }
 }
-

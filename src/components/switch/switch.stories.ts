@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from "@storybook/web-components";
-import { ZetaSwitch } from "./ZetaSwitch.js";
+import { ZetaSwitch } from "./switch.js";
+import "./switch.js";
 
 const meta: Meta<ZetaSwitch> = {
   component: "zeta-switch"
@@ -38,4 +39,3 @@ export const SwitchDefaultWithIconDisabled: StoryObj<ZetaSwitch> = {
     inactiveIcon: "microphone_off"
   }
 };
-

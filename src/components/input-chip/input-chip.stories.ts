@@ -2,6 +2,7 @@
 
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaInputChip } from "./input-chip.js";
+import "./input-chip.js";
 
 const meta: Meta<ZetaInputChip> = {
   component: "zeta-input-chip",
@@ -18,4 +19,3 @@ const meta: Meta<ZetaInputChip> = {
 export default meta;
 
 export const InputChip: StoryObj<ZetaInputChip> = {};
-

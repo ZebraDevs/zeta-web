@@ -13,10 +13,12 @@ export const Contourable = <T extends Constructor<LitElement>>(superClass: T) =>
     static styles = [
       (superClass as unknown as typeof LitElement).styles ?? [],
       css`
-        :host > * {
+        :host > *,
+        :host .contourable-target {
           border-radius: 0;
         }
-        :host([rounded]) > * {
+        :host([rounded]) > *,
+        :host([rounded]) .contourable-target {
           border-radius: 4px;
         }
       `

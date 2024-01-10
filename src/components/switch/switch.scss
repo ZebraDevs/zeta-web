@@ -8,7 +8,7 @@
   padding: 0;
   border: none;
   background-color: transparent;
-  border-radius: 100px;
+  border-radius: 100px !important;
 }
 
 .indicator rect {
@@ -22,10 +22,6 @@
 .indicator circle {
   transition: all 0.2s ease-out;
   fill: var(--icon-on-interactive);
-}
-
-.container:focus {
-  outline: 2px solid var(--border-focused);
 }
 
 .container:disabled {

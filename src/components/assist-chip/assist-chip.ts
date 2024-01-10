@@ -1,10 +1,10 @@
 import { html } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { ContourableCondensableElement } from "../../mixins/condense.js";
 import styles from "./assist-chip.scss";
+import { FocusableContourableCondensableElement } from "../../mixins/focus.js";
 
-export class BaseChip extends ContourableCondensableElement {
-  static override styles = [ContourableCondensableElement.styles || []];
+export class BaseChip extends FocusableContourableCondensableElement {
+  static override styles = [FocusableContourableCondensableElement.styles || []];
 
   protected icon: unknown;
 
@@ -66,4 +66,3 @@ declare global {
     "zeta-assist-chip": ZetaAssistChip;
   }
 }
-

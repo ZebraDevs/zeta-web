@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaIconIndicator } from "./icon-indicator.js";
+import "./icon-indicator.js";
 
 const meta: Meta<ZetaIconIndicator> = {
   component: "zeta-icon-indicator",
@@ -17,4 +18,3 @@ const meta: Meta<ZetaIconIndicator> = {
 export default meta;
 
 export const IconIndicator: StoryObj<ZetaIconIndicator> = {};
-

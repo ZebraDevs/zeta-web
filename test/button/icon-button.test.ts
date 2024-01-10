@@ -8,7 +8,7 @@ describe("zeta-icon-button", () => {
   let subject: ZetaIconButton;
   const iconName = "check";
 
-  const createComponent = (template = `<zeta-icon-button iconName=></zeta-icon-button iconName=>`) => {
+  const createComponent = (template = `<zeta-icon-button></zeta-icon-button>`) => {
     return fixture<ZetaIconButton>(html`${unsafeStatic(template)}`);
   };
 

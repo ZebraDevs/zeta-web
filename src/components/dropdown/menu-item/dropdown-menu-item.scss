@@ -1,0 +1,37 @@
+.header {
+  display: flex;
+  flex: 1;
+  font-weight: 500;
+}
+
+.leading {
+  display: flex;
+}
+
+.menu-item {
+  background-color: var(--surface);
+  padding: 14px 12px;  
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  user-select: none;
+  
+  &:not([type = 'default']):not([disabled]) {
+    cursor: pointer;
+  }
+
+  &:hover:not([disabled]) {
+    background-color: var(--surface-hover);
+  }
+
+  &:active:not([disabled]) {
+    background-color: var(--surface-selected);
+  }
+
+}
+:host([disabled]) {
+  cursor: not-allowed;
+  .menu-item {
+    color: var(--text-disabled); 
+  }
+ }

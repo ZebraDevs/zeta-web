@@ -3,17 +3,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { customElement, property, query } from "lit/decorators.js";
-import { ContourableCondensableElement } from "../../mixins/condense.js";
 import { html, nothing } from "lit";
 import styles from "./search.scss";
 import { live } from "lit/directives/live.js";
+import { FocusableContourableCondensableElement } from "../../mixins/focus.js";
 
 /**
  * Zeta search field component
  * Supports speech recognition search on Chrome
  */
 @customElement("zeta-search")
-export class ZetaSearch extends ContourableCondensableElement {
+export class ZetaSearch extends FocusableContourableCondensableElement {
   static override shadowRootOptions: ShadowRootInit = { delegatesFocus: true, mode: "open" };
   constructor() {
     super();
@@ -145,4 +145,3 @@ declare global {
     "zeta-search": ZetaSearch;
   }
 }
-

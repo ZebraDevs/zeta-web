@@ -10,17 +10,12 @@
   color: var(--text-disabled);  
 }
 
-:host(:focus) > :first-child {
-  outline: none;
-  box-shadow: 0 0 0 2px var(--border-primary);
-}
-
 :host([flavor="primary"]) > :first-child {
   background-color: var(--surface-primary);
   color: var(--text-inverse);
 }
 
-:host(:hover[flavor="primary"]) > :first-child {
+:host([flavor="primary"]):hover > :first-child {
   background-color: var(--surface-primary-hover);
 }
 

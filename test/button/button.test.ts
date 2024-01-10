@@ -17,7 +17,7 @@ describe("zeta-button", () => {
   });
 
   it("should render the correct text within the button", async () => {
-    await expect(subject.lastChild?.nodeValue).to.equal(buttonText);
+    expect(subject.lastChild?.nodeValue).to.equal(buttonText);
   });
 
   flavors.map(flavor =>

@@ -2,17 +2,17 @@ import { customElement, property, query } from "lit/decorators.js";
 import { html, nothing } from "lit";
 import { Size } from "../../types.js";
 import styles from "./text-input.scss";
-import { ContourableCondensableElement } from "../../mixins/condense.js";
 import { ZetaIconName } from "@zebra-fed/zeta-icons";
 import { classMap } from "lit/directives/class-map.js";
 import { live } from "lit/directives/live.js";
 import "../../index.js";
+import { FocusableContourableCondensableElement } from "../../mixins/focus.js";
 
 /**
  * Text input component with icon, affix, label and hint text
  */
 @customElement("zeta-text-input")
-export class ZetaTextInput extends ContourableCondensableElement {
+export class ZetaTextInput extends FocusableContourableCondensableElement {
   static override shadowRootOptions: ShadowRootInit = { delegatesFocus: true, mode: "open" };
   static styles = [styles, super.styles ?? []];
   @query("input") private readonly inputEl!: HTMLInputElement | null;
@@ -241,4 +241,3 @@ declare global {
     "zeta-text-input": ZetaTextInput;
   }
 }
-

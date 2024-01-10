@@ -18,8 +18,7 @@ describe("ZetaAssistChip", () => {
     expect(subject.text).to.equal("Label");
   });
 
-  it("it meets accessibility requirements", async () => {
+  it("meets accessibility requirements", async () => {
     await expect(subject).shadowDom.to.be.accessible();
   });
 });
-

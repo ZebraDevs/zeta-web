@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaDialog } from "./dialog.js";
 import { html } from "lit";
+import "./dialog.js";
+import "../button/button.js";
 
 const meta: Meta<ZetaDialog> = {
   component: "zeta-dialog",
@@ -109,4 +111,3 @@ export const DialogWith1Action: StoryObj<ZetaDialog> = {
 };
 
 export default meta;
-

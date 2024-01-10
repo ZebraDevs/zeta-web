@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaCheckbox } from "./checkbox.js";
 import "./checkbox.js";
+import "../icon/icon.js";
 
 const meta: Meta<ZetaCheckbox> = {
   component: "zeta-checkbox",
@@ -8,7 +9,8 @@ const meta: Meta<ZetaCheckbox> = {
     rounded: true,
     condensed: false,
     disabled: false,
-    checked: false
+    checked: false,
+    label: ""
   },
   argTypes: {
     checked: {

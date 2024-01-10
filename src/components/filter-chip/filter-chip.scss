@@ -26,13 +26,6 @@
     background-color: var(--color-cool-90);
   }
 
-  &:active,
-  &:focus-within {
-    box-shadow: 0 0 0 2px var(--border-focused);
-    outline-width: 2px;
-    outline-color: var(--color-blue-50);
-  }
-
   &:disabled{
     background-color: var(--interactive-disabled);
     color: var(--on-interactive-disabled);

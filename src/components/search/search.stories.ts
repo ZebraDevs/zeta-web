@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaSearch } from "./search.js";
+import "./search.js";
 
 const meta: Meta<ZetaSearch> = {
   component: "zeta-search",

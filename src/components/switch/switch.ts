@@ -2,14 +2,14 @@ import { html } from "lit";
 import { customElement, property, query } from "lit/decorators.js";
 import styles from "./switch.scss";
 import { ZetaIconName } from "@zebra-fed/zeta-icons";
-import { ContourableElement } from "../../mixins/contour.js";
+import { FocusableContourableElement } from "../../mixins/focus.js";
 
 /**
  * Switches toggle the state of a single item ON or OFF.
  * To use with icon variant, provide both activeIcon and inactiveIcon
  */
 @customElement("zeta-switch")
-export class ZetaSwitch extends ContourableElement {
+export class ZetaSwitch extends FocusableContourableElement {
   static override shadowRootOptions: ShadowRootInit = { delegatesFocus: true, mode: "open" };
   /**
    * State of the switch
@@ -39,7 +39,7 @@ export class ZetaSwitch extends ContourableElement {
     this.buttonElement?.blur();
   }
 
-  static styles = [styles];
+  static styles = [super.styles || [], styles];
 
   protected render() {
     return html`
@@ -68,4 +68,3 @@ declare global {
     "zeta-switch": ZetaSwitch;
   }
 }
-

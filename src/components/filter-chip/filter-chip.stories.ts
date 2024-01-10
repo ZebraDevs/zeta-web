@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaFilterChip } from "./filter-chip.js";
+import "./filter-chip.js";
 
 const meta: Meta<ZetaFilterChip> = {
   component: "zeta-filter-chip",
@@ -16,4 +17,3 @@ const meta: Meta<ZetaFilterChip> = {
 export default meta;
 
 export const FilterChip: StoryObj<ZetaFilterChip> = {};
-

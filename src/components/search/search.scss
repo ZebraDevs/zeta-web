@@ -29,11 +29,6 @@
     outline-color: var(--border-hover);
   }
 
-  &:focus-within {
-    box-shadow: 0px 0px 0px 4px var(--border-focused);
-    outline-width: 2px;
-    outline-color: var(--color-blue-50);
-  }
 }
 
 input[type="search"]::-webkit-search-decoration,
