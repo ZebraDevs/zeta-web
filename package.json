@@ -46,6 +46,7 @@
     "test": "web-test-runner \"test/**/*.test.ts\" --node-resolve",
     "test:watch": "web-test-runner \"test/**/*.test.ts\" --node-resolve --watch",
     "build-storybook": "storybook build",
+    "build-storybook:with-output-dir": "storybook build -o ",
     "react-gen": "npx vite build && cd scripts && node reactify.js",
     "create": "cd scripts && node makeWebComponentTemplate.js"
   },
