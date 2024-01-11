@@ -1,7 +1,8 @@
 import { html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./accordion.scss";
-import { CondensableInteractiveElement } from "../../mixins/interactive.js";
+import "../icon/icon.js";
+import { FocusableContourableElement } from "../../mixins/focus.js";
 
 @customElement("zeta-accordion")
 /**
@@ -9,7 +10,7 @@ import { CondensableInteractiveElement } from "../../mixins/interactive.js";
  *
  * For proper usage, pass in 'li' elements as children.
  */
-export class ZetaAccordion extends CondensableInteractiveElement {
+export class ZetaAccordion extends FocusableContourableElement {
   /** The title of the accordion. */
   @property({ type: String }) accordionTitle: string | undefined = undefined;
 
@@ -25,6 +26,9 @@ export class ZetaAccordion extends CondensableInteractiveElement {
   get open() {
     return !this.disabled && this._open;
   }
+
+  /** Disabled the accordion. */
+  @property({ type: Boolean, reflect: true }) disabled: boolean = false;
 
   private toggleOpen() {
     this.open = !this.open;
@@ -46,12 +50,10 @@ export class ZetaAccordion extends CondensableInteractiveElement {
   }
 
   protected render() {
-    return html` <div class="accordion" ?disabled=${this.disabled} @click=${(_e: Event) => this.toggleOpen()} style=${styles}>
-      ${this.titleTemplate()} ${this.bodyTemplate()}
-    </div>`;
+    return html` <div class="accordion" @click=${(_e: Event) => this.toggleOpen()}>${this.titleTemplate()} ${this.bodyTemplate()}</div>`;
   }
 
-  static styles = [styles, CondensableInteractiveElement.styles || []];
+  static styles = [styles, FocusableContourableElement.styles || []];
 }
 
 declare global {

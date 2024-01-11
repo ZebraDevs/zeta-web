@@ -1,7 +1,12 @@
-.accordion {
-  &:hover:not([disabled]) {
+:host(:not([disabled])) .accordion {
+  cursor: pointer;
+  &:hover {
     background-color: var(--surface-hover);  
   }  
+}
+
+:host([disabled]) .title {
+  color: var(--text-disabled);
 }
 
 :not([open]).body {
@@ -14,6 +19,14 @@
 
 :host([contained]) .accordion {
   border: 1px solid var(--border-default);
+}
+
+:host(:not([contained])) .accordion {
+  border-top: 1px solid var(--border-default);
+}
+
+:host([disabled]) .accordion {
+  border-color: var(--border-disabled);
 }
 
 .title {
