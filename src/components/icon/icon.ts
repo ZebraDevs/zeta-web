@@ -33,6 +33,7 @@ export class ZetaIcon extends ContourableElement {
     return html` <style>
         :host {
           height: ${size};
+          width: ${size};
         }
       </style>
       <span class="icon ${this.rounded ? "rounded" : "sharp"}" style=${styles}>

@@ -1,32 +1,41 @@
-:host([size="small"]) .container {
-  min-width: 8px;
-  min-height: 8px;
+:host([size="small"]) {  
+  .container {
+    min-width: 8px;
+    min-height: 8px;
+  }
+
+  .count {
+    display: none;
+  }  
 }
 
 :host([size="medium"]) .container {
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
 
   .count{
-    font-size: 12px;
+    font-size: 10px;
   }
+
+  .indicator-icon {
+    position:absolute;
+    right: 1px;
+  }
+
 }
 
 :host([size="large"]) .container {
-  width: 20px;
-  height: 20px;
-  
- .icon{
-  top: 1px;
- }
+  width: 16px;
+  height: 16px;  
+
+  .count{
+    font-size: 14px;
+  }
 }
 
-:host([size="small"]) .container{
-  .count,.icon{display: none;}
-}
 
 :host([inverse]) .container {
-  border:2px solid var(--surface-default-inverse);
+  border: 2px solid var(--surface-default-inverse);
 }
 
  :host{ 
@@ -34,7 +43,7 @@
   display: block;
 
   .container {
-   border-radius: 50%;
+   border-radius: var(--radius-full);
    width: fit-content;
    height: fit-content;
    display: flex;
@@ -44,8 +53,8 @@
  }
 }
 
-.container.icon{
-  background-color: blue;
+.container.indicator-icon{
+  background-color: var(--foundation-accent);
 }
 
 .container.notification{
@@ -53,9 +62,9 @@
 }
 
 :host .container {
- .icon,.count {
+ .count {
     position: absolute;
-    color: #ffffff;
+    color: var(--on-surface-primary);
   }
 }
 

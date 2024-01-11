@@ -23,13 +23,12 @@ export class ZetaNotificationIndicator extends ContourableCondensableElement {
   /** Indicators' inverse.*/
   @property({ type: Boolean, reflect: true }) inverse: boolean = false;
 
-  /** Indicators' count.*/
-  @property({ type: Number, reflect: true }) count: string | number | undefined = 5;
-
   static styles = [super.styles ?? [], styles];
 
   protected override render() {
-    return html`<div class="container notification"><span class="count" ${this.condensed ? "condensed" : "standard"}>${this.count}</span></div>`;
+    return html`<div class="container notification">
+      <span class="count" ${this.condensed ? "condensed" : "standard"}><slot></slot></span>
+    </div>`;
   }
 }
 declare global {
@@ -37,4 +36,3 @@ declare global {
     "zeta-notification-indicator": ZetaNotificationIndicator;
   }
 }
-

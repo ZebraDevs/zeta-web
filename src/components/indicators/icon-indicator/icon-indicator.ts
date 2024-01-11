@@ -3,6 +3,7 @@ import { customElement, property } from "lit/decorators.js";
 import { ContourableCondensableElement } from "../../../mixins/condense.js";
 import styles from "../indicators.scss";
 import { Size } from "../../../types.js";
+import { ZetaIconName } from "@zebra-fed/zeta-icons";
 
 /** Zeta Icon Indicator web component.
  *
@@ -24,20 +25,20 @@ export class ZetaIconIndicator extends ContourableCondensableElement {
   @property({ type: Boolean, reflect: true }) inverse: boolean = false;
 
   /** Indicators' icon.*/
-  @property({ type: String }) icon = "star";
+  @property({ type: String }) icon: ZetaIconName = "star";
 
   static styles = [super.styles ?? [], styles];
 
   readonly sizes = {
-    small: "0",
-    medium: "12",
-    large: "18"
+    small: 0,
+    medium: 8,
+    large: 12
   };
 
   protected override render() {
     return html`
-      <div class="container icon">
-        <zeta-icon size=${this.sizes[this.size]} color="#ffffff" class="icon" .rounded=${this.rounded}> ${this.icon}</zeta-icon>
+      <div class="container indicator-icon">
+        <zeta-icon size=${this.sizes[this.size]} color="var(--on-surface-primary)" .rounded=${this.rounded}> ${this.icon}</zeta-icon>
       </div>
     `;
   }
@@ -47,4 +48,3 @@ declare global {
     "zeta-icon-indicator": ZetaIconIndicator;
   }
 }
-

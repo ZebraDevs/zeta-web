@@ -1,0 +1,53 @@
+.avatar {
+  border-radius: var(--radius-full);
+  width: min-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 2px;
+}
+
+:host([showStatus]) .avatar {
+  box-shadow: 0 0 0 2px var(--color-green-60);
+}
+
+.inidicator {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.status-badge {
+  border-radius: inherit;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border: 3px solid white;
+}
+
+.initials {
+  background-color: var(--color-cool-20);
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  font-weight: 500;
+  color: var(--text-subtle);
+  overflow: hidden;
+}
+
+.icon-container {
+  border-radius: inherit;
+  overflow: hidden;
+  position: relative;
+}
+
+img {
+  object-fit: cover;
+  object-position: center;
+  border-radius: inherit;
+}
