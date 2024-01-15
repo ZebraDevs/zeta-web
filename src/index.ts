@@ -39,7 +39,8 @@ import "../src/components/stepper-input/stepper-input.ts";
 import "../src/components/checkbox/checkbox.ts";
 import "../src/components/radio-button/radio-button.ts";
 import "../src/components/dropdown/menu-item/dropdown-menu-item.ts";
-import "../src/components/avatar/avatar.js";
+import "../src/components/avatar/avatar.ts";
+import "../src/components/card/card-header/card-header.ts";
 
 export * from "../src/components/badges/priority-pill.js";
 export * from "../src/components/badges/status-label.js";
@@ -75,3 +76,4 @@ export * from "../src/components/checkbox/checkbox.js";
 export * from "../src/components/radio-button/radio-button.js";
 export * from "../src/components/dropdown/menu-item/dropdown-menu-item.js";
 export * from "../src/components/avatar/avatar.js";
+export * from "../src/components/card/card-header/card-header.js";

@@ -27,8 +27,7 @@ describe("zeta-checkbox", () => {
 
     const labelElement = subject.shadowRoot?.querySelector("label");
     expect(labelElement).to.not.be.undefined;
-    const labelContents = (labelElement?.lastChild as Text).wholeText;
-    expect(labelContents).to.equal(labelText);
+    expect(labelElement?.textContent).to.equal(labelText);
   });
 
   it("meets accessibility requirements", async () => {

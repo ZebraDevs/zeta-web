@@ -1,0 +1,36 @@
+.card-header {
+  padding: 20px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  font-weight: 500;  
+  font-size: 16px;
+  margin: 0;
+}
+
+h2 {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-subtle);
+  margin: 0;
+}
+
+.leading {
+  display: flex;
+  gap: inherit;
+  align-items: center;
+}
+
+.trailing {
+  display: flex;
+  justify-self: flex-end;
+}
