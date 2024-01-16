@@ -1,0 +1,10 @@
+.card-footer {
+  padding: 16px;
+  gap: 12px; 
+  display: flex;
+}
+
+::slotted(zeta-button:not([flavor='text'])) {
+  width: max-content;
+  flex: 1  
+}

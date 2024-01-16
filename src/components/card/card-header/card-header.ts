@@ -2,14 +2,14 @@ import { customElement, property } from "lit/decorators.js";
 import { LitElement, html } from "lit";
 import styles from "./card-header.scss";
 
-@customElement("zeta-card-header")
 /**
  * Card headers are used at the top of cards.
  *
- * --- Slots ---
- * - 'leading': Content placed before the headline
- * - 'trailing': Content placed after the headline
+ * @element zeta-card-header
+ * @slot leading - Content placed before the headline
+ * @slot trailing - Content placed after the headline
  */
+@customElement("zeta-card-header")
 export class ZetaCardHeader extends LitElement {
   /**
    * The headline text.
@@ -36,4 +36,10 @@ export class ZetaCardHeader extends LitElement {
   }
 
   static styles = [styles];
+}
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "zeta-card-header": ZetaCardHeader;
+  }
 }
