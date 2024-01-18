@@ -1,0 +1,19 @@
+import { fixture, html, unsafeStatic, expect } from "@open-wc/testing";
+import { Zeta_replacecap_ } from "../../src/index.js";
+import "../../src/index.js";
+
+describe("zeta-_replacelower_", () => {
+  let subject: Zeta_replacecap_;
+
+  const createComponent = (template = `<zeta-_replacelower_></zeta-_replacelower_>`) => {
+    return fixture<Zeta_replacecap_>(html`${unsafeStatic(template)}`);
+  };
+
+  beforeEach(async () => {
+    subject = await createComponent();
+  });
+
+  it("meets accessibility requirements", async () => {
+    await expect(subject).shadowDom.to.be.accessible();
+  });
+});

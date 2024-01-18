@@ -1,7 +1,7 @@
 import {  html } from "lit";
 import { customElement } from "lit/decorators.js";
 import { ContourableCondensableElement } from "../../mixins/condense.js";
-import { styles } from "./_replacelower_.styles.js";
+import styles from "./_replacelower_.scss";
 
 /** Zeta_replacecap_ web component.
  *
@@ -12,13 +12,14 @@ import { styles } from "./_replacelower_.styles.js";
 @customElement("zeta-_replacelower_")
 export class Zeta_replacecap_ extends ContourableCondensableElement {
 
-  static styles = [super.styles ?? [], styles];
 
   protected override render() {
     return html`
       <div>// TODO:</div>
     `;
   }
+  
+  static styles = [super.styles ?? [], styles];
 }
 
 declare global {
