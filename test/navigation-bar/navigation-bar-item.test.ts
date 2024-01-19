@@ -1,0 +1,46 @@
+import { expect, fixture, html, unsafeStatic } from "@open-wc/testing";
+import { ZetaIcon, ZetaNavigationBarItem } from "../../src/index.js";
+import "../../src/components/navigation-bar/navigation-bar-item/navigation-bar-item.js";
+import "../../src/components/indicators/notification-indicator/notification-indicator.js";
+
+describe("zeta-navigation-bar-item", () => {
+  const label = "Label";
+  const icon = "star";
+  const badgeId = "badge";
+
+  let subject: ZetaNavigationBarItem;
+
+  const createComponent = (
+    template = `<zeta-navigation-bar-item icon=${icon} label=${label}>
+    <zeta-notification-indicator slot="badge" id=${badgeId}>2</zeta-notification-indicator>
+  </zeta-navigation-bar-item>`
+  ) => {
+    return fixture<ZetaNavigationBarItem>(html`${unsafeStatic(template)}`);
+  };
+
+  beforeEach(async () => {
+    subject = await createComponent();
+  });
+
+  it("renders the given icon", () => {
+    const iconElement = subject.shadowRoot?.querySelector("zeta-icon") as ZetaIcon;
+
+    expect(iconElement.name).to.equal(icon);
+  });
+
+  it("renders the given label", () => {
+    const labelElement = subject.shadowRoot?.querySelector(".label");
+
+    expect(labelElement?.textContent).to.equal(label);
+  });
+
+  it("renders the given badge", () => {
+    const badgeElement = subject.shadowRoot?.querySelector(`#${badgeId}`);
+
+    expect(badgeElement).to.not.be.undefined;
+  });
+
+  it("meets accessability requirements", async () => {
+    await expect(subject).shadowDom.to.be.accessible();
+  });
+});

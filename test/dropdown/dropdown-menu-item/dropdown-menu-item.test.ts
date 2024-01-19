@@ -2,9 +2,9 @@ import { fixture, html, unsafeStatic, expect, elementUpdated } from "@open-wc/te
 import { ZetaDropdownMenuItem } from "../../../src/index.js";
 import "../../../src/components/dropdown/menu-item/dropdown-menu-item.js";
 
-const text = "Menu Item";
-
 describe("zeta-dropdown-menu-item", () => {
+  const text = "Menu Item";
+
   let subject: ZetaDropdownMenuItem;
 
   const createComponent = (template = `<zeta-dropdown-menu-item>${text}</zeta-dropdown-menu-item>`) => {

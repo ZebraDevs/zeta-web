@@ -1,0 +1,45 @@
+:host {
+  display: flex;
+  flex: 1;
+  width: min-content;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.nav-item[label] {
+  padding: 8px 24px;
+}
+
+.nav-item:not([label]) {
+  padding: 20px 24px;
+}
+
+.label {
+  color: var(--text-disabled);
+  font-size: 12px;
+  font-weight: 500;
+  user-select: none;
+}
+
+:host([active]) .label {
+  color: var(--text-primary);
+}
+
+.icon-container {
+  position: relative;
+}
+
+.badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  border: 2px solid white;
+  border-radius: var(--radius-xxxl);
+}
