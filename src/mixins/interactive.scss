@@ -1,92 +1,94 @@
-:host(:not([disabled])) > :first-child {
-  cursor: pointer;
-  user-select: none;
-}
-
 :host([disabled]) > * {
   cursor: not-allowed;
   background: var(--surface-disabled);
-  border: 1px solid transparent;
   color: var(--text-disabled);  
 }
 
-:host([flavor="primary"]) > :first-child {
-  background-color: var(--surface-primary);
-  color: var(--text-inverse);
+:host(:not([disabled])) {
+  > :first-child {
+    cursor: pointer;
+    user-select: none;
+  }
+
+  &:host([flavor="primary"]) > :first-child {
+    background-color: var(--surface-primary);
+    color: var(--text-inverse);   
+    
+    &:hover {
+      background-color: var(--surface-primary-hover);
+    }
+
+    &:active {
+      background-color: var(--surface-primary-active);
+    }
+  }
+
+  &:host([flavor="secondary"]) > :first-child {
+    background-color: var(--surface-secondary);
+    color: var(--text-inverse);   
+    
+    &:hover {
+      background-color: var(--surface-secondary-hover);
+    }
+
+    &:active {
+      background-color: var(--surface-secondary-active);
+    }
+  }
+
+  &:host([flavor="positive"]) > :first-child {
+    background-color: var(--surface-positive);
+    color: var(--text-inverse);
+
+    &:hover {
+      background-color: var(--surface-positive-hover);
+    }
+
+    &:active {
+      background-color: var(--surface-positive-active);
+    }
+  }
+
+  &:host([flavor="negative"]) > :first-child {
+    background-color: var(--surface-negative);
+    color: var(--text-inverse);
+
+    &:hover {
+      background-color: var(--surface-negative-hover);
+    }
+
+    &:active {
+      background-color: var(--surface-negative-active);
+    }
+  }
+
+  &:host([flavor="outline"]) > :first-child, 
+  &:host([flavor="outline-subtle"]) > :first-child,
+  &:host([flavor="text"]) > :first-child, 
+  &:host([flavor="basic"]) > :first-child, 
+  &:host([flavor="basic-negative"]) > :first-child {
+    background-color: var(--surface-outline);
+
+    &:hover {
+      background-color: var(--surface-outline-hover);
+    }
+
+    &:active {
+      background-color: var(--surface-outline-active);
+    }
+  }
+
+  &:host([flavor="outline"]) > :first-child {
+    color: var(--text-primary);
+    box-shadow: 0 0 0 1px var(--border-outline);
+  }
+
+  &:host([flavor="outline-subtle"]) > :first-child {
+    color: var(--text-default);
+    box-shadow: 0 0 0 1px var(--border-outline-subtle);
+  }
+  
+  &:host([flavor="text"]) > :first-child {
+    color: var(--text-primary);
+  }
 }
-
-:host([flavor="primary"]):hover > :first-child {
-  background-color: var(--surface-primary-hover);
-}
-
-:host(:active[flavor="primary"]) > :first-child {
-  background-color: var(--surface-primary-active);
-}
-
-:host([flavor="primary-variant"]) > :first-child:enabled {
-  background-color: var(--surface-primary-variant);
-  color: var(--text-default);
-}
-
-:host(:hover[flavor="primary-variant"]) > :first-child:enabled {
-  background-color: var(--surface-primary-variant-hover);
-}
- 
-:host(:active[flavor="primary-variant"]) > :first-child:enabled {
-  background-color: var(--surface-primary-variant-active);
-}
-
-:host([flavor="negative"]) > :first-child:enabled {
-  background-color: var(--surface-negative);
-  color: var(--text-inverse);
-}
-
-:host(:hover[flavor="negative"]) > :first-child:enabled {
-  background-color: var(--surface-negative-hover);
-}
-
-:host(:active[flavor="negative"]) > :first-child:enabled {
-  background-color: var(--surface-negative-active);
-}
-
-:host([flavor="outline"]) > :first-child:enabled,
-:host([flavor="outline-subtle"]) > :first-child:enabled {
-  background-color: var(--surface-outline);
-  border: 1px solid;
-}
-
-:host(:hover[flavor="outline"]) > :first-child:enabled,
-:host(:hover[flavor="outline-subtle"]) > :first-child:enabled {
-    background-color: var(--surface-outline-hover);
-}
-
-:host(:active[flavor="outline"]) > :first-child:enabled,
-:host(:active[flavor="outline-subtle"]) > :first-child:enabled {
-    background-color: var(--surface-outline-active);
-}
-
-:host([flavor="outline"]) > :first-child:enabled {
-  color: var(--text-primary);
-  border-color: var(--border-outline);
-}
-
-:host([flavor="outline-subtle"]) > :first-child:enabled {
-  color: var(--text-default);
-  border-color: var(--border-outline-subtle);
-}
-
-:host([flavor="text"]) > :first-child:enabled {
-  background-color: var(--surface-outline-subtle);
-  color: var(--text-primary);
-}
-
-:host(:active[flavor="text"]) > :first-child:enabled {
-  background-color: var(--surface-outline-active);
-}
-
-:host(:hover[flavor="text"]) > :first-child:enabled {
-  background-color: var(--surface-outline-hover);
-
-}
-
-

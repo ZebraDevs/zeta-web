@@ -3,17 +3,17 @@ import { query } from "lit/decorators.js";
 import { customElement, property } from "lit/decorators.js";
 import type { ButtonFlavor } from "../../types.js";
 import styles from "./button.scss"; //TODO: Vite CLI not happy about this
-import { ContourableCondensableInteractiveElement } from "../../mixins/interactive.js";
+import { ContourableInteractiveElement } from "../../mixins/interactive.js";
 
 //TODO text overflow broken
 //TODO: Fix icon button
-export class ButtonBase extends ContourableCondensableInteractiveElement {
+export class ButtonBase extends ContourableInteractiveElement {
   static override shadowRootOptions: ShadowRootInit = {
     mode: "open",
     delegatesFocus: true
   };
 
-  static styles = [styles, ContourableCondensableInteractiveElement.styles || []];
+  static styles = [styles, ContourableInteractiveElement.styles || []];
 }
 
 @customElement("zeta-button")

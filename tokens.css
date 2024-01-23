@@ -510,26 +510,28 @@
 :root {
 
   /* Button */
-  --surface-primary-hover: var(--color-blue-70);
-  --surface-primary-active: var(--color-blue-80);
+  --surface-primary-hover: var(--color-blue-50);
+  --surface-primary-active: var(--color-blue-70);
 
-  --surface-primary-variant: #ffd200;
-  --surface-primary-variant-hover: #F6BD00;
-  --surface-primary-variant-active: #C29500;
+  --surface-secondary-hover: var(--color-yellow-50);
+  --surface-secondary-active: var(--color-yellow-70);
 
-  --surface-negative-hover: var(--color-red-70);
-  --surface-negative-active: var(--color-red-80);
+  --surface-positive-hover: var(--color-green-50);
+  --surface-positive-active: var(--color-green-70);
 
-  --surface-outline: transparent;
+  --surface-negative-hover: var(--color-red-50);
+  --surface-negative-active: var(--color-red-70);
+
+  --surface-outline: var(--color-pure-0);
   --surface-outline-hover: var(--color-cool-20);
-  --surface-outline-active: #EDEFF4;
+  --surface-outline-active: var(--color-blue-10);
+
+  --border-outline: var(--color-blue-60);
+  --border-outline-subtle: var(--color-cool-40);    
 
   --surface-basic: transparent;
   --surface-basic-hover: var(--color-cool-20);
   --surface-basic-active: #EDEFF4;
-
-  --border-outline: var(--color-blue-60);
-  --border-outline-subtle: var(--color-cool-40);
 
   --on-surface-primary: var(--color-pure-0);
 }

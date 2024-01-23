@@ -6,7 +6,6 @@ import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
 const meta: Meta<ZetaIconButton> = {
   component: "zeta-icon-button",
   args: {
-    condensed: false,
     disabled: false,
     rounded: true
   },
@@ -24,7 +23,7 @@ const meta: Meta<ZetaIconButton> = {
       }
     },
     flavor: {
-      options: ["primary", "negative", "outline", "primary-variant", "outline-subtle", "basic", "basic-negative"], //TODO: Get values from IconButtonFlavor type?
+      options: ["primary", "secondary", "positive", "negative", "outline", "outline-subtle", "basic", "basic-inverse", "basic-negative"], //TODO: Get values from IconButtonFlavor type?
       control: {
         type: "select"
       }

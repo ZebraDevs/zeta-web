@@ -4,16 +4,15 @@
   width: fit-content;
 
   > button {
-    cursor: pointer;
     display: flex;
     align-items: center;
+    border: none;
     justify-content: center;
     overflow-x: ellipsis;
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
     line-height: 24px;
-    border: 1px solid transparent;
     width: 100%;
   }
 }
@@ -25,24 +24,11 @@
 
 :host > button,
 :host([size="medium"]) > button {
-  padding: 8px 16px;
+  padding: 8px 14px;
 }
 
 :host([size="small"]) > button {
-  padding: 6px 12px;
+  padding: 6px 10px;
   font-size: 14px;
   line-height: 20px;
 }
-
-:host([size="large"][condensed]) > button {
-  padding: inherit 16px;
-}
-
-:host([size="medium"][condensed]) > button {
-  padding: inherit 12px;
-}
-
-:host([size="small"][condensed]) > button {
-  padding: inherit 8px;
-}
-

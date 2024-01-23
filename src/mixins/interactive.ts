@@ -40,7 +40,10 @@ export const Interactive = <T extends Constructor<LitElement>>(superClass: T) =>
 export const InteractiveElement = Interactive(Focusable(LitElement));
 
 /** Extendable class for creating an interactive and contourable Zeta element. */
-export const CondensableInteractiveElement = Contourable(Interactive(Focusable(LitElement)));
+export const ContourableInteractiveElement = Contourable(Interactive(Focusable(LitElement)));
+
+/** Extendable class for creating an interactive and condensable Zeta element. */
+export const CondensableInteractiveElement = Condensable(Interactive(Focusable(LitElement)));
 
 /** Extendable class for creating an interactive, contourable, condesable Zeta element. */
 export const ContourableCondensableInteractiveElement = Condensable(Contourable(Interactive(Focusable(LitElement))));

@@ -6,7 +6,6 @@ import { html } from "lit";
 const meta: Meta<ZetaButton> = {
   component: "zeta-button",
   args: {
-    condensed: false,
     disabled: false,
     rounded: true
   },
@@ -18,7 +17,7 @@ const meta: Meta<ZetaButton> = {
       }
     },
     flavor: {
-      options: ["primary", "negative", "outline", "primary-variant", "outline-subtle", "text", "text-inverse"], //TODO: Get values from ButtonFlavor type?
+      options: ["primary", "secondary", "positive", "negative", "outline", "outline-subtle", "text"], //TODO: Get values from ButtonFlavor type?
       control: {
         type: "select"
       }
@@ -28,9 +27,7 @@ const meta: Meta<ZetaButton> = {
 export default meta;
 
 export const ButtonWithText: StoryObj<ZetaButton> = {
-  render: args => html`
-    <zeta-button size=${args.size} .disabled=${args.disabled} .condensed=${args.condensed} .rounded=${args.rounded} flavor=${args.flavor}>Button</zeta-button>
-  `
+  render: args => html` <zeta-button size=${args.size} .disabled=${args.disabled} .rounded=${args.rounded} flavor=${args.flavor}>Button</zeta-button> `
 };
 
 export const ButtonWithTextAndIcon: StoryObj = {

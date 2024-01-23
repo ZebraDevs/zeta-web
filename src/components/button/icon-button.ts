@@ -1,7 +1,7 @@
 import { customElement, property, query } from "lit/decorators.js";
 import { html } from "lit-html";
 import styles from "./icon-button.scss";
-import { ContourableCondensableInteractiveElement } from "../../mixins/interactive.js";
+import { ContourableInteractiveElement } from "../../mixins/interactive.js";
 import { IconButtonFlavor } from "../../types.js";
 import { ZetaIconName } from "@zebra-fed/zeta-icons";
 
@@ -10,7 +10,7 @@ import { ZetaIconName } from "@zebra-fed/zeta-icons";
 /**
  * A button containing a Zeta Icon.
  */
-export class ZetaIconButton extends ContourableCondensableInteractiveElement {
+export class ZetaIconButton extends ContourableInteractiveElement {
   @query("button") private readonly buttonElement!: HTMLElement | null;
 
   /** The flavor of the button. */
@@ -49,14 +49,16 @@ export class ZetaIconButton extends ContourableCondensableInteractiveElement {
     } else {
       switch (this.flavor) {
         case "primary":
+        case "secondary":
+        case "positive":
         case "negative":
+        case "basic-inverse":
           return "var(--icon-inverse)";
-        case "primary-variant":
+        case "outline":
+          return "var(--surface-primary)";
         case "outline-subtle":
         case "basic":
           return "var(--icon-default)";
-        case "outline":
-          return "var(--surface-primary)";
         case "basic-negative":
           return "var(--surface-negative)";
       }
@@ -70,7 +72,7 @@ export class ZetaIconButton extends ContourableCondensableInteractiveElement {
     </button>`;
   }
 
-  static styles = [styles, ContourableCondensableInteractiveElement.styles || []];
+  static styles = [styles, ContourableInteractiveElement.styles || []];
 }
 
 declare global {
@@ -78,4 +80,3 @@ declare global {
     "zeta-icon-button": ZetaIconButton;
   }
 }
-
