@@ -1,16 +1,17 @@
 import { customElement, property, query } from "lit/decorators.js";
 import { html } from "lit-html";
 import styles from "./icon-button.scss";
-import { ContourableInteractiveElement } from "../../mixins/interactive.js";
-import { IconButtonFlavor } from "../../types.js";
+import { IconButtonFlavor, Size } from "../../types.js";
 import { ZetaIconName } from "@zebra-fed/zeta-icons";
+import { ContourableFlavoredElement } from "../../mixins/flavor.js";
+import "../icon/icon.js";
 
 // TODO slot icon name instead of passing it through a property
 @customElement("zeta-icon-button")
 /**
  * A button containing a Zeta Icon.
  */
-export class ZetaIconButton extends ContourableInteractiveElement {
+export class ZetaIconButton extends ContourableFlavoredElement {
   @query("button") private readonly buttonElement!: HTMLElement | null;
 
   /** The flavor of the button. */
@@ -24,6 +25,9 @@ export class ZetaIconButton extends ContourableInteractiveElement {
 
   /** The value of the name property When submitted as part of a form */
   @property({ type: String }) value = "";
+
+  /** Size of button. @see {@link Size} for more details. @defaultValue `medium` */
+  @property({ type: String, reflect: true }) size: Size = "medium";
 
   override focus() {
     this.buttonElement?.focus();
@@ -72,7 +76,7 @@ export class ZetaIconButton extends ContourableInteractiveElement {
     </button>`;
   }
 
-  static styles = [styles, ContourableInteractiveElement.styles || []];
+  static styles = [styles, super.styles || []];
 }
 
 declare global {

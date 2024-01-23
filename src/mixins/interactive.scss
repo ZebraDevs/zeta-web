@@ -1,94 +1,25 @@
+:host(:not([disabled])) > :first-child {   
+  cursor: pointer;
+  user-select: none;  
+
+  &:hover {
+    background: var(--surface-hover);
+  }
+
+  &:active {
+    background: var(--surface-active);
+  }
+}
+
 :host([disabled]) > * {
   cursor: not-allowed;
-  background: var(--surface-disabled);
   color: var(--text-disabled);  
 }
 
-:host(:not([disabled])) {
-  > :first-child {
-    cursor: pointer;
-    user-select: none;
-  }
 
-  &:host([flavor="primary"]) > :first-child {
-    background-color: var(--surface-primary);
-    color: var(--text-inverse);   
-    
-    &:hover {
-      background-color: var(--surface-primary-hover);
-    }
-
-    &:active {
-      background-color: var(--surface-primary-active);
-    }
-  }
-
-  &:host([flavor="secondary"]) > :first-child {
-    background-color: var(--surface-secondary);
-    color: var(--text-inverse);   
-    
-    &:hover {
-      background-color: var(--surface-secondary-hover);
-    }
-
-    &:active {
-      background-color: var(--surface-secondary-active);
-    }
-  }
-
-  &:host([flavor="positive"]) > :first-child {
-    background-color: var(--surface-positive);
-    color: var(--text-inverse);
-
-    &:hover {
-      background-color: var(--surface-positive-hover);
-    }
-
-    &:active {
-      background-color: var(--surface-positive-active);
-    }
-  }
-
-  &:host([flavor="negative"]) > :first-child {
-    background-color: var(--surface-negative);
-    color: var(--text-inverse);
-
-    &:hover {
-      background-color: var(--surface-negative-hover);
-    }
-
-    &:active {
-      background-color: var(--surface-negative-active);
-    }
-  }
-
-  &:host([flavor="outline"]) > :first-child, 
-  &:host([flavor="outline-subtle"]) > :first-child,
-  &:host([flavor="text"]) > :first-child, 
-  &:host([flavor="basic"]) > :first-child, 
-  &:host([flavor="basic-negative"]) > :first-child {
-    background-color: var(--surface-outline);
-
-    &:hover {
-      background-color: var(--surface-outline-hover);
-    }
-
-    &:active {
-      background-color: var(--surface-outline-active);
-    }
-  }
-
-  &:host([flavor="outline"]) > :first-child {
-    color: var(--text-primary);
-    box-shadow: 0 0 0 1px var(--border-outline);
-  }
-
-  &:host([flavor="outline-subtle"]) > :first-child {
-    color: var(--text-default);
-    box-shadow: 0 0 0 1px var(--border-outline-subtle);
-  }
-  
-  &:host([flavor="text"]) > :first-child {
-    color: var(--text-primary);
-  }
+:host(:focus) .focus-target,
+:host(:focus) > :not(:has(.focus-target)) {
+  box-shadow: 0 0 0 2px var(--border-focused);
+  outline-width: 2px;
+  outline-color: var(--color-blue-50);
 }

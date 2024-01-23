@@ -413,6 +413,7 @@
   --surface-cool: var(--color-cool-10);
   --surface-warm: var(--color-cool-10);
   --surface-hover: var(--color-cool-20);
+  --surface-active: var(--color-cool-40);
   --surface-selected: var(--color-blue-10);
   --surface-selected-hovered: var(--color-blue-20);
   --surface-disabled: var(--color-cool-30);
@@ -485,6 +486,7 @@
     --surface-cool: var(--color-cool-10);
     --surface-warm: var(--color-cool-10);
     --surface-hover: var(--color-cool-20);
+    --surface-active: var(--color-cool-40);
     --surface-selected: var(--color-blue-10);
     --surface-selected-hovered: var(--color-blue-20);
     --surface-disabled: var(--color-cool-30);

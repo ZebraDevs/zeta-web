@@ -1,13 +1,13 @@
 import { html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./input-chip.scss";
-import { FocusableContourableCondensableElement } from "../../mixins/focus.js";
+import { ContourableInteractiveElement } from "../../mixins/interactive.js";
 
 /** Zeta Input Chip web component.
  *
  * @public */
 @customElement("zeta-input-chip")
-export class ZetaInputChip extends FocusableContourableCondensableElement {
+export class ZetaInputChip extends ContourableInteractiveElement {
   constructor() {
     super();
     this.text = "Label";
@@ -55,7 +55,7 @@ export class ZetaInputChip extends FocusableContourableCondensableElement {
         break;
     }
 
-    return html`<label for="" class="container" ${this.condensed ? "condensed" : "standard"}> ${icon} </label>`;
+    return html`<label for="" class="container"> ${icon} </label>`;
   }
 
   handleClose = () => {

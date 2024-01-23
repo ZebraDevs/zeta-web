@@ -6,15 +6,17 @@ import { ZetaIconName } from "@zebra-fed/zeta-icons";
 import { classMap } from "lit/directives/class-map.js";
 import { live } from "lit/directives/live.js";
 import "../../index.js";
-import { FocusableContourableCondensableElement } from "../../mixins/focus.js";
+import { ContourableInteractiveElement } from "../../mixins/interactive.js";
 
 /**
  * Text input component with icon, affix, label and hint text
  */
 @customElement("zeta-text-input")
-export class ZetaTextInput extends FocusableContourableCondensableElement {
+export class ZetaTextInput extends ContourableInteractiveElement {
   static override shadowRootOptions: ShadowRootInit = { delegatesFocus: true, mode: "open" };
+
   static styles = [styles, super.styles ?? []];
+
   @query("input") private readonly inputEl!: HTMLInputElement | null;
   /**
    * Error state

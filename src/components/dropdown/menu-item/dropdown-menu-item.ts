@@ -1,11 +1,11 @@
 import { customElement, property } from "lit/decorators.js";
 import styles from "./dropdown-menu-item.scss";
 import { html } from "lit";
-import { FocusableContourableCondensableElement } from "../../../mixins/focus.js";
 import { ZetaIconName } from "@zebra-fed/zeta-icons";
+import { ContourableInteractiveElement } from "../../../mixins/interactive.js";
 
 @customElement("zeta-dropdown-menu-item")
-export class ZetaDropdownMenuItem extends FocusableContourableCondensableElement {
+export class ZetaDropdownMenuItem extends ContourableInteractiveElement {
   /**
    * Disables the menu item.
    */
@@ -61,7 +61,7 @@ export class ZetaDropdownMenuItem extends FocusableContourableCondensableElement
     </div>`;
   }
 
-  static styles = [styles, FocusableContourableCondensableElement.styles || []];
+  static styles = [styles, super.styles || []];
 }
 
 declare global {

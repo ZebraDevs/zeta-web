@@ -15,23 +15,4 @@
   align-items: center;
   gap: 12px;
   user-select: none;
-  
-  &:not([type = 'default']):not([disabled]) {
-    cursor: pointer;
-  }
-
-  &:hover:not([disabled]) {
-    background-color: var(--surface-hover);
-  }
-
-  &:active:not([disabled]) {
-    background-color: var(--surface-selected);
-  }
-
 }
-:host([disabled]) {
-  cursor: not-allowed;
-  .menu-item {
-    color: var(--text-disabled); 
-  }
- }

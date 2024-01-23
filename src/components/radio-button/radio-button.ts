@@ -1,14 +1,13 @@
 import { customElement, property } from "lit/decorators.js";
 import { html } from "lit";
 import styles from "./radio-button.scss";
-import { InteractiveElement } from "../../mixins/interactive.js";
-import { FocusableElement } from "../../mixins/focus.js";
+import { ContourableInteractiveElement, InteractiveElement } from "../../mixins/interactive.js";
 
 @customElement("zeta-radio-button")
 /**
  * Checkboxes allow users to select one or more items from a set. Checkboxes can turn an option on or off.
  */
-export class ZetaRadioButton extends FocusableElement {
+export class ZetaRadioButton extends ContourableInteractiveElement {
   /**
    * Controls the state of the radio button.
    */

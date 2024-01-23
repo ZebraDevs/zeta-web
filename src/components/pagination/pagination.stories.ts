@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaPagination } from "./pagination.js";
+import "./pagination.js";
 
 const meta: Meta<ZetaPagination> = {
   component: "zeta-pagination",
@@ -15,4 +16,3 @@ const meta: Meta<ZetaPagination> = {
 export default meta;
 
 export const Pagination: StoryObj<ZetaPagination> = {};
-

@@ -1,14 +1,13 @@
 import { customElement, property } from "lit/decorators.js";
-import { ContourableCondensableInteractiveElement } from "../../mixins/interactive.js";
+import { ContourableCondensableInteractiveElement, ContourableInteractiveElement } from "../../mixins/interactive.js";
 import { html } from "lit";
 import styles from "./checkbox.scss";
-import { FocusableContourableCondensableElement } from "../../mixins/focus.js";
 
 @customElement("zeta-checkbox")
 /**
  * Checkboxes allow users to select one or more items from a set. Checkboxes can turn an option on or off.
  */
-export class ZetaCheckbox extends FocusableContourableCondensableElement {
+export class ZetaCheckbox extends ContourableInteractiveElement {
   /**
    * Controls the state of the checkbox.
    *

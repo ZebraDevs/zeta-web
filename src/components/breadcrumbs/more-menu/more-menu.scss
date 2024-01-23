@@ -1,35 +1,13 @@
-
-
 :host([condensed]) .container {
   padding: 2px 4px;
 }
 
 .container { 
- width: fit-content;
- padding: 2px 8px;
- background-color: var(--color-cool-120) !important;
- border: none;
- transition: background-color 0.2s ease-out;
-
-&:focus-within {
-  box-shadow: 0 0 0 4px var(--color-blue-50);
-}
-
-&:focus-visible {
-  outline:none;
-}
-
-&:active {
-  background-color: var(--color-cool-70) !important;
-}
-
-&:hover {
-  background-color: var(--color-cool-80) !important;
-}
- 
-&:disabled {
-  background-color: var(--color-cool-30) !important;
-}
+  width: fit-content;
+  padding: 2px 8px;
+  background-color: var(--color-cool-120);
+  border: none;
+  transition: background-color 0.2s ease-out;
 
   .icon {
     display: block;

@@ -6,14 +6,14 @@ import { customElement, property, query } from "lit/decorators.js";
 import { html, nothing } from "lit";
 import styles from "./search.scss";
 import { live } from "lit/directives/live.js";
-import { FocusableContourableCondensableElement } from "../../mixins/focus.js";
+import { ContourableInteractiveElement } from "../../mixins/interactive.js";
 
 /**
  * Zeta search field component
  * Supports speech recognition search on Chrome
  */
 @customElement("zeta-search")
-export class ZetaSearch extends FocusableContourableCondensableElement {
+export class ZetaSearch extends ContourableInteractiveElement {
   static override shadowRootOptions: ShadowRootInit = { delegatesFocus: true, mode: "open" };
   constructor() {
     super();

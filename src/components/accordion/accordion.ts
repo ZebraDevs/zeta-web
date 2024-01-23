@@ -2,7 +2,7 @@ import { html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./accordion.scss";
 import "../icon/icon.js";
-import { FocusableContourableElement } from "../../mixins/focus.js";
+import { ContourableInteractiveElement } from "../../mixins/interactive.js";
 
 @customElement("zeta-accordion")
 /**
@@ -10,7 +10,7 @@ import { FocusableContourableElement } from "../../mixins/focus.js";
  *
  * For proper usage, pass in 'li' elements as children.
  */
-export class ZetaAccordion extends FocusableContourableElement {
+export class ZetaAccordion extends ContourableInteractiveElement {
   /** The title of the accordion. */
   @property({ type: String }) accordionTitle: string | undefined = undefined;
 
@@ -53,7 +53,7 @@ export class ZetaAccordion extends FocusableContourableElement {
     return html` <div class="accordion" @click=${(_e: Event) => this.toggleOpen()}>${this.titleTemplate()} ${this.bodyTemplate()}</div>`;
   }
 
-  static styles = [styles, FocusableContourableElement.styles || []];
+  static styles = [styles, super.styles || []];
 }
 
 declare global {

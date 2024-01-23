@@ -1,10 +1,10 @@
 import { html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./assist-chip.scss";
-import { FocusableContourableCondensableElement } from "../../mixins/focus.js";
+import { ContourableInteractiveElement } from "../../mixins/interactive.js";
 
-export class BaseChip extends FocusableContourableCondensableElement {
-  static override styles = [FocusableContourableCondensableElement.styles || []];
+export class BaseChip extends ContourableInteractiveElement {
+  static override styles = [super.styles || []];
 
   protected icon: unknown;
 
@@ -15,7 +15,7 @@ export class BaseChip extends FocusableContourableCondensableElement {
   protected override render() {
     const icon = this.renderChipLabel();
 
-    return html`<label for="" class="container" ${this.condensed ? "condensed" : "standard"}>${icon}</label>`;
+    return html`<label for="" class="container">${icon}</label>`;
   }
 }
 

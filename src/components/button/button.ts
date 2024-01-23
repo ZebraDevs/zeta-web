@@ -1,19 +1,19 @@
 import { html } from "lit";
 import { query } from "lit/decorators.js";
 import { customElement, property } from "lit/decorators.js";
-import type { ButtonFlavor } from "../../types.js";
+import type { Size } from "../../types.js";
 import styles from "./button.scss"; //TODO: Vite CLI not happy about this
-import { ContourableInteractiveElement } from "../../mixins/interactive.js";
+import { ContourableFlavoredElement } from "../../mixins/flavor.js";
 
 //TODO text overflow broken
 //TODO: Fix icon button
-export class ButtonBase extends ContourableInteractiveElement {
+export class ButtonBase extends ContourableFlavoredElement {
   static override shadowRootOptions: ShadowRootInit = {
     mode: "open",
     delegatesFocus: true
   };
 
-  static styles = [styles, ContourableInteractiveElement.styles || []];
+  static styles = [styles, super.styles || []];
 }
 
 @customElement("zeta-button")
@@ -39,8 +39,8 @@ export class ZetaButton extends ButtonBase {
   /** The value of the name property When submitted as part of a form */
   @property({ type: String }) value = "";
 
-  /** Type of button. @see {@link ButtonFlavor | ButtonFlavor} for more details. @defaultValue `primary`.*/
-  @property({ type: String, reflect: true }) flavor: ButtonFlavor = "primary";
+  /** Size of button. @see {@link Size} for more details. @defaultValue `medium` */
+  @property({ type: String, reflect: true }) size: Size = "medium";
 
   static get styles() {
     return [super.styles ?? []];

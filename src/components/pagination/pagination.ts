@@ -3,6 +3,7 @@ import { ContourableCondensableElement } from "../../mixins/condense.js";
 import styles from "./pagination.scss";
 import { html } from "lit";
 import { classMap } from "lit/directives/class-map.js";
+import "../button/icon-button.js";
 
 /**
  * Zeta pagination component
@@ -93,40 +94,38 @@ export class ZetaPagination extends ContourableCondensableElement {
     return this.range(1, this.totalPages);
   };
 
+  getIconButton(iconName: string, pageNumber: number, disabled: boolean) {
+    return html` <zeta-icon-button
+      .disabled=${disabled}
+      .rounded=${this.rounded}
+      @click=${() => this.handlePageChange(pageNumber)}
+      flavor="basic"
+      iconname=${iconName}
+      size="small"
+    >
+    </zeta-icon-button>`;
+  }
+
   protected render() {
-    const controlSize = "20";
-    const controlColor = "var(--color-cool-90)";
-    const disabledControlColor = "var(--color-cool-50)";
     const disabledLeftControl = this.currentPage === 1;
     const disabledRightControl = this.currentPage === this.totalPages;
-    const leftControlColor = disabledLeftControl ? disabledControlColor : controlColor;
-    const rightControlColor = disabledRightControl ? disabledControlColor : controlColor;
     const result = this.result();
 
     return html`
       <div class="pagination">
-        <button .disabled=${disabledLeftControl} @click=${() => this.handlePageChange(1)} class="pagination-control">
-          <zeta-icon color=${leftControlColor} name="first_page" size=${controlSize}></zeta-icon>
-        </button>
-        <button .disabled=${disabledLeftControl} @click=${() => this.handlePageChange(this.currentPage - 1)} class="pagination-control">
-          <zeta-icon color=${leftControlColor} name="chevron_left" size=${controlSize}></zeta-icon>
-        </button>
+        ${this.getIconButton("first_page", 1, disabledLeftControl)} ${this.getIconButton("chevron_left", this.currentPage - 1, disabledLeftControl)}
         ${result.map(page => {
           const pageClass = classMap({
             selected: this.currentPage === page
           });
           if (typeof page === "string") {
-            return html`<zeta-icon color=${controlColor} size=${controlSize} name="more_horizontal"></zeta-icon>`;
+            return html`<zeta-icon color="var(--color-cool-90)" size="20" name="more_horizontal"></zeta-icon>`;
           } else {
             return html` <button @click=${() => this.handlePageChange(page)} class="page ${pageClass}">${page}</button> `;
           }
         })}
-        <button .disabled=${disabledRightControl} @click=${() => this.handlePageChange(this.currentPage + 1)} class="pagination-control">
-          <zeta-icon color=${rightControlColor} name="chevron_right" size=${controlSize}></zeta-icon>
-        </button>
-        <button .disabled=${disabledRightControl} @click=${() => this.handlePageChange(this.totalPages)} class="pagination-control">
-          <zeta-icon color=${rightControlColor} name="last_page" size=${controlSize}></zeta-icon>
-        </button>
+        ${this.getIconButton("chevron_right", this.currentPage + 1, disabledRightControl)}
+        ${this.getIconButton("last_page", this.totalPages, disabledRightControl)}
       </div>
     `;
   }
@@ -137,4 +136,3 @@ declare global {
     "zeta-pagination": ZetaPagination;
   }
 }
-

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaMoreMenu } from "./more-menu.js";
+import "./more-menu.js";
 
 const meta: Meta<ZetaMoreMenu> = {
   component: "zeta-more-menu",
@@ -13,4 +14,3 @@ const meta: Meta<ZetaMoreMenu> = {
 export default meta;
 
 export const MoreMenu: StoryObj<ZetaMoreMenu> = {};
-

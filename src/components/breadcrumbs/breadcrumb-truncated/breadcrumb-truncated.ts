@@ -1,10 +1,14 @@
 import { html } from "lit";
 import { customElement } from "lit/decorators.js";
 import styles from "./breadcrumb-truncated.scss";
-import { ContourableCondensableElement } from "../../../mixins/condense.js";
+import { ContourableElement } from "../../../mixins/contour.js";
 
+/**
+ * The breadcrumb is a secondary navigation patten that helps a user understand the hierarchy among levels and navigate back through them.
+ */
+// TODO revisit this component
 @customElement("zeta-breadcrumb-truncated")
-export class ZetaBreadcrumbTruncated extends ContourableCondensableElement {
+export class ZetaBreadcrumbTruncated extends ContourableElement {
   static styles = [super.styles ?? [], styles];
 
   protected override render() {
@@ -22,4 +26,3 @@ declare global {
     "zeta-breadcrumb-truncated": ZetaBreadcrumbTruncated;
   }
 }
-
