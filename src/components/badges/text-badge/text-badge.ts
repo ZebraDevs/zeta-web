@@ -29,7 +29,7 @@ export class ZetaTextBadge extends ContourableCondensableElement {
   protected override render() {
     return html`
       <div class="container">
-        <div class="text">${this.text && this.text}</div>
+        <div class="text">${this.text && this.text}<slot></slot></div>
       </div>
     `;
   }
@@ -40,4 +40,3 @@ declare global {
     "zeta-text-badge": ZetaTextBadge;
   }
 }
-

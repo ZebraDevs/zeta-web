@@ -368,6 +368,7 @@
   --text-default: var(--color-cool-90);
   --text-subtle: var(--color-cool-70);
   --text-inverse: var(--color-pure-0);
+  --text-inverse-subtle: #AFB6C2;
   --text-disabled: var(--color-cool-50);
 
   /* Text / Flavor */
@@ -398,6 +399,7 @@
   --border-hover: var(--color-cool-90);
   --border-selected: var(--color-cool-90);
   --border-disabled: var(--color-cool-20);
+  --border-inverse-default: var(--color-cool-110);
 
   /* Border / Flavor */
   --border-primary: var(--color-blue-50);
@@ -412,6 +414,7 @@
   --surface-default-inverse: var(--color-pure-1000);
   --surface-cool: var(--color-cool-10);
   --surface-warm: var(--color-cool-10);
+  --surface-tertiary: var(--color-warm-100);
   --surface-hover: var(--color-cool-20);
   --surface-active: var(--color-cool-40);
   --surface-selected: var(--color-blue-10);
@@ -441,6 +444,7 @@
     --text-default: var(--color-cool-100);
     --text-subtle: var(--color-cool-90);
     --text-inverse: var(--color-pure-0);
+    --text-inverse-subtle: #AFB6C2;
     --text-disabled: var(--color-cool-60);
 
     /* Text / Flavor */
@@ -471,6 +475,7 @@
     --border-hover: var(--color-cool-90);
     --border-selected: var(--color-cool-90);
     --border-disabled: var(--color-cool-20);
+    --border-inverse-default: var(--color-cool-110);
 
     /* Border / Flavor */
     --border-primary: var(--color-blue-70);

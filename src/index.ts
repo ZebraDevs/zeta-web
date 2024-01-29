@@ -43,6 +43,9 @@ import "../src/components/avatar/avatar.ts";
 import "../src/components/card/card-header/card-header.ts";
 import "./components/navigation-bar/navigation-bar-item/navigation-bar-item.ts";
 import "./components/navigation-bar/navigation-bar.ts";
+import "./components/navigation-drawer/navigation-drawer-footer/navigation-drawer-footer.js";
+import "./components/navigation-drawer/navigation-drawer-item/navigation-drawer-item.js";
+import "./components/navigation-drawer/navigation-drawer-sub-item/navigation-drawer-sub-item.js";
 
 export * from "../src/components/badges/priority-pill.js";
 export * from "../src/components/badges/status-label.js";
@@ -81,3 +84,6 @@ export * from "../src/components/avatar/avatar.js";
 export * from "../src/components/card/card-header/card-header.js";
 export * from "./components/navigation-bar/navigation-bar-item/navigation-bar-item.js";
 export * from "./components/navigation-bar/navigation-bar.js";
+export * from "./components/navigation-drawer/navigation-drawer-footer/navigation-drawer-footer.js";
+export * from "./components/navigation-drawer/navigation-drawer-item/navigation-drawer-item.js";
+export * from "./components/navigation-drawer/navigation-drawer-sub-item/navigation-drawer-sub-item.js";

@@ -38,9 +38,7 @@ export class ZetaAccordion extends ContourableInteractiveElement {
     return html`
       <div class="title">
         <div>${this.accordionTitle}</div>
-        <zeta-icon color="${this.disabled ? "var(--icon-disabled)" : ""} .rounded=${this.rounded} size="24"
-          >${this.open ? "remove" : "add"}</zeta-icon
-        >
+        <zeta-icon .rounded=${this.rounded} size="24">${this.open ? "remove" : "add"}</zeta-icon>
       </div>
     `;
   }

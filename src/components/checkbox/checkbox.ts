@@ -51,7 +51,7 @@ export class ZetaCheckbox extends ContourableInteractiveElement {
 
   protected render() {
     return html`<div class="checkbox">
-      <div class='container contourable-target focus-target' @click=${(_e: Event) => this.toggleCheck()}>
+      <div class='container contourable-target interactive-target' @click=${(_e: Event) => this.toggleCheck()}>
         <input type="checkbox" id=${this.id} ${this.checked ? "checked" : ""} aria-label=${this.label ?? "checkbox"} name=${this.name}></input>
         <div class='checkmark'>
           <zeta-icon size=20 rounded=${this.rounded} color=${!this.disabled ? "var(--on-surface-primary)" : "var(--icon-disabled)"}>${

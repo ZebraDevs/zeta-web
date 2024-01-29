@@ -1,4 +1,5 @@
-:host(:not([disabled])) > :first-child {   
+:host(:not([disabled])) .interactive-target,
+:host(:not([disabled])) > :not(:has(.interactive-target)):first-child {   
   cursor: pointer;
   user-select: none;  
 
@@ -11,14 +12,15 @@
   }
 }
 
-:host([disabled]) > * {
+:host([disabled]) > *,
+:host([disabled]) ::slotted(zeta-icon) {
   cursor: not-allowed;
   color: var(--text-disabled);  
 }
 
 
-:host(:focus) .focus-target,
-:host(:focus) > :not(:has(.focus-target)) {
+:host(:focus) .interactive-target,
+:host(:focus) > :not(:has(.interactive-target)) {
   box-shadow: 0 0 0 2px var(--border-focused);
   outline-width: 2px;
   outline-color: var(--color-blue-50);

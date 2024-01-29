@@ -1,0 +1,42 @@
+.drawer-header {
+  padding: 24px 16px;
+  background: var(--surface-tertiary);
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+:host([divide]) .drawer-header {
+  box-shadow: 0 1px 0px 0px var(--border-inverse-default)
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  font-weight: 500;  
+  font-size: 18px;
+  color: var(--text-inverse);
+  margin: 0;
+}
+
+h2 {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-inverse-subtle);
+  margin: 0;
+}
+
+.leading {
+  display: flex;
+  gap: inherit;
+  align-items: center;
+}
+
+.trailing {
+  display: flex;
+  justify-self: flex-end;
+}

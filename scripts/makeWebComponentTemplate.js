@@ -29,7 +29,6 @@ const appendIndex = outDir => {
 
     indexFileStr += exportStatement;
 
-    log(indexFileStr);
     writeFileSync(indexPath, indexFileStr);
   }
 };

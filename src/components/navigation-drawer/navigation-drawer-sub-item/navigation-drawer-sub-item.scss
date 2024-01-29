@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  gap: 10px;
+}
+
+.border {
+  border-left: 1px solid var(--border-inverse-default);
+}
+
+.sub-item {
+  margin: 0;
+  padding: 8px 16px;
+  font-weight: 500;  
+  font-size: 16px;
+  display: flex;
+  flex: 1;
+  color: var(--text-subtle);
+
+  &:not([disabled]) {
+    &[active] {
+      background-color: var(--surface-selected);
+    }
+    
+   &[active],
+   &:hover {
+     color: var(--text-default);
+   }
+ }
+}

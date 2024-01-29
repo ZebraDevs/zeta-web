@@ -1,5 +1,5 @@
 :host([status = "info"]) .container {
-  background: var(--color-purple-40);
+  background: var(--color-purple-70);
 }
 
 :host([status = "positive"]) .container {
@@ -23,11 +23,11 @@
   align-items: center;
   justify-content: center;
   white-space: nowrap;
-  line-height: 20px;
   width: fit-content;
 
   .text{
     padding: 2px 4px;
+    font-size: 12px;
     color: var(--color-cool-20);
   }
 }

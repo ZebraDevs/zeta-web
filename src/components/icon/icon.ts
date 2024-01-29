@@ -20,12 +20,12 @@ export class ZetaIcon extends ContourableElement {
   /** Color of icon as css variable.
    *
    * @defaultValue `black`. */
-  @property({ type: String }) color: string = "black";
+  @property({ type: String }) color?: string;
 
   protected render() {
     const size = typeof this.size === "number" ? this.size + "px" : this.size;
+
     const styles = styleMap({
-      color: this.color,
       fontSize: size,
       lineHeight: size
     });
@@ -34,6 +34,7 @@ export class ZetaIcon extends ContourableElement {
         :host {
           height: ${size};
           width: ${size};
+          color: ${this.color};
         }
       </style>
       <span class="icon ${this.rounded ? "rounded" : "sharp"}" style=${styles}>

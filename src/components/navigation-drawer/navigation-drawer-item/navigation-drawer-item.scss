@@ -1,0 +1,40 @@
+.drawer-item {
+  padding: 12px;
+  background: var(--surface);
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-subtle);
+
+  &:not([disabled]) {
+    &[active] {
+      background-color: var(--surface-selected);
+    }
+    
+   &[active],
+   &:hover {
+     color: var(--text-default);
+   }
+ }
+}
+
+h1 {
+  display: flex;
+  font-weight: 500;  
+  font-size: 16px;
+  margin: 0;
+}
+
+.leading {
+  display: flex;
+  gap: inherit;
+  align-items: center;
+}
+
+.trailing {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-self: flex-end;
+}

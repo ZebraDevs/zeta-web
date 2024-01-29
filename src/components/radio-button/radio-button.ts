@@ -49,7 +49,7 @@ export class ZetaRadioButton extends ContourableInteractiveElement {
 
   protected render() {
     return html`<div class="radio">
-      <div class='container focus-target' @click=${(_e: Event) => this.toggleCheck()}>
+      <div class='container interactive-target' @click=${(_e: Event) => this.toggleCheck()}>
         <input type="radio" id=${this.id} ${this.checked ? "checked" : ""} name=${this.name} aria-label=${this.label ?? "checkbox"}></input>
         <div class='checkmark'>
         </div>
