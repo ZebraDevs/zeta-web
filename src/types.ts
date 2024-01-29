@@ -5,6 +5,8 @@ export type Contour =
   /** Applies 0px border-radius. */
   | "sharp";
 
+export type Side = "left" | "right";
+
 export type Flavor = ButtonFlavor | IconButtonFlavor;
 
 export type ButtonFlavor =

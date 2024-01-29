@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
-import { customElement, property, query, queryAssignedElements } from "lit/decorators.js";
-import { ContourableCondensableElement } from "../../mixins/condense.js";
+import { customElement, property, queryAssignedElements } from "lit/decorators.js";
 import { LitElement, html, nothing } from "lit";
 import styles from "./dialog.scss";
 import { classMap } from "lit/directives/class-map.js";
 import { ZetaButton } from "../button/button.js";
+import { ContourablePopupElement } from "../../mixins/popup.js";
 
 /**
  * @name Zeta Dialog component
@@ -13,7 +13,7 @@ import { ZetaButton } from "../button/button.js";
  * @fires "close" Event on close
  */
 @customElement("zeta-dialog")
-export class ZetaDialog extends ContourableCondensableElement {
+export class ZetaDialog extends ContourablePopupElement {
   constructor() {
     super();
     this.addEventListener("submit", this.handleSubmit);
@@ -23,57 +23,6 @@ export class ZetaDialog extends ContourableCondensableElement {
     delegatesFocus: true
   };
 
-  @query("dialog") private readonly dialog!: HTMLDialogElement | null;
-
-  @property({ type: Boolean })
-  get open() {
-    return this.isOpen;
-  }
-
-  set open(open: boolean) {
-    if (open === this.isOpen) {
-      return;
-    }
-
-    this.isOpen = open;
-    if (open) {
-      this.show();
-    } else {
-      this.close();
-    }
-  }
-
-  async show() {
-    await this.updateComplete;
-    if (this.isOpen) {
-      return;
-    }
-    const dialog = this.dialog!;
-    dialog.showModal();
-    this.open = true;
-    this.dispatchEvent(new CustomEvent("open"));
-  }
-
-  async close(returnValue = this.returnValue) {
-    await this.updateComplete;
-    if (!this.isOpen) {
-      return;
-    }
-    const dialog = this.dialog!;
-    this.returnValue = returnValue;
-    dialog.close(returnValue);
-    this.open = false;
-    this.dispatchEvent(new CustomEvent("close"));
-  }
-
-  private handleClick = (e: Event) => {
-    if (e.target !== this.dialog) {
-      return;
-    }
-    e.preventDefault();
-    this.close();
-  };
-
   // In case of form in the dialog body, close and set returnValue to button value
   private handleSubmit = (e: SubmitEvent) => {
     const form = e.target as HTMLFormElement;
@@ -81,15 +30,9 @@ export class ZetaDialog extends ContourableCondensableElement {
     if (form.method !== "dialog" || !submitter) {
       return;
     }
-    this.close(submitter.getAttribute("value") ?? this.returnValue);
+    this.hide(submitter.getAttribute("value") ?? this.returnValue);
   };
 
-  private isOpen = false;
-
-  /**
-   * Return value of the dialog
-   */
-  @property({ attribute: false }) returnValue = "";
   /**
    * Title of the dialog
    */
@@ -124,17 +67,14 @@ export class ZetaDialog extends ContourableCondensableElement {
     this.requestUpdate();
     if (this.confirmBtn[0] && this.confirmBtn[0] instanceof ZetaButton) {
       this.confirmBtn[0].flavor = "primary";
-      this.confirmBtn[0].condensed = this.condensed;
       this.confirmBtn[0].rounded = this.rounded;
     }
     if (this.cancelBtn[0] && this.cancelBtn[0] instanceof ZetaButton) {
       this.cancelBtn[0].flavor = "outline-subtle";
-      this.cancelBtn[0].condensed = this.condensed;
       this.cancelBtn[0].rounded = this.rounded;
     }
     if (this.otherBtn[0] && this.otherBtn[0] instanceof ZetaButton) {
       this.otherBtn[0].flavor = "text";
-      this.otherBtn[0].condensed = this.condensed;
       this.otherBtn[0].rounded = this.rounded;
     }
   };
@@ -146,8 +86,9 @@ export class ZetaDialog extends ContourableCondensableElement {
       container: true,
       col3: Boolean(this.otherBtn.length)
     });
+
     return html`
-      <dialog .returnValue=${this.returnValue} @click=${this.handleClick} id=${this.id}>
+      <dialog .returnValue=${this.returnValue} @click=${this.onBarrierClicked} id=${this.id}>
         <div class=${classes}>
           <header>
             ${this.renderIcon()}
@@ -157,18 +98,18 @@ export class ZetaDialog extends ContourableCondensableElement {
           <footer>
             <slot
               @click=${() => {
-                this.close("other");
+                this.hide("other");
               }}
               @slotchange=${this.handleActionButtonChange}
               name="other"
             ></slot>
             <div class="actions">
-              <slot @click=${() => this.close("cancel")} @slotchange=${this.handleActionButtonChange} name="cancel"></slot>
+              <slot @click=${() => this.hide("cancel")} @slotchange=${this.handleActionButtonChange} name="cancel"></slot>
               <slot
                 @click=${(e: Event) => {
                   const btn = e.target as HTMLButtonElement;
                   if (btn.type !== "submit") {
-                    this.close("confirm");
+                    this.hide("confirm");
                   }
                 }}
                 @slotchange=${this.handleActionButtonChange}
@@ -189,4 +130,3 @@ declare global {
     "zeta-dialog": ZetaDialog;
   }
 }
-

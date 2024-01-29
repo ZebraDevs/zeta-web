@@ -3,6 +3,10 @@
   gap: 10px;
 }
 
+:host {
+  margin-left: 24px;
+}
+
 .border {
   border-left: 1px solid var(--border-inverse-default);
 }

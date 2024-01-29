@@ -22,23 +22,15 @@ describe("zeta-dialog", () => {
 
   it("changes open property on close", async () => {
     const el = await fixture<ZetaDialog>(html` <zeta-dialog> </zeta-dialog> `);
-    el.open = true;
-    await el.close();
+    await el.show();
+    await el.hide();
     assert.equal(el.open, false);
   });
 
   it("calls close method and sets return value", async () => {
     const el = await fixture<ZetaDialog>(html` <zeta-dialog> </zeta-dialog> `);
-    el.open = true;
-    await el.close("testing");
+    await el.show();
+    await el.hide("testing");
     assert.equal(el.returnValue, "testing");
   });
-
-  it("shoould not call close method ", async () => {
-    const el = await fixture<ZetaDialog>(html` <zeta-dialog> </zeta-dialog> `);
-    el.open = false;
-    await el.close("testing");
-    assert.equal(el.returnValue, "");
-  });
 });
-

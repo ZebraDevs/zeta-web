@@ -18,10 +18,6 @@ dialog {
   }
 }
 
-dialog::backdrop {
-  background-color: var(--surface-overlay);
-}
-
 .container {
   width: 100%;
   flex-direction: column;

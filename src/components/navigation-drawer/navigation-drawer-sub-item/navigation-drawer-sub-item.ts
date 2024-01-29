@@ -5,8 +5,9 @@ import { ContourableInteractiveElement } from "../../../mixins/interactive.js";
 
 /** ZetaNavigationDrawerSubItem web component.
  *
- * //TODO: Add description
- * //TODO: Add slot description
+ * A navigation sub item to be used in a zeta-navigation-drawer
+ *
+ * @slot - The headline text.
  *
  * @public */
 @customElement("zeta-navigation-drawer-sub-item")
