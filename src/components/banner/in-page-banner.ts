@@ -46,13 +46,11 @@ export class ZetaInPageBanner extends ContourableCondensableElement {
       const s: ZetaButton = this.leadingAction[0];
       s.flavor = "outline-subtle";
       s.rounded = this.rounded;
-      s.condensed = this.condensed;
     }
     if (this.trailingAction[0] && this.trailingAction[0] instanceof ZetaButton) {
       const s: ZetaButton = this.trailingAction[0];
       s.flavor = "outline-subtle";
       s.rounded = this.rounded;
-      s.condensed = this.condensed;
     }
   };
 

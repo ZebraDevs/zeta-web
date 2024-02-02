@@ -8,8 +8,7 @@ const meta: Meta<ZetaDialog> = {
   component: "zeta-dialog",
   args: {
     centered: false,
-    rounded: false,
-    condensed: false
+    rounded: false
   }
 };
 
@@ -25,7 +24,7 @@ export const Dialog: StoryObj<ZetaDialog> = {
       >
         dialog without icon
       </zeta-button>
-      <zeta-dialog id="dialog" .condensed=${args.condensed} .rounded=${args.rounded} .centered=${args.centered} title="Dialog title">
+      <zeta-dialog id="dialog" .rounded=${args.rounded} .centered=${args.centered} title="Dialog title">
         <div slot="dialog-body">
           Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusm od tempor incididunt ut labore et do lore magna aliquaa met, conse ctetur
           adipisc.
@@ -50,7 +49,7 @@ export const DialogWithIcon: StoryObj<ZetaDialog> = {
       >
         dialog with icon
       </zeta-button>
-      <zeta-dialog has-icon id="dialog" .condensed=${args.condensed} .rounded=${args.rounded} .centered=${args.centered} title="Dialog title">
+      <zeta-dialog has-icon id="dialog" .rounded=${args.rounded} .centered=${args.centered} title="Dialog title">
         <div slot="dialog-body">
           Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusm od tempor incididunt ut labore et do lore magna aliquaa met, conse ctetur
           adipisc.
@@ -75,7 +74,7 @@ export const DialogWith2Actions: StoryObj<ZetaDialog> = {
       >
         dialog with two buttons
       </zeta-button>
-      <zeta-dialog has-icon id="dialog" .condensed=${args.condensed} .rounded=${args.rounded} .centered=${args.centered} title="Dialog title">
+      <zeta-dialog has-icon id="dialog" .rounded=${args.rounded} .centered=${args.centered} title="Dialog title">
         <div slot="dialog-body">
           Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusm od tempor incididunt ut labore et do lore magna aliquaa met, conse ctetur
           adipisc.
@@ -99,7 +98,7 @@ export const DialogWith1Action: StoryObj<ZetaDialog> = {
       >
         dialog with one button
       </zeta-button>
-      <zeta-dialog has-icon id="dialog" .condensed=${args.condensed} .rounded=${args.rounded} .centered=${args.centered} title="Dialog title">
+      <zeta-dialog has-icon id="dialog" .rounded=${args.rounded} .centered=${args.centered} title="Dialog title">
         <div slot="dialog-body">
           Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusm od tempor incididunt ut labore et do lore magna aliquaa met, conse ctetur
           adipisc.

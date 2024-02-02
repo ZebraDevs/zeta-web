@@ -12,7 +12,7 @@ import { html } from "lit";
 const meta: Meta<ZetaNavigationDrawer> = {
   component: "zeta-navigation-drawer",
   args: {
-    anchor: "right",
+    anchor: "left",
     showAnimation: true
   },
   argTypes: {
@@ -52,6 +52,6 @@ export const NavigationDrawer: StoryObj<ZetaNavigationDrawer> = {
         <zeta-navigation-drawer-item><zeta-icon slot="leading">star</zeta-icon> Navigation Item</zeta-navigation-drawer-item>
         <zeta-navigation-drawer-item><zeta-icon slot="leading">star</zeta-icon> Navigation Item</zeta-navigation-drawer-item>
         <zeta-navigation-drawer-item><zeta-icon slot="leading">star</zeta-icon> Navigation Item</zeta-navigation-drawer-item>
-        <zeta-navigation-drawer-footer slot="footer">Footer</zeta-navigation-drawer-footer>
+        <zeta-navigation-drawer-footer slot="footer" variant="logo">version 1.0.1</zeta-navigation-drawer-footer>
       </zeta-navigation-drawer>`
 };
