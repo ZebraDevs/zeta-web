@@ -47,6 +47,7 @@ import "./components/navigation-drawer/navigation-drawer-footer/navigation-drawe
 import "./components/navigation-drawer/navigation-drawer-item/navigation-drawer-item.js";
 import "./components/navigation-drawer/navigation-drawer-sub-item/navigation-drawer-sub-item.js";
 import "../src/components/navigation-drawer/navigation-drawer.ts";
+import "../src/components/file-upload/file-upload.ts";
 
 export * from "../src/components/badges/priority-pill.js";
 export * from "../src/components/badges/status-label.js";
@@ -89,3 +90,4 @@ export * from "./components/navigation-drawer/navigation-drawer-footer/navigatio
 export * from "./components/navigation-drawer/navigation-drawer-item/navigation-drawer-item.js";
 export * from "./components/navigation-drawer/navigation-drawer-sub-item/navigation-drawer-sub-item.js";
 export * from "../src/components/navigation-drawer/navigation-drawer.js";
+export * from "../src/components/file-upload/file-upload.js";

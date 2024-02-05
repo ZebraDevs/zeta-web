@@ -1,0 +1,46 @@
+.file-upload {
+  border: 2px dashed var(--border-default);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  gap: 16px;
+  user-select: none;
+
+  &[active] {
+    border-color: var(--border-primary);
+    background-color: var(--surface-selected);
+  }
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  gap: 8px;
+}
+
+h1 {
+  font-size: 18px;
+  margin: 0;
+  pointer-events: none;
+}
+
+h2 {
+ font-size: 12px;
+ font-weight: 400;
+ color: var(--text-subtle); 
+ padding: 0 16px;
+ margin: 0;
+ pointer-events: none;
+
+ &[error] {
+  color: var(--text-negative);
+ }
+}
+
+input {
+  display: none;
+}
