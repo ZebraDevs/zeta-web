@@ -1,0 +1,22 @@
+:host {
+  width: min-content;
+  display: block;
+  white-space: nowrap;
+}
+
+.navigation-item {
+  background-color: var(--surface-tertiary) !important;
+  color: var(--text-inverse-subtle);
+  padding: 12px 16px;
+  font-size: 16px;
+
+  &:not([disabled]) {
+    &:hover, &:active, &[active] {
+      color: var(--text-inverse);
+    }
+  }
+
+  &[disabled] {
+    color: var(--text-inverse-disabled) !important;
+  }
+}

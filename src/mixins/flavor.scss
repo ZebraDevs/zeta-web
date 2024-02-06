@@ -38,6 +38,19 @@
     }
   }
 
+  &:host([flavor="basic-inverse"]) > :first-child {
+    background-color: var(--surface-tertiary);
+    color: var(--text-inverse);
+
+    &:hover {
+      background-color: var(--surface-tertiary-hover);
+    }
+
+    &:active {
+      background-color: var(--surface-tertiary-active);
+    }
+  }
+
   &:host([flavor="negative"]) > :first-child {
     background-color: var(--surface-negative);
     color: var(--text-inverse);

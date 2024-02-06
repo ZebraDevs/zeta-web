@@ -1,0 +1,12 @@
+@mixin tertiary-interactive {
+  background-color: var(--surface-tertiary);
+  color: var(--text-inverse);
+
+  &:hover {
+    background-color: var(--surface-tertiary-hover) !important;
+  }
+
+  &:active {
+    background-color: var(--surface-tertiary-active) !important;
+  }
+}

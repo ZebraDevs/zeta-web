@@ -53,7 +53,12 @@ jobs:
         run: npm run localize:extract
       - name: Run lit-localize build
         run: npm run localize:build
+      - name: Check diff
+        id: diff
+        run: 
+          git diff --quiet . || echo "changed=true" >> $GITHUB_OUTPUT
       - name: Commit files
+        if: steps.diff.outputs.changed == 'true'
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'

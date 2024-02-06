@@ -7,6 +7,7 @@ import { html, nothing } from "lit";
 import styles from "./search.scss";
 import { live } from "lit/directives/live.js";
 import { ContourableInteractiveElement } from "../../mixins/interactive.js";
+import { msg } from "@lit/localize";
 
 /**
  * Zeta search field component
@@ -125,7 +126,7 @@ export class ZetaSearch extends ContourableInteractiveElement {
           <zeta-icon size=${this.getIconSize()} color=${this.getIconColor()} .rounded=${this.rounded} name="search"></zeta-icon>
           <input
             @change=${this.handleInput}
-            placeholder="Search"
+            placeholder=${msg("Search")}
             autocomplete="off"
             spellcheck="false"
             type="search"

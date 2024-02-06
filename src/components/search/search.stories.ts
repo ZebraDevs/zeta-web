@@ -8,7 +8,6 @@ const meta: Meta<ZetaSearch> = {
     value: "Predefined search value",
     disabled: false,
     size: "medium",
-    condensed: false,
     rounded: false,
     formAction: "https://google.com/search",
     hasIcon: true
@@ -26,4 +25,3 @@ const meta: Meta<ZetaSearch> = {
 export const Search: StoryObj<ZetaSearch> = {};
 
 export default meta;
-

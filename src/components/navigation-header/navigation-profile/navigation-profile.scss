@@ -1,0 +1,19 @@
+@import "../../../mixins/tertiary-interactive.scss";
+
+:host {
+  width: min-content;
+  display: block;
+  white-space: nowrap;
+  color: var(--text-inverse);
+}
+
+.navigation-profile {
+  padding: 4px 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;  
+  font-size: 16px;
+  font-weight: 400;
+
+  @include tertiary-interactive;
+}

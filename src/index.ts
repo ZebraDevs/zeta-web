@@ -48,6 +48,10 @@ import "./components/navigation-drawer/navigation-drawer-item/navigation-drawer-
 import "./components/navigation-drawer/navigation-drawer-sub-item/navigation-drawer-sub-item.js";
 import "../src/components/navigation-drawer/navigation-drawer.ts";
 import "../src/components/file-upload/file-upload.ts";
+import "./components/navigation-header/navigation-profile/navigation-profile.js";
+import "./components/navigation-header/navigation-item/navigation-item.js";
+import "../src/components/navigation-header/navigation-header.ts";
+import "../src/components/global-header/global-header.ts";
 
 export * from "../src/components/badges/priority-pill.js";
 export * from "../src/components/badges/status-label.js";
@@ -91,3 +95,6 @@ export * from "./components/navigation-drawer/navigation-drawer-item/navigation-
 export * from "./components/navigation-drawer/navigation-drawer-sub-item/navigation-drawer-sub-item.js";
 export * from "../src/components/navigation-drawer/navigation-drawer.js";
 export * from "../src/components/file-upload/file-upload.js";
+export * from "./components/navigation-header/navigation-profile/navigation-profile.js";
+export * from "./components/navigation-header/navigation-item/navigation-item.js";
+export * from "../src/components/navigation-header/navigation-header.js";export * from "../src/components/global-header/global-header.js";

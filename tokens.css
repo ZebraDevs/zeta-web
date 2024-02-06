@@ -211,7 +211,7 @@
     --color-cool-50: #8d95a3;
     --color-cool-60: #7a8190;
     --color-cool-70: #545963;
-    --color-cool-80: #e0e3e9;
+    --color-cool-80: #2c2f36;
     --color-cool-90: #1d1e23;
     --color-cool-100:#0c0d0e;
     --color-cool-110:#3c414b;
@@ -370,6 +370,7 @@
   --text-inverse: var(--color-pure-0);
   --text-inverse-subtle: #AFB6C2;
   --text-disabled: var(--color-cool-50);
+  --text-inverse-disabled: var(--color-cool-60);
 
   /* Text / Flavor */
   --text-primary: var(--color-blue-60);
@@ -420,7 +421,7 @@
   --surface-selected: var(--color-blue-10);
   --surface-selected-hovered: var(--color-blue-20);
   --surface-disabled: var(--color-cool-30);
-
+  
   /* Surface / Flavor */
   --surface-primary: var(--color-blue-60);
   --surface-primary-subtle: var(--color-blue-10);
@@ -522,6 +523,9 @@
 
   --surface-secondary-hover: var(--color-yellow-50);
   --surface-secondary-active: var(--color-yellow-70);
+
+  --surface-tertiary-hover: var(--color-cool-80);
+  --surface-tertiary-active: var(--color-cool-110);
 
   --surface-positive-hover: var(--color-green-50);
   --surface-positive-active: var(--color-green-70);
