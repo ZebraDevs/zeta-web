@@ -48,10 +48,13 @@
     "build-storybook": "storybook build",
     "build-storybook:with-output-dir": "storybook build -o ",
     "react-gen": "npx vite build && cd scripts && node reactify.js",
-    "create": "cd scripts && node makeWebComponentTemplate.js"
+    "create": "cd scripts && node makeWebComponentTemplate.js",
+    "localize:extract": "lit-localize extract",
+    "localize:build": "lit-localize build"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.9.0",
+    "@lit/localize-tools": "^0.7.2",
     "@open-wc/testing": "^3.0.0-next.5",
     "@remcovaes/web-test-runner-vite-plugin": "^1.2.1",
     "@storybook/addon-a11y": "^7.5.3",
@@ -91,6 +94,7 @@
   "dependencies": {
     "@fontsource/ibm-plex-sans": "^5.0.15",
     "@fontsource/ibm-plex-sans-condensed": "^5.0.8",
+    "@lit/localize": "^0.12.1",
     "@zebra-fed/zeta-icons": "^0.1.45",
     "lit": "^3.0.0",
     "vite-dts": "^1.0.4"

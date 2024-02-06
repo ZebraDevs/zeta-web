@@ -2,6 +2,7 @@ import { html, nothing } from "lit";
 import { customElement, property, query } from "lit/decorators.js";
 import styles from "./file-upload.scss";
 import { ContourableElement } from "../../mixins/contour.js";
+import { msg } from "@lit/localize";
 import "../button/button.js";
 
 /** ZetaFileUpload web component.
@@ -11,7 +12,7 @@ import "../button/button.js";
  * @public */
 @customElement("zeta-file-upload")
 export class ZetaFileUpload extends ContourableElement {
-  private defaultHeadline = "Drop files here to upload"; //TODO Loclaize
+  private defaultHeadline = msg("Drop files here to upload");
   private errorMsg: string = "";
 
   /**
@@ -95,7 +96,7 @@ export class ZetaFileUpload extends ContourableElement {
     this.error = false;
 
     if (!this.checkTypes(e.dataTransfer!.files)) {
-      this.errorMsg = "Selection contains files with invalid types.";
+      this.errorMsg = msg("Selection contains files with invalid types.");
       this.error = true;
     } else if (this.checkMultiple(e) && e.dataTransfer?.items && this.fileInput) {
       this.fileInput.files = e.dataTransfer.files;
@@ -106,7 +107,7 @@ export class ZetaFileUpload extends ContourableElement {
     e.preventDefault();
 
     if (!this.checkMultiple(e)) {
-      this.errorMsg = "Multiple files are not allowed.";
+      this.errorMsg = msg("Multiple files are not allowed.");
       this.error = true;
     } else {
       this.active = true;
@@ -138,7 +139,6 @@ export class ZetaFileUpload extends ContourableElement {
   }
 
   protected override render() {
-    // TODO: localize strings
     return html`
       <div
         class="file-upload"
@@ -151,7 +151,7 @@ export class ZetaFileUpload extends ContourableElement {
       >
         <div class="main-content">
           <h1>${this.headline}</h1>
-          <h2>or</h2>
+          <h2>${msg("or")}</h2>
           <zeta-button .rounded=${this.rounded} @click=${this.openFileInput}>Select Files</zeta-button>
         </div>
         ${this.getCaption()}

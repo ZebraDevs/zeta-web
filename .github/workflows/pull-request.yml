@@ -33,9 +33,36 @@ jobs:
         continue-on-error: true
       - name: Run tests
         run: npm run test
+  generate-localizations:
+    name: Generate localizations.
+    needs: [code-quality]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x.x
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - name: Run lit-localize extract
+        run: npm run localize:extract
+      - name: Run lit-localize build
+        run: npm run localize:build
+      - name: Commit files
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git add .
+          git commit -m "Generated locales"
+          git push      
   deploy-preview:
      name: Deploy preview version of the storybook on firebase
-     needs: [code-quality]
+     needs: [generate-localizations]
      runs-on: ubuntu-latest
      steps:
        - uses: actions/checkout@v4
