@@ -1,3 +1,9 @@
+:host {
+  display: flex;
+  height: fit-content;
+  width: fit-content;
+}
+
 :host > button {
   border: none;
 }
