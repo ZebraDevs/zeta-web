@@ -1,15 +1,15 @@
 import { html } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { ContourableCondensableElement } from "../../../mixins/condense.js";
 import styles from "../indicators.scss";
 import { Size } from "../../../types.js";
 import { ZetaIconName } from "@zebra-fed/zeta-icons";
+import { ContourableInteractiveElement } from "../../../mixins/interactive.js";
 
 /** Zeta Icon Indicator web component.
  *
  * @public */
 @customElement("zeta-icon-indicator")
-export class ZetaIconIndicator extends ContourableCondensableElement {
+export class ZetaIconIndicator extends ContourableInteractiveElement {
   constructor() {
     super();
     /** Default size for indicators. */
@@ -48,3 +48,4 @@ declare global {
     "zeta-icon-indicator": ZetaIconIndicator;
   }
 }
+

@@ -6,7 +6,7 @@ const meta: Meta<ZetaStatusLabel> = {
   component: "zeta-status-label",
   args: {
     rounded: true,
-    condensed: false,
+
     status: "neutral",
     icon: undefined,
     text: "Label"

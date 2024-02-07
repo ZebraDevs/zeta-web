@@ -6,8 +6,7 @@ const meta: Meta<ZetaTag> = {
   args: {
     text: "Tag",
     rounded: false,
-    point: "right",
-    condensed: false
+    point: "right"
   },
   argTypes: {
     point: {

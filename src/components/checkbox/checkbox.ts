@@ -1,5 +1,5 @@
 import { customElement, property } from "lit/decorators.js";
-import { ContourableCondensableInteractiveElement, ContourableInteractiveElement } from "../../mixins/interactive.js";
+import { ContourableInteractiveElement } from "../../mixins/interactive.js";
 import { html } from "lit";
 import styles from "./checkbox.scss";
 
@@ -63,7 +63,7 @@ export class ZetaCheckbox extends ContourableInteractiveElement {
     </div>`;
   }
 
-  static styles = [styles, ContourableCondensableInteractiveElement.styles || []];
+  static styles = [styles, ContourableInteractiveElement.styles || []];
 }
 
 declare global {
@@ -71,3 +71,4 @@ declare global {
     "zeta-checkbox": ZetaCheckbox;
   }
 }
+

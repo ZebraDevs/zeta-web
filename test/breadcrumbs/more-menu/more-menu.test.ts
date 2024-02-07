@@ -14,7 +14,6 @@ describe("ZetaMoreMenu", () => {
   });
 
   it("sets the correct default values", async () => {
-    expect(subject.condensed).to.equal(false);
     expect(subject.disabled).to.equal(false);
     expect(subject.rounded).to.equal(true);
   });

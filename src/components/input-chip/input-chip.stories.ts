@@ -8,8 +8,7 @@ const meta: Meta<ZetaInputChip> = {
   component: "zeta-input-chip",
   args: {
     type: "label-only",
-    rounded: false,
-    condensed: false
+    rounded: false
   },
   argTypes: {
     type: { options: ["label-only", "label-with-close-icon", "label-with-avatar-icon", "label-with-both-icons"], control: { type: "inline-radio" } }
@@ -19,3 +18,4 @@ const meta: Meta<ZetaInputChip> = {
 export default meta;
 
 export const InputChip: StoryObj<ZetaInputChip> = {};
+

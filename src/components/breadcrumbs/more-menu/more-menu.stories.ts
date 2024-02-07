@@ -5,7 +5,6 @@ import "./more-menu.js";
 const meta: Meta<ZetaMoreMenu> = {
   component: "zeta-more-menu",
   args: {
-    condensed: false,
     disabled: false,
     rounded: false
   }
@@ -14,3 +13,4 @@ const meta: Meta<ZetaMoreMenu> = {
 export default meta;
 
 export const MoreMenu: StoryObj<ZetaMoreMenu> = {};
+

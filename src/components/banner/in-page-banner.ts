@@ -1,6 +1,6 @@
 import { html } from "lit";
 import { customElement, property, queryAssignedElements } from "lit/decorators.js";
-import { ContourableCondensableElement } from "../../mixins/condense.js";
+import { ContourableInteractiveElement } from "../../mixins/interactive.js";
 import styles from "./in-page-banner.scss";
 import { BannerStatus } from "../../types.js";
 import { ZetaButton } from "../button/button.js";
@@ -10,7 +10,7 @@ import "../../index.js";
  *
  * @public */
 @customElement("zeta-in-page-banner")
-export class ZetaInPageBanner extends ContourableCondensableElement {
+export class ZetaInPageBanner extends ContourableInteractiveElement {
   /** Title of banner, displayed at top. */
   @property({ type: String }) title: string = "";
 
@@ -82,3 +82,4 @@ declare global {
     "zeta-in-page-banner": ZetaInPageBanner;
   }
 }
+

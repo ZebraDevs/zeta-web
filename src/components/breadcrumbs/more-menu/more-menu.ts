@@ -1,7 +1,7 @@
 import { html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./more-menu.scss";
-import { ContourableCondensableInteractiveElement } from "../../../mixins/interactive.js";
+import { ContourableInteractiveElement } from "../../../mixins/interactive.js";
 
 /** Zeta Breadcrumbs- More menu.
  *
@@ -9,7 +9,7 @@ import { ContourableCondensableInteractiveElement } from "../../../mixins/intera
  */
 
 @customElement("zeta-more-menu")
-export class ZetaMoreMenu extends ContourableCondensableInteractiveElement {
+export class ZetaMoreMenu extends ContourableInteractiveElement {
   /** More menu icon.*/
   @property({ type: String }) icon = "more_horizontal";
 

@@ -13,7 +13,7 @@ const meta: Meta<ZetaSystemBanner> = {
   args: {
     text: "Banner title",
     align: "center",
-    condensed: false,
+
     status: "default",
     rounded: true
   },
@@ -38,13 +38,7 @@ export const Banner: StoryObj<ZetaSystemBanner> = {};
 
 export const BannerSingleIcon: StoryObj<ZetaSystemBanner> = {
   render: args =>
-    html`<zeta-system-banner
-      align=${ifDefined(args.align)}
-      status=${ifDefined(args.status)}
-      text=${ifDefined(args.text)}
-      .condensed=${args.condensed}
-      .rounded=${args.rounded}
-    >
+    html`<zeta-system-banner align=${ifDefined(args.align)} status=${ifDefined(args.status)} text=${ifDefined(args.text)} .rounded=${args.rounded}>
       <svg slot="leading icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
         <g clip-path="url(#clip0_1034_16007)">
           <path
@@ -61,13 +55,7 @@ export const BannerSingleIcon: StoryObj<ZetaSystemBanner> = {
 
 export const BannerDualIcon: StoryObj<ZetaSystemBanner> = {
   render: args => html`
-    <zeta-system-banner
-      align=${ifDefined(args.align)}
-      status=${ifDefined(args.status)}
-      text=${ifDefined(args.text)}
-      .condensed=${args.condensed}
-      .rounded=${args.rounded}
-    >
+    <zeta-system-banner align=${ifDefined(args.align)} status=${ifDefined(args.status)} text=${ifDefined(args.text)} .rounded=${args.rounded}>
       <svg slot="leading icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
         <g clip-path="url(#clip0_1034_16007)">
           <path

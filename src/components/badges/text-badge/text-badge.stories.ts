@@ -6,8 +6,7 @@ const meta: Meta<ZetaTextBadge> = {
   component: "zeta-text-badge",
   args: {
     text: "label",
-    rounded: true,
-    condensed: false
+    rounded: true
   },
   argTypes: {
     status: {

@@ -1,8 +1,8 @@
 import { html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { BadgeStatus } from "../../../types.js";
-import { ContourableCondensableElement } from "../../../mixins/condense.js";
 import styles from "./text-badge.scss";
+import { ContourableInteractiveElement } from "../../../mixins/interactive.js";
 
 /** ZetaTextLabel web component.
  *
@@ -13,7 +13,7 @@ import styles from "./text-badge.scss";
  *
  * @public */
 @customElement("zeta-text-badge")
-export class ZetaTextBadge extends ContourableCondensableElement {
+export class ZetaTextBadge extends ContourableInteractiveElement {
   /** Type of text label.
    *
    * @defaultValue `BannerStatus.default` */
@@ -40,3 +40,4 @@ declare global {
     "zeta-text-badge": ZetaTextBadge;
   }
 }
+

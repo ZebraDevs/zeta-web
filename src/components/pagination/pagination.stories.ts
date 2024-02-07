@@ -5,7 +5,6 @@ import "./pagination.js";
 const meta: Meta<ZetaPagination> = {
   component: "zeta-pagination",
   args: {
-    condensed: false,
     rounded: false,
     totalPages: 10,
     currentPage: 1,
@@ -16,3 +15,4 @@ const meta: Meta<ZetaPagination> = {
 export default meta;
 
 export const Pagination: StoryObj<ZetaPagination> = {};
+

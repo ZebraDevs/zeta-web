@@ -1,7 +1,7 @@
 import { html, svg } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { BadgeStatus } from "../../types.js";
-import { ContourableCondensableElement } from "../../mixins/condense.js";
+import { ContourableInteractiveElement } from "../../mixins/interactive.js";
 import styles from "./status-label.scss";
 import { ZetaIconName } from "@zebra-fed/zeta-icons";
 
@@ -15,7 +15,7 @@ import { ZetaIconName } from "@zebra-fed/zeta-icons";
  *
  * @public */
 @customElement("zeta-status-label")
-export class ZetaStatusLabel extends ContourableCondensableElement {
+export class ZetaStatusLabel extends ContourableInteractiveElement {
   /** Type of status label.
    *
    * @defaultValue `BannerType.default` */

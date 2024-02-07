@@ -7,7 +7,6 @@ const meta: Meta<ZetaStepperInput> = {
   args: {
     min: 0,
     max: 100,
-    condensed: false,
     rounded: false,
     disabled: false,
     size: "medium"

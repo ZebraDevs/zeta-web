@@ -74,7 +74,7 @@
           "type": {
             "text": "Meta<ZetaButton>"
           },
-          "default": "{\r\n  component: \"zeta-button\",\r\n  args: {\r\n    condensed: false,\r\n    disabled: false,\r\n    text: \"Button\",\r\n  },\r\n  argTypes: {\r\n    type: {\r\n      options: Object.values(ButtonType),\r\n      control: {\r\n        type: \"select\",\r\n      },\r\n    },\r\n    shape: {\r\n      options: Object.values(ButtonShape),\r\n      control: { type: \"radio\" },\r\n    },\r\n    size: {\r\n      options: Object.values(ButtonSize),\r\n      control: {\r\n        type: \"select\",\r\n      },\r\n    },\r\n    onClick: { action: \"clicked\" },\r\n    name: { control: \"text\" },\r\n  },\r\n}"
+          "default": "{\r\n  component: \"zeta-button\",\r\n  args: {\r\n    \r\n    disabled: false,\r\n    text: \"Button\",\r\n  },\r\n  argTypes: {\r\n    type: {\r\n      options: Object.values(ButtonType),\r\n      control: {\r\n        type: \"select\",\r\n      },\r\n    },\r\n    shape: {\r\n      options: Object.values(ButtonShape),\r\n      control: { type: \"radio\" },\r\n    },\r\n    size: {\r\n      options: Object.values(ButtonSize),\r\n      control: {\r\n        type: \"select\",\r\n      },\r\n    },\r\n    onClick: { action: \"clicked\" },\r\n    name: { control: \"text\" },\r\n  },\r\n}"
         },
         {
           "kind": "variable",

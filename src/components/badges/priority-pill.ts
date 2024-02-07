@@ -1,6 +1,6 @@
 import { html } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { ContourableCondensableElement } from "../../mixins/condense.js";
+import { ContourableInteractiveElement } from "../../mixins/interactive.js";
 import styles from "./priority-pill.scss";
 
 /** ZetaPriorityPill web component.
@@ -13,7 +13,7 @@ import styles from "./priority-pill.scss";
  *
  * @public */
 @customElement("zeta-priority-pill")
-export class ZetaPriorityPill extends ContourableCondensableElement {
+export class ZetaPriorityPill extends ContourableInteractiveElement {
   /** Text of Priority.
    *
    * Can also be slotted. */

@@ -6,8 +6,7 @@ import { ZetaSheetHeader } from "./sheet-header.js";
 const meta: Meta<ZetaSheetHeader> = {
   component: "zeta-sheet-header",
   args: {
-    text: "Title",
-    condensed: false
+    text: "Title"
   },
   argTypes: {
     alignment: { options: ["left", "center", "end"], control: { type: "inline-radio" } }

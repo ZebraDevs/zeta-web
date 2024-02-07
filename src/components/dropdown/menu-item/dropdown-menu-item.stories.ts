@@ -12,7 +12,7 @@ const meta: Meta<ZetaDropdownMenuItem> = {
   component: "zeta-dropdown-menu-item",
   args: {
     rounded: true,
-    condensed: false,
+
     disabled: false,
     icon: "star",
     type: "default"
@@ -37,7 +37,8 @@ export default meta;
 
 export const DropdownMenuItem: StoryObj<ZetaDropdownMenuItem> = {
   render: args =>
-    html`<zeta-dropdown-menu-item icon=${args.icon} type=${args.type} .condensed=${args.condensed} .rounded=${args.rounded} .disabled=${args.disabled}>
+    html`<zeta-dropdown-menu-item icon=${args.icon} type="${args.type}.rounded" =${args.rounded} .disabled=${args.disabled}>
       Menu Item
     </zeta-dropdown-menu-item>`
 };
+

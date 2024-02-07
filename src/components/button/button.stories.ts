@@ -40,7 +40,6 @@ export const ButtonWithTextAndIcon: StoryObj = {
       type=${args.type}
       shape=${args.shape}
       size=${args.size}
-      .condensed=${args.condensed}
       .disabled=${args.disabled}
       .trailingIcon=${args.trailingIcon}
       .onClick=${args.onClick}
@@ -55,3 +54,4 @@ export const ButtonWithTextAndIcon: StoryObj = {
     </zeta-button>`;
   }
 };
+

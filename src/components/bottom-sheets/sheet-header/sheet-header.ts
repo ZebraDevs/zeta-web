@@ -1,14 +1,15 @@
 import { html } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { ContourableCondensableElement } from "../../../mixins/condense.js";
+
 import styles from "./sheet-header.scss";
 import { Alignment } from "../../../types.js";
+import { ContourableInteractiveElement } from "../../../mixins/interactive.js";
 
 /** Zeta Sheet Header web component.
  *
  * @public */
 @customElement("zeta-sheet-header")
-export class ZetaSheetHeader extends ContourableCondensableElement {
+export class ZetaSheetHeader extends ContourableInteractiveElement {
   /** Sheet Header alignment.*/
   @property({ type: String, reflect: true }) alignment: Alignment = "start";
 

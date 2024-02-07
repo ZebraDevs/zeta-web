@@ -1,5 +1,5 @@
 import { customElement, property } from "lit/decorators.js";
-import { ContourableCondensableElement } from "../../mixins/condense.js";
+import { ContourableInteractiveElement } from "../../mixins/interactive.js";
 import styles from "./pagination.scss";
 import { html } from "lit";
 import { classMap } from "lit/directives/class-map.js";
@@ -9,7 +9,7 @@ import "../button/icon-button.js";
  * Zeta pagination component
  */
 @customElement("zeta-pagination")
-export class ZetaPagination extends ContourableCondensableElement {
+export class ZetaPagination extends ContourableInteractiveElement {
   constructor() {
     super();
   }
@@ -136,3 +136,4 @@ declare global {
     "zeta-pagination": ZetaPagination;
   }
 }
+

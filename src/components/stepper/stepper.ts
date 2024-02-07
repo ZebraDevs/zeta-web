@@ -1,15 +1,16 @@
 import { customElement, property } from "lit/decorators.js";
-import { ContourableCondensableElement } from "../../mixins/condense.js";
+
 import { html, nothing } from "lit";
 import styles from "./stepper.scss";
 import { classMap } from "lit/directives/class-map.js";
+import { ContourableInteractiveElement } from "../../mixins/interactive.js";
 
 /**
  * Steppers convey progress through numbered steps.
  * For the steps, pass `li` elements with `data-title` and `data-label` attributes as children
  */
 @customElement("zeta-stepper")
-export class ZetaStepper extends ContourableCondensableElement {
+export class ZetaStepper extends ContourableInteractiveElement {
   constructor() {
     super();
   }

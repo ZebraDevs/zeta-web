@@ -3,7 +3,6 @@ import { property } from "lit/decorators.js";
 import { Constructor } from "./_utils.js";
 import { Contourable } from "./contour.js";
 import styles from "./interactive.scss";
-import { Condensable } from "./condense.js";
 
 // Define the interface for the mixin
 export declare class InteractiveInterface {
@@ -27,6 +26,3 @@ export const InteractiveElement = Interactive(LitElement);
 
 /** Extendable class for creating an interactive and contourable Zeta element. */
 export const ContourableInteractiveElement = Contourable(Interactive(LitElement));
-
-/** Extendable class for creating an interactive, contourable, condesable Zeta element. */
-export const ContourableCondensableInteractiveElement = Condensable(Contourable(Interactive(LitElement)));

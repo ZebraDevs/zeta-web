@@ -9,7 +9,7 @@ const meta: Meta<typeof ZetaInPageBanner> = {
     title: "Banner title",
     body: "Lorem ipsum dolor sit amet, conse ctetur  cididunt ut labore et do lore magna aliqua.",
     rounded: true,
-    condensed: false,
+
     status: "default"
   },
   argTypes: {
@@ -24,15 +24,18 @@ const meta: Meta<typeof ZetaInPageBanner> = {
 export default meta;
 export const Banner: StoryObj<typeof ZetaInPageBanner> = {};
 export const BannerSingleAction: StoryObj<typeof ZetaInPageBanner> = {
-//TODO: This render method may need to change for react
-  render: args =>
-    <ZetaInPageBanner {...args} >
+  //TODO: This render method may need to change for react
+  render: args => (
+    <ZetaInPageBanner {...args}>
       <zeta-button slot="leading-action">Button</zeta-button>
     </ZetaInPageBanner>
+  )
 };
 export const BannerDualAction: StoryObj<typeof ZetaInPageBanner> = {
-//TODO: This render method may need to change for react
-  render: args =>
-    <ZetaInPageBanner {...args} ><zeta-button slot="leading-action">Button</zeta-button> <zeta-button slot="trailing-action">Button 2</zeta-button>
+  //TODO: This render method may need to change for react
+  render: args => (
+    <ZetaInPageBanner {...args}>
+      <zeta-button slot="leading-action">Button</zeta-button> <zeta-button slot="trailing-action">Button 2</zeta-button>
     </ZetaInPageBanner>
+  )
 };

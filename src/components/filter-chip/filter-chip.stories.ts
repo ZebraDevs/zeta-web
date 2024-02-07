@@ -6,8 +6,7 @@ const meta: Meta<ZetaFilterChip> = {
   component: "zeta-filter-chip",
   args: {
     type: "unselected",
-    rounded: false,
-    condensed: false
+    rounded: false
   },
   argTypes: {
     type: { options: ["unselected", "selected"], control: { type: "inline-radio" } }
@@ -17,3 +16,4 @@ const meta: Meta<ZetaFilterChip> = {
 export default meta;
 
 export const FilterChip: StoryObj<ZetaFilterChip> = {};
+

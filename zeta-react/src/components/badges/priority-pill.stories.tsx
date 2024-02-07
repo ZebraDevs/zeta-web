@@ -6,8 +6,7 @@ const meta: Meta<typeof ZetaPriorityPill> = {
   args: {
     text: "Priority",
     number: 1,
-    rounded: true,
-    condensed: false
+    rounded: true
   },
   argTypes: {}
 };

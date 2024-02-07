@@ -4,7 +4,6 @@
 
   /* Typography */
   --type-family-regular: "IBM Plex Sans";
-  --type-family-condensed: "IBM Plex Sans Condensed";
 
   /* Spacing */
   --spacing-1: 4px;
@@ -545,4 +544,9 @@
   --surface-basic-active: #EDEFF4;
 
   --on-surface-primary: var(--color-pure-0);
+}
+
+:host,
+:host * {
+  font-family: var(--type-family-regular);
 }

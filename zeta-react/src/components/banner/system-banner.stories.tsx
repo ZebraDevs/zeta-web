@@ -8,7 +8,7 @@ const meta: Meta<typeof ZetaSystemBanner> = {
   args: {
     text: "Banner title",
     align: "center",
-    condensed: false,
+
     status: "default",
     rounded: true
   },
@@ -79,3 +79,4 @@ export const BannerDualIcon: StoryObj<typeof ZetaSystemBanner> = {
     </ZetaSystemBanner>
   )
 };
+

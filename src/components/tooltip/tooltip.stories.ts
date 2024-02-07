@@ -6,8 +6,7 @@ const meta: Meta<ZetaTooltip> = {
   args: {
     label: "Label",
     point: "bottom",
-    rounded: false,
-    condensed: false
+    rounded: false
   },
   argTypes: {
     point: {

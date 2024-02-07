@@ -6,8 +6,7 @@ const meta: Meta<ZetaAssistChip> = {
   component: "zeta-assist-chip",
   args: {
     type: "label-only",
-    rounded: false,
-    condensed: false
+    rounded: false
   },
   argTypes: {
     type: { options: ["label-only", "label-with-icon"], control: { type: "inline-radio" } }

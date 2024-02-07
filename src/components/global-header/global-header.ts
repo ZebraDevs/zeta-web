@@ -1,6 +1,6 @@
 import { html, nothing } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { ContourableCondensableElement } from "../../mixins/condense.js";
+import { ContourableInteractiveElement } from "../../mixins/interactive.js";
 import styles from "./global-header.scss";
 import "../icon/icon.js";
 
@@ -17,7 +17,7 @@ export type MenuPosition = "inline" | "below";
  *
  * @public */
 @customElement("zeta-global-header")
-export class ZetaGlobalHeader extends ContourableCondensableElement {
+export class ZetaGlobalHeader extends ContourableInteractiveElement {
   /**
    * The headline text on the header. Can also be slotted.
    */
@@ -58,3 +58,4 @@ declare global {
     "zeta-global-header": ZetaGlobalHeader;
   }
 }
+

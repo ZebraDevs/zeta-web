@@ -7,7 +7,7 @@ const meta: Meta<ZetaCheckbox> = {
   component: "zeta-checkbox",
   args: {
     rounded: true,
-    condensed: false,
+
     disabled: false,
     checked: false,
     label: ""
@@ -25,3 +25,4 @@ const meta: Meta<ZetaCheckbox> = {
 export default meta;
 
 export const Checkbox: StoryObj<ZetaCheckbox> = {};
+
