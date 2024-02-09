@@ -1,26 +1,25 @@
 :host {
   display: flex;
 
-  --thin-size: 8px;
-  --medium-size: 16px;
+  --thin-size: var(--spacing-2);
+  --medium-size: var(--spacing-4);
 }
 
 .progress-bar {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--spacing-4);
   width: 100%;
 }
 
 .wrapper {
   display: flex;
-  gap: 16px;
+  gap: var(--spacing-4);
   width: 100%;
 }
 
 label {
-  font-size: 18px;
-  font-weight: 500;
+  font: var(--title-medium);
 }
 
 :host([size="thin"]) .wrapper {
@@ -43,7 +42,8 @@ label {
   flex: 1;
 }
 
-:host([buffering]) .track, .buffering-dot {
+:host([buffering]) .track,
+.buffering-dot {
   background-color: var(--surface-disabled);
 }
 

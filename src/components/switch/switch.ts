@@ -53,7 +53,7 @@ export class ZetaSwitch extends ContourableInteractiveElement {
         this.inactiveIcon &&
         html`
           <zeta-icon
-            color="${this.disabled ? "var(--icon-on-interactive-disabled)" : "var(--icon-on-interactive)"}"
+            color="${this.disabled ? "var(--interactive-disabled-icon)" : "var(--interactive-primary-on)"}"
             name=${this.active ? this.activeIcon : this.inactiveIcon}
             .rounded=${this.rounded}
           ></zeta-icon>
@@ -68,3 +68,4 @@ declare global {
     "zeta-switch": ZetaSwitch;
   }
 }
+

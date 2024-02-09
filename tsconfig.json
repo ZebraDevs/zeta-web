@@ -38,5 +38,5 @@
     "useDefineForClassFields": false
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["/**/*.stores.*", "zeta-react/*"]
+  "exclude": ["/**/*.stores.*", "zeta-react/*", "**/generated"]
 }

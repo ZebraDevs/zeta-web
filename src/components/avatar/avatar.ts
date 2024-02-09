@@ -27,7 +27,7 @@ export class ZetaAvatar extends LitElement {
   /**
    * The size of the avatar.
    */
-  @property({ type: String }) size: "xs" | "sm" | "md" | "lg" | "xl" = "md";
+  @property({ type: String, reflect: true }) size: "xs" | "sm" | "md" | "lg" | "xl" = "md";
 
   /**
    * Puts a green border around the avatar.
@@ -149,3 +149,4 @@ declare global {
     "zeta-avatar": ZetaAvatar;
   }
 }
+

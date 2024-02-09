@@ -1,10 +1,10 @@
 .card-footer {
-  padding: 16px;
-  gap: 12px; 
+  padding: var(--spacing-4);
+  gap: var(--spacing-3);
   display: flex;
 }
 
-::slotted(zeta-button:not([flavor='text'])) {
+::slotted(zeta-button:not([flavor="text"])) {
   width: max-content;
-  flex: 1  
+  flex: 1;
 }

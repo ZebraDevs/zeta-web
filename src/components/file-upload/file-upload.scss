@@ -1,11 +1,11 @@
 .file-upload {
-  border: 2px dashed var(--border-default);
-  padding: 32px;
+  border: var(--border-size-medium) dashed var(--border-default);
+  padding: var(--spacing-8);
   display: flex;
   flex-direction: column;
   text-align: center;
   align-items: center;
-  gap: 16px;
+  gap: var(--spacing-4);
   user-select: none;
 
   &[active] {
@@ -19,26 +19,25 @@
   flex-direction: column;
   text-align: center;
   align-items: center;
-  gap: 8px;
+  gap: var(--spacing-2);
 }
 
 h1 {
-  font-size: 18px;
+  font: var(--title-medium);
   margin: 0;
   pointer-events: none;
 }
 
 h2 {
- font-size: 12px;
- font-weight: 400;
- color: var(--text-subtle); 
- padding: 0 16px;
- margin: 0;
- pointer-events: none;
+  font: var(--body-small);
+  color: var(--text-subtle);
+  padding: 0 var(--spacing-4);
+  margin: 0;
+  pointer-events: none;
 
- &[error] {
-  color: var(--text-negative);
- }
+  &[error] {
+    color: var(--text-negative);
+  }
 }
 
 input {

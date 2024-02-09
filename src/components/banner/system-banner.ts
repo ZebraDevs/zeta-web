@@ -1,8 +1,8 @@
 import { html, nothing } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { Alignment, BannerStatus } from "../../types.js";
-import { ContourableInteractiveElement } from "../../mixins/interactive.js";
 import styles from "./system-banner.scss";
+import { ContourableElement } from "../../mixins/contour.js";
 
 // TODO: Update to use zeta-icon
 
@@ -10,7 +10,7 @@ import styles from "./system-banner.scss";
  *
  * @public */
 @customElement("zeta-system-banner")
-export class ZetaSystemBanner extends ContourableInteractiveElement {
+export class ZetaSystemBanner extends ContourableElement {
   /** Type of banner.
    *
    * @defaultValue 'default' */

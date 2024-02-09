@@ -1,5 +1,5 @@
 .card-body {
-  padding: 12px 16px;
-  font-size: 14px;
+  padding: var(--spacing-3) var(--spacing-4);
   color: var(--text-subtle);
+  font: var(--body-small);
 }

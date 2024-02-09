@@ -9,10 +9,11 @@
 }
 
 .menu-item {
-  background-color: var(--surface);
-  padding: 14px 12px;  
+  background-color: var(--surface-default);
+  padding: var(--spacing-3-5) var(--spacing-3);
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--spacing-3);
   user-select: none;
+  font: var(--body-small);
 }

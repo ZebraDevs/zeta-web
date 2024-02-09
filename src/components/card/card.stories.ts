@@ -25,7 +25,7 @@ const placeholderStyle = styleMap({
   flex: "1",
   alignItems: "center",
   justifyContent: "center",
-  padding: "48px"
+  padding: "var(--spacing-12)"
 });
 
 const placeholderImg = html`<div style=${placeholderStyle}><zeta-icon size="48" color="var(--color-cool-50)">image</zeta-icon></div>`;
@@ -85,3 +85,4 @@ export const CardWithTitle: StoryObj<ZetaCard> = {
       </zeta-card-footer>
     </zeta-card> `
 };
+

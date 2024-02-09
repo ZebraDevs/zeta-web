@@ -9,22 +9,21 @@
 .nav-item {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--spacing-2);
   align-items: center;
 }
 
 .nav-item[label] {
-  padding: 8px 24px;
+  padding: var(--spacing-2) var(--spacing-6);
 }
 
 .nav-item:not([label]) {
-  padding: 20px 24px;
+  padding: var(--spacing-5) var(--spacing-6);
 }
 
 .label {
   color: var(--text-disabled);
-  font-size: 12px;
-  font-weight: 500;
+  font: var(--label-small);
   user-select: none;
 }
 
@@ -40,6 +39,6 @@
   position: absolute;
   top: -2px;
   right: -2px;
-  border: 2px solid white;
-  border-radius: var(--radius-xxxl);
+  border: var(--border-size-medium) solid var(--surface-default);
+  border-radius: var(--radius-full);
 }

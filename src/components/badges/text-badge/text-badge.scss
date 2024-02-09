@@ -1,21 +1,21 @@
-:host([status = "info"]) .container {
-  background: var(--color-purple-70);
+:host([status="info"]) .container {
+  background: var(--surface-info);
 }
 
-:host([status = "positive"]) .container {
-  background: var(--color-green-50);
+:host([status="positive"]) .container {
+  background: var(--surface-positive);
 }
 
-:host([status = "warning"]) .container {
-  background: var(--color-orange-110);
+:host([status="warning"]) .container {
+  background: var(--surface-warning);
 }
 
-:host([status = "negative"]) .container {
-  background: var(--color-red-50);
+:host([status="negative"]) .container {
+  background: var(--surface-negative);
 }
 
-:host([status = "neutral"]) .container {
-  background: var(--color-cool-110);
+:host([status="neutral"]) .container {
+  background: var(--surface-neutral);
 }
 
 .container {
@@ -25,9 +25,9 @@
   white-space: nowrap;
   width: fit-content;
 
-  .text{
-    padding: 2px 4px;
-    font-size: 12px;
+  .text {
+    padding: 2px var(--spacing-1);
+    font: var(--label-small);
     color: var(--color-cool-20);
   }
 }

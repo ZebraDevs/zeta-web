@@ -1,21 +1,20 @@
 .container {
   display: flex;
-  gap: 10px;
+  gap: var(--spacing-2-5);
 }
 
 :host {
-  margin-left: 24px;
+  margin-left: var(--spacing-6);
 }
 
 .border {
-  border-left: 1px solid var(--border-inverse-default);
+  border-left: var(--border-size-small) solid var(--border-inverse-default);
 }
 
 .sub-item {
   margin: 0;
-  padding: 8px 16px;
-  font-weight: 500;  
-  font-size: 16px;
+  padding: var(--spacing-2) var(--spacing-4);
+  font: var(--title-medium);
   display: flex;
   flex: 1;
   color: var(--text-subtle);

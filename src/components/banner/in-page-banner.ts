@@ -1,16 +1,16 @@
 import { html } from "lit";
 import { customElement, property, queryAssignedElements } from "lit/decorators.js";
-import { ContourableInteractiveElement } from "../../mixins/interactive.js";
 import styles from "./in-page-banner.scss";
 import { BannerStatus } from "../../types.js";
 import { ZetaButton } from "../button/button.js";
 import "../../index.js";
+import { ContourableElement } from "../../mixins/contour.js";
 
 /** Zeta in page banner component.
  *
  * @public */
 @customElement("zeta-in-page-banner")
-export class ZetaInPageBanner extends ContourableInteractiveElement {
+export class ZetaInPageBanner extends ContourableElement {
   /** Title of banner, displayed at top. */
   @property({ type: String }) title: string = "";
 

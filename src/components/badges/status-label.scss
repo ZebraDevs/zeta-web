@@ -1,18 +1,16 @@
 .container {
-    border: 1px solid;
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    gap: 8px;
-    border-radius: 2px;
+    gap: var(--spacing-2);
+    border-radius: var(--radius-minimal);
     padding-top: 1px;
     padding-bottom: 1px;
-    border: 1px solid;
-    line-height :10px;
+    border: var(--border-size-small) solid;
 
     > .icon-container {
-        padding-left: 7px;
-        max-height: 20px;
+        padding-left: calc(var(--spacing-xs) - var(--border-size-small));
+        max-height: var(--spacing-5);
     }
     > .icon-container,
     > .icon-container div {
@@ -22,16 +20,12 @@
     }
     > .text {
         color: var(--text-default);
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 400;
-        height: 20px;
-        line-height: 20px;
-        padding-right: 7px;
+        font: var(--body-small);
+        padding-right: calc(var(--spacing-xs) - var(--border-size-small));
     }
 }
 :host([rounded]) > .container {
-    border-radius: 100px;
+    border-radius: var(--radius-full);
 }
 
 .container,
@@ -40,7 +34,6 @@
     fill: var(--icon-subtle);
     border-color: var(--border-subtle);
     background: var(--surface-cool);
-
 }
 :host([status="info"]) > .container,
 :host([status="info"]) > .container svg {

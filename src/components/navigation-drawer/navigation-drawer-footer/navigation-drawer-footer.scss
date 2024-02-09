@@ -1,26 +1,24 @@
 .drawer-footer-profile {
-  padding: 16px;
+  padding: var(--spacing-4);
   background: var(--surface-tertiary);
   display: flex;
-  gap: 16px;
+  gap: var(--spacing-4);
   justify-content: space-between;
   align-items: center;
-  
+
   .main-content {
     display: flex;
     flex-direction: column;
   }
 
   h1 {
-    font-weight: 400;  
-    font-size: 14px;
+    font: var(--body-small);
     color: var(--text-inverse);
     margin: 0;
   }
 
   h2 {
-    font-size: 12px;
-    font-weight: 400;
+    font: var(--body-x-small);
     color: var(--text-inverse-subtle);
     margin: 0;
   }
@@ -37,12 +35,12 @@
   }
 }
 
-:host([hide-default-logo]) .logo  {  
-  display: none;  
+:host([hide-default-logo]) .logo {
+  display: none;
 }
 
 .drawer-footer-logo {
-  padding: 12px 16px;
+  padding: var(--spacing-3) var(--spacing-4);
   background: var(--surface);
   display: flex;
   flex-direction: column;
@@ -50,13 +48,12 @@
   justify-content: center;
 
   .logo {
-    width: 80px;
-    height: 32px;;
+    width: var(--spacing-20);
+    height: var(--spacing-8);
   }
 
   h3 {
-    margin: 0;
-    font-size: 12px;
+    font: var(--body-x-small);
     color: var(--text-subtle);
     text-align: center;
     font-weight: 400;
@@ -64,5 +61,5 @@
 }
 
 :host([divide]) footer {
-  box-shadow: 0 -1px 0 0 var(--border-inverse-default)
+  box-shadow: 0 -1px 0 0 var(--border-inverse-default);
 }

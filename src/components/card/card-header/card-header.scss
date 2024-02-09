@@ -1,9 +1,9 @@
 .card-header {
-  padding: 10px 16px;
+  padding: var(--spacing-2-5) var(--spacing-4);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: var(--spacing-3);
 }
 
 .main-content {
@@ -12,15 +12,12 @@
 }
 
 h1 {
-  font-weight: 500;  
-  font-size: 16px;
+  font: var(--title-medium);
   margin: 0;
 }
 
 h2 {
-  font-size: 14px;
-  font-weight: 400;
-  color: var(--text-subtle);
+  font: var(--body-small);
   margin: 0;
 }
 

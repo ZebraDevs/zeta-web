@@ -3,12 +3,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 64px;
-  height: 32px;
+  width: var(--spacing-12);
+  height: var(--spacing-8);
   padding: 0;
   border: none;
-  background-color: transparent;
-  border-radius: 100px !important;
+  border-radius: var(--radius-full) !important;
+  fill: var(--icon-subtle);
 }
 
 .indicator rect {
@@ -21,12 +21,12 @@
 
 .indicator circle {
   transition: all 0.2s ease-out;
-  fill: var(--icon-on-interactive);
+  fill: var(--interactive-primary-on);
 }
 
 .container:disabled {
   .indicator circle {
-    fill: var(--icon-on-interactive-disabled);
+    fill: var(--interactive-disabled-icon);
   }
 
   .indicator rect {
@@ -36,15 +36,15 @@
 
 :host([active]) {
   zeta-icon {
-    transform: translateX(-24px);
+    transform: translateX(-var(--spacing-6));
   }
 
   .indicator rect {
-    fill: var(--interactive-selected);
+    fill: var(--interactive-primary);
   }
 
   .indicator circle {
-    transform: translateX(32px);
+    transform: translateX(var(--spacing-8));
   }
 }
 
@@ -52,6 +52,6 @@ zeta-icon {
   width: fit-content;
   transition: all 0.2s ease-out;
   position: absolute;
-  right: 8px;
+  right: var(--spacing-2);
 }
 

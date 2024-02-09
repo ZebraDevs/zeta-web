@@ -8,12 +8,11 @@
 }
 
 .navigation-profile {
-  padding: 4px 12px;
+  padding: var(--spacing-1) var(--spacing-3);
   display: flex;
   align-items: center;
-  gap: 4px;  
-  font-size: 16px;
-  font-weight: 400;
+  gap: var(--spacing-1);
+  font: var(--title-medium);
 
   @include tertiary-interactive;
 }

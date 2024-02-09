@@ -1,13 +1,13 @@
 import { html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./status-chip.scss";
-import { ContourableInteractiveElement } from "../../mixins/interactive.js";
+import { ContourableElement } from "../../mixins/contour.js";
 
 /** Zeta Status Chip web component.
  *
  * @public */
 @customElement("zeta-status-chip")
-export class ZetaStatusChip extends ContourableInteractiveElement {
+export class ZetaStatusChip extends ContourableElement {
   constructor() {
     super();
     this.text = "Input Custom";

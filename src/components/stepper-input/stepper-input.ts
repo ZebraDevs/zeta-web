@@ -6,10 +6,10 @@ import styles from "./stepper-input.scss";
 import { ifDefined } from "lit/directives/if-defined.js";
 import "../button/icon-button.js";
 import "../icon/icon.js";
-import { ContourableInteractiveElement } from "../../mixins/interactive.js";
+import { ContourableElement } from "../../mixins/contour.js";
 
 @customElement("zeta-stepper-input")
-export class ZetaStepperInput extends ContourableInteractiveElement {
+export class ZetaStepperInput extends ContourableElement {
   static styles = [super.styles || [], styles];
   constructor() {
     super();

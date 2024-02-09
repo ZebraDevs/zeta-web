@@ -9,26 +9,21 @@
     border: none;
     justify-content: center;
     overflow-x: ellipsis;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 24px;
     width: 100%;
+    font: var(--label-large);
   }
 }
 
-
 :host([size="large"]) > button {
-  padding: 12px 24px;
+  padding: var(--spacing-3) var(--spacing-6);
 }
 
 :host > button,
 :host([size="medium"]) > button {
-  padding: 8px 14px;
+  padding: var(--spacing-2) var(--spacing-3-5);
 }
 
 :host([size="small"]) > button {
-  padding: 6px 10px;
-  font-size: 14px;
-  line-height: 20px;
+  padding: var(--spacing-1-5) var(--spacing-2-5);
+  font: var(--label-medium);
 }

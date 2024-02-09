@@ -1,14 +1,14 @@
 .drawer-header {
-  padding: 24px 16px;
+  padding: var(--spacing-6) var(--spacing-4);
   background: var(--surface-tertiary);
   display: flex;
-  gap: 16px;
+  gap: var(--spacing-4);
   justify-content: space-between;
   align-items: center;
 }
 
 :host([divide]) .drawer-header {
-  box-shadow: 0 1px 0px 0px var(--border-inverse-default)
+  box-shadow: 0 var(--border-size-small) 0 0  var(--border-inverse-default);
 }
 
 .main-content {
@@ -17,15 +17,13 @@
 }
 
 h1 {
-  font-weight: 500;  
-  font-size: 18px;
+  font: var(--title-medium);
   color: var(--text-inverse);
   margin: 0;
 }
 
 h2 {
-  font-size: 12px;
-  font-weight: 400;
+  font: var(--body-x-small);
   color: var(--text-inverse-subtle);
   margin: 0;
 }

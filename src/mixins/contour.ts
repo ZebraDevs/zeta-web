@@ -15,11 +15,11 @@ export const Contourable = <T extends Constructor<LitElement>>(superClass: T) =>
       css`
         :host > *,
         :host .contourable-target {
-          border-radius: 0;
+          border-radius: var(--radius-none);
         }
         :host([rounded]) > *,
         :host([rounded]) .contourable-target {
-          border-radius: 4px;
+          border-radius: var(--radius-minimal);
         }
       `
     ];
@@ -28,3 +28,4 @@ export const Contourable = <T extends Constructor<LitElement>>(superClass: T) =>
 };
 
 export const ContourableElement = Contourable(LitElement);
+

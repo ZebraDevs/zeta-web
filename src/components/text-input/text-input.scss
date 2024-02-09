@@ -3,38 +3,13 @@
   align-items: center;
   width: fit-content;
   height: fit-content;
-
-  --foundation-accent: #0073E6;
-
-  @media (prefers-color-scheme: dark) {
-    /* Text input only */
-    --surface-primary-input: #0C0D0E; 
-    --surface-negative-subtle: #220F11;
-    --border-negative: #E12A3D;
-    --border-default: #3C414B;
-    --border-hovered: #99A1B2;
-    --border-accent: #0073E6;
-  }
-  
-  @media (prefers-color-scheme: light) {
-    /* Text input only */
-    --surface-primary-input: #FFFFFF;
-    --surface-negative-subtle: #FFF0F1;
-    --border-negative: #F36170;
-    --border-default: #CED2DB;
-    --border-hovered: #1D1E23;
-    --border-accent:  #599FE5;
-  }
-} 
+}
 
 /* ERROR */
-:host([error]:not([disabled])){
-  --border-accent: var(--border-negative);
-
+:host([error]:not([disabled])) {
   .input-container {
     background-color: var(--surface-negative-subtle);
-    border-width: 2px;
-    border-color: var(--border-accent);
+    border: var(--border-size-medium) var(--border-negative) solid;
   }
 
   .hint-text.error {
@@ -49,15 +24,16 @@
 }
 
 /* DISABLED */
-:host([disabled]){
+:host([disabled]) {
   .input-container {
     pointer-events: none;
-    background-color: var(--color-cool-30);  
+    background-color: var(--color-cool-30);
   }
-  
-  input, textarea {
+
+  input,
+  textarea {
     color: var(--color-cool-60);
-    &::placeholder{
+    &::placeholder {
       color: inherit;
     }
   }
@@ -76,39 +52,36 @@
 }
 
 /* SIZE */
-:host([size="small"]){
+:host([size="small"]) {
   .input-container:not(.text-area) {
-    padding: 6px 12px;
+    padding: var(--spacing-1-5) var(--spacing-3);
   }
 
-  input, .affix {
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 20px;
+  input,
+  .affix {
+    font: var(--body-small);
   }
 }
 
-:host([size="medium"]){
+:host([size="medium"]) {
   .input-container:not(.text-area) {
-    padding: 8px 12px;
+    padding: var(--spacing-2) var(--spacing-3);
   }
 
-  input, .affix {
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24px;
+  input,
+  .affix {
+    font: var(--body-medium);
   }
 }
 
-:host([size="large"]){
+:host([size="large"]) {
   .input-container:not(.text-area) {
-    padding: 12px;
+    padding: var(--spacing-3);
   }
 
-  input, .affix {
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24px;
+  input,
+  .affix {
+    font: var(--body-medium);
   }
 }
 
@@ -119,18 +92,20 @@
   align-items: center;
   min-width: 328px;
   height: fit-content;
-  outline: 1px solid var(--border-default) ;
-  background-color: var(--surface-primary-input);
-  padding: 12px;
+  outline: var(--border-size-small) solid var(--border-default);
+  background-color: var(--surface-default);
+  padding: var(--spacing-3);
+  border: var(--border-size-medium) var(--surface-basic) solid;
 
   &:hover {
     outline-color: var(--border-hover);
   }
-  
-  input, textarea {
+
+  input,
+  textarea {
     background-color: inherit;
     border: none;
-    caret-color: var(--foundation-accent);
+    caret-color: var(--interactive-primary);
     color: var(--color-cool-90);
     flex: 1;
     padding: 0;
@@ -139,28 +114,30 @@
     &::placeholder {
       color: var(--color-cool-70);
     }
-  
-    &:focus, &:active, &:hover {
+
+    &:focus,
+    &:active,
+    &:hover {
       border: none;
       outline: none;
     }
   }
 }
 
-input[type='date']::-webkit-calendar-picker-indicator {
+input[type="date"]::-webkit-calendar-picker-indicator {
   display: none !important;
 }
 
-input[type='time']::-webkit-calendar-picker-indicator {
+input[type="time"]::-webkit-calendar-picker-indicator {
   display: none !important;
 }
 
 .left {
-  margin-right: 8px;
+  margin-right: var(--spacing-2);
 }
 
 .right {
-  margin-left: 8px;
+  margin-left: var(--spacing-2);
 }
 
 .affix {
@@ -168,10 +145,8 @@ input[type='time']::-webkit-calendar-picker-indicator {
 }
 
 .label {
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px; 
-  margin-bottom: 4px;
+  font: var(--body-small);
+  margin-bottom: var(--spacing-1);
   display: flex;
   color: var(--color-cool-90);
   position: relative;
@@ -182,7 +157,7 @@ input[type='time']::-webkit-calendar-picker-indicator {
       content: "*";
       display: flex;
       position: absolute;
-      right: -8px;
+      right: -var(--spacing-2);
       color: var(--color-red-60);
     }
   }
@@ -191,13 +166,11 @@ input[type='time']::-webkit-calendar-picker-indicator {
 .hint-text {
   display: flex;
   align-items: center;
-  column-gap: 4px;
-  margin-top: 4px;
+  column-gap: var(--spacing-1);
+  margin-top: var(--spacing-1);
 
   span {
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 16px;
+    font: var(--body-x-small);
     color: var(--color-cool-70);
   }
 }

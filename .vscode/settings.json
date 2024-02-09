@@ -5,5 +5,7 @@
   },
 
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "files.associations": { "*.json": "jsonc" }
+  "files.associations": {
+    "*.json": "jsonc"
+  }
 }

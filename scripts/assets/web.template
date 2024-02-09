@@ -1,6 +1,6 @@
 import {  html } from "lit";
 import { customElement } from "lit/decorators.js";
-import { ContourableInteractiveElement } from "../../mixins/interactive.js";
+import { ContourableElement } from "../../mixins/contour.js";
 import styles from "./_replacelower_.scss";
 
 /** Zeta_replacecap_ web component.
@@ -10,7 +10,7 @@ import styles from "./_replacelower_.scss";
  * 
  * @public */
 @customElement("zeta-_replacelower_")
-export class Zeta_replacecap_ extends ContourableInteractiveElement {
+export class Zeta_replacecap_ extends ContourableElement {
 
 
   protected override render() {

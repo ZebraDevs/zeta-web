@@ -1,15 +1,15 @@
 import { customElement, property } from "lit/decorators.js";
-import { ContourableInteractiveElement } from "../../mixins/interactive.js";
 import styles from "./pagination.scss";
 import { html } from "lit";
 import { classMap } from "lit/directives/class-map.js";
 import "../button/icon-button.js";
+import { ContourableElement } from "../../mixins/contour.js";
 
 /**
  * Zeta pagination component
  */
 @customElement("zeta-pagination")
-export class ZetaPagination extends ContourableInteractiveElement {
+export class ZetaPagination extends ContourableElement {
   constructor() {
     super();
   }

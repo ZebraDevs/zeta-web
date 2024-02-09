@@ -2,11 +2,11 @@
   display: flex;
   width: min-content;
   align-items: center;
-  gap: 12px;
-  background-color: transparent !important;
+  gap: var(--spacing-3);
+  background-color: var(--surface-basic) !important;
 }
 
-input[type = checkbox] {
+input[type="checkbox"] {
   appearance: none;
   width: 0;
   height: 0;
@@ -15,10 +15,10 @@ input[type = checkbox] {
 
 .container {
   position: relative;
-  border: var(--color-cool-50) 2px solid;
+  border: var(--color-cool-50) var(--border-size-medium) solid;
   background: var(--surface-default);
-  height: 18px;
-  width: 18px;
+  height: var(--spacing-4-5) 18px;
+  width: var(--spacing-4-5);
 }
 
 .container:hover {
@@ -33,20 +33,20 @@ input[type = checkbox] {
 }
 
 :host([checked]) .checkmark {
-  display: block;  
+  display: block;
 }
 
 :host([disabled]) {
   .container {
     background: var(--color-cool-20);
-    border: transparent 2px solid;
+    border: var(--surface-basic) var(--border-size-medium) solid;
   }
 }
 
 :host([checked]:not([disabled])) {
   .container {
     background: var(--surface-primary);
-    border: transparent 2px solid;
+    border: var(--surface-basic) var(--border-size-medium) solid;
   }
 
   .container:hover {

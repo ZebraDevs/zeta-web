@@ -1,15 +1,14 @@
 .list-item {
-  padding: 20px 16px;
+  padding: var(--spacing-5) var(--spacing-4);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: var(--spacing-3);
   box-shadow: inherit;
 }
 
 h1 {
-  font-weight: 500;  
-  font-size: 16px;
+  font: var(--title-medium);
   margin: 0;
 }
 

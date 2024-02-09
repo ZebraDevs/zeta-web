@@ -16,25 +16,24 @@ dialog {
   padding: 0;
   top: 0;
   overflow: hidden;
-
 }
 
-:host([anchor = 'right']) {
+:host([anchor="right"]) {
   dialog {
     margin-left: auto;
     transform: translateX(100%);
-  } 
+  }
 
   dialog[open] {
     transform: translateX(0);
   }
 }
 
-:host([anchor = 'left']) {
+:host([anchor="left"]) {
   dialog {
     transform: translateX(-100%);
-  } 
-  
+  }
+
   dialog[open] {
     transform: translateX(0);
   }
@@ -47,23 +46,22 @@ dialog {
       display 0.5s ease allow-discrete;
   }
 
-  &:host([anchor = 'left']) {  
+  &:host([anchor="left"]) {
     @starting-style {
       dialog[open] {
-        transform: translateX(-100%);    
+        transform: translateX(-100%);
       }
     }
   }
 
-  &:host([anchor = 'right']) {      
+  &:host([anchor="right"]) {
     @starting-style {
       dialog[open] {
-        transform: translateX(100%);    
+        transform: translateX(100%);
       }
     }
   }
 }
-
 
 .scrollable-content {
   flex: 1;
@@ -75,7 +73,7 @@ dialog {
 .content {
   flex-direction: column;
   display: flex;
-  gap: 4px;
-  padding: 4px 8px;
+  gap: var(--spacing-1);
+  padding: var(--spacing-1) var(--spacing-2);
   flex: 1;
 }

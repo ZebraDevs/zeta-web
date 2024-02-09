@@ -9,14 +9,14 @@
 }
 
 :host([size="large"]) > button {
-  padding: 12px;
+  padding: var(--spacing-3);
 }
 
 :host > button,
 :host([size="medium"]) > button {
-  padding: 8px;
+  padding: var(--spacing-2);
 }
 
 :host([size="small"]) > button {
-  padding: 6px;
+  padding: var(--spacing-1-5);
 }

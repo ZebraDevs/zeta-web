@@ -1,8 +1,8 @@
 .system-banner {
-    height: 24px;
-    line-height: 24px;
+    height: var(--spacing-6);
+    line-height: var(--spacing-6);
     white-space: nowrap;
-    padding: 8px 16px;
+    padding: var(--spacing-2) var(--spacing-4);
     display: flex;
     justify-content: space-between;
     overflow: hidden;
@@ -11,20 +11,17 @@
     }
     > .text,
     > .icon {
-        font-size: 16px;
         text-align: "center";
-        font-style: normal;
-        font-weight: 500;
-        line-height: 24px;
+        font: var(--title-medium);
     }
     .leading,
     ::slotted([slot="leading icon"]) {
-        padding-inline-end: 8px;
+        padding-inline-end: var(--spacing-2);
     }
 
     .trailing,
     ::slotted([slot="trailing icon"]) {
-        padding-inline-start: 8px;
+        padding-inline-start: var(--spacing-2);
         justify-self: end;
     }
 }
@@ -53,6 +50,5 @@
 }
 
 :host([rounded]) > .system-banner {
-    border-radius: 0px !important;
+    border-radius: var(--radius-none) !important;
 }
-

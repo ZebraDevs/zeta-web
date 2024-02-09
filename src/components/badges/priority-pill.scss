@@ -4,34 +4,28 @@
   align-items: center;
   background: var(--surface-primary-subtle);
   white-space: nowrap;
-  line-height: 20px;
-  
-  >.number {
+  line-height: var(--spacing-5);
+  font: var(--body-small);
+
+  > .number {
     display: flex;
-    width: 28px;
-    height: 28px;
+    width: var(--spacing-7);
+    height: var(--spacing-7);
     padding: 0;
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
     background: var(--surface-primary);
     color: var(--text-inverse);
   }
-  
-  >.text {
+
+  > .text {
     color: var(--text-default);
-    padding: 4px 8px;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    height: 20px;
+    padding: var(--spacing-1) var(--spacing-2);
   }
 }
 
-:host([rounded])>.container,
-:host([rounded])>.container>.number {
-  border-radius: 100px;
+:host([rounded]) > .container,
+:host([rounded]) > .container > .number {
+  border-radius: var(--radius-full);
 }

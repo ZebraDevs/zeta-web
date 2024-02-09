@@ -14,7 +14,7 @@ export class ZetaIcon extends ContourableElement {
    *
    * If a Number is provided, will fallback to px.
    *
-   * @defaultValue `24px`. */
+   * @defaultValue `var(--spacing-6)`. */
   @property({ type: Number || String }) size: string | number = 24;
 
   /** Color of icon as css variable.
@@ -45,3 +45,4 @@ export class ZetaIcon extends ContourableElement {
 
   static styles = [styles];
 }
+

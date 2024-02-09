@@ -3,13 +3,13 @@ import { customElement, property } from "lit/decorators.js";
 import styles from "../indicators.scss";
 import { Size } from "../../../types.js";
 import { ZetaIconName } from "@zebra-fed/zeta-icons";
-import { ContourableInteractiveElement } from "../../../mixins/interactive.js";
+import { ContourableElement } from "../../../mixins/contour.js";
 
 /** Zeta Icon Indicator web component.
  *
  * @public */
 @customElement("zeta-icon-indicator")
-export class ZetaIconIndicator extends ContourableInteractiveElement {
+export class ZetaIconIndicator extends ContourableElement {
   constructor() {
     super();
     /** Default size for indicators. */

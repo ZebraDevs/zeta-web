@@ -70,7 +70,7 @@ export class ZetaIconButton extends ContourableFlavoredElement {
   }
 
   protected render() {
-    const label = (this.iconName as string).replaceAll("_", " ");
+    const label = this.iconName.replaceAll("_", " ");
     return html`<button ?disabled=${this.disabled} value=${this.value} name=${this.name} flavor=${this.flavor} aria-label=${label}>
       <zeta-icon name=${this.iconName} .rounded=${this.rounded} color=${this.getIconColor()} size=${this.getIconSize()}></zeta-icon>
     </button>`;
@@ -84,3 +84,4 @@ declare global {
     "zeta-icon-button": ZetaIconButton;
   }
 }
+

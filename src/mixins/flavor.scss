@@ -82,12 +82,12 @@
 
   &:host([flavor="outline"]) > :first-child {
     color: var(--text-primary);
-    box-shadow: 0 0 0 1px var(--border-outline);
+    box-shadow: 0 0 0 var(--border-size-small) var(--border-outline);
   }
 
   &:host([flavor="outline-subtle"]) > :first-child {
     color: var(--text-default);
-    box-shadow: 0 0 0 1px var(--border-outline-subtle);
+    box-shadow: 0 0 0 var(--border-size-small) var(--border-outline-subtle);
   }
   
   &:host([flavor="text"]) > :first-child {

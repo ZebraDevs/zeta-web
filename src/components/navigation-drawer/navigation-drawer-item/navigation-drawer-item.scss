@@ -1,8 +1,8 @@
 .drawer-item {
-  padding: 12px;
-  background: var(--surface);
+  padding: var(--spacing-3);
+  background: var(--surface-default);
   display: flex;
-  gap: 16px;
+  gap: var(--spacing-4);
   justify-content: space-between;
   align-items: center;
   color: var(--text-subtle);
@@ -11,18 +11,17 @@
     &[active] {
       background-color: var(--surface-selected);
     }
-    
-   &[active],
-   &:hover {
-     color: var(--text-default);
-   }
- }
+
+    &[active],
+    &:hover {
+      color: var(--text-default);
+    }
+  }
 }
 
 h1 {
   display: flex;
-  font-weight: 500;  
-  font-size: 16px;
+  font: var(--title-medium);
   margin: 0;
 }
 
@@ -34,7 +33,7 @@ h1 {
 
 .trailing {
   display: flex;
-  gap: 8px;
+  gap: var(--spacing-2);
   align-items: center;
   justify-self: flex-end;
 }

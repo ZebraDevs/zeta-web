@@ -7,7 +7,7 @@
 }
 
 :host([contained]) .accordion {
-  border: 1px solid var(--border-default);
+  border: var(--border-size-small) solid var(--border-default);
 }
 
 :host([disabled]) .accordion {
@@ -15,8 +15,7 @@
 }
 
 .title {
-  font-size: 18px;
-  font-weight: 500;
+  font: var(--title-medium);
   padding: var(--spacing-4);
   display: flex;
   align-items: center;
@@ -28,7 +27,6 @@
   ::slotted(li) {
     padding: var(--spacing-2) var(--spacing-4);
     list-style-type: none;
-    font-size: 16px;
-    font-weight: 500; 
-  }    
+    font: var(--body-medium);
+  }
 }

@@ -1,9 +1,9 @@
 import { html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./assist-chip.scss";
-import { ContourableInteractiveElement } from "../../mixins/interactive.js";
+import { ContourableElement } from "../../mixins/contour.js";
 
-export class BaseChip extends ContourableInteractiveElement {
+export class BaseChip extends ContourableElement {
   static override styles = [super.styles || []];
 
   protected icon: unknown;
@@ -66,3 +66,4 @@ declare global {
     "zeta-assist-chip": ZetaAssistChip;
   }
 }
+

@@ -45,8 +45,9 @@ export const CustomLogo: StoryObj<ZetaNavigationDrawerFooter> = {
   render: args => html`<zeta-navigation-drawer-footer headline=${args.headline} .divide=${args.divide} variant="logo">
     <img style=${styleMap({
       width: "200px",
-      height: "80px",
+      height: "var(--spacing-20)",
       objectFit: "contain"
     })} slot="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png"></img>
   </zeta-navigation-drawer-footer>`
 };
+

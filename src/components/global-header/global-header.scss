@@ -1,14 +1,16 @@
 :host {
   display: block;
-  min-width: min-content;  
+  min-width: min-content;
 }
 
 .global-header {
   display: flex;
-  flex-direction: column;  
+  flex-direction: column;
 }
 
-.slotted-content, .leading, .global-header-content {
+.slotted-content,
+.leading,
+.global-header-content {
   display: flex;
   align-items: center;
 }
@@ -16,25 +18,24 @@
 .global-header-content {
   background-color: var(--surface-tertiary);
   color: var(--text-inverse);
-  gap: 44px;
+  gap: var(--spacing-11);
   justify-content: space-between;
-  padding: 8px 24px;
+  padding: var(--spacing-2) var(--spacing-6);
 }
 
 .slotted-content {
-  gap: 16px;
+  gap: var(--spacing-4);
 }
 
 .leading {
-  gap: 44px;  
+  gap: var(--spacing-11);
 }
 
 .header {
-  font-size: 18px;
-  font-weight: 400;
+  font: var(--title-large);
 }
 
 .navigation-menu {
   background-color: var(--surface-tertiary);
-  padding: 0 8px;
+  padding: 0 var(--spacing-2);
 }

@@ -1,14 +1,13 @@
-
-:host([alignment = "start"]) .container {
- justify-content: flex-start;
+:host([alignment="start"]) .container {
+  justify-content: flex-start;
 }
 
-:host([alignment = "center"]) .container {
- justify-content: center;
+:host([alignment="center"]) .container {
+  justify-content: center;
 }
 
-:host([alignment = "end"]) .container {
- justify-content: flex-end;
+:host([alignment="end"]) .container {
+  justify-content: flex-end;
 }
 
 .container {
@@ -16,4 +15,5 @@
   align-items: center;
   color: var(--text-default);
   padding: var(--spacing-3) var(--spacing-4);
+  font: var(--title-medium);
 }

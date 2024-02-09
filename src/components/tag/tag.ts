@@ -1,10 +1,10 @@
 import { html, svg } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./tag.scss";
-import { ContourableInteractiveElement } from "../../mixins/interactive.js";
+import { ContourableElement } from "../../mixins/contour.js";
 
 @customElement("zeta-tag")
-export class ZetaTag extends ContourableInteractiveElement {
+export class ZetaTag extends ContourableElement {
   constructor() {
     super();
     this.text = "Tag";

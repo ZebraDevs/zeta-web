@@ -7,12 +7,12 @@
 svg.loading {
   @keyframes rotation {
     0% {
-        transform: rotate(0deg);
+      transform: rotate(0deg);
     }
     100% {
-        transform: rotate(360deg);
+      transform: rotate(360deg);
     }
-  } 
+  }
 
   animation: rotation 1s linear infinite;
 }
@@ -24,9 +24,7 @@ svg.loading {
 }
 
 .percentage {
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 16px;
+  font: var(--label-small);
   color: var(--color-cool-90);
 }
 
@@ -34,10 +32,10 @@ svg.loading {
   display: none;
   justify-content: center;
   align-items: center;
-  width: 32px;
-  height: 32px;
+  width: var(--spacing-8);
+  height: var(--spacing-8);
   background-color: var(--color-cool-20);
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   cursor: pointer;
 }
 

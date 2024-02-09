@@ -87,6 +87,7 @@ export class ZetaTextInput extends ContourableInteractiveElement {
   protected render() {
     const containerClass = classMap({
       "input-container": true,
+      "interactive-target": true,
       "text-area": this.type === "textarea"
     });
     return html`
@@ -243,3 +244,4 @@ declare global {
     "zeta-text-input": ZetaTextInput;
   }
 }
+

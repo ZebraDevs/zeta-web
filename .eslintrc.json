@@ -52,5 +52,5 @@
     "spaced-comment": 0
   },
   "settings": {},
-  "ignorePatterns": ["**/build/**/*","**/dist/**/*", "**/*.stories.ts", "**/*.d.ts", "/output/*", "zeta-react/*", "/scripts/*", "vite.config.ts"]
+  "ignorePatterns": ["**/build/**/*","**/dist/**/*", "**/*.stories.ts", "**/*.d.ts", "/output/*", "zeta-react/*", "/scripts/*", "vite.config.ts","**/generated"]
 }

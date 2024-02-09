@@ -1,8 +1,7 @@
-
-.container { 
+.container {
   width: fit-content;
-  padding: 2px 8px;
-  background-color: var(--color-cool-120);
+  padding: var(--spacing-0-5) var(--spacing-2);
+  background-color: var(--surface-basic-active);
   border: none;
   transition: background-color 0.2s ease-out;
 

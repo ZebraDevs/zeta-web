@@ -1,13 +1,13 @@
 import { html } from "lit";
 import { customElement } from "lit/decorators.js";
 import styles from "./sheet-handle.scss";
-import { ContourableInteractiveElement } from "../../../mixins/interactive.js";
+import { ContourableElement } from "../../../mixins/contour.js";
 
 /** Zeta Sheet Handle web component.
  *
  * @public */
 @customElement("zeta-sheet-handle")
-export class ZetaSheetHandle extends ContourableInteractiveElement {
+export class ZetaSheetHandle extends ContourableElement {
   static styles = [super.styles ?? [], styles];
 
   protected override render() {

@@ -5,11 +5,11 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  padding: 2px;
+  padding: var(--border-size-medium);
 }
 
 :host([showStatus]) .avatar {
-  box-shadow: 0 0 0 2px var(--color-green-60);
+  box-shadow: 0 0 0 var(--border-size-medium) var(--color-green-60);
 }
 
 .inidicator {
@@ -23,7 +23,7 @@
   position: absolute;
   bottom: 0;
   right: 0;
-  border: 3px solid white;
+  border: var(--border-size-medium) solid var(--surface-default);
 }
 
 .initials {
@@ -35,9 +35,22 @@
   align-items: center;
   justify-content: center;
   user-select: none;
-  font-weight: 500;
   color: var(--text-subtle);
   overflow: hidden;
+}
+
+:host([size="xl"]) > .avatar > .initials {
+  font: var(--title-large);
+}
+:host([size="lg"]) > .avatar > .initials {
+  font: var(--label-large);
+}
+:host([size="md"]) > .avatar > .initials {
+  font: var(--label-medium);
+}
+:host([size="sm"]) > .avatar > .initials,
+:host([size="xs"]) > .avatar > .initials {
+  font: var(--label-small);
 }
 
 .icon-container {

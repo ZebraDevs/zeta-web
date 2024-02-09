@@ -39,11 +39,9 @@
 .text {
   color: var(--color-cool-90);
   background: var(--color-cool-20);
-  padding: 4px 8px;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 20px;
+  padding: var(--spacing-1) var(--spacing-2);
+  font: var(--body-small);
+  line-height: var(--spacing-5);
 
   @media (prefers-color-scheme: dark) {
     & {

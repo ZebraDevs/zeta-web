@@ -3,13 +3,13 @@ import { customElement, property } from "lit/decorators.js";
 
 import styles from "./sheet-header.scss";
 import { Alignment } from "../../../types.js";
-import { ContourableInteractiveElement } from "../../../mixins/interactive.js";
+import { ContourableElement } from "../../../mixins/contour.js";
 
 /** Zeta Sheet Header web component.
  *
  * @public */
 @customElement("zeta-sheet-header")
-export class ZetaSheetHeader extends ContourableInteractiveElement {
+export class ZetaSheetHeader extends ContourableElement {
   /** Sheet Header alignment.*/
   @property({ type: String, reflect: true }) alignment: Alignment = "start";
 
