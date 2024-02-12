@@ -1,7 +1,7 @@
 import { html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
-import styles from "./sheet-header.scss";
+import styles from "./sheet-header.scss?inline";
 import { Alignment } from "../../../types.js";
 import { ContourableElement } from "../../../mixins/contour.js";
 

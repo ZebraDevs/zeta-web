@@ -1,6 +1,6 @@
 import { html } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import styles from "./icon.scss";
+import styles from "./icon.scss"; //?inline"; //TODO this cannot be inlined for some reason?
 import { ZetaIconName } from "@zebra-fed/zeta-icons";
 import { ContourableElement } from "../../mixins/contour.js";
 import { styleMap } from "lit/directives/style-map.js";

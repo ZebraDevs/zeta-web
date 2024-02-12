@@ -1,6 +1,6 @@
 import { html } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import styles from "./input-chip.scss";
+import styles from "./input-chip.scss?inline";
 import { ContourableInteractiveElement } from "../../mixins/interactive.js";
 
 /** Zeta Input Chip web component.

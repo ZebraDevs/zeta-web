@@ -1,6 +1,6 @@
 import { html } from "lit";
 import { customElement } from "lit/decorators.js";
-import styles from "./breadcrumb-truncated.scss";
+import styles from "./breadcrumb-truncated.scss?inline";
 import { ContourableElement } from "../../../mixins/contour.js";
 
 /**

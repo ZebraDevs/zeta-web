@@ -1,6 +1,6 @@
 import { html } from "lit";
 import { customElement, property, query } from "lit/decorators.js";
-import styles from "./switch.scss";
+import styles from "./switch.scss?inline";
 import { ZetaIconName } from "@zebra-fed/zeta-icons";
 import { ContourableInteractiveElement } from "../../mixins/interactive.js";
 
@@ -50,8 +50,8 @@ export class ZetaSwitch extends ContourableInteractiveElement {
         </svg>
 
         ${this.activeIcon &&
-        this.inactiveIcon &&
-        html`
+      this.inactiveIcon &&
+      html`
           <zeta-icon
             color="${this.disabled ? "var(--interactive-disabled-icon)" : "var(--interactive-primary-on)"}"
             name=${this.active ? this.activeIcon : this.inactiveIcon}

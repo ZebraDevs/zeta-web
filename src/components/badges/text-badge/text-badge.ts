@@ -1,7 +1,7 @@
 import { html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { BadgeStatus } from "../../../types.js";
-import styles from "./text-badge.scss";
+import styles from "./text-badge.scss?inline";
 import { ContourableElement } from "../../../mixins/contour.js";
 
 /** ZetaTextLabel web component.

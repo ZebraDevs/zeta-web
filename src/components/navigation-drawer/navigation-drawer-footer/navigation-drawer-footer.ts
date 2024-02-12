@@ -1,7 +1,7 @@
 import { LitElement, html, nothing } from "lit";
 import { unsafeSVG } from "lit/directives/unsafe-svg.js";
 import { customElement, property, queryAssignedElements } from "lit/decorators.js";
-import styles from "./navigation-drawer-footer.scss";
+import styles from "./navigation-drawer-footer.scss?inline";
 import ZebraLogo from "../../../assets/zebra-logo.svg?raw";
 
 export type FooterVariant = "profile" | "logo";

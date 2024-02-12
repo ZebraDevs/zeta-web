@@ -1,6 +1,6 @@
 import { html } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import styles from "./more-menu.scss";
+import styles from "./more-menu.scss?inline";
 import { ContourableInteractiveElement } from "../../../mixins/interactive.js";
 
 /** Zeta Breadcrumbs- More menu.

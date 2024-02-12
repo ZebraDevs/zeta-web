@@ -4,7 +4,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { customElement, property, query } from "lit/decorators.js";
 import { html, nothing } from "lit";
-import styles from "./search.scss";
+import styles from "./search.scss?inline";
 import { live } from "lit/directives/live.js";
 import { ContourableInteractiveElement } from "../../mixins/interactive.js";
 import { msg } from "@lit/localize";

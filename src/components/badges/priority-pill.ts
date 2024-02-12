@@ -1,6 +1,6 @@
 import { html } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import styles from "./priority-pill.scss";
+import styles from "./priority-pill.scss?inline";
 import { ContourableElement } from "../../mixins/contour.js";
 
 /** ZetaPriorityPill web component.

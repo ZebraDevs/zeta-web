@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import { customElement, property, queryAssignedElements } from "lit/decorators.js";
 import { LitElement, html, nothing } from "lit";
-import styles from "./dialog.scss";
+import styles from "./dialog.scss?inline";
 import { classMap } from "lit/directives/class-map.js";
 import { ZetaButton } from "../button/button.js";
 import { ContourablePopupElement } from "../../mixins/popup.js";
@@ -98,8 +98,8 @@ export class ZetaDialog extends ContourablePopupElement {
           <footer>
             <slot
               @click=${() => {
-                this.hide("other");
-              }}
+        this.hide("other");
+      }}
               @slotchange=${this.handleActionButtonChange}
               name="other"
             ></slot>
@@ -107,11 +107,11 @@ export class ZetaDialog extends ContourablePopupElement {
               <slot @click=${() => this.hide("cancel")} @slotchange=${this.handleActionButtonChange} name="cancel"></slot>
               <slot
                 @click=${(e: Event) => {
-                  const btn = e.target as HTMLButtonElement;
-                  if (btn.type !== "submit") {
-                    this.hide("confirm");
-                  }
-                }}
+        const btn = e.target as HTMLButtonElement;
+        if (btn.type !== "submit") {
+          this.hide("confirm");
+        }
+      }}
                 @slotchange=${this.handleActionButtonChange}
                 name="confirm"
               ></slot>

@@ -1,7 +1,7 @@
 import { html, nothing } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { Alignment, BannerStatus } from "../../types.js";
-import styles from "./system-banner.scss";
+import styles from "./system-banner.scss?inline";
 import { ContourableElement } from "../../mixins/contour.js";
 
 // TODO: Update to use zeta-icon

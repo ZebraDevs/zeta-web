@@ -1,6 +1,6 @@
 import { html } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import styles from "./filter-chip.scss";
+import styles from "./filter-chip.scss?inline";
 import { ContourableInteractiveElement } from "../../mixins/interactive.js";
 
 /** Zeta Filter Chip web component.

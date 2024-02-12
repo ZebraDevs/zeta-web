@@ -1,6 +1,6 @@
 import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import styles from "./navigation-drawer-header.scss";
+import styles from "./navigation-drawer-header.scss?inline";
 
 /** ZetaNavigationDrawerHeader web component.
  *

@@ -1,6 +1,6 @@
 import { LitElement, html } from "lit";
 import { customElement } from "lit/decorators.js";
-import styles from "./card-footer.scss";
+import styles from "./card-footer.scss?inline";
 
 @customElement("zeta-card-footer")
 /**

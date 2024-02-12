@@ -1,6 +1,6 @@
 import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import styles from "./list.scss";
+import styles from "./list.scss?inline";
 
 /**
  * Lists display lists of list items.

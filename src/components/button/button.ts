@@ -2,7 +2,7 @@ import { html } from "lit";
 import { query } from "lit/decorators.js";
 import { customElement, property } from "lit/decorators.js";
 import type { Size } from "../../types.js";
-import styles from "./button.scss"; //TODO: Vite CLI not happy about this
+import styles from "./button.scss?inline"; //TODO: Vite CLI not happy about this
 import { ContourableFlavoredElement } from "../../mixins/flavor.js";
 
 //TODO text overflow broken

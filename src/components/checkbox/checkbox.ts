@@ -1,7 +1,7 @@
 import { customElement, property } from "lit/decorators.js";
 import { ContourableInteractiveElement } from "../../mixins/interactive.js";
 import { html } from "lit";
-import styles from "./checkbox.scss";
+import styles from "./checkbox.scss?inline";
 
 @customElement("zeta-checkbox")
 /**
@@ -54,9 +54,8 @@ export class ZetaCheckbox extends ContourableInteractiveElement {
       <div class='container contourable-target interactive-target' @click=${(_e: Event) => this.toggleCheck()}>
         <input type="checkbox" id=${this.id} ${this.checked ? "checked" : ""} aria-label=${this.label ?? "checkbox"} name=${this.name}></input>
         <div class='checkmark'>
-          <zeta-icon size=20 rounded=${this.rounded} color=${!this.disabled ? "var(--on-surface-primary)" : "var(--icon-disabled)"}>${
-            this.checked == "intermediate" ? "remove" : "check_mark"
-          }</zeta-icon>
+          <zeta-icon size=20 rounded=${this.rounded} color=${!this.disabled ? "var(--on-surface-primary)" : "var(--icon-disabled)"}>${this.checked == "intermediate" ? "remove" : "check_mark"
+      }</zeta-icon>
         </div>
       </div>
       ${this.getLabel()}

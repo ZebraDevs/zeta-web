@@ -1,7 +1,7 @@
 import { customElement } from "lit/decorators.js";
 import { ContourableElement } from "../../mixins/contour.js";
 import { LitElement, html } from "lit";
-import styles from "./navigation-bar.scss";
+import styles from "./navigation-bar.scss?inline";
 
 /**
  * Navigation Bars (Bottom navigation) allow movement between primary destinations in an app.

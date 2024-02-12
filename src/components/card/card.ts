@@ -1,7 +1,7 @@
 import { html } from "lit";
 import { ContourableElement } from "../../mixins/contour.js";
 import { customElement } from "lit/decorators.js";
-import styles from "./card.scss";
+import styles from "./card.scss?inline";
 
 /**
  * Cards are used to display content. //TODO update this

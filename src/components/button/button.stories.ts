@@ -44,7 +44,6 @@ export const ButtonWithTextAndIcon: StoryObj = {
       .trailingIcon=${args.trailingIcon}
       .onClick=${args.onClick}
       name=${args.name}
-      text=${args.text}
     >
       <svg slot="icon" viewBox="0 0 48 48">
         <path

@@ -1,6 +1,6 @@
 import { html } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import styles from "./assist-chip.scss";
+import styles from "./assist-chip.scss?inline";
 import { ContourableElement } from "../../mixins/contour.js";
 
 export class BaseChip extends ContourableElement {

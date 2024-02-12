@@ -2,7 +2,7 @@ import { LitElement } from "lit";
 import { property } from "lit/decorators.js";
 import { Constructor } from "./_utils.js";
 import { Contourable } from "./contour.js";
-import styles from "./interactive.scss";
+import styles from "./interactive.scss?inline";
 
 // Define the interface for the mixin
 export declare class InteractiveInterface {

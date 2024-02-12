@@ -1,6 +1,6 @@
 import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import styles from "./navigation-drawer.scss";
+import styles from "./navigation-drawer.scss?inline";
 import { Side } from "../../types.js";
 import { PopupElement } from "../../mixins/popup.js";
 

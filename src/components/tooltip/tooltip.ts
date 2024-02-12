@@ -1,6 +1,6 @@
 import { customElement, property } from "lit/decorators.js";
 import { html, svg } from "lit";
-import styles from "./tooltip.scss";
+import styles from "./tooltip.scss?inline";
 import { ContourableElement } from "../../mixins/contour.js";
 
 /**

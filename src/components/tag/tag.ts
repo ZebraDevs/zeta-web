@@ -1,6 +1,6 @@
 import { html, svg } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import styles from "./tag.scss";
+import styles from "./tag.scss?inline";
 import { ContourableElement } from "../../mixins/contour.js";
 
 @customElement("zeta-tag")

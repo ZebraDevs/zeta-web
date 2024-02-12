@@ -1,7 +1,7 @@
 import { html, svg } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { BadgeStatus } from "../../types.js";
-import styles from "./status-label.scss";
+import styles from "./status-label.scss?inline";
 import { ZetaIconName } from "@zebra-fed/zeta-icons";
 import { ContourableElement } from "../../mixins/contour.js";
 

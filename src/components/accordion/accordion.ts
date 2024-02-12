@@ -1,6 +1,6 @@
 import { html } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import styles from "./accordion.scss";
+import styles from "./accordion.scss?inline";
 import "../icon/icon.js";
 import { ContourableInteractiveElement } from "../../mixins/interactive.js";
 

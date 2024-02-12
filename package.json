@@ -62,6 +62,7 @@
     "@storybook/addon-essentials": "^7.4.6",
     "@storybook/addon-links": "^7.4.6",
     "@storybook/blocks": "^7.4.6",
+    "@storybook/builder-vite": "^7.6.13",
     "@storybook/test-runner": "^0.16.0",
     "@storybook/theming": "^7.4.6",
     "@storybook/web-components": "^7.5.3",
@@ -88,6 +89,7 @@
     "storybook": "^7.4.6",
     "typescript": "^5.2.2",
     "vite": "^4.5.2",
+    "vite-dts": "^1.0.4",
     "vite-plugin-cp": "^4.0.1",
     "vite-plugin-dts": "^3.6.3"
   },
@@ -95,8 +97,7 @@
     "@fontsource/ibm-plex-sans": "^5.0.15",
     "@lit/localize": "^0.12.1",
     "@zebra-fed/zeta-icons": "^0.1.57",
-    "lit": "^3.0.0",
-    "vite-dts": "^1.0.4"
+    "lit": "^3.0.0"
   },
   "overrides": {
     "rollup-plugin-scss-lit": {

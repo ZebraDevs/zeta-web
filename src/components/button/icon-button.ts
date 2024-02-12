@@ -1,6 +1,6 @@
 import { customElement, property, query } from "lit/decorators.js";
 import { html } from "lit-html";
-import styles from "./icon-button.scss";
+import styles from "./icon-button.scss?inline";
 import { IconButtonFlavor, Size } from "../../types.js";
 import { ZetaIconName } from "@zebra-fed/zeta-icons";
 import { ContourableFlavoredElement } from "../../mixins/flavor.js";

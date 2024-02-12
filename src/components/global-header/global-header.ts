@@ -1,6 +1,6 @@
 import { html, nothing } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import styles from "./global-header.scss";
+import styles from "./global-header.scss?inline";
 import "../icon/icon.js";
 import { ContourableElement } from "../../mixins/contour.js";
 

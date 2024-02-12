@@ -2,7 +2,7 @@ import { LitElement } from "lit";
 import { Flavor } from "../types.js";
 import { Constructor } from "./_utils.js";
 import { property } from "lit/decorators.js";
-import styles from "./flavor.scss";
+import styles from "./flavor.scss?inline";
 import { Interactive } from "./interactive.js";
 import { Contourable } from "./contour.js";
 

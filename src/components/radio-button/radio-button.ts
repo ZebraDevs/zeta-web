@@ -1,6 +1,6 @@
 import { customElement, property } from "lit/decorators.js";
 import { html } from "lit";
-import styles from "./radio-button.scss";
+import styles from "./radio-button.scss?inline";
 import { ContourableInteractiveElement, InteractiveElement } from "../../mixins/interactive.js";
 
 @customElement("zeta-radio-button")

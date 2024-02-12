@@ -1,6 +1,6 @@
 import { html, nothing } from "lit";
 import { customElement, property, query } from "lit/decorators.js";
-import styles from "./file-upload.scss";
+import styles from "./file-upload.scss?inline";
 import { ContourableElement } from "../../mixins/contour.js";
 import { msg } from "@lit/localize";
 import "../button/button.js";

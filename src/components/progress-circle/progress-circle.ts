@@ -1,7 +1,7 @@
 import { customElement, property } from "lit/decorators.js";
 import { ContourableElement } from "../../mixins/contour.js";
 import { html, nothing } from "lit";
-import styles from "./progress-circle.scss";
+import styles from "./progress-circle.scss?inline";
 import { classMap } from "lit/directives/class-map.js";
 
 /**
@@ -71,9 +71,9 @@ export class ZetaProgressCircle extends ContourableElement {
             <span class="percentage"> ${this.progress}% </span>
             <div
               @click=${() => {
-                this.dispatchEvent(new CustomEvent("cancel-upload", { bubbles: true, composed: true }));
-                this.uploading = false;
-              }}
+          this.dispatchEvent(new CustomEvent("cancel-upload", { bubbles: true, composed: true }));
+          this.uploading = false;
+        }}
               class="cancel"
             >
               <zeta-icon name="close" size="20" color="var(--color-cool-90)"></zeta-icon>

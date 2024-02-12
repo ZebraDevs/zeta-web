@@ -1,6 +1,6 @@
 import { html } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import styles from "../indicators.scss";
+import styles from "../indicators.scss?inline";
 import { Size } from "../../../types.js";
 import { ZetaIconName } from "@zebra-fed/zeta-icons";
 import { ContourableElement } from "../../../mixins/contour.js";

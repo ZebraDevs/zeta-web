@@ -2,7 +2,7 @@ import { customElement, property } from "lit/decorators.js";
 import { ContourableElement } from "../../../mixins/contour.js";
 import { ZetaIconName } from "@zebra-fed/zeta-icons";
 import { html, nothing } from "lit";
-import styles from "./navigation-bar-item.scss";
+import styles from "./navigation-bar-item.scss?inline";
 import "../../icon/icon.js";
 
 /**

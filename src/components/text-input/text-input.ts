@@ -1,7 +1,7 @@
 import { customElement, property, query } from "lit/decorators.js";
 import { html, nothing } from "lit";
 import { Size } from "../../types.js";
-import styles from "./text-input.scss";
+import styles from "./text-input.scss?inline";
 import { ZetaIconName } from "@zebra-fed/zeta-icons";
 import { classMap } from "lit/directives/class-map.js";
 import { live } from "lit/directives/live.js";
@@ -141,7 +141,7 @@ export class ZetaTextInput extends ContourableInteractiveElement {
     return this.iconPosition === "right" && this.icon && this.type === "text" && !this.toggled
       ? html` <zeta-icon class="right" color=${this.getIconColor()} size=${this.getIconSize()} .rounded=${this.rounded} name=${this.icon}></zeta-icon> `
       : this.type === "password" || this.toggled
-      ? html`<zeta-icon
+        ? html`<zeta-icon
           @click=${() => {
             this.toggled = !this.toggled;
             this.type = this.type === "text" ? "password" : "text";
@@ -152,8 +152,8 @@ export class ZetaTextInput extends ContourableInteractiveElement {
           .rounded=${this.rounded}
           name=${this.toggled ? "visibility" : "visibility_off"}
         ></zeta-icon>`
-      : this.type === "time"
-      ? html`<zeta-icon
+        : this.type === "time"
+          ? html`<zeta-icon
           @click=${() => this.inputEl!.showPicker()}
           class="right"
           color=${this.getIconColor()}
@@ -161,8 +161,8 @@ export class ZetaTextInput extends ContourableInteractiveElement {
           .rounded=${this.rounded}
           name="clock_outline"
         ></zeta-icon>`
-      : this.type === "date"
-      ? html`<zeta-icon
+          : this.type === "date"
+            ? html`<zeta-icon
           @click=${() => this.inputEl!.showPicker()}
           class="right"
           color=${this.getIconColor()}
@@ -170,7 +170,7 @@ export class ZetaTextInput extends ContourableInteractiveElement {
           .rounded=${this.rounded}
           name="calendar_3_day"
         ></zeta-icon>`
-      : nothing;
+            : nothing;
   }
 
   private renderPrefix() {

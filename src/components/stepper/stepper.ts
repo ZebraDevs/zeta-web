@@ -1,7 +1,7 @@
 import { customElement, property } from "lit/decorators.js";
 
 import { html, nothing } from "lit";
-import styles from "./stepper.scss";
+import styles from "./stepper.scss?inline";
 import { classMap } from "lit/directives/class-map.js";
 import { ContourableElement } from "../../mixins/contour.js";
 

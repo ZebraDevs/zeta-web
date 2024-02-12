@@ -1,6 +1,6 @@
 import { customElement, property } from "lit/decorators.js";
 import { LitElement, html } from "lit";
-import styles from "./card-header.scss";
+import styles from "./card-header.scss?inline";
 
 /**
  * Card headers are used at the top of cards.

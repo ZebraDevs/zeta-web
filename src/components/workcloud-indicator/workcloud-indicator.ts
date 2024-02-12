@@ -1,7 +1,7 @@
 import { customElement, property } from "lit/decorators.js";
 import { LitElement, html } from "lit";
 import { Constructor } from "../../mixins/_utils.js";
-import styles from "./workcloud-indicator.scss";
+import styles from "./workcloud-indicator.scss?inline";
 import { ZetaPriorityPill } from "../badges/priority-pill.js";
 
 const OverwriteStyles = <T extends Constructor<LitElement>>(superClass: T) => {

@@ -3,7 +3,7 @@ import { LitElement, html, nothing } from "lit";
 import "../icon/icon.js";
 import "../indicators/notification-indicator/notification-indicator.js";
 import "../indicators/icon-indicator/icon-indicator.js";
-import styles from "./avatar.scss";
+import styles from "./avatar.scss?inline";
 import { styleMap } from "lit/directives/style-map.js";
 import { ZetaIconName } from "@zebra-fed/zeta-icons";
 
@@ -79,10 +79,10 @@ export class ZetaAvatar extends LitElement {
       <zeta-icon
         color="var(--color-cool-50)"
         style=${styleMap({
-          position: "relative",
-          top: 0,
-          left: "-10%"
-        })}
+      position: "relative",
+      top: 0,
+      left: "-10%"
+    })}
         size=${size * 1.2}
         name="person"
       ></zeta-icon>

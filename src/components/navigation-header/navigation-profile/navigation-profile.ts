@@ -1,6 +1,6 @@
 import { html } from "lit";
 import { customElement } from "lit/decorators.js";
-import styles from "./navigation-profile.scss";
+import styles from "./navigation-profile.scss?inline";
 import { ContourableInteractiveElement } from "../../../mixins/interactive.js";
 
 /** ZetaNavigationProfile web component.

@@ -1,5 +1,5 @@
 import { customElement, property } from "lit/decorators.js";
-import styles from "./dropdown-menu-item.scss";
+import styles from "./dropdown-menu-item.scss?inline";
 import { html } from "lit";
 import { ZetaIconName } from "@zebra-fed/zeta-icons";
 import { ContourableInteractiveElement } from "../../../mixins/interactive.js";

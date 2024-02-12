@@ -1,6 +1,6 @@
 import { html } from "lit";
 import { customElement, property, queryAssignedElements } from "lit/decorators.js";
-import styles from "./in-page-banner.scss";
+import styles from "./in-page-banner.scss?inline";
 import { BannerStatus } from "../../types.js";
 import { ZetaButton } from "../button/button.js";
 import "../../index.js";
