@@ -9,6 +9,7 @@ const meta: Meta<ZetaTextInput> = {
     placeholder: "Placeholder",
     hintText: "hint",
     error: false,
+    disabled: false,
     errorText: "Error!"
   },
   argTypes: {
@@ -141,4 +142,3 @@ export const PasswordField: StoryObj<ZetaTextInput> = {
 };
 
 export default meta;
-

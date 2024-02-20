@@ -53,6 +53,8 @@ import "./components/navigation-header/navigation-item/navigation-item.js";
 import "../src/components/navigation-header/navigation-header.ts";
 import "../src/components/global-header/global-header.ts";
 import "../src/components/progress-bar/progress-bar.ts";
+import "./components/slider/slider/slider.js";
+import "./components/slider/slider-input-field/slider-input-field.js";
 
 export * from "../src/components/badges/priority-pill.js";
 export * from "../src/components/badges/status-label.js";
@@ -102,3 +104,5 @@ export * from "../src/components/navigation-header/navigation-header.js";
 export * from "../src/components/global-header/global-header.js";
 export * from "../src/components/file-upload/file-upload.js";
 export * from "../src/components/progress-bar/progress-bar.js";
+export * from "./components/slider/slider/slider.js";
+export * from "./components/slider/slider-input-field/slider-input-field.js";
