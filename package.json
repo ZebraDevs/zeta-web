@@ -96,7 +96,7 @@
   "dependencies": {
     "@fontsource/ibm-plex-sans": "^5.0.15",
     "@lit/localize": "^0.12.1",
-    "@zebra-fed/zeta-icons": "^0.1.57",
+    "@zebra-fed/zeta-icons": "^0.1.65",
     "lit": "^3.0.0"
   },
   "overrides": {
