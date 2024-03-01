@@ -7,7 +7,7 @@
     padding-top: 1px;
     padding-bottom: 1px;
     border: var(--border-size-small) solid;
-
+    
     > .icon-container {
         padding-left: calc(var(--spacing-xs) - var(--border-size-small));
         max-height: var(--spacing-5);
@@ -21,6 +21,7 @@
     > .text {
         color: var(--text-default);
         font: var(--body-small);
+        line-height: 1;
         padding-right: calc(var(--spacing-xs) - var(--border-size-small));
     }
 }

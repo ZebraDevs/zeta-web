@@ -1,6 +1,6 @@
 import { html, nothing } from "lit";
 import { customElement, property, query } from "lit/decorators.js";
-import styles from "./slider.scss";
+import styles from "./slider.scss?inline";
 import { ContourableElement } from "../../../mixins/contour.js";
 import { styleMap } from "lit/directives/style-map.js";
 
@@ -288,8 +288,8 @@ export class ZetaSlider extends ContourableElement {
         html`<div
           class="step"
           style=${styleMap({
-            left: `${position}%`
-          })}
+          left: `${position}%`
+        })}
         ></div>`
       );
     }
@@ -326,8 +326,8 @@ export class ZetaSlider extends ContourableElement {
         <div id="selected-area" class="selected-area contourable-target" @click=${this.trackClickHandler}></div>
         <div id="handle-l" class="handle" @mousedown=${(e: MouseEvent) => this.mouseDownHandler(e, this.leftHandle)}></div>
         ${this.type == "range"
-          ? html`<div id="handle-r" class="handle" @mousedown=${(e: MouseEvent) => this.mouseDownHandler(e, this.rightHandle)}></div>`
-          : nothing}
+        ? html`<div id="handle-r" class="handle" @mousedown=${(e: MouseEvent) => this.mouseDownHandler(e, this.rightHandle)}></div>`
+        : nothing}
       </div>
     `;
   }

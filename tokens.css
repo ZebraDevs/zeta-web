@@ -334,20 +334,20 @@
   --headline-medium: var(--medium) 1.75rem/2 var(--type-family-regular);
   --headline-small: var(--medium) 1.5rem/1.75 var(--type-family-regular);
 
-  --title-large: var(--medium) 1.25rem/1.5  var(--type-family-regular);
-  --title-medium: var(--medium) 1rem/1.5  var(--type-family-regular);
-  --title-small: var(--medium) 0.75rem/1  var(--type-family-regular);
+  --title-large: var(--medium) 1.25rem/1.5 var(--type-family-regular);
+  --title-medium: var(--medium) 1rem/1.5 var(--type-family-regular);
+  --title-small: var(--medium) 0.75rem/1 var(--type-family-regular);
 
-  --body-large: var(--regular) 1.25rem/1.5  var(--type-family-regular);
-  --body-medium: var(--regular) 1rem/1.5  var(--type-family-regular);
-  --body-small: var(--regular) 0.875rem/1.125  var(--type-family-regular);
-  --body-x-small: var(--regular) 0.75rem/1  var(--type-family-regular);
+  --body-large: var(--regular) 1.25rem/1.5 var(--type-family-regular);
+  --body-medium: var(--regular) 1rem/1.5 var(--type-family-regular);
+  --body-small: var(--regular) 0.875rem/1.125 var(--type-family-regular);
+  --body-x-small: var(--regular) 0.75rem/1 var(--type-family-regular);
 
-  --label-large: var(--medium) 1rem/1.5  var(--type-family-regular);
-  --label-medium: var(--medium) 0.875rem/1.25  var(--type-family-regular);
-  --label-small: var(--medium) 0.75rem/1  var(--type-family-regular);
-  --label-indicator: var(--medium) 0.75rem/0.875  var(--type-family-regular);
-  --label-tiny: var(--medium) 0.688rem/0.875  var(--type-family-regular);
+  --label-large: var(--medium) 1rem/1.5 var(--type-family-regular);
+  --label-medium: var(--medium) 0.875rem/1.25 var(--type-family-regular);
+  --label-small: var(--medium) 0.75rem/1 var(--type-family-regular);
+  --label-indicator: var(--medium) 0.75rem/0.875 var(--type-family-regular);
+  --label-tiny: var(--medium) 0.688rem/0.875 var(--type-family-regular);
 
 }
 

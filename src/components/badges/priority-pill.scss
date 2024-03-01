@@ -17,11 +17,13 @@
     text-align: center;
     background: var(--surface-primary);
     color: var(--text-inverse);
+    line-height: 1;
   }
 
   > .text {
     color: var(--text-default);
     padding: var(--spacing-1) var(--spacing-2);
+    line-height: 1;
   }
 }
 

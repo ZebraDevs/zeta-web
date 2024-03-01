@@ -1,17 +1,21 @@
 :host([status="info"]) .container {
   background: var(--surface-info);
+  color: var(--text-info);
 }
 
 :host([status="positive"]) .container {
   background: var(--surface-positive);
+  color: var(--text-positive);
 }
 
 :host([status="warning"]) .container {
   background: var(--surface-warning);
+  color: var(--text-warning);
 }
 
 :host([status="negative"]) .container {
   background: var(--surface-negative);
+  color: var(--text-negative);
 }
 
 :host([status="neutral"]) .container {
@@ -28,6 +32,6 @@
   .text {
     padding: 2px var(--spacing-1);
     font: var(--label-small);
-    color: var(--color-cool-20);
+    color: var(--text-default);
   }
 }

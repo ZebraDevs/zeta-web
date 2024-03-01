@@ -28,7 +28,9 @@ export default defineConfig({
   },
 
   plugins: [
-    postcssLit(),
+    postcssLit({
+      exclude: ["./index.css", "**/*\?direct*"]
+    }),
     dts({
       include: "./src/index.ts"
     }),

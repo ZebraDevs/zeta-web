@@ -9,13 +9,13 @@
   align-items: center;
   gap: var(--spacing-2);
   padding: var(--spacing-1-5) var(--spacing-3);
-  border: var(--border-size-small) solid var(--color-cool-70);
-  color:var(--color-cool-20);
+  border: var(--border-size-small) solid var(--border-default);
+  color:var(--text-default);
   transition: background-color 0.2s ease-out;
   font: var(--body-small);
   
   &:hover{
-    background-color: var(--color-cool-90);
+    background-color: var(--surface-basic-hover);
   }
   
   button{

@@ -1,24 +1,28 @@
 // .storybook/YourTheme.js
 
 import { create } from "@storybook/theming";
-import logo from './logo.png'
+import logoDark from './logo-dark.svg'
+import logoLight from './logo-light.svg'
 
-export default create({
+const shared = {
+  // Typography
+  fontCode: "monospace",
+  
+  inputBorderRadius: 0,
+  
+  brandTitle: "Zeta Design System",
+  brandUrl: "https://www.zebra.com",
+  brandTarget: "_self",
+};
+
+export default {light: create({...shared,...{
   base: "light",
-
-  colorPrimary: "#1d1e23",
+  brandImage: logoLight,
 
   // UI
   appBg: "white",
   appBorderColor: "grey",
   appBorderRadius: 0,
-
-  // Typography
-  fontCode: "monospace",
-
-  // Text colors
-  textColor: "#1d1e23",
-  textInverseColor: "rgba(255,255,255,0.9)",
 
   // Toolbar default and active colors
   barTextColor: "white",
@@ -29,12 +33,32 @@ export default create({
   inputBg: "white",
   inputBorder: "silver",
   inputTextColor: "black",
-  inputBorderRadius: 0,
 
-  brandTitle: "Zeta Design System",
-  brandUrl: "https://www.zebra.com",
-  brandImage: logo,
-  brandTarget: "_self",
+  // Text colors
+  textColor: "#1d1e23", //"var(--text-default)",
+  textInverseColor: "#ffffff",//"var(--text-inverse)",
+  colorPrimary: "#1d1e23"//"var(--color-cool-90)"
+}}), dark: create({...shared,...{
+  base: "dark",
+  brandImage: logoDark,
 
+  // UI
+  appBg: "black",
+  appBorderColor: "grey",
+  appBorderRadius: 0,
 
-});
+  // Toolbar default and active colors
+  barTextColor: "white",
+  barSelectedColor: "#E0E3E9",
+  barBg: "#1d1e23",
+
+  // Form colors
+  inputBg: "white",
+  inputBorder: "silver",
+  inputTextColor: "black",
+
+  // Text colors
+  textColor: "#f8fbff",//"var(--text-default)",
+  textInverseColor: "#000000",//"var(--text-inverse)",
+  colorPrimary: "#f3f6fa"//"var(--color-cool-90)"
+}})};

@@ -1,3 +1,5 @@
+@import url("../../icon-fonts.css");
+
 :host {
   display: flex;
   flex-shrink: 0;
@@ -19,20 +21,9 @@
   font-feature-settings: "liga";
   user-select: none;
 }
-
 :host .icon.rounded {
-  @font-face {
-    font-family: "zeta-icons-round";
-    src: url(@zebra-fed/zeta-icons/fonts/zeta-icons-round.woff2) format("woff2");
-  }
-
   font-family: "zeta-icons-round" !important;
 }
 :host .icon.sharp {
-  @font-face {
-    font-family: "zeta-icons-sharp";
-    src: url(@zebra-fed/zeta-icons/fonts/zeta-icons-sharp.woff2) format("woff2");
-  }
-
   font-family: "zeta-icons-sharp" !important;
 }

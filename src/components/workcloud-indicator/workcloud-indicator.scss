@@ -41,6 +41,7 @@
   .text,
   .number {
     font: var(--body-small);
+    line-height: 1;
   }
   .number {
     width: var(--spacing-6);
@@ -52,6 +53,7 @@
   .text,
   .number {
     font: var(--body-x-small);
+    line-height: 1;
   }
   .number {
     width: var(--spacing-5);
@@ -67,10 +69,12 @@
     font: var(--body-x-small);
     width: var(--spacing-5);
     height: var(--spacing-5);
+    line-height: 1;
   }
 }
 
 :host {
+  line-height: 1;
   .text {
     height: auto;
     text-transform: capitalize;

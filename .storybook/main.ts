@@ -9,9 +9,9 @@ const config: StorybookConfig = {
     name: "@storybook/web-components-vite",
     options: {}
   },
-  docs: {
-    autodocs: "tag"
-  },
+  // docs: {
+  //   autodocs: "tag"
+  // },
   core: {
     builder: '@storybook/builder-vite',
     disableTelemetry: true
