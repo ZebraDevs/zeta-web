@@ -4,7 +4,7 @@ import { html } from "lit";
 import { live } from "lit/directives/live.js";
 import styles from "./stepper-input.scss?inline";
 import { ifDefined } from "lit/directives/if-defined.js";
-import "../button/icon-button.js";
+import "../button/icon-button/icon-button.js";
 import "../icon/icon.js";
 import { ContourableElement } from "../../mixins/contour.js";
 

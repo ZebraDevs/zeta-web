@@ -1,7 +1,7 @@
 import type { Preview } from "@storybook/web-components";
-import { themes } from '@storybook/theming';
+import { themes } from "@storybook/theming";
 
-import '../index.css';
+import "../src";
 
 const preview: Preview = {
   parameters: {
@@ -13,7 +13,7 @@ const preview: Preview = {
       }
     },
     docs: {
-      theme: window.matchMedia('(prefers-color-scheme: dark)').matches ? themes.dark : themes.light
+      theme: window.matchMedia("(prefers-color-scheme: dark)").matches ? themes.dark : themes.light
     },
     viewport: {
       viewports: {

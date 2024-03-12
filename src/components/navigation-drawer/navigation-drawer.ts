@@ -4,6 +4,11 @@ import styles from "./navigation-drawer.scss?inline";
 import { Side } from "../../types.js";
 import { PopupElement } from "../../mixins/popup.js";
 
+export * from "./navigation-drawer-footer/navigation-drawer-footer.js";
+export * from "./navigation-drawer-header/navigation-drawer-header.js";
+export * from "./navigation-drawer-item/navigation-drawer-item.js";
+export * from "./navigation-drawer-sub-item/navigation-drawer-sub-item.js";
+
 /** ZetaNavigationDrawer web component.
  *
  * Navigation drawers provide access to destinations and app functionality, such as switching accounts.
@@ -57,3 +62,4 @@ declare global {
     "zeta-navigation-drawer": ZetaNavigationDrawer;
   }
 }
+

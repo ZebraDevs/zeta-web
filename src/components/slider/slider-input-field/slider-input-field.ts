@@ -2,9 +2,9 @@ import { html, nothing } from "lit";
 import { customElement, property, query } from "lit/decorators.js";
 import { ContourableElement } from "../../../mixins/contour.js";
 import styles from "./slider-input-field.scss?inline";
-import "../slider/slider.js";
+import "../slider.js";
 import "../../text-input/text-input.js";
-import { ZetaSliderEvent } from "../slider/slider.js";
+import { ZetaSliderEvent } from "../slider.js";
 import { live } from "lit/directives/live.js";
 
 /** ZetaSliderInputField web component.
@@ -88,14 +88,16 @@ export class ZetaSliderInputField extends ContourableElement {
     ${this.getLabel()}
     <div class="slider-input-container" id="test">
       <div class="slider-container">
-        <zeta-slider id="slider" step-increment=${this.stepIncrement} .rounded=${this.rounded} .disabled=${this.disabled} value=${this.value} max-value=${this.max
-      } min-value=${this.min} @change=${this.sliderChange}></zeta-slider>
+        <zeta-slider id="slider" step-increment=${this.stepIncrement} .rounded=${this.rounded} .disabled=${this.disabled} value=${this.value} max-value=${
+          this.max
+        } min-value=${this.min} @change=${this.sliderChange}></zeta-slider>
         <div class="range-label-container">
           <div>${this.min}</div>
           <div>${this.max}</div>
         </div>
       </div>
-      <input id="slider-input" aria-label=${this.label ?? "slider input"} .disabled=${this.disabled} .id=${this.id
+      <input id="slider-input" aria-label=${this.label ?? "slider input"} .disabled=${this.disabled} .id=${
+        this.id
       } class="contourable-target" type="number" min=${this.min} max=${this.max} .name=${this.name} .step=${this.stepIncrement} value=${live(
         this.value
       )} @input=${(e: Event) => {
@@ -113,3 +115,4 @@ declare global {
     "zeta-slider-input-field": ZetaSliderInputField;
   }
 }
+

@@ -3,6 +3,7 @@ import { ContourableElement } from "../../mixins/contour.js";
 import { LitElement, html } from "lit";
 import styles from "./navigation-bar.scss?inline";
 
+export * from "./navigation-bar-item/navigation-bar-item.js";
 /**
  * Navigation Bars (Bottom navigation) allow movement between primary destinations in an app.
  *
@@ -26,3 +27,4 @@ declare global {
     "zeta-navigation-bar": ZetaNavigationBar;
   }
 }
+

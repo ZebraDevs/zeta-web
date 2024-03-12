@@ -2,6 +2,10 @@ import { LitElement, html } from "lit";
 import { customElement } from "lit/decorators.js";
 import styles from "./navigation-header.scss?inline";
 
+export * from "./navigation-item/navigation-item.js";
+export * from "./navigation-profile/navigation-profile.js";
+
+//TODO: Luke what is this in Figma?
 /** ZetaNavigationHeader web component.
  *
  * A header used to display a collection of zeta-navigaiton-items.
@@ -27,3 +31,4 @@ declare global {
     "zeta-navigation-header": ZetaNavigationHeader;
   }
 }
+

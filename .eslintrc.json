@@ -51,6 +51,10 @@
     "semi": [1, "always"],
     "spaced-comment": 0
   },
-  "settings": {},
-  "ignorePatterns": ["**/build/**/*","**/dist/**/*", "**/*.stories.ts", "**/*.d.ts", "/output/*", "zeta-react/*", "/scripts/*", "vite.config.ts","**/generated"]
+  "overrides":[{
+    "files": ["src/**/*.ts"]
+  }
+],
+"settings": {},
+"ignorePatterns": ["/**/*.stories.*", "zeta-react/*", "**/generated"]
 }

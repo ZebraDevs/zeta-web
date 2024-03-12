@@ -1,4 +1,5 @@
-:root {
+:root,
+:host {
   /* Typography */
   --type-family-regular: "IBM Plex Sans", sans-serif;
 
@@ -36,9 +37,9 @@
   --border-2: 2px;
 
   font-family: var(--type-family-regular);
-  
+
   /* Box shadows */
-  --elevation-1: 0 0.5px 2px 0 rgba(96, 104, 112, 0.16), 0 0 1px 0 rgba(40, 51, 61, 0.08); 
+  --elevation-1: 0 0.5px 2px 0 rgba(96, 104, 112, 0.16), 0 0 1px 0 rgba(40, 51, 61, 0.08);
   --elevation-2: 0 2px 4px 0 rgba(96, 104, 112, 0.16), 0 0 1px 0 rgba(40, 51, 61, 0.04);
   --elevation-3: 0 4px 8px 0 rgba(96, 104, 112, 0.16), 0 0 2px 0 rgba(40, 51, 61, 0.04);
   --elevation-4: 0 8px 16px 0 rgba(96, 104, 112, 0.16), 0 2px 4px 0 rgba(40, 51, 61, 0.04);
@@ -48,13 +49,15 @@
 
 /* Primitives (Dark) */
 @media (prefers-color-scheme: dark) {
-  :root {
+
+  :root,
+  :host {
     /* Pure */
     --color-pure-1000: #ffffff;
     --color-pure-0: #000000;
 
     /* Cool Grey */
-    --color-cool-100:#f8fbff;
+    --color-cool-100: #f8fbff;
     --color-cool-90: #f3f6fa;
     --color-cool-80: #E0E3E9;
     --color-cool-70: #ced2db;
@@ -114,7 +117,7 @@
     --color-red-10: #220f11;
 
     /* Orange */
-    --color-orange-100:#ffe7c6;
+    --color-orange-100: #ffe7c6;
     --color-orange-90: #ffd292;
     --color-orange-80: #ffb348;
     --color-orange-70: #f5a230;
@@ -179,7 +182,10 @@
 
 /* Primitives (Light) */
 @media (prefers-color-scheme: light) {
-  :root {
+
+  :root,
+  :root,
+  :host {
     /* Pure */
     --color-pure-0: #ffffff;
     --color-pure-1000: #000000;
@@ -194,7 +200,7 @@
     --color-cool-70: #545963;
     --color-cool-80: #2c2f36;
     --color-cool-90: #1d1e23;
-    --color-cool-100:#0c0d0e;
+    --color-cool-100: #0c0d0e;
 
     /* Warm Grey */
     --color-warm-10: #fafafa;
@@ -254,7 +260,7 @@
     --color-orange-70: #965802;
     --color-orange-80: #764502;
     --color-orange-90: #402600;
-    --color-orange-100:#1e1100;
+    --color-orange-100: #1e1100;
 
     /* Purple */
     --color-purple-10: #f7f0ff;
@@ -309,7 +315,8 @@
 }
 
 /* Semantics */
-:root {
+:root,
+:host {
   /* Spacing */
   --spacing-none: var(--spacing-0);
   --spacing-xxs: var(--spacing-1);
@@ -352,7 +359,8 @@
 }
 
 /* Semantics Regular Contrast */
-:root {
+:root,
+:host {
 
   /* Text */
   --text-default: var(--color-cool-90);
@@ -412,7 +420,7 @@
   --surface-selected: var(--color-blue-10);
   --surface-selected-hovered: var(--color-blue-20);
   --surface-disabled: var(--color-cool-30);
-  
+
   /* Surface / Flavor */
   --surface-primary: var(--color-blue-60);
   --surface-primary-subtle: var(--color-blue-10);
@@ -434,7 +442,9 @@
 
 
 @media (prefers-contrast: more) {
-  :root {
+
+  :root,
+  :host {
 
     /* Text */
     --text-default: var(--color-cool-100);
@@ -510,14 +520,15 @@
 
     --interactive-primary: var(--color-blue-80);
     --interactive-primary-on: var(--color-pure-1000);
-    --interactive-subtle:var(--color-cool-40);
-    --interactive-disabled:var(--color-cool-50);
-    --interactive-disabled-icon:var(--color-cool-50);
+    --interactive-subtle: var(--color-cool-40);
+    --interactive-disabled: var(--color-cool-50);
+    --interactive-disabled-icon: var(--color-cool-50);
   }
 }
 
 /* TODO: Add component specific tokens to component css? */
-:root {
+:root,
+:host {
 
   /* Button */
   --surface-primary-hover: var(--color-blue-50);
@@ -540,7 +551,7 @@
   --surface-outline-active: var(--color-blue-10);
 
   --border-outline: var(--color-blue-60);
-  --border-outline-subtle: var(--color-cool-40);    
+  --border-outline-subtle: var(--color-cool-40);
 
   --surface-basic: transparent;
   --surface-basic-hover: var(--color-cool-20);

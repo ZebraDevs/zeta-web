@@ -2,6 +2,7 @@ import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./list.scss?inline";
 
+export * from "./list-item/list-item.js";
 /**
  * Lists display lists of list items.
  *
@@ -26,3 +27,4 @@ declare global {
     "zeta-list": ZetaList;
   }
 }
+

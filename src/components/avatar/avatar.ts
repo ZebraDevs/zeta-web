@@ -1,8 +1,5 @@
 import { customElement, property } from "lit/decorators.js";
 import { LitElement, html, nothing } from "lit";
-import "../icon/icon.js";
-import "../indicators/notification-indicator/notification-indicator.js";
-import "../indicators/icon-indicator/icon-indicator.js";
 import styles from "./avatar.scss?inline";
 import { styleMap } from "lit/directives/style-map.js";
 import { ZetaIconName } from "@zebra-fed/zeta-icons";
@@ -44,6 +41,13 @@ export class ZetaAvatar extends LitElement {
    */
   @property({ type: String }) statusIcon?: ZetaIconName;
 
+  /**
+   * Alt text for img.
+   *
+   * @defaultValue "Avatar".
+   */
+  @property({ type: String }) altText: string = "Avatar";
+
   private getSize() {
     switch (this.size) {
       case "xs":
@@ -79,10 +83,10 @@ export class ZetaAvatar extends LitElement {
       <zeta-icon
         color="var(--color-cool-50)"
         style=${styleMap({
-      position: "relative",
-      top: 0,
-      left: "-10%"
-    })}
+          position: "relative",
+          top: 0,
+          left: "-10%"
+        })}
         size=${size * 1.2}
         name="person"
       ></zeta-icon>
@@ -95,7 +99,9 @@ export class ZetaAvatar extends LitElement {
     return html`<img style=${styleMap({
       width: `${size}px`,
       height: `${size}px`
-    })} src=${this.imageUrl}></img>`;
+    })} 
+    alt=${this.altText}
+    src=${this.imageUrl}></img>`;
   }
 
   private getInitials() {

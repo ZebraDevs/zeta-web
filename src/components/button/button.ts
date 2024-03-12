@@ -5,6 +5,8 @@ import type { Size } from "../../types.js";
 import styles from "./button.scss?inline"; //TODO: Vite CLI not happy about this
 import { ContourableFlavoredElement } from "../../mixins/flavor.js";
 
+export * from "./icon-button/icon-button.js";
+
 //TODO text overflow broken
 //TODO: Fix icon button
 export class ButtonBase extends ContourableFlavoredElement {
@@ -60,3 +62,4 @@ declare global {
     "zeta-button": ZetaButton;
   }
 }
+
