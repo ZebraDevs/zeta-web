@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/web-components";
-import { html } from "lit-html";
+import { html } from "lit";
 import { ZetaList } from "../../index.js";
 
 const meta: Meta<ZetaList> = {

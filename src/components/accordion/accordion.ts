@@ -24,18 +24,12 @@ export class ZetaAccordion extends ContourableInteractiveElement {
    */
   @property({ type: Boolean, reflect: true }) contained: boolean = false;
 
-  /** Opens the accordion.
+  /**
+   * Whether the accordion is open.
    *
-   * @private
+   * @default false
    */
-  @property({ type: Boolean, reflect: true }) private _open = false;
-  //TODO: This logic seems errornous - setting - _open is reflected, rather than open
-  set open(val: boolean) {
-    this._open = !this.disabled && val;
-  }
-  get open() {
-    return !this.disabled && this._open;
-  }
+  @property({ type: Boolean, reflect: true }) open = false;
 
   /** Disabled the accordion.
    *
@@ -44,7 +38,7 @@ export class ZetaAccordion extends ContourableInteractiveElement {
   @property({ type: Boolean, reflect: true }) disabled: boolean = false;
 
   private toggleOpen() {
-    this.open = !this.open;
+    if (!this.disabled) this.open = !this.open;
   }
 
   private titleTemplate() {

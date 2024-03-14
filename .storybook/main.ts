@@ -15,8 +15,7 @@ const config: StorybookConfig = {
   core: {
     builder: "@storybook/builder-vite",
     disableTelemetry: true
-  },
-  staticDirs: ["./static"]
+  }
 };
 export default mergeConfig(viteConfig, config);
 

@@ -1,5 +1,5 @@
 import { customElement, property, query } from "lit/decorators.js";
-import { html } from "lit-html";
+import { html } from "lit";
 import styles from "./icon-button.scss?inline";
 import { IconButtonFlavor, Size } from "../../../types.js";
 import { ZetaIconName } from "@zebra-fed/zeta-icons";

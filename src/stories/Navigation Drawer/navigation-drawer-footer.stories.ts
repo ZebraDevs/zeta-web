@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
-import { styleMap } from "lit-html/directives/style-map.js";
+import { styleMap } from "lit/directives/style-map.js";
 import { ZetaNavigationDrawerFooter } from "../../index.js";
 
 const meta: Meta<ZetaNavigationDrawerFooter> = {

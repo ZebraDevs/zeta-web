@@ -3,7 +3,7 @@ import { themes } from "@storybook/theming";
 import { setCustomElementsManifest } from "@storybook/web-components";
 import customElements from "../custom-elements.json";
 import "../src";
-import { Title, Subtitle, Description, Primary, ArgsTable, Stories } from "@storybook/addon-docs";
+import { Title, Description, Primary, Stories, ArgTypes } from "@storybook/addon-docs";
 import React from "react";
 setCustomElementsManifest(customElements);
 
@@ -23,9 +23,9 @@ const preview: Preview = {
         return (
           <>
             <Title />
-            <Description />
             <Primary />
-            <ArgsTable />
+            <Description />
+            <ArgTypes />
             <Stories includePrimary={false} />
           </>
         );

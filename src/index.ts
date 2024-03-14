@@ -5,6 +5,8 @@
  * Import only the individual components used for production.
  */
 
+import "./index.css";
+
 /** Components */
 import "./components/accordion/accordion.ts";
 import "./components/avatar/avatar.ts";
@@ -68,4 +70,3 @@ export * from "./components/stepper/stepper.js";
 export * from "./components/switch/switch.js";
 export * from "./components/text-input/text-input.js";
 export * from "./components/tooltip/tooltip.js";
-

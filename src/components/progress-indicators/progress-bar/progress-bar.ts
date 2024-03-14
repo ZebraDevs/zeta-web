@@ -2,7 +2,7 @@ import { html, nothing } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./progress-bar.scss?inline";
 import { ContourableElement } from "../../../mixins/contour.js";
-import { styleMap } from "lit-html/directives/style-map.js";
+import { styleMap } from "lit/directives/style-map.js";
 
 export type ProgressBarSize = "thin" | "medium";
 

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
-import { html } from "lit-html";
+import { html } from "lit";
 import { ZetaNavigationProfile } from "../../index.js";
 
 const meta: Meta<ZetaNavigationProfile> = {

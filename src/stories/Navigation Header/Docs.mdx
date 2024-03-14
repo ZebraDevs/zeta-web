@@ -1,4 +1,4 @@
-import { Canvas, Meta, Description, ArgsTable, Title } from "@storybook/blocks";
+import { Canvas, Meta, Description, ArgTypes, Title } from "@storybook/blocks";
 import * as NavigationHeader from './navigation-header.stories';
 import * as Items from './navigation-item.stories';
 import * as Profile from './navigation-profile.stories';
@@ -8,14 +8,14 @@ import * as Profile from './navigation-profile.stories';
 <Title/>
 <Description of='zeta-navigation-header'/>
 <Canvas of={NavigationHeader.NavigationHeader}/>
-<ArgsTable of='zeta-navigation-header' />
+<ArgTypes of='zeta-navigation-header' />
 
 # Header
 <Description of='zeta-navigation-item'/>
 <Canvas of={Items.Item}/>
-<ArgsTable of='zeta-navigation-item' />
+<ArgTypes of='zeta-navigation-item' />
 
 # Header
 <Description of='zeta-navigation-profile'/>
 <Canvas of={Profile.Profile}/>
-<ArgsTable of='zeta-navigation-profile' />
+<ArgTypes of='zeta-navigation-profile' />

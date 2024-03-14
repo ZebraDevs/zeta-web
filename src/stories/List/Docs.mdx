@@ -1,4 +1,4 @@
-import { Canvas, Meta, Description, ArgsTable, Title } from "@storybook/blocks";
+import { Canvas, Meta, Description, ArgTypes, Title } from "@storybook/blocks";
 import * as List from './list.stories';
 import * as Item from './list-item.stories';
 
@@ -7,10 +7,10 @@ import * as Item from './list-item.stories';
 <Title/>
 <Description of='zeta-list'/>
 <Canvas of={List.List}/>
-<ArgsTable of='zeta-list' />
+<ArgTypes of='zeta-list' />
 
 # List Item
 <Description of='zeta-list-item'/>
 <Canvas of={Item.ListItem}/>
-<ArgsTable of='zeta-list-item' />
+<ArgTypes of='zeta-list-item' />
 

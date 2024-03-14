@@ -28,7 +28,7 @@ export class ZetaNavigationBarItem extends ContourableElement {
 
   private getIconColor() {
     if (this.active) {
-      return "var(--icon-primary)";
+      return "var(--icon-subtle)";
     } else {
       return "var(--icon-disabled)";
     }
@@ -56,3 +56,4 @@ declare global {
     "zeta-navigation-bar-item": ZetaNavigationBarItem;
   }
 }
+
