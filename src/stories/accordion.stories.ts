@@ -4,6 +4,8 @@ import { html } from "lit";
 
 const meta: Meta<ZetaAccordion> = {
   component: "zeta-accordion",
+  title: "Accordion",
+  tags: ["autodocs"],
   args: {
     accordionTitle: "Title",
     disabled: false,
@@ -17,8 +19,8 @@ const meta: Meta<ZetaAccordion> = {
 export default meta;
 
 export const Accordion: StoryObj<ZetaAccordion> = {
-  render: args =>
-    html`<zeta-accordion
+  render: args => {
+    return html`<zeta-accordion
       accordionTitle=${args.accordionTitle}
       .disabled=${args.disabled}
       .open=${args.open}
@@ -29,6 +31,7 @@ export const Accordion: StoryObj<ZetaAccordion> = {
       <li>Item two</li>
       <li>Item three</li>
       <li>Item four</li>
-    </zeta-accordion>`
+    </zeta-accordion>`;
+  }
 };
 

@@ -5,6 +5,8 @@ import { ZetaInPageBanner } from "../index.js";
 
 const meta: Meta<ZetaInPageBanner> = {
   component: "zeta-in-page-banner",
+  tags: ["autodocs"],
+  title: "In Page Banner",
   args: {
     title: "Banner title",
     body: "Lorem ipsum dolor sit amet, conse ctetur  cididunt ut labore et do lore magna aliqua.",

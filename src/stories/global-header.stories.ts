@@ -3,7 +3,9 @@ import { html } from "lit-html";
 import { ZetaGlobalHeader } from "../index.js";
 
 const meta: Meta<ZetaGlobalHeader> = {
-  component: "zeta-global-header"
+  component: "zeta-global-header",
+  tags: ["autodocs"],
+  title: "Global Header"
 };
 export default meta;
 

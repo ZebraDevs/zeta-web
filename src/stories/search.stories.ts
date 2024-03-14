@@ -2,6 +2,8 @@ import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaSearch } from "../index.js";
 
 const meta: Meta<ZetaSearch> = {
+  tags: ["autodocs"],
+  title: "Search",
   component: "zeta-search",
   args: {
     value: "Predefined search value",

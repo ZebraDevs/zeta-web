@@ -1,0 +1,14 @@
+import { Canvas, Meta, Description, ArgsTable, Title } from "@storybook/blocks";
+import * as NavigationBar from './navigation-bar.stories';
+import * as Item from './navigation-bar-item.stories';
+
+<Meta of={NavigationBar} title='Navigation Bar'/>
+
+<Title/>
+<Description of='zeta-navigation-bar'/>
+<Canvas of={NavigationBar.Icon}/>
+
+# Navigation Bar Item
+<Description of='zeta-navigation-bar-item'/>
+<Canvas of={Item.Item}/>
+<ArgsTable of='zeta-navigation-bar-item' />

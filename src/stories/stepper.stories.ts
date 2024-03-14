@@ -4,6 +4,8 @@ import { ZetaStepper } from "../index.js";
 
 const meta: Meta<ZetaStepper> = {
   component: "zeta-stepper",
+  tags: ["autodocs"],
+  title: "Stepper",
   args: { bar: false, variant: "vertical", rounded: false, activeStep: 0 },
   argTypes: {
     variant: {

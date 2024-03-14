@@ -3,6 +3,8 @@ import { ZetaStepperInput } from "../index.js";
 
 const meta: Meta<ZetaStepperInput> = {
   component: "zeta-stepper-input",
+  tags: ["autodocs"],
+  title: "Stepper Input",
   args: {
     min: 0,
     max: 100,

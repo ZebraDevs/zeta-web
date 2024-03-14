@@ -2,6 +2,8 @@ import { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaAvatar } from "../index.js";
 
 const meta: Meta<ZetaAvatar> = {
+  title: "Avatar",
+  tags: ["autodocs"],
   component: "zeta-avatar",
   args: {
     imageUrl: "",

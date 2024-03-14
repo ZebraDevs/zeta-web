@@ -1,0 +1,15 @@
+import { Canvas, Meta, Description, ArgsTable, Title } from "@storybook/blocks";
+import * as Button from './button.stories';
+import * as IconButton from './icon-button.stories';
+
+<Meta of={Button} title='Buttons'/>
+
+<Title/>
+<Description of='zeta-button'/>
+<Canvas of={Button.ButtonWithText}/>
+<ArgsTable of='zeta-button' />
+
+# Icon Button
+<Description of='zeta-icon-button'/>
+<Canvas of={IconButton.IconButton}/>
+<ArgsTable of='zeta-icon-button' />

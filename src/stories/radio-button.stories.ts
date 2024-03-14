@@ -3,6 +3,8 @@ import { ZetaRadioButton } from "../index.js";
 
 const meta: Meta<ZetaRadioButton> = {
   component: "zeta-radio-button",
+  tags: ["autodocs"],
+  title: "Radio Button",
   args: {
     disabled: false,
     checked: false,

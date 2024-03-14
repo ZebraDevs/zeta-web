@@ -4,6 +4,8 @@ import { ZetaDialog } from "../index.js";
 
 const meta: Meta<ZetaDialog> = {
   component: "zeta-dialog",
+  title: "Dialog",
+  tags: ["autodocs"],
   args: {
     centered: false,
     rounded: false
@@ -11,6 +13,26 @@ const meta: Meta<ZetaDialog> = {
 };
 
 export const Dialog: StoryObj<ZetaDialog> = {
+  name: "Dialog without icon",
+  args: {
+    initialOpen: true
+  },
+  render: args => {
+    return html`
+      <zeta-dialog id="dialog" .rounded=${args.rounded} .centered=${args.centered} .initialOpen=${args.initialOpen} title="Dialog title">
+        <div slot="dialog-body">
+          Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusm od tempor incididunt ut labore et do lore magna aliquaa met, conse ctetur
+          adipisc.
+        </div>
+        <zeta-button slot="confirm">Confirm</zeta-button>
+        <zeta-button slot="cancel">Cancel</zeta-button>
+        <zeta-button slot="other">Learn more</zeta-button>
+      </zeta-dialog>
+    `;
+  }
+};
+
+export const DialogWithoutIcon: StoryObj<ZetaDialog> = {
   name: "Dialog without icon",
   render: args => {
     return html`

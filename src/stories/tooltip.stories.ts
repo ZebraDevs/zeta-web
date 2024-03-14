@@ -3,6 +3,8 @@ import { ZetaTooltip } from "../index.js";
 
 const meta: Meta<ZetaTooltip> = {
   component: "zeta-tooltip",
+  tags: ["autodocs"],
+  title: "Tooltip",
   args: {
     label: "Label",
     point: "bottom",

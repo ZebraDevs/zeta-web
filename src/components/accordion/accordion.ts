@@ -4,22 +4,32 @@ import styles from "./accordion.scss?inline";
 import "../icon/icon.js";
 import { ContourableInteractiveElement } from "../../mixins/interactive.js";
 
-@customElement("zeta-accordion")
 /**
- * An expandable section of content.
+ * The accordion is a control element comprising a vertically stacked list of items, such as labels or thumbnails. Each item can be "expanded" or "collapsed" to reveal the content associated with that item. There can be zero expanded items, exactly one, or more than one item expanded at a time, depending on the configuration.
  *
- * For proper usage, pass in 'li' elements as children.
+ * The contents within the tag will be the child of the open accordion. Typically, this would be list items. Custom styles are applied to ```<li>``` elements to match Zeta styles.
+ *
+ * @slot default - li goes here
+ *
+ * @public
  */
+@customElement("zeta-accordion")
 export class ZetaAccordion extends ContourableInteractiveElement {
   /** The title of the accordion. */
-  @property({ type: String }) accordionTitle: string | undefined = undefined;
+  @property({ type: String }) accordionTitle?: string;
 
-  /** Creates a border around the accordion. */
+  /** Creates a border around the accordion.
+   *
+   * @default false
+   */
   @property({ type: Boolean, reflect: true }) contained: boolean = false;
 
-  /** Opens the accordion. */
-  @property({ type: Boolean, reflect: true })
-  private _open = false;
+  /** Opens the accordion.
+   *
+   * @private
+   */
+  @property({ type: Boolean, reflect: true }) private _open = false;
+  //TODO: This logic seems errornous - setting - _open is reflected, rather than open
   set open(val: boolean) {
     this._open = !this.disabled && val;
   }
@@ -27,7 +37,10 @@ export class ZetaAccordion extends ContourableInteractiveElement {
     return !this.disabled && this._open;
   }
 
-  /** Disabled the accordion. */
+  /** Disabled the accordion.
+   *
+   * @default false
+   */
   @property({ type: Boolean, reflect: true }) disabled: boolean = false;
 
   private toggleOpen() {
@@ -44,11 +57,11 @@ export class ZetaAccordion extends ContourableInteractiveElement {
   }
 
   private bodyTemplate() {
-    return html` <div class="body" ?open=${this.open}><slot></slot></div> `;
+    return html`<div class="body" ?open=${this.open}><slot></slot></div>`;
   }
 
   protected render() {
-    return html` <div class="accordion" @click=${(_e: Event) => this.toggleOpen()}>${this.titleTemplate()} ${this.bodyTemplate()}</div>`;
+    return html`<div class="accordion" @click=${(_e: Event) => this.toggleOpen()}>${this.titleTemplate()} ${this.bodyTemplate()}</div>`;
   }
 
   static styles = [styles, super.styles || []];
@@ -59,3 +72,4 @@ declare global {
     "zeta-accordion": ZetaAccordion;
   }
 }
+

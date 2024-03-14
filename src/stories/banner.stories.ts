@@ -4,6 +4,8 @@ import { ifDefined } from "lit/directives/if-defined.js";
 import { ZetaSystemBanner } from "../index.js";
 
 const meta: Meta<ZetaSystemBanner> = {
+  title: "Banner",
+  tags: ["autodocs"],
   parameters: {
     layout: "fullscreen"
   },

@@ -3,9 +3,10 @@ import { ZetaCheckbox } from "../index.js";
 
 const meta: Meta<ZetaCheckbox> = {
   component: "zeta-checkbox",
+  title: "Checkbox",
+  tags: ["autodocs"],
   args: {
     rounded: true,
-
     disabled: false,
     checked: false,
     label: ""

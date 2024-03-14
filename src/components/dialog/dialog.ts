@@ -45,6 +45,12 @@ export class ZetaDialog extends ContourablePopupElement {
    * Centered header
    */
   @property({ type: Boolean }) centered: boolean = false;
+
+  /**
+   *  Whether the modal is initially open.
+   *  @default false
+   */
+  @property({ type: Boolean }) initialOpen: boolean = false;
   /**
    * Action button 1 (Confirm).
    */
@@ -88,7 +94,7 @@ export class ZetaDialog extends ContourablePopupElement {
     });
 
     return html`
-      <dialog .returnValue=${this.returnValue} @click=${this.onBarrierClicked} id=${this.id}>
+      <dialog .returnValue=${this.returnValue} @click=${this.onBarrierClicked} id=${this.id} .open=${this.initialOpen}>
         <div class=${classes}>
           <header>
             ${this.renderIcon()}

@@ -1,8 +1,25 @@
 import { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaSwitch } from "../index.js";
+import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
 
 const meta: Meta<ZetaSwitch> = {
-  component: "zeta-switch"
+  component: "zeta-switch",
+  tags: ["autodocs"],
+  title: "Switch",
+  argTypes: {
+    activeIcon: {
+      options: ZetaIconNameList,
+      control: {
+        type: "select"
+      }
+    },
+    inactiveIcon: {
+      options: ZetaIconNameList,
+      control: {
+        type: "select"
+      }
+    }
+  }
 };
 
 export default meta;

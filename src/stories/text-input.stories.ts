@@ -2,6 +2,8 @@ import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaTextInput } from "../index.js";
 
 const meta: Meta<ZetaTextInput> = {
+  tags: ["autodocs"],
+  title: "Text Input",
   component: "zeta-text-input",
   args: {
     value: "Typing",

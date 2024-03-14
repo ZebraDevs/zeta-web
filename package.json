@@ -27,9 +27,10 @@
   "type": "module",
   "declaration": "true",
   "declarationMap": "true",
+  "customElements": "custom-elements.json",
   "scripts": {
-    "analyze": "cem analyze --litelement --globs \"src/**/*.ts\" --exclude \"src/**/*.stories.ts\"",
-    "analyze:watch": "cem analyze --litelement --globs \"src/**/*.ts\" --exclude \"src/**/*.stories.ts\" --watch",
+    "analyze": "cem analyze",
+    "analyze:watch": "cem analyze --watch",
     "build": "tsc",
     "build:watch": "tsc --watch",
     "docs": "npx typedoc",
@@ -50,7 +51,7 @@
     "localize:build": "lit-localize build"
   },
   "devDependencies": {
-    "@custom-elements-manifest/analyzer": "^0.9.0",
+    "@custom-elements-manifest/analyzer": "^0.9.3",
     "@lit/localize-tools": "^0.7.2",
     "@open-wc/testing": "^3.0.0-next.5",
     "@remcovaes/web-test-runner-vite-plugin": "^1.2.1",

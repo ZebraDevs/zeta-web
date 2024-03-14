@@ -3,6 +3,8 @@ import { ZetaFileUpload } from "../index.js";
 
 const meta: Meta<ZetaFileUpload> = {
   component: "zeta-file-upload",
+  tags: ["autodocs"],
+  title: "File Upload",
   args: {
     rounded: true,
     headline: "Drop files here to upload",

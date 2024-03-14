@@ -8,9 +8,11 @@ export * from "./card-footer/card-footer.js";
 export * from "./card-header/card-header.js";
 
 /**
- * Cards are used to display content. //TODO update this
+ * Cards are used to display content.
  *
- * @slot - The content of the card.
+ * @slot default - The content of the card.
+ *
+ * @public
  */
 @customElement("zeta-card")
 export class ZetaCard extends ContourableElement {

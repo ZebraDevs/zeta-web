@@ -1,0 +1,21 @@
+import { Canvas, Meta, Description, ArgsTable, Title } from "@storybook/blocks";
+import * as Slider from './slider.stories';
+import * as SliderInputField from './slider-input-field.stories';
+import * as RangeSelectorSlider from './range-selector-slider.stories';
+
+<Meta of={Slider} title='Sliders'/>
+
+<Title/>
+<Description of='zeta-slider'/>
+<Canvas of={Slider.Slider}/>
+<ArgsTable of='zeta-slider' />
+
+# Slider Input Field
+<Description of='zeta-slider-input-field'/>
+<Canvas of={SliderInputField.SliderInputField}/>
+<ArgsTable of='zeta-slider-input-field' />
+
+# Range Selector Slider
+<Description of='zeta-slider'/>
+<Canvas of={RangeSelectorSlider.RangeSlider}/>
+<ArgsTable of='zeta-slider' />
