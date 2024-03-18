@@ -1,5 +1,5 @@
 @import url("tokens.css");
-@import url("src/icon-fonts.css");
+@import url("./icon-fonts.css");
 
 :root {
   color: var(--text-default);

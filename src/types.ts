@@ -7,8 +7,6 @@ export type Contour =
 
 export type Side = "left" | "right";
 
-export type Flavor = ButtonFlavor | IconButtonFlavor;
-
 export type ButtonFlavor =
   /** Primary background color.*/
   | "primary"
@@ -25,26 +23,6 @@ export type ButtonFlavor =
   /** Primary color text, no outline or background. */
   | "text";
 
-export type IconButtonFlavor =
-  /** Primary background color.*/
-  | "primary"
-  /** PrimaryVariant background color. */
-  | "secondary"
-  /** Positive background color. */
-  | "positive"
-  /** Negative background color. */
-  | "negative"
-  /** Primary outline color, no background. */
-  | "outline"
-  /** Subtle outline color, no background. */
-  | "outline-subtle"
-  /** Basic colors */
-  | "basic"
-  /** Inverse basic colors. */
-  | "basic-inverse"
-  /** Negative basic colors. */
-  | "basic-negative";
-
 export type Size = "medium" | "small" | "large";
 
 export type Alignment = "center" | "start" | "end";
@@ -54,3 +32,4 @@ export type Status = "positive" | "warning" | "negative";
 export type BannerStatus = "default" | "info" | Status;
 
 export type BadgeStatus = Status | "neutral" | "info" | "positive" | "warning" | "negative";
+

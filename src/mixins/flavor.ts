@@ -1,5 +1,5 @@
 import { LitElement } from "lit";
-import { Flavor } from "../types.js";
+import { ButtonFlavor } from "../types.js";
 import { Constructor } from "./_utils.js";
 import { property } from "lit/decorators.js";
 import styles from "./flavor.scss?inline";
@@ -7,7 +7,7 @@ import { Interactive } from "./interactive.js";
 import { Contourable } from "./contour.js";
 
 export declare class FlavoredInterface {
-  flavor: Flavor;
+  flavor: ButtonFlavor;
 }
 
 export const Flavored = <T extends Constructor<LitElement>>(superClass: T) => {
@@ -15,7 +15,7 @@ export const Flavored = <T extends Constructor<LitElement>>(superClass: T) => {
     /** Flavor of component. @see {@link Flavor} for more details.
      *
      * @defaultValue `primary`*/
-    @property({ type: String, reflect: true }) flavor: Flavor = "primary";
+    @property({ type: String, reflect: true }) flavor: ButtonFlavor = "primary";
 
     static styles = [(superClass as unknown as typeof LitElement).styles ?? [], styles];
   }
@@ -26,3 +26,4 @@ export const Flavored = <T extends Constructor<LitElement>>(superClass: T) => {
 export const FlavoredElement = Flavored(Interactive(LitElement));
 
 export const ContourableFlavoredElement = Contourable(Flavored(Interactive(LitElement)));
+

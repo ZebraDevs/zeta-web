@@ -2,7 +2,7 @@ import { fixture, html, expect, unsafeStatic, elementUpdated } from "@open-wc/te
 import { ZetaIconButton } from "../../index.js";
 import "../../index.js";
 
-const flavors = ["primary", "primary-variant", "negative", "outline", "outline-subtle", "basic", "basic-negative"];
+const flavors = ["primary", "secondary", "positive", "negative", "outline", "outline-subtle", "text"];
 
 describe("zeta-icon-button", () => {
   let subject: ZetaIconButton;
@@ -39,9 +39,9 @@ describe("zeta-icon-button", () => {
     );
   });
 
-  it("should display correct icon color for primary-variant, outline-subtle and basic flavors", async () => {
+  it("should display correct icon color for outline-subtle and text flavors", async () => {
     await Promise.all(
-      ["primary-variant", "outline-subtle", "basic"].map(async flavor => {
+      ["outline-subtle", "text"].map(async flavor => {
         subject.setAttribute("flavor", flavor);
         await elementUpdated(subject);
 
@@ -53,8 +53,8 @@ describe("zeta-icon-button", () => {
   flavors.map(flavor => {
     it(`meets accessibility requirements for the ${flavor} flavor`, async () => {
       subject.setAttribute("flavor", flavor);
+      subject.setAttribute("icon-name", iconName);
       await elementUpdated(subject);
-
       await expect(subject).shadowDom.to.be.accessible();
     });
   });

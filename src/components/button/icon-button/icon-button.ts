@@ -1,7 +1,7 @@
 import { customElement, property, query } from "lit/decorators.js";
 import { html } from "lit";
 import styles from "./icon-button.scss?inline";
-import { IconButtonFlavor, Size } from "../../../types.js";
+import { ButtonFlavor, Size } from "../../../types.js";
 import { ZetaIconName } from "@zebra-fed/zeta-icons";
 import { ContourableFlavoredElement } from "../../../mixins/flavor.js";
 import "../../icon/icon.js";
@@ -15,7 +15,7 @@ export class ZetaIconButton extends ContourableFlavoredElement {
   @query("button") private readonly buttonElement!: HTMLElement | null;
 
   /** The flavor of the button. */
-  @property({ type: String, reflect: true }) flavor: IconButtonFlavor = "primary";
+  @property({ type: String, reflect: true }) flavor: ButtonFlavor = "primary";
 
   /** The name of the icon displayed on the button. */
   @property({ type: String }) iconName: ZetaIconName = "star";
@@ -52,19 +52,16 @@ export class ZetaIconButton extends ContourableFlavoredElement {
       return "var(--icon-disabled)";
     } else {
       switch (this.flavor) {
+        case "outline":
+          return "var(--surface-primary)";
+        case "outline-subtle":
+        case "text":
+          return "var(--icon-default)";
         case "primary":
         case "secondary":
         case "positive":
         case "negative":
-        case "basic-inverse":
           return "var(--icon-inverse)";
-        case "outline":
-          return "var(--surface-primary)";
-        case "outline-subtle":
-        case "basic":
-          return "var(--icon-default)";
-        case "basic-negative":
-          return "var(--surface-negative)";
       }
     }
   }
@@ -72,7 +69,9 @@ export class ZetaIconButton extends ContourableFlavoredElement {
   protected render() {
     const label = this.iconName.replaceAll("_", " ");
     return html`<button ?disabled=${this.disabled} value=${this.value} name=${this.name} flavor=${this.flavor} aria-label=${label}>
-      <zeta-icon name=${this.iconName} .rounded=${this.rounded} color=${this.getIconColor()} size=${this.getIconSize()}></zeta-icon>
+      <zeta-icon name=${this.iconName} .rounded=${this.rounded} color=${this.getIconColor()} size=${this.getIconSize()}>
+        <div class=${this.flavor}></div>
+      </zeta-icon>
     </button>`;
   }
 

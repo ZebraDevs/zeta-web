@@ -2,9 +2,7 @@
   "packages": {
     ".": {
       "release-type": "node"
-    },
-    "zeta-react": {
-      "release-type": "node"
     }
+  
   }
 }

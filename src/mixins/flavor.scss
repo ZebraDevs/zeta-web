@@ -1,4 +1,4 @@
-:host(:not([disabled])) {
+:host(:not([disabled])) {  
   &:host([flavor="primary"]) > :first-child {
     background-color: var(--surface-primary);
     color: var(--text-inverse);   
@@ -35,19 +35,6 @@
 
     &:active {
       background-color: var(--surface-positive-active);
-    }
-  }
-
-  &:host([flavor="basic-inverse"]) > :first-child {
-    background-color: var(--surface-tertiary);
-    color: var(--text-inverse);
-
-    &:hover {
-      background-color: var(--surface-tertiary-hover);
-    }
-
-    &:active {
-      background-color: var(--surface-tertiary-active);
     }
   }
 

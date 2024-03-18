@@ -56,5 +56,5 @@
   }
 ],
 "settings": {},
-"ignorePatterns": ["/**/*.stories.*", "zeta-react/*", "**/generated"]
+"ignorePatterns": ["/**/*.stories.*", "**/generated"]
 }
