@@ -19,7 +19,7 @@
       "require": "./index.css"
     }
   },
-  "version": "0.0.1+1",
+  "version": "0.1.0",
   "description": "Zebra Zeta Design System - Web Components",
   "repository": "https://github.com/zebratechnologies/zeta-web",
   "author": "Ben Kennedy",
