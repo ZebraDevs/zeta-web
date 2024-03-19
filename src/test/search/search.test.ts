@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { assert, fixture, expect, html } from "@open-wc/testing";
 import { ZetaIcon, ZetaSearch } from "../../index.js";
@@ -76,7 +77,7 @@ describe("Zeta Search", () => {
   });
 
   it("should render microphone icon", async () => {
-    const speechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const speechRecognition = (<any>window).SpeechRecognition || (<any>window).webkitSpeechRecognition;
     if (speechRecognition) {
       const el = await fixture<ZetaSearch>(html` <zeta-search has-icon></zeta-search> `);
       const icon = el.shadowRoot?.querySelector("zeta-icon[name='microphone']") as ZetaIcon;
@@ -86,8 +87,9 @@ describe("Zeta Search", () => {
 
   it("should not render microphone icon", async () => {
     const el = await fixture<ZetaSearch>(html` <zeta-search has-icon></zeta-search> `);
-    delete window.SpeechRecognition;
-    delete window.webkitSpeechRecognition;
+
+    delete (<any>window).SpeechRecognition;
+    delete (<any>window).webkitSpeechRecognition;
     el.requestUpdate();
     await el.updateComplete;
     const icon = el.shadowRoot?.querySelector("zeta-icon[name='microphone']") as ZetaIcon;

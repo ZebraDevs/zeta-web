@@ -2,6 +2,6 @@
     "groupOrder": ["Variables",],
     "$schema": "https://typedoc.org/schema.json",
     "entryPoints": ["./src/index.ts"],
-    "out": "docs"
-
+    "out": "docs",
+    "exclude":["*.stories.ts", "*.mdx", "*.test.ts", "*.md"]
 }

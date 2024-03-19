@@ -38,6 +38,8 @@ import "./components/stepper/stepper.ts";
 import "./components/switch/switch.ts";
 import "./components/text-input/text-input.ts";
 import "./components/tooltip/tooltip.ts";
+import "./mixins/mixins.ts";
+import "./types.js";
 
 export * from "./components/accordion/accordion.js";
 export * from "./components/avatar/avatar.js";
@@ -51,7 +53,6 @@ export * from "./components/checkbox/checkbox.js";
 export * from "./components/chips/chips.js";
 export * from "./components/dialog/dialog.js";
 export * from "./components/dropdown/menu-item/dropdown-menu-item.js";
-export * from "./components/file-upload/file-upload.js";
 export * from "./components/file-upload/file-upload.js";
 export * from "./components/global-header/global-header.js";
 export * from "./components/icon/icon.js";
@@ -70,4 +71,5 @@ export * from "./components/stepper/stepper.js";
 export * from "./components/switch/switch.js";
 export * from "./components/text-input/text-input.js";
 export * from "./components/tooltip/tooltip.js";
-
+export * from "./mixins/mixins.js";
+export * from "./types.js";

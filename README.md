@@ -2,12 +2,13 @@
 
 Install `zeta-web` from npm:
 
-```node
+```
 npm install @zebra-fed/zeta-web
 ```
 
-```yarn
-npm add @zebra-fed/zeta-web
+or yarn:
+```
+yarn add @zebra-fed/zeta-web
 ```
 
 Import the desired Zeta Web Component into your app:

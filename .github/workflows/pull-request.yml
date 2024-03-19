@@ -33,6 +33,8 @@ jobs:
         continue-on-error: true
       - name: Run tests
         run: npm run test
+      - name: Test tsdoc
+        run: npx typedoc
   generate-localizations:
     name: Generate localizations.
     needs: [code-quality]

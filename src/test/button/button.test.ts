@@ -3,7 +3,7 @@ import { ZetaButton } from "../../index.js";
 import "../../index.js";
 
 const buttonText = "Button";
-const flavors = ["primary", "primary-variant", "negative", "outline", "outline-subtle", "text", "text-inverse"];
+const flavors = ["primary", "secondary", "positive", "negative", "outline", "outline-subtle", "text"];
 
 describe("zeta-button", () => {
   let subject: ZetaButton;
