@@ -33,7 +33,7 @@
 }
 
 :host([inverse]) .container {
-  border: var(--border-size-medium) solid var(--surface-default-inverse);
+  border: var(--border-size-medium) solid var(--icon-default);
 }
 
 :host {
@@ -52,16 +52,16 @@
 }
 
 .container.icon {
-  background-color: var(--interactive-primary);
+  background-color: var(--icon-flavor-primary);
 }
 
 .container.notification {
-  background-color: var(--surface-negative);
+  background-color: var(--icon-flavor-negative);
 }
 
 :host .container {
   .count {
     position: absolute;
-    color: var(--on-surface-primary);
+    color: var(--text-inverse);
   }
 }

@@ -20,11 +20,37 @@ export const Icon: StoryObj<ZetaNavigationBar> = {
 };
 
 export const IconWithLabel: StoryObj<ZetaNavigationBar> = {
-  render: () =>
-    html`<zeta-navigation-bar>
-      <zeta-navigation-bar-item icon="star" label="Label" active></zeta-navigation-bar-item>
-      <zeta-navigation-bar-item icon="star" label="Label"></zeta-navigation-bar-item>
-      <zeta-navigation-bar-item icon="star" label="Label"></zeta-navigation-bar-item>
-    </zeta-navigation-bar>`
+  render: () => {
+    var selected = 0;
+    return html`<zeta-navigation-bar>
+      <zeta-navigation-bar-item
+        icon="star"
+        @click="${() => {
+          selected = 0;
+          console.log(selected);
+        }}"
+        label="Label"
+        .active=${selected === 0}
+      ></zeta-navigation-bar-item>
+      <zeta-navigation-bar-item
+        icon="star"
+        @click="${() => {
+          selected = 1;
+          console.log(selected);
+        }}"
+        label="Label"
+        .active=${selected === 1}
+      ></zeta-navigation-bar-item>
+      <zeta-navigation-bar-item
+        icon="star"
+        @click="${() => {
+          selected = 2;
+          console.log(selected);
+        }}"
+        label="Label"
+        .active=${selected === 2}
+      ></zeta-navigation-bar-item>
+    </zeta-navigation-bar>`;
+  }
 };
 

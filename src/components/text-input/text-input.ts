@@ -35,13 +35,14 @@ export class ZetaTextInput extends ContourableInteractiveElement {
    */
   @property() placeholder = "";
   /**
-   * Icon name
+   * Leading icon name
    */
-  @property({ type: String }) icon?: ZetaIconName;
+  @property({ type: String }) leadingIcon?: ZetaIconName;
   /**
-   * Icon position
+   * Trailing icon name
    */
-  @property({ attribute: "icon-position" }) iconPosition: "left" | "right" = "left";
+  @property({ type: String }) trailingIcon?: ZetaIconName;
+
   /**
    * Prefix text
    */
@@ -132,44 +133,42 @@ export class ZetaTextInput extends ContourableInteractiveElement {
   }
 
   private renderLeftIcon() {
-    return this.iconPosition === "left" && this.icon && this.type === "text" && !this.toggled
-      ? html` <zeta-icon class="left" color=${this.getIconColor()} size=${this.getIconSize()} .rounded=${this.rounded} name=${this.icon}></zeta-icon> `
+    return this.leadingIcon && this.type === "text" && !this.toggled
+      ? html` <zeta-icon class="left subtle" size=${this.getIconSize()} .rounded=${this.rounded} name=${this.leadingIcon}></zeta-icon> `
       : nothing;
   }
 
   private renderRightIcon() {
-    return this.iconPosition === "right" && this.icon && this.type === "text" && !this.toggled
-      ? html` <zeta-icon class="right" color=${this.getIconColor()} size=${this.getIconSize()} .rounded=${this.rounded} name=${this.icon}></zeta-icon> `
+    return this.trailingIcon && this.type === "text" && !this.toggled
+      ? html` <zeta-icon class="right subtle" size=${this.getIconSize()} .rounded=${this.rounded} name=${this.trailingIcon}></zeta-icon> `
       : this.type === "password" || this.toggled
         ? html`<zeta-icon
-          @click=${() => {
-            this.toggled = !this.toggled;
-            this.type = this.type === "text" ? "password" : "text";
-          }}
-          class="right"
-          color=${this.getIconColor()}
-          size=${this.getIconSize()}
-          .rounded=${this.rounded}
-          name=${this.toggled ? "visibility" : "visibility_off"}
-        ></zeta-icon>`
+            @click=${() => {
+              this.toggled = !this.toggled;
+              this.type = this.type === "text" ? "password" : "text";
+            }}
+            class="right"
+            size=${this.getIconSize()}
+            .rounded=${this.rounded}
+            name=${this.toggled ? "visibility" : "visibility_off"}
+          ></zeta-icon>`
         : this.type === "time"
           ? html`<zeta-icon
-          @click=${() => this.inputEl!.showPicker()}
-          class="right"
-          color=${this.getIconColor()}
-          size=${this.getIconSize()}
-          .rounded=${this.rounded}
-          name="clock_outline"
-        ></zeta-icon>`
+              @click=${() => this.inputEl!.showPicker()}
+              class="right"
+              color="var(--icon-default)"
+              size=${this.getIconSize()}
+              .rounded=${this.rounded}
+              name="clock_outline"
+            ></zeta-icon>`
           : this.type === "date"
             ? html`<zeta-icon
-          @click=${() => this.inputEl!.showPicker()}
-          class="right"
-          color=${this.getIconColor()}
-          size=${this.getIconSize()}
-          .rounded=${this.rounded}
-          name="calendar_3_day"
-        ></zeta-icon>`
+                @click=${() => this.inputEl!.showPicker()}
+                class="right"
+                size=${this.getIconSize()}
+                .rounded=${this.rounded}
+                name="calendar_3_day"
+              ></zeta-icon>`
             : nothing;
   }
 
@@ -188,10 +187,6 @@ export class ZetaTextInput extends ContourableInteractiveElement {
 
   private getIconSize() {
     return this.size === "small" ? "16" : "20";
-  }
-
-  private getIconColor() {
-    return this.disabled ? "var(--color-cool-60)" : "var(--color-cool-70)";
   }
 
   private getHintColor() {
@@ -244,3 +239,4 @@ declare global {
     "zeta-text-input": ZetaTextInput;
   }
 }
+

@@ -5,8 +5,8 @@
 }
 
 .navigation-item {
-  background-color: var(--surface-tertiary) !important;
-  color: var(--text-inverse-subtle);
+  background-color: var(--surface-default-inverse) !important;
+  color: var(--color-cool-50);
   padding: var(--spacing-3) var(--spacing-4);
   font: var(--title-medium);
 
@@ -19,6 +19,6 @@
   }
 
   &[disabled] {
-    color: var(--text-inverse-disabled) !important;
+    color: var(--color-cool-60) !important;
   }
 }

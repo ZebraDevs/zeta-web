@@ -1,7 +1,7 @@
 import { html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { BadgeStatus } from "../../../types.js";
-import styles from "./text-badge.scss?inline";
+import styles from "./label.scss?inline";
 import { ContourableElement } from "../../../mixins/contour.js";
 
 /** ZetaTextLabel web component.
@@ -12,8 +12,8 @@ import { ContourableElement } from "../../../mixins/contour.js";
  *    * Text
  *
  * @public */
-@customElement("zeta-text-badge")
-export class ZetaTextBadge extends ContourableElement {
+@customElement("zeta-label")
+export class ZetaLabel extends ContourableElement {
   /** Type of text label.
    *
    * @defaultValue `BannerStatus.default` */
@@ -37,7 +37,7 @@ export class ZetaTextBadge extends ContourableElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    "zeta-text-badge": ZetaTextBadge;
+    "zeta-label": ZetaLabel;
   }
 }
 

@@ -20,7 +20,7 @@ export default meta;
 export const Stepper: StoryObj<ZetaStepper> = {
   render: args => {
     return html`
-      <zeta-stepper .bar=${args.bar} active-step=${args.activeStep} variant="${args.variant}.rounded" =${args.rounded}>
+      <zeta-stepper .bar=${args.bar} active-step=${args.activeStep} variant="${args.variant}" .rounded=${args.rounded}>
         <li data-title="title 1" data-label="label 1"></li>
         <li data-title="title 2" data-label="label 2"></li>
         <li data-title="title 3" data-label="label 3"></li>

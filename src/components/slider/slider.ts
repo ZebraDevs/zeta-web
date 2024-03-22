@@ -138,7 +138,7 @@ export class ZetaSlider extends ContourableElement {
 
   private setStyles() {
     // TODO I don't like this but also can't move it to CSS
-    const selectedColor = "var(--icon-primary)";
+    const selectedColor = "var(--icon-flavor-primary)";
 
     this.leftHandle.style.backgroundColor = selectedColor;
     this.selectedArea.style.backgroundColor = selectedColor;

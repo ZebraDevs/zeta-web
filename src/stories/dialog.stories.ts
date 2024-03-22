@@ -19,7 +19,7 @@ export const Dialog: StoryObj<ZetaDialog> = {
   },
   render: args => {
     return html`
-      <zeta-dialog id="dialog" .rounded=${args.rounded} .centered=${args.centered} .initialOpen=${args.initialOpen} title="Dialog title">
+      <zeta-dialog id="dialog1" .rounded=${args.rounded} .centered=${args.centered} .initialOpen=${args.initialOpen} title="Dialog title">
         <div slot="dialog-body">
           Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusm od tempor incididunt ut labore et do lore magna aliquaa met, conse ctetur
           adipisc.
@@ -38,13 +38,13 @@ export const DialogWithoutIcon: StoryObj<ZetaDialog> = {
     return html`
       <zeta-button
         @click=${() => {
-          const dialog = document.querySelector("#dialog") as ZetaDialog;
+          const dialog = document.querySelector("#dialog2") as ZetaDialog;
           void dialog.show();
         }}
       >
         dialog without icon
       </zeta-button>
-      <zeta-dialog id="dialog" .rounded=${args.rounded} .centered=${args.centered} title="Dialog title">
+      <zeta-dialog id="dialog2" .rounded=${args.rounded} .centered=${args.centered} title="Dialog title">
         <div slot="dialog-body">
           Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusm od tempor incididunt ut labore et do lore magna aliquaa met, conse ctetur
           adipisc.
@@ -63,13 +63,13 @@ export const DialogWithIcon: StoryObj<ZetaDialog> = {
     return html`
       <zeta-button
         @click=${() => {
-          const dialog = document.querySelector("#dialog") as ZetaDialog;
+          const dialog = document.querySelector("#dialog3") as ZetaDialog;
           void dialog.show();
         }}
       >
         dialog with icon
       </zeta-button>
-      <zeta-dialog has-icon id="dialog" .rounded=${args.rounded} .centered=${args.centered} title="Dialog title">
+      <zeta-dialog has-icon id="dialog3" .rounded=${args.rounded} .centered=${args.centered} title="Dialog title">
         <div slot="dialog-body">
           Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusm od tempor incididunt ut labore et do lore magna aliquaa met, conse ctetur
           adipisc.
@@ -88,13 +88,13 @@ export const DialogWith2Actions: StoryObj<ZetaDialog> = {
     return html`
       <zeta-button
         @click=${() => {
-          const dialog = document.querySelector("#dialog") as ZetaDialog;
+          const dialog = document.querySelector("#dialog4") as ZetaDialog;
           void dialog.show();
         }}
       >
         dialog with two buttons
       </zeta-button>
-      <zeta-dialog has-icon id="dialog" .rounded=${args.rounded} .centered=${args.centered} title="Dialog title">
+      <zeta-dialog has-icon id="dialog4" .rounded=${args.rounded} .centered=${args.centered} title="Dialog title">
         <div slot="dialog-body">
           Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusm od tempor incididunt ut labore et do lore magna aliquaa met, conse ctetur
           adipisc.
@@ -112,13 +112,13 @@ export const DialogWith1Action: StoryObj<ZetaDialog> = {
     return html`
       <zeta-button
         @click=${() => {
-          const dialog = document.querySelector("#dialog") as ZetaDialog;
+          const dialog = document.querySelector("#dialog5") as ZetaDialog;
           void dialog.show();
         }}
       >
         dialog with one button
       </zeta-button>
-      <zeta-dialog has-icon id="dialog" .rounded=${args.rounded} .centered=${args.centered} title="Dialog title">
+      <zeta-dialog has-icon id="dialog5" .rounded=${args.rounded} .centered=${args.centered} title="Dialog title">
         <div slot="dialog-body">
           Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusm od tempor incididunt ut labore et do lore magna aliquaa met, conse ctetur
           adipisc.

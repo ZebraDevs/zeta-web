@@ -3,48 +3,43 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: var(--spacing-12);
+  width: var(--spacing-13);
   height: var(--spacing-8);
   padding: 0;
   border: none;
   border-radius: var(--radius-full) !important;
-  fill: var(--icon-subtle);
-}
-
-.indicator rect {
-  fill: var(--interactive-subtle);  
-}
-
-.indicator rect {
-  transition: all 0.2s ease-out;
-}
-
-.indicator circle {
-  transition: all 0.2s ease-out;
-  fill: var(--interactive-primary-on);
-}
-
-.container:disabled {
-  .indicator circle {
-    fill: var(--interactive-disabled-icon);
-  }
-
-  .indicator rect {
-    fill: var(--interactive-disabled)
-  }
 }
 
 :host([active]) {
   zeta-icon {
-    transform: translateX(-var(--spacing-6));
+    left: var(--spacing-2);
   }
 
-  .indicator rect {
-    fill: var(--interactive-primary);
+  .indicator .track {
+    fill: var(--icon-flavor-primary);
   }
 
-  .indicator circle {
+  .indicator .thumb {
     transform: translateX(var(--spacing-8));
+  }
+}
+.indicator .track {
+  fill: var(--icon-disabled);
+  transition: all 0.2s ease-out;
+}
+
+.indicator .thumb {
+  transition: all 0.2s ease-out;
+  fill: var(--icon-inverse);
+}
+
+.container:disabled {
+  .indicator .thumb {
+    fill: var(--icon-disabled);
+  }
+
+  .indicator .track {
+    fill: var(--surface-disabled);
   }
 }
 
@@ -54,4 +49,3 @@ zeta-icon {
   position: absolute;
   right: var(--spacing-2);
 }
-

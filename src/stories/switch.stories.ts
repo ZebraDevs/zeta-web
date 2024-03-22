@@ -6,6 +6,7 @@ const meta: Meta<ZetaSwitch> = {
   component: "zeta-switch",
   tags: ["autodocs"],
   title: "Switch",
+  args: { rounded: true },
   argTypes: {
     activeIcon: {
       options: ZetaIconNameList,

@@ -24,6 +24,6 @@
 }
 
 :host([size="small"]) > button {
-  padding: var(--spacing-1-5) var(--spacing-2-5);
-  font: var(--label-medium);
+  padding: var(--spacing-1) var(--spacing-2);
+  font: var(--label-small);
 }

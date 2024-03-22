@@ -8,7 +8,7 @@
 }
 
 .border {
-  border-left: var(--border-size-small) solid var(--border-inverse-default);
+  border-left: var(--border-size-small) solid var(--border-subtle);
 }
 
 .sub-item {
@@ -21,7 +21,7 @@
 
   &:not([disabled]) {
     &[active] {
-      background-color: var(--surface-selected);
+      background-color: var(--surface-pressed);
     }
     
    &[active],

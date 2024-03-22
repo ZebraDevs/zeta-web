@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaTextInput } from "../index.js";
+import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
 
 const meta: Meta<ZetaTextInput> = {
   tags: ["autodocs"],
@@ -14,9 +15,16 @@ const meta: Meta<ZetaTextInput> = {
     errorText: "Error!"
   },
   argTypes: {
-    icon: {
-      table: {
-        disable: true
+    leadingIcon: {
+      options: ZetaIconNameList,
+      control: {
+        type: "select"
+      }
+    },
+    trailingIcon: {
+      options: ZetaIconNameList,
+      control: {
+        type: "select"
       }
     }
   }
@@ -73,15 +81,8 @@ export const DataInput: StoryObj<ZetaTextInput> = {
 export const TextInputWithAdornments: StoryObj<ZetaTextInput> = {
   name: "Text input with adornments (icons/affixes)",
   args: {
-    icon: "star",
     prefixText: "$",
     suffix: "kg"
-  },
-  argTypes: {
-    iconPosition: {
-      options: ["left", "right"],
-      control: { type: "select" }
-    }
   }
 };
 

@@ -39,13 +39,13 @@ describe("zeta-switch", () => {
   it("should set correct color to the icon when disabled", async () => {
     const t = await fixture(html`<zeta-switch disabled activeIcon="microphone" inactiveIcon="microphone_off"></zeta-switch>`);
 
-    await expect(t.shadowRoot?.querySelector("zeta-icon")?.getAttribute("color")).to.equal("var(--interactive-disabled-icon)");
+    await expect(t.shadowRoot?.querySelector("zeta-icon")?.getAttribute("color")).to.equal("var(--icon-disabled)");
   });
 
   it("should set correct color to the icon when enabled", async () => {
     const t = await fixture(html`<zeta-switch activeIcon="microphone" inactiveIcon="microphone_off"></zeta-switch>`);
 
-    await expect(t.shadowRoot?.querySelector("zeta-icon")?.getAttribute("color")).to.equal("var(--interactive-primary-on)");
+    await expect(t.shadowRoot?.querySelector("zeta-icon")?.getAttribute("color")).to.equal("var(--icon-inverse)");
   });
 
   it("should render active icon", async () => {

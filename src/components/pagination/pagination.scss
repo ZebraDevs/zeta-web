@@ -19,7 +19,7 @@ button {
 
   &:disabled {
     pointer-events: none;
-    background-color: var(--interactive-disabled);
+    background-color: var(--surface-disabled);
   }
 
   &:hover {
@@ -33,7 +33,7 @@ button {
   &:focus {
     border: none;
     outline: none;
-    box-shadow: 0 0 0 var(--border-size-focus) var(--border-focused);
+    box-shadow: 0 0 0 var(--border-size-medium) var(--border-flavor-primary);
   } 
 }
 
@@ -55,7 +55,7 @@ button {
   &:focus {
     border: none;
     outline: none;
-    box-shadow: 0 0 0 var(--border-size-medium) var(--border-focused);
+    box-shadow: 0 0 0 var(--border-size-medium) var(--border-flavor-primary);
   }
 
   &.selected {

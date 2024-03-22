@@ -45,15 +45,15 @@ export class ZetaSwitch extends ContourableInteractiveElement {
     return html`
       <button ?disabled=${this.disabled} class="container">
         <svg class="indicator" xmlns="http://www.w3.org/2000/svg" width="64" height="32" viewBox="0 0 64 32" fill="none">
-          <rect width="64" height="32" rx="16" />
-          <circle cx="16" cy="16" r="12" />
+          <rect class="track" width="64" height="32" rx="16" />
+          <circle class="thumb" cx="16" cy="16" r="12" />
         </svg>
 
         ${this.activeIcon &&
-      this.inactiveIcon &&
-      html`
+        this.inactiveIcon &&
+        html`
           <zeta-icon
-            color="${this.disabled ? "var(--interactive-disabled-icon)" : "var(--interactive-primary-on)"}"
+            color="${this.disabled ? "var(--icon-disabled)" : "var(--icon-inverse)"}"
             name=${this.active ? this.activeIcon : this.inactiveIcon}
             .rounded=${this.rounded}
           ></zeta-icon>

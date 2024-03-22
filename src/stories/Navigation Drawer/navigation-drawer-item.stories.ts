@@ -35,7 +35,7 @@ export const ItemWithBadge: StoryObj<ZetaNavigationDrawerItem> = {
   render: args =>
     html`<zeta-navigation-drawer-item headline=${args.headline} .rounded=${args.rounded} .disabled=${args.disabled} .active=${args.active}>
       <zeta-icon slot="leading">star</zeta-icon>
-      <zeta-text-badge slot="badge" status="info">99+</zeta-text-badge>
+      <zeta-label slot="badge" status="info">99+</zeta-label>
       <zeta-icon slot="trailing">more_vertical</zeta-icon>
     </zeta-navigation-drawer-item>`
 };

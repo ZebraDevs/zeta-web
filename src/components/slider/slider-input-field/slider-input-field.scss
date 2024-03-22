@@ -60,7 +60,7 @@ input[type=number] {
 
 :host([error]:not([disabled])) {
   input {
-    background-color: var(--surface-negative-subtle);
-    border: var(--border-size-small) var(--border-negative) solid;
+    background-color: var(--surface-flavor-negative-subtle);
+    border: var(--border-size-small) var(--border-flavor-negative) solid;
   }
 }

@@ -48,13 +48,15 @@ export class ZetaStepper extends ContourableElement {
       return html`
         <li class="step-container">
           <div class="step ${classMap(classes)}">
-            <span class="step-number">${index + 1}</span>
+            <span>
+              <span class="step-number">${index + 1}</span>
+              <span class="bar ${classMap(barClass)}"></span>
+            </span>
             <div class="step-content">
               ${step.childNodes[0]} ${step.dataset.label ? html`<span class="step-label">${step.dataset.label}</span>` : nothing}
               <span class="step-title">${step.dataset.title}</span>
             </div>
           </div>
-          <span class="bar ${classMap(barClass)}"></span>
         </li>
       `;
     })}`;

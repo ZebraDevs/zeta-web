@@ -24,7 +24,7 @@ input[type=number] {
   align-items: center;
   justify-content: center;
   padding: var(--spacing-2) var(--spacing-3);
-  border: var(--border-size-small) solid var(--border-default);
+  box-shadow: 0 0 0 var(--border-size-small) var(--border-default);
   border-radius: inherit;
 
   &:has(input:disabled){
@@ -34,9 +34,7 @@ input[type=number] {
 }
 
 input {
-  font-size: var(--spacing-4);
-  font-weight: 400;
-  line-height: var(--spacing-6);
+  font: var(--body-medium);
   width: var(--spacing-12);
   background-color: transparent;
   text-align: center;

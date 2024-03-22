@@ -24,29 +24,11 @@
 }
 
 .point {
-  @media (prefers-color-scheme: light) {
-    & path {
-      fill: var(--color-cool-20);
-    }
-  }
-  @media (prefers-color-scheme: dark) {
-    & path {
-      fill: var(--color-warm-10);
-    }
-  }
+ fill: var(--icon-light);
 }
 
 .text {
-  color: var(--color-cool-90);
-  background: var(--color-cool-20);
+  background: var(--icon-light);
   padding: var(--spacing-1) var(--spacing-2);
   font: var(--body-small);
-  line-height: var(--spacing-5);
-
-  @media (prefers-color-scheme: dark) {
-    & {
-      color: var(--color-cool-90);
-      background: var(--color-warm-10);
-    }
-  }
 }

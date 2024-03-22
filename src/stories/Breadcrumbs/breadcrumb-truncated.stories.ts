@@ -4,7 +4,10 @@ import { ZetaBreadcrumbTruncated } from "../../index.js";
 const meta: Meta<ZetaBreadcrumbTruncated> = {
   component: "zeta-breadcrumb-truncated",
   title: "Breadcrumb",
-  args: {}
+
+  args: {
+    rounded: true
+  }
 };
 
 export default meta;

@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
-import { ZetaTextBadge } from "../../index.js";
+import { ZetaLabel } from "../../index.js";
 
-const meta: Meta<ZetaTextBadge> = {
+const meta: Meta<ZetaLabel> = {
   title: "Badges",
-  component: "zeta-text-badge",
+  component: "zeta-label",
   args: {
     text: "label",
     rounded: true
@@ -20,5 +20,5 @@ const meta: Meta<ZetaTextBadge> = {
 
 export default meta;
 
-export const TextBadge: StoryObj<ZetaTextBadge> = {};
+export const TextBadge: StoryObj<ZetaLabel> = {};
 

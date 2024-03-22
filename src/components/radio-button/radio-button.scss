@@ -19,17 +19,17 @@ label{
 
 .container {
   position: relative;
-  border: var(--color-cool-50) var(--border-size-medium) solid;
+  border: var(--icon-subtle) var(--border-size-medium) solid;
   background: var(--surface-default);
-  height: var(--spacing-4-5);
-  width: var(--spacing-4-5);
+  height: var(--spacing-4);
+  width: var(--spacing-4);
   border-radius: var(--radius-full);
   display: flex;
   align-items: center;
   justify-content: center;
 
   &:hover {
-    border-color: var(--color-cool-90);
+    border-color: var(--border-hover);
   }
 }
 
@@ -39,7 +39,7 @@ label{
   width: var(--spacing-2-5);
   height: var(--spacing-2-5);
   border-radius: var(--radius-full);
-  background-color: var(--surface-primary);
+  background-color: var(--icon-flavor-primary);
 }
 
 :host([checked]) .checkmark {
@@ -48,13 +48,13 @@ label{
 
 :host([checked]:not([disabled])) {
   .container {
-    border-color: var(--surface-primary);
+    border-color: var(--icon-flavor-primary);
 
     &:hover {
-      border-color: var(--surface-primary-hover);
+      border-color: var(--border-hover);
 
       .checkmark {
-        background-color: var(--surface-primary-hover);
+        background-color: var(--border-hover);
       }
     }
   }
@@ -62,17 +62,17 @@ label{
 
 :host([disabled]:not([checked])) {
   .container {
-    background: var(--color-cool-20);
-    border: var(--surface-basic) var(--border-size-medium) solid;
+    background: var(--surface-disabled);
+    border: var(--surface-disabled) var(--border-size-medium) solid;
   }
 }
 
 :host([disabled]) {
   .container {
-    border-color: var(--interactive-disabled);
+    border-color: var(--surface-disabled);
   }
 
   .checkmark {
-    background-color: var(--interactive-disabled);
+    background-color: var(--surface-disabled);
   }
 }

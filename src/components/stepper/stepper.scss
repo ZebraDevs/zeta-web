@@ -11,17 +11,22 @@ li {
 }
 
 .step-container:last-of-type {
+  margin-bottom: 0px;
   .bar {
-    display: none;
+    &:after {
+      width: 0 !important;
+      display: none;
+    }
   }
 }
 
 .bar {
   display: flex;
   height: var(--spacing-8);
-  width: var(--spacing-24);
+  width: var(--spacing-15);
   align-items: center;
   justify-content: center;
+  margin-left: var(--spacing-4);
 
   &:after {
     content: "";
@@ -40,13 +45,13 @@ li {
 
   &.active {
     &:after {
-      background-color: var(--surface-primary);
+      background-color: var(--surface-flavor-primary);
     }
   }
 
   &.completed {
     &:after {
-      background-color: var(--surface-positive);
+      background-color: var(--surface-flavor-positive);
     }
   }
 }
@@ -59,27 +64,31 @@ li {
   text-align: center;
   padding: 0 var(--spacing-4);
 
+  span {
+    display: flex;
+  }
+
   &:not(.active):not(.completed) {
     color: var(--text-disabled);
   }
 
   &.active {
     .step-label {
-      background-color: var(--surface-primary);
+      color: var(--surface-flavor-primary);
     }
 
     .step-number {
-      background-color: var(--surface-primary);
+      background-color: var(--surface-flavor-primary);
     }
   }
 
   &.completed {
     .step-label {
-      background-color: var(--surface-positive);
+      color: var(--surface-flavor-positive);
     }
 
     .step-number {
-      background-color: var(--surface-positive);
+      background-color: var(--surface-flavor-positive);
     }
   }
 }
@@ -87,10 +96,11 @@ li {
 .step-content {
   display: flex;
   flex-direction: column;
+  align-self: baseline;
 
   .step-title {
     margin-top: var(--spacing-2);
-    font: var(--body-small);
+    font: var(--body-medium);
   }
 
   .step-label {
@@ -120,12 +130,18 @@ li {
 }
 
 :host([variant="vertical"]) {
+  span {
+    display: flex;
+    flex-direction: column;
+  }
+
   .steps {
     flex-direction: column;
   }
 
   .step-container {
     flex-direction: column;
+    margin-bottom: var(--spacing-5);
   }
 
   .step {
@@ -135,8 +151,10 @@ li {
   }
 
   .bar {
-    height: var(--spacing-12);
-    width: var(--spacing-12);
+    height: var(--spacing-8);
+    width: var(--spacing-8);
+    margin-top: var(--spacing-1);
+    margin-left: 0;
 
     &:after {
       content: "";
@@ -147,7 +165,7 @@ li {
 
   .step-title {
     margin-top: var(--spacing-1);
-    font: var(--body-large);
+    font: var(--title-large);
   }
 
   .step-label {
@@ -156,9 +174,10 @@ li {
   }
 
   .step-number {
-    width: var(--spacing-12);
-    height: var(--spacing-12);
+    width: var(--spacing-8);
+    height: var(--spacing-8);
     font: var(--label-medium);
     margin-right: var(--spacing-6);
+    align-self: baseline;
   }
 }

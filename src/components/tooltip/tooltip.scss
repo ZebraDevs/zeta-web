@@ -4,7 +4,7 @@
   justify-content: center;
   width: fit-content;
   height: fit-content;
-  background: var(--color-cool-90);
+  background: var(--icon-default);
   padding: var(--spacing-1) var(--spacing-2);
   position: relative;
 
@@ -19,7 +19,7 @@
 }
 
 .point {
-  fill: var(--color-cool-90);
+  fill: var(--icon-default);
   position: absolute;
 
   path {

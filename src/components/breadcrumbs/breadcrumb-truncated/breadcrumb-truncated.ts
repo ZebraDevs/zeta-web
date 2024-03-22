@@ -14,8 +14,8 @@ export class ZetaBreadcrumbTruncated extends ContourableElement {
   protected override render() {
     return html`
       <div class="truncated-container">
-        <zeta-icon name="chevron_right"></zeta-icon>
-        <zeta-more-menu></zeta-more-menu>
+        <zeta-icon name="chevron_right" .rounded=${this.rounded}></zeta-icon>
+        <zeta-more-menu .rounded=${this.rounded}></zeta-more-menu>
       </div>
     `;
   }
@@ -26,3 +26,4 @@ declare global {
     "zeta-breadcrumb-truncated": ZetaBreadcrumbTruncated;
   }
 }
+

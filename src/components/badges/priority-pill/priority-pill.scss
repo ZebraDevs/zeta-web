@@ -2,7 +2,7 @@
   display: flex;
   display: inline-flex;
   align-items: center;
-  background: var(--surface-primary-subtle);
+  background: var(--surface-flavor-primary-subtle);
   white-space: nowrap;
   line-height: var(--spacing-5);
   font: var(--body-small);
@@ -15,15 +15,12 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: var(--surface-primary);
+    background: var(--icon-flavor-primary);
     color: var(--text-inverse);
-    line-height: 1;
   }
 
   > .text {
-    color: var(--text-default);
     padding: var(--spacing-1) var(--spacing-2);
-    line-height: 1;
   }
 }
 

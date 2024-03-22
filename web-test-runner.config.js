@@ -18,7 +18,7 @@ export default {
   files: ['src/test/**/*.js', 'src/test/**/*.ts', 'src/index.js'],
   nodeResolve: true,
   plugins: [vitePlugin()],
-  browsers: [getBrowser('chromium'),/** playwrightLauncher({ product: 'firefox' }),*/  playwrightLauncher({ product: 'webkit' })],
+  browsers: [getBrowser('chromium')],
   filterBrowserLogs: ({ args }) => { return !args.some((log) => typeof log === "string" && log.includes("Lit is in dev mode")) },
   testFramework: {
     config: {

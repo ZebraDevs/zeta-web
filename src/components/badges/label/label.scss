@@ -1,25 +1,29 @@
 :host([status="info"]) .container {
-  background: var(--surface-info);
-  color: var(--text-info);
+  background: var(--surface-flavor-info);
 }
 
 :host([status="positive"]) .container {
-  background: var(--surface-positive);
-  color: var(--text-positive);
+  background: var(--surface-flavor-positive);
 }
 
 :host([status="warning"]) .container {
-  background: var(--surface-warning);
-  color: var(--text-warning);
+  background: var(--surface-flavor-warning);
 }
 
 :host([status="negative"]) .container {
-  background: var(--surface-negative);
-  color: var(--text-negative);
+  background: var(--surface-flavor-negative);
 }
 
+.container,
 :host([status="neutral"]) .container {
-  background: var(--surface-neutral);
+  background: var(--icon-light);
+  .text {
+    color: var(--text-default);
+  }
+}
+
+:host(:not([status="neutral"])) .container .text {
+  color: var(--text-inverse);
 }
 
 .container {
@@ -32,6 +36,5 @@
   .text {
     padding: 2px var(--spacing-1);
     font: var(--label-small);
-    color: var(--text-default);
   }
 }

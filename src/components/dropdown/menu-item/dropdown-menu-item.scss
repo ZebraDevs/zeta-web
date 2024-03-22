@@ -1,7 +1,6 @@
 .header {
   display: flex;
   flex: 1;
-  font-weight: 500;
 }
 
 .leading {
@@ -10,10 +9,10 @@
 
 .menu-item {
   background-color: var(--surface-default);
-  padding: var(--spacing-3-5) var(--spacing-3);
+  padding: var(--spacing-3) var(--spacing-2);
   display: flex;
   align-items: center;
   gap: var(--spacing-3);
   user-select: none;
-  font: var(--body-small);
+  font: var(--body-medium);
 }

@@ -1,36 +1,36 @@
 :host([priority="urgent"]) {
   .number {
-    background: var(--color-red-60);
+    background: var(--surface-flavor-negative);
   }
   .container {
-    background: var(--color-red-20);
+    background: var(--surface-flavor-negative-subtle);
   }
 }
 
 :host([priority="high"]) {
   .number {
-    background: var(--color-orange-40);
+    background: var(--border-flavor-warning);
   }
   .container {
-    background: var(--color-orange-10);
+    background: var(--surface-flavor-warning-subtle);
   }
 }
 
 :host([priority="medium"]) {
   .number {
-    background: var(--color-blue-60);
+    background: var(--surface-flavor-primary);
   }
   .container {
-    background: var(--color-blue-20);
+    background: var(--surface-flavor-primary-subtle);
   }
 }
 
 :host([priority="low"]) {
   .number {
-    background: var(--color-green-60);
+    background: var(--surface-flavor-positive);
   }
   .container {
-    background: var(--color-green-20);
+    background: var(--surface-flavor-positive-subtle);
   }
 }
 
@@ -69,7 +69,7 @@
     font: var(--body-x-small);
     width: var(--spacing-5);
     height: var(--spacing-5);
-    line-height: 1;
+    color: var(--text-inverse);
   }
 }
 

@@ -1,53 +1,53 @@
 :host(:not([disabled])) {  
   &:host([flavor="primary"]) > :first-child {
-    background-color: var(--surface-primary);
+    background-color: var(--surface-flavor-primary);
     color: var(--text-inverse);   
     
     &:hover {
-      background-color: var(--surface-primary-hover);
+      background-color: var(--component-button-primary-hover);
     }
 
     &:active {
-      background-color: var(--surface-primary-active);
+      background-color: var(--component-button-primary-pressed);
     }
   }
 
   &:host([flavor="secondary"]) > :first-child {
-    background-color: var(--surface-secondary);
+    background-color: var(--surface-flavor-secondary);
     color: var(--text-inverse);   
     
     &:hover {
-      background-color: var(--surface-secondary-hover);
+      background-color: var(--component-button-secondary-hover);
     }
 
     &:active {
-      background-color: var(--surface-secondary-active);
+      background-color: var(--component-button-secondary-pressed);
     }
   }
 
   &:host([flavor="positive"]) > :first-child {
-    background-color: var(--surface-positive);
+    background-color: var(--surface-flavor-positive);
     color: var(--text-inverse);
 
     &:hover {
-      background-color: var(--surface-positive-hover);
+      background-color: var(--component-button-positive-hover);
     }
 
     &:active {
-      background-color: var(--surface-positive-active);
+      background-color: var(--component-button-positive-pressed);
     }
   }
 
   &:host([flavor="negative"]) > :first-child {
-    background-color: var(--surface-negative);
+    background-color: var(--surface-flavor-negative);
     color: var(--text-inverse);
 
     &:hover {
-      background-color: var(--surface-negative-hover);
+      background-color: var(--component-button-negative-hover);
     }
 
     &:active {
-      background-color: var(--surface-negative-active);
+      background-color: var(--component-button-negative-pressed);
     }
   }
 
@@ -56,29 +56,29 @@
   &:host([flavor="text"]) > :first-child, 
   &:host([flavor="basic"]) > :first-child, 
   &:host([flavor="basic-negative"]) > :first-child {
-    background-color: var(--surface-outline);
+    background-color: var(--surface-default);
 
     &:hover {
-      background-color: var(--surface-outline-hover);
+      background-color: var(--surface-hover);
     }
 
     &:active {
-      background-color: var(--surface-outline-active);
+      background-color: var(--surface-pressed);
     }
   }
 
   &:host([flavor="outline"]) > :first-child {
-    color: var(--text-primary);
-    box-shadow: 0 0 0 var(--border-size-small) var(--border-outline);
+    color: var(--text-flavor-primary);
+    box-shadow: 0 0 0 var(--border-size-small) var(--component-button-outline-text-border);
   }
 
   &:host([flavor="outline-subtle"]) > :first-child {
     color: var(--text-default);
-    box-shadow: 0 0 0 var(--border-size-small) var(--border-outline-subtle);
+    box-shadow: 0 0 0 var(--border-size-small) var(--border-default);
   }
   
   &:host([flavor="text"]) > :first-child {
-    color: var(--text-primary);
+    color: var(--text-flavor-primary);
   }
 }
 

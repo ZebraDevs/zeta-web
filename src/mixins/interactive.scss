@@ -8,7 +8,7 @@
   }
 
   &:active {
-    background: var(--surface-active);
+    background: var(--surface-pressed);
   }
 }
 
@@ -20,7 +20,7 @@
 
 :host(:focus) .interactive-target,
 :host(:focus) > :not(:has(.interactive-target)) {
-  box-shadow: 0 0 0 var(--border-size-focus) var(--border-focused);
-  outline-width: var(--border-size-focus);
-  outline-color: var(--border-focused);
+  box-shadow: 0 0 0 var(--border-size-medium) var(--border-flavor-primary);
+  outline-width: var(--border-size-medium);
+  outline-color: var(--border-flavor-primary);
 }

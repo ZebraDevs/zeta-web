@@ -28,7 +28,7 @@ export class ZetaNavigationBarItem extends ContourableElement {
 
   private getIconColor() {
     if (this.active) {
-      return "var(--icon-subtle)";
+      return "var(--icon-flavor-primary)";
     } else {
       return "var(--icon-disabled)";
     }

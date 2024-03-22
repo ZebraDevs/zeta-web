@@ -1,10 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
-import { ZetaMoreMenu } from "../index.js";
+import { ZetaMoreMenu } from "../../index.js";
 
 const meta: Meta<ZetaMoreMenu> = {
   component: "zeta-more-menu",
-  tags: ["autodocs"],
-  title: "More Menu",
+  title: "BreadCrumb",
   args: {
     disabled: false,
     rounded: false

@@ -45,11 +45,11 @@ input[type="checkbox"] {
 
 :host([checked]:not([disabled])) {
   .container {
-    background: var(--surface-primary);
+    background: var(--surface-flavor-primary);
     border: var(--surface-basic) var(--border-size-medium) solid;
   }
 
   .container:hover {
-    background: var(--surface-primary-hover);
+    background: var(--icon-flavor-primary);
   }
 }

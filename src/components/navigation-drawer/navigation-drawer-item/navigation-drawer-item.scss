@@ -9,7 +9,7 @@
 
   &:not([disabled]) {
     &[active] {
-      background-color: var(--surface-selected);
+      background-color: var(--surface-pressed);
     }
 
     &[active],

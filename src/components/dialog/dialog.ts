@@ -48,7 +48,6 @@ export class ZetaDialog extends ContourablePopupElement {
 
   /**
    *  Whether the modal is initially open.
-   *  @default false
    */
   @property({ type: Boolean }) initialOpen: boolean = false;
   /**
@@ -65,7 +64,7 @@ export class ZetaDialog extends ContourablePopupElement {
   @queryAssignedElements({ slot: "other", flatten: true }) otherBtn!: NodeList;
 
   private renderIcon() {
-    return this.hasIcon ? html` <zeta-icon name="warning" .rounded=${this.rounded} color="var(--icon-warning)" size="32"></zeta-icon> ` : nothing;
+    return this.hasIcon ? html` <zeta-icon name="warning" .rounded=${this.rounded} color="var(--icon-flavor-warning)" size="32"></zeta-icon> ` : nothing;
   }
 
   // set props to buttons

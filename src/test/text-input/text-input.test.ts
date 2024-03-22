@@ -34,15 +34,15 @@ describe("Zeta Input", () => {
   });
 
   it("should render icon", async () => {
-    const el = await setup({});
+    const el = await setup({ leadingIcon: "star" });
     assert.equal(el.shadowRoot?.querySelector("zeta-icon")?.getAttribute("name"), "star");
-    assert.equal(el.shadowRoot?.querySelector("zeta-icon")?.getAttribute("class"), "left");
+    assert.equal(el.shadowRoot?.querySelector("zeta-icon")?.getAttribute("class")!.includes("left"), true);
   });
 
   it("should render icon on the right", async () => {
-    const el = await setup({ iconPos: "right" });
+    const el = await setup({ trailingIcon: "star" });
     assert.equal(el.shadowRoot?.querySelector("zeta-icon")?.getAttribute("name"), "star");
-    assert.equal(el.shadowRoot?.querySelector("zeta-icon")?.getAttribute("class"), "right");
+    assert.equal(el.shadowRoot?.querySelector("zeta-icon")?.getAttribute("class")!.includes("right"), true);
   });
 
   it("should render prefix", async () => {
@@ -70,10 +70,25 @@ describe("Zeta Input", () => {
     assert.equal(el.shadowRoot?.querySelector(".hint-text zeta-icon")?.getAttribute("color"), "var(--color-red-60)");
   });
 
+  const rgbToHex = (r: number, g: number, b: number) =>
+    "#" +
+    [r, g, b]
+      .map(x => {
+        const hex = x.toString(16);
+        return hex.length === 1 ? "0" + hex : hex;
+      })
+      .join("");
+
   it("should set disabled color to icon when field is disabled", async () => {
-    const el = await setup({ disabled: true });
-    assert.equal(el.shadowRoot?.querySelector("zeta-icon")?.getAttribute("name"), "star");
-    assert.equal(el.shadowRoot?.querySelector("zeta-icon")?.getAttribute("color"), "var(--color-cool-60)");
+    const el = await setup({ disabled: true, leadingIcon: "star" });
+    const x = el.shadowRoot?.querySelector("zeta-icon");
+    expect(x).to.exist;
+    assert.equal(x!.getAttribute("name"), "star");
+
+    const rgbColor = window.getComputedStyle(x!).color.split("(")[1].split(")")[0].split(",");
+    const hexColor = rgbToHex(Number.parseInt(rgbColor[0]), Number.parseInt(rgbColor[1]), Number.parseInt(rgbColor[2]));
+
+    await expect(hexColor).to.equal(getComputedStyle(el).getPropertyValue("--icon-disabled"));
   });
 
   it("should change value", async () => {

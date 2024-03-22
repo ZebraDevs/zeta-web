@@ -3,7 +3,7 @@
 }
 
 :host([type="selected"]) .container {
-  background: var(--surface-basic-active);
+  background: var(--surface-pressed);
 }
 
 .container {
@@ -25,11 +25,11 @@
   }
 
   &:hover {
-    background-color: var(--surface-basic-hover);
+    background-color: var(--surface-hover);
   }
 
   &:disabled {
-    background-color: var(--interactive-disabled);
+    background-color: var(--surface-disabled);
     color: var(--text-disabled); 
   }
 }

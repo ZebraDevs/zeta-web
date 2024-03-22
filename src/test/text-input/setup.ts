@@ -5,12 +5,12 @@ import "../../index.js";
 
 interface Props {
   disabled?: boolean;
-  icon?: ZetaIconName;
+  leadingIcon?: ZetaIconName;
+  trailingIcon?: ZetaIconName;
   suffix?: string;
   prefix?: string;
   error?: boolean;
   required?: boolean;
-  iconPos?: "left" | "right";
   label?: string;
   hint?: string;
   errorText?: string;
@@ -20,10 +20,10 @@ interface Props {
 export async function setup({
   hint = "",
   label = "",
-  iconPos = "left",
   disabled = false,
   error = false,
-  icon = "star",
+  leadingIcon,
+  trailingIcon,
   prefix = "",
   required = false,
   suffix = "",
@@ -38,9 +38,9 @@ export async function setup({
       label=${label}
       suffix=${suffix}
       prefix=${prefix}
-      icon-position=${iconPos}
       ?disabled=${disabled}
-      icon=${icon}
+      leadingIcon=${leadingIcon}
+      trailingIcon=${trailingIcon}
       error-text=${errorText}
       type=${type}
     ></zeta-text-input>`

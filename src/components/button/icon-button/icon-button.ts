@@ -53,7 +53,7 @@ export class ZetaIconButton extends ContourableFlavoredElement {
     } else {
       switch (this.flavor) {
         case "outline":
-          return "var(--surface-primary)";
+          return "var(--surface-flavor-primary)";
         case "outline-subtle":
         case "text":
           return "var(--icon-default)";

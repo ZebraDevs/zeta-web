@@ -59,7 +59,7 @@ export class ZetaInPageBanner extends ContourableElement {
     return html`
       <div class="banner">
         <div class="leading">
-          <zeta-icon size="20" .rounded=${this.rounded} color="var(--icon-${this.status})">${this.getIcon()}</zeta-icon>
+          <zeta-icon size="20" .rounded=${this.rounded}>${this.getIcon()}</zeta-icon>
         </div>
         <div class="trailing">
           <div class="header">
