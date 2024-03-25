@@ -52,10 +52,12 @@
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.9.3",
+    "@etchteam/storybook-addon-status": "^4.2.4",
     "@lit/localize-tools": "^0.7.2",
     "@open-wc/testing": "^3.0.0-next.5",
     "@remcovaes/web-test-runner-vite-plugin": "^1.2.1",
     "@storybook/addon-a11y": "^8.0.0",
+    "@storybook/addon-designs": "^8.0.0",
     "@storybook/addon-essentials": "^8.0.0",
     "@storybook/addon-links": "^8.0.0",
     "@storybook/blocks": "^8.0.0",
@@ -94,6 +96,7 @@
     "@fontsource/ibm-plex-sans": "^5.0.18",
     "@lit/localize": "^0.12.1",
     "@zebra-fed/zeta-icons": "^0.1.65",
+    "firebase-tools": "^13.5.2",
     "lit": "^3.0.0"
   },
   "overrides": {

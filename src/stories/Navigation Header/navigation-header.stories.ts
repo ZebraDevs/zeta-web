@@ -2,11 +2,10 @@ import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import { ZetaNavigationHeader } from "../../index.js";
 
+//TODO: Component seems to be removed from figma.
 const meta: Meta<ZetaNavigationHeader> = {
   component: "zeta-navigation-header",
-  title: "Navigation Header",
-  args: {},
-  argTypes: {}
+  title: "Navigation Header"
 };
 export default meta;
 

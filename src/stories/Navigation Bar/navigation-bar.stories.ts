@@ -4,22 +4,21 @@ import { ZetaNavigationBar } from "../../index.js";
 
 const meta: Meta<ZetaNavigationBar> = {
   component: "zeta-navigation-bar",
-
-  title: "Navigation Bar"
+  title: "Navigation Bar",
+  parameters: {
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=21186-40498&mode=design&t=DUHsS5bjWB5UW1iG-4"
+    },
+    status: {
+      type: "ready"
+    }
+  }
 };
 
 export default meta;
 
-export const Icon: StoryObj<ZetaNavigationBar> = {
-  render: () =>
-    html`<zeta-navigation-bar>
-      <zeta-navigation-bar-item icon="star" active></zeta-navigation-bar-item>
-      <zeta-navigation-bar-item icon="star"></zeta-navigation-bar-item>
-      <zeta-navigation-bar-item icon="star"></zeta-navigation-bar-item>
-    </zeta-navigation-bar>`
-};
-
-export const IconWithLabel: StoryObj<ZetaNavigationBar> = {
+export const BarIconAndLabel: StoryObj<ZetaNavigationBar> = {
   render: () => {
     var selected = 0;
     return html`<zeta-navigation-bar>
@@ -54,3 +53,11 @@ export const IconWithLabel: StoryObj<ZetaNavigationBar> = {
   }
 };
 
+export const BarIconsOnly: StoryObj<ZetaNavigationBar> = {
+  render: () =>
+    html`<zeta-navigation-bar>
+      <zeta-navigation-bar-item icon="star" active></zeta-navigation-bar-item>
+      <zeta-navigation-bar-item icon="star"></zeta-navigation-bar-item>
+      <zeta-navigation-bar-item icon="star"></zeta-navigation-bar-item>
+    </zeta-navigation-bar>`
+};

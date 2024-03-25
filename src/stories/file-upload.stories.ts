@@ -12,7 +12,15 @@ const meta: Meta<ZetaFileUpload> = {
     multiple: true,
     accept: ""
   },
-  argTypes: {}
+  parameters: {
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=898-10794&mode=design&t=DUHsS5bjWB5UW1iG-4"
+    },
+    status: {
+      type: "needsAttention"
+    }
+  }
 };
 export default meta;
 

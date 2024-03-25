@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaTextInput } from "../index.js";
 import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
 
+//TODO: These are seperate on Figma, should be split here too?
 const meta: Meta<ZetaTextInput> = {
   tags: ["autodocs"],
   title: "Text Input",
@@ -26,6 +27,15 @@ const meta: Meta<ZetaTextInput> = {
       control: {
         type: "select"
       }
+    }
+  },
+  parameters: {
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=23116-92946&mode=design&t=DUHsS5bjWB5UW1iG-4"
+    },
+    status: {
+      type: "ready"
     }
   }
 };
@@ -56,10 +66,19 @@ export const TimeInput: StoryObj<ZetaTextInput> = {
         disable: true
       }
     }
+  },
+  parameters: {
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=22751-9848&mode=design&t=DUHsS5bjWB5UW1iG-4"
+    },
+    status: {
+      type: "ready"
+    }
   }
 };
 
-export const DataInput: StoryObj<ZetaTextInput> = {
+export const DateInput: StoryObj<ZetaTextInput> = {
   name: "Date input",
   args: {
     type: "date",
@@ -75,9 +94,17 @@ export const DataInput: StoryObj<ZetaTextInput> = {
         disable: true
       }
     }
+  },
+  parameters: {
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=22667-52911&mode=design&t=DUHsS5bjWB5UW1iG-4"
+    },
+    status: {
+      type: "ready"
+    }
   }
 };
-
 export const TextInputWithAdornments: StoryObj<ZetaTextInput> = {
   name: "Text input with adornments (icons/affixes)",
   args: {
@@ -139,6 +166,15 @@ export const PasswordField: StoryObj<ZetaTextInput> = {
       table: {
         disable: true
       }
+    }
+  },
+  parameters: {
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=948-13632&mode=design&t=DUHsS5bjWB5UW1iG-4"
+    },
+    status: {
+      type: "needsAttention"
     }
   }
 };

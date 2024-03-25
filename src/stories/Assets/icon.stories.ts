@@ -8,7 +8,7 @@ const meta: Meta<ZetaIcon> = {
   args: {
     name: "alarm",
     size: "20rem",
-    color: "red",
+    color: "var(--surface-primary)",
     rounded: false
   },
   argTypes: {

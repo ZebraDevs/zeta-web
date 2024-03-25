@@ -830,6 +830,150 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/generated/locales/de.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "templates",
+          "type": {
+            "text": "object"
+          },
+          "default": "{\n      'se6ce0e7d35ca8a05': `Drop files here to upload`,\n'sa192dac6f544578d': `Selection contains files with invalid types.`,\n's7008dc713aed8339': `Multiple files are not allowed.`,\n's08b05407b5565ca4': `or`,\n's5d929ff1619ac0c9': `Search`,\n    }"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "templates",
+          "declaration": {
+            "name": "templates",
+            "module": "src/generated/locales/de.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/generated/locales/en-GB.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "templates",
+          "type": {
+            "text": "object"
+          },
+          "default": "{\n      'se6ce0e7d35ca8a05': `Drop files here to upload`,\n'sa192dac6f544578d': `Selection contains files with invalid types.`,\n's7008dc713aed8339': `Multiple files are not allowed.`,\n's08b05407b5565ca4': `or`,\n's5d929ff1619ac0c9': `Search`,\n    }"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "templates",
+          "declaration": {
+            "name": "templates",
+            "module": "src/generated/locales/en-GB.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/generated/locales/en-US.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "templates",
+          "type": {
+            "text": "object"
+          },
+          "default": "{\n      'se6ce0e7d35ca8a05': `Drop files here to upload`,\n'sa192dac6f544578d': `Selection contains files with invalid types.`,\n's7008dc713aed8339': `Multiple files are not allowed.`,\n's08b05407b5565ca4': `or`,\n's5d929ff1619ac0c9': `Search`,\n    }"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "templates",
+          "declaration": {
+            "name": "templates",
+            "module": "src/generated/locales/en-US.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/generated/locales/es.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "templates",
+          "type": {
+            "text": "object"
+          },
+          "default": "{\n      'se6ce0e7d35ca8a05': `Drop files here to upload`,\n'sa192dac6f544578d': `Selection contains files with invalid types.`,\n's7008dc713aed8339': `Multiple files are not allowed.`,\n's08b05407b5565ca4': `or`,\n's5d929ff1619ac0c9': `Search`,\n    }"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "templates",
+          "declaration": {
+            "name": "templates",
+            "module": "src/generated/locales/es.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/generated/locales/fr.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "templates",
+          "type": {
+            "text": "object"
+          },
+          "default": "{\n      'se6ce0e7d35ca8a05': `Drop files here to upload`,\n'sa192dac6f544578d': `Selection contains files with invalid types.`,\n's7008dc713aed8339': `Multiple files are not allowed.`,\n's08b05407b5565ca4': `or`,\n's5d929ff1619ac0c9': `Search`,\n    }"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "templates",
+          "declaration": {
+            "name": "templates",
+            "module": "src/generated/locales/fr.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/generated/locales/it.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "templates",
+          "type": {
+            "text": "object"
+          },
+          "default": "{\n      'se6ce0e7d35ca8a05': `Drop files here to upload`,\n'sa192dac6f544578d': `Selection contains files with invalid types.`,\n's7008dc713aed8339': `Multiple files are not allowed.`,\n's08b05407b5565ca4': `or`,\n's5d929ff1619ac0c9': `Search`,\n    }"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "templates",
+          "declaration": {
+            "name": "templates",
+            "module": "src/generated/locales/it.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/accordion/accordion.ts",
       "declarations": [
         {
@@ -1347,6 +1491,29 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/breadcrumbs/breadcrumb.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "\"./breadcrumb-truncated/breadcrumb-truncated.js\""
+          }
+        },
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "\"./more-menu/more-menu.js\""
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/button/button.ts",
       "declarations": [
         {
@@ -1570,29 +1737,6 @@
           "declaration": {
             "name": "ZetaCard",
             "module": "src/components/card/card.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/breadcrumbs/breadcrumb.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "*",
-          "declaration": {
-            "name": "*",
-            "package": "\"./breadcrumb-truncated/breadcrumb-truncated.js\""
-          }
-        },
-        {
-          "kind": "js",
-          "name": "*",
-          "declaration": {
-            "name": "*",
-            "package": "\"./more-menu/more-menu.js\""
           }
         }
       ]
@@ -3174,6 +3318,225 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/search/search.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Zeta search field component\nSupports speech recognition search on Chrome",
+          "name": "ZetaSearch",
+          "members": [
+            {
+              "kind": "field",
+              "name": "shadowRootOptions",
+              "type": {
+                "text": "ShadowRootInit"
+              },
+              "static": true,
+              "default": "{ delegatesFocus: true, mode: \"open\" }"
+            },
+            {
+              "kind": "field",
+              "name": "inputEl",
+              "type": {
+                "text": "HTMLElement | null"
+              },
+              "privacy": "private",
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "focus"
+            },
+            {
+              "kind": "method",
+              "name": "blur"
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "Search value",
+              "attribute": "value"
+            },
+            {
+              "kind": "field",
+              "name": "formAction",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "Form action",
+              "attribute": "form-action"
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "\"small\" | \"medium\" | \"large\""
+              },
+              "default": "\"medium\"",
+              "description": "Size",
+              "attribute": "size",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disabled state",
+              "attribute": "disabled",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "onSubmit",
+              "type": {
+                "text": "(query?: string) => void | undefined"
+              },
+              "description": "Onsubmit callback",
+              "attribute": "on-submit"
+            },
+            {
+              "kind": "field",
+              "name": "hasIcon",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Show microphone icon",
+              "attribute": "has-icon"
+            },
+            {
+              "kind": "field",
+              "name": "handleInput",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "getIconSize",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "getIconColor",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "resetInput",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "handleSpeechRecognition",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "renderRightIcon",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "renderCancelIcon",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "handleSubmit",
+              "privacy": "private"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "Search value",
+              "fieldName": "value"
+            },
+            {
+              "name": "form-action",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "Form action",
+              "fieldName": "formAction"
+            },
+            {
+              "name": "size",
+              "type": {
+                "text": "\"small\" | \"medium\" | \"large\""
+              },
+              "default": "\"medium\"",
+              "description": "Size",
+              "fieldName": "size"
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Disabled state",
+              "fieldName": "disabled"
+            },
+            {
+              "name": "on-submit",
+              "type": {
+                "text": "(query?: string) => void | undefined"
+              },
+              "description": "Onsubmit callback",
+              "fieldName": "onSubmit"
+            },
+            {
+              "name": "has-icon",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Show microphone icon",
+              "fieldName": "hasIcon"
+            }
+          ],
+          "superclass": {
+            "name": "ContourableInteractiveElement",
+            "module": "/src/mixins/interactive.js"
+          },
+          "tagName": "zeta-search",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ZetaSearch",
+          "declaration": {
+            "name": "ZetaSearch",
+            "module": "src/components/search/search.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "zeta-search",
+          "declaration": {
+            "name": "ZetaSearch",
+            "module": "src/components/search/search.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/slider/slider.ts",
       "declarations": [
         {
@@ -4401,490 +4764,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/generated/locales/de.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "templates",
-          "type": {
-            "text": "object"
-          },
-          "default": "{\n      'se6ce0e7d35ca8a05': `Drop files here to upload`,\n'sa192dac6f544578d': `Selection contains files with invalid types.`,\n's7008dc713aed8339': `Multiple files are not allowed.`,\n's08b05407b5565ca4': `or`,\n's5d929ff1619ac0c9': `Search`,\n    }"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "templates",
-          "declaration": {
-            "name": "templates",
-            "module": "src/generated/locales/de.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/generated/locales/en-GB.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "templates",
-          "type": {
-            "text": "object"
-          },
-          "default": "{\n      'se6ce0e7d35ca8a05': `Drop files here to upload`,\n'sa192dac6f544578d': `Selection contains files with invalid types.`,\n's7008dc713aed8339': `Multiple files are not allowed.`,\n's08b05407b5565ca4': `or`,\n's5d929ff1619ac0c9': `Search`,\n    }"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "templates",
-          "declaration": {
-            "name": "templates",
-            "module": "src/generated/locales/en-GB.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/generated/locales/en-US.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "templates",
-          "type": {
-            "text": "object"
-          },
-          "default": "{\n      'se6ce0e7d35ca8a05': `Drop files here to upload`,\n'sa192dac6f544578d': `Selection contains files with invalid types.`,\n's7008dc713aed8339': `Multiple files are not allowed.`,\n's08b05407b5565ca4': `or`,\n's5d929ff1619ac0c9': `Search`,\n    }"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "templates",
-          "declaration": {
-            "name": "templates",
-            "module": "src/generated/locales/en-US.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/generated/locales/es.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "templates",
-          "type": {
-            "text": "object"
-          },
-          "default": "{\n      'se6ce0e7d35ca8a05': `Drop files here to upload`,\n'sa192dac6f544578d': `Selection contains files with invalid types.`,\n's7008dc713aed8339': `Multiple files are not allowed.`,\n's08b05407b5565ca4': `or`,\n's5d929ff1619ac0c9': `Search`,\n    }"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "templates",
-          "declaration": {
-            "name": "templates",
-            "module": "src/generated/locales/es.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/generated/locales/fr.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "templates",
-          "type": {
-            "text": "object"
-          },
-          "default": "{\n      'se6ce0e7d35ca8a05': `Drop files here to upload`,\n'sa192dac6f544578d': `Selection contains files with invalid types.`,\n's7008dc713aed8339': `Multiple files are not allowed.`,\n's08b05407b5565ca4': `or`,\n's5d929ff1619ac0c9': `Search`,\n    }"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "templates",
-          "declaration": {
-            "name": "templates",
-            "module": "src/generated/locales/fr.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/generated/locales/it.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "templates",
-          "type": {
-            "text": "object"
-          },
-          "default": "{\n      'se6ce0e7d35ca8a05': `Drop files here to upload`,\n'sa192dac6f544578d': `Selection contains files with invalid types.`,\n's7008dc713aed8339': `Multiple files are not allowed.`,\n's08b05407b5565ca4': `or`,\n's5d929ff1619ac0c9': `Search`,\n    }"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "templates",
-          "declaration": {
-            "name": "templates",
-            "module": "src/generated/locales/it.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/search/search.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "Zeta search field component\nSupports speech recognition search on Chrome",
-          "name": "ZetaSearch",
-          "members": [
-            {
-              "kind": "field",
-              "name": "shadowRootOptions",
-              "type": {
-                "text": "ShadowRootInit"
-              },
-              "static": true,
-              "default": "{ delegatesFocus: true, mode: \"open\" }"
-            },
-            {
-              "kind": "field",
-              "name": "inputEl",
-              "type": {
-                "text": "HTMLElement | null"
-              },
-              "privacy": "private",
-              "readonly": true
-            },
-            {
-              "kind": "method",
-              "name": "focus"
-            },
-            {
-              "kind": "method",
-              "name": "blur"
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "description": "Search value",
-              "attribute": "value"
-            },
-            {
-              "kind": "field",
-              "name": "formAction",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "description": "Form action",
-              "attribute": "form-action"
-            },
-            {
-              "kind": "field",
-              "name": "size",
-              "type": {
-                "text": "\"small\" | \"medium\" | \"large\""
-              },
-              "default": "\"medium\"",
-              "description": "Size",
-              "attribute": "size",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Disabled state",
-              "attribute": "disabled",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "onSubmit",
-              "type": {
-                "text": "(query?: string) => void | undefined"
-              },
-              "description": "Onsubmit callback",
-              "attribute": "on-submit"
-            },
-            {
-              "kind": "field",
-              "name": "hasIcon",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Show microphone icon",
-              "attribute": "has-icon"
-            },
-            {
-              "kind": "field",
-              "name": "handleInput",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "getIconSize",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "getIconColor",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "resetInput",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "handleSpeechRecognition",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "renderRightIcon",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "renderCancelIcon",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "handleSubmit",
-              "privacy": "private"
-            }
-          ],
-          "attributes": [
-            {
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "description": "Search value",
-              "fieldName": "value"
-            },
-            {
-              "name": "form-action",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "description": "Form action",
-              "fieldName": "formAction"
-            },
-            {
-              "name": "size",
-              "type": {
-                "text": "\"small\" | \"medium\" | \"large\""
-              },
-              "default": "\"medium\"",
-              "description": "Size",
-              "fieldName": "size"
-            },
-            {
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Disabled state",
-              "fieldName": "disabled"
-            },
-            {
-              "name": "on-submit",
-              "type": {
-                "text": "(query?: string) => void | undefined"
-              },
-              "description": "Onsubmit callback",
-              "fieldName": "onSubmit"
-            },
-            {
-              "name": "has-icon",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Show microphone icon",
-              "fieldName": "hasIcon"
-            }
-          ],
-          "superclass": {
-            "name": "ContourableInteractiveElement",
-            "module": "/src/mixins/interactive.js"
-          },
-          "tagName": "zeta-search",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "ZetaSearch",
-          "declaration": {
-            "name": "ZetaSearch",
-            "module": "src/components/search/search.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "zeta-search",
-          "declaration": {
-            "name": "ZetaSearch",
-            "module": "src/components/search/search.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/test/text-input/setup.ts",
-      "declarations": [
-        {
-          "kind": "function",
-          "name": "setup",
-          "parameters": [
-            {
-              "name": "{\n  hint = \"\",\n  label = \"\",\n  disabled = false,\n  error = false,\n  leadingIcon,\n  trailingIcon,\n  prefix = \"\",\n  required = false,\n  suffix = \"\",\n  type = \"text\",\n  errorText = undefined\n}",
-              "type": {
-                "text": "Props"
-              }
-            }
-          ]
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "setup",
-          "declaration": {
-            "name": "setup",
-            "module": "src/test/text-input/setup.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/badges/status-label/status-label.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "ZetaStatusLabel web component.\n\nTo help some information, labels, or errors stand out, we present them with badges. They can look like buttons, but users can’t select them. They just guide users to things they should pay attention to.\n\nSlotted children:\n  * Text\n  * Icon",
-          "name": "ZetaStatusLabel",
-          "members": [
-            {
-              "kind": "field",
-              "name": "status",
-              "type": {
-                "text": "BadgeStatus"
-              },
-              "default": "\"neutral\"",
-              "description": "Type of status label.",
-              "attribute": "status",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "text",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "Text displayed on label.\n\nCan also be slotted.",
-              "attribute": "text"
-            },
-            {
-              "kind": "field",
-              "name": "icon",
-              "type": {
-                "text": "ZetaIconName | undefined"
-              },
-              "description": "Icon leading the component. @see {ZetaIconName}.",
-              "attribute": "icon"
-            }
-          ],
-          "attributes": [
-            {
-              "name": "status",
-              "type": {
-                "text": "BadgeStatus"
-              },
-              "default": "\"neutral\"",
-              "description": "Type of status label.",
-              "fieldName": "status"
-            },
-            {
-              "name": "text",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "Text displayed on label.\n\nCan also be slotted.",
-              "fieldName": "text"
-            },
-            {
-              "name": "icon",
-              "type": {
-                "text": "ZetaIconName | undefined"
-              },
-              "description": "Icon leading the component. @see {ZetaIconName}.",
-              "fieldName": "icon"
-            }
-          ],
-          "superclass": {
-            "name": "ContourableElement",
-            "module": "/src/mixins/contour.js"
-          },
-          "tagName": "zeta-status-label",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "ZetaStatusLabel",
-          "declaration": {
-            "name": "ZetaStatusLabel",
-            "module": "src/components/badges/status-label/status-label.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "zeta-status-label",
-          "declaration": {
-            "name": "ZetaStatusLabel",
-            "module": "src/components/badges/status-label/status-label.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/components/badges/indicators/indicators.ts",
       "declarations": [
         {
@@ -5342,6 +5221,34 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/test/text-input/setup.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "setup",
+          "parameters": [
+            {
+              "name": "{\n  hint = \"\",\n  label = \"\",\n  disabled = false,\n  error = false,\n  leadingIcon,\n  trailingIcon,\n  prefix = \"\",\n  required = false,\n  suffix = \"\",\n  type = \"text\",\n  errorText = undefined\n}",
+              "type": {
+                "text": "Props"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "setup",
+          "declaration": {
+            "name": "setup",
+            "module": "src/test/text-input/setup.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/badges/label/label.ts",
       "declarations": [
         {
@@ -5412,6 +5319,99 @@
           "declaration": {
             "name": "ZetaLabel",
             "module": "src/components/badges/label/label.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/badges/status-label/status-label.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "ZetaStatusLabel web component.\n\nTo help some information, labels, or errors stand out, we present them with badges. They can look like buttons, but users can’t select them. They just guide users to things they should pay attention to.\n\nSlotted children:\n  * Text\n  * Icon",
+          "name": "ZetaStatusLabel",
+          "members": [
+            {
+              "kind": "field",
+              "name": "status",
+              "type": {
+                "text": "BadgeStatus"
+              },
+              "default": "\"neutral\"",
+              "description": "Type of status label.",
+              "attribute": "status",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "text",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "Text displayed on label.\n\nCan also be slotted.",
+              "attribute": "text"
+            },
+            {
+              "kind": "field",
+              "name": "icon",
+              "type": {
+                "text": "ZetaIconName | undefined"
+              },
+              "description": "Icon leading the component. @see {ZetaIconName}.",
+              "attribute": "icon"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "status",
+              "type": {
+                "text": "BadgeStatus"
+              },
+              "default": "\"neutral\"",
+              "description": "Type of status label.",
+              "fieldName": "status"
+            },
+            {
+              "name": "text",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "Text displayed on label.\n\nCan also be slotted.",
+              "fieldName": "text"
+            },
+            {
+              "name": "icon",
+              "type": {
+                "text": "ZetaIconName | undefined"
+              },
+              "description": "Icon leading the component. @see {ZetaIconName}.",
+              "fieldName": "icon"
+            }
+          ],
+          "superclass": {
+            "name": "ContourableElement",
+            "module": "/src/mixins/contour.js"
+          },
+          "tagName": "zeta-status-label",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ZetaStatusLabel",
+          "declaration": {
+            "name": "ZetaStatusLabel",
+            "module": "src/components/badges/status-label/status-label.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "zeta-status-label",
+          "declaration": {
+            "name": "ZetaStatusLabel",
+            "module": "src/components/badges/status-label/status-label.ts"
           }
         }
       ]
@@ -5491,78 +5491,79 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/badges/tag/tag.ts",
+      "path": "src/components/bottom-sheets/sheet-header/sheet-header.ts",
       "declarations": [
         {
           "kind": "class",
-          "description": "",
-          "name": "ZetaTag",
+          "description": "Zeta Sheet Header web component.",
+          "name": "ZetaSheetHeader",
           "members": [
+            {
+              "kind": "field",
+              "name": "alignment",
+              "type": {
+                "text": "Alignment"
+              },
+              "default": "\"start\"",
+              "description": "Sheet Header alignment.",
+              "attribute": "alignment",
+              "reflects": true
+            },
             {
               "kind": "field",
               "name": "text",
               "type": {
                 "text": "string"
               },
-              "description": "Text displayed in the tag",
-              "default": "\"Tag\"",
-              "attribute": "text"
-            },
-            {
-              "kind": "field",
-              "name": "point",
-              "type": {
-                "text": "\"right\" | \"left\""
-              },
-              "description": "Direction of the tag point",
-              "default": "\"right\"",
-              "attribute": "point",
+              "default": "\"Title\"",
+              "description": "Sheet Header text content.",
+              "attribute": "text",
               "reflects": true
             }
           ],
           "attributes": [
             {
+              "name": "alignment",
+              "type": {
+                "text": "Alignment"
+              },
+              "default": "\"start\"",
+              "description": "Sheet Header alignment.",
+              "fieldName": "alignment"
+            },
+            {
               "name": "text",
               "type": {
                 "text": "string"
               },
-              "description": "Text displayed in the tag",
-              "default": "\"Tag\"",
+              "default": "\"Title\"",
+              "description": "Sheet Header text content.",
               "fieldName": "text"
-            },
-            {
-              "name": "point",
-              "type": {
-                "text": "\"right\" | \"left\""
-              },
-              "description": "Direction of the tag point",
-              "default": "\"right\"",
-              "fieldName": "point"
             }
           ],
           "superclass": {
             "name": "ContourableElement",
             "module": "/src/mixins/contour.js"
           },
-          "tagName": "zeta-tag",
+          "tagName": "zeta-sheet-header",
           "customElement": true
         }
       ],
       "exports": [
         {
           "kind": "js",
-          "name": "ZetaTag",
+          "name": "ZetaSheetHeader",
           "declaration": {
-            "name": "ZetaTag",
-            "module": "src/components/badges/tag/tag.ts"
+            "name": "ZetaSheetHeader",
+            "module": "src/components/bottom-sheets/sheet-header/sheet-header.ts"
           }
         },
         {
           "kind": "custom-element-definition",
-          "name": "zeta-tag",
+          "name": "zeta-sheet-header",
           "declaration": {
-            "name": "ZetaTag",
-            "module": "src/components/badges/tag/tag.ts"
+            "name": "ZetaSheetHeader",
+            "module": "src/components/bottom-sheets/sheet-header/sheet-header.ts"
           }
         }
       ]
@@ -5667,6 +5668,84 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/badges/tag/tag.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "ZetaTag",
+          "members": [
+            {
+              "kind": "field",
+              "name": "text",
+              "type": {
+                "text": "string"
+              },
+              "description": "Text displayed in the tag",
+              "default": "\"Tag\"",
+              "attribute": "text"
+            },
+            {
+              "kind": "field",
+              "name": "point",
+              "type": {
+                "text": "\"right\" | \"left\""
+              },
+              "description": "Direction of the tag point",
+              "default": "\"right\"",
+              "attribute": "point",
+              "reflects": true
+            }
+          ],
+          "attributes": [
+            {
+              "name": "text",
+              "type": {
+                "text": "string"
+              },
+              "description": "Text displayed in the tag",
+              "default": "\"Tag\"",
+              "fieldName": "text"
+            },
+            {
+              "name": "point",
+              "type": {
+                "text": "\"right\" | \"left\""
+              },
+              "description": "Direction of the tag point",
+              "default": "\"right\"",
+              "fieldName": "point"
+            }
+          ],
+          "superclass": {
+            "name": "ContourableElement",
+            "module": "/src/mixins/contour.js"
+          },
+          "tagName": "zeta-tag",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ZetaTag",
+          "declaration": {
+            "name": "ZetaTag",
+            "module": "src/components/badges/tag/tag.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "zeta-tag",
+          "declaration": {
+            "name": "ZetaTag",
+            "module": "src/components/badges/tag/tag.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/bottom-sheets/sheet-handle/sheet-handle.ts",
       "declarations": [
         {
@@ -5703,79 +5782,140 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/bottom-sheets/sheet-header/sheet-header.ts",
+      "path": "src/components/breadcrumbs/breadcrumb-truncated/breadcrumb-truncated.ts",
       "declarations": [
         {
           "kind": "class",
-          "description": "Zeta Sheet Header web component.",
-          "name": "ZetaSheetHeader",
-          "members": [
-            {
-              "kind": "field",
-              "name": "alignment",
-              "type": {
-                "text": "Alignment"
-              },
-              "default": "\"start\"",
-              "description": "Sheet Header alignment.",
-              "attribute": "alignment",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "text",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"Title\"",
-              "description": "Sheet Header text content.",
-              "attribute": "text",
-              "reflects": true
-            }
-          ],
-          "attributes": [
-            {
-              "name": "alignment",
-              "type": {
-                "text": "Alignment"
-              },
-              "default": "\"start\"",
-              "description": "Sheet Header alignment.",
-              "fieldName": "alignment"
-            },
-            {
-              "name": "text",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"Title\"",
-              "description": "Sheet Header text content.",
-              "fieldName": "text"
-            }
-          ],
+          "description": "The breadcrumb is a secondary navigation patten that helps a user understand the hierarchy among levels and navigate back through them.",
+          "name": "ZetaBreadcrumbTruncated",
+          "members": [],
           "superclass": {
             "name": "ContourableElement",
             "module": "/src/mixins/contour.js"
           },
-          "tagName": "zeta-sheet-header",
+          "tagName": "zeta-breadcrumb-truncated",
           "customElement": true
         }
       ],
       "exports": [
         {
           "kind": "js",
-          "name": "ZetaSheetHeader",
+          "name": "ZetaBreadcrumbTruncated",
           "declaration": {
-            "name": "ZetaSheetHeader",
-            "module": "src/components/bottom-sheets/sheet-header/sheet-header.ts"
+            "name": "ZetaBreadcrumbTruncated",
+            "module": "src/components/breadcrumbs/breadcrumb-truncated/breadcrumb-truncated.ts"
           }
         },
         {
           "kind": "custom-element-definition",
-          "name": "zeta-sheet-header",
+          "name": "zeta-breadcrumb-truncated",
           "declaration": {
-            "name": "ZetaSheetHeader",
-            "module": "src/components/bottom-sheets/sheet-header/sheet-header.ts"
+            "name": "ZetaBreadcrumbTruncated",
+            "module": "src/components/breadcrumbs/breadcrumb-truncated/breadcrumb-truncated.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/card/card-body/card-body.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Used to display the text in a card body.",
+          "name": "ZetaCardBody",
+          "slots": [
+            {
+              "description": "The content of the card body.",
+              "name": "default"
+            }
+          ],
+          "members": [],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "zeta-card-body",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ZetaCardBody",
+          "declaration": {
+            "name": "ZetaCardBody",
+            "module": "src/components/card/card-body/card-body.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "zeta-card-body",
+          "declaration": {
+            "name": "ZetaCardBody",
+            "module": "src/components/card/card-body/card-body.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/breadcrumbs/more-menu/more-menu.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Zeta Breadcrumbs- More menu.",
+          "name": "ZetaMoreMenu",
+          "members": [
+            {
+              "kind": "field",
+              "name": "icon",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"more_horizontal\"",
+              "description": "More menu icon.",
+              "attribute": "icon"
+            },
+            {
+              "kind": "method",
+              "name": "handleOpen"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "icon",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"more_horizontal\"",
+              "description": "More menu icon.",
+              "fieldName": "icon"
+            }
+          ],
+          "superclass": {
+            "name": "ContourableInteractiveElement",
+            "module": "/src/mixins/interactive.js"
+          },
+          "tagName": "zeta-more-menu",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ZetaMoreMenu",
+          "declaration": {
+            "name": "ZetaMoreMenu",
+            "module": "src/components/breadcrumbs/more-menu/more-menu.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "zeta-more-menu",
+          "declaration": {
+            "name": "ZetaMoreMenu",
+            "module": "src/components/breadcrumbs/more-menu/more-menu.ts"
           }
         }
       ]
@@ -5955,48 +6095,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/card/card-body/card-body.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "Used to display the text in a card body.",
-          "name": "ZetaCardBody",
-          "slots": [
-            {
-              "description": "The content of the card body.",
-              "name": "default"
-            }
-          ],
-          "members": [],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "tagName": "zeta-card-body",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "ZetaCardBody",
-          "declaration": {
-            "name": "ZetaCardBody",
-            "module": "src/components/card/card-body/card-body.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "zeta-card-body",
-          "declaration": {
-            "name": "ZetaCardBody",
-            "module": "src/components/card/card-body/card-body.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/components/card/card-footer/card-footer.ts",
       "declarations": [
         {
@@ -6033,191 +6131,6 @@
           "declaration": {
             "name": "ZetaCardFooter",
             "module": "src/components/card/card-footer/card-footer.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/breadcrumbs/more-menu/more-menu.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "Zeta Breadcrumbs- More menu.",
-          "name": "ZetaMoreMenu",
-          "members": [
-            {
-              "kind": "field",
-              "name": "icon",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"more_horizontal\"",
-              "description": "More menu icon.",
-              "attribute": "icon"
-            },
-            {
-              "kind": "method",
-              "name": "handleOpen"
-            }
-          ],
-          "attributes": [
-            {
-              "name": "icon",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"more_horizontal\"",
-              "description": "More menu icon.",
-              "fieldName": "icon"
-            }
-          ],
-          "superclass": {
-            "name": "ContourableInteractiveElement",
-            "module": "/src/mixins/interactive.js"
-          },
-          "tagName": "zeta-more-menu",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "ZetaMoreMenu",
-          "declaration": {
-            "name": "ZetaMoreMenu",
-            "module": "src/components/breadcrumbs/more-menu/more-menu.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "zeta-more-menu",
-          "declaration": {
-            "name": "ZetaMoreMenu",
-            "module": "src/components/breadcrumbs/more-menu/more-menu.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/card/card-header/card-header.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "Card headers are used at the top of cards.",
-          "name": "ZetaCardHeader",
-          "slots": [
-            {
-              "description": "The headline text.",
-              "name": ""
-            },
-            {
-              "description": "Content placed before the headline",
-              "name": "leading"
-            },
-            {
-              "description": "Content placed after the headline",
-              "name": "trailing"
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "headline",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "The headline text. Can Also be slotted.",
-              "attribute": "headline"
-            },
-            {
-              "kind": "field",
-              "name": "subHeadline",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "The sub headline text.",
-              "attribute": "sub-headline"
-            }
-          ],
-          "attributes": [
-            {
-              "name": "headline",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "The headline text. Can Also be slotted.",
-              "fieldName": "headline"
-            },
-            {
-              "name": "sub-headline",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "The sub headline text.",
-              "fieldName": "subHeadline"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "tagName": "zeta-card-header",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "ZetaCardHeader",
-          "declaration": {
-            "name": "ZetaCardHeader",
-            "module": "src/components/card/card-header/card-header.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "zeta-card-header",
-          "declaration": {
-            "name": "ZetaCardHeader",
-            "module": "src/components/card/card-header/card-header.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/breadcrumbs/breadcrumb-truncated/breadcrumb-truncated.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "The breadcrumb is a secondary navigation patten that helps a user understand the hierarchy among levels and navigate back through them.",
-          "name": "ZetaBreadcrumbTruncated",
-          "members": [],
-          "superclass": {
-            "name": "ContourableElement",
-            "module": "/src/mixins/contour.js"
-          },
-          "tagName": "zeta-breadcrumb-truncated",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "ZetaBreadcrumbTruncated",
-          "declaration": {
-            "name": "ZetaBreadcrumbTruncated",
-            "module": "src/components/breadcrumbs/breadcrumb-truncated/breadcrumb-truncated.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "zeta-breadcrumb-truncated",
-          "declaration": {
-            "name": "ZetaBreadcrumbTruncated",
-            "module": "src/components/breadcrumbs/breadcrumb-truncated/breadcrumb-truncated.ts"
           }
         }
       ]
@@ -6360,6 +6273,93 @@
           "declaration": {
             "name": "ZetaAssistChip",
             "module": "src/components/chips/assist-chip/assist-chip.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/card/card-header/card-header.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Card headers are used at the top of cards.",
+          "name": "ZetaCardHeader",
+          "slots": [
+            {
+              "description": "The headline text.",
+              "name": ""
+            },
+            {
+              "description": "Content placed before the headline",
+              "name": "leading"
+            },
+            {
+              "description": "Content placed after the headline",
+              "name": "trailing"
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "headline",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "The headline text. Can Also be slotted.",
+              "attribute": "headline"
+            },
+            {
+              "kind": "field",
+              "name": "subHeadline",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "The sub headline text.",
+              "attribute": "sub-headline"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "headline",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "The headline text. Can Also be slotted.",
+              "fieldName": "headline"
+            },
+            {
+              "name": "sub-headline",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "The sub headline text.",
+              "fieldName": "subHeadline"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "zeta-card-header",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ZetaCardHeader",
+          "declaration": {
+            "name": "ZetaCardHeader",
+            "module": "src/components/card/card-header/card-header.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "zeta-card-header",
+          "declaration": {
+            "name": "ZetaCardHeader",
+            "module": "src/components/card/card-header/card-header.ts"
           }
         }
       ]
@@ -6779,175 +6779,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/navigation-drawer/navigation-drawer-footer/navigation-drawer-footer.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "ZetaNavigationDrawerFooter web component.\n\nThe footer used on a navigation drawer.",
-          "name": "ZetaNavigationDrawerFooter",
-          "slots": [
-            {
-              "description": "The headline text.",
-              "name": ""
-            },
-            {
-              "description": "Content placed before the headline. Not shown if 'variant' is set to 'logo'.",
-              "name": "leading"
-            },
-            {
-              "description": "Content placed after the headline. Not shown if 'variant' is set to 'logo'.",
-              "name": "trailing"
-            },
-            {
-              "description": "The element that replaces the default Zebra logo. Not shown if 'variant' is set to 'profile'.",
-              "name": "logo"
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "headline",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "The headline text. Can also be slotted.",
-              "attribute": "headline"
-            },
-            {
-              "kind": "field",
-              "name": "subHeadline",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "The sub headline text.",
-              "attribute": "sub-headline"
-            },
-            {
-              "kind": "field",
-              "name": "divide",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Shows a divider above the footer.",
-              "attribute": "divide",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "variant",
-              "type": {
-                "text": "FooterVariant"
-              },
-              "default": "\"profile\"",
-              "description": "The variant of the footer.\nIf set to 'logo' the zebra logo or the contents of the 'logo' slot will be shown and the headline text will be displayed beneath the logo.",
-              "attribute": "variant",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "hideDefaultLogo",
-              "type": {
-                "text": "boolean | undefined"
-              },
-              "attribute": "hide-default-logo",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "customLogo",
-              "type": {
-                "text": "NodeList"
-              }
-            },
-            {
-              "kind": "method",
-              "name": "getProfileFooter",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "handleSlotChange",
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "getLogoFooter",
-              "privacy": "private"
-            }
-          ],
-          "attributes": [
-            {
-              "name": "headline",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "The headline text. Can also be slotted.",
-              "fieldName": "headline"
-            },
-            {
-              "name": "sub-headline",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "The sub headline text.",
-              "fieldName": "subHeadline"
-            },
-            {
-              "name": "divide",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Shows a divider above the footer.",
-              "fieldName": "divide"
-            },
-            {
-              "name": "variant",
-              "type": {
-                "text": "FooterVariant"
-              },
-              "default": "\"profile\"",
-              "description": "The variant of the footer.\nIf set to 'logo' the zebra logo or the contents of the 'logo' slot will be shown and the headline text will be displayed beneath the logo.",
-              "fieldName": "variant"
-            },
-            {
-              "name": "hide-default-logo",
-              "type": {
-                "text": "boolean | undefined"
-              },
-              "fieldName": "hideDefaultLogo"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "tagName": "zeta-navigation-drawer-footer",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "ZetaNavigationDrawerFooter",
-          "declaration": {
-            "name": "ZetaNavigationDrawerFooter",
-            "module": "src/components/navigation-drawer/navigation-drawer-footer/navigation-drawer-footer.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "zeta-navigation-drawer-footer",
-          "declaration": {
-            "name": "ZetaNavigationDrawerFooter",
-            "module": "src/components/navigation-drawer/navigation-drawer-footer/navigation-drawer-footer.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/components/navigation-bar/navigation-bar-item/navigation-bar-item.ts",
       "declarations": [
         {
@@ -7159,6 +6990,339 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/navigation-drawer/navigation-drawer-footer/navigation-drawer-footer.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "ZetaNavigationDrawerFooter web component.\n\nThe footer used on a navigation drawer.",
+          "name": "ZetaNavigationDrawerFooter",
+          "slots": [
+            {
+              "description": "The headline text.",
+              "name": ""
+            },
+            {
+              "description": "Content placed before the headline. Not shown if 'variant' is set to 'logo'.",
+              "name": "leading"
+            },
+            {
+              "description": "Content placed after the headline. Not shown if 'variant' is set to 'logo'.",
+              "name": "trailing"
+            },
+            {
+              "description": "The element that replaces the default Zebra logo. Not shown if 'variant' is set to 'profile'.",
+              "name": "logo"
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "headline",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "The headline text. Can also be slotted.",
+              "attribute": "headline"
+            },
+            {
+              "kind": "field",
+              "name": "subHeadline",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "The sub headline text.",
+              "attribute": "sub-headline"
+            },
+            {
+              "kind": "field",
+              "name": "divide",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Shows a divider above the footer.",
+              "attribute": "divide",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "variant",
+              "type": {
+                "text": "FooterVariant"
+              },
+              "default": "\"profile\"",
+              "description": "The variant of the footer.\nIf set to 'logo' the zebra logo or the contents of the 'logo' slot will be shown and the headline text will be displayed beneath the logo.",
+              "attribute": "variant",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "hideDefaultLogo",
+              "type": {
+                "text": "boolean | undefined"
+              },
+              "attribute": "hide-default-logo",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "customLogo",
+              "type": {
+                "text": "NodeList"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "getProfileFooter",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "handleSlotChange",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "getLogoFooter",
+              "privacy": "private"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "headline",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "The headline text. Can also be slotted.",
+              "fieldName": "headline"
+            },
+            {
+              "name": "sub-headline",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "The sub headline text.",
+              "fieldName": "subHeadline"
+            },
+            {
+              "name": "divide",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Shows a divider above the footer.",
+              "fieldName": "divide"
+            },
+            {
+              "name": "variant",
+              "type": {
+                "text": "FooterVariant"
+              },
+              "default": "\"profile\"",
+              "description": "The variant of the footer.\nIf set to 'logo' the zebra logo or the contents of the 'logo' slot will be shown and the headline text will be displayed beneath the logo.",
+              "fieldName": "variant"
+            },
+            {
+              "name": "hide-default-logo",
+              "type": {
+                "text": "boolean | undefined"
+              },
+              "fieldName": "hideDefaultLogo"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "zeta-navigation-drawer-footer",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ZetaNavigationDrawerFooter",
+          "declaration": {
+            "name": "ZetaNavigationDrawerFooter",
+            "module": "src/components/navigation-drawer/navigation-drawer-footer/navigation-drawer-footer.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "zeta-navigation-drawer-footer",
+          "declaration": {
+            "name": "ZetaNavigationDrawerFooter",
+            "module": "src/components/navigation-drawer/navigation-drawer-footer/navigation-drawer-footer.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/navigation-drawer/navigation-drawer-item/navigation-drawer-item.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "ZetaNavigationDrawerItem web component.\n\nA navigation item to be used in a zeta-navigation-drawer",
+          "name": "ZetaNavigationDrawerItem",
+          "slots": [
+            {
+              "description": "The headline text.",
+              "name": ""
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "headline",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "The headline text. Can also be slotted.",
+              "attribute": "headline"
+            },
+            {
+              "kind": "field",
+              "name": "active",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Sets the item to active.",
+              "attribute": "active",
+              "reflects": true
+            }
+          ],
+          "attributes": [
+            {
+              "name": "headline",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "The headline text. Can also be slotted.",
+              "fieldName": "headline"
+            },
+            {
+              "name": "active",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Sets the item to active.",
+              "fieldName": "active"
+            }
+          ],
+          "superclass": {
+            "name": "ContourableInteractiveElement",
+            "module": "/src/mixins/interactive.js"
+          },
+          "tagName": "zeta-navigation-drawer-item",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ZetaNavigationDrawerItem",
+          "declaration": {
+            "name": "ZetaNavigationDrawerItem",
+            "module": "src/components/navigation-drawer/navigation-drawer-item/navigation-drawer-item.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "zeta-navigation-drawer-item",
+          "declaration": {
+            "name": "ZetaNavigationDrawerItem",
+            "module": "src/components/navigation-drawer/navigation-drawer-item/navigation-drawer-item.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/navigation-drawer/navigation-drawer-sub-item/navigation-drawer-sub-item.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "ZetaNavigationDrawerSubItem web component.\n\nA navigation sub item to be used in a zeta-navigation-drawer",
+          "name": "ZetaNavigationDrawerSubItem",
+          "slots": [
+            {
+              "description": "The headline text.",
+              "name": ""
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "headline",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "The headline text. Can also be slotted.",
+              "attribute": "headline"
+            },
+            {
+              "kind": "field",
+              "name": "active",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Sets the item to active.",
+              "attribute": "active",
+              "reflects": true
+            }
+          ],
+          "attributes": [
+            {
+              "name": "headline",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "The headline text. Can also be slotted.",
+              "fieldName": "headline"
+            },
+            {
+              "name": "active",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Sets the item to active.",
+              "fieldName": "active"
+            }
+          ],
+          "superclass": {
+            "name": "ContourableInteractiveElement",
+            "module": "/src/mixins/interactive.js"
+          },
+          "tagName": "zeta-navigation-drawer-sub-item",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ZetaNavigationDrawerSubItem",
+          "declaration": {
+            "name": "ZetaNavigationDrawerSubItem",
+            "module": "src/components/navigation-drawer/navigation-drawer-sub-item/navigation-drawer-sub-item.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "zeta-navigation-drawer-sub-item",
+          "declaration": {
+            "name": "ZetaNavigationDrawerSubItem",
+            "module": "src/components/navigation-drawer/navigation-drawer-sub-item/navigation-drawer-sub-item.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/navigation-header/navigation-item/navigation-item.ts",
       "declarations": [
         {
@@ -7268,164 +7432,136 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/navigation-drawer/navigation-drawer-sub-item/navigation-drawer-sub-item.ts",
+      "path": "src/components/progress-indicators/progress-bar/progress-bar.ts",
       "declarations": [
         {
           "kind": "class",
-          "description": "ZetaNavigationDrawerSubItem web component.\n\nA navigation sub item to be used in a zeta-navigation-drawer",
-          "name": "ZetaNavigationDrawerSubItem",
-          "slots": [
-            {
-              "description": "The headline text.",
-              "name": ""
-            }
-          ],
+          "description": "ZetaProgressBar web component.\n\nProgress indicators express an unspecified wait time or display the length of a process.",
+          "name": "ZetaProgressBar",
           "members": [
             {
               "kind": "field",
-              "name": "headline",
+              "name": "size",
               "type": {
-                "text": "string | undefined"
+                "text": "ProgressBarSize"
               },
-              "description": "The headline text. Can also be slotted.",
-              "attribute": "headline"
+              "default": "\"medium\"",
+              "description": "The size of the progress indicator. Can either be 'medium' or 'thin'.",
+              "attribute": "size",
+              "reflects": true
             },
             {
               "kind": "field",
-              "name": "active",
+              "name": "indeterminate",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
-              "default": "false",
-              "description": "Sets the item to active.",
-              "attribute": "active",
+              "description": "Displays the indeterminate progress indicator. If set to true, any argument for 'value' will be ignored.",
+              "attribute": "indeterminate",
               "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "description": "The % complete of the progess indicator.",
+              "attribute": "value"
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "The label for the progess indicator.",
+              "attribute": "label"
+            },
+            {
+              "kind": "field",
+              "name": "buffering",
+              "type": {
+                "text": "boolean | undefined"
+              },
+              "description": "Displays the buffering dots at the end of the progress indicator.\nSetting this will pause the animation if 'indeterminate' is set to true.",
+              "attribute": "buffering",
+              "reflects": true
+            },
+            {
+              "kind": "method",
+              "name": "getBufferingDots",
+              "privacy": "private"
             }
           ],
           "attributes": [
             {
-              "name": "headline",
+              "name": "size",
+              "type": {
+                "text": "ProgressBarSize"
+              },
+              "default": "\"medium\"",
+              "description": "The size of the progress indicator. Can either be 'medium' or 'thin'.",
+              "fieldName": "size"
+            },
+            {
+              "name": "indeterminate",
+              "type": {
+                "text": "boolean | undefined"
+              },
+              "description": "Displays the indeterminate progress indicator. If set to true, any argument for 'value' will be ignored.",
+              "fieldName": "indeterminate"
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "description": "The % complete of the progess indicator.",
+              "fieldName": "value"
+            },
+            {
+              "name": "label",
               "type": {
                 "text": "string | undefined"
               },
-              "description": "The headline text. Can also be slotted.",
-              "fieldName": "headline"
+              "description": "The label for the progess indicator.",
+              "fieldName": "label"
             },
             {
-              "name": "active",
+              "name": "buffering",
               "type": {
-                "text": "boolean"
+                "text": "boolean | undefined"
               },
-              "default": "false",
-              "description": "Sets the item to active.",
-              "fieldName": "active"
+              "description": "Displays the buffering dots at the end of the progress indicator.\nSetting this will pause the animation if 'indeterminate' is set to true.",
+              "fieldName": "buffering"
             }
           ],
           "superclass": {
-            "name": "ContourableInteractiveElement",
-            "module": "/src/mixins/interactive.js"
+            "name": "ContourableElement",
+            "module": "/src/mixins/contour.js"
           },
-          "tagName": "zeta-navigation-drawer-sub-item",
+          "tagName": "zeta-progress-bar",
           "customElement": true
         }
       ],
       "exports": [
         {
           "kind": "js",
-          "name": "ZetaNavigationDrawerSubItem",
+          "name": "ZetaProgressBar",
           "declaration": {
-            "name": "ZetaNavigationDrawerSubItem",
-            "module": "src/components/navigation-drawer/navigation-drawer-sub-item/navigation-drawer-sub-item.ts"
+            "name": "ZetaProgressBar",
+            "module": "src/components/progress-indicators/progress-bar/progress-bar.ts"
           }
         },
         {
           "kind": "custom-element-definition",
-          "name": "zeta-navigation-drawer-sub-item",
+          "name": "zeta-progress-bar",
           "declaration": {
-            "name": "ZetaNavigationDrawerSubItem",
-            "module": "src/components/navigation-drawer/navigation-drawer-sub-item/navigation-drawer-sub-item.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/navigation-drawer/navigation-drawer-item/navigation-drawer-item.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "ZetaNavigationDrawerItem web component.\n\nA navigation item to be used in a zeta-navigation-drawer",
-          "name": "ZetaNavigationDrawerItem",
-          "slots": [
-            {
-              "description": "The headline text.",
-              "name": ""
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "headline",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "The headline text. Can also be slotted.",
-              "attribute": "headline"
-            },
-            {
-              "kind": "field",
-              "name": "active",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Sets the item to active.",
-              "attribute": "active",
-              "reflects": true
-            }
-          ],
-          "attributes": [
-            {
-              "name": "headline",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "The headline text. Can also be slotted.",
-              "fieldName": "headline"
-            },
-            {
-              "name": "active",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Sets the item to active.",
-              "fieldName": "active"
-            }
-          ],
-          "superclass": {
-            "name": "ContourableInteractiveElement",
-            "module": "/src/mixins/interactive.js"
-          },
-          "tagName": "zeta-navigation-drawer-item",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "ZetaNavigationDrawerItem",
-          "declaration": {
-            "name": "ZetaNavigationDrawerItem",
-            "module": "src/components/navigation-drawer/navigation-drawer-item/navigation-drawer-item.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "zeta-navigation-drawer-item",
-          "declaration": {
-            "name": "ZetaNavigationDrawerItem",
-            "module": "src/components/navigation-drawer/navigation-drawer-item/navigation-drawer-item.ts"
+            "name": "ZetaProgressBar",
+            "module": "src/components/progress-indicators/progress-bar/progress-bar.ts"
           }
         }
       ]
@@ -7567,142 +7703,6 @@
           "declaration": {
             "name": "ZetaProgressCircle",
             "module": "src/components/progress-indicators/progress-circle/progress-circle.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/progress-indicators/progress-bar/progress-bar.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "ZetaProgressBar web component.\n\nProgress indicators express an unspecified wait time or display the length of a process.",
-          "name": "ZetaProgressBar",
-          "members": [
-            {
-              "kind": "field",
-              "name": "size",
-              "type": {
-                "text": "ProgressBarSize"
-              },
-              "default": "\"medium\"",
-              "description": "The size of the progress indicator. Can either be 'medium' or 'thin'.",
-              "attribute": "size",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "indeterminate",
-              "type": {
-                "text": "boolean | undefined"
-              },
-              "description": "Displays the indeterminate progress indicator. If set to true, any argument for 'value' will be ignored.",
-              "attribute": "indeterminate",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "type": {
-                "text": "number"
-              },
-              "default": "0",
-              "description": "The % complete of the progess indicator.",
-              "attribute": "value"
-            },
-            {
-              "kind": "field",
-              "name": "label",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "The label for the progess indicator.",
-              "attribute": "label"
-            },
-            {
-              "kind": "field",
-              "name": "buffering",
-              "type": {
-                "text": "boolean | undefined"
-              },
-              "description": "Displays the buffering dots at the end of the progress indicator.\nSetting this will pause the animation if 'indeterminate' is set to true.",
-              "attribute": "buffering",
-              "reflects": true
-            },
-            {
-              "kind": "method",
-              "name": "getBufferingDots",
-              "privacy": "private"
-            }
-          ],
-          "attributes": [
-            {
-              "name": "size",
-              "type": {
-                "text": "ProgressBarSize"
-              },
-              "default": "\"medium\"",
-              "description": "The size of the progress indicator. Can either be 'medium' or 'thin'.",
-              "fieldName": "size"
-            },
-            {
-              "name": "indeterminate",
-              "type": {
-                "text": "boolean | undefined"
-              },
-              "description": "Displays the indeterminate progress indicator. If set to true, any argument for 'value' will be ignored.",
-              "fieldName": "indeterminate"
-            },
-            {
-              "name": "value",
-              "type": {
-                "text": "number"
-              },
-              "default": "0",
-              "description": "The % complete of the progess indicator.",
-              "fieldName": "value"
-            },
-            {
-              "name": "label",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "The label for the progess indicator.",
-              "fieldName": "label"
-            },
-            {
-              "name": "buffering",
-              "type": {
-                "text": "boolean | undefined"
-              },
-              "description": "Displays the buffering dots at the end of the progress indicator.\nSetting this will pause the animation if 'indeterminate' is set to true.",
-              "fieldName": "buffering"
-            }
-          ],
-          "superclass": {
-            "name": "ContourableElement",
-            "module": "/src/mixins/contour.js"
-          },
-          "tagName": "zeta-progress-bar",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "ZetaProgressBar",
-          "declaration": {
-            "name": "ZetaProgressBar",
-            "module": "src/components/progress-indicators/progress-bar/progress-bar.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "zeta-progress-bar",
-          "declaration": {
-            "name": "ZetaProgressBar",
-            "module": "src/components/progress-indicators/progress-bar/progress-bar.ts"
           }
         }
       ]

@@ -17,6 +17,15 @@ const meta: Meta<ZetaIndicator> = {
   },
   argTypes: {
     size: { options: ["small", "medium", "large"], control: { type: "inline-radio" } }
+  },
+  parameters: {
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=21931-2105"
+    },
+    status: {
+      type: "needsAttention"
+    }
   }
 };
 

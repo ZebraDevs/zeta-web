@@ -1,4 +1,4 @@
-import { Canvas, Meta, Description, ArgTypes, Title } from "@storybook/blocks";
+import { Canvas, Meta, Description, ArgTypes, Title, Stories } from "@storybook/blocks";
 import * as NavigationBar from './navigation-bar.stories';
 import * as Item from './navigation-bar-item.stories';
 
@@ -6,9 +6,12 @@ import * as Item from './navigation-bar-item.stories';
 
 <Title/>
 <Description of='zeta-navigation-bar'/>
-<Canvas of={NavigationBar.Icon}/>
+<Canvas of={NavigationBar.BarIconAndLabel}/>
+<Stories of='zeta-navigation-bar-item' includePrimary={false} />
+
 
 # Navigation Bar Item
 <Description of='zeta-navigation-bar-item'/>
 <Canvas of={Item.Item}/>
 <ArgTypes of='zeta-navigation-bar-item' />
+<Stories of='zeta-navigation-bar-item' includePrimary={false} />

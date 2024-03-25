@@ -14,6 +14,15 @@ export const Footer: StoryObj<ZetaNavigationDrawerFooter> = {
     headline: "Title",
     subHeadline: "subtitle",
     divide: false
+  },
+  parameters: {
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=1092-21721&mode=design&t=DUHsS5bjWB5UW1iG-4"
+    },
+    status: {
+      type: "needsAttention"
+    }
   }
 };
 
@@ -22,6 +31,15 @@ export const FooterAvatarAndIcon: StoryObj<ZetaNavigationDrawerFooter> = {
     headline: "Title",
     subHeadline: "subtitle",
     divide: false
+  },
+  parameters: {
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=1092-21721&mode=design&t=DUHsS5bjWB5UW1iG-4"
+    },
+    status: {
+      type: "needsAttention"
+    }
   },
   render: args =>
     html`<zeta-navigation-drawer-footer headline=${args.headline} sub-headline=${args.subHeadline} .divide=${args.divide} variant="profile"
@@ -34,6 +52,15 @@ export const FooterDefaultLogo: StoryObj<ZetaNavigationDrawerFooter> = {
     headline: "Title",
     divide: false
   },
+  parameters: {
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=1113-32425&mode=design&t=DUHsS5bjWB5UW1iG-4"
+    },
+    status: {
+      type: "needsAttention"
+    }
+  },
   render: args => html`<zeta-navigation-drawer-footer headline=${args.headline} .divide=${args.divide} variant="logo"></zeta-navigation-drawer-footer>`
 };
 
@@ -41,6 +68,15 @@ export const FooterCustomLogo: StoryObj<ZetaNavigationDrawerFooter> = {
   args: {
     headline: "Title",
     divide: false
+  },
+  parameters: {
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=1113-32425&mode=design&t=DUHsS5bjWB5UW1iG-4"
+    },
+    status: {
+      type: "needsAttention"
+    }
   },
   render: args => html`<zeta-navigation-drawer-footer headline=${args.headline} .divide=${args.divide} variant="logo">
     <img style=${styleMap({

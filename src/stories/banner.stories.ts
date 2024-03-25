@@ -1,19 +1,25 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
+import { ZetaSystemBanner } from "../index.js";
 import { html } from "lit";
 import { ifDefined } from "lit/directives/if-defined.js";
-import { ZetaSystemBanner } from "../index.js";
 
 const meta: Meta<ZetaSystemBanner> = {
   title: "Banner",
   tags: ["autodocs"],
   parameters: {
-    layout: "fullscreen"
+    layout: "fullscreen",
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=229-12"
+    },
+    status: {
+      type: "ready"
+    }
   },
   component: "zeta-system-banner",
   args: {
     text: "Banner title",
     align: "center",
-
     status: "default",
     rounded: true
   },

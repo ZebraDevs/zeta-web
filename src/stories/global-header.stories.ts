@@ -5,7 +5,16 @@ import { ZetaGlobalHeader } from "../index.js";
 const meta: Meta<ZetaGlobalHeader> = {
   component: "zeta-global-header",
   tags: ["autodocs"],
-  title: "Global Header"
+  title: "Global Header",
+  parameters: {
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=23144-118110&mode=design&t=DUHsS5bjWB5UW1iG-4"
+    },
+    status: {
+      type: "needsAttention"
+    }
+  }
 };
 export default meta;
 

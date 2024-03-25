@@ -4,7 +4,16 @@ import { ZetaCardFooter } from "../../index.js";
 
 const meta: Meta<ZetaCardFooter> = {
   title: "Cards",
-  component: "zeta-card-footer"
+  component: "zeta-card-footer",
+  parameters: {
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/file/zzzpriTQpJKlW4gB5Fn3bF/Design-System-Sprint-3?type=design&node-id=1197-29400&mode=design&t=w4IloFPD61aGcU37-4"
+    },
+    status: {
+      type: "needsAttention"
+    }
+  }
 };
 
 export default meta;

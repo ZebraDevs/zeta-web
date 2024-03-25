@@ -15,6 +15,15 @@ const meta: Meta<ZetaLabel> = {
         type: "select"
       }
     }
+  },
+  parameters: {
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=21926-1007"
+    },
+    status: {
+      type: "needsAttention"
+    }
   }
 };
 

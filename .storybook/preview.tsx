@@ -23,8 +23,8 @@ const preview: Preview = {
         return (
           <>
             <Title />
-            <Primary />
             <Description />
+            <Primary />
             <ArgTypes />
             <Stories includePrimary={false} />
           </>
@@ -38,6 +38,26 @@ const preview: Preview = {
         locales: ""
       }
     },
+    status: {
+      statuses: {
+        needsAttention: {
+          background: "#FEF0F1",
+          color: "#F36070",
+          description: "Component requires updates"
+        },
+        inProgress: {
+          background: "#FEF2E2",
+          color: "#F5A230",
+          description: "In progress"
+        },
+        ready: {
+          background: "#ECFFF7",
+          color: "#67B796",
+          description: "Web Component ready to use"
+        }
+      }
+    },
+
     viewport: {
       viewports: {
         android: {

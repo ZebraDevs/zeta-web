@@ -9,6 +9,15 @@ const meta: Meta<ZetaDialog> = {
   args: {
     centered: false,
     rounded: false
+  },
+  parameters: {
+    design: {
+      type: "figma",
+      url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=23144-119557&mode=design&t=DUHsS5bjWB5UW1iG-4"
+    },
+    status: {
+      type: "needsAttention"
+    }
   }
 };
 
@@ -19,15 +28,17 @@ export const Dialog: StoryObj<ZetaDialog> = {
   },
   render: args => {
     return html`
-      <zeta-dialog id="dialog1" .rounded=${args.rounded} .centered=${args.centered} .initialOpen=${args.initialOpen} title="Dialog title">
-        <div slot="dialog-body">
-          Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusm od tempor incididunt ut labore et do lore magna aliquaa met, conse ctetur
-          adipisc.
-        </div>
-        <zeta-button slot="confirm">Confirm</zeta-button>
-        <zeta-button slot="cancel">Cancel</zeta-button>
-        <zeta-button slot="other">Learn more</zeta-button>
-      </zeta-dialog>
+      <div style="height: 250px">
+        <zeta-dialog id="dialog1" .rounded=${args.rounded} .centered=${args.centered} .initialOpen=${args.initialOpen} title="Dialog title">
+          <div slot="dialog-body">
+            Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusm od tempor incididunt ut labore et do lore magna aliquaa met, conse ctetur
+            adipisc.
+          </div>
+          <zeta-button slot="confirm">Confirm</zeta-button>
+          <zeta-button slot="cancel">Cancel</zeta-button>
+          <zeta-button slot="other">Learn more</zeta-button>
+        </zeta-dialog>
+      </div>
     `;
   }
 };
