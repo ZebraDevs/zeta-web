@@ -5,6 +5,8 @@ import customElements from "../custom-elements.json";
 import "../src";
 import { Title, Description, Primary, Stories, ArgTypes } from "@storybook/addon-docs";
 import React from "react";
+import { createArgsExtractor, createLitRenderer } from "cem-plugin-better-lit-types/storybook";
+
 setCustomElementsManifest(customElements);
 
 const preview: Preview = {
@@ -17,6 +19,7 @@ const preview: Preview = {
       }
     },
     docs: {
+      extractArgTypes: createArgsExtractor(customElements),
       theme: window.matchMedia("(prefers-color-scheme: dark)").matches ? themes.dark : themes.light,
 
       page: () => {

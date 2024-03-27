@@ -1,15 +1,11 @@
-import { html } from "lit";
+import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./more-menu.scss?inline";
-import { ContourableInteractiveElement } from "../../../mixins/interactive.js";
+import { Contourable, Interactive } from "../../../index.js";
 
-/** Zeta Breadcrumbs- More menu.
- *
- * @public
- */
-
+/** Zeta Breadcrumbs- More menu. */
 @customElement("zeta-more-menu")
-export class ZetaMoreMenu extends ContourableInteractiveElement {
+export class ZetaMoreMenu extends Contourable(Interactive(LitElement)) {
   /** More menu icon.*/
   @property({ type: String }) icon = "more_horizontal";
 

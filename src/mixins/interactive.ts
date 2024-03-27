@@ -1,19 +1,27 @@
 import { LitElement } from "lit";
 import { property } from "lit/decorators.js";
 import { Constructor } from "./_utils.js";
-import { Contourable } from "./contour.js";
 import styles from "./interactive.scss?inline";
 
-// Define the interface for the mixin
-export declare class InteractiveInterface {
+declare class InteractiveInterface {
   disabled: boolean;
 }
 
+/**
+ * Mixin to add interactive states to component.
+ *
+ * Adds disabled attribute and associated styles.
+ *
+ * @param superClass - LitElement to add mixin to
+ * @returns - component with mixin applied.
+ */
 export const Interactive = <T extends Constructor<LitElement>>(superClass: T) => {
   class InteractiveClass extends superClass {
-    /** Boolean for if component is disabled.
+    /**
+     *  Boolean for if component is disabled.
      *
-     * @defaultValue `false` */
+     * This will apply disabled styles.
+     */
     @property({ type: Boolean, reflect: true }) disabled: boolean = false;
 
     static styles = [(superClass as unknown as typeof LitElement).styles ?? [], styles];
@@ -21,8 +29,3 @@ export const Interactive = <T extends Constructor<LitElement>>(superClass: T) =>
   return InteractiveClass as Constructor<InteractiveInterface & LitElement> & T;
 };
 
-/** Extendable class for creating an interactive Zeta element. */
-export const InteractiveElement = Interactive(LitElement);
-
-/** Extendable class for creating an interactive and contourable Zeta element. */
-export const ContourableInteractiveElement = Contourable(Interactive(LitElement));

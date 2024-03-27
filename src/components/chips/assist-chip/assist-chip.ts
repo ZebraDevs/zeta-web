@@ -1,9 +1,9 @@
-import { html } from "lit";
+import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./assist-chip.scss?inline";
-import { ContourableElement } from "../../../mixins/contour.js";
+import { Contourable } from "../../../mixins/contour.js";
 
-export class BaseChip extends ContourableElement {
+export class BaseChip extends Contourable(LitElement) {
   static override styles = [super.styles || []];
 
   protected icon: unknown;
@@ -21,7 +21,7 @@ export class BaseChip extends ContourableElement {
 
 /** Zeta assist Chip web component.
  *
- * @public */
+ *  */
 @customElement("zeta-assist-chip")
 export class ZetaAssistChip extends BaseChip {
   constructor() {

@@ -8,7 +8,9 @@ const meta: Meta<ZetaButton> = {
   args: {
     flavor: "primary",
     disabled: false,
-    rounded: true
+    rounded: true,
+    name: "",
+    value: ""
   },
   parameters: {
     design: {

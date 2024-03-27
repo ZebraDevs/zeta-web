@@ -2,12 +2,12 @@ import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import { ZetaNavigationDrawer } from "../../index.js";
 
-const meta: Meta<ZetaNavigationDrawer> = {
+const meta: Meta<ZetaNavigationDrawer | { "show-animation": boolean }> = {
   component: "zeta-navigation-drawer",
   title: "Navigation Drawer",
   args: {
     anchor: "left",
-    showAnimation: true
+    "show-animation": true
   },
   argTypes: {
     anchor: {
@@ -15,7 +15,9 @@ const meta: Meta<ZetaNavigationDrawer> = {
       control: {
         type: "select"
       }
-    }
+    },
+    open: { table: { disable: true } },
+    initialOpen: { table: { disable: true } }
   },
   parameters: {
     design: {
@@ -86,4 +88,3 @@ export const ShowNavigationDrawer: StoryObj<ZetaNavigationDrawer> = {
         <zeta-navigation-drawer-footer slot="footer" variant="logo">version 1.0.1</zeta-navigation-drawer-footer>
       </zeta-navigation-drawer>`
 };
-

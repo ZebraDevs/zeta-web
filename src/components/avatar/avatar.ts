@@ -4,10 +4,10 @@ import styles from "./avatar.scss?inline";
 import { styleMap } from "lit/directives/style-map.js";
 import { ZetaIconName } from "@zebra-fed/zeta-icons";
 
-@customElement("zeta-avatar")
 /**
  * An avatar is a visual representation of a user or entity.
  */
+@customElement("zeta-avatar")
 export class ZetaAvatar extends LitElement {
   /**
    * The URL of the image displayed in the avatar.

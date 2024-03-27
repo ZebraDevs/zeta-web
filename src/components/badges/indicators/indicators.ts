@@ -1,16 +1,13 @@
-import { html } from "lit";
+import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./indicators.scss?inline";
 import { Size } from "../../../types.js";
 import { ZetaIconName } from "@zebra-fed/zeta-icons";
-import { ContourableElement } from "../../../mixins/contour.js";
+import { Contourable } from "../../../mixins/contour.js";
 
-/** ZetaIndicator.
- *
- * @public
- */
+/** ZetaIndicator. */
 @customElement("zeta-indicator")
-export class ZetaIndicator extends ContourableElement {
+export class ZetaIndicator extends Contourable(LitElement) {
   /** Indicators sizes.
    *
    * @defaultValue 'medium'
@@ -56,9 +53,7 @@ export class ZetaIndicator extends ContourableElement {
   }
 }
 
-/** Zeta Icon Indicator web component.
- *
- * @public */
+/** Zeta Icon Indicator web component. */
 @customElement("zeta-icon-indicator")
 export class ZetaIconIndicator extends ZetaIndicator {
   constructor() {
@@ -67,9 +62,7 @@ export class ZetaIconIndicator extends ZetaIndicator {
   }
 }
 
-/** Zeta Notification Indicator web component.
- *
- * @public */
+/** Zeta Notification Indicator web component. */
 @customElement("zeta-notification-indicator")
 export class ZetaNotificationIndicator extends ZetaIndicator {
   constructor() {

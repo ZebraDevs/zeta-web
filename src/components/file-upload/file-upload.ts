@@ -1,17 +1,17 @@
-import { html, nothing } from "lit";
+import { html, LitElement, nothing } from "lit";
 import { customElement, property, query } from "lit/decorators.js";
 import styles from "./file-upload.scss?inline";
-import { ContourableElement } from "../../mixins/contour.js";
+
 import { msg } from "@lit/localize";
 import "../button/button.js";
+import { Contourable } from "../../mixins/contour.js";
 
 /** ZetaFileUpload web component.
  *
  * A file input that supports drag and drop.
- *
- * @public */
+ */
 @customElement("zeta-file-upload")
-export class ZetaFileUpload extends ContourableElement {
+export class ZetaFileUpload extends Contourable(LitElement) {
   private defaultHeadline = msg("Drop files here to upload");
   private errorMsg: string = "";
 

@@ -1,16 +1,16 @@
 import { customElement, property } from "lit/decorators.js";
 
-import { html, nothing } from "lit";
+import { html, LitElement, nothing } from "lit";
 import styles from "./stepper.scss?inline";
 import { classMap } from "lit/directives/class-map.js";
-import { ContourableElement } from "../../mixins/contour.js";
+import { Contourable } from "../../mixins/contour.js";
 
 /**
  * Steppers convey progress through numbered steps.
  * For the steps, pass `li` elements with `data-title` and `data-label` attributes as children
  */
 @customElement("zeta-stepper")
-export class ZetaStepper extends ContourableElement {
+export class ZetaStepper extends Contourable(LitElement) {
   constructor() {
     super();
   }

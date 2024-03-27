@@ -1,13 +1,13 @@
 import { customElement, property } from "lit/decorators.js";
-import { html } from "lit";
+import { html, LitElement } from "lit";
 import styles from "./radio-button.scss?inline";
-import { ContourableInteractiveElement, InteractiveElement } from "../../mixins/interactive.js";
+import { Interactive } from "../../index.js";
 
-@customElement("zeta-radio-button")
 /**
  * Checkboxes allow users to select one or more items from a set. Checkboxes can turn an option on or off.
  */
-export class ZetaRadioButton extends ContourableInteractiveElement {
+@customElement("zeta-radio-button")
+export class ZetaRadioButton extends Interactive(LitElement) {
   /**
    * Controls the state of the radio button.
    */
@@ -27,11 +27,6 @@ export class ZetaRadioButton extends ContourableInteractiveElement {
    * The label displayed next to the check.
    */
   @property({ type: String }) label: string | undefined;
-
-  /**
-   * Disables the radio button.
-   */
-  @property({ type: Boolean, reflect: true }) disabled: boolean = false;
 
   private toggleCheck() {
     if (!this.disabled) {
@@ -58,7 +53,7 @@ export class ZetaRadioButton extends ContourableInteractiveElement {
     </div>`;
   }
 
-  static styles = [styles, InteractiveElement.styles || []];
+  static styles = [styles, super.styles || []];
 }
 
 declare global {
@@ -66,3 +61,4 @@ declare global {
     "zeta-radio-button": ZetaRadioButton;
   }
 }
+

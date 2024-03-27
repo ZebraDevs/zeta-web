@@ -5,7 +5,9 @@ const meta: Meta<ZetaAssistChip> = {
   component: "zeta-assist-chip",
   title: "Chips",
   args: {
-    type: "label-only"
+    type: "label-only",
+    text: "Chip",
+    rounded: true
   },
   argTypes: {
     type: { options: ["label-only", "label-with-icon"], control: { type: "inline-radio" } }
@@ -24,4 +26,3 @@ const meta: Meta<ZetaAssistChip> = {
 export default meta;
 
 export const AssistChip: StoryObj<ZetaAssistChip> = {};
-

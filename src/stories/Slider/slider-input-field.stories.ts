@@ -1,10 +1,18 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaSliderInputField } from "../../index.js";
+import { spread } from "@open-wc/lit-helpers";
+import { html } from "lit";
 
-const meta: Meta<ZetaSliderInputField> = {
+const meta: Meta<ZetaSliderInputField | { "step-increment": number }> = {
   component: "zeta-slider-input-field",
   title: "Slider",
-  args: { rounded: true, disabled: false, error: false, label: "Label", value: 50, min: 0, max: 100 },
+  args: { rounded: true, disabled: false, error: false, label: "Label", value: 50, min: 0, max: 100, name: "" },
+  argTypes: {
+    value: { table: { disable: true } },
+    "step-increment": { control: { type: "number", min: 0, max: 50 } },
+    min: { control: { type: "number", min: 0, max: 100 } },
+    max: { control: { type: "number", min: 0, max: 100 } }
+  },
   parameters: {
     design: {
       type: "figma",
@@ -17,9 +25,14 @@ const meta: Meta<ZetaSliderInputField> = {
 };
 export default meta;
 
-export const SliderInputField: StoryObj<ZetaSliderInputField> = {};
-
-export const SteppedSliderInputField: StoryObj<ZetaSliderInputField> = {
-  args: { stepIncrement: 10 }
+export const SliderInputField: StoryObj = {
+  argTypes: {
+    "step-increment": { table: { disable: true } }
+  },
+  render: args => html` <zeta-slider-input-field ${spread(args)} .disabled=${args.disabled} .rounded=${args.rounded}> </zeta-slider-input-field>`
 };
 
+export const SteppedSliderInputField: StoryObj = {
+  args: { "step-increment": 10 },
+  render: args => html` <zeta-slider-input-field ${spread(args)} .disabled=${args.disabled} .rounded=${args.rounded}> </zeta-slider-input-field>`
+};

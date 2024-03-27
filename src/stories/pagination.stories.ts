@@ -1,15 +1,24 @@
 import { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaPagination } from "../index.js";
+import { html } from "lit";
+import { spread } from "@open-wc/lit-helpers";
 
-const meta: Meta<ZetaPagination> = {
+const meta: Meta<
+  | ZetaPagination
+  | {
+      "total-pages": number;
+      "current-page": number;
+      "sibling-count": number;
+    }
+> = {
   component: "zeta-pagination",
   tags: ["autodocs"],
   title: "Pagination",
   args: {
     rounded: false,
-    totalPages: 10,
-    currentPage: 1,
-    siblingCount: 1
+    "total-pages": 10,
+    "current-page": 1,
+    "sibling-count": 1
   },
   parameters: {
     design: {
@@ -24,5 +33,7 @@ const meta: Meta<ZetaPagination> = {
 
 export default meta;
 
-export const Pagination: StoryObj<ZetaPagination> = {};
+export const Pagination: StoryObj = {
+  render: args => html`<zeta-pagination ${spread(args)} .rounded=${args.rounded}></zeta-pagination>`
+};
 

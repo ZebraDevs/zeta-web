@@ -8,7 +8,9 @@ const meta: Meta<ZetaIconButton> = {
   args: {
     disabled: false,
     rounded: true,
-    flavor: "primary"
+    flavor: "primary",
+    name: "",
+    value: ""
   },
   parameters: {
     design: {
@@ -44,4 +46,3 @@ const meta: Meta<ZetaIconButton> = {
 export default meta;
 
 export const IconButton: StoryObj<ZetaIconButton> = {};
-

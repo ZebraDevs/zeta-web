@@ -3,6 +3,9 @@ import { ZetaSheetHandle } from "../../index.js";
 
 const meta: Meta<ZetaSheetHandle> = {
   component: "zeta-sheet-handle",
+  args: {
+    rounded: true
+  },
   title: "Bottom Sheet",
   parameters: {
     design: {
@@ -18,4 +21,3 @@ const meta: Meta<ZetaSheetHandle> = {
 export default meta;
 
 export const SheetHandle: StoryObj<ZetaSheetHandle> = {};
-

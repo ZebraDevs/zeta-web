@@ -2,7 +2,7 @@ import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./navigation-drawer.scss?inline";
 import { Side } from "../../types.js";
-import { PopupElement } from "../../mixins/popup.js";
+import { Popup } from "../../mixins/popup.js";
 
 export * from "./navigation-drawer-footer/navigation-drawer-footer.js";
 export * from "./navigation-drawer-header/navigation-drawer-header.js";
@@ -17,13 +17,12 @@ export * from "./navigation-drawer-sub-item/navigation-drawer-sub-item.js";
  * They can either be permanently on-screen or controlled by a navigation menu icon
  *
  *
- * @slot default - The main content of the drawer.
+ * @slot - The main content of the drawer.
  * @slot header - The drawer header.
  * @slot footer - The drawer footer.
- *
- * @public */
+ */
 @customElement("zeta-navigation-drawer")
-export class ZetaNavigationDrawer extends PopupElement {
+export class ZetaNavigationDrawer extends Popup(LitElement) {
   /** The side of the screen that the drawer is anchored on.
    *
    * Defaults to 'left'.

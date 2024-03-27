@@ -2,19 +2,24 @@ import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import { styleMap } from "lit/directives/style-map.js";
 import { ZetaNavigationDrawerFooter } from "../../index.js";
+import { spread } from "@open-wc/lit-helpers";
 
-const meta: Meta<ZetaNavigationDrawerFooter> = {
+const meta: Meta<ZetaNavigationDrawerFooter | { "sub-headline": string; "hide-default-logo": boolean }> = {
   title: "Navigation Drawer",
-  component: "zeta-navigation-drawer-footer"
+  component: "zeta-navigation-drawer-footer",
+  args: {
+    headline: "Title",
+    "sub-headline": "subtitle",
+    divide: false
+  },
+  argTypes: {
+    variant: { table: { disable: true } },
+    "hide-default-logo": { table: { disable: true } }
+  }
 };
 export default meta;
 
-export const Footer: StoryObj<ZetaNavigationDrawerFooter> = {
-  args: {
-    headline: "Title",
-    subHeadline: "subtitle",
-    divide: false
-  },
+export const Footer: StoryObj = {
   parameters: {
     design: {
       type: "figma",
@@ -23,15 +28,11 @@ export const Footer: StoryObj<ZetaNavigationDrawerFooter> = {
     status: {
       type: "needsAttention"
     }
-  }
+  },
+  render: args => html` <zeta-navigation-drawer-footer ${spread(args)} .divide=${args.divide}> </zeta-navigation-drawer-footer> `
 };
 
-export const FooterAvatarAndIcon: StoryObj<ZetaNavigationDrawerFooter> = {
-  args: {
-    headline: "Title",
-    subHeadline: "subtitle",
-    divide: false
-  },
+export const FooterAvatarAndIcon: StoryObj = {
   parameters: {
     design: {
       type: "figma",
@@ -41,16 +42,19 @@ export const FooterAvatarAndIcon: StoryObj<ZetaNavigationDrawerFooter> = {
       type: "needsAttention"
     }
   },
+
   render: args =>
-    html`<zeta-navigation-drawer-footer headline=${args.headline} sub-headline=${args.subHeadline} .divide=${args.divide} variant="profile"
-      ><zeta-avatar slot="leading"></zeta-avatar><zeta-icon slot="trailing" color="white">settings</zeta-icon></zeta-navigation-drawer-footer
-    >`
+    html`<zeta-navigation-drawer-footer ${spread(args)} .divide=${args.divide}>
+      <zeta-avatar slot="leading"></zeta-avatar><zeta-icon slot="trailing" color="white">settings</zeta-icon>
+    </zeta-navigation-drawer-footer>`
 };
 
-export const FooterDefaultLogo: StoryObj<ZetaNavigationDrawerFooter> = {
+export const FooterDefaultLogo: StoryObj = {
   args: {
-    headline: "Title",
-    divide: false
+    variant: "logo"
+  },
+  argTypes: {
+    "sub-headline": { table: { disable: true } }
   },
   parameters: {
     design: {
@@ -61,13 +65,15 @@ export const FooterDefaultLogo: StoryObj<ZetaNavigationDrawerFooter> = {
       type: "needsAttention"
     }
   },
-  render: args => html`<zeta-navigation-drawer-footer headline=${args.headline} .divide=${args.divide} variant="logo"></zeta-navigation-drawer-footer>`
+  render: args => html`<zeta-navigation-drawer-footer ${spread(args)} .divide=${args.divide}></zeta-navigation-drawer-footer>`
 };
 
-export const FooterCustomLogo: StoryObj<ZetaNavigationDrawerFooter> = {
+export const FooterCustomLogo: StoryObj = {
   args: {
-    headline: "Title",
-    divide: false
+    variant: "logo"
+  },
+  argTypes: {
+    "sub-headline": { table: { disable: true } }
   },
   parameters: {
     design: {
@@ -78,7 +84,7 @@ export const FooterCustomLogo: StoryObj<ZetaNavigationDrawerFooter> = {
       type: "needsAttention"
     }
   },
-  render: args => html`<zeta-navigation-drawer-footer headline=${args.headline} .divide=${args.divide} variant="logo">
+  render: args => html`<zeta-navigation-drawer-footer ${spread(args)} .divide=${args.divide}>
     <img style=${styleMap({
       width: "200px",
       height: "var(--spacing-20)",
@@ -86,4 +92,3 @@ export const FooterCustomLogo: StoryObj<ZetaNavigationDrawerFooter> = {
     })} slot="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png"></img>
   </zeta-navigation-drawer-footer>`
 };
-

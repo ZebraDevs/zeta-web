@@ -1,11 +1,8 @@
-/* eslint-disable @typescript-eslint/no-floating-promises */
 import { LitElement, css } from "lit";
 import { property, query } from "lit/decorators.js";
 import { Constructor } from "./_utils.js";
-import { Contourable } from "./contour.js";
 
-// Define the interface for the mixin
-export declare class PopupInterface {
+declare class PopupInterface {
   returnValue: string;
   open: boolean;
   hide: (returnValue?: string | undefined) => Promise<void>;
@@ -13,15 +10,24 @@ export declare class PopupInterface {
   onBarrierClicked: (e: Event) => void;
 }
 
+/**
+ * Mixin to add make component pop up as a dialog.
+ *
+ *
+ * @param superClass - LitElement to add mixin to
+ * @returns - component with mixin applied.
+ */
 export const Popup = <T extends Constructor<LitElement>>(superClass: T) => {
   class PopupClass extends superClass {
+    /**@internal */
     @query("dialog") private readonly dialog!: HTMLDialogElement | null;
 
     /**
-     * Return value of the dialog
+     * Return value of the dialog.
      */
     @property({ attribute: false }) returnValue = "";
 
+    /** Whether component is open or closed. */
     @property({ type: Boolean, reflect: true })
     get open() {
       return this.dialog?.open ?? false;
@@ -47,7 +53,7 @@ export const Popup = <T extends Constructor<LitElement>>(superClass: T) => {
         return;
       }
       e.preventDefault();
-      this.hide();
+      void this.hide();
     }
 
     static styles = [
@@ -62,6 +68,3 @@ export const Popup = <T extends Constructor<LitElement>>(superClass: T) => {
   return PopupClass as Constructor<PopupInterface & LitElement> & T;
 };
 
-export const PopupElement = Popup(LitElement);
-
-export const ContourablePopupElement = Contourable(Popup(LitElement));

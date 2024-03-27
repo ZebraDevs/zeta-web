@@ -1,7 +1,7 @@
 import { customElement, property } from "lit/decorators.js";
-import { ContourableElement } from "../../../mixins/contour.js";
+import { Contourable } from "../../../mixins/contour.js";
 import { ZetaIconName } from "@zebra-fed/zeta-icons";
-import { html, nothing } from "lit";
+import { html, LitElement, nothing } from "lit";
 import styles from "./navigation-bar-item.scss?inline";
 import "../../icon/icon.js";
 
@@ -11,7 +11,7 @@ import "../../icon/icon.js";
  * @slot badge - Displayed overlaying the icon. Should be a 'zeta-notification-indicator';
  */
 @customElement("zeta-navigation-bar-item")
-export class ZetaNavigationBarItem extends ContourableElement {
+export class ZetaNavigationBarItem extends Contourable(LitElement) {
   @property({ type: String }) icon?: ZetaIconName;
 
   @property({ type: String, reflect: true }) label?: string;
@@ -48,7 +48,7 @@ export class ZetaNavigationBarItem extends ContourableElement {
     `;
   }
 
-  static styles = [styles, ContourableElement.styles || []];
+  static styles = [styles, super.styles || []];
 }
 
 declare global {

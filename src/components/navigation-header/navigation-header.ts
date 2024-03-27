@@ -9,9 +9,8 @@ export * from "./navigation-profile/navigation-profile.js";
  *
  * A header used to display a collection of zeta-navigation-items.
  *
- * @slot The navigation items displayed in the header. Should be a list of zeta-navigation-item.
- *
- * @public */
+ * @slot - The navigation items displayed in the header. Should be a list of zeta-navigation-item.
+ */
 @customElement("zeta-navigation-header")
 export class ZetaNavigationHeader extends LitElement {
   protected override render() {

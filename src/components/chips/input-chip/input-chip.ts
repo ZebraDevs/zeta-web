@@ -1,13 +1,11 @@
-import { html } from "lit";
+import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./input-chip.scss?inline";
-import { ContourableInteractiveElement } from "../../../mixins/interactive.js";
+import { Contourable, Interactive } from "../../../index.js";
 
-/** Zeta Input Chip web component.
- *
- * @public */
+/** Zeta Input Chip web component.*/
 @customElement("zeta-input-chip")
-export class ZetaInputChip extends ContourableInteractiveElement {
+export class ZetaInputChip extends Contourable(Interactive(LitElement)) {
   constructor() {
     super();
     this.text = "Label";

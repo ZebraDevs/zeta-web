@@ -2,25 +2,24 @@ import { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import { ZetaStepper } from "../index.js";
 
-const meta: Meta<ZetaStepper> = {
+const meta: Meta<ZetaStepper | { "active-step": number }> = {
   component: "zeta-stepper",
   tags: ["autodocs"],
   title: "Stepper",
-  args: { bar: false, rounded: false, activeStep: 0 },
+  args: { bar: false, rounded: false, "active-step": 0 },
   argTypes: {
     variant: {
-      options: ["vertical", "horizontal"],
-      control: { type: "inline-radio" }
+      table: { disable: true }
     }
   }
 };
 
 export default meta;
 
-export const Horizontal: StoryObj<ZetaStepper> = {
+export const Horizontal: StoryObj = {
   render: args => {
     return html`
-      <zeta-stepper .bar=${args.bar} active-step=${args.activeStep} variant="horizontal" .rounded=${args.rounded}>
+      <zeta-stepper .bar=${args.bar} active-step=${args["active-step"]} variant="horizontal" .rounded=${args.rounded}>
         <li data-title="title 1" data-label="label 1"></li>
         <li data-title="title 2" data-label="label 2"></li>
         <li data-title="title 3" data-label="label 3"></li>
@@ -37,10 +36,10 @@ export const Horizontal: StoryObj<ZetaStepper> = {
     }
   }
 };
-export const Vertical: StoryObj<ZetaStepper> = {
+export const Vertical: StoryObj = {
   render: args => {
     return html`
-      <zeta-stepper .bar=${args.bar} active-step=${args.activeStep} variant="vertical" .rounded=${args.rounded}>
+      <zeta-stepper .bar=${args.bar} active-step=${args["active-step"]} variant="vertical" .rounded=${args.rounded}>
         <li data-title="title 1" data-label="label 1"></li>
         <li data-title="title 2" data-label="label 2"></li>
         <li data-title="title 3" data-label="label 3"></li>
@@ -57,4 +56,3 @@ export const Vertical: StoryObj<ZetaStepper> = {
     }
   }
 };
-

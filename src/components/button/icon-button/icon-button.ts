@@ -1,41 +1,18 @@
-import { customElement, property, query } from "lit/decorators.js";
+import { customElement, property } from "lit/decorators.js";
 import { html } from "lit";
 import styles from "./icon-button.scss?inline";
-import { ButtonFlavor, Size } from "../../../types.js";
 import { ZetaIconName } from "@zebra-fed/zeta-icons";
-import { ContourableFlavoredElement } from "../../../mixins/flavor.js";
 import "../../icon/icon.js";
+import { ButtonBase } from "../button-base.js";
 
 // TODO slot icon name instead of passing it through a property
-@customElement("zeta-icon-button")
 /**
  * A button containing a Zeta Icon.
  */
-export class ZetaIconButton extends ContourableFlavoredElement {
-  @query("button") private readonly buttonElement!: HTMLElement | null;
-
-  /** The flavor of the button. */
-  @property({ type: String, reflect: true }) flavor: ButtonFlavor = "primary";
-
+@customElement("zeta-icon-button")
+export class ZetaIconButton extends ButtonBase {
   /** The name of the icon displayed on the button. */
   @property({ type: String }) iconName: ZetaIconName = "star";
-
-  /** Name for the button, used if the button is in a form. TODO: Does this even work in a form? */
-  @property({ type: String }) name = "";
-
-  /** The value of the name property When submitted as part of a form */
-  @property({ type: String }) value = "";
-
-  /** Size of button. @see {@link Size} for more details. @defaultValue `medium` */
-  @property({ type: String, reflect: true }) size: Size = "medium";
-
-  override focus() {
-    this.buttonElement?.focus();
-  }
-
-  override blur() {
-    this.buttonElement?.blur();
-  }
 
   private getIconSize(): number {
     switch (this.size) {

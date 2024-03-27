@@ -1,5 +1,5 @@
 export default {
-    globs: ['src/**/*.ts'],
-    exclude: ['src/**/*stories.ts'],
+    globs: ['src/components/**/*.ts', 'src/mixins/**/*.ts'],
     litelement: true,
+    watch: true
 }

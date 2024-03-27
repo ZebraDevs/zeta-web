@@ -1,4 +1,4 @@
-/** Defines how corners are shaped. Defaults to `rounded`. @public */
+/** Defines how corners are shaped. Defaults to `rounded`.  */
 export type Contour =
   /** Applies 4px border-radius. */
   | "rounded"

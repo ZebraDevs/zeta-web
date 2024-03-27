@@ -1,16 +1,11 @@
 import { customElement, property } from "lit/decorators.js";
 import styles from "./dropdown-menu-item.scss?inline";
-import { html } from "lit";
+import { html, LitElement } from "lit";
 import { ZetaIconName } from "@zebra-fed/zeta-icons";
-import { ContourableInteractiveElement } from "../../../mixins/interactive.js";
+import { Contourable, Interactive } from "../../../index.js";
 
 @customElement("zeta-dropdown-menu-item")
-export class ZetaDropdownMenuItem extends ContourableInteractiveElement {
-  /**
-   * Disables the menu item.
-   */
-  @property({ type: Boolean, reflect: true }) disabled: boolean = false;
-
+export class ZetaDropdownMenuItem extends Contourable(Interactive(LitElement)) {
   /**
    * Changes the type of the menu item.
    *
@@ -69,3 +64,4 @@ declare global {
     "zeta-dropdown-menu-item": ZetaDropdownMenuItem;
   }
 }
+

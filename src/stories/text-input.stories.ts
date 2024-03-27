@@ -1,21 +1,36 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaTextInput } from "../index.js";
 import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
+import { html } from "lit";
+import { spread } from "@open-wc/lit-helpers";
 
 //TODO: These are seperate on Figma, should be split here too?
-const meta: Meta<ZetaTextInput> = {
+const meta: Meta<
+  | ZetaTextInput
+  | {
+      "hint-text": string;
+      "error-text": string;
+      "prefix-text": string;
+    }
+> = {
   tags: ["autodocs"],
   title: "Text Input",
   component: "zeta-text-input",
   args: {
-    value: "Typing",
+    value: "",
     placeholder: "Placeholder",
-    hintText: "hint",
+    "hint-text": "hint",
     error: false,
     disabled: false,
-    errorText: "Error!"
+    "error-text": "Error!",
+    label: "",
+    rounded: true,
+    required: false,
+    "prefix-text": "",
+    suffix: ""
   },
   argTypes: {
+    type: { table: { disable: true } },
     leadingIcon: {
       options: ZetaIconNameList,
       control: {
@@ -27,6 +42,10 @@ const meta: Meta<ZetaTextInput> = {
       control: {
         type: "select"
       }
+    },
+    size: {
+      options: ["small", "medium", "large"],
+      control: { type: "inline-radio" }
     }
   },
   parameters: {
@@ -40,32 +59,27 @@ const meta: Meta<ZetaTextInput> = {
   }
 };
 
-export const TextInput: StoryObj<ZetaTextInput> = {
+export const TextInput: StoryObj = {
   name: "Default text input",
-  argTypes: {
-    size: {
-      options: ["small", "medium", "large"],
-      control: { type: "inline-radio" }
-    }
-  }
+
+  render: args => html`
+    <zeta-text-input ${spread(args)} .rounded=${args.rounded} .disabled=${args.disabled} .error=${args.error} ?required=${args.required}> </zeta-text-input>
+  `
 };
 
-export const TimeInput: StoryObj<ZetaTextInput> = {
+export const TimeInput: StoryObj = {
   name: "Time input",
   args: {
-    type: "time",
-    disabled: false,
-    error: false,
-    required: false,
-    label: "",
-    hintText: ""
+    type: "time"
   },
   argTypes: {
-    type: {
-      table: {
-        disable: true
-      }
-    }
+    "hint-text": { table: { disable: true } },
+    "prefix-text": { table: { disable: true } },
+    placeholder: { table: { disable: true } },
+    leadingIcon: { table: { disable: true } },
+    trailingIcon: { table: { disable: true } },
+    prefix: { table: { disable: true } },
+    suffix: { table: { disable: true } }
   },
   parameters: {
     design: {
@@ -75,25 +89,25 @@ export const TimeInput: StoryObj<ZetaTextInput> = {
     status: {
       type: "ready"
     }
-  }
+  },
+  render: args => html`
+    <zeta-text-input ${spread(args)} .rounded=${args.rounded} .disabled=${args.disabled} .error=${args.error} ?required=${args.required}> </zeta-text-input>
+  `
 };
 
-export const DateInput: StoryObj<ZetaTextInput> = {
+export const DateInput: StoryObj = {
   name: "Date input",
   args: {
-    type: "date",
-    disabled: false,
-    error: false,
-    required: false,
-    label: "",
-    hintText: ""
+    type: "date"
   },
   argTypes: {
-    type: {
-      table: {
-        disable: true
-      }
-    }
+    "hint-text": { table: { disable: true } },
+    placeholder: { table: { disable: true } },
+    leadingIcon: { table: { disable: true } },
+    trailingIcon: { table: { disable: true } },
+    prefix: { table: { disable: true } },
+    "prefix-text": { table: { disable: true } },
+    suffix: { table: { disable: true } }
   },
   parameters: {
     design: {
@@ -103,70 +117,41 @@ export const DateInput: StoryObj<ZetaTextInput> = {
     status: {
       type: "ready"
     }
-  }
-};
-export const TextInputWithAdornments: StoryObj<ZetaTextInput> = {
-  name: "Text input with adornments (icons/affixes)",
-  args: {
-    prefixText: "$",
-    suffix: "kg"
-  }
+  },
+  render: args => html`
+    <zeta-text-input ${spread(args)} .rounded=${args.rounded} .disabled=${args.disabled} .error=${args.error} ?required=${args.required}> </zeta-text-input>
+  `
 };
 
-export const TextInputWithLabelAndHinText: StoryObj<ZetaTextInput> = {
-  name: "Text input with label and hint text",
-  args: {
-    label: "Label",
-    hintText: "Default hint text"
-  }
-};
-
-export const TextInputStates: StoryObj<ZetaTextInput> = {
-  name: "Text input disabled and error state",
-  args: {
-    error: false,
-    disabled: false,
-    required: false,
-    label: "Label",
-    hintText: "Hint text"
-  }
-};
-
-export const TextArea: StoryObj<ZetaTextInput> = {
+export const TextArea: StoryObj = {
   name: "Text area field",
   args: {
-    error: false,
-    disabled: false,
-    required: false,
-    label: "Label",
-    hintText: "Hint text",
     type: "textarea"
   },
   argTypes: {
-    type: {
-      table: {
-        disable: true
-      }
-    }
-  }
+    leadingIcon: { table: { disable: true } },
+    trailingIcon: { table: { disable: true } },
+    "prefix-text": { table: { disable: true } },
+    prefix: { table: { disable: true } },
+    suffix: { table: { disable: true } }
+  },
+  render: args => html`
+    <zeta-text-input ${spread(args)} .rounded=${args.rounded} .disabled=${args.disabled} .error=${args.error} ?required=${args.required}> </zeta-text-input>
+  `
 };
 
-export const PasswordField: StoryObj<ZetaTextInput> = {
+export const PasswordField: StoryObj = {
   name: "Password field",
   args: {
-    error: false,
-    disabled: false,
-    required: false,
-    label: "Label",
-    hintText: "Hint text",
     type: "password"
   },
   argTypes: {
-    type: {
-      table: {
-        disable: true
-      }
-    }
+    leadingIcon: { table: { disable: true } },
+    trailingIcon: { table: { disable: true } },
+    "prefix-text": { table: { disable: true } },
+    placeholder: { table: { disable: true } },
+    prefix: { table: { disable: true } },
+    suffix: { table: { disable: true } }
   },
   parameters: {
     design: {
@@ -176,8 +161,10 @@ export const PasswordField: StoryObj<ZetaTextInput> = {
     status: {
       type: "needsAttention"
     }
-  }
+  },
+  render: args => html`
+    <zeta-text-input ${spread(args)} .rounded=${args.rounded} .disabled=${args.disabled} .error=${args.error} ?required=${args.required}> </zeta-text-input>
+  `
 };
 
 export default meta;
-

@@ -2,13 +2,23 @@ import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import { ZetaDialog } from "../index.js";
 
-const meta: Meta<ZetaDialog> = {
+const meta: Meta<ZetaDialog | { "has-icon": boolean }> = {
   component: "zeta-dialog",
   title: "Dialog",
   tags: ["autodocs"],
   args: {
     centered: false,
-    rounded: false
+    rounded: false,
+    title: "Title",
+    "has-icon": true
+  },
+  argTypes: {
+    initialOpen: {
+      table: { disable: true }
+    },
+    open: {
+      table: { disable: true }
+    }
   },
   parameters: {
     design: {
@@ -21,15 +31,13 @@ const meta: Meta<ZetaDialog> = {
   }
 };
 
-export const Dialog: StoryObj<ZetaDialog> = {
-  name: "Dialog without icon",
-  args: {
-    initialOpen: true
-  },
+export const Dialog: StoryObj = {
+  name: "Dialog preview",
+
   render: args => {
     return html`
       <div style="height: 250px">
-        <zeta-dialog id="dialog1" .rounded=${args.rounded} .centered=${args.centered} .initialOpen=${args.initialOpen} title="Dialog title">
+        <zeta-dialog id="dialog1" .rounded=${args.rounded} .centered=${args.centered} .initialOpen=${true} title=${args.title} ?has-icon=${args["has-icon"]}>
           <div slot="dialog-body">
             Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusm od tempor incididunt ut labore et do lore magna aliquaa met, conse ctetur
             adipisc.
@@ -43,8 +51,11 @@ export const Dialog: StoryObj<ZetaDialog> = {
   }
 };
 
-export const DialogWithoutIcon: StoryObj<ZetaDialog> = {
+export const DialogWithoutIcon: StoryObj = {
   name: "Dialog without icon",
+  args: {
+    "has-icon": false
+  },
   render: args => {
     return html`
       <zeta-button

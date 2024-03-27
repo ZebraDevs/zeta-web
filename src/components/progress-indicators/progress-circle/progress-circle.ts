@@ -1,6 +1,6 @@
 import { customElement, property } from "lit/decorators.js";
-import { ContourableElement } from "../../../mixins/contour.js";
-import { html, nothing } from "lit";
+import { Contourable } from "../../../mixins/contour.js";
+import { html, LitElement, nothing } from "lit";
 import styles from "./progress-circle.scss?inline";
 import { classMap } from "lit/directives/class-map.js";
 
@@ -8,7 +8,7 @@ import { classMap } from "lit/directives/class-map.js";
  * Progress indicators express an unspecified wait time or display the length of a process.
  */
 @customElement("zeta-progress-circle")
-export class ZetaProgressCircle extends ContourableElement {
+export class ZetaProgressCircle extends Contourable(LitElement) {
   constructor() {
     super();
   }

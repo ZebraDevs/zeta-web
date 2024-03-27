@@ -2,12 +2,12 @@ import { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import { ZetaCardHeader } from "../../index.js";
 
-const meta: Meta<ZetaCardHeader> = {
+const meta: Meta<ZetaCardHeader | { "sub-headline": string }> = {
   component: "zeta-card-header",
   title: "Cards",
   args: {
     headline: "Headline",
-    subHeadline: "Subhead"
+    "sub-headline": "Subhead"
   },
   parameters: {
     design: {
@@ -22,28 +22,29 @@ const meta: Meta<ZetaCardHeader> = {
 
 export default meta;
 
-export const Header: StoryObj<ZetaCardHeader> = {};
+export const Header: StoryObj = {
+  render: args => html` <zeta-card-header headline=${args.headline} sub-headline=${args["sub-headline"]}></zeta-card-header> `
+};
 
-export const HeaderWithLeadingContent: StoryObj<ZetaCardHeader> = {
+export const HeaderWithLeadingContent: StoryObj = {
   render: args => html`
-    <zeta-card-header headline=${args.headline} sub-headline=${args.subHeadline}><zeta-avatar slot="leading"></zeta-avatar></zeta-card-header>
+    <zeta-card-header headline=${args.headline} sub-headline=${args["sub-headline"]}><zeta-avatar slot="leading"></zeta-avatar></zeta-card-header>
   `
 };
 
-export const HeaderWithTrailingContent: StoryObj<ZetaCardHeader> = {
+export const HeaderWithTrailingContent: StoryObj = {
   render: args => html`
-    <zeta-card-header headline=${args.headline} sub-headline=${args.subHeadline}
+    <zeta-card-header headline=${args.headline} sub-headline=${args["sub-headline"]}
       ><zeta-icon-button slot="trailing" iconname="more_vertical" flavor="basic"></zeta-icon-button>
     </zeta-card-header>
   `
 };
 
-export const HeaderWithLeadingAndTrailingContent: StoryObj<ZetaCardHeader> = {
+export const HeaderWithLeadingAndTrailingContent: StoryObj = {
   render: args => html`
-    <zeta-card-header headline=${args.headline} sub-headline=${args.subHeadline}>
+    <zeta-card-header headline=${args.headline} sub-headline=${args["sub-headline"]}>
       <zeta-avatar slot="leading"></zeta-avatar>
       <zeta-icon-button slot="trailing" iconname="more_vertical" flavor="basic"></zeta-icon-button>
     </zeta-card-header>
   `
 };
-

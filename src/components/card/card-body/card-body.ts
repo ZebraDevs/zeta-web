@@ -5,7 +5,7 @@ import styles from "./card-body.scss?inline";
 /**
  * Used to display the text in a card body.
  *
- * @slot default - The content of the card body.
+ * @slot - The content of the card body.
  */
 @customElement("zeta-card-body")
 export class ZetaCardBody extends LitElement {

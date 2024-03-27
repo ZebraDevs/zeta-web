@@ -1,13 +1,11 @@
-import { html } from "lit";
+import { html, LitElement } from "lit";
 import { customElement } from "lit/decorators.js";
 import styles from "./sheet-handle.scss?inline";
-import { ContourableElement } from "../../../mixins/contour.js";
+import { Contourable } from "../../../mixins/contour.js";
 
-/** Zeta Sheet Handle web component.
- *
- * @public */
+/** Zeta Sheet Handle web component. */
 @customElement("zeta-sheet-handle")
-export class ZetaSheetHandle extends ContourableElement {
+export class ZetaSheetHandle extends Contourable(LitElement) {
   static styles = [super.styles ?? [], styles];
 
   protected override render() {

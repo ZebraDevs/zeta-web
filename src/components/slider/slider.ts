@@ -1,7 +1,7 @@
-import { html, nothing } from "lit";
+import { html, LitElement, nothing } from "lit";
 import { customElement, property, query } from "lit/decorators.js";
 import styles from "./slider.scss?inline";
-import { ContourableElement } from "../../mixins/contour.js";
+import { Contourable } from "../../mixins/contour.js";
 import { styleMap } from "lit/directives/style-map.js";
 
 export * from "./slider-input-field/slider-input-field.js";
@@ -26,10 +26,9 @@ export interface ZetaRangeSliderEvent {
  *
  * @fires change with a type of ZetaSliderEvent for default sliders.
  * @fires change with a type of ZetaRangeSliderEvent for default sliders.
- *
- * @public */
+ */
 @customElement("zeta-slider")
-export class ZetaSlider extends ContourableElement {
+export class ZetaSlider extends Contourable(LitElement) {
   /**
    * Disables the slider.
    */

@@ -9,7 +9,9 @@ const meta: Meta<ZetaCheckbox> = {
     rounded: true,
     disabled: false,
     checked: false,
-    label: ""
+    label: "",
+    name: "",
+    id: ""
   },
   argTypes: {
     checked: {

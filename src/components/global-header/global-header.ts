@@ -1,8 +1,8 @@
-import { html, nothing } from "lit";
+import { html, LitElement, nothing } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./global-header.scss?inline";
 import "../icon/icon.js";
-import { ContourableElement } from "../../mixins/contour.js";
+import { Contourable } from "../../mixins/contour.js";
 
 export type MenuPosition = "inline" | "below";
 
@@ -10,14 +10,13 @@ export type MenuPosition = "inline" | "below";
  *
  * A header with support for displaying a zeta-navigation-menu
  *
- * @slot The main content of the header.
+ * @slot - The main content of the header.
  * @slot leading - The leading content on the header.
  * @slot navigation-menu - The navigation menu. The position is based on the 'menu-position' property.
  * @slot trailing - The trailing content on the header.
- *
- * @public */
+ */
 @customElement("zeta-global-header")
-export class ZetaGlobalHeader extends ContourableElement {
+export class ZetaGlobalHeader extends Contourable(LitElement) {
   /**
    * The headline text on the header. Can also be slotted.
    */

@@ -1,13 +1,11 @@
-import { html } from "lit";
+import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./filter-chip.scss?inline";
-import { ContourableInteractiveElement } from "../../../mixins/interactive.js";
+import { Contourable, Interactive } from "../../../index.js";
 
-/** Zeta Filter Chip web component.
- *
- * @public */
+/** Zeta Filter Chip web component. */
 @customElement("zeta-filter-chip")
-export class ZetaFilterChip extends ContourableInteractiveElement {
+export class ZetaFilterChip extends Contourable(Interactive(LitElement)) {
   constructor() {
     super();
     this.text = "Label";

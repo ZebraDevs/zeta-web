@@ -23,7 +23,11 @@ const meta: Meta<ZetaNavigationDrawerItem> = {
 };
 export default meta;
 
-export const Item: StoryObj<ZetaNavigationDrawerItem> = {};
+export const Item: StoryObj<ZetaNavigationDrawerItem> = {
+  argTypes: {
+    rounded: { table: { disable: true } }
+  }
+};
 
 export const ItemWithLeadingIcon: StoryObj<ZetaNavigationDrawerItem> = {
   render: args =>
@@ -48,4 +52,3 @@ export const ItemWithBadge: StoryObj<ZetaNavigationDrawerItem> = {
       <zeta-icon slot="trailing">more_vertical</zeta-icon>
     </zeta-navigation-drawer-item>`
 };
-

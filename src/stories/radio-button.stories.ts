@@ -8,7 +8,9 @@ const meta: Meta<ZetaRadioButton> = {
   args: {
     disabled: false,
     checked: false,
-    label: ""
+    label: "",
+    name: "",
+    id: ""
   },
   parameters: {
     design: {
@@ -16,7 +18,7 @@ const meta: Meta<ZetaRadioButton> = {
       url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=21510-54345&mode=design&t=DUHsS5bjWB5UW1iG-4"
     },
     status: {
-      type: "ready"
+      type: "needsAttention"
     }
   }
 };
@@ -24,4 +26,3 @@ const meta: Meta<ZetaRadioButton> = {
 export default meta;
 
 export const RadioButton: StoryObj<ZetaRadioButton> = {};
-

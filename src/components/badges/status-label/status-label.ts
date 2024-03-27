@@ -1,9 +1,9 @@
-import { html, svg } from "lit";
+import { html, LitElement, svg } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { BadgeStatus } from "../../../types.js";
 import styles from "./status-label.scss?inline";
 import { ZetaIconName } from "@zebra-fed/zeta-icons";
-import { ContourableElement } from "../../../mixins/contour.js";
+import { Contourable } from "../../../mixins/contour.js";
 
 /** ZetaStatusLabel web component.
  *
@@ -12,10 +12,9 @@ import { ContourableElement } from "../../../mixins/contour.js";
  * Slotted children:
  *    * Text
  *    * Icon
- *
- * @public */
+ */
 @customElement("zeta-status-label")
-export class ZetaStatusLabel extends ContourableElement {
+export class ZetaStatusLabel extends Contourable(LitElement) {
   /** Type of status label.
    *
    * @defaultValue `BannerType.default` */

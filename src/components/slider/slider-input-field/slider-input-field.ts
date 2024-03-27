@@ -1,21 +1,22 @@
-import { html, nothing } from "lit";
+import { html, LitElement, nothing } from "lit";
 import { customElement, property, query } from "lit/decorators.js";
-import { ContourableElement } from "../../../mixins/contour.js";
+import { Contourable } from "../../../mixins/contour.js";
 import styles from "./slider-input-field.scss?inline";
 import "../slider.js";
 import "../../text-input/text-input.js";
 import { ZetaSliderEvent } from "../slider.js";
 import { live } from "lit/directives/live.js";
 
+//TODO: min / max dont seem to change values of slider correctly.
+
 /** ZetaSliderInputField web component.
  *
  * An input field using a Zeta Slider
  *
  * @fires change with a type of ZetaSliderEvent
- *
- * @public */
+ */
 @customElement("zeta-slider-input-field")
-export class ZetaSliderInputField extends ContourableElement {
+export class ZetaSliderInputField extends Contourable(LitElement) {
   /**
    * The label displayed above the input.
    */

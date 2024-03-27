@@ -64,7 +64,8 @@ export const IconIndicator: StoryObj<_ZetaIndicator> = {
       control: {
         type: "select"
       }
-    }
+    },
+    type: { table: { disable: true } }
   },
   args: {
     icon: "alarm"
@@ -76,9 +77,12 @@ export const NotificationIndicator: StoryObj<_ZetaIndicator> = {
   args: {
     value: "1"
   },
+  argTypes: {
+    icon: { table: { disable: true } },
+    type: { table: { disable: true } }
+  },
   render: args =>
     html` <zeta-notification-indicator size=${args.size} .inverse=${args.inverse} .rounded=${args.rounded}>
       <slot>${args.value}</slot>
     </zeta-notification-indicator>`
 };
-

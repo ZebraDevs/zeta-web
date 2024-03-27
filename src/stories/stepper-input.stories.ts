@@ -10,7 +10,8 @@ const meta: Meta<ZetaStepperInput> = {
     max: 100,
     rounded: false,
     disabled: false,
-    size: "medium"
+    size: "medium",
+    value: 1
   },
   argTypes: {
     size: {
@@ -24,7 +25,7 @@ const meta: Meta<ZetaStepperInput> = {
       url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=21529-9963&mode=design&t=DUHsS5bjWB5UW1iG-4"
     },
     status: {
-      type: "ready"
+      type: "needsAttention"
     }
   }
 };

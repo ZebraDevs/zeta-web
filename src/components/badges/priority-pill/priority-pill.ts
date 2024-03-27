@@ -1,7 +1,7 @@
-import { html } from "lit";
+import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./priority-pill.scss?inline";
-import { ContourableElement } from "../../../mixins/contour.js";
+import { Contourable } from "../../../mixins/contour.js";
 
 /** ZetaPriorityPill web component.
  *
@@ -10,10 +10,9 @@ import { ContourableElement } from "../../../mixins/contour.js";
  * Slotted children:
  *    * Number
  *    * Text
- *
- * @public */
+ */
 @customElement("zeta-priority-pill")
-export class ZetaPriorityPill extends ContourableElement {
+export class ZetaPriorityPill extends Contourable(LitElement) {
   /** Text of Priority.
    *
    * Can also be slotted. */

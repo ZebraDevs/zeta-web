@@ -1,5 +1,4 @@
 import { customElement } from "lit/decorators.js";
-import { ContourableElement } from "../../mixins/contour.js";
 import { LitElement, html } from "lit";
 import styles from "./navigation-bar.scss?inline";
 
@@ -19,7 +18,8 @@ export class ZetaNavigationBar extends LitElement {
     `;
   }
 
-  static styles = [styles, ContourableElement.styles || []];
+  static styles = [styles, super.styles || []];
+  // static styles = [styles, ContourableElement.styles || []]; //TODO: Add contourable back, check styles.
 }
 
 declare global {

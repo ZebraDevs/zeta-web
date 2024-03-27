@@ -3,10 +3,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { customElement, property, query } from "lit/decorators.js";
-import { html, nothing } from "lit";
+import { html, LitElement, nothing } from "lit";
 import styles from "./search.scss?inline";
 import { live } from "lit/directives/live.js";
-import { ContourableInteractiveElement } from "../../mixins/interactive.js";
+import { Contourable, Interactive } from "../../index.js";
 import { msg } from "@lit/localize";
 
 /**
@@ -14,7 +14,7 @@ import { msg } from "@lit/localize";
  * Supports speech recognition search on Chrome
  */
 @customElement("zeta-search")
-export class ZetaSearch extends ContourableInteractiveElement {
+export class ZetaSearch extends Contourable(Interactive(LitElement)) {
   static override shadowRootOptions: ShadowRootInit = { delegatesFocus: true, mode: "open" };
   constructor() {
     super();
@@ -146,3 +146,4 @@ declare global {
     "zeta-search": ZetaSearch;
   }
 }
+

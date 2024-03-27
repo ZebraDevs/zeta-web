@@ -14,8 +14,7 @@ export type FooterVariant = "profile" | "logo";
  * @slot leading - Content placed before the headline. Not shown if 'variant' is set to 'logo'.
  * @slot trailing - Content placed after the headline. Not shown if 'variant' is set to 'logo'.
  * @slot logo - The element that replaces the default Zebra logo. Not shown if 'variant' is set to 'profile'.
- *
- * @public */
+ */
 @customElement("zeta-navigation-drawer-footer")
 export class ZetaNavigationDrawerFooter extends LitElement {
   /**
@@ -91,3 +90,4 @@ declare global {
     "zeta-navigation-drawer-footer": ZetaNavigationDrawerFooter;
   }
 }
+

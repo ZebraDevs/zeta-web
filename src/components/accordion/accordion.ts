@@ -1,20 +1,18 @@
-import { html } from "lit";
+import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./accordion.scss?inline";
 import "../icon/icon.js";
-import { ContourableInteractiveElement } from "../../mixins/interactive.js";
+import { Contourable, Interactive } from "../../index.js";
 
 /**
  * The accordion is a control element comprising a vertically stacked list of items, such as labels or thumbnails. Each item can be "expanded" or "collapsed" to reveal the content associated with that item. There can be zero expanded items, exactly one, or more than one item expanded at a time, depending on the configuration.
  *
  * The contents within the tag will be the child of the open accordion. Typically, this would be list items. Custom styles are applied to ```<li>``` elements to match Zeta styles.
  *
- * @slot default - li goes here
- *
- * @public
+ * @slot - Typically li
  */
 @customElement("zeta-accordion")
-export class ZetaAccordion extends ContourableInteractiveElement {
+export class ZetaAccordion extends Contourable(Interactive(LitElement)) {
   /** The title of the accordion. */
   @property({ type: String }) accordionTitle?: string;
 
@@ -30,12 +28,6 @@ export class ZetaAccordion extends ContourableInteractiveElement {
    * @default false
    */
   @property({ type: Boolean, reflect: true }) open = false;
-
-  /** Disabled the accordion.
-   *
-   * @default false
-   */
-  @property({ type: Boolean, reflect: true }) disabled: boolean = false;
 
   private toggleOpen() {
     if (!this.disabled) this.open = !this.open;

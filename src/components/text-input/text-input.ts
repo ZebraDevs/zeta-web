@@ -1,18 +1,18 @@
 import { customElement, property, query } from "lit/decorators.js";
-import { html, nothing } from "lit";
+import { html, LitElement, nothing } from "lit";
 import { Size } from "../../types.js";
 import styles from "./text-input.scss?inline";
 import { ZetaIconName } from "@zebra-fed/zeta-icons";
 import { classMap } from "lit/directives/class-map.js";
 import { live } from "lit/directives/live.js";
 import "../../index.js";
-import { ContourableInteractiveElement } from "../../mixins/interactive.js";
+import { Contourable, Interactive } from "../../index.js";
 
 /**
  * Text input component with icon, affix, label and hint text
  */
 @customElement("zeta-text-input")
-export class ZetaTextInput extends ContourableInteractiveElement {
+export class ZetaTextInput extends Contourable(Interactive(LitElement)) {
   static override shadowRootOptions: ShadowRootInit = { delegatesFocus: true, mode: "open" };
 
   static styles = [styles, super.styles ?? []];
@@ -22,10 +22,6 @@ export class ZetaTextInput extends ContourableInteractiveElement {
    * Error state
    */
   @property({ type: Boolean, reflect: true }) error = false;
-  /**
-   * Disabled state
-   */
-  @property({ type: Boolean, reflect: true }) disabled = false;
   /**
    * Size
    */
@@ -239,4 +235,3 @@ declare global {
     "zeta-text-input": ZetaTextInput;
   }
 }
-

@@ -1,24 +1,21 @@
-import { html } from "lit";
+import { html, LitElement } from "lit";
 import { customElement, property, query } from "lit/decorators.js";
 import styles from "./switch.scss?inline";
 import { ZetaIconName } from "@zebra-fed/zeta-icons";
-import { ContourableInteractiveElement } from "../../mixins/interactive.js";
+import { Contourable, Interactive } from "../../index.js";
 
 /**
  * Switches toggle the state of a single item ON or OFF.
  * To use with icon variant, provide both activeIcon and inactiveIcon
  */
 @customElement("zeta-switch")
-export class ZetaSwitch extends ContourableInteractiveElement {
+export class ZetaSwitch extends Contourable(Interactive(LitElement)) {
   static override shadowRootOptions: ShadowRootInit = { delegatesFocus: true, mode: "open" };
   /**
    * State of the switch
    */
   @property({ type: Boolean, reflect: true }) active: boolean = false;
-  /**
-   * Is the switch disabled
-   */
-  @property({ type: Boolean }) disabled: boolean = false;
+
   /**
    * Icon name to display when switch is ON
    */

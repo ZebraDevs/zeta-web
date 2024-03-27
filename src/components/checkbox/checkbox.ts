@@ -1,13 +1,13 @@
 import { customElement, property } from "lit/decorators.js";
-import { ContourableInteractiveElement } from "../../mixins/interactive.js";
-import { html } from "lit";
+import { Contourable, Interactive } from "../../index.js";
+import { html, LitElement } from "lit";
 import styles from "./checkbox.scss?inline";
 
-@customElement("zeta-checkbox")
 /**
  * Checkboxes allow users to select one or more items from a set. Checkboxes can turn an option on or off.
  */
-export class ZetaCheckbox extends ContourableInteractiveElement {
+@customElement("zeta-checkbox")
+export class ZetaCheckbox extends Contourable(Interactive(LitElement)) {
   /**
    * Controls the state of the checkbox.
    *
@@ -29,11 +29,6 @@ export class ZetaCheckbox extends ContourableInteractiveElement {
    * The ID given to the checkbox input.
    */
   @property({ type: String }) id: string = "checkbox";
-
-  /**
-   * Disables the checkbox.
-   */
-  @property({ type: Boolean, reflect: true }) disabled: boolean = false;
 
   private toggleCheck() {
     if (!this.disabled) {
@@ -63,7 +58,7 @@ export class ZetaCheckbox extends ContourableInteractiveElement {
     </div>`;
   }
 
-  static styles = [styles, ContourableInteractiveElement.styles || []];
+  static styles = [styles, super.styles || []];
 }
 
 declare global {

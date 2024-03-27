@@ -1,15 +1,13 @@
-import { html } from "lit";
+import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
 import styles from "./sheet-header.scss?inline";
 import { Alignment } from "../../../types.js";
-import { ContourableElement } from "../../../mixins/contour.js";
+import { Contourable } from "../../../mixins/contour.js";
 
-/** Zeta Sheet Header web component.
- *
- * @public */
+/** Zeta Sheet Header web component. */
 @customElement("zeta-sheet-header")
-export class ZetaSheetHeader extends ContourableElement {
+export class ZetaSheetHeader extends Contourable(LitElement) {
   /** Sheet Header alignment.*/
   @property({ type: String, reflect: true }) alignment: Alignment = "start";
 

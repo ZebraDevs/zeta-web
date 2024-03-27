@@ -4,7 +4,7 @@ import { LitElement, html, nothing } from "lit";
 import styles from "./dialog.scss?inline";
 import { classMap } from "lit/directives/class-map.js";
 import { ZetaButton } from "../button/button.js";
-import { ContourablePopupElement } from "../../mixins/popup.js";
+import { Contourable, Popup } from "../../index.js";
 
 /**
  * @name Zeta Dialog component
@@ -13,7 +13,7 @@ import { ContourablePopupElement } from "../../mixins/popup.js";
  * @fires "close" Event on close
  */
 @customElement("zeta-dialog")
-export class ZetaDialog extends ContourablePopupElement {
+export class ZetaDialog extends Contourable(Popup(LitElement)) {
   constructor() {
     super();
     this.addEventListener("submit", this.handleSubmit);

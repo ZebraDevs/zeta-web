@@ -5,7 +5,7 @@ import styles from "./card-footer.scss?inline";
 /**
  * Used at the bottom of a card. Typically contains button elements.
  *
- * @slot default - The content displayed in the footer. Should be one or two 'zeta-button's.
+ * @slot - The content displayed in the footer. Should be one or two 'zeta-button's.
  */
 @customElement("zeta-card-footer")
 export class ZetaCardFooter extends LitElement {

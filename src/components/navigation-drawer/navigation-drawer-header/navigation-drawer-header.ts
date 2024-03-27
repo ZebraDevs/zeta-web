@@ -9,8 +9,7 @@ import styles from "./navigation-drawer-header.scss?inline";
  * @slot - The headline text.
  * @slot leading - Content placed before the headline.
  * @slot trailing - Content placed after the headline.
- *
- * @public */
+ */
 @customElement("zeta-navigation-drawer-header")
 export class ZetaNavigationDrawerHeader extends LitElement {
   /**
@@ -50,3 +49,4 @@ declare global {
     "zeta-navigation-drawer-header": ZetaNavigationDrawerHeader;
   }
 }
+

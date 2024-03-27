@@ -21,4 +21,3 @@ const meta: Meta<ZetaBreadcrumbTruncated> = {
 export default meta;
 
 export const BreadcrumbTruncated: StoryObj<ZetaBreadcrumbTruncated> = {};
-

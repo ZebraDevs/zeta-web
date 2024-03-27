@@ -10,7 +10,10 @@ const meta: Meta<ZetaFileUpload> = {
     headline: "Drop files here to upload",
     caption: "Supports: JPG, JPEG2000, PNG. Max file size 100mb",
     multiple: true,
-    accept: ""
+    accept: "",
+    name: "",
+    active: false,
+    error: false
   },
   parameters: {
     design: {

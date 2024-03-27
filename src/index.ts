@@ -8,6 +8,8 @@
 import "./index.css";
 
 /** Components */
+import "./mixins/mixins.ts";
+import "./types.js";
 import "./components/accordion/accordion.ts";
 import "./components/avatar/avatar.ts";
 import "./components/badges/badges.js";
@@ -38,8 +40,6 @@ import "./components/stepper/stepper.ts";
 import "./components/switch/switch.ts";
 import "./components/text-input/text-input.ts";
 import "./components/tooltip/tooltip.ts";
-import "./mixins/mixins.ts";
-import "./types.js";
 
 export * from "./components/accordion/accordion.js";
 export * from "./components/avatar/avatar.js";
@@ -73,3 +73,4 @@ export * from "./components/text-input/text-input.js";
 export * from "./components/tooltip/tooltip.js";
 export * from "./mixins/mixins.js";
 export * from "./types.js";
+

@@ -1,13 +1,13 @@
 import { customElement, property } from "lit/decorators.js";
-import { html, svg } from "lit";
+import { html, LitElement, svg } from "lit";
 import styles from "./tooltip.scss?inline";
-import { ContourableElement } from "../../mixins/contour.js";
+import { Contourable } from "../../mixins/contour.js";
 
 /**
  * Tooltips display informative text when users hover over, focus on, or tap an element.
  */
 @customElement("zeta-tooltip")
-export class ZetaTooltip extends ContourableElement {
+export class ZetaTooltip extends Contourable(LitElement) {
   constructor() {
     super();
   }

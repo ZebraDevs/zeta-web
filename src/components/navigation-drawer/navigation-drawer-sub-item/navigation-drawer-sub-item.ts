@@ -1,17 +1,16 @@
-import { html } from "lit";
+import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./navigation-drawer-sub-item.scss?inline";
-import { ContourableInteractiveElement } from "../../../mixins/interactive.js";
+import { Contourable, Interactive } from "../../../index.js";
 
 /** ZetaNavigationDrawerSubItem web component.
  *
  * A navigation sub item to be used in a zeta-navigation-drawer
  *
  * @slot - The headline text.
- *
- * @public */
+ */
 @customElement("zeta-navigation-drawer-sub-item")
-export class ZetaNavigationDrawerSubItem extends ContourableInteractiveElement {
+export class ZetaNavigationDrawerSubItem extends Contourable(Interactive(LitElement)) {
   /**
    * The headline text. Can also be slotted.
    */
@@ -39,3 +38,4 @@ declare global {
     "zeta-navigation-drawer-sub-item": ZetaNavigationDrawerSubItem;
   }
 }
+

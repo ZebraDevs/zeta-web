@@ -1,7 +1,7 @@
-import { html, nothing } from "lit";
+import { html, LitElement, nothing } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./progress-bar.scss?inline";
-import { ContourableElement } from "../../../mixins/contour.js";
+import { Contourable } from "../../../mixins/contour.js";
 import { styleMap } from "lit/directives/style-map.js";
 
 export type ProgressBarSize = "thin" | "medium";
@@ -9,10 +9,9 @@ export type ProgressBarSize = "thin" | "medium";
 /** ZetaProgressBar web component.
  *
  * Progress indicators express an unspecified wait time or display the length of a process.
- *
- * @public */
+ */
 @customElement("zeta-progress-bar")
-export class ZetaProgressBar extends ContourableElement {
+export class ZetaProgressBar extends Contourable(LitElement) {
   /**
    * The size of the progress indicator. Can either be 'medium' or 'thin'.
    *
