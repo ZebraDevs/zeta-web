@@ -3,22 +3,13 @@ import { customElement, property } from "lit/decorators.js";
 import styles from "./input-chip.scss?inline";
 import { Contourable, Interactive } from "../../../index.js";
 
-/** Zeta Input Chip web component.*/
 @customElement("zeta-input-chip")
 export class ZetaInputChip extends Contourable(Interactive(LitElement)) {
-  constructor() {
-    super();
-    this.text = "Label";
-    this.type = "label-only";
-  }
+  /** Text displayed in the chip. */
+  @property({ type: String }) text: string = "Label";
 
-  /**
-   * Text displayed in the chip
-   */
-  @property({ type: String }) text: string;
-
-  /** Chips' types.*/
-  @property({ type: String, reflect: true }) type: "label-only" | "label-with-close-icon" | "label-with-avatar-icon" | "label-with-both-icons";
+  /** Chips' types. */
+  @property({ type: String, reflect: true }) type: "label-only" | "label-with-close-icon" | "label-with-avatar-icon" | "label-with-both-icons" = "label-only";
 
   static styles = [super.styles ?? [], styles];
 

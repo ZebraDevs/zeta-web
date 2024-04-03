@@ -1,12 +1,11 @@
 import { customElement, property } from "lit/decorators.js";
-
 import { html, LitElement } from "lit";
 import { live } from "lit/directives/live.js";
 import styles from "./stepper-input.scss?inline";
 import { ifDefined } from "lit/directives/if-defined.js";
 import "../button/icon-button/icon-button.js";
 import "../icon/icon.js";
-import { Contourable } from "../../mixins/contour.js";
+import { Contourable } from "../../mixins/mixins.js";
 
 //TODO: Disable buttons when at min or max
 //TODO: disabled prop changes size of box
@@ -14,9 +13,6 @@ import { Contourable } from "../../mixins/contour.js";
 @customElement("zeta-stepper-input")
 export class ZetaStepperInput extends Contourable(LitElement) {
   static styles = [super.styles || [], styles];
-  constructor() {
-    super();
-  }
 
   @property({ type: Number }) min?: number;
   @property({ type: Number }) max?: number;
@@ -95,4 +91,3 @@ declare global {
     "zeta-stepper-input": ZetaStepperInput;
   }
 }
-

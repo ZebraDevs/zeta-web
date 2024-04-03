@@ -1,38 +1,25 @@
 import { customElement, property } from "lit/decorators.js";
-import { Contourable } from "../../../mixins/contour.js";
+import { Contourable } from "../../../mixins/mixins.js";
 import { html, LitElement, nothing } from "lit";
 import styles from "./progress-circle.scss?inline";
 import { classMap } from "lit/directives/class-map.js";
 
-/**
- * Progress indicators express an unspecified wait time or display the length of a process.
- */
+/** Progress indicators express an unspecified wait time or display the length of a process. */
 @customElement("zeta-progress-circle")
 export class ZetaProgressCircle extends Contourable(LitElement) {
-  constructor() {
-    super();
-  }
-
   static styles = [super.styles || [], styles];
 
-  /**
-   * Size
-   */
-  @property({ type: Number })
-  size: 24 | 36 | 40 | 48 | 64 = 64;
-  /**
-   * Progress (0-100)
-   */
+  /** Size. */
+  @property({ type: Number }) size: 24 | 36 | 40 | 48 | 64 = 64;
+
+  /** Progress (0-100). */
   @property({ type: Number }) get progress() {
     return this.progressValue;
   }
-  /**
-   * Animated state
-   */
+  /** Animated state. */
   @property({ type: Boolean }) loading = false;
-  /**
-   * Uploading state
-   */
+
+  /** Uploading state. */
   @property({ type: Boolean }) uploading = false;
 
   set progress(value: number) {
@@ -121,4 +108,3 @@ declare global {
     "zeta-progress-circle": ZetaProgressCircle;
   }
 }
-

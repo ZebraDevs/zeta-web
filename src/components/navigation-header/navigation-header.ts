@@ -5,8 +5,7 @@ import styles from "./navigation-header.scss?inline";
 export * from "./navigation-item/navigation-item.js";
 export * from "./navigation-profile/navigation-profile.js";
 
-/** ZetaNavigationHeader web component.
- *
+/**
  * A header used to display a collection of zeta-navigation-items.
  *
  * @slot - The navigation items displayed in the header. Should be a list of zeta-navigation-item.
@@ -29,4 +28,3 @@ declare global {
     "zeta-navigation-header": ZetaNavigationHeader;
   }
 }
-

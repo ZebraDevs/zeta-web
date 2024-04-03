@@ -3,8 +3,7 @@ import { customElement, property } from "lit/decorators.js";
 import styles from "./navigation-item.scss?inline";
 import { Contourable, Interactive } from "../../../index.js";
 
-/** ZetaNavigationItem web component.
- *
+/**
  * A navigation item to be used in a zeta-navigation-header
  *
  * @slot - The content of the menu item.
@@ -30,4 +29,3 @@ declare global {
     "zeta-navigation-item": ZetaNavigationItem;
   }
 }
-

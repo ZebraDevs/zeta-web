@@ -27,4 +27,3 @@ declare global {
     "zeta-navigation-bar": ZetaNavigationBar;
   }
 }
-

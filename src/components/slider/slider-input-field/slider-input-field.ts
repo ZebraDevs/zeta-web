@@ -1,6 +1,6 @@
 import { html, LitElement, nothing } from "lit";
 import { customElement, property, query } from "lit/decorators.js";
-import { Contourable } from "../../../mixins/contour.js";
+import { Contourable } from "../../../mixins/mixins.js";
 import styles from "./slider-input-field.scss?inline";
 import "../slider.js";
 import "../../text-input/text-input.js";
@@ -9,49 +9,35 @@ import { live } from "lit/directives/live.js";
 
 //TODO: min / max dont seem to change values of slider correctly.
 
-/** ZetaSliderInputField web component.
- *
+/**
  * An input field using a Zeta Slider
  *
  * @fires change with a type of ZetaSliderEvent
  */
 @customElement("zeta-slider-input-field")
 export class ZetaSliderInputField extends Contourable(LitElement) {
-  /**
-   * The label displayed above the input.
-   */
+  /** The label displayed above the input. */
   @property({ type: String }) label?: string;
-  /**
-   * The name given to the input field.
-   */
+
+  /** The name given to the input field. */
   @property({ type: String }) name?: string;
-  /**
-   * The value of the input field.
-   */
+
+  /** The value of the input field. */
   @property({ type: Number, reflect: true }) value?: number;
-  /**
-   * Error state
-   */
+
+  /** Error state. */
   @property({ type: Boolean, reflect: true }) error = false;
-  /**
-   * The minimum value of the slider input field.
-   *
-   * @defaultValue 0
-   */
+
+  /** The minimum value of the slider input field. */
   @property({ type: Number }) min: number = 0;
-  /**
-   * The maximum value of the slider input field.
-   *
-   * @defaultValue 100
-   */
+
+  /** The maximum value of the slider input field. */
   @property({ type: Number }) max: number = 100;
-  /**
-   * If set, will put steps on the slider at the given increments and the slider will snap to the nearest step.
-   */
+
+  /** If set, will put steps on the slider at the given increments and the slider will snap to the nearest step. */
   @property({ type: Number, attribute: "step-increment" }) stepIncrement?: number;
-  /**
-   * Disables the input field
-   */
+
+  /**  Disables the input field. */
   @property({ type: Boolean, reflect: true }) disabled?: boolean;
 
   @query("input") input!: HTMLInputElement;
@@ -116,4 +102,3 @@ declare global {
     "zeta-slider-input-field": ZetaSliderInputField;
   }
 }
-

@@ -3,22 +3,17 @@ import { customElement, property } from "lit/decorators.js";
 import styles from "./navigation-drawer-item.scss?inline";
 import { Contourable, Interactive } from "../../../index.js";
 
-/** ZetaNavigationDrawerItem web component.
- *
+/**
  * A navigation item to be used in a zeta-navigation-drawer
  *
  * @slot - The headline text.
  */
 @customElement("zeta-navigation-drawer-item")
 export class ZetaNavigationDrawerItem extends Contourable(Interactive(LitElement)) {
-  /**
-   * The headline text. Can also be slotted.
-   */
+  /** The headline text. Can also be slotted. */
   @property({ type: String }) headline?: string;
 
-  /**
-   * Sets the item to active.
-   */
+  /** Sets the item to active. */
   @property({ type: Boolean, reflect: true }) active: boolean = false;
 
   protected override render() {
@@ -42,4 +37,3 @@ declare global {
     "zeta-navigation-drawer-item": ZetaNavigationDrawerItem;
   }
 }
-

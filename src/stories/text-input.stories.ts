@@ -60,8 +60,13 @@ const meta: Meta<
 };
 
 export const TextInput: StoryObj = {
+  args: {
+    prefix: ""
+  },
+  argTypes: {
+    "prefix-text": { table: { disable: true } }
+  },
   name: "Default text input",
-
   render: args => html`
     <zeta-text-input ${spread(args)} .rounded=${args.rounded} .disabled=${args.disabled} .error=${args.error} ?required=${args.required}> </zeta-text-input>
   `
@@ -168,3 +173,4 @@ export const PasswordField: StoryObj = {
 };
 
 export default meta;
+

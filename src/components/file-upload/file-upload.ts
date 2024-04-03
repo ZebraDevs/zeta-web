@@ -4,49 +4,40 @@ import styles from "./file-upload.scss?inline";
 
 import { msg } from "@lit/localize";
 import "../button/button.js";
-import { Contourable } from "../../mixins/contour.js";
+import { Contourable } from "../../mixins/mixins.js";
 
-/** ZetaFileUpload web component.
- *
- * A file input that supports drag and drop.
- */
+/** A file input that supports drag and drop.*/
 @customElement("zeta-file-upload")
 export class ZetaFileUpload extends Contourable(LitElement) {
   private defaultHeadline = msg("Drop files here to upload");
   private errorMsg: string = "";
 
-  /**
-   * The headline text.
-   */
+  /** The headline text. */
   @property({ type: String }) headline: string = this.defaultHeadline;
-  /**
-   * The caption text.
-   */
+
+  /** The caption text. */
   @property({ type: String }) caption?: string;
+
   /**
    * A comma separated list of accepted file formats.
-   * For more information see {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#additional_attributes}
+   *
+   * For more information see {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#additional_attributes}.
    */
   @property({ type: String }) accept?: string;
-  /**
-   * Allows multiple files to be added to the input. Also affects drag and drop.
-   * Defaults to true.
-   */
+
+  /** Allows multiple files to be added to the input. Also affects drag and drop. */
   @property({ type: Boolean }) multiple = true;
-  /**
-   * The name given to the file input.
-   */
+
+  /** The name given to the file input.*/
   @property({ type: String }) name?: string;
-  /**
-   * Used to trigger the 'active' state of the file input.
-   */
+
+  /** Used to trigger the 'active' state of the file input. */
   @property({ type: Boolean, reflect: true }) active: boolean = false;
-  /**
-   * Use to show the 'error' state of the file input.
-   */
+
+  /** Use to show the 'error' state of the file input. */
   @property({ type: Boolean, reflect: true }) error: boolean = false;
 
-  @query("input") fileInput: HTMLInputElement | undefined;
+  @query("input") fileInput?: HTMLInputElement;
 
   private checkMultiple(e: DragEvent) {
     return this.multiple || (!this.multiple && e.dataTransfer?.items && e.dataTransfer?.items.length == 1);
@@ -168,4 +159,3 @@ declare global {
     "zeta-file-upload": ZetaFileUpload;
   }
 }
-

@@ -2,12 +2,9 @@ import { html, LitElement, nothing } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./global-header.scss?inline";
 import "../icon/icon.js";
-import { Contourable } from "../../mixins/contour.js";
+import { Contourable } from "../../mixins/mixins.js";
 
-export type MenuPosition = "inline" | "below";
-
-/** ZetaGlobalHeader web component.
- *
+/**
  * A header with support for displaying a zeta-navigation-menu
  *
  * @slot - The main content of the header.
@@ -17,17 +14,11 @@ export type MenuPosition = "inline" | "below";
  */
 @customElement("zeta-global-header")
 export class ZetaGlobalHeader extends Contourable(LitElement) {
-  /**
-   * The headline text on the header. Can also be slotted.
-   */
+  /** The headline text on the header. Can also be slotted. */
   @property({ type: String }) headline?: string;
 
-  /**
-   * The position of the navigation. Can either be 'inline' or 'below.
-   *
-   * @defaultValue 'inline'
-   */
-  @property({ type: String, attribute: "menu-position" }) menuPosition: MenuPosition = "inline";
+  /** The position of the navigation. */
+  @property({ type: String, attribute: "menu-position" }) menuPosition: "inline" | "below" = "inline";
 
   protected override render() {
     return html`
@@ -57,4 +48,3 @@ declare global {
     "zeta-global-header": ZetaGlobalHeader;
   }
 }
-

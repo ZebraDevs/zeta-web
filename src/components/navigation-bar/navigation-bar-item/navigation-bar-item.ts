@@ -1,5 +1,5 @@
 import { customElement, property } from "lit/decorators.js";
-import { Contourable } from "../../../mixins/contour.js";
+import { Contourable } from "../../../mixins/mixins.js";
 import { ZetaIconName } from "@zebra-fed/zeta-icons";
 import { html, LitElement, nothing } from "lit";
 import styles from "./navigation-bar-item.scss?inline";
@@ -56,4 +56,3 @@ declare global {
     "zeta-navigation-bar-item": ZetaNavigationBarItem;
   }
 }
-

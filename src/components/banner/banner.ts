@@ -1,31 +1,25 @@
 import { html, LitElement, nothing } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { Alignment, BannerStatus } from "../../types.js";
 import styles from "./banner.scss?inline";
-import { Contourable } from "../../mixins/contour.js";
+import { Contourable } from "../../mixins/mixins.js";
 
 // TODO: Update to use zeta-icon
 
-/** Zeta system banner component. */
+/** A banner displays an important, succinct message, and provides action for users to address. It draws the attention to the message by displaying it at the top in various colors. */
 @customElement("zeta-system-banner")
 export class ZetaSystemBanner extends Contourable(LitElement) {
-  /** Type of banner.
-   *
-   * @defaultValue 'default' */
-  @property({ type: String, reflect: true }) status: BannerStatus = "default";
+  /** Type of banner.*/
+  @property({ type: String, reflect: true }) status: "default" | "positive" | "warning" | "negative" = "default";
+
+  /** Alignment of banner.*/
+  @property({ type: String, reflect: true }) align: "start" | "center" = "start";
 
   /**
-   * Alignment of banner.
+   * Text displayed on the banner.
    *
-   * Only start and center are valid options.
-   *
-   * @defaultValue `Alignment.start`. */
-  @property({ type: String, reflect: true }) align: Alignment = "start";
-
-  /** Text displayed on the banner.
-   *
-   * Can also be slotted. */
-  @property({ type: String }) text: string | undefined;
+   * Can also be slotted.
+   */
+  @property({ type: String }) text?: string;
 
   static styles = [super.styles || [], styles];
 
@@ -48,4 +42,3 @@ declare global {
     "zeta-system-banner": ZetaSystemBanner;
   }
 }
-

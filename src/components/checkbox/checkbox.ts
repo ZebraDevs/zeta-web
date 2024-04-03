@@ -3,9 +3,7 @@ import { Contourable, Interactive } from "../../index.js";
 import { html, LitElement } from "lit";
 import styles from "./checkbox.scss?inline";
 
-/**
- * Checkboxes allow users to select one or more items from a set. Checkboxes can turn an option on or off.
- */
+/** Checkboxes allow users to select one or more items from a set. Checkboxes can turn an option on or off. */
 @customElement("zeta-checkbox")
 export class ZetaCheckbox extends Contourable(Interactive(LitElement)) {
   /**
@@ -15,19 +13,13 @@ export class ZetaCheckbox extends Contourable(Interactive(LitElement)) {
    */
   @property({ type: Boolean, reflect: true }) checked: true | false | "intermediate" = false;
 
-  /**
-   * The name of the checkbox when used in a form.
-   */
-  @property({ type: String }) name: string | undefined;
+  /** The name of the checkbox when used in a form. */
+  @property({ type: String }) name?: string;
 
-  /**
-   * The label displayed next to the check.
-   */
-  @property({ type: String }) label: string | undefined;
+  /** The label displayed next to the check. */
+  @property({ type: String }) label?: string;
 
-  /**
-   * The ID given to the checkbox input.
-   */
+  /** The ID given to the checkbox input. */
   @property({ type: String }) id: string = "checkbox";
 
   private toggleCheck() {
@@ -66,4 +58,3 @@ declare global {
     "zeta-checkbox": ZetaCheckbox;
   }
 }
-

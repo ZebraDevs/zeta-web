@@ -3,25 +3,19 @@ import styles from "./pagination.scss?inline";
 import { html, LitElement } from "lit";
 import { classMap } from "lit/directives/class-map.js";
 import "../button/icon-button/icon-button.js";
-import { Contourable } from "../../mixins/contour.js";
+import { Contourable } from "../../mixins/mixins.js";
 
-/**
- * Zeta pagination component
- */
 @customElement("zeta-pagination")
 export class ZetaPagination extends Contourable(LitElement) {
-  constructor() {
-    super();
-  }
   static styles = [super.styles || [], styles];
 
-  /**
-   * total number of pages
-   */
+  /** Total number of pages. */
   @property({ type: Number, attribute: "total-pages" }) totalPages = 10;
-  /**
-   * current active page
-   */
+
+  /** Number of pages on both sides of current active page. */
+  @property({ type: Number, attribute: "sibling-count" }) siblingCount = 1;
+
+  /** Current active page. */
   @property({ type: Number, attribute: "current-page" })
   get currentPage() {
     return this.page;
@@ -36,11 +30,6 @@ export class ZetaPagination extends Contourable(LitElement) {
       this.page = page;
     }
   }
-
-  /**
-   * number of pages on both sides of current active page
-   */
-  @property({ type: Number, attribute: "sibling-count" }) siblingCount = 1;
 
   private range = (start: number, end: number) => {
     const length = end - start + 1;
@@ -95,7 +84,7 @@ export class ZetaPagination extends Contourable(LitElement) {
   };
 
   getIconButton(iconName: string, pageNumber: number, disabled: boolean) {
-    return html` <zeta-icon-button
+    return html`<zeta-icon-button
       .disabled=${disabled}
       .rounded=${this.rounded}
       @click=${() => this.handlePageChange(pageNumber)}
@@ -136,4 +125,3 @@ declare global {
     "zeta-pagination": ZetaPagination;
   }
 }
-

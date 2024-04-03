@@ -1,10 +1,9 @@
 import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./priority-pill.scss?inline";
-import { Contourable } from "../../../mixins/contour.js";
+import { Contourable } from "../../../mixins/mixins.js";
 
-/** ZetaPriorityPill web component.
- *
+/**
  * This badge is used to indicate the order of importance.
  *
  * Slotted children:
@@ -16,12 +15,12 @@ export class ZetaPriorityPill extends Contourable(LitElement) {
   /** Text of Priority.
    *
    * Can also be slotted. */
-  @property({ type: String }) text: string | undefined;
+  @property({ type: String }) text?: string;
 
   /** Number shown at start of component.
    *
    * Can also be slotted. */
-  @property({ type: String || Number }) number: string | number | undefined;
+  @property({ type: String || Number }) number?: string | number;
 
   static styles = [styles, super.styles ?? []];
 

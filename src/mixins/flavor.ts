@@ -1,11 +1,10 @@
 import { LitElement } from "lit";
-import { ButtonFlavor, Size } from "../types.js";
 import { Constructor } from "./_utils.js";
-import { property, query } from "lit/decorators.js";
+import { property } from "lit/decorators.js";
 import styles from "./flavor.scss?inline";
 
 export declare class FlavoredInterface {
-  flavor: ButtonFlavor;
+  flavor: "primary" | "secondary" | "positive" | "negative" | "outline" | "outline-subtle" | "text";
 }
 
 /**
@@ -29,42 +28,10 @@ export const Flavored = <T extends Constructor<LitElement>>(superClass: T) => {
      * * outline-subtle - grey outline only.
      * * text - primary text only.
      */
-    @property({ type: String, reflect: true }) flavor: ButtonFlavor = "primary";
-
-    /** Size of button.
-     * Values:
-     *
-     * * small - height: 24px.
-     * * medium - height: 40px.
-     * * large - height: 48px.
-     */
-    @property({ type: String, reflect: true }) size: Size = "medium";
-
-    /** Name for the button, used if the button is in a form. */
-    //TODO: Does this even work in a form?
-    @property({ type: String }) name?: string;
-
-    /** The value of the name property When submitted as part of a form */
-    @property({ type: String }) value?: string;
+    @property({ type: String, reflect: true }) flavor: "primary" | "secondary" | "positive" | "negative" | "outline" | "outline-subtle" | "text" = "primary";
 
     static styles = [(superClass as unknown as typeof LitElement).styles ?? [], styles];
-
-    static shadowRootOptions: ShadowRootInit = {
-      mode: "open",
-      delegatesFocus: true
-    };
-
-    override focus() {
-      this.buttonElement?.focus();
-    }
-
-    override blur() {
-      this.buttonElement?.blur();
-    }
-    /** @internal */
-    @query("button") private readonly buttonElement!: HTMLElement | null;
   }
 
   return FlavoredClass as Constructor<FlavoredInterface & LitElement> & T;
 };
-

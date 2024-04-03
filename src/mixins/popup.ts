@@ -13,7 +13,6 @@ declare class PopupInterface {
 /**
  * Mixin to add make component pop up as a dialog.
  *
- *
  * @param superClass - LitElement to add mixin to
  * @returns - component with mixin applied.
  */
@@ -22,9 +21,7 @@ export const Popup = <T extends Constructor<LitElement>>(superClass: T) => {
     /**@internal */
     @query("dialog") private readonly dialog!: HTMLDialogElement | null;
 
-    /**
-     * Return value of the dialog.
-     */
+    /** Return value of the dialog. */
     @property({ attribute: false }) returnValue = "";
 
     /** Whether component is open or closed. */

@@ -4,10 +4,7 @@ import { customElement, property, queryAssignedElements } from "lit/decorators.j
 import styles from "./navigation-drawer-footer.scss?inline";
 import ZebraLogo from "../../../assets/zebra-logo.svg?raw";
 
-export type FooterVariant = "profile" | "logo";
-
-/** ZetaNavigationDrawerFooter web component.
- *
+/**
  * The footer used on a navigation drawer.
  *
  * @slot - The headline text.
@@ -17,25 +14,21 @@ export type FooterVariant = "profile" | "logo";
  */
 @customElement("zeta-navigation-drawer-footer")
 export class ZetaNavigationDrawerFooter extends LitElement {
-  /**
-   * The headline text. Can also be slotted.
-   */
+  /** The headline text. Can also be slotted. */
   @property({ type: String }) headline?: string;
-  /**
-   * The sub headline text.
-   */
+
+  /** The sub headline text. */
   @property({ type: String, attribute: "sub-headline" }) subHeadline?: string;
 
-  /**
-   * Shows a divider above the footer.
-   */
+  /** Shows a divider above the footer. */
   @property({ type: Boolean, reflect: true }) divide: boolean = false;
 
   /**
    * The variant of the footer.
+   *
    * If set to 'logo' the zebra logo or the contents of the 'logo' slot will be shown and the headline text will be displayed beneath the logo.
    */
-  @property({ type: String, reflect: true }) variant: FooterVariant = "profile";
+  @property({ type: String, reflect: true }) variant: "profile" | "logo" = "profile";
 
   @property({ type: Boolean, reflect: true, attribute: "hide-default-logo" }) hideDefaultLogo?: boolean;
   @queryAssignedElements({ slot: "logo", flatten: true }) customLogo!: NodeList;

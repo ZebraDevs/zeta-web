@@ -14,11 +14,10 @@ const meta: Meta<ZetaSheetHeader> = {
     }
   },
   args: {
-    text: "Title",
-    rounded: true
+    text: "Title"
   },
   argTypes: {
-    alignment: { options: ["left", "center", "end"], control: { type: "inline-radio" } }
+    alignment: { options: ["left", "center"], control: { type: "inline-radio" } }
   }
 };
 

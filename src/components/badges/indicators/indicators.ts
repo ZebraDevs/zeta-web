@@ -1,35 +1,27 @@
 import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./indicators.scss?inline";
-import { Size } from "../../../types.js";
 import { ZetaIconName } from "@zebra-fed/zeta-icons";
-import { Contourable } from "../../../mixins/contour.js";
+import { Contourable, Size } from "../../../mixins/mixins.js";
 
-/** ZetaIndicator. */
+/** Indicators are used to show the status of a user or any messages/notifications they might have. */
 @customElement("zeta-indicator")
-export class ZetaIndicator extends Contourable(LitElement) {
-  /** Indicators sizes.
+export class ZetaIndicator extends Size(Contourable(LitElement)) {
+  /**
+   *  Whether indicator is to be on an inverse background.
    *
-   * @defaultValue 'medium'
-   */
-  @property({ type: String, reflect: true }) size: Size = "medium";
-
-  /** Indicators' inverse.
-   *
-   * @defaultValue 'false'
+   * Adds an inverse color border to the indicator.
    */
   @property({ type: Boolean, reflect: true }) inverse: boolean = false;
 
-  /** Indicators' icon.
+  /**
+   * Icon to be shown on icon type indicator.
    *
-   * @defaultValue 'star'
+   * Full list of icons can be found at {@link https://zeta-icons.web.app/}.
    */
   @property({ type: String }) icon: ZetaIconName = "star";
 
-  /** Whether to render as a notification or icon indicator.
-   *
-   * @defaultValue 'notification'
-   */
+  /** Whether to render as a notification or icon indicator. */
   @property({ type: String }) type: "icon" | "notification" = "notification";
 
   static styles = [super.styles ?? [], styles];
@@ -53,7 +45,7 @@ export class ZetaIndicator extends Contourable(LitElement) {
   }
 }
 
-/** Zeta Icon Indicator web component. */
+/** Indicator with error red background, and an icon foreground. */
 @customElement("zeta-icon-indicator")
 export class ZetaIconIndicator extends ZetaIndicator {
   constructor() {
@@ -62,7 +54,7 @@ export class ZetaIconIndicator extends ZetaIndicator {
   }
 }
 
-/** Zeta Notification Indicator web component. */
+/** Indicator with primary blue background and text / number foreground. */
 @customElement("zeta-notification-indicator")
 export class ZetaNotificationIndicator extends ZetaIndicator {
   constructor() {

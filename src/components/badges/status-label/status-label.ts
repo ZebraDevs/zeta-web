@@ -1,12 +1,10 @@
 import { html, LitElement, svg } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { BadgeStatus } from "../../../types.js";
 import styles from "./status-label.scss?inline";
 import { ZetaIconName } from "@zebra-fed/zeta-icons";
-import { Contourable } from "../../../mixins/contour.js";
+import { Contourable } from "../../../mixins/mixins.js";
 
-/** ZetaStatusLabel web component.
- *
+/**
  * To help some information, labels, or errors stand out, we present them with badges. They can look like buttons, but users can’t select them. They just guide users to things they should pay attention to.
  *
  * Slotted children:
@@ -18,12 +16,12 @@ export class ZetaStatusLabel extends Contourable(LitElement) {
   /** Type of status label.
    *
    * @defaultValue `BannerType.default` */
-  @property({ type: String, reflect: true }) status: BadgeStatus = "neutral";
+  @property({ type: String, reflect: true }) status: "neutral" | "info" | "positive" | "warning" | "negative" = "neutral";
 
   /** Text displayed on label.
    *
    * Can also be slotted. */
-  @property({ type: String }) text: string | undefined;
+  @property({ type: String }) text?: string;
 
   /** Icon leading the component. @see {ZetaIconName}.
    *

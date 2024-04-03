@@ -3,8 +3,7 @@ import { customElement } from "lit/decorators.js";
 import styles from "./navigation-profile.scss?inline";
 import { Contourable } from "../../../index.js";
 
-/** ZetaNavigationProfile web component.
- *
+/**
  * @slot - The headline text.
  * @slot leading - The leading content. Typically a zeta-avatar.
  */
@@ -30,4 +29,3 @@ declare global {
     "zeta-navigation-profile": ZetaNavigationProfile;
   }
 }
-

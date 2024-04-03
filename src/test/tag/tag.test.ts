@@ -15,7 +15,7 @@ describe("ZetaTag", () => {
 
   it("sets the default properties correctly", async () => {
     await expect(subject.point).to.equal("right");
-    await expect(subject.text).to.equal("Tag");
+    await expect(subject.text).to.equal("");
   });
 
   it("manages point attribute correctly", async () => {

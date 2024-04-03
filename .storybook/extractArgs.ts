@@ -25,7 +25,7 @@ export default (manifest, mapArgs?) => componentName => {
     ).map(e => {
       //TODO: Extend this abomination to list values in union types.
       return e.map(f => {
-        if (f!["type"] !== typeof String && f!["type"] && f!["type"]["text"]) {
+        if (f!["type"] !== typeof String && f!["type"] && f!["type"]["text"] && f!["type"]["text"] != "boolean" && !f!["type"]["text"].includes("number")) {
           f!["type"] = f!["type"]["text"];
         }
         return f;

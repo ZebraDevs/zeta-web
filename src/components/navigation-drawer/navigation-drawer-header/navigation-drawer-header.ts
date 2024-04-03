@@ -2,8 +2,7 @@ import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./navigation-drawer-header.scss?inline";
 
-/** ZetaNavigationDrawerHeader web component.
- *
+/**
  * The header used on a navigation drawer.
  *
  * @slot - The headline text.
@@ -12,18 +11,13 @@ import styles from "./navigation-drawer-header.scss?inline";
  */
 @customElement("zeta-navigation-drawer-header")
 export class ZetaNavigationDrawerHeader extends LitElement {
-  /**
-   * The headline text. Can also be slotted.
-   */
+  /** The headline text. Can also be slotted. */
   @property({ type: String }) headline?: string;
-  /**
-   * The sub headline text.
-   */
+
+  /** The sub headline text.*/
   @property({ type: String, attribute: "sub-headline" }) subHeadline?: string;
 
-  /**
-   * Shows a divider below the header.
-   */
+  /** Shows a divider below the header. */
   @property({ type: Boolean, reflect: true }) divide: boolean = false;
 
   protected override render() {
@@ -49,4 +43,3 @@ declare global {
     "zeta-navigation-drawer-header": ZetaNavigationDrawerHeader;
   }
 }
-

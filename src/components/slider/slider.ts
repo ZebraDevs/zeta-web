@@ -1,7 +1,7 @@
 import { html, LitElement, nothing } from "lit";
 import { customElement, property, query } from "lit/decorators.js";
 import styles from "./slider.scss?inline";
-import { Contourable } from "../../mixins/contour.js";
+import { Contourable } from "../../mixins/mixins.js";
 import { styleMap } from "lit/directives/style-map.js";
 
 export * from "./slider-input-field/slider-input-field.js";
@@ -20,8 +20,7 @@ export interface ZetaRangeSliderEvent {
   max: number;
 }
 
-/** ZetaSlider web component.
- *
+/**
  * Sliders allow users to make selections from a range of values.
  *
  * @fires change with a type of ZetaSliderEvent for default sliders.
@@ -29,52 +28,38 @@ export interface ZetaRangeSliderEvent {
  */
 @customElement("zeta-slider")
 export class ZetaSlider extends Contourable(LitElement) {
-  /**
-   * Disables the slider.
-   */
+  /** Disables the slider. */
   @property({ type: Boolean, reflect: true }) disabled?: boolean;
-  /**
-   * If set, will put steps on the slider at the given increments and the slider will snap to the nearest step.
-   */
+
+  /** If set, will put steps on the slider at the given increments and the slider will snap to the nearest step. */
   @property({ type: Number, attribute: "step-increment" }) stepIncrement?: number;
-  /**
-   * The type of the slider. Can either be 'default' or 'range'.
-   *
-   * @defaultValue default
-   */
+  /** The type of the slider. Can either be 'default' or 'range'. */
   @property({ type: String, attribute: "type" }) type: "default" | "range" = "default";
+
   /**
    * The value of the slider.
-   * Will have no effect if type is not 'default'.
    *
-   * @defaultValue 10
+   * Will have no effect if type is not 'default'.
    */
   @property({ type: Number, reflect: true, attribute: "value" }) value: number = 50;
   /**
    * The initial value of the lower end of the slider.
-   * Will have no effect if type is not 'ranged'.
    *
-   * @defaultValue 10
+   * Will have no effect if type is not 'ranged'.
    */
   @property({ type: Number, reflect: true, attribute: "lower-value" }) lowerValue: number = 10;
+
   /**
    * The initial value of the maximum end of the slider.
-   * Will have no effect if type is not 'ranged'.
    *
-   * @defaultValue 90
+   * Will have no effect if type is not 'ranged'.
    */
   @property({ type: Number, reflect: true, attribute: "upper-value" }) upperValue: number = 90;
-  /**
-   * The minimum value of the slider.
-   *
-   * @defaultValue 0
-   */
+
+  /** The minimum value of the slider. */
   @property({ type: Number }) min: number = 0;
-  /**
-   * The maximum value of the slider.
-   *
-   * @defaultValue 100
-   */
+
+  /** The maximum value of the slider. */
   @property({ type: Number }) max: number = 100;
 
   @query("#handle-l") leftHandle!: HTMLDivElement;
@@ -341,4 +326,3 @@ declare global {
     "zeta-slider": ZetaSlider;
   }
 }
-

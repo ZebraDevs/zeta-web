@@ -1,15 +1,11 @@
 import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
-
 import styles from "./sheet-header.scss?inline";
-import { Alignment } from "../../../types.js";
-import { Contourable } from "../../../mixins/contour.js";
 
-/** Zeta Sheet Header web component. */
 @customElement("zeta-sheet-header")
-export class ZetaSheetHeader extends Contourable(LitElement) {
+export class ZetaSheetHeader extends LitElement {
   /** Sheet Header alignment.*/
-  @property({ type: String, reflect: true }) alignment: Alignment = "start";
+  @property({ type: String, reflect: true }) alignment: "start" | "center" = "start";
 
   /** Sheet Header text content.*/
   @property({ type: String, reflect: true }) text: string = "Title";
@@ -25,4 +21,3 @@ declare global {
     "zeta-sheet-header": ZetaSheetHeader;
   }
 }
-

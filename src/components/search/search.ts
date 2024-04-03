@@ -6,19 +6,14 @@ import { customElement, property, query } from "lit/decorators.js";
 import { html, LitElement, nothing } from "lit";
 import styles from "./search.scss?inline";
 import { live } from "lit/directives/live.js";
-import { Contourable, Interactive } from "../../index.js";
+import { Contourable, Interactive, Size } from "../../index.js";
 import { msg } from "@lit/localize";
 
-/**
- * Zeta search field component
- * Supports speech recognition search on Chrome
- */
+/** Supports speech recognition search on Chrome. */
 @customElement("zeta-search")
-export class ZetaSearch extends Contourable(Interactive(LitElement)) {
+export class ZetaSearch extends Size(Contourable(Interactive(LitElement))) {
   static override shadowRootOptions: ShadowRootInit = { delegatesFocus: true, mode: "open" };
-  constructor() {
-    super();
-  }
+
   @query("input") private readonly inputEl!: HTMLElement | null;
 
   static styles = [styles, super.styles || []];
@@ -31,29 +26,16 @@ export class ZetaSearch extends Contourable(Interactive(LitElement)) {
     this.inputEl?.blur();
   }
 
-  /**
-   * Search value
-   */
+  /** Search value. */
   @property() value = "";
-  /**
-   * Form action
-   */
+
+  /** Form action. */
   @property({ attribute: "form-action" }) formAction: string = "";
-  /**
-   * Size
-   */
-  @property({ reflect: true }) size: "small" | "medium" | "large" = "medium";
-  /**
-   * Disabled state
-   */
-  @property({ type: Boolean, reflect: true }) disabled = false;
-  /**
-   * Onsubmit callback
-   */
+
+  /** Onsubmit callback. */
   @property({ type: Object, attribute: "on-submit" }) onSubmit?: (query?: string) => void;
-  /**
-   * Show microphone icon
-   */
+
+  /** Show microphone icon. */
   @property({ type: Boolean, attribute: "has-icon" }) hasIcon = false;
 
   private handleInput = (event: Event) => {
@@ -146,4 +128,3 @@ declare global {
     "zeta-search": ZetaSearch;
   }
 }
-

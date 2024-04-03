@@ -3,30 +3,20 @@ import { html, LitElement } from "lit";
 import styles from "./radio-button.scss?inline";
 import { Interactive } from "../../index.js";
 
-/**
- * Checkboxes allow users to select one or more items from a set. Checkboxes can turn an option on or off.
- */
+/** Checkboxes allow users to select one or more items from a set. Checkboxes can turn an option on or off. */
 @customElement("zeta-radio-button")
 export class ZetaRadioButton extends Interactive(LitElement) {
-  /**
-   * Controls the state of the radio button.
-   */
+  /** Controls the state of the radio button. */
   @property({ type: Boolean, reflect: true }) checked: boolean = false;
 
-  /**
-   * The name of the radio button when used in a form.
-   */
-  @property({ type: String }) name: string | undefined;
+  /** The name of the radio button when used in a form. */
+  @property({ type: String }) name?: string;
 
-  /**
-   * The ID given to the radio input.
-   */
+  /** The ID given to the radio input. */
   @property({ type: String }) id: string = "radio";
 
-  /**
-   * The label displayed next to the check.
-   */
-  @property({ type: String }) label: string | undefined;
+  /** The label displayed next to the check. */
+  @property({ type: String }) label?: string;
 
   private toggleCheck() {
     if (!this.disabled) {
@@ -61,4 +51,3 @@ declare global {
     "zeta-radio-button": ZetaRadioButton;
   }
 }
-

@@ -21,4 +21,3 @@ declare global {
     "zeta-card-body": ZetaCardBody;
   }
 }
-

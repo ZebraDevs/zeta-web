@@ -1,13 +1,17 @@
 import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./more-menu.scss?inline";
-import { Contourable, Interactive } from "../../../index.js";
+import { Contourable, Interactive } from "../../../mixins/mixins.js";
+import { ZetaIconName } from "@zebra-fed/zeta-icons";
 
-/** Zeta Breadcrumbs- More menu. */
 @customElement("zeta-more-menu")
 export class ZetaMoreMenu extends Contourable(Interactive(LitElement)) {
-  /** More menu icon.*/
-  @property({ type: String }) icon = "more_horizontal";
+  /**
+   *  More menu icon.
+   *
+   * Full list of icons can be found at {@link https://zeta-icons.web.app/}.
+   */
+  @property({ type: String }) icon: ZetaIconName = "more_horizontal";
 
   static styles = [super.styles ?? [], styles];
 
@@ -28,4 +32,3 @@ declare global {
     "zeta-more-menu": ZetaMoreMenu;
   }
 }
-

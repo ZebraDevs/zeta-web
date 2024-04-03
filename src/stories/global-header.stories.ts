@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
-import { MenuPosition, ZetaGlobalHeader } from "../index.js";
+import { ZetaGlobalHeader } from "../index.js";
 
-const meta: Meta<ZetaGlobalHeader | { "menu-position": MenuPosition }> = {
+const meta: Meta<ZetaGlobalHeader | { "menu-position": "inline" | "below" }> = {
   component: "zeta-global-header",
   tags: ["autodocs"],
   title: "Global Header",

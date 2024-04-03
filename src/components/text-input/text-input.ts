@@ -1,76 +1,62 @@
 import { customElement, property, query } from "lit/decorators.js";
 import { html, LitElement, nothing } from "lit";
-import { Size } from "../../types.js";
 import styles from "./text-input.scss?inline";
 import { ZetaIconName } from "@zebra-fed/zeta-icons";
 import { classMap } from "lit/directives/class-map.js";
 import { live } from "lit/directives/live.js";
-import "../../index.js";
-import { Contourable, Interactive } from "../../index.js";
+import { Contourable, Interactive, Size } from "../../mixins/mixins.js";
 
-/**
- * Text input component with icon, affix, label and hint text
- */
+/** Text input component with icon, affix, label and hint text. */
 @customElement("zeta-text-input")
-export class ZetaTextInput extends Contourable(Interactive(LitElement)) {
+export class ZetaTextInput extends Size(Contourable(Interactive(LitElement))) {
   static override shadowRootOptions: ShadowRootInit = { delegatesFocus: true, mode: "open" };
 
   static styles = [styles, super.styles ?? []];
 
   @query("input") private readonly inputEl!: HTMLInputElement | null;
-  /**
-   * Error state
-   */
+
+  /** Whether text field is in error state. */
   @property({ type: Boolean, reflect: true }) error = false;
-  /**
-   * Size
-   */
-  @property({ type: String, reflect: true }) size: Size = "medium";
-  /**
-   * Placeholder
-   */
-  @property() placeholder = "";
-  /**
-   * Leading icon name
-   */
+
+  /** Placeholder text shown when value is empty. */
+  @property({ type: String }) placeholder = "";
+
+  /** Leading icon name. */
   @property({ type: String }) leadingIcon?: ZetaIconName;
-  /**
-   * Trailing icon name
-   */
+
+  /** Trailing icon name. */
   @property({ type: String }) trailingIcon?: ZetaIconName;
 
+  /** Prefix text. */
+  @property({ type: String, attribute: "prefix" }) prefix = "";
+
+  /** Suffix text. */
+  @property({ type: String }) suffix = "";
+
+  /** Label displayed above text field. */
+  @property({ type: String }) label = "";
+
   /**
-   * Prefix text
-   */
-  @property({ attribute: "prefix" }) prefixText = "";
-  /**
-   * Suffix text
-   */
-  @property() suffix = "";
-  /**
-   * Label
-   */
-  @property() label = "";
-  /**
-   * Hint text
+   * Hint text shown below text field.
+   *
+   * if `error`, then `error-text` is shown instead.
    */
   @property({ attribute: "hint-text" }) hintText = "";
 
   /**
-   * Hint text
+   * Error hint text
+   *
+   * Shown if `error`, replaces `hint-text`.
    */
   @property({ attribute: "error-text" }) errorText = "";
-  /**
-   * Is input required
-   */
+
+  /** Whether input is required. */
   @property({ type: Boolean }) required = false;
-  /**
-   * Value
-   */
+
+  /** Value  */
   @property() value = "";
-  /**
-   * Type of field
-   */
+
+  /** Type of field */
   @property() type: "text" | "textarea" | "password" | "time" | "date" = "text";
 
   override focus() {
@@ -169,7 +155,7 @@ export class ZetaTextInput extends Contourable(Interactive(LitElement)) {
   }
 
   private renderPrefix() {
-    return this.prefixText && this.type === "text" && !this.toggled ? html`<span class="left affix">${this.prefixText}</span>` : nothing;
+    return this.prefix && this.type === "text" && !this.toggled ? html`<span class="left affix">${this.prefix}</span>` : nothing;
   }
 
   private renderSuffix() {
@@ -235,3 +221,4 @@ declare global {
     "zeta-text-input": ZetaTextInput;
   }
 }
+

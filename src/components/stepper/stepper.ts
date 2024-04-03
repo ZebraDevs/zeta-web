@@ -3,32 +3,22 @@ import { customElement, property } from "lit/decorators.js";
 import { html, LitElement, nothing } from "lit";
 import styles from "./stepper.scss?inline";
 import { classMap } from "lit/directives/class-map.js";
-import { Contourable } from "../../mixins/contour.js";
+import { Contourable } from "../../mixins/mixins.js";
 
 /**
  * Steppers convey progress through numbered steps.
+ *
  * For the steps, pass `li` elements with `data-title` and `data-label` attributes as children
  */
 @customElement("zeta-stepper")
 export class ZetaStepper extends Contourable(LitElement) {
-  constructor() {
-    super();
-  }
-  /**
-   * Stepper direction
-   */
+  /** Stepper direction.  */
   @property({ reflect: true }) variant: "vertical" | "horizontal" = "horizontal";
-  /**
-   * Current active step
-   */
-  @property({
-    type: Number,
-    attribute: "active-step"
-  })
-  activeStep = 0;
-  /**
-   * Show bar separator
-   */
+
+  /** Current active step. */
+  @property({ type: Number, attribute: "active-step" }) activeStep = 0;
+
+  /** Show bar separator. */
   @property({ type: Boolean }) bar = true;
 
   private renderSteps = () => {

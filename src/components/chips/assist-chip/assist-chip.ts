@@ -1,7 +1,7 @@
 import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./assist-chip.scss?inline";
-import { Contourable } from "../../../mixins/contour.js";
+import { Contourable } from "../../../mixins/mixins.js";
 
 export class BaseChip extends Contourable(LitElement) {
   static override styles = [super.styles || []];
@@ -19,24 +19,13 @@ export class BaseChip extends Contourable(LitElement) {
   }
 }
 
-/** Zeta assist Chip web component.
- *
- *  */
 @customElement("zeta-assist-chip")
 export class ZetaAssistChip extends BaseChip {
-  constructor() {
-    super();
-    this.text = "Label";
-    this.type = "label-only";
-  }
-
-  /**
-   * Text displayed in the chip
-   */
+  /** Text displayed in the chip */
   @property({ type: String }) text: string = "Label";
 
   /** Chips' types.*/
-  @property({ type: String, reflect: true }) type: "label-only" | "label-with-icon";
+  @property({ type: String, reflect: true }) type: "label-only" | "label-with-icon" = "label-only";
 
   static styles = [BaseChip.styles ?? [], styles];
 
@@ -66,4 +55,3 @@ declare global {
     "zeta-assist-chip": ZetaAssistChip;
   }
 }
-

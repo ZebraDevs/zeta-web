@@ -10,6 +10,7 @@ const meta: Meta<ZetaButton> = {
     disabled: false,
     rounded: true,
     name: "",
+    slot: "Button",
     value: ""
   },
   parameters: {
@@ -39,7 +40,7 @@ const meta: Meta<ZetaButton> = {
 export default meta;
 
 export const ButtonWithText: StoryObj<ZetaButton> = {
-  render: args => html` <zeta-button size=${args.size} .disabled=${args.disabled} .rounded=${args.rounded} flavor=${args.flavor}>Button</zeta-button> `
+  render: args => html` <zeta-button size=${args.size} .disabled=${args.disabled} .rounded=${args.rounded} flavor=${args.flavor}>${args.slot}</zeta-button> `
 };
 
 export const ButtonWithTextAndIcon: StoryObj = {
@@ -65,3 +66,4 @@ export const ButtonWithTextAndIcon: StoryObj = {
     </zeta-button>`;
   }
 };
+

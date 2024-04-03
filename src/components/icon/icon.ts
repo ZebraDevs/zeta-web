@@ -2,24 +2,26 @@ import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./icon.css?inline";
 import { ZetaIconName } from "@zebra-fed/zeta-icons";
-import { Contourable } from "../../mixins/contour.js";
+import { Contourable } from "../../mixins/mixins.js";
 import { styleMap } from "lit/directives/style-map.js";
 
 @customElement("zeta-icon")
 export class ZetaIcon extends Contourable(LitElement) {
-  /**The name of the icon. Full list of icons can be found at https://zeta-icons.web.app/. */
+  /** The name of the icon. Full list of icons can be found at {@link https://zeta-icons.web.app/.} */
   @property({ type: String }) name?: ZetaIconName;
 
-  /** Size of icon as css variable.
+  /**
+   * Size of icon as css variable.
    *
    * If a Number is provided, will fallback to px.
-   *
-   * @defaultValue `var(--spacing-6)`. */
+   */
   @property({ type: Number || String }) size: string | number = 24;
 
-  /** Color of icon as css variable.
+  /**
+   * Color of icon as css variable.
    *
-   * @defaultValue `black`. */
+   * @default `black`
+   */
   @property({ type: String }) color?: string;
 
   protected render() {
@@ -45,4 +47,3 @@ export class ZetaIcon extends Contourable(LitElement) {
 
   static styles = [styles];
 }
-

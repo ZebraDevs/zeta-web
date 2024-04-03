@@ -6,23 +6,19 @@ import { Contourable, Interactive } from "../../index.js";
 
 /**
  * Switches toggle the state of a single item ON or OFF.
- * To use with icon variant, provide both activeIcon and inactiveIcon
+ *
+ * To use with icon variant, provide both activeIcon and inactiveIcon.
  */
 @customElement("zeta-switch")
 export class ZetaSwitch extends Contourable(Interactive(LitElement)) {
   static override shadowRootOptions: ShadowRootInit = { delegatesFocus: true, mode: "open" };
-  /**
-   * State of the switch
-   */
+  /** State of the switch. */
   @property({ type: Boolean, reflect: true }) active: boolean = false;
 
-  /**
-   * Icon name to display when switch is ON
-   */
+  /** Icon name to display when switch is ON. */
   @property({ type: String }) activeIcon?: ZetaIconName;
-  /**
-   * Icon name to display when switch is OFF
-   */
+
+  /** Icon name to display when switch is OFF. */
   @property({ type: String }) inactiveIcon?: ZetaIconName;
 
   @query("button")
@@ -65,4 +61,3 @@ declare global {
     "zeta-switch": ZetaSwitch;
   }
 }
-

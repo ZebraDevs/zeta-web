@@ -9,7 +9,6 @@ import "./index.css";
 
 /** Components */
 import "./mixins/mixins.ts";
-import "./types.js";
 import "./components/accordion/accordion.ts";
 import "./components/avatar/avatar.ts";
 import "./components/badges/badges.js";
@@ -72,5 +71,3 @@ export * from "./components/switch/switch.js";
 export * from "./components/text-input/text-input.js";
 export * from "./components/tooltip/tooltip.js";
 export * from "./mixins/mixins.js";
-export * from "./types.js";
-

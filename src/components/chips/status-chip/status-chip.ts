@@ -1,20 +1,12 @@
 import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./status-chip.scss?inline";
-import { Contourable } from "../../../mixins/contour.js";
+import { Contourable } from "../../../mixins/mixins.js";
 
-/** Zeta Status Chip web component. */
 @customElement("zeta-status-chip")
 export class ZetaStatusChip extends Contourable(LitElement) {
-  constructor() {
-    super();
-    this.text = "Input Custom";
-  }
-
-  /**
-   * Text displayed in the chip
-   */
-  @property({ type: String }) text: string;
+  /** Text displayed in the chip.  */
+  @property({ type: String }) text: string = "";
 
   static styles = [super.styles ?? [], styles];
 
@@ -28,4 +20,3 @@ declare global {
     "zeta-status-chip": ZetaStatusChip;
   }
 }
-

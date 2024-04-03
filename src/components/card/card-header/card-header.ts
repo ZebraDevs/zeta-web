@@ -5,20 +5,16 @@ import styles from "./card-header.scss?inline";
 /**
  * Card headers are used at the top of cards.
  *
- * @element zeta-card-header
  * @slot - The headline text.
  * @slot leading - Content placed before the headline
  * @slot trailing - Content placed after the headline
  */
 @customElement("zeta-card-header")
 export class ZetaCardHeader extends LitElement {
-  /**
-   * The headline text. Can Also be slotted.
-   */
+  /** The headline text. Can Also be slotted. */
   @property({ type: String }) headline?: string;
-  /**
-   * The sub headline text.
-   */
+
+  /** The sub headline text. */
   @property({ type: String, attribute: "sub-headline" }) subHeadline?: string;
 
   protected render() {

@@ -6,9 +6,12 @@ import { classMap } from "lit/directives/class-map.js";
 import { ZetaButton } from "../button/button.js";
 import { Contourable, Popup } from "../../index.js";
 
+//TODO: Fires / event docuemtnation doesnt work.
+
 /**
- * @name Zeta Dialog component
- * @usage use `zeta-button` for the action button slots; button props/variants are handled here.
+ *
+ *  Use `zeta-button` for the action button slots; button props/variants are handled here.
+ *
  * @fires "open" Event on open
  * @fires "close" Event on close
  */
@@ -33,34 +36,25 @@ export class ZetaDialog extends Contourable(Popup(LitElement)) {
     this.hide(submitter.getAttribute("value") ?? this.returnValue);
   };
 
-  /**
-   * Title of the dialog
-   */
+  /** Title of the dialog. */
   @property() title = "";
-  /**
-   * Icon displayed in the dialog header
-   */
+
+  /** Icon displayed in the dialog header. */
   @property({ attribute: "has-icon", type: Boolean }) hasIcon: boolean = false;
-  /**
-   * Centered header
-   */
+
+  /** Centered header. */
   @property({ type: Boolean }) centered: boolean = false;
 
-  /**
-   *  Whether the modal is initially open.
-   */
+  /** Whether the modal is initially open. */
   @property({ type: Boolean }) initialOpen: boolean = false;
-  /**
-   * Action button 1 (Confirm).
-   */
+
+  /** Action button 1 (Confirm). */
   @queryAssignedElements({ slot: "confirm", flatten: true }) confirmBtn!: NodeList;
-  /**
-   * Action button 2 (Cancel)
-   */
+
+  /** Action button 2 (Cancel). */
   @queryAssignedElements({ slot: "cancel", flatten: true }) cancelBtn!: NodeList;
-  /**
-   * Action button 3 (Learn more/Other)
-   */
+
+  /** Action button 3 (Learn more/Other). */
   @queryAssignedElements({ slot: "other", flatten: true }) otherBtn!: NodeList;
 
   private renderIcon() {
@@ -135,4 +129,3 @@ declare global {
     "zeta-dialog": ZetaDialog;
   }
 }
-

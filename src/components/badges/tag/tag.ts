@@ -1,24 +1,15 @@
 import { html, LitElement, svg } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./tag.scss?inline";
-import { Contourable } from "../../../mixins/contour.js";
+import { Contourable } from "../../../mixins/mixins.js";
 
 @customElement("zeta-tag")
 export class ZetaTag extends Contourable(LitElement) {
-  constructor() {
-    super();
-    this.text = "Tag";
-    this.point = "right";
-  }
+  /** Text displayed in the tag. */
+  @property({ type: String }) text: string = "";
 
-  /**
-   * Text displayed in the tag
-   */
-  @property({ type: String }) text: string;
-  /**
-   * Direction of the tag point
-   */
-  @property({ type: String, reflect: true }) point: "right" | "left";
+  /** Direction of the tag point.  */
+  @property({ type: String, reflect: true }) point: "right" | "left" = "right";
 
   static styles = [styles, super.styles ?? []];
 

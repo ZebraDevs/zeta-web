@@ -1,12 +1,10 @@
 import { html, LitElement } from "lit";
 import { customElement, property, queryAssignedElements } from "lit/decorators.js";
 import styles from "./in-page-banner.scss?inline";
-import { BannerStatus } from "../../types.js";
 import { ZetaButton } from "../button/button.js";
 import "../../index.js";
-import { Contourable } from "../../mixins/contour.js";
+import { Contourable } from "../../mixins/mixins.js";
 
-/** Zeta in page banner component. */
 @customElement("zeta-in-page-banner")
 export class ZetaInPageBanner extends Contourable(LitElement) {
   /** Title of banner, displayed at top. */
@@ -15,10 +13,8 @@ export class ZetaInPageBanner extends Contourable(LitElement) {
   /** Body text of banner. */
   @property({ type: String }) body: string = "";
 
-  /** Status of component.
-   *
-   * @defaultValue `default`.*/
-  @property({ type: String, reflect: true }) status: BannerStatus = "default";
+  /** Status of component. .*/
+  @property({ type: String, reflect: true }) status: "default" | "info" | "positive" | "warning" | "negative" = "default";
 
   static styles = [styles, super.styles ?? []];
 
@@ -80,4 +76,3 @@ declare global {
     "zeta-in-page-banner": ZetaInPageBanner;
   }
 }
-

@@ -10,9 +10,7 @@ import styles from "./list-item.scss?inline";
  */
 @customElement("zeta-list-item")
 export class ZetaListItem extends LitElement {
-  /**
-   * The headline text of the list element.
-   */
+  /** The headline text of the list element. */
   @property({ type: String }) headline?: string;
 
   protected render() {
@@ -37,4 +35,3 @@ declare global {
     "zeta-list-item": ZetaListItem;
   }
 }
-

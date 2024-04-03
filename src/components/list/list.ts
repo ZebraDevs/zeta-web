@@ -10,9 +10,7 @@ export * from "./list-item/list-item.js";
  */
 @customElement("zeta-list")
 export class ZetaList extends LitElement {
-  /**
-   * Adds dividers inbetween the list items.
-   */
+  /** Adds dividers in between the list items.*/
   @property({ type: Boolean, reflect: true }) divide: boolean = false;
 
   protected render() {

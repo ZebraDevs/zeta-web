@@ -1,5 +1,5 @@
 import { html, LitElement } from "lit";
-import { Contourable } from "../../mixins/contour.js";
+import { Contourable } from "../../mixins/mixins.js";
 import { customElement } from "lit/decorators.js";
 import styles from "./card.scss?inline";
 
@@ -26,4 +26,3 @@ declare global {
     "zeta-card": ZetaCard;
   }
 }
-

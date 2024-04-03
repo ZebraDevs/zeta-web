@@ -1,39 +1,27 @@
 import { html, LitElement, nothing } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./progress-bar.scss?inline";
-import { Contourable } from "../../../mixins/contour.js";
+import { Contourable } from "../../../mixins/mixins.js";
 import { styleMap } from "lit/directives/style-map.js";
 
-export type ProgressBarSize = "thin" | "medium";
-
-/** ZetaProgressBar web component.
- *
- * Progress indicators express an unspecified wait time or display the length of a process.
- */
+/** Progress indicators express an unspecified wait time or display the length of a process. */
 @customElement("zeta-progress-bar")
 export class ZetaProgressBar extends Contourable(LitElement) {
-  /**
-   * The size of the progress indicator. Can either be 'medium' or 'thin'.
-   *
-   * @defaultValue 'medium'
-   */
-  @property({ type: String, reflect: true }) size: ProgressBarSize = "medium";
-  /**
-   * Displays the indeterminate progress indicator. If set to true, any argument for 'value' will be ignored.
-   */
+  /** The size of the progress indicator. Can either be 'medium' or 'thin'. */
+  @property({ type: String, reflect: true }) size: "thin" | "medium" = "medium";
+
+  /** Displays the indeterminate progress indicator. If set to true, any argument for 'value' will be ignored. */
   @property({ type: Boolean, reflect: true }) indeterminate?: boolean;
-  /**
-   * The % complete of the progess indicator.
-   *
-   * @defaultValue 0
-   */
+
+  /** The % complete of the process indicator. */
   @property({ type: Number }) value: number = 0;
-  /**
-   * The label for the progess indicator.
-   */
+
+  /** The label for the progress indicator. */
   @property({ type: String }) label?: string;
+
   /**
    * Displays the buffering dots at the end of the progress indicator.
+   *
    * Setting this will pause the animation if 'indeterminate' is set to true.
    */
   @property({ type: Boolean, reflect: true }) buffering?: boolean;
@@ -74,4 +62,3 @@ declare global {
     "zeta-progress-bar": ZetaProgressBar;
   }
 }
-

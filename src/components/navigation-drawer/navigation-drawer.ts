@@ -1,8 +1,7 @@
 import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./navigation-drawer.scss?inline";
-import { Side } from "../../types.js";
-import { Popup } from "../../mixins/popup.js";
+import { Popup } from "../../mixins/mixins.js";
 
 export * from "./navigation-drawer-footer/navigation-drawer-footer.js";
 export * from "./navigation-drawer-header/navigation-drawer-header.js";
@@ -11,8 +10,7 @@ export * from "./navigation-drawer-sub-item/navigation-drawer-sub-item.js";
 
 // TODO: When anchored to the right, the drawer causes page overflow when animating away.
 
-/** ZetaNavigationDrawer web component.
- *
+/**
  * Navigation drawers provide access to destinations and app functionality, such as switching accounts.
  * They can either be permanently on-screen or controlled by a navigation menu icon
  *
@@ -23,22 +21,13 @@ export * from "./navigation-drawer-sub-item/navigation-drawer-sub-item.js";
  */
 @customElement("zeta-navigation-drawer")
 export class ZetaNavigationDrawer extends Popup(LitElement) {
-  /** The side of the screen that the drawer is anchored on.
-   *
-   * Defaults to 'left'.
-   */
-  @property({ type: String, reflect: true }) anchor: Side = "left";
+  /** The side of the screen that the drawer is anchored on. */
+  @property({ type: String, reflect: true }) anchor: "left" | "right" = "left";
 
-  /** Toggles the animation for the navigation drawer.
-   *
-   * Defaults to true.
-   */
-  @property({ type: Boolean, reflect: true, attribute: "show-animation" }) showAnimation?: boolean;
+  /** Toggles the animation for the navigation drawer. */
+  @property({ type: Boolean, reflect: true, attribute: "show-animation" }) showAnimation: boolean = true;
 
-  /**
-   *  Whether the modal is initially open.
-   *  @default false
-   */
+  /**  Whether the modal is initially open. */
   @property({ type: Boolean }) initialOpen: boolean = false;
 
   static override shadowRootOptions = {
@@ -68,4 +57,3 @@ declare global {
     "zeta-navigation-drawer": ZetaNavigationDrawer;
   }
 }
-

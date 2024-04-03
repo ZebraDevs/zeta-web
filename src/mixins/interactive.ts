@@ -28,4 +28,3 @@ export const Interactive = <T extends Constructor<LitElement>>(superClass: T) =>
   }
   return InteractiveClass as Constructor<InteractiveInterface & LitElement> & T;
 };
-

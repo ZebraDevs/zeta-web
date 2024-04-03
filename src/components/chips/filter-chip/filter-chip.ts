@@ -3,22 +3,13 @@ import { customElement, property } from "lit/decorators.js";
 import styles from "./filter-chip.scss?inline";
 import { Contourable, Interactive } from "../../../index.js";
 
-/** Zeta Filter Chip web component. */
 @customElement("zeta-filter-chip")
 export class ZetaFilterChip extends Contourable(Interactive(LitElement)) {
-  constructor() {
-    super();
-    this.text = "Label";
-    this.type = "unselected";
-  }
-
-  /**
-   * Text displayed in the chip
-   */
-  @property({ type: String }) text: string;
+  /** Text displayed in the chip. */
+  @property({ type: String }) text: string = "Label";
 
   /** Chips' types.*/
-  @property({ type: String, reflect: true }) type: "unselected" | "selected";
+  @property({ type: String, reflect: true }) type: "unselected" | "selected" = "unselected";
 
   static styles = [super.styles ?? [], styles];
 

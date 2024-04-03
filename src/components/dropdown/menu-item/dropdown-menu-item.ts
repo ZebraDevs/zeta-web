@@ -6,23 +6,17 @@ import { Contourable, Interactive } from "../../../index.js";
 
 @customElement("zeta-dropdown-menu-item")
 export class ZetaDropdownMenuItem extends Contourable(Interactive(LitElement)) {
-  /**
-   * Changes the type of the menu item.
-   *
-   * Can be 'default', 'checkbox' or 'radio'.
-   */
+  /** Changes the type of the menu item. */
   @property({ type: String, reflect: true }) type: "default" | "checkbox" | "radio" = "default";
 
   /**
    * The name of the icon to be shown.
    *
-   * Will only be dislayed if 'type' is set to 'default'.
+   * Will only be displayed if 'type' is set to 'default'.
    */
   @property({ type: String }) icon?: ZetaIconName;
 
-  /**
-   * Controls the state of the dropdown menu item.
-   */
+  /** Controls the state of the dropdown menu item. */
   @property({ type: Boolean }) checked: boolean = false;
 
   private toggleCheck() {
@@ -64,4 +58,3 @@ declare global {
     "zeta-dropdown-menu-item": ZetaDropdownMenuItem;
   }
 }
-

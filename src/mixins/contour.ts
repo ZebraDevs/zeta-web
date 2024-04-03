@@ -41,4 +41,3 @@ export const Contourable = <T extends Constructor<LitElement>>(superClass: T) =>
   }
   return ContourableClass as Constructor<ContourableInterface & LitElement> & T;
 };
-
