@@ -89,7 +89,7 @@
     "sass": "^1.70.0",
     "storybook": "^8.0.0",
     "typescript": "^5.3.3",
-    "vite": "^5.1.1",
+    "vite": "^5.1.7",
     "vite-dts": "^1.0.4",
     "vite-plugin-cp": "^4.0.8",
     "vite-plugin-dts": "^3.7.2"
