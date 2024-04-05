@@ -20,7 +20,9 @@
 
 :host(:focus) .interactive-target,
 :host(:focus) > :not(:has(.interactive-target)) {
+  /* FIXME BK: This is buggy, causing issues in button-group-item. Do we really need both? */
   box-shadow: 0 0 0 var(--border-size-medium) var(--border-flavor-primary);
   outline-width: var(--border-size-medium);
   outline-color: var(--border-flavor-primary);
+  z-index: 1;
 }

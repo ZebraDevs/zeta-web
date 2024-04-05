@@ -1,0 +1,17 @@
+import { Canvas, Meta, Description, ArgTypes, Title } from "@storybook/blocks";
+import * as ButtonGroupItem from "./button-group-item.stories.ts";
+import * as ButtonGroup from "./button-group.stories.ts";
+
+<Meta of={ButtonGroup} title="Button Group" />
+
+
+<Title />
+<Description of='zeta-button-group'/>
+<Canvas of={ButtonGroup.ButtonGroup}/>
+<ArgTypes of='zeta-button-group'/>
+
+
+# Button Group Item
+<Description of='zeta-group-item'/>
+<Canvas of={ButtonGroupItem.GroupItem}/>
+<ArgTypes of='zeta-group-item'/>

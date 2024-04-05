@@ -206,6 +206,61 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/badges/badges.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "\"./indicators/indicators.js\""
+          }
+        },
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "\"./priority-pill/priority-pill.js\""
+          }
+        },
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "\"./status-label/status-label.js\""
+          }
+        },
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "\"./tag/tag.js\""
+          }
+        },
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "\"./label/label.js\""
+          }
+        },
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "\"./workcloud-indicator/workcloud-indicator.js\""
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/avatar/avatar.ts",
       "declarations": [
         {
@@ -412,61 +467,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/badges/badges.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "*",
-          "declaration": {
-            "name": "*",
-            "package": "\"./indicators/indicators.js\""
-          }
-        },
-        {
-          "kind": "js",
-          "name": "*",
-          "declaration": {
-            "name": "*",
-            "package": "\"./priority-pill/priority-pill.js\""
-          }
-        },
-        {
-          "kind": "js",
-          "name": "*",
-          "declaration": {
-            "name": "*",
-            "package": "\"./status-label/status-label.js\""
-          }
-        },
-        {
-          "kind": "js",
-          "name": "*",
-          "declaration": {
-            "name": "*",
-            "package": "\"./tag/tag.js\""
-          }
-        },
-        {
-          "kind": "js",
-          "name": "*",
-          "declaration": {
-            "name": "*",
-            "package": "\"./label/label.js\""
-          }
-        },
-        {
-          "kind": "js",
-          "name": "*",
-          "declaration": {
-            "name": "*",
-            "package": "\"./workcloud-indicator/workcloud-indicator.js\""
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/components/banner/banner.ts",
       "declarations": [
         {
@@ -610,29 +610,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/breadcrumbs/breadcrumb.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "*",
-          "declaration": {
-            "name": "*",
-            "package": "\"./breadcrumb-truncated/breadcrumb-truncated.js\""
-          }
-        },
-        {
-          "kind": "js",
-          "name": "*",
-          "declaration": {
-            "name": "*",
-            "package": "\"./more-menu/more-menu.js\""
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/components/bottom-sheets/bottom-sheets.ts",
       "declarations": [],
       "exports": [
@@ -650,6 +627,29 @@
           "declaration": {
             "name": "*",
             "package": "\"./sheet-header/sheet-header.js\""
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/breadcrumbs/breadcrumb.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "\"./breadcrumb-truncated/breadcrumb-truncated.js\""
+          }
+        },
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "\"./more-menu/more-menu.js\""
           }
         }
       ]
@@ -1109,6 +1109,126 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/button-group/button-group.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Takes in Zeta Button Group Items as children and groups them by applying styling to them.\n\nDoes not render any other types of children.",
+          "name": "ZetaButtonGroup",
+          "slots": [
+            {
+              "description": "Children must be of type `zeta-group-button` otherwise they will not be displayed.",
+              "name": ""
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "\"medium\" | \"large\""
+              },
+              "default": "\"medium\"",
+              "description": "Size of button.",
+              "attribute": "size",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "rounded",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "description": "Whether the component is rounded or sharp.\n\nWhen true, rounded will set the border radius of the first child, and any children with class 'contourable-target' to `--radius-minimal`.\n\nOtherwise, this value will be `--radius-none`.",
+              "attribute": "rounded",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "Contourable",
+                "module": "src/mixins/contour.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "styles",
+              "type": {
+                "text": "array"
+              },
+              "static": true,
+              "default": "[\n      (superClass as unknown as typeof LitElement).styles ?? [],\n      css`\n        :host > *,\n        :host .contourable-target {\n          border-radius: var(--radius-none);\n        }\n        :host([rounded]) > *,\n        :host([rounded]) .contourable-target {\n          border-radius: var(--radius-minimal);\n        }\n      `\n    ]",
+              "inheritedFrom": {
+                "name": "Contourable",
+                "module": "src/mixins/contour.ts"
+              }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "size",
+              "type": {
+                "text": "\"medium\" | \"large\""
+              },
+              "default": "\"medium\"",
+              "description": "Size of button.",
+              "fieldName": "size"
+            },
+            {
+              "name": "rounded",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "description": "Whether the component is rounded or sharp.\n\nWhen true, rounded will set the border radius of the first child, and any children with class 'contourable-target' to `--radius-minimal`.\n\nOtherwise, this value will be `--radius-none`.",
+              "fieldName": "rounded",
+              "inheritedFrom": {
+                "name": "Contourable",
+                "module": "src/mixins/contour.ts"
+              }
+            }
+          ],
+          "mixins": [
+            {
+              "name": "Contourable",
+              "module": "/src/index.js"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "zeta-button-group",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "\"./button-group-item/button-group-item.js\""
+          }
+        },
+        {
+          "kind": "js",
+          "name": "ZetaButtonGroup",
+          "declaration": {
+            "name": "ZetaButtonGroup",
+            "module": "src/components/button-group/button-group.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "zeta-button-group",
+          "declaration": {
+            "name": "ZetaButtonGroup",
+            "module": "src/components/button-group/button-group.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/card/card.ts",
       "declarations": [
         {
@@ -1426,6 +1546,45 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/chips/chips.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "\"./assist-chip/assist-chip.js\""
+          }
+        },
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "\"./filter-chip/filter-chip.js\""
+          }
+        },
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "\"./input-chip/input-chip.js\""
+          }
+        },
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "\"./status-chip/status-chip.js\""
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/dialog/dialog.ts",
       "declarations": [
         {
@@ -1731,6 +1890,21 @@
           "declaration": {
             "name": "ZetaDialog",
             "module": "src/components/dialog/dialog.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/dropdown/dropdown.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "\"./menu-item/dropdown-menu-item.js\""
           }
         }
       ]
@@ -2045,60 +2219,6 @@
           "declaration": {
             "name": "ZetaFileUpload",
             "module": "src/components/file-upload/file-upload.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/dropdown/dropdown.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "*",
-          "declaration": {
-            "name": "*",
-            "package": "\"./menu-item/dropdown-menu-item.js\""
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/chips/chips.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "*",
-          "declaration": {
-            "name": "*",
-            "package": "\"./assist-chip/assist-chip.js\""
-          }
-        },
-        {
-          "kind": "js",
-          "name": "*",
-          "declaration": {
-            "name": "*",
-            "package": "\"./filter-chip/filter-chip.js\""
-          }
-        },
-        {
-          "kind": "js",
-          "name": "*",
-          "declaration": {
-            "name": "*",
-            "package": "\"./input-chip/input-chip.js\""
-          }
-        },
-        {
-          "kind": "js",
-          "name": "*",
-          "declaration": {
-            "name": "*",
-            "package": "\"./status-chip/status-chip.js\""
           }
         }
       ]
@@ -3185,6 +3305,29 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/progress-indicators/progress-indicators.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "\"./progress-bar/progress-bar.js\""
+          }
+        },
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "\"./progress-circle/progress-circle.js\""
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/radio-button/radio-button.ts",
       "declarations": [
         {
@@ -3348,29 +3491,6 @@
           "declaration": {
             "name": "ZetaRadioButton",
             "module": "src/components/radio-button/radio-button.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/progress-indicators/progress-indicators.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "*",
-          "declaration": {
-            "name": "*",
-            "package": "\"./progress-bar/progress-bar.js\""
-          }
-        },
-        {
-          "kind": "js",
-          "name": "*",
-          "declaration": {
-            "name": "*",
-            "package": "\"./progress-circle/progress-circle.js\""
           }
         }
       ]
@@ -3661,155 +3781,6 @@
           "declaration": {
             "name": "ZetaSearch",
             "module": "src/components/search/search.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/stepper/stepper.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "Steppers convey progress through numbered steps.\n\nFor the steps, pass `li` elements with `data-title` and `data-label` attributes as children",
-          "name": "ZetaStepper",
-          "members": [
-            {
-              "kind": "field",
-              "name": "variant",
-              "type": {
-                "text": "\"vertical\" | \"horizontal\""
-              },
-              "default": "\"horizontal\"",
-              "description": "Stepper direction.",
-              "attribute": "variant",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "activeStep",
-              "type": {
-                "text": "number"
-              },
-              "default": "0",
-              "description": "Current active step.",
-              "attribute": "active-step"
-            },
-            {
-              "kind": "field",
-              "name": "bar",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "true",
-              "description": "Show bar separator.",
-              "attribute": "bar"
-            },
-            {
-              "kind": "field",
-              "name": "renderSteps",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "rounded",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "true",
-              "description": "Whether the component is rounded or sharp.\n\nWhen true, rounded will set the border radius of the first child, and any children with class 'contourable-target' to `--radius-minimal`.\n\nOtherwise, this value will be `--radius-none`.",
-              "attribute": "rounded",
-              "reflects": true,
-              "inheritedFrom": {
-                "name": "Contourable",
-                "module": "src/mixins/contour.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "styles",
-              "type": {
-                "text": "array"
-              },
-              "static": true,
-              "default": "[\n      (superClass as unknown as typeof LitElement).styles ?? [],\n      css`\n        :host > *,\n        :host .contourable-target {\n          border-radius: var(--radius-none);\n        }\n        :host([rounded]) > *,\n        :host([rounded]) .contourable-target {\n          border-radius: var(--radius-minimal);\n        }\n      `\n    ]",
-              "inheritedFrom": {
-                "name": "Contourable",
-                "module": "src/mixins/contour.ts"
-              }
-            }
-          ],
-          "attributes": [
-            {
-              "name": "variant",
-              "type": {
-                "text": "\"vertical\" | \"horizontal\""
-              },
-              "default": "\"horizontal\"",
-              "description": "Stepper direction.",
-              "fieldName": "variant"
-            },
-            {
-              "name": "active-step",
-              "type": {
-                "text": "number"
-              },
-              "default": "0",
-              "description": "Current active step.",
-              "fieldName": "activeStep"
-            },
-            {
-              "name": "bar",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "true",
-              "description": "Show bar separator.",
-              "fieldName": "bar"
-            },
-            {
-              "name": "rounded",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "true",
-              "description": "Whether the component is rounded or sharp.\n\nWhen true, rounded will set the border radius of the first child, and any children with class 'contourable-target' to `--radius-minimal`.\n\nOtherwise, this value will be `--radius-none`.",
-              "fieldName": "rounded",
-              "inheritedFrom": {
-                "name": "Contourable",
-                "module": "src/mixins/contour.ts"
-              }
-            }
-          ],
-          "mixins": [
-            {
-              "name": "Contourable",
-              "module": "/src/mixins/mixins.js"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "tagName": "zeta-stepper",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "ZetaStepper",
-          "declaration": {
-            "name": "ZetaStepper",
-            "module": "src/components/stepper/stepper.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "zeta-stepper",
-          "declaration": {
-            "name": "ZetaStepper",
-            "module": "src/components/stepper/stepper.ts"
           }
         }
       ]
@@ -4243,6 +4214,329 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/stepper/stepper.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Steppers convey progress through numbered steps.\n\nFor the steps, pass `li` elements with `data-title` and `data-label` attributes as children",
+          "name": "ZetaStepper",
+          "members": [
+            {
+              "kind": "field",
+              "name": "variant",
+              "type": {
+                "text": "\"vertical\" | \"horizontal\""
+              },
+              "default": "\"horizontal\"",
+              "description": "Stepper direction.",
+              "attribute": "variant",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "activeStep",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "description": "Current active step.",
+              "attribute": "active-step"
+            },
+            {
+              "kind": "field",
+              "name": "bar",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "description": "Show bar separator.",
+              "attribute": "bar"
+            },
+            {
+              "kind": "field",
+              "name": "renderSteps",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "rounded",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "description": "Whether the component is rounded or sharp.\n\nWhen true, rounded will set the border radius of the first child, and any children with class 'contourable-target' to `--radius-minimal`.\n\nOtherwise, this value will be `--radius-none`.",
+              "attribute": "rounded",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "Contourable",
+                "module": "src/mixins/contour.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "styles",
+              "type": {
+                "text": "array"
+              },
+              "static": true,
+              "default": "[\n      (superClass as unknown as typeof LitElement).styles ?? [],\n      css`\n        :host > *,\n        :host .contourable-target {\n          border-radius: var(--radius-none);\n        }\n        :host([rounded]) > *,\n        :host([rounded]) .contourable-target {\n          border-radius: var(--radius-minimal);\n        }\n      `\n    ]",
+              "inheritedFrom": {
+                "name": "Contourable",
+                "module": "src/mixins/contour.ts"
+              }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "variant",
+              "type": {
+                "text": "\"vertical\" | \"horizontal\""
+              },
+              "default": "\"horizontal\"",
+              "description": "Stepper direction.",
+              "fieldName": "variant"
+            },
+            {
+              "name": "active-step",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "description": "Current active step.",
+              "fieldName": "activeStep"
+            },
+            {
+              "name": "bar",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "description": "Show bar separator.",
+              "fieldName": "bar"
+            },
+            {
+              "name": "rounded",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "description": "Whether the component is rounded or sharp.\n\nWhen true, rounded will set the border radius of the first child, and any children with class 'contourable-target' to `--radius-minimal`.\n\nOtherwise, this value will be `--radius-none`.",
+              "fieldName": "rounded",
+              "inheritedFrom": {
+                "name": "Contourable",
+                "module": "src/mixins/contour.ts"
+              }
+            }
+          ],
+          "mixins": [
+            {
+              "name": "Contourable",
+              "module": "/src/mixins/mixins.js"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "zeta-stepper",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ZetaStepper",
+          "declaration": {
+            "name": "ZetaStepper",
+            "module": "src/components/stepper/stepper.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "zeta-stepper",
+          "declaration": {
+            "name": "ZetaStepper",
+            "module": "src/components/stepper/stepper.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/stepper-input/stepper-input.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "ZetaStepperInput",
+          "members": [
+            {
+              "kind": "field",
+              "name": "min",
+              "type": {
+                "text": "number | undefined"
+              },
+              "attribute": "min"
+            },
+            {
+              "kind": "field",
+              "name": "max",
+              "type": {
+                "text": "number | undefined"
+              },
+              "attribute": "max"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "disabled"
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "\"medium\" | \"large\""
+              },
+              "default": "\"medium\"",
+              "attribute": "size",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "attribute": "value"
+            },
+            {
+              "kind": "field",
+              "name": "handleOnChange",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "inputValue",
+              "type": {
+                "text": "number"
+              },
+              "privacy": "private",
+              "default": "0"
+            },
+            {
+              "kind": "field",
+              "name": "rounded",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "description": "Whether the component is rounded or sharp.\n\nWhen true, rounded will set the border radius of the first child, and any children with class 'contourable-target' to `--radius-minimal`.\n\nOtherwise, this value will be `--radius-none`.",
+              "attribute": "rounded",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "Contourable",
+                "module": "src/mixins/contour.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "styles",
+              "type": {
+                "text": "array"
+              },
+              "static": true,
+              "default": "[\n      (superClass as unknown as typeof LitElement).styles ?? [],\n      css`\n        :host > *,\n        :host .contourable-target {\n          border-radius: var(--radius-none);\n        }\n        :host([rounded]) > *,\n        :host([rounded]) .contourable-target {\n          border-radius: var(--radius-minimal);\n        }\n      `\n    ]",
+              "inheritedFrom": {
+                "name": "Contourable",
+                "module": "src/mixins/contour.ts"
+              }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "min",
+              "type": {
+                "text": "number | undefined"
+              },
+              "fieldName": "min"
+            },
+            {
+              "name": "max",
+              "type": {
+                "text": "number | undefined"
+              },
+              "fieldName": "max"
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "disabled"
+            },
+            {
+              "name": "size",
+              "type": {
+                "text": "\"medium\" | \"large\""
+              },
+              "default": "\"medium\"",
+              "fieldName": "size"
+            },
+            {
+              "name": "value",
+              "fieldName": "value"
+            },
+            {
+              "name": "rounded",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "description": "Whether the component is rounded or sharp.\n\nWhen true, rounded will set the border radius of the first child, and any children with class 'contourable-target' to `--radius-minimal`.\n\nOtherwise, this value will be `--radius-none`.",
+              "fieldName": "rounded",
+              "inheritedFrom": {
+                "name": "Contourable",
+                "module": "src/mixins/contour.ts"
+              }
+            }
+          ],
+          "mixins": [
+            {
+              "name": "Contourable",
+              "module": "/src/mixins/mixins.js"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "zeta-stepper-input",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ZetaStepperInput",
+          "declaration": {
+            "name": "ZetaStepperInput",
+            "module": "src/components/stepper-input/stepper-input.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "zeta-stepper-input",
+          "declaration": {
+            "name": "ZetaStepperInput",
+            "module": "src/components/stepper-input/stepper-input.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/switch/switch.ts",
       "declarations": [
         {
@@ -4435,180 +4729,6 @@
           "declaration": {
             "name": "ZetaSwitch",
             "module": "src/components/switch/switch.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/stepper-input/stepper-input.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "ZetaStepperInput",
-          "members": [
-            {
-              "kind": "field",
-              "name": "min",
-              "type": {
-                "text": "number | undefined"
-              },
-              "attribute": "min"
-            },
-            {
-              "kind": "field",
-              "name": "max",
-              "type": {
-                "text": "number | undefined"
-              },
-              "attribute": "max"
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "attribute": "disabled"
-            },
-            {
-              "kind": "field",
-              "name": "size",
-              "type": {
-                "text": "\"medium\" | \"large\""
-              },
-              "default": "\"medium\"",
-              "attribute": "size",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "attribute": "value"
-            },
-            {
-              "kind": "field",
-              "name": "handleOnChange",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "inputValue",
-              "type": {
-                "text": "number"
-              },
-              "privacy": "private",
-              "default": "0"
-            },
-            {
-              "kind": "field",
-              "name": "rounded",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "true",
-              "description": "Whether the component is rounded or sharp.\n\nWhen true, rounded will set the border radius of the first child, and any children with class 'contourable-target' to `--radius-minimal`.\n\nOtherwise, this value will be `--radius-none`.",
-              "attribute": "rounded",
-              "reflects": true,
-              "inheritedFrom": {
-                "name": "Contourable",
-                "module": "src/mixins/contour.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "styles",
-              "type": {
-                "text": "array"
-              },
-              "static": true,
-              "default": "[\n      (superClass as unknown as typeof LitElement).styles ?? [],\n      css`\n        :host > *,\n        :host .contourable-target {\n          border-radius: var(--radius-none);\n        }\n        :host([rounded]) > *,\n        :host([rounded]) .contourable-target {\n          border-radius: var(--radius-minimal);\n        }\n      `\n    ]",
-              "inheritedFrom": {
-                "name": "Contourable",
-                "module": "src/mixins/contour.ts"
-              }
-            }
-          ],
-          "attributes": [
-            {
-              "name": "min",
-              "type": {
-                "text": "number | undefined"
-              },
-              "fieldName": "min"
-            },
-            {
-              "name": "max",
-              "type": {
-                "text": "number | undefined"
-              },
-              "fieldName": "max"
-            },
-            {
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "fieldName": "disabled"
-            },
-            {
-              "name": "size",
-              "type": {
-                "text": "\"medium\" | \"large\""
-              },
-              "default": "\"medium\"",
-              "fieldName": "size"
-            },
-            {
-              "name": "value",
-              "fieldName": "value"
-            },
-            {
-              "name": "rounded",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "true",
-              "description": "Whether the component is rounded or sharp.\n\nWhen true, rounded will set the border radius of the first child, and any children with class 'contourable-target' to `--radius-minimal`.\n\nOtherwise, this value will be `--radius-none`.",
-              "fieldName": "rounded",
-              "inheritedFrom": {
-                "name": "Contourable",
-                "module": "src/mixins/contour.ts"
-              }
-            }
-          ],
-          "mixins": [
-            {
-              "name": "Contourable",
-              "module": "/src/mixins/mixins.js"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "tagName": "zeta-stepper-input",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "ZetaStepperInput",
-          "declaration": {
-            "name": "ZetaStepperInput",
-            "module": "src/components/stepper-input/stepper-input.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "zeta-stepper-input",
-          "declaration": {
-            "name": "ZetaStepperInput",
-            "module": "src/components/stepper-input/stepper-input.ts"
           }
         }
       ]
@@ -6194,6 +6314,104 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/badges/workcloud-indicator/workcloud-indicator.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "ZetaWorkcloudIndicator",
+          "members": [
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "\"medium\" | \"small\" | \"xs\""
+              },
+              "default": "\"medium\"",
+              "description": "Size variant",
+              "attribute": "size",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "priority",
+              "type": {
+                "text": "\"urgent\" | \"high\" | \"medium\" | \"low\""
+              },
+              "default": "\"low\"",
+              "description": "Priority level",
+              "attribute": "priority",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "number",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "description": "Number of indications",
+              "attribute": "number"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "size",
+              "type": {
+                "text": "\"medium\" | \"small\" | \"xs\""
+              },
+              "default": "\"medium\"",
+              "description": "Size variant",
+              "fieldName": "size"
+            },
+            {
+              "name": "priority",
+              "type": {
+                "text": "\"urgent\" | \"high\" | \"medium\" | \"low\""
+              },
+              "default": "\"low\"",
+              "description": "Priority level",
+              "fieldName": "priority"
+            },
+            {
+              "name": "number",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "description": "Number of indications",
+              "fieldName": "number"
+            }
+          ],
+          "superclass": {
+            "name": "ZetaWorkcloudIndicatorBase",
+            "module": "src/components/badges/workcloud-indicator/workcloud-indicator.ts"
+          },
+          "tagName": "zeta-workcloud-indicator",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ZetaWorkcloudIndicator",
+          "declaration": {
+            "name": "ZetaWorkcloudIndicator",
+            "module": "src/components/badges/workcloud-indicator/workcloud-indicator.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "zeta-workcloud-indicator",
+          "declaration": {
+            "name": "ZetaWorkcloudIndicator",
+            "module": "src/components/badges/workcloud-indicator/workcloud-indicator.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/badges/tag/tag.ts",
       "declarations": [
         {
@@ -6319,184 +6537,115 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/badges/workcloud-indicator/workcloud-indicator.ts",
+      "path": "src/components/bottom-sheets/sheet-header/sheet-header.ts",
       "declarations": [
         {
           "kind": "class",
           "description": "",
-          "name": "ZetaWorkcloudIndicator",
+          "name": "ZetaSheetHeader",
           "members": [
             {
               "kind": "field",
-              "name": "size",
+              "name": "alignment",
               "type": {
-                "text": "\"medium\" | \"small\" | \"xs\""
+                "text": "\"start\" | \"center\""
               },
-              "default": "\"medium\"",
-              "description": "Size variant",
-              "attribute": "size",
+              "default": "\"start\"",
+              "description": "Sheet Header alignment.",
+              "attribute": "alignment",
               "reflects": true
             },
             {
               "kind": "field",
-              "name": "priority",
+              "name": "text",
               "type": {
-                "text": "\"urgent\" | \"high\" | \"medium\" | \"low\""
+                "text": "string"
               },
-              "default": "\"low\"",
-              "description": "Priority level",
-              "attribute": "priority",
+              "default": "\"Title\"",
+              "description": "Sheet Header text content.",
+              "attribute": "text",
               "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "number",
-              "type": {
-                "text": "number"
-              },
-              "default": "0",
-              "description": "Number of indications",
-              "attribute": "number"
             }
           ],
           "attributes": [
             {
-              "name": "size",
+              "name": "alignment",
               "type": {
-                "text": "\"medium\" | \"small\" | \"xs\""
+                "text": "\"start\" | \"center\""
               },
-              "default": "\"medium\"",
-              "description": "Size variant",
-              "fieldName": "size"
+              "default": "\"start\"",
+              "description": "Sheet Header alignment.",
+              "fieldName": "alignment"
             },
             {
-              "name": "priority",
+              "name": "text",
               "type": {
-                "text": "\"urgent\" | \"high\" | \"medium\" | \"low\""
+                "text": "string"
               },
-              "default": "\"low\"",
-              "description": "Priority level",
-              "fieldName": "priority"
-            },
-            {
-              "name": "number",
-              "type": {
-                "text": "number"
-              },
-              "default": "0",
-              "description": "Number of indications",
-              "fieldName": "number"
-            }
-          ],
-          "superclass": {
-            "name": "ZetaWorkcloudIndicatorBase",
-            "module": "src/components/badges/workcloud-indicator/workcloud-indicator.ts"
-          },
-          "tagName": "zeta-workcloud-indicator",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "ZetaWorkcloudIndicator",
-          "declaration": {
-            "name": "ZetaWorkcloudIndicator",
-            "module": "src/components/badges/workcloud-indicator/workcloud-indicator.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "zeta-workcloud-indicator",
-          "declaration": {
-            "name": "ZetaWorkcloudIndicator",
-            "module": "src/components/badges/workcloud-indicator/workcloud-indicator.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/breadcrumbs/breadcrumb-truncated/breadcrumb-truncated.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "The breadcrumb is a secondary navigation patten that helps a user understand the hierarchy among levels and navigate back through them.",
-          "name": "ZetaBreadcrumbTruncated",
-          "members": [
-            {
-              "kind": "field",
-              "name": "rounded",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "true",
-              "description": "Whether the component is rounded or sharp.\n\nWhen true, rounded will set the border radius of the first child, and any children with class 'contourable-target' to `--radius-minimal`.\n\nOtherwise, this value will be `--radius-none`.",
-              "attribute": "rounded",
-              "reflects": true,
-              "inheritedFrom": {
-                "name": "Contourable",
-                "module": "src/mixins/contour.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "styles",
-              "type": {
-                "text": "array"
-              },
-              "static": true,
-              "default": "[\n      (superClass as unknown as typeof LitElement).styles ?? [],\n      css`\n        :host > *,\n        :host .contourable-target {\n          border-radius: var(--radius-none);\n        }\n        :host([rounded]) > *,\n        :host([rounded]) .contourable-target {\n          border-radius: var(--radius-minimal);\n        }\n      `\n    ]",
-              "inheritedFrom": {
-                "name": "Contourable",
-                "module": "src/mixins/contour.ts"
-              }
-            }
-          ],
-          "mixins": [
-            {
-              "name": "Contourable",
-              "module": "/src/mixins/mixins.js"
+              "default": "\"Title\"",
+              "description": "Sheet Header text content.",
+              "fieldName": "text"
             }
           ],
           "superclass": {
             "name": "LitElement",
             "package": "lit"
           },
-          "tagName": "zeta-breadcrumb-truncated",
-          "customElement": true,
-          "attributes": [
-            {
-              "name": "rounded",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "true",
-              "description": "Whether the component is rounded or sharp.\n\nWhen true, rounded will set the border radius of the first child, and any children with class 'contourable-target' to `--radius-minimal`.\n\nOtherwise, this value will be `--radius-none`.",
-              "fieldName": "rounded",
-              "inheritedFrom": {
-                "name": "Contourable",
-                "module": "src/mixins/contour.ts"
-              }
-            }
-          ]
+          "tagName": "zeta-sheet-header",
+          "customElement": true
         }
       ],
       "exports": [
         {
           "kind": "js",
-          "name": "ZetaBreadcrumbTruncated",
+          "name": "ZetaSheetHeader",
           "declaration": {
-            "name": "ZetaBreadcrumbTruncated",
-            "module": "src/components/breadcrumbs/breadcrumb-truncated/breadcrumb-truncated.ts"
+            "name": "ZetaSheetHeader",
+            "module": "src/components/bottom-sheets/sheet-header/sheet-header.ts"
           }
         },
         {
           "kind": "custom-element-definition",
-          "name": "zeta-breadcrumb-truncated",
+          "name": "zeta-sheet-header",
           "declaration": {
-            "name": "ZetaBreadcrumbTruncated",
-            "module": "src/components/breadcrumbs/breadcrumb-truncated/breadcrumb-truncated.ts"
+            "name": "ZetaSheetHeader",
+            "module": "src/components/bottom-sheets/sheet-header/sheet-header.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/bottom-sheets/sheet-handle/sheet-handle.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "ZetaSheetHandle",
+          "members": [],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "zeta-sheet-handle",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ZetaSheetHandle",
+          "declaration": {
+            "name": "ZetaSheetHandle",
+            "module": "src/components/bottom-sheets/sheet-handle/sheet-handle.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "zeta-sheet-handle",
+          "declaration": {
+            "name": "ZetaSheetHandle",
+            "module": "src/components/bottom-sheets/sheet-handle/sheet-handle.ts"
           }
         }
       ]
@@ -6644,36 +6793,86 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/bottom-sheets/sheet-handle/sheet-handle.ts",
+      "path": "src/components/breadcrumbs/breadcrumb-truncated/breadcrumb-truncated.ts",
       "declarations": [
         {
           "kind": "class",
-          "description": "",
-          "name": "ZetaSheetHandle",
-          "members": [],
+          "description": "The breadcrumb is a secondary navigation patten that helps a user understand the hierarchy among levels and navigate back through them.",
+          "name": "ZetaBreadcrumbTruncated",
+          "members": [
+            {
+              "kind": "field",
+              "name": "rounded",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "description": "Whether the component is rounded or sharp.\n\nWhen true, rounded will set the border radius of the first child, and any children with class 'contourable-target' to `--radius-minimal`.\n\nOtherwise, this value will be `--radius-none`.",
+              "attribute": "rounded",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "Contourable",
+                "module": "src/mixins/contour.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "styles",
+              "type": {
+                "text": "array"
+              },
+              "static": true,
+              "default": "[\n      (superClass as unknown as typeof LitElement).styles ?? [],\n      css`\n        :host > *,\n        :host .contourable-target {\n          border-radius: var(--radius-none);\n        }\n        :host([rounded]) > *,\n        :host([rounded]) .contourable-target {\n          border-radius: var(--radius-minimal);\n        }\n      `\n    ]",
+              "inheritedFrom": {
+                "name": "Contourable",
+                "module": "src/mixins/contour.ts"
+              }
+            }
+          ],
+          "mixins": [
+            {
+              "name": "Contourable",
+              "module": "/src/mixins/mixins.js"
+            }
+          ],
           "superclass": {
             "name": "LitElement",
             "package": "lit"
           },
-          "tagName": "zeta-sheet-handle",
-          "customElement": true
+          "tagName": "zeta-breadcrumb-truncated",
+          "customElement": true,
+          "attributes": [
+            {
+              "name": "rounded",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "description": "Whether the component is rounded or sharp.\n\nWhen true, rounded will set the border radius of the first child, and any children with class 'contourable-target' to `--radius-minimal`.\n\nOtherwise, this value will be `--radius-none`.",
+              "fieldName": "rounded",
+              "inheritedFrom": {
+                "name": "Contourable",
+                "module": "src/mixins/contour.ts"
+              }
+            }
+          ]
         }
       ],
       "exports": [
         {
           "kind": "js",
-          "name": "ZetaSheetHandle",
+          "name": "ZetaBreadcrumbTruncated",
           "declaration": {
-            "name": "ZetaSheetHandle",
-            "module": "src/components/bottom-sheets/sheet-handle/sheet-handle.ts"
+            "name": "ZetaBreadcrumbTruncated",
+            "module": "src/components/breadcrumbs/breadcrumb-truncated/breadcrumb-truncated.ts"
           }
         },
         {
           "kind": "custom-element-definition",
-          "name": "zeta-sheet-handle",
+          "name": "zeta-breadcrumb-truncated",
           "declaration": {
-            "name": "ZetaSheetHandle",
-            "module": "src/components/bottom-sheets/sheet-handle/sheet-handle.ts"
+            "name": "ZetaBreadcrumbTruncated",
+            "module": "src/components/breadcrumbs/breadcrumb-truncated/breadcrumb-truncated.ts"
           }
         }
       ]
@@ -6949,79 +7148,232 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/bottom-sheets/sheet-header/sheet-header.ts",
+      "path": "src/components/button-group/button-group-item/button-group-item.ts",
       "declarations": [
         {
           "kind": "class",
-          "description": "",
-          "name": "ZetaSheetHeader",
+          "description": "Button which is used by button groups.",
+          "name": "ZetaButtonGroupItem",
+          "slots": [
+            {
+              "description": "Button label content.",
+              "name": ""
+            }
+          ],
           "members": [
             {
               "kind": "field",
-              "name": "alignment",
+              "name": "shadowRootOptions",
               "type": {
-                "text": "\"start\" | \"center\""
+                "text": "ShadowRootInit"
               },
-              "default": "\"start\"",
-              "description": "Sheet Header alignment.",
-              "attribute": "alignment",
+              "static": true,
+              "default": "{\n    mode: \"open\",\n    delegatesFocus: false\n  }"
+            },
+            {
+              "kind": "field",
+              "name": "buttonElement",
+              "type": {
+                "text": "HTMLElement | null"
+              },
+              "privacy": "private",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "Name for the button, used if the button is in a form.",
+              "attribute": "name"
+            },
+            {
+              "kind": "field",
+              "name": "iconName",
+              "type": {
+                "text": "ZetaIconName | undefined"
+              },
+              "description": "The name of the icon displayed on the button.",
+              "attribute": "iconName"
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "type": {
+                "text": "\"medium\" | \"large\""
+              },
+              "default": "\"medium\"",
+              "description": "Size of button.",
+              "attribute": "size",
               "reflects": true
             },
             {
               "kind": "field",
-              "name": "text",
+              "name": "onclick",
               "type": {
-                "text": "string"
+                "text": "((this: GlobalEventHandlers, ev: MouseEvent) => unknown) | null"
               },
-              "default": "\"Title\"",
-              "description": "Sheet Header text content.",
-              "attribute": "text",
-              "reflects": true
+              "default": "null",
+              "attribute": "onclick"
+            },
+            {
+              "kind": "field",
+              "name": "addGap",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "true"
+            },
+            {
+              "kind": "method",
+              "name": "focus"
+            },
+            {
+              "kind": "method",
+              "name": "blur"
+            },
+            {
+              "kind": "field",
+              "name": "rounded",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "description": "Whether the component is rounded or sharp.\n\nWhen true, rounded will set the border radius of the first child, and any children with class 'contourable-target' to `--radius-minimal`.\n\nOtherwise, this value will be `--radius-none`.",
+              "attribute": "rounded",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "Contourable",
+                "module": "src/mixins/contour.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "styles",
+              "type": {
+                "text": "array"
+              },
+              "static": true,
+              "default": "[\n      (superClass as unknown as typeof LitElement).styles ?? [],\n      css`\n        :host > *,\n        :host .contourable-target {\n          border-radius: var(--radius-none);\n        }\n        :host([rounded]) > *,\n        :host([rounded]) .contourable-target {\n          border-radius: var(--radius-minimal);\n        }\n      `\n    ]",
+              "inheritedFrom": {
+                "name": "Interactive",
+                "module": "src/mixins/interactive.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Boolean for if component is disabled.\n\nThis will apply disabled styles.",
+              "attribute": "disabled",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "Interactive",
+                "module": "src/mixins/interactive.ts"
+              }
             }
           ],
           "attributes": [
             {
-              "name": "alignment",
-              "type": {
-                "text": "\"start\" | \"center\""
-              },
-              "default": "\"start\"",
-              "description": "Sheet Header alignment.",
-              "fieldName": "alignment"
-            },
-            {
-              "name": "text",
+              "name": "name",
               "type": {
                 "text": "string"
               },
-              "default": "\"Title\"",
-              "description": "Sheet Header text content.",
-              "fieldName": "text"
+              "default": "\"\"",
+              "description": "Name for the button, used if the button is in a form.",
+              "fieldName": "name"
+            },
+            {
+              "name": "iconName",
+              "type": {
+                "text": "ZetaIconName | undefined"
+              },
+              "description": "The name of the icon displayed on the button.",
+              "fieldName": "iconName"
+            },
+            {
+              "name": "size",
+              "type": {
+                "text": "\"medium\" | \"large\""
+              },
+              "default": "\"medium\"",
+              "description": "Size of button.",
+              "fieldName": "size"
+            },
+            {
+              "name": "onclick",
+              "type": {
+                "text": "((this: GlobalEventHandlers, ev: MouseEvent) => unknown) | null"
+              },
+              "default": "null",
+              "fieldName": "onclick"
+            },
+            {
+              "name": "rounded",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "description": "Whether the component is rounded or sharp.\n\nWhen true, rounded will set the border radius of the first child, and any children with class 'contourable-target' to `--radius-minimal`.\n\nOtherwise, this value will be `--radius-none`.",
+              "fieldName": "rounded",
+              "inheritedFrom": {
+                "name": "Contourable",
+                "module": "src/mixins/contour.ts"
+              }
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Boolean for if component is disabled.\n\nThis will apply disabled styles.",
+              "fieldName": "disabled",
+              "inheritedFrom": {
+                "name": "Interactive",
+                "module": "src/mixins/interactive.ts"
+              }
+            }
+          ],
+          "mixins": [
+            {
+              "name": "Contourable",
+              "module": "/src/index.js"
+            },
+            {
+              "name": "Interactive",
+              "module": "/src/index.js"
             }
           ],
           "superclass": {
             "name": "LitElement",
             "package": "lit"
           },
-          "tagName": "zeta-sheet-header",
+          "tagName": "zeta-group-item",
           "customElement": true
         }
       ],
       "exports": [
         {
           "kind": "js",
-          "name": "ZetaSheetHeader",
+          "name": "ZetaButtonGroupItem",
           "declaration": {
-            "name": "ZetaSheetHeader",
-            "module": "src/components/bottom-sheets/sheet-header/sheet-header.ts"
+            "name": "ZetaButtonGroupItem",
+            "module": "src/components/button-group/button-group-item/button-group-item.ts"
           }
         },
         {
           "kind": "custom-element-definition",
-          "name": "zeta-sheet-header",
+          "name": "zeta-group-item",
           "declaration": {
-            "name": "ZetaSheetHeader",
-            "module": "src/components/bottom-sheets/sheet-header/sheet-header.ts"
+            "name": "ZetaButtonGroupItem",
+            "module": "src/components/button-group/button-group-item/button-group-item.ts"
           }
         }
       ]
@@ -7064,6 +7416,48 @@
           "declaration": {
             "name": "ZetaCardFooter",
             "module": "src/components/card/card-footer/card-footer.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/card/card-body/card-body.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Used to display the text in a card body.",
+          "name": "ZetaCardBody",
+          "slots": [
+            {
+              "description": "The content of the card body.",
+              "name": ""
+            }
+          ],
+          "members": [],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "zeta-card-body",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ZetaCardBody",
+          "declaration": {
+            "name": "ZetaCardBody",
+            "module": "src/components/card/card-body/card-body.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "zeta-card-body",
+          "declaration": {
+            "name": "ZetaCardBody",
+            "module": "src/components/card/card-body/card-body.ts"
           }
         }
       ]
@@ -7151,48 +7545,6 @@
           "declaration": {
             "name": "ZetaCardHeader",
             "module": "src/components/card/card-header/card-header.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/card/card-body/card-body.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "Used to display the text in a card body.",
-          "name": "ZetaCardBody",
-          "slots": [
-            {
-              "description": "The content of the card body.",
-              "name": ""
-            }
-          ],
-          "members": [],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "tagName": "zeta-card-body",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "ZetaCardBody",
-          "declaration": {
-            "name": "ZetaCardBody",
-            "module": "src/components/card/card-body/card-body.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "zeta-card-body",
-          "declaration": {
-            "name": "ZetaCardBody",
-            "module": "src/components/card/card-body/card-body.ts"
           }
         }
       ]
@@ -7426,190 +7778,6 @@
           "declaration": {
             "name": "ZetaAssistChip",
             "module": "src/components/chips/assist-chip/assist-chip.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/dropdown/menu-item/dropdown-menu-item.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "ZetaDropdownMenuItem",
-          "members": [
-            {
-              "kind": "field",
-              "name": "type",
-              "type": {
-                "text": "\"default\" | \"checkbox\" | \"radio\""
-              },
-              "default": "\"default\"",
-              "description": "Changes the type of the menu item.",
-              "attribute": "type",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "icon",
-              "type": {
-                "text": "ZetaIconName | undefined"
-              },
-              "description": "The name of the icon to be shown.\n\nWill only be displayed if 'type' is set to 'default'.",
-              "attribute": "icon"
-            },
-            {
-              "kind": "field",
-              "name": "checked",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Controls the state of the dropdown menu item.",
-              "attribute": "checked"
-            },
-            {
-              "kind": "method",
-              "name": "toggleCheck",
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "getLeadingContent",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "rounded",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "true",
-              "description": "Whether the component is rounded or sharp.\n\nWhen true, rounded will set the border radius of the first child, and any children with class 'contourable-target' to `--radius-minimal`.\n\nOtherwise, this value will be `--radius-none`.",
-              "attribute": "rounded",
-              "reflects": true,
-              "inheritedFrom": {
-                "name": "Contourable",
-                "module": "src/mixins/contour.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "styles",
-              "type": {
-                "text": "array"
-              },
-              "static": true,
-              "default": "[\n      (superClass as unknown as typeof LitElement).styles ?? [],\n      css`\n        :host > *,\n        :host .contourable-target {\n          border-radius: var(--radius-none);\n        }\n        :host([rounded]) > *,\n        :host([rounded]) .contourable-target {\n          border-radius: var(--radius-minimal);\n        }\n      `\n    ]",
-              "inheritedFrom": {
-                "name": "Interactive",
-                "module": "src/mixins/interactive.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Boolean for if component is disabled.\n\nThis will apply disabled styles.",
-              "attribute": "disabled",
-              "reflects": true,
-              "inheritedFrom": {
-                "name": "Interactive",
-                "module": "src/mixins/interactive.ts"
-              }
-            }
-          ],
-          "attributes": [
-            {
-              "name": "type",
-              "type": {
-                "text": "\"default\" | \"checkbox\" | \"radio\""
-              },
-              "default": "\"default\"",
-              "description": "Changes the type of the menu item.",
-              "fieldName": "type"
-            },
-            {
-              "name": "icon",
-              "type": {
-                "text": "ZetaIconName | undefined"
-              },
-              "description": "The name of the icon to be shown.\n\nWill only be displayed if 'type' is set to 'default'.",
-              "fieldName": "icon"
-            },
-            {
-              "name": "checked",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Controls the state of the dropdown menu item.",
-              "fieldName": "checked"
-            },
-            {
-              "name": "rounded",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "true",
-              "description": "Whether the component is rounded or sharp.\n\nWhen true, rounded will set the border radius of the first child, and any children with class 'contourable-target' to `--radius-minimal`.\n\nOtherwise, this value will be `--radius-none`.",
-              "fieldName": "rounded",
-              "inheritedFrom": {
-                "name": "Contourable",
-                "module": "src/mixins/contour.ts"
-              }
-            },
-            {
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "description": "Boolean for if component is disabled.\n\nThis will apply disabled styles.",
-              "fieldName": "disabled",
-              "inheritedFrom": {
-                "name": "Interactive",
-                "module": "src/mixins/interactive.ts"
-              }
-            }
-          ],
-          "mixins": [
-            {
-              "name": "Contourable",
-              "module": "/src/index.js"
-            },
-            {
-              "name": "Interactive",
-              "module": "/src/index.js"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "tagName": "zeta-dropdown-menu-item",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "ZetaDropdownMenuItem",
-          "declaration": {
-            "name": "ZetaDropdownMenuItem",
-            "module": "src/components/dropdown/menu-item/dropdown-menu-item.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "zeta-dropdown-menu-item",
-          "declaration": {
-            "name": "ZetaDropdownMenuItem",
-            "module": "src/components/dropdown/menu-item/dropdown-menu-item.ts"
           }
         }
       ]
@@ -8043,6 +8211,407 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/components/dropdown/menu-item/dropdown-menu-item.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "ZetaDropdownMenuItem",
+          "members": [
+            {
+              "kind": "field",
+              "name": "type",
+              "type": {
+                "text": "\"default\" | \"checkbox\" | \"radio\""
+              },
+              "default": "\"default\"",
+              "description": "Changes the type of the menu item.",
+              "attribute": "type",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "icon",
+              "type": {
+                "text": "ZetaIconName | undefined"
+              },
+              "description": "The name of the icon to be shown.\n\nWill only be displayed if 'type' is set to 'default'.",
+              "attribute": "icon"
+            },
+            {
+              "kind": "field",
+              "name": "checked",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Controls the state of the dropdown menu item.",
+              "attribute": "checked"
+            },
+            {
+              "kind": "method",
+              "name": "toggleCheck",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "getLeadingContent",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "rounded",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "description": "Whether the component is rounded or sharp.\n\nWhen true, rounded will set the border radius of the first child, and any children with class 'contourable-target' to `--radius-minimal`.\n\nOtherwise, this value will be `--radius-none`.",
+              "attribute": "rounded",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "Contourable",
+                "module": "src/mixins/contour.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "styles",
+              "type": {
+                "text": "array"
+              },
+              "static": true,
+              "default": "[\n      (superClass as unknown as typeof LitElement).styles ?? [],\n      css`\n        :host > *,\n        :host .contourable-target {\n          border-radius: var(--radius-none);\n        }\n        :host([rounded]) > *,\n        :host([rounded]) .contourable-target {\n          border-radius: var(--radius-minimal);\n        }\n      `\n    ]",
+              "inheritedFrom": {
+                "name": "Interactive",
+                "module": "src/mixins/interactive.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Boolean for if component is disabled.\n\nThis will apply disabled styles.",
+              "attribute": "disabled",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "Interactive",
+                "module": "src/mixins/interactive.ts"
+              }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "type",
+              "type": {
+                "text": "\"default\" | \"checkbox\" | \"radio\""
+              },
+              "default": "\"default\"",
+              "description": "Changes the type of the menu item.",
+              "fieldName": "type"
+            },
+            {
+              "name": "icon",
+              "type": {
+                "text": "ZetaIconName | undefined"
+              },
+              "description": "The name of the icon to be shown.\n\nWill only be displayed if 'type' is set to 'default'.",
+              "fieldName": "icon"
+            },
+            {
+              "name": "checked",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Controls the state of the dropdown menu item.",
+              "fieldName": "checked"
+            },
+            {
+              "name": "rounded",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "description": "Whether the component is rounded or sharp.\n\nWhen true, rounded will set the border radius of the first child, and any children with class 'contourable-target' to `--radius-minimal`.\n\nOtherwise, this value will be `--radius-none`.",
+              "fieldName": "rounded",
+              "inheritedFrom": {
+                "name": "Contourable",
+                "module": "src/mixins/contour.ts"
+              }
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "description": "Boolean for if component is disabled.\n\nThis will apply disabled styles.",
+              "fieldName": "disabled",
+              "inheritedFrom": {
+                "name": "Interactive",
+                "module": "src/mixins/interactive.ts"
+              }
+            }
+          ],
+          "mixins": [
+            {
+              "name": "Contourable",
+              "module": "/src/index.js"
+            },
+            {
+              "name": "Interactive",
+              "module": "/src/index.js"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "zeta-dropdown-menu-item",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ZetaDropdownMenuItem",
+          "declaration": {
+            "name": "ZetaDropdownMenuItem",
+            "module": "src/components/dropdown/menu-item/dropdown-menu-item.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "zeta-dropdown-menu-item",
+          "declaration": {
+            "name": "ZetaDropdownMenuItem",
+            "module": "src/components/dropdown/menu-item/dropdown-menu-item.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/list/list-item/list-item.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "List items are used in lists.",
+          "name": "ZetaListItem",
+          "slots": [
+            {
+              "description": "Content placed before the headline",
+              "name": "leading"
+            },
+            {
+              "description": "Content placed after the headline",
+              "name": "trailing"
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "headline",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "The headline text of the list element.",
+              "attribute": "headline"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "headline",
+              "type": {
+                "text": "string | undefined"
+              },
+              "description": "The headline text of the list element.",
+              "fieldName": "headline"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "zeta-list-item",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ZetaListItem",
+          "declaration": {
+            "name": "ZetaListItem",
+            "module": "src/components/list/list-item/list-item.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "zeta-list-item",
+          "declaration": {
+            "name": "ZetaListItem",
+            "module": "src/components/list/list-item/list-item.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/navigation-bar/navigation-bar-item/navigation-bar-item.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "A nav item to be used in a zeta-navigation-bar",
+          "name": "ZetaNavigationBarItem",
+          "slots": [
+            {
+              "description": "Displayed overlaying the icon. Should be a 'zeta-notification-indicator';",
+              "name": "badge"
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "icon",
+              "type": {
+                "text": "ZetaIconName | undefined"
+              },
+              "attribute": "icon"
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "type": {
+                "text": "string | undefined"
+              },
+              "attribute": "label",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "active",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "active",
+              "reflects": true
+            },
+            {
+              "kind": "method",
+              "name": "getLabel",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "getIconColor",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "rounded",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "description": "Whether the component is rounded or sharp.\n\nWhen true, rounded will set the border radius of the first child, and any children with class 'contourable-target' to `--radius-minimal`.\n\nOtherwise, this value will be `--radius-none`.",
+              "attribute": "rounded",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "Contourable",
+                "module": "src/mixins/contour.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "styles",
+              "type": {
+                "text": "array"
+              },
+              "static": true,
+              "default": "[\n      (superClass as unknown as typeof LitElement).styles ?? [],\n      css`\n        :host > *,\n        :host .contourable-target {\n          border-radius: var(--radius-none);\n        }\n        :host([rounded]) > *,\n        :host([rounded]) .contourable-target {\n          border-radius: var(--radius-minimal);\n        }\n      `\n    ]",
+              "inheritedFrom": {
+                "name": "Contourable",
+                "module": "src/mixins/contour.ts"
+              }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "icon",
+              "type": {
+                "text": "ZetaIconName | undefined"
+              },
+              "fieldName": "icon"
+            },
+            {
+              "name": "label",
+              "type": {
+                "text": "string | undefined"
+              },
+              "fieldName": "label"
+            },
+            {
+              "name": "active",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "active"
+            },
+            {
+              "name": "rounded",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "description": "Whether the component is rounded or sharp.\n\nWhen true, rounded will set the border radius of the first child, and any children with class 'contourable-target' to `--radius-minimal`.\n\nOtherwise, this value will be `--radius-none`.",
+              "fieldName": "rounded",
+              "inheritedFrom": {
+                "name": "Contourable",
+                "module": "src/mixins/contour.ts"
+              }
+            }
+          ],
+          "mixins": [
+            {
+              "name": "Contourable",
+              "module": "/src/mixins/mixins.js"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "zeta-navigation-bar-item",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ZetaNavigationBarItem",
+          "declaration": {
+            "name": "ZetaNavigationBarItem",
+            "module": "src/components/navigation-bar/navigation-bar-item/navigation-bar-item.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "zeta-navigation-bar-item",
+          "declaration": {
+            "name": "ZetaNavigationBarItem",
+            "module": "src/components/navigation-bar/navigation-bar-item/navigation-bar-item.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/components/navigation-drawer/navigation-drawer-footer/navigation-drawer-footer.ts",
       "declarations": [
         {
@@ -8206,223 +8775,6 @@
           "declaration": {
             "name": "ZetaNavigationDrawerFooter",
             "module": "src/components/navigation-drawer/navigation-drawer-footer/navigation-drawer-footer.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/navigation-bar/navigation-bar-item/navigation-bar-item.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "A nav item to be used in a zeta-navigation-bar",
-          "name": "ZetaNavigationBarItem",
-          "slots": [
-            {
-              "description": "Displayed overlaying the icon. Should be a 'zeta-notification-indicator';",
-              "name": "badge"
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "icon",
-              "type": {
-                "text": "ZetaIconName | undefined"
-              },
-              "attribute": "icon"
-            },
-            {
-              "kind": "field",
-              "name": "label",
-              "type": {
-                "text": "string | undefined"
-              },
-              "attribute": "label",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "active",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "attribute": "active",
-              "reflects": true
-            },
-            {
-              "kind": "method",
-              "name": "getLabel",
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "getIconColor",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "rounded",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "true",
-              "description": "Whether the component is rounded or sharp.\n\nWhen true, rounded will set the border radius of the first child, and any children with class 'contourable-target' to `--radius-minimal`.\n\nOtherwise, this value will be `--radius-none`.",
-              "attribute": "rounded",
-              "reflects": true,
-              "inheritedFrom": {
-                "name": "Contourable",
-                "module": "src/mixins/contour.ts"
-              }
-            },
-            {
-              "kind": "field",
-              "name": "styles",
-              "type": {
-                "text": "array"
-              },
-              "static": true,
-              "default": "[\n      (superClass as unknown as typeof LitElement).styles ?? [],\n      css`\n        :host > *,\n        :host .contourable-target {\n          border-radius: var(--radius-none);\n        }\n        :host([rounded]) > *,\n        :host([rounded]) .contourable-target {\n          border-radius: var(--radius-minimal);\n        }\n      `\n    ]",
-              "inheritedFrom": {
-                "name": "Contourable",
-                "module": "src/mixins/contour.ts"
-              }
-            }
-          ],
-          "attributes": [
-            {
-              "name": "icon",
-              "type": {
-                "text": "ZetaIconName | undefined"
-              },
-              "fieldName": "icon"
-            },
-            {
-              "name": "label",
-              "type": {
-                "text": "string | undefined"
-              },
-              "fieldName": "label"
-            },
-            {
-              "name": "active",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "fieldName": "active"
-            },
-            {
-              "name": "rounded",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "true",
-              "description": "Whether the component is rounded or sharp.\n\nWhen true, rounded will set the border radius of the first child, and any children with class 'contourable-target' to `--radius-minimal`.\n\nOtherwise, this value will be `--radius-none`.",
-              "fieldName": "rounded",
-              "inheritedFrom": {
-                "name": "Contourable",
-                "module": "src/mixins/contour.ts"
-              }
-            }
-          ],
-          "mixins": [
-            {
-              "name": "Contourable",
-              "module": "/src/mixins/mixins.js"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "tagName": "zeta-navigation-bar-item",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "ZetaNavigationBarItem",
-          "declaration": {
-            "name": "ZetaNavigationBarItem",
-            "module": "src/components/navigation-bar/navigation-bar-item/navigation-bar-item.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "zeta-navigation-bar-item",
-          "declaration": {
-            "name": "ZetaNavigationBarItem",
-            "module": "src/components/navigation-bar/navigation-bar-item/navigation-bar-item.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/list/list-item/list-item.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "List items are used in lists.",
-          "name": "ZetaListItem",
-          "slots": [
-            {
-              "description": "Content placed before the headline",
-              "name": "leading"
-            },
-            {
-              "description": "Content placed after the headline",
-              "name": "trailing"
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "headline",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "The headline text of the list element.",
-              "attribute": "headline"
-            }
-          ],
-          "attributes": [
-            {
-              "name": "headline",
-              "type": {
-                "text": "string | undefined"
-              },
-              "description": "The headline text of the list element.",
-              "fieldName": "headline"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "tagName": "zeta-list-item",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "ZetaListItem",
-          "declaration": {
-            "name": "ZetaListItem",
-            "module": "src/components/list/list-item/list-item.ts"
-          }
-        },
-        {
-          "kind": "custom-element-definition",
-          "name": "zeta-list-item",
-          "declaration": {
-            "name": "ZetaListItem",
-            "module": "src/components/list/list-item/list-item.ts"
           }
         }
       ]
