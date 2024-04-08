@@ -8,7 +8,10 @@ import "../../icon/icon.js";
 /**
  * A nav item to be used in a zeta-navigation-bar
  *
- * @slot badge - Displayed overlaying the icon. Should be a 'zeta-notification-indicator';
+ * @slot badge - Displayed overlaying the icon. Should be a 'zeta-notification-indicator'.
+ *
+ * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21186-41419
+ * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/navigation-bar--docs
  */
 @customElement("zeta-navigation-bar-item")
 export class ZetaNavigationBarItem extends Contourable(LitElement) {

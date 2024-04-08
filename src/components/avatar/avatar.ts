@@ -6,6 +6,9 @@ import { ZetaIconName } from "@zebra-fed/zeta-icons";
 
 /**
  * An avatar is a visual representation of a user or entity.
+ *
+ * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=20816-388
+ * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/avatar--docs
  */
 @customElement("zeta-avatar")
 export class ZetaAvatar extends LitElement {
@@ -155,4 +158,3 @@ declare global {
     "zeta-avatar": ZetaAvatar;
   }
 }
-

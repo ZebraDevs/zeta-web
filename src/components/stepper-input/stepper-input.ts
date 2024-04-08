@@ -10,6 +10,12 @@ import { Contourable } from "../../mixins/mixins.js";
 //TODO: Disable buttons when at min or max
 //TODO: disabled prop changes size of box
 
+/** ZetaStepperInput web component.
+ * A stepper input, also called numeric stepper, is a common UI element that allows users to input a number or value simply by clicking the plus and minus buttons.
+ *
+ * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21529-9963
+ * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/stepper-input--docs
+ */
 @customElement("zeta-stepper-input")
 export class ZetaStepperInput extends Contourable(LitElement) {
   static styles = [super.styles || [], styles];

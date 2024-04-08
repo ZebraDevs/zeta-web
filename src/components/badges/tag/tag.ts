@@ -3,6 +3,14 @@ import { customElement, property } from "lit/decorators.js";
 import styles from "./tag.scss?inline";
 import { Contourable } from "../../../mixins/mixins.js";
 
+/** ZetaTag web component.
+ *
+ * Tags are used to draw attention to a specific area or information.
+ * The arrow shape helps direct the users attention to the desired place.
+ *
+ * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=22000-13170
+ * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/badges--docs
+ */
 @customElement("zeta-tag")
 export class ZetaTag extends Contourable(LitElement) {
   /** Text displayed in the tag. */
@@ -35,4 +43,3 @@ declare global {
     "zeta-tag": ZetaTag;
   }
 }
-

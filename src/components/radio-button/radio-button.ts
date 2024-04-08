@@ -3,7 +3,12 @@ import { html, LitElement } from "lit";
 import styles from "./radio-button.scss?inline";
 import { Interactive } from "../../index.js";
 
-/** Checkboxes allow users to select one or more items from a set. Checkboxes can turn an option on or off. */
+/**
+ * Radio buttons allow users to select one item from a set. Radio buttons can turn an option on or off.
+ *
+ * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21510-54345
+ * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/radio-button--docs
+ */
 @customElement("zeta-radio-button")
 export class ZetaRadioButton extends Interactive(LitElement) {
   /** Controls the state of the radio button. */

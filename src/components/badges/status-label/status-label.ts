@@ -10,6 +10,9 @@ import { Contourable } from "../../../mixins/mixins.js";
  * Slotted children:
  *    * Text
  *    * Icon
+ *
+ * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=21836-37274
+ * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/badges--docs
  */
 @customElement("zeta-status-label")
 export class ZetaStatusLabel extends Contourable(LitElement) {
@@ -51,4 +54,3 @@ declare global {
     "zeta-status-label": ZetaStatusLabel;
   }
 }
-

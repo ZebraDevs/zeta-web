@@ -4,6 +4,11 @@ import { html, LitElement } from "lit";
 import { ZetaIconName } from "@zebra-fed/zeta-icons";
 import { Contourable, Interactive } from "../../../index.js";
 
+/** ZetaDropdownMenuItem web component.
+ *
+ * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=22391-10146
+ * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/dropdown--docs
+ */
 @customElement("zeta-dropdown-menu-item")
 export class ZetaDropdownMenuItem extends Contourable(Interactive(LitElement)) {
   /** Changes the type of the menu item. */

@@ -7,7 +7,9 @@ import styles from "./_replacelower_.scss?inline";
  *
  * //TODO: Add description
  * //TODO: Add slot description
- * 
+ * //TODO: Add figma link(s)
+ * //TODO: Add storybook link
+ *
  * @public */
 @customElement("zeta-_replacelower_")
 export class Zeta_replacecap_ extends ContourableElement {

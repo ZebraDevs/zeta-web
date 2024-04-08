@@ -5,7 +5,11 @@ import { Contourable } from "../../mixins/mixins.js";
 
 // TODO: Update to use zeta-icon
 
-/** A banner displays an important, succinct message, and provides action for users to address. It draws the attention to the message by displaying it at the top in various colors. */
+/** A banner displays an important, succinct message, and provides action for users to address. It draws the attention to the message by displaying it at the top in various colors.
+ *
+ * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=22195-43965
+ * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/banner--docs
+ */
 @customElement("zeta-system-banner")
 export class ZetaSystemBanner extends Contourable(LitElement) {
   /** Type of banner.*/

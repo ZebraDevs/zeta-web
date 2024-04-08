@@ -7,7 +7,11 @@ export * from "./icon-button/icon-button.js";
 //TODO text overflow broken
 //TODO: Fix icon button
 
-/** Buttons facilitate user interaction. */
+/** Buttons facilitate user interaction.
+ *
+ * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=23126-110945
+ * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/buttons--docs
+ */
 @customElement("zeta-button")
 export class ZetaButton extends ButtonBase {
   static get styles() {

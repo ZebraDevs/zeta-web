@@ -4,7 +4,13 @@ import styles from "./indicators.scss?inline";
 import { ZetaIconName } from "@zebra-fed/zeta-icons";
 import { Contourable, Size } from "../../../mixins/mixins.js";
 
-/** Indicators are used to show the status of a user or any messages/notifications they might have. */
+/** Indicators are used to show the status of a user or any messages/notifications they might have.
+ *
+ * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=22000-10045&mode=design&t=6mhOcUUr3tgxxFdd-0
+ * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=22000-10072&mode=design&t=6mhOcUUr3tgxxFdd-0
+ *
+ * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/badges--docs
+ */
 @customElement("zeta-indicator")
 export class ZetaIndicator extends Size(Contourable(LitElement)) {
   /**
@@ -70,4 +76,3 @@ declare global {
     "zeta-indicator": ZetaIndicator;
   }
 }
-

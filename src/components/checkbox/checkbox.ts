@@ -3,7 +3,12 @@ import { Contourable, Interactive } from "../../index.js";
 import { html, LitElement } from "lit";
 import styles from "./checkbox.scss?inline";
 
-/** Checkboxes allow users to select one or more items from a set. Checkboxes can turn an option on or off. */
+/**
+ * Checkboxes allow users to select one or more items from a set. Checkboxes can turn an option on or off.
+ *
+ * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21510-54003
+ * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/checkbox--docs
+ */
 @customElement("zeta-checkbox")
 export class ZetaCheckbox extends Contourable(Interactive(LitElement)) {
   /**

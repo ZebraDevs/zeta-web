@@ -5,6 +5,11 @@ import { ZetaButton } from "../button/button.js";
 import "../../index.js";
 import { Contourable } from "../../mixins/mixins.js";
 
+/** Zeta in page banner component.
+ *
+ * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21156-27071
+ * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/in-page-banner--docs
+ */
 @customElement("zeta-in-page-banner")
 export class ZetaInPageBanner extends Contourable(LitElement) {
   /** Title of banner, displayed at top. */

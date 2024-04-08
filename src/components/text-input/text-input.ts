@@ -6,7 +6,12 @@ import { classMap } from "lit/directives/class-map.js";
 import { live } from "lit/directives/live.js";
 import { Contourable, Interactive, Size } from "../../mixins/mixins.js";
 
-/** Text input component with icon, affix, label and hint text. */
+/**
+ * Text input component with icon, affix, label and hint text
+ *
+ * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=23116-92946
+ * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/text-input--docs
+ */
 @customElement("zeta-text-input")
 export class ZetaTextInput extends Size(Contourable(Interactive(LitElement))) {
   static override shadowRootOptions: ShadowRootInit = { delegatesFocus: true, mode: "open" };
@@ -221,4 +226,3 @@ declare global {
     "zeta-text-input": ZetaTextInput;
   }
 }
-

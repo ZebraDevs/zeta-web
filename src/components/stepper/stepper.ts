@@ -9,6 +9,11 @@ import { Contourable } from "../../mixins/mixins.js";
  * Steppers convey progress through numbered steps.
  *
  * For the steps, pass `li` elements with `data-title` and `data-label` attributes as children
+ *
+ * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21529-11408
+ * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21529-11531
+ *
+ * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/stepper--docs
  */
 @customElement("zeta-stepper")
 export class ZetaStepper extends Contourable(LitElement) {
@@ -68,4 +73,3 @@ declare global {
     "zeta-stepper": ZetaStepper;
   }
 }
-

@@ -3,6 +3,11 @@ import { customElement, property } from "lit/decorators.js";
 import styles from "./status-chip.scss?inline";
 import { Contourable } from "../../../mixins/mixins.js";
 
+/** Zeta Status Chip web component.
+ *
+ * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21265-14282
+ * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/chips--docs
+ */
 @customElement("zeta-status-chip")
 export class ZetaStatusChip extends Contourable(LitElement) {
   /** Text displayed in the chip.  */

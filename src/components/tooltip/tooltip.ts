@@ -3,7 +3,12 @@ import { html, LitElement } from "lit";
 import styles from "./tooltip.scss?inline";
 import { Contourable } from "../../mixins/mixins.js";
 
-/** Tooltips display informative text when users hover over, focus on, or tap an element.*/
+/**
+ * Tooltips display informative text when users hover over, focus on, or tap an element.
+ *
+ * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21816-222
+ * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/tooltip--docs
+ */
 @customElement("zeta-tooltip")
 export class ZetaTooltip extends Contourable(LitElement) {
   /** Position of the tooltip. */

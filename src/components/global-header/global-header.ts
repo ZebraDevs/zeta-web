@@ -11,6 +11,9 @@ import { Contourable } from "../../mixins/mixins.js";
  * @slot leading - The leading content on the header.
  * @slot navigation-menu - The navigation menu. The position is based on the 'menu-position' property.
  * @slot trailing - The trailing content on the header.
+ *
+ * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=23144-118110
+ * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/global-header--docs
  */
 @customElement("zeta-global-header")
 export class ZetaGlobalHeader extends Contourable(LitElement) {

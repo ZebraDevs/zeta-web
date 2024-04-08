@@ -1,0 +1,20 @@
+name: Create documentation links on Figma
+
+on:
+  workflow_dispatch
+
+jobs:
+  link-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: "https://registry.npmjs.org"
+      - name: Run npm i
+        run: npm ci
+      - name: Create documentation links
+        uses: ./.github/workflows/link-docs
+        with:
+          figma-access-token: ${{ secrets.FIGMA_TOKEN }}

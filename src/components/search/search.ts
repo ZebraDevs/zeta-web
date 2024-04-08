@@ -9,7 +9,12 @@ import { live } from "lit/directives/live.js";
 import { Contourable, Interactive, Size } from "../../index.js";
 import { msg } from "@lit/localize";
 
-/** Supports speech recognition search on Chrome. */
+/**
+ * Supports speech recognition search on Chrome.
+ *
+ * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21286-35997
+ * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/search--docs
+ */
 @customElement("zeta-search")
 export class ZetaSearch extends Size(Contourable(Interactive(LitElement))) {
   static override shadowRootOptions: ShadowRootInit = { delegatesFocus: true, mode: "open" };

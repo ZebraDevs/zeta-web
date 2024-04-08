@@ -6,8 +6,12 @@ import "../../icon/icon.js";
 import { ButtonBase } from "../button-base.js";
 
 // TODO slot icon name instead of passing it through a property
-/**
+/** ZetaIconButton web component.
+ *
  * A button containing a Zeta Icon.
+ *
+ * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=23126-110314
+ * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/buttons--docs
  */
 @customElement("zeta-icon-button")
 export class ZetaIconButton extends ButtonBase {

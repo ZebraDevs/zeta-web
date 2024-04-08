@@ -9,6 +9,9 @@ import { Contourable, Interactive } from "../../mixins/mixins.js";
  * The contents within the tag will be the child of the open accordion. Typically, this would be list items. Custom styles are applied to ```<li>``` elements to match Zeta styles.
  *
  * @slot - Typically li
+ *
+ * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=3427-67874
+ * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/accordion--docs
  */
 @customElement("zeta-accordion")
 export class ZetaAccordion extends Contourable(Interactive(LitElement)) {
@@ -57,4 +60,3 @@ declare global {
     "zeta-accordion": ZetaAccordion;
   }
 }
-

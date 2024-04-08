@@ -6,8 +6,10 @@ import { Contourable, Interactive } from "../../index.js";
 
 /**
  * Switches toggle the state of a single item ON or OFF.
+ * To use with icon variant, provide both activeIcon and inactiveIcon
  *
- * To use with icon variant, provide both activeIcon and inactiveIcon.
+ * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=1153-26923
+ * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/switch--docs
  */
 @customElement("zeta-switch")
 export class ZetaSwitch extends Contourable(Interactive(LitElement)) {
