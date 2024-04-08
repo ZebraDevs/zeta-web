@@ -41,24 +41,73 @@
   --light: 300;
 
   /* Font */
-  /* --display-large: var(--light) 3.25rem/3.75rem var(--type-family-regular);
+  --display-large: var(--light) 3.25rem/3.75rem var(--type-family-regular);
   --display-medium: var(--light) 2.75rem/3.25rem var(--type-family-regular);
-  --display-small: var(--light) 2.25rem/2.5rem var(--type-family-regular); */
+  --display-small: var(--light) 2.25rem/2.5rem var(--type-family-regular);
+
   --headline-large: var(--medium) 2rem/2.25rem var(--type-family-regular);
   --headline-medium: var(--medium) 1.75rem/2rem var(--type-family-regular);
   --headline-small: var(--medium) 1.5rem/1.75rem var(--type-family-regular);
+
   --title-large: var(--medium) 1.25rem/1.5rem var(--type-family-regular);
-  --title-medium: var(--medium) 1rem/1.5rem var(--type-family-regular);
+  --title-medium: var(--medium) 1rem/1.25rem var(--type-family-regular);
   --title-small: var(--medium) 0.75rem/1rem var(--type-family-regular);
+
   --body-large: var(--regular) 1.25rem/1.5rem var(--type-family-regular);
   --body-medium: var(--regular) 1rem/1.5rem var(--type-family-regular);
-  --body-small: var(--regular) 0.875rem/1.15rem var(--type-family-regular);
+  --body-small: var(--regular) 0.875rem/1.125rem var(--type-family-regular);
   --body-x-small: var(--regular) 0.75rem/1rem var(--type-family-regular);
-  --label-large: var(--regular) 1.25rem/1.5rem var(--type-family-regular);
-  --label-medium: var(--regular) 1rem/1.25rem var(--type-family-regular);
-  --label-small: var(--regular) 0.75rem/1rem var(--type-family-regular);
-  --label-indicator: var(--regular) 0.75rem/1rem var(--type-family-regular);
-  --label-tiny: var(--regular) 0.75rem/0.875rem var(--type-family-regular);
+
+  --label-large: var(--medium) 1rem/1.5rem var(--type-family-regular);
+  --label-medium: var(--medium) 0.875rem/1.25rem var(--type-family-regular);
+  --label-small: var(--medium) 0.75rem/1rem var(--type-family-regular);
+  --label-indicator: var(--medium) 0.75rem/0.875rem var(--type-family-regular);
+
+  --h1: var(--headline-large);
+  --h2: var(--headline-medium);
+  --h3: var(--headline-small);
+  --h4: var(--title-large);
+  --h5: var(--title-medium);
+  --h6: var(--title-small);
+
+  h1 {
+    font: var(--h1);
+    margin: 0;
+  }
+
+  h2 {
+    font: var(--h2);
+    margin: 0;
+  }
+
+  h3 {
+    font: var(--h3);
+    margin: 0;
+  }
+
+  h4 {
+    font: var(--h4);
+    margin: 0;
+  }
+
+  h5 {
+    font: var(--h5);
+    margin: 0;
+  }
+
+  h6 {
+    margin: 0;
+    font: var(--h6);
+  }
+
+  p{
+    font: var(--body-medium);
+    margin: 0;
+  }
+  small{
+    font: var(--body-x-small);
+    margin: 0;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
