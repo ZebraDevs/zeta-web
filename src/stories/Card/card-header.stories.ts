@@ -35,7 +35,7 @@ export const HeaderWithLeadingContent: StoryObj = {
 export const HeaderWithTrailingContent: StoryObj = {
   render: args => html`
     <zeta-card-header headline=${args.headline} sub-headline=${args["sub-headline"]}
-      ><zeta-icon-button slot="trailing" iconname="more_vertical" flavor="basic"></zeta-icon-button>
+      ><zeta-icon-button slot="trailing" iconname="more_vertical" flavor="text"></zeta-icon-button>
     </zeta-card-header>
   `
 };
@@ -44,7 +44,7 @@ export const HeaderWithLeadingAndTrailingContent: StoryObj = {
   render: args => html`
     <zeta-card-header headline=${args.headline} sub-headline=${args["sub-headline"]}>
       <zeta-avatar slot="leading"></zeta-avatar>
-      <zeta-icon-button slot="trailing" iconname="more_vertical" flavor="basic"></zeta-icon-button>
+      <zeta-icon-button slot="trailing" iconname="more_vertical" flavor="text"></zeta-icon-button>
     </zeta-card-header>
   `
 };

@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import { ZetaListItem } from "../../index.js";
+import { ifDefined } from "lit/directives/if-defined.js";
 
 const meta: Meta<ZetaListItem> = {
   component: "zeta-list-item",
@@ -24,20 +25,20 @@ export default meta;
 export const ListItem: StoryObj<ZetaListItem> = {};
 
 export const ListItemWithIconLeft: StoryObj<ZetaListItem> = {
-  render: args => html`<zeta-list-item headline=${args.headline}><zeta-icon slot="leading">star</zeta-icon></zeta-list-item>`
+  render: args => html`<zeta-list-item headline=${ifDefined(args.headline)}><zeta-icon slot="leading">star</zeta-icon></zeta-list-item>`
 };
 
 export const ListItemWithIconRight: StoryObj<ZetaListItem> = {
-  render: args => html`<zeta-list-item headline=${args.headline}><zeta-icon slot="trailing">star</zeta-icon></zeta-list-item>`
+  render: args => html`<zeta-list-item headline=${ifDefined(args.headline)}><zeta-icon slot="trailing">star</zeta-icon></zeta-list-item>`
 };
 
 export const ListItemWithAction: StoryObj<ZetaListItem> = {
-  render: args => html`<zeta-list-item headline=${args.headline}><zeta-checkbox slot="trailing"></zeta-checkbox></zeta-list-item>`
+  render: args => html`<zeta-list-item headline=${ifDefined(args.headline)}><zeta-checkbox slot="trailing"></zeta-checkbox></zeta-list-item>`
 };
 
 export const ListItemWithAvatarAndAction: StoryObj<ZetaListItem> = {
   render: args =>
-    html`<zeta-list-item headline=${args.headline}>
+    html`<zeta-list-item headline=${ifDefined(args.headline)}>
       <zeta-avatar slot="leading" size="sm"></zeta-avatar>
       <zeta-checkbox slot="trailing"></zeta-checkbox>
     </zeta-list-item>`

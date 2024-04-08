@@ -133,4 +133,3 @@ describe("Zeta Input", () => {
     assert.equal(el.shadowRoot?.querySelector("zeta-icon")?.getAttribute("name"), "calendar_3_day");
   });
 });
-

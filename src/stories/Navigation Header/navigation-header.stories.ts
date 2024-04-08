@@ -10,13 +10,13 @@ const meta: Meta<ZetaNavigationHeader> = {
 export default meta;
 
 export const NavigationHeader: StoryObj<ZetaNavigationHeader> = {
-  render: () => html`<zeta-navigation-header>
-    <zeta-navigation-item active>Menu Item</zeta-navigation-item>
-    <zeta-navigation-item>Menu Item</zeta-navigation-item>
-    <zeta-navigation-item>Menu Item</zeta-navigation-item>
-    <zeta-navigation-item>Menu Item</zeta-navigation-item>
-    <zeta-navigation-item disabled>Menu Item</zeta-navigation-item>
-    <zeta-navigation-item>Menu Item</zeta-navigation-item>
-  </zeta-navigaiton-item>`
+  render: () =>
+    html`<zeta-navigation-header>
+      <zeta-navigation-item active>Menu Item</zeta-navigation-item>
+      <zeta-navigation-item>Menu Item</zeta-navigation-item>
+      <zeta-navigation-item>Menu Item</zeta-navigation-item>
+      <zeta-navigation-item>Menu Item</zeta-navigation-item>
+      <zeta-navigation-item>Menu Item</zeta-navigation-item>
+      <zeta-navigation-item disabled>Menu Item</zeta-navigation-item>
+    </zeta-navigation-header>`
 };
-

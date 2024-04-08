@@ -22,8 +22,7 @@ All submissions, including submissions by project members, require review. We us
 Before a PR can be reviewed, ensure you have done the following, and fixed any issues that may arise:
 
 - Ensure branch is up to date `git rebase main`
-- Check formatting: `npm run lintnew`
-- Analyse Custom Elements: `npm run analyze`
+- Check formatting: `npm run lint`
 - Run unit-tests: `npm run test`
 
 

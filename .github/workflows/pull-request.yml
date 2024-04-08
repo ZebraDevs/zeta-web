@@ -4,13 +4,14 @@ jobs:
   code-quality:
     name: Check the code quality
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - name: Setup node
         uses: actions/setup-node@v3
         with:
           node-version: 18.x.x
-          cache: 'npm'
+          cache: "npm"
       - name: Install dependencies
         run: npm ci
       - name: Store Playwright's Version
@@ -26,18 +27,22 @@ jobs:
           key: playwright-browsers-${{ env.PLAYWRIGHT_VERSION }}
       - name: Install playwright browsers
         run: npx playwright install --with-deps
+      - name: Run custom elements manifest analyzer
+        run: npm run analyze
       - name: Run eslint
-        run: npm run lintnew
+        run: npm run lint
+      - name: Run prettier
+        run: npm run prettier
       - name: Run lit-analyzer
         run: npm run lint:lit-analyzer
-        continue-on-error: true
       - name: Run tests
         run: npm run test
       - name: Test tsdoc
-        run: npx typedoc
+        run: npm run docs
   generate-localizations:
     name: Generate localizations.
     needs: [code-quality]
+    timeout-minutes: 20
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -48,7 +53,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18.x.x
-          cache: 'npm'
+          cache: "npm"
       - name: Install dependencies
         run: npm ci
       - name: Run lit-localize extract
@@ -57,8 +62,7 @@ jobs:
         run: npm run localize:build
       - name: Check diff
         id: diff
-        run: 
-          git diff --quiet . || echo "changed=true" >> $GITHUB_OUTPUT
+        run: git diff --quiet . || echo "changed=true" >> $GITHUB_OUTPUT
       - name: Commit files
         if: steps.diff.outputs.changed == 'true'
         run: |
@@ -66,25 +70,26 @@ jobs:
           git config --global user.email 'github-actions@github.com'
           git add .
           git commit -m "Generated locales"
-          git push      
+          git push
   deploy-preview:
-     name: Deploy preview version of the storybook on firebase
-     needs: [generate-localizations]
-     runs-on: ubuntu-latest
-     steps:
-       - uses: actions/checkout@v4
-       - name: Setup node
-         uses: actions/setup-node@v3
-         with:
-           node-version: 18.x.x
-           cache: 'npm'
-       - name: Install dependencies
-         run: npm ci
-       - name: Build storybook
-         run: npm run build-storybook
-       - uses: FirebaseExtended/action-hosting-deploy@v0
-         with:
-           repoToken: "${{ secrets.GITHUB_TOKEN }}"
-           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_ZETA_DS }}"
-           expires: 7d
-           projectId: zeta-ds
+    timeout-minutes: 20
+    name: Deploy preview version of the storybook on firebase
+    needs: [generate-localizations]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x.x
+          cache: "npm"
+      - name: Install dependencies
+        run: npm ci
+      - name: Build storybook
+        run: npm run build-storybook
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_ZETA_DS }}"
+          expires: 7d
+          projectId: zeta-ds

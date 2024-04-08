@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaAccordion } from "../index.js";
 import { html } from "lit";
+import { ifDefined } from "lit/directives/if-defined.js";
 
 const meta: Meta<ZetaAccordion> = {
   component: "zeta-accordion",
@@ -29,7 +30,7 @@ export default meta;
 export const Accordion: StoryObj<ZetaAccordion> = {
   render: args => {
     return html`<zeta-accordion
-      accordionTitle=${args.accordionTitle}
+      accordionTitle=${ifDefined(args.accordionTitle)}
       .disabled=${args.disabled}
       .open=${args.open}
       .rounded=${args.rounded}
@@ -42,4 +43,3 @@ export const Accordion: StoryObj<ZetaAccordion> = {
     </zeta-accordion>`;
   }
 };
-

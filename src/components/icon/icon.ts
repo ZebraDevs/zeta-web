@@ -15,7 +15,7 @@ export class ZetaIcon extends Contourable(LitElement) {
    *
    * If a Number is provided, will fallback to px.
    */
-  @property({ type: Number || String }) size: string | number = 24;
+  @property() size: string | number = 24;
 
   /**
    * Color of icon as css variable.
@@ -25,7 +25,7 @@ export class ZetaIcon extends Contourable(LitElement) {
   @property({ type: String }) color?: string;
 
   protected render() {
-    const size = typeof this.size === "number" ? this.size + "px" : this.size;
+    const size = typeof this.size === "number" || /^\d+$/.test(this.size) ? this.size + "px" : this.size;
 
     const styles = styleMap({
       fontSize: size,

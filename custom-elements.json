@@ -163,61 +163,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/badges/badges.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "*",
-          "declaration": {
-            "name": "*",
-            "package": "\"./indicators/indicators.js\""
-          }
-        },
-        {
-          "kind": "js",
-          "name": "*",
-          "declaration": {
-            "name": "*",
-            "package": "\"./priority-pill/priority-pill.js\""
-          }
-        },
-        {
-          "kind": "js",
-          "name": "*",
-          "declaration": {
-            "name": "*",
-            "package": "\"./status-label/status-label.js\""
-          }
-        },
-        {
-          "kind": "js",
-          "name": "*",
-          "declaration": {
-            "name": "*",
-            "package": "\"./tag/tag.js\""
-          }
-        },
-        {
-          "kind": "js",
-          "name": "*",
-          "declaration": {
-            "name": "*",
-            "package": "\"./label/label.js\""
-          }
-        },
-        {
-          "kind": "js",
-          "name": "*",
-          "declaration": {
-            "name": "*",
-            "package": "\"./workcloud-indicator/workcloud-indicator.js\""
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/components/avatar/avatar.ts",
       "declarations": [
         {
@@ -640,7 +585,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/components/bottom-sheets/bottom-sheets.ts",
+      "path": "src/components/badges/badges.ts",
       "declarations": [],
       "exports": [
         {
@@ -648,7 +593,7 @@
           "name": "*",
           "declaration": {
             "name": "*",
-            "package": "\"./sheet-handle/sheet-handle.js\""
+            "package": "\"./indicators/indicators.js\""
           }
         },
         {
@@ -656,22 +601,7 @@
           "name": "*",
           "declaration": {
             "name": "*",
-            "package": "\"./sheet-header/sheet-header.js\""
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/components/breadcrumbs/breadcrumb.ts",
-      "declarations": [],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "*",
-          "declaration": {
-            "name": "*",
-            "package": "\"./breadcrumb-truncated/breadcrumb-truncated.js\""
+            "package": "\"./priority-pill/priority-pill.js\""
           }
         },
         {
@@ -679,7 +609,31 @@
           "name": "*",
           "declaration": {
             "name": "*",
-            "package": "\"./more-menu/more-menu.js\""
+            "package": "\"./status-label/status-label.js\""
+          }
+        },
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "\"./tag/tag.js\""
+          }
+        },
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "\"./label/label.js\""
+          }
+        },
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "\"./workcloud-indicator/workcloud-indicator.js\""
           }
         }
       ]
@@ -1143,6 +1097,52 @@
           "declaration": {
             "name": "ZetaButton",
             "module": "src/components/button/button.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/bottom-sheets/bottom-sheets.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "\"./sheet-handle/sheet-handle.js\""
+          }
+        },
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "\"./sheet-header/sheet-header.js\""
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/breadcrumbs/breadcrumb.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "\"./breadcrumb-truncated/breadcrumb-truncated.js\""
+          }
+        },
+        {
+          "kind": "js",
+          "name": "*",
+          "declaration": {
+            "name": "*",
+            "package": "\"./more-menu/more-menu.js\""
           }
         }
       ]
@@ -6253,7 +6253,7 @@
               "kind": "field",
               "name": "status",
               "type": {
-                "text": "\"neutral\" | \"info\" | \"positive\" | \"warning\" | \"negative\""
+                "text": "\"info\" | \"positive\" | \"warning\" | \"negative\" | \"neutral\""
               },
               "default": "\"neutral\"",
               "description": "Type of status label.",
@@ -6311,7 +6311,7 @@
             {
               "name": "status",
               "type": {
-                "text": "\"neutral\" | \"info\" | \"positive\" | \"warning\" | \"negative\""
+                "text": "\"info\" | \"positive\" | \"warning\" | \"negative\" | \"neutral\""
               },
               "default": "\"neutral\"",
               "description": "Type of status label.",
@@ -6712,50 +6712,69 @@
           "members": [
             {
               "kind": "field",
-              "name": "alignment",
+              "name": "size",
               "type": {
-                "text": "\"start\" | \"center\""
+                "text": "\"medium\" | \"small\" | \"xs\""
               },
-              "default": "\"start\"",
-              "description": "Sheet Header alignment.",
-              "attribute": "alignment",
+              "default": "\"medium\"",
+              "description": "Size variant",
+              "attribute": "size",
               "reflects": true
             },
             {
               "kind": "field",
-              "name": "text",
+              "name": "priority",
               "type": {
-                "text": "string"
+                "text": "\"urgent\" | \"high\" | \"medium\" | \"low\""
               },
-              "default": "\"Title\"",
-              "description": "Sheet Header text content.",
-              "attribute": "text",
+              "default": "\"low\"",
+              "description": "Priority level",
+              "attribute": "priority",
               "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "number",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "description": "Number of indications",
+              "attribute": "number"
             }
           ],
           "attributes": [
             {
-              "name": "alignment",
+              "name": "size",
               "type": {
-                "text": "\"start\" | \"center\""
+                "text": "\"medium\" | \"small\" | \"xs\""
               },
-              "default": "\"start\"",
-              "description": "Sheet Header alignment.",
-              "fieldName": "alignment"
+              "default": "\"medium\"",
+              "description": "Size variant",
+              "fieldName": "size"
             },
             {
-              "name": "text",
+              "name": "priority",
               "type": {
-                "text": "string"
+                "text": "\"urgent\" | \"high\" | \"medium\" | \"low\""
               },
-              "default": "\"Title\"",
-              "description": "Sheet Header text content.",
-              "fieldName": "text"
+              "default": "\"low\"",
+              "description": "Priority level",
+              "fieldName": "priority"
+            },
+            {
+              "name": "number",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "description": "Number of indications",
+              "fieldName": "number"
             }
           ],
           "superclass": {
-            "name": "LitElement",
-            "package": "lit"
+            "name": "ZetaWorkcloudIndicatorBase",
+            "module": "src/components/badges/workcloud-indicator/workcloud-indicator.ts"
           },
           "figma": [
             {
@@ -6774,15 +6793,15 @@
       "exports": [
         {
           "kind": "js",
-          "name": "ZetaSheetHeader",
+          "name": "ZetaWorkcloudIndicator",
           "declaration": {
-            "name": "ZetaSheetHeader",
-            "module": "src/components/bottom-sheets/sheet-header/sheet-header.ts"
+            "name": "ZetaWorkcloudIndicator",
+            "module": "src/components/badges/workcloud-indicator/workcloud-indicator.ts"
           }
         },
         {
           "kind": "custom-element-definition",
-          "name": "zeta-sheet-header",
+          "name": "zeta-workcloud-indicator",
           "declaration": {
             "name": "ZetaSheetHeader",
             "module": "src/components/bottom-sheets/sheet-header/sheet-header.ts"
@@ -8655,6 +8674,111 @@
           "declaration": {
             "name": "ZetaListItem",
             "module": "src/components/list/list-item/list-item.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/components/chips/status-chip/status-chip.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "ZetaStatusChip",
+          "members": [
+            {
+              "kind": "field",
+              "name": "text",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "Text displayed in the chip.",
+              "attribute": "text"
+            },
+            {
+              "kind": "field",
+              "name": "rounded",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "description": "Whether the component is rounded or sharp.\n\nWhen true, rounded will set the border radius of the first child, and any children with class 'contourable-target' to `--radius-minimal`.\n\nOtherwise, this value will be `--radius-none`.",
+              "attribute": "rounded",
+              "reflects": true,
+              "inheritedFrom": {
+                "name": "Contourable",
+                "module": "src/mixins/contour.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "styles",
+              "type": {
+                "text": "array"
+              },
+              "static": true,
+              "default": "[\n      (superClass as unknown as typeof LitElement).styles ?? [],\n      css`\n        :host > *,\n        :host .contourable-target {\n          border-radius: var(--radius-none);\n        }\n        :host([rounded]) > *,\n        :host([rounded]) .contourable-target {\n          border-radius: var(--radius-minimal);\n        }\n      `\n    ]",
+              "inheritedFrom": {
+                "name": "Contourable",
+                "module": "src/mixins/contour.ts"
+              }
+            }
+          ],
+          "attributes": [
+            {
+              "name": "text",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "description": "Text displayed in the chip.",
+              "fieldName": "text"
+            },
+            {
+              "name": "rounded",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true",
+              "description": "Whether the component is rounded or sharp.\n\nWhen true, rounded will set the border radius of the first child, and any children with class 'contourable-target' to `--radius-minimal`.\n\nOtherwise, this value will be `--radius-none`.",
+              "fieldName": "rounded",
+              "inheritedFrom": {
+                "name": "Contourable",
+                "module": "src/mixins/contour.ts"
+              }
+            }
+          ],
+          "mixins": [
+            {
+              "name": "Contourable",
+              "module": "/src/mixins/mixins.js"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "zeta-status-chip",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ZetaStatusChip",
+          "declaration": {
+            "name": "ZetaStatusChip",
+            "module": "src/components/chips/status-chip/status-chip.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "zeta-status-chip",
+          "declaration": {
+            "name": "ZetaStatusChip",
+            "module": "src/components/chips/status-chip/status-chip.ts"
           }
         }
       ]

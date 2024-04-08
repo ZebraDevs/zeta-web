@@ -45,11 +45,11 @@ export const GlobalHeader: StoryObj = {
   },
   render: args => {
     return html`<zeta-global-header headline=${args.headline}>
-      <zeta-icon-button slot="leading" flavor="basic-inverse" iconname="apps"></zeta-icon-button>
+      <zeta-icon-button slot="leading" flavor="text" iconname="apps"></zeta-icon-button>
       <zeta-search slot="trailing" size="small"></zeta-search>
-      <zeta-icon-button slot="trailing" flavor="basic-inverse" iconname="star"></zeta-icon-button>
-      <zeta-icon-button slot="trailing" flavor="basic-inverse" iconname="star"></zeta-icon-button>
-      <zeta-icon-button slot="trailing" flavor="basic-inverse" iconname="star"></zeta-icon-button>
+      <zeta-icon-button slot="trailing" flavor="text" iconname="star"></zeta-icon-button>
+      <zeta-icon-button slot="trailing" flavor="text" iconname="star"></zeta-icon-button>
+      <zeta-icon-button slot="trailing" flavor="text" iconname="star"></zeta-icon-button>
       <zeta-navigation-profile slot="trailing" rounded><zeta-avatar slot="leading" size="sm"></zeta-avatar>My account</zeta-navigation-profile>
     </zeta-global-header>`;
   }
@@ -66,17 +66,16 @@ export const WithMenuItems: StoryObj = {
   },
   render: args =>
     html`<zeta-global-header menu-position=${args["menu-position"]} headline=${args.headline}>
-      <zeta-icon-button slot="leading" flavor="basic-inverse" iconname="apps"></zeta-icon-button>
+      <zeta-icon-button slot="leading" flavor="text" iconname="apps"></zeta-icon-button>
       <zeta-navigation-header slot="navigation-menu">
         <zeta-navigation-item active>Menu Item</zeta-navigation-item>
         <zeta-navigation-item>Menu Item</zeta-navigation-item>
         <zeta-navigation-item>Menu Item</zeta-navigation-item>
         <zeta-navigation-item>Menu Item</zeta-navigation-item>
       </zeta-navigation-header>
-      <zeta-icon-button slot="trailing" flavor="basic-inverse" iconname="star"></zeta-icon-button>
-      <zeta-icon-button slot="trailing" flavor="basic-inverse" iconname="star"></zeta-icon-button>
-      <zeta-icon-button slot="trailing" flavor="basic-inverse" iconname="star"></zeta-icon-button>
+      <zeta-icon-button slot="trailing" flavor="text" iconname="star"></zeta-icon-button>
+      <zeta-icon-button slot="trailing" flavor="text" iconname="star"></zeta-icon-button>
+      <zeta-icon-button slot="trailing" flavor="text" iconname="star"></zeta-icon-button>
       <zeta-navigation-profile slot="trailing" rounded><zeta-avatar slot="leading" size="sm"></zeta-avatar>My account</zeta-navigation-profile>
     </zeta-global-header>`
 };
-

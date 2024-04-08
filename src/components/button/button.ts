@@ -2,6 +2,7 @@ import { html } from "lit";
 import { customElement } from "lit/decorators.js";
 import { ButtonBase } from "./button-base.js";
 import styles from "./button.scss?inline";
+import { ifDefined } from "lit/directives/if-defined.js";
 export * from "./icon-button/icon-button.js";
 
 //TODO text overflow broken
@@ -20,7 +21,7 @@ export class ZetaButton extends ButtonBase {
 
   protected render() {
     return html`
-      <button ?disabled=${this.disabled} value=${this.value} name=${this.name}>
+      <button ?disabled=${this.disabled} value=${ifDefined(this.value)} name=${ifDefined(this.name)}>
         <slot></slot>
       </button>
     `;

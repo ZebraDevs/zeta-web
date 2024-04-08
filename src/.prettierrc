@@ -1,7 +1,7 @@
 {
   "arrowParens": "avoid",
   "bracketSpacing": true,
-  "endOfLine": "crlf",
+  "endOfLine": "lf",
   "htmlWhitespaceSensitivity": "css",
   "insertPragma": false,
   "jsxBracketSameLine": true,
@@ -15,6 +15,5 @@
   "tabWidth": 2,
   "trailingComma": "none",
   "useTabs": false,
-  "filepath": ".eslintrc.json",
-  "parser": "typescript"
+  "filepath": "src/.eslintrc.json"
 }

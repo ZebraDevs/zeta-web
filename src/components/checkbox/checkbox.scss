@@ -15,21 +15,18 @@ input[type="checkbox"] {
 
 .container {
   position: relative;
-  border: var(--color-cool-50) var(--border-size-medium) solid;
+  outline: var(--color-cool-50) var(--border-size-medium) solid;
   background: var(--surface-default);
-  height: var(--spacing-4-5) 18px;
-  width: var(--spacing-4-5);
+  height: var(--spacing-5);
+  width: var(--spacing-5);
 }
 
 .container:hover {
-  border-color: var(--color-cool-90);
+  outline-color: var(--color-cool-90);
 }
 
 .checkmark {
   display: none;
-  position: absolute;
-  top: -1px;
-  left: -1px;
 }
 
 :host([checked]) .checkmark {
@@ -39,17 +36,20 @@ input[type="checkbox"] {
 :host([disabled]) {
   .container {
     background: var(--color-cool-20);
-    border: var(--surface-basic) var(--border-size-medium) solid;
+    outline: var(--surface-basic) var(--border-size-medium) solid;
   }
 }
 
 :host([checked]:not([disabled])) {
   .container {
     background: var(--surface-flavor-primary);
-    border: var(--surface-basic) var(--border-size-medium) solid;
+    outline: var(--surface-basic) var(--border-size-medium) solid;
   }
 
   .container:hover {
     background: var(--icon-flavor-primary);
   }
+}
+:host([rounded]) > .checkbox > .container {
+  border-radius: 2px !important;
 }

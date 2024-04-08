@@ -2,6 +2,7 @@ import { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
 import { ZetaNavigationBarItem } from "../../index.js";
+import { ifDefined } from "lit/directives/if-defined.js";
 
 const meta: Meta<ZetaNavigationBarItem> = {
   component: "zeta-navigation-bar-item",
@@ -37,8 +38,7 @@ export const Item: StoryObj<ZetaNavigationBarItem> = {};
 
 export const ItemWithBadge: StoryObj<ZetaNavigationBarItem> = {
   render: args =>
-    html`<zeta-navigation-bar-item .rounded=${args.rounded} .active=${args.active} icon=${args.icon} label=${args.label}
-      ><zeta-notification-indicator slot="badge">2</zeta-notification-indicator></zeta-navigation-bar-item
-    >`
+    html`<zeta-navigation-bar-item .rounded=${args.rounded} .active=${args.active} icon=${ifDefined(args.icon)} label=${ifDefined(args.label)}>
+      <zeta-notification-indicator>2</zeta-notification-indicator>
+    </zeta-navigation-bar-item>`
 };
-

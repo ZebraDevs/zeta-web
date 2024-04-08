@@ -2,6 +2,7 @@ import { customElement, property } from "lit/decorators.js";
 import { Contourable, Interactive } from "../../index.js";
 import { html, LitElement } from "lit";
 import styles from "./checkbox.scss?inline";
+import { ifDefined } from "lit/directives/if-defined.js";
 
 /**
  * Checkboxes allow users to select one or more items from a set. Checkboxes can turn an option on or off.
@@ -43,10 +44,10 @@ export class ZetaCheckbox extends Contourable(Interactive(LitElement)) {
 
   protected render() {
     return html`<div class="checkbox">
-      <div class='container contourable-target interactive-target' @click=${(_e: Event) => this.toggleCheck()}>
-        <input type="checkbox" id=${this.id} ${this.checked ? "checked" : ""} aria-label=${this.label ?? "checkbox"} name=${this.name}></input>
+      <div class='container interactive-target' @click=${(_e: Event) => this.toggleCheck()}>
+        <input type="checkbox" id=${this.id} .checked="${this.checked === true}" aria-label=${this.label ?? "checkbox"} name=${ifDefined(this.name)}></input>
         <div class='checkmark'>
-          <zeta-icon size=20 rounded=${this.rounded} color=${!this.disabled ? "var(--icon-disabled)" : "var(--icon-disabled)"}>${
+          <zeta-icon size=20 rounded=${this.rounded} color=${this.disabled ? "var(--icon-disabled)" : "var(--surface-default)"}>${
             this.checked == "intermediate" ? "remove" : "check_mark"
           }</zeta-icon>
         </div>

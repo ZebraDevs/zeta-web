@@ -23,7 +23,7 @@ export class ZetaPriorityPill extends Contourable(LitElement) {
   /** Number shown at start of component.
    *
    * Can also be slotted. */
-  @property({ type: String || Number }) number?: string | number;
+  @property() number?: string | number;
 
   static styles = [styles, super.styles ?? []];
 

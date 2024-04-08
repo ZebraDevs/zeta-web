@@ -39,11 +39,10 @@ export async function setup({
       suffix=${suffix}
       prefix=${prefix}
       ?disabled=${disabled}
-      leadingIcon=${leadingIcon}
-      trailingIcon=${trailingIcon}
-      error-text=${errorText}
+      leadingIcon=${leadingIcon ?? ""}
+      trailingIcon=${trailingIcon ?? ""}
+      error-text=${errorText ?? ""}
       type=${type}
     ></zeta-text-input>`
   );
 }
-

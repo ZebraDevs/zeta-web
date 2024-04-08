@@ -3,6 +3,7 @@ import { LitElement, html, nothing } from "lit";
 import styles from "./avatar.scss?inline";
 import { styleMap } from "lit/directives/style-map.js";
 import { ZetaIconName } from "@zebra-fed/zeta-icons";
+import { ifDefined } from "lit/directives/if-defined.js";
 
 /**
  * An avatar is a visual representation of a user or entity.
@@ -104,7 +105,7 @@ export class ZetaAvatar extends LitElement {
       height: `${size}px`
     })} 
     alt=${this.altText}
-    src=${this.imageUrl}></img>`;
+    src=${ifDefined(this.imageUrl)}></img>`;
   }
 
   private getInitials() {

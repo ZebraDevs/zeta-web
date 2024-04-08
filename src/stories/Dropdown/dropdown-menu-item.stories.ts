@@ -3,6 +3,7 @@ import { html } from "lit";
 import { ZetaDropdownMenuItem } from "../../index.js";
 
 import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
+import { ifDefined } from "lit/directives/if-defined.js";
 
 const meta: Meta<ZetaDropdownMenuItem> = {
   component: "zeta-dropdown-menu-item",
@@ -43,7 +44,7 @@ export default meta;
 
 export const DropdownMenuItem: StoryObj<ZetaDropdownMenuItem> = {
   render: args =>
-    html`<zeta-dropdown-menu-item .checked=${args.checked} icon=${args.icon} type="${args.type}" .rounded=${args.rounded} .disabled=${args.disabled}>
+    html`<zeta-dropdown-menu-item .checked=${args.checked} icon=${ifDefined(args.icon)} type="${args.type}" .rounded=${args.rounded} .disabled=${args.disabled}>
       Menu Item
     </zeta-dropdown-menu-item>`
 };

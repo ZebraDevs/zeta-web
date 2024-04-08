@@ -2,6 +2,7 @@ import { customElement, property } from "lit/decorators.js";
 import { html, LitElement } from "lit";
 import styles from "./radio-button.scss?inline";
 import { Interactive } from "../../index.js";
+import { ifDefined } from "lit/directives/if-defined.js";
 
 /**
  * Radio buttons allow users to select one item from a set. Radio buttons can turn an option on or off.
@@ -40,7 +41,7 @@ export class ZetaRadioButton extends Interactive(LitElement) {
   protected render() {
     return html`<div class="radio">
       <div class='container interactive-target' @click=${(_e: Event) => this.toggleCheck()}>
-        <input type="radio" id=${this.id} ${this.checked ? "checked" : ""} name=${this.name} aria-label=${this.label ?? "checkbox"}></input>
+        <input type="radio" id=${this.id} .checked="${this.checked}" name=${ifDefined(this.name)} aria-label=${this.label ?? "checkbox"}></input>
         <div class='checkmark'>
         </div>
       </div>

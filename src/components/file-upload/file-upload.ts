@@ -5,6 +5,7 @@ import styles from "./file-upload.scss?inline";
 import { msg } from "@lit/localize";
 import "../button/button.js";
 import { Contourable } from "../../mixins/mixins.js";
+import { ifDefined } from "lit/directives/if-defined.js";
 
 /**
  * A file input that supports drag and drop.
@@ -151,7 +152,7 @@ export class ZetaFileUpload extends Contourable(LitElement) {
           <zeta-button .rounded=${this.rounded} @click=${this.openFileInput}>Select Files</zeta-button>
         </div>
         ${this.getCaption()}
-        <input type=file id=${this.id} name=${this.name} .accept=${this.accept} .multiple=${this.multiple}></input>
+        <input type=file id=${this.id} name=${ifDefined(this.name)} accept=${ifDefined(this.accept)} .multiple=${this.multiple}></input>
       </div>
     `;
   }

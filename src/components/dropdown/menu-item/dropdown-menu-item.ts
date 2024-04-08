@@ -33,12 +33,9 @@ export class ZetaDropdownMenuItem extends Contourable(Interactive(LitElement)) {
   private getLeadingContent() {
     switch (this.type) {
       case "default":
-        return html`<zeta-icon
-          size="20"
-          name=${this.icon}
-          .rounded=${this.rounded}
-          color=${!this.disabled ? "var(--icon-subtle)" : "var(--icon-disabled)"}
-        ></zeta-icon>`;
+        return html`<zeta-icon size="20" .rounded=${this.rounded} color=${!this.disabled ? "var(--icon-subtle)" : "var(--icon-disabled)"}>
+          ${this.icon}
+        </zeta-icon>`;
       case "checkbox":
         return html`<zeta-checkbox .rounded=${this.rounded} .checked=${this.checked} .disabled=${this.disabled}></zeta-checkbox>`;
       case "radio":

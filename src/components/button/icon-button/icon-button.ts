@@ -4,6 +4,7 @@ import styles from "./icon-button.scss?inline";
 import { ZetaIconName } from "@zebra-fed/zeta-icons";
 import "../../icon/icon.js";
 import { ButtonBase } from "../button-base.js";
+import { ifDefined } from "lit/directives/if-defined.js";
 
 // TODO slot icon name instead of passing it through a property
 /** ZetaIconButton web component.
@@ -49,7 +50,7 @@ export class ZetaIconButton extends ButtonBase {
 
   protected render() {
     const label = this.iconName.replaceAll("_", " ");
-    return html`<button ?disabled=${this.disabled} value=${this.value} name=${this.name} flavor=${this.flavor} aria-label=${label}>
+    return html`<button ?disabled=${this.disabled} value=${ifDefined(this.value)} name=${ifDefined(this.name)} flavor=${this.flavor} aria-label=${label}>
       <zeta-icon name=${this.iconName} .rounded=${this.rounded} color=${this.getIconColor()} size=${this.getIconSize()}>
         <div class=${this.flavor}></div>
       </zeta-icon>

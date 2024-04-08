@@ -6,6 +6,7 @@ import "../slider.js";
 import "../../text-input/text-input.js";
 import { ZetaSliderEvent } from "../slider.js";
 import { live } from "lit/directives/live.js";
+import { ifDefined } from "lit/directives/if-defined.js";
 
 //TODO: min / max dont seem to change values of slider correctly.
 
@@ -75,7 +76,7 @@ export class ZetaSliderInputField extends Contourable(LitElement) {
     ${this.getLabel()}
     <div class="slider-input-container" id="test">
       <div class="slider-container">
-        <zeta-slider id="slider" step-increment=${this.stepIncrement} .rounded=${this.rounded} .disabled=${this.disabled} value=${this.value} max-value=${
+        <zeta-slider id="slider" step-increment=${ifDefined(this.stepIncrement)} .rounded=${this.rounded} .disabled=${this.disabled} value=${ifDefined(this.value)} max-value=${
           this.max
         } min-value=${this.min} @change=${this.sliderChange}></zeta-slider>
         <div class="range-label-container">
@@ -83,14 +84,23 @@ export class ZetaSliderInputField extends Contourable(LitElement) {
           <div>${this.max}</div>
         </div>
       </div>
-      <input id="slider-input" aria-label=${this.label ?? "slider input"} .disabled=${this.disabled} .id=${
-        this.id
-      } class="contourable-target" type="number" min=${this.min} max=${this.max} .name=${this.name} .step=${this.stepIncrement} value=${live(
-        this.value
-      )} @input=${(e: Event) => {
-        this.value = parseInt((e.target as HTMLInputElement).value);
-        this.onValueUpdated();
-      }}></input>
+      <input 
+        id="slider-input" 
+        aria-label=${this.label ?? "slider input"} 
+        ?disabled=${this.disabled} 
+        .id=${this.id} 
+        class="contourable-target" 
+        type="number" 
+        min=${this.min} 
+        max=${this.max} 
+        name=${ifDefined(this.name)} 
+        step=${ifDefined(this.stepIncrement)} 
+        value=${ifDefined(live(this.value))}
+        @input=${(e: Event) => {
+          this.value = parseInt((e.target as HTMLInputElement).value);
+          this.onValueUpdated();
+        }}>
+      </input>
     </div> `;
   }
 

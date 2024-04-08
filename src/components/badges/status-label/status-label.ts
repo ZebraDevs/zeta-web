@@ -16,10 +16,8 @@ import { Contourable } from "../../../mixins/mixins.js";
  */
 @customElement("zeta-status-label")
 export class ZetaStatusLabel extends Contourable(LitElement) {
-  /** Type of status label.
-   *
-   * @defaultValue `BannerType.default` */
-  @property({ type: String, reflect: true }) status: "neutral" | "info" | "positive" | "warning" | "negative" = "neutral";
+  /** Type of status label.*/
+  @property({ type: String, reflect: true }) status: "info" | "positive" | "warning" | "negative" | "neutral" = "neutral";
 
   /** Text displayed on label.
    *
@@ -34,8 +32,9 @@ export class ZetaStatusLabel extends Contourable(LitElement) {
   static styles = [super.styles ?? [], styles];
 
   protected override render() {
+    const colorName = 'var(--icon-" + ${this.status} + ")';
     const icon = this.icon
-      ? html`<zeta-icon size="20" color="var(--icon-" + ${this.status} + ")" .rounded=${this.rounded}>${this.icon}</zeta-icon> `
+      ? html`<zeta-icon size="20" color="${colorName}" .rounded=${this.rounded}>${this.icon}</zeta-icon> `
       : svg`
     <svg xmlns="http://www.w3.org/2000/svg" width="8" height="20" viewBox="0 0 8 8" >
     <circle cx="4" cy="4" r="4" />

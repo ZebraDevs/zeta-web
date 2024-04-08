@@ -88,7 +88,7 @@ export class ZetaPagination extends Contourable(LitElement) {
       .disabled=${disabled}
       .rounded=${this.rounded}
       @click=${() => this.handlePageChange(pageNumber)}
-      flavor="basic"
+      flavor="text"
       iconname=${iconName}
       size="small"
     >

@@ -3,6 +3,7 @@ import styles from "./button-group-item.scss?inline";
 import { customElement, property, query } from "lit/decorators.js";
 import { Contourable, Interactive } from "../../../index.js";
 import { ZetaIconName } from "@zebra-fed/zeta-icons";
+import { ifDefined } from "lit/directives/if-defined.js";
 
 // TODO(UX-1041): Add inverse
 
@@ -22,7 +23,7 @@ export class ZetaButtonGroupItem extends Contourable(Interactive(LitElement)) {
 
   /** Name for the button, used if the button is in a form.*/
   //TODO: Does this even work in a form?
-  @property({ type: String }) name = "";
+  @property({ type: String }) name?: string;
 
   /** The name of the icon displayed on the button. */
   @property({ type: String }) iconName?: ZetaIconName;
@@ -48,16 +49,17 @@ export class ZetaButtonGroupItem extends Contourable(Interactive(LitElement)) {
       this.onclick !== undefined && this.onclick !== null ? html`<zeta-icon .rounded=${this.rounded} size="20"> expand_more</zeta-icon>` : nothing;
 
     return html`
-      <button ?disabled=${this.disabled} ?name=${this.name}>
+      <button ?disabled=${this.disabled} name=${ifDefined(this.name)}>
         ${leadingIcon}
-        <label class="text ${this.addGap ? "pad" : ""}"
-          ><slot
+        <label class="text ${this.addGap ? "pad" : ""}">
+          <slot
             @slotchange=${() => {
               this.addGap = this.textContent?.trim() !== "";
               this.requestUpdate();
             }}
-          ></slot
-        ></label>
+          >
+          </slot>
+        </label>
         ${dropDownIcon}
       </button>
     `;

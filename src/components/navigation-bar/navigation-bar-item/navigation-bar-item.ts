@@ -41,7 +41,7 @@ export class ZetaNavigationBarItem extends Contourable(LitElement) {
     return html`
       <div class="nav-item" ?label=${this.label}>
         <div class="icon-container">
-          <zeta-icon .rounded=${this.rounded} color=${this.getIconColor()} name=${this.icon}></zeta-icon>
+          <zeta-icon .rounded=${this.rounded} color=${this.getIconColor()}>${this.icon}</zeta-icon>
           <div class="badge">
             <slot name="badge"></slot>
           </div>
