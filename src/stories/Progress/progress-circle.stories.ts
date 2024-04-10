@@ -33,4 +33,3 @@ const meta: Meta<ZetaProgressCircle> = {
 export const ProgressCircle: StoryObj<ZetaProgressCircle> = {};
 
 export default meta;
-

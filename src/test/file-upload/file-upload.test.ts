@@ -17,4 +17,3 @@ describe("zeta-file-upload", () => {
     await expect(subject).shadowDom.to.be.accessible();
   });
 });
-

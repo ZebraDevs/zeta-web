@@ -34,4 +34,3 @@ describe("zeta-dialog", () => {
     assert.equal(el.returnValue, "testing");
   });
 });
-

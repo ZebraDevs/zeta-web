@@ -17,4 +17,3 @@ describe("zeta-navigation-drawer", () => {
     await expect(subject).shadowDom.to.be.accessible();
   });
 });
-

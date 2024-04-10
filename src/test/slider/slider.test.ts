@@ -17,4 +17,3 @@ describe("zeta-slider", () => {
     await expect(subject).shadowDom.to.be.accessible();
   });
 });
-

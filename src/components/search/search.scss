@@ -30,7 +30,7 @@
 }
 
 :host(:active) .search-container {
-    outline: var(--border-size-medium) solid var(--border-flavor-primary);
+  outline: var(--border-size-medium) solid var(--border-flavor-primary);
 }
 
 input[type="search"]::-webkit-search-decoration,

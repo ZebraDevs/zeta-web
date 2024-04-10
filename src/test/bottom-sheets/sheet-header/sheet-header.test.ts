@@ -37,4 +37,3 @@ describe("ZetaSheetHeader", () => {
     await expect(subject).shadowDom.to.be.accessible();
   });
 });
-

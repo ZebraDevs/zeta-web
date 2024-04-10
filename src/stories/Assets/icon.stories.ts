@@ -8,15 +8,13 @@ const meta: Meta<ZetaIcon> = {
   args: {
     name: "alarm",
     size: "20rem",
-    color: "var(--surface-primary)",
-    rounded: false
+    color: "#000000",
+    rounded: true
   },
   argTypes: {
     name: {
       options: ZetaIconNameList,
-      control: {
-        type: "select"
-      }
+      control: { type: "select" }
     }
   }
 };

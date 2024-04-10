@@ -1,7 +1,6 @@
 name: Create documentation links on Figma
 
-on:
-  workflow_dispatch
+on: workflow_dispatch
 
 jobs:
   link-docs:
@@ -14,6 +13,8 @@ jobs:
           registry-url: "https://registry.npmjs.org"
       - name: Run npm i
         run: npm ci
+      - name: Create custom-elements.json
+        run: npm run analyze
       - name: Create documentation links
         uses: ./.github/workflows/link-docs
         with:

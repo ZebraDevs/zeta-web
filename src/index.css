@@ -72,41 +72,33 @@
 
   h1 {
     font: var(--h1);
-    margin: 0;
   }
 
   h2 {
     font: var(--h2);
-    margin: 0;
   }
 
   h3 {
     font: var(--h3);
-    margin: 0;
   }
 
   h4 {
     font: var(--h4);
-    margin: 0;
   }
 
   h5 {
     font: var(--h5);
-    margin: 0;
   }
 
   h6 {
-    margin: 0;
     font: var(--h6);
   }
 
-  p{
-    font: var(--body-medium);
-    margin: 0;
+  p {
+    font: var(--body-small);
   }
-  small{
+  small {
     font: var(--body-x-small);
-    margin: 0;
   }
 }
 

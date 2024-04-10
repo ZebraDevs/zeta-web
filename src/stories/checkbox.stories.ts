@@ -35,4 +35,3 @@ const meta: Meta<ZetaCheckbox> = {
 export default meta;
 
 export const Checkbox: StoryObj<ZetaCheckbox> = {};
-

@@ -22,4 +22,3 @@ describe("ZetaMoreMenu", () => {
     await expect(subject).shadowDom.to.be.accessible();
   });
 });
-

@@ -36,7 +36,7 @@ export const Dialog: StoryObj = {
 
   render: args => {
     return html`
-      <div style="height: 250px">
+      <div class="box">
         <zeta-dialog id="dialog1" .rounded=${args.rounded} .centered=${args.centered} .initialOpen=${true} title=${args.title} ?has-icon=${args["has-icon"]}>
           <div slot="dialog-body">
             Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusm od tempor incididunt ut labore et do lore magna aliquaa met, conse ctetur
@@ -47,6 +47,16 @@ export const Dialog: StoryObj = {
           <zeta-button slot="other">Learn more</zeta-button>
         </zeta-dialog>
       </div>
+      <style>
+        div.box {
+          height: 280px;
+        }
+        @media (max-width: 1020px) {
+          div.box {
+            height: 400px;
+          }
+        }
+      </style>
     `;
   }
 };
@@ -152,4 +162,3 @@ export const DialogWith1Action: StoryObj<ZetaDialog> = {
 };
 
 export default meta;
-

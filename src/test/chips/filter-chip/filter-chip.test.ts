@@ -22,4 +22,3 @@ describe("ZetaFilterChip", () => {
     await expect(subject).shadowDom.to.be.accessible();
   });
 });
-

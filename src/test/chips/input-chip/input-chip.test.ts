@@ -22,4 +22,3 @@ describe("ZetaInputChip", () => {
     await expect(subject).shadowDom.to.be.accessible();
   });
 });
-

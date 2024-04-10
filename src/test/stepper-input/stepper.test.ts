@@ -26,4 +26,3 @@ describe("ZetaStepper", () => {
     assert.equal(items?.length, 3);
   });
 });
-

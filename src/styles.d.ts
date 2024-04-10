@@ -21,4 +21,3 @@ declare module "*.css?inline" {
   const styles: CSSResult;
   export default styles;
 }
-

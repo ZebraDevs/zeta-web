@@ -28,4 +28,3 @@ const meta: Meta<ZetaTag> = {
 export default meta;
 
 export const Tag: StoryObj<ZetaTag> = {};
-

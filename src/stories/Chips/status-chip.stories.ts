@@ -23,4 +23,3 @@ const meta: Meta<ZetaStatusChip> = {
 export default meta;
 
 export const StatusChip: StoryObj<ZetaStatusChip> = {};
-

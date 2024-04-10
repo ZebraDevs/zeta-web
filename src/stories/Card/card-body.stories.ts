@@ -24,4 +24,3 @@ export const Body: StoryObj<ZetaCardBody> = {
       >Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusm od tempor incididunt ut labore et do lore magna aliqua.</zeta-card-body
     >`
 };
-

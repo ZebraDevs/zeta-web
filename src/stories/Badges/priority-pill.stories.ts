@@ -22,4 +22,3 @@ const meta: Meta<ZetaPriorityPill> = {
 export default meta;
 
 export const PriorityPill: StoryObj<ZetaPriorityPill> = {};
-

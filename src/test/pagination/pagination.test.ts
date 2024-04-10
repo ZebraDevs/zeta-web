@@ -67,4 +67,3 @@ describe("ZetaPagination", () => {
     assert.equal(dots?.length, 0);
   });
 });
-

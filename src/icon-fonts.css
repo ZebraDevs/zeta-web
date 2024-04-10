@@ -1,9 +1,9 @@
 @font-face {
   font-family: "zeta-icons-round";
-  src: url('@zebra-fed/zeta-icons/fonts/zeta-icons-round.woff2') format("woff2");
+  src: url("@zebra-fed/zeta-icons/fonts/zeta-icons-round.woff2") format("woff2");
 }
 
 @font-face {
   font-family: "zeta-icons-sharp";
-  src: url('@zebra-fed/zeta-icons/fonts/zeta-icons-sharp.woff2') format("woff2");
+  src: url("@zebra-fed/zeta-icons/fonts/zeta-icons-sharp.woff2") format("woff2");
 }

@@ -58,4 +58,3 @@ describe("zeta-stepper-input", () => {
     assert.equal(el.value, 5);
   });
 });
-

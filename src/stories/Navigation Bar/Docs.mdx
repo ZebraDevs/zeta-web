@@ -1,17 +1,17 @@
 import { Canvas, Meta, Description, ArgTypes, Title, Stories } from "@storybook/blocks";
-import * as NavigationBar from './navigation-bar.stories';
-import * as Item from './navigation-bar-item.stories';
+import * as NavigationBar from "./navigation-bar.stories";
+import * as Item from "./navigation-bar-item.stories";
 
-<Meta of={NavigationBar} title='Navigation Bar'/>
+<Meta of={NavigationBar} title="Navigation Bar" />
 
-<Title/>
-<Description of='zeta-navigation-bar'/>
-<Canvas of={NavigationBar.BarIconAndLabel}/>
-<Stories of='zeta-navigation-bar-item' includePrimary={false} />
-
+<Title />
+<Description of="zeta-navigation-bar" />
+<Canvas of={NavigationBar.BarIconAndLabel} />
+<Stories of="zeta-navigation-bar-item" includePrimary={false} />
 
 # Navigation Bar Item
-<Description of='zeta-navigation-bar-item'/>
-<Canvas of={Item.Item}/>
-<ArgTypes of='zeta-navigation-bar-item' />
-<Stories of='zeta-navigation-bar-item' includePrimary={false} />
+
+<Description of="zeta-navigation-bar-item" />
+<Canvas of={Item.Item} />
+<ArgTypes of="zeta-navigation-bar-item" />
+<Stories of="zeta-navigation-bar-item" includePrimary={false} />

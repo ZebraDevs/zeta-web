@@ -18,4 +18,3 @@ describe("ZetaSheetHandle", () => {
     await expect(subject).shadowDom.to.be.accessible();
   });
 });
-

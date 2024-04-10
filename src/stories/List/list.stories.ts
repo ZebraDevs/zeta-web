@@ -28,4 +28,3 @@ export const List: StoryObj<ZetaList> = {
       ><zeta-list-item headline="List Item"></zeta-list-item
     ></zeta-list>`
 };
-

@@ -29,4 +29,3 @@ describe("zeta-button", () => {
     })
   );
 });
-

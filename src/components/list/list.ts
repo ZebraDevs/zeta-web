@@ -6,7 +6,7 @@ export * from "./list-item/list-item.js";
 /**
  * Lists display lists of list items.
  *
- * @slot - The list items. Should be a collection of 'zeta-list-item's.
+ * @slot - The list items. Should be a collection of `zeta-list-item`s.
  */
 @customElement("zeta-list")
 export class ZetaList extends LitElement {
@@ -25,4 +25,3 @@ declare global {
     "zeta-list": ZetaList;
   }
 }
-

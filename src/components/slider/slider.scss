@@ -1,4 +1,3 @@
-
 :host {
   --handle-size: var(--spacing-4);
   --track-height: var(--spacing-1);
@@ -28,7 +27,7 @@
   transition: scale 0.1s linear;
 }
 
-:host(:not([disabled])) .handle {  
+:host(:not([disabled])) .handle {
   &:hover:not(:active) {
     scale: 1.25;
   }
@@ -71,7 +70,7 @@
 
 .step {
   width: var(--spacing-0-5);
-  height: var(--spacing-0-5);  
+  height: var(--spacing-0-5);
   background-color: var(--surface-default);
   border-radius: var(--radius-full);
   position: absolute;

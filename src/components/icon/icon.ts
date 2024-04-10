@@ -20,7 +20,6 @@ export class ZetaIcon extends Contourable(LitElement) {
   /**
    * Color of icon as css variable.
    *
-   * @default `black`
    */
   @property({ type: String }) color?: string;
 

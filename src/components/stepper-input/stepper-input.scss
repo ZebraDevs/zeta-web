@@ -4,7 +4,7 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
 
@@ -27,7 +27,7 @@ input[type=number] {
   box-shadow: 0 0 0 var(--border-size-small) var(--border-default);
   border-radius: inherit;
 
-  &:has(input:disabled){
+  &:has(input:disabled) {
     background-color: var(--surface-disabled);
     border: var(--border-size-small) solid transparent;
   }
@@ -43,12 +43,14 @@ input {
   margin: 0;
   padding: 0;
 
-  &:active, &:focus, &:disabled {
+  &:active,
+  &:focus,
+  &:disabled {
     outline: none;
     border: none;
   }
 
-  &:disabled { 
+  &:disabled {
     color: var(--text-disabled);
   }
 }

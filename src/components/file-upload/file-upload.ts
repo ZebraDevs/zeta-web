@@ -27,7 +27,7 @@ export class ZetaFileUpload extends Contourable(LitElement) {
   /**
    * A comma separated list of accepted file formats.
    *
-   * For more information see {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#additional_attributes}.
+   * For more information see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#additional_attributes.
    */
   @property({ type: String }) accept?: string;
 

@@ -17,4 +17,3 @@ describe("zeta-progress-bar", () => {
     await expect(subject).shadowDom.to.be.accessible();
   });
 });
-

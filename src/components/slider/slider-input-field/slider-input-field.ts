@@ -4,16 +4,16 @@ import { Contourable } from "../../../mixins/mixins.js";
 import styles from "./slider-input-field.scss?inline";
 import "../slider.js";
 import "../../text-input/text-input.js";
-import { ZetaSliderEvent } from "../slider.js";
 import { live } from "lit/directives/live.js";
 import { ifDefined } from "lit/directives/if-defined.js";
+import { ZetaSliderEvent } from "../slider.js";
 
 //TODO: min / max dont seem to change values of slider correctly.
 
 /**
  * An input field using a Zeta Slider
  *
- * @fires change with a type of ZetaSliderEvent
+ * @event {CustomEvent<ZetaSliderEvent>} change - Fired whenever value of slider is changed. Contains a single entry in detail: `value:number`.
  */
 @customElement("zeta-slider-input-field")
 export class ZetaSliderInputField extends Contourable(LitElement) {
@@ -62,7 +62,7 @@ export class ZetaSliderInputField extends Contourable(LitElement) {
       this.error = this.value < this.min || this.value > this.max;
 
       this.dispatchEvent(
-        new CustomEvent<ZetaSliderEvent>("change", {
+        new CustomEvent<ZetaSliderEvent>("zeta-slider-change", {
           detail: {
             value: this.value
           }

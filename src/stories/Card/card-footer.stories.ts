@@ -39,4 +39,3 @@ export const FooterOneActionLeft: StoryObj<ZetaCardFooter> = {
       <zeta-button flavor="text">Button</zeta-button>
     </zeta-card-footer>`
 };
-

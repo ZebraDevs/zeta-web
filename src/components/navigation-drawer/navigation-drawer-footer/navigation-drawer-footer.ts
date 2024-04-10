@@ -83,4 +83,3 @@ declare global {
     "zeta-navigation-drawer-footer": ZetaNavigationDrawerFooter;
   }
 }
-

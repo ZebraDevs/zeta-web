@@ -30,4 +30,3 @@ const meta: Meta<ZetaTooltip> = {
 export default meta;
 
 export const Tooltip: StoryObj<ZetaTooltip> = {};
-

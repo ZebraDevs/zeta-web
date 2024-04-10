@@ -35,4 +35,3 @@ const meta: Meta<ZetaAvatar> = {
 export default meta;
 
 export const Avatar: StoryObj<ZetaAvatar> = {};
-

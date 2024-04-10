@@ -49,4 +49,3 @@ describe("ZetaProgressCircle", () => {
     assert.equal(el.uploading, false);
   });
 });
-

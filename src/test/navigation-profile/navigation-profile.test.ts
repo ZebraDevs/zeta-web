@@ -17,4 +17,3 @@ describe("zeta-navigation-profile", () => {
     await expect(subject).shadowDom.to.be.accessible();
   });
 });
-

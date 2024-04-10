@@ -2,7 +2,7 @@
   width: fit-content;
   padding: var(--spacing-0-5) var(--spacing-2);
   background-color: var(--surface-warm);
-  
+
   border: 0.5px solid var(--border-default);
 
   transition: background-color 0.2s ease-out;
@@ -11,17 +11,17 @@
     display: block;
   }
 
-  &:hover{
+  &:hover {
     border-color: transparent;
     background: var(--surface-hover);
   }
 
-  &:active{
+  &:active {
     border-color: transparent;
     background: var(--surface-pressed);
   }
 }
 
-:host([rounded]){
+:host([rounded]) {
   border-radius: var(--radius-minimal);
 }

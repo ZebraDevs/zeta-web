@@ -9,7 +9,7 @@
 !.yarn/sdks
 !.yarn/
 /docs/*
-
+custom-elements.json
 
 ### macOS ###
 # General

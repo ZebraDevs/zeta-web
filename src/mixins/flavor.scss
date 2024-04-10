@@ -1,8 +1,8 @@
-:host(:not([disabled])) {  
+:host(:not([disabled])) {
   &:host([flavor="primary"]) > :first-child {
     background-color: var(--surface-flavor-primary);
-    color: var(--text-inverse);   
-    
+    color: var(--text-inverse);
+
     &:hover {
       background-color: var(--component-button-primary-hover);
     }
@@ -14,8 +14,8 @@
 
   &:host([flavor="secondary"]) > :first-child {
     background-color: var(--surface-flavor-secondary);
-    color: var(--text-inverse);   
-    
+    color: var(--text-inverse);
+
     &:hover {
       background-color: var(--component-button-secondary-hover);
     }
@@ -51,10 +51,10 @@
     }
   }
 
-  &:host([flavor="outline"]) > :first-child, 
+  &:host([flavor="outline"]) > :first-child,
   &:host([flavor="outline-subtle"]) > :first-child,
-  &:host([flavor="text"]) > :first-child, 
-  &:host([flavor="basic"]) > :first-child, 
+  &:host([flavor="text"]) > :first-child,
+  &:host([flavor="basic"]) > :first-child,
   &:host([flavor="basic-negative"]) > :first-child {
     background-color: var(--surface-default);
 
@@ -76,7 +76,7 @@
     color: var(--text-default);
     box-shadow: 0 0 0 var(--border-size-small) var(--border-default);
   }
-  
+
   &:host([flavor="text"]) > :first-child {
     color: var(--text-flavor-primary);
   }

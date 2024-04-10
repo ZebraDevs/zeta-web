@@ -34,4 +34,3 @@ describe("zeta-checkbox", () => {
     await expect(subject).shadowDom.to.be.accessible();
   });
 });
-

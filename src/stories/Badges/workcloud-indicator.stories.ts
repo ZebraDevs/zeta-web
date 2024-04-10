@@ -49,4 +49,3 @@ export const WorkcloudIndicatorValueHigherThan99: StoryObj<ZetaWorkcloudIndicato
   },
   render: args => html` <zeta-workcloud-indicator priority=${args.priority} size=${args.size} number=${args.number}></zeta-workcloud-indicator> `
 };
-

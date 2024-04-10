@@ -16,4 +16,3 @@ export const Profile: StoryObj<ZetaNavigationProfile> = {
   render: args =>
     html`<zeta-navigation-profile .rounded=${args.rounded}><zeta-avatar slot="leading" size="sm"></zeta-avatar>My account</zeta-navigation-profile>`
 };
-

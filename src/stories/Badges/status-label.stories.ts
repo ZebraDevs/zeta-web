@@ -38,4 +38,3 @@ const meta: Meta<ZetaStatusLabel> = {
 export default meta;
 
 export const StatusLabel: StoryObj<ZetaStatusLabel> = {};
-

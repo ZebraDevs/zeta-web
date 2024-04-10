@@ -30,4 +30,3 @@ const meta: Meta<ZetaLabel> = {
 export default meta;
 
 export const TextBadge: StoryObj<ZetaLabel> = {};
-

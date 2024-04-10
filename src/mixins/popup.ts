@@ -5,7 +5,7 @@ import { Constructor } from "./_utils.js";
 declare class PopupInterface {
   returnValue: string;
   open: boolean;
-  hide: (returnValue?: string | undefined) => Promise<void>;
+  hide: (returnValue?: string) => Promise<void>;
   show: () => Promise<void>;
   onBarrierClicked: (e: Event) => void;
 }
@@ -18,14 +18,13 @@ declare class PopupInterface {
  */
 export const Popup = <T extends Constructor<LitElement>>(superClass: T) => {
   class PopupClass extends superClass {
-    /**@internal */
     @query("dialog") private readonly dialog!: HTMLDialogElement | null;
 
     /** Return value of the dialog. */
-    @property({ attribute: false }) returnValue = "";
+    @property({ type: String }) returnValue: string = "";
 
     /** Whether component is open or closed. */
-    @property({ type: Boolean, reflect: true })
+    @property({ type: Boolean, reflect: true, attribute: "open" })
     get open() {
       return this.dialog?.open ?? false;
     }
@@ -34,7 +33,9 @@ export const Popup = <T extends Constructor<LitElement>>(superClass: T) => {
       await this.updateComplete;
       const dialog = this.dialog!;
       dialog.showModal();
-      this.dispatchEvent(new CustomEvent("open"));
+
+      /** Fires event when popup is opened. */
+      this.dispatchEvent(new Event("zeta-modal-open"));
     }
 
     async hide(returnValue = this.returnValue) {
@@ -42,7 +43,9 @@ export const Popup = <T extends Constructor<LitElement>>(superClass: T) => {
       const dialog = this.dialog!;
       this.returnValue = returnValue;
       dialog.close(returnValue);
-      this.dispatchEvent(new CustomEvent("close"));
+
+      /** Fires event when popup is closed. */
+      this.dispatchEvent(new Event("zeta-modal-close"));
     }
 
     onBarrierClicked(e: Event) {
@@ -64,4 +67,3 @@ export const Popup = <T extends Constructor<LitElement>>(superClass: T) => {
   }
   return PopupClass as Constructor<PopupInterface & LitElement> & T;
 };
-

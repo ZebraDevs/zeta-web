@@ -50,4 +50,3 @@ describe("ZetaTag", () => {
     await expect(subject).shadowDom.to.be.accessible();
   });
 });
-

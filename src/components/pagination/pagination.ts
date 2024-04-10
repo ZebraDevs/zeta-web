@@ -5,6 +5,16 @@ import { classMap } from "lit/directives/class-map.js";
 import "../button/icon-button/icon-button.js";
 import { Contourable } from "../../mixins/mixins.js";
 
+export interface ZetaPageEvent {
+  page: number;
+}
+
+/**
+ * Pagination needs a description.
+ *
+ *  @event {CustomEvent<zeta-page-change>} zeta-page-change - Fired when page change. Contains a single value in details: `page: number`.
+ */
+
 @customElement("zeta-pagination")
 export class ZetaPagination extends Contourable(LitElement) {
   static styles = [super.styles || [], styles];
@@ -39,7 +49,7 @@ export class ZetaPagination extends Contourable(LitElement) {
   private handlePageChange = (page: number) => {
     this.currentPage = page;
     this.dispatchEvent(
-      new CustomEvent("page-change", {
+      new CustomEvent<ZetaPageEvent>("zeta-page-change", {
         bubbles: true,
         composed: true,
         detail: {

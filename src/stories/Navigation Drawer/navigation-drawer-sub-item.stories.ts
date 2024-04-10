@@ -23,4 +23,3 @@ const meta: Meta<ZetaNavigationDrawerSubItem> = {
 export default meta;
 
 export const SubItem: StoryObj<ZetaNavigationDrawerSubItem> = {};
-

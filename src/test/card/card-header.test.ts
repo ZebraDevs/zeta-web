@@ -54,4 +54,3 @@ describe("zeta-card-header", () => {
     await expect(subject).shadowDom.to.be.accessible();
   });
 });
-

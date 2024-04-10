@@ -59,4 +59,3 @@ describe("zeta-icon-button", () => {
     });
   });
 });
-

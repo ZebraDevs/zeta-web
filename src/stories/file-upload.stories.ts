@@ -28,4 +28,3 @@ const meta: Meta<ZetaFileUpload> = {
 export default meta;
 
 export const FileUpload: StoryObj<ZetaFileUpload> = {};
-

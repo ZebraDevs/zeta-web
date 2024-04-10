@@ -17,4 +17,3 @@ describe("zeta-navigation-header", () => {
     await expect(subject).shadowDom.to.be.accessible();
   });
 });
-

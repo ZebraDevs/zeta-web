@@ -6,14 +6,10 @@ import { classMap } from "lit/directives/class-map.js";
 import { ZetaButton } from "../button/button.js";
 import { Contourable, Popup } from "../../index.js";
 
-//TODO: Fires / event docuemtnation doesnt work.
-
 /**
+ * Dialog needs description.
  *
- *  Use `zeta-button` for the action button slots; button props/variants are handled here.
- *
- * @fires "open" Event on open
- * @fires "close" Event on close
+ * Use `zeta-button` for the action button slots; button props/variants are handled here.
  */
 @customElement("zeta-dialog")
 export class ZetaDialog extends Contourable(Popup(LitElement)) {

@@ -36,4 +36,3 @@ export default meta;
 export const Pagination: StoryObj = {
   render: args => html`<zeta-pagination ${spread(args)} .rounded=${args.rounded}></zeta-pagination>`
 };
-

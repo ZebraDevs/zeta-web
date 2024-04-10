@@ -24,4 +24,3 @@ const meta: Meta<ZetaSheetHeader> = {
 export default meta;
 
 export const SheetHeader: StoryObj<ZetaSheetHeader> = {};
-

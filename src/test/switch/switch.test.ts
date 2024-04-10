@@ -53,4 +53,3 @@ describe("zeta-switch", () => {
     await expect(t.shadowRoot?.querySelector("zeta-icon")?.getAttribute("name")).to.equal("microphone");
   });
 });
-

@@ -34,4 +34,3 @@ const meta: Meta<ZetaProgressBar> = {
 export default meta;
 
 export const ProgressBar: StoryObj<ZetaProgressBar> = {};
-

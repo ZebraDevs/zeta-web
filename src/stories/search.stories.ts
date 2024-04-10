@@ -47,4 +47,3 @@ export const Search: StoryObj = {
 };
 
 export default meta;
-

@@ -13,7 +13,7 @@
   }
 }
 
-.label { 
+.label {
   font: var(--label-small);
   color: var(--text-inverse);
 }
@@ -27,27 +27,27 @@
   }
 }
 
-:host([point="bottom"])  {
+:host([point="bottom"]) {
   .point {
     bottom: -4px;
   }
 }
 
-:host([point="right"])  {
+:host([point="right"]) {
   .point {
     transform: rotate(-90deg);
     right: -6px;
   }
 }
 
-:host([point="left"])  {
+:host([point="left"]) {
   .point {
     transform: rotate(90deg);
     left: -6px;
   }
 }
 
-:host([point="top"])  {
+:host([point="top"]) {
   .point {
     transform: rotate(180deg);
     top: -4px;

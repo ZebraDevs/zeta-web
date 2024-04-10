@@ -33,4 +33,3 @@ const meta: Meta<ZetaStepperInput> = {
 export const StepperInput: StoryObj<ZetaStepperInput> = {};
 
 export default meta;
-

@@ -96,4 +96,3 @@ describe("Zeta Search", () => {
     expect(icon).not.to.exist;
   });
 });
-

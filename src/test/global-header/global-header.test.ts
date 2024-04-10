@@ -17,4 +17,3 @@ describe("zeta-global-header", () => {
     await expect(subject).shadowDom.to.be.accessible();
   });
 });
-

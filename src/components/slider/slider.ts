@@ -23,8 +23,8 @@ export interface ZetaRangeSliderEvent {
 /**
  * Sliders allow users to make selections from a range of values.
  *
- * @fires change with a type of ZetaSliderEvent for default sliders.
- * @fires change with a type of ZetaRangeSliderEvent for default sliders.
+ * @event {CustomEvent<ZetaSliderEvent>} zeta-slider-change - Fired whenever value of slider is changed. Contains a single entry in details: `value:number`.
+ * @event {CustomEvent<ZetaRangeSliderEvent>} zeta-range-slider-change - Fired whenever value of range slider is changed. Contains 2 values in details: `min:number`, `max:number`.
  */
 @customElement("zeta-slider")
 export class ZetaSlider extends Contourable(LitElement) {
@@ -144,7 +144,7 @@ export class ZetaSlider extends Contourable(LitElement) {
 
     if (this.type == "default") {
       this.dispatchEvent(
-        new CustomEvent<ZetaSliderEvent>("change", {
+        new CustomEvent<ZetaSliderEvent>("zeta-slider-change", {
           detail: {
             value: this.getHandleValue(this.leftHandle)
           }
@@ -152,7 +152,7 @@ export class ZetaSlider extends Contourable(LitElement) {
       );
     } else {
       this.dispatchEvent(
-        new CustomEvent<ZetaRangeSliderEvent>("change", {
+        new CustomEvent<ZetaRangeSliderEvent>("zeta-range-slider-change", {
           detail: {
             min: this.getHandleValue(this.leftHandle),
             max: this.getHandleValue(this.rightHandle)

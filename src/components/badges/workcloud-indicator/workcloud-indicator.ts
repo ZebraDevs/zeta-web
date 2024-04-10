@@ -45,4 +45,3 @@ declare global {
     "zeta-workcloud-indicator": ZetaWorkcloudIndicator;
   }
 }
-

@@ -7,6 +7,9 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.head_ref }}
       - name: Setup node
         uses: actions/setup-node@v3
         with:
@@ -39,6 +42,17 @@ jobs:
         run: npm run test
       - name: Test tsdoc
         run: npm run docs
+      - name: Check for modified files
+        id: git-check
+        run: echo "modified=$(if [ -n "$(git status --porcelain)" ]; then echo "true"; else echo "false"; fi)" >>  $GITHUB_ENV
+      - name: Update changes in GitHub repository
+        if: env.modified == 'true'
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add -A
+          git commit -m '[automated commit] lint format and import sort'
+          git push
   generate-localizations:
     name: Generate localizations.
     needs: [code-quality]
@@ -85,6 +99,8 @@ jobs:
           cache: "npm"
       - name: Install dependencies
         run: npm ci
+      - name: Create custom-elements.json
+        run: npm run analyze
       - name: Build storybook
         run: npm run build-storybook
       - uses: FirebaseExtended/action-hosting-deploy@v0

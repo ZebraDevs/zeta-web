@@ -66,4 +66,3 @@ export const ButtonWithTextAndIcon: StoryObj = {
     </zeta-button>`;
   }
 };
-
