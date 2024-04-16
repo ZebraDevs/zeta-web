@@ -16,4 +16,5 @@ jobs:
       - uses: google-github-actions/release-please-action@v4
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          config-file: release-please-config.json
+          config-file: .release-please/release-please-config.json
+          manifest-file: .release-please/.release-please-manifest.json
