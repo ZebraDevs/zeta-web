@@ -9,21 +9,21 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v3
-    - name: Setup node
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18.x.x
-        cache: 'npm'
-    - name: Update Zeta Icons
-      run: npm update @zebra-fed/zeta-icons --save
-    - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v5
-      with:
-        commit-message: 'deps: Update zeta-icons library'
-        branch: 'update-zeta-icons'
-        base: 'main'
-        delete-branch: true
-        title: 'deps: Update zeta-icons library'
-        labels: 'icons'
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x.x
+          cache: "npm"
+      - name: Update Zeta Icons
+        run: npm install @zebra-fed/zeta-icons@latest --save
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: "deps: Update zeta-icons library"
+          branch: "update-zeta-icons"
+          base: "main"
+          delete-branch: true
+          title: "deps: Update zeta-icons library"
+          labels: "icons"
