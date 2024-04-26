@@ -7,7 +7,6 @@ const meta: Meta<ZetaCardBody> = {
   component: "zeta-card-body",
   parameters: {
     design: {
-      type: "figma",
       url: "https://www.figma.com/file/zzzpriTQpJKlW4gB5Fn3bF/Design-System-Sprint-3?type=design&node-id=1197-30562&mode=design&t=w4IloFPD61aGcU37-4"
     },
     status: {

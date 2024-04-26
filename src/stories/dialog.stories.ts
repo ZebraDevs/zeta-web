@@ -22,7 +22,6 @@ const meta: Meta<ZetaDialog | { "has-icon": boolean }> = {
   },
   parameters: {
     design: {
-      type: "figma",
       url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=23144-119557&mode=design&t=DUHsS5bjWB5UW1iG-4"
     },
     status: {

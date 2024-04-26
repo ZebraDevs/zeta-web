@@ -11,7 +11,6 @@ const meta: Meta<ZetaCardHeader | { "sub-headline": string }> = {
   },
   parameters: {
     design: {
-      type: "figma",
       url: "https://www.figma.com/file/zzzpriTQpJKlW4gB5Fn3bF/Design-System-Sprint-3?type=design&node-id=1197-29423&mode=design&t=w4IloFPD61aGcU37-4"
     },
     status: {

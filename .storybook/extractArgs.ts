@@ -2,14 +2,11 @@
  * Adapted from cem-plugin-better-lit-types: https://github.com/Uscreen-video/cem-plugin-better-lit-types.
  */
 
-import {
-  getComponentDeclaration,
-  reduceTypes,
-} from "cem-plugin-better-lit-types/storybook";
+import { reduceTypes } from "cem-plugin-better-lit-types/storybook";
 import { FIELD } from "../node_modules/cem-plugin-better-lit-types/dist/extractor/types";
 
 export default (manifest, mapArgs?) => (componentName) => {
-  const declaration: any = getComponentDeclaration(manifest, componentName);
+  const declaration: any = getDeclaration(manifest, componentName);
 
   if (!declaration) return;
 
@@ -31,6 +28,24 @@ export default (manifest, mapArgs?) => (componentName) => {
     ).map((e) => {
       /** Edit fields after initial creation */
       return e.map((f) => {
+        if (
+          f! &&
+          f!["table"] &&
+          f!["name"] &&
+          f!["table"]["category"] &&
+          f!["table"]["category"] === "slots" &&
+          declaration["slots"]
+        ) {
+          const name = f!["name"] === "default" ? "" : f!["name"];
+          if (declaration["slots"].some((e) => e["name"] === name)) {
+            const decValue = declaration["slots"].find(
+              (e) => e["name"] === name
+            );
+
+            if (decValue["type"]) f!["type"] = decValue["type"];
+          }
+        }
+
         /** Move value of `type.text` to `type`. */
         if (
           f!["type"] &&
@@ -102,4 +117,30 @@ const getEvents = (declaration, args) => {
   });
 
   return args;
+};
+
+export const getDeclaration = (manifest, tagName, type = "") => {
+  var _a;
+  let _declaration;
+  const finder = type === "mixin" ? "name" : "tagName";
+
+  (_a =
+    manifest === null || manifest === void 0 ? void 0 : manifest.modules) ===
+    null || _a === void 0
+    ? void 0
+    : _a.forEach((_module) => {
+        var _a;
+        (_a =
+          _module === null || _module === void 0
+            ? void 0
+            : _module.declarations) === null || _a === void 0
+          ? void 0
+          : _a.forEach((declaration) => {
+              if (declaration[finder] === tagName) {
+                _declaration = declaration;
+              }
+            });
+      });
+
+  return _declaration;
 };

@@ -45,7 +45,6 @@ const meta: Meta<ZetaButtonGroupItem> = {
   },
   parameters: {
     design: {
-      type: "figma",
       url: "https://www.figma.com/file/zzzpriTQpJKlW4gB5Fn3bF/Design-System-Sprint-3?type=design&node-id=23116-95148&mode=design&t=C1QjqPlEoal6a5PI-4"
     },
     status: {

@@ -17,7 +17,6 @@ const meta: Meta<ZetaSlider | { "lower-value": number; "upper-value": number; "s
   },
   parameters: {
     design: {
-      type: "figma",
       url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=875-15530&mode=design&t=DUHsS5bjWB5UW1iG-4"
     },
     status: {

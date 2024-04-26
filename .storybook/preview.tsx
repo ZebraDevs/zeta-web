@@ -11,8 +11,8 @@ import {
   ArgTypes,
 } from "@storybook/addon-docs";
 import React from "react";
-import { createLitRenderer } from "cem-plugin-better-lit-types/storybook";
 import extractArgs from "./extractArgs";
+import { createLitRenderer } from "cem-plugin-better-lit-types/storybook";
 
 setCustomElementsManifest(customElements);
 
@@ -25,6 +25,9 @@ const preview: Preview = {
         date: /Date$/,
       },
     },
+    design: {
+      type: "figma",
+    },
     docs: {
       extractArgTypes: extractArgs(customElements),
       theme: window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -34,14 +37,15 @@ const preview: Preview = {
         return (
           <>
             <Title />
-            <Description />
             <Primary />
+            <Description />
             <ArgTypes />
             <Stories includePrimary={false} />
           </>
         );
       },
     },
+
     options: {
       storySort: {
         method: "alphabetical",
@@ -68,7 +72,6 @@ const preview: Preview = {
         },
       },
     },
-
     viewport: {
       viewports: {
         android: {
@@ -92,6 +95,7 @@ const preview: Preview = {
 
 export default preview;
 
+/// Parses slots in storybook correctly.
 export const render = createLitRenderer({
   wrapSlots: true,
 });

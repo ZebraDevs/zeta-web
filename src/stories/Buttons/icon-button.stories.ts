@@ -14,7 +14,6 @@ const meta: Meta<ZetaIconButton> = {
   },
   parameters: {
     design: {
-      type: "figma",
       url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=23126-110314&mode=design&t=lGrwQ4pCwYESXz6b-4"
     },
     status: {

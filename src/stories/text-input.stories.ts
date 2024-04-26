@@ -50,7 +50,6 @@ const meta: Meta<
   },
   parameters: {
     design: {
-      type: "figma",
       url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=23116-92946&mode=design&t=DUHsS5bjWB5UW1iG-4"
     },
     status: {
@@ -88,7 +87,6 @@ export const TimeInput: StoryObj = {
   },
   parameters: {
     design: {
-      type: "figma",
       url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=22751-9848&mode=design&t=DUHsS5bjWB5UW1iG-4"
     },
     status: {
@@ -116,7 +114,6 @@ export const DateInput: StoryObj = {
   },
   parameters: {
     design: {
-      type: "figma",
       url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=22667-52911&mode=design&t=DUHsS5bjWB5UW1iG-4"
     },
     status: {
@@ -160,7 +157,6 @@ export const PasswordField: StoryObj = {
   },
   parameters: {
     design: {
-      type: "figma",
       url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=948-13632&mode=design&t=DUHsS5bjWB5UW1iG-4"
     },
     status: {

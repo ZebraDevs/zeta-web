@@ -16,6 +16,14 @@ const meta: Meta<ZetaIcon> = {
       options: ZetaIconNameList,
       control: { type: "select" }
     }
+  },
+  parameters: {
+    design: {
+      url: "https://www.figma.com/file/VQ7Aa3rDYB7mgpToI3bZ4D/%F0%9F%A6%93-ZDS---Assets?type=design&node-id=240-6&mode=design"
+    },
+    status: {
+      type: "ready"
+    }
   }
 };
 export default meta;

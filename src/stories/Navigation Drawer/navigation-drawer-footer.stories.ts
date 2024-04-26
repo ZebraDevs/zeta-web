@@ -22,7 +22,6 @@ export default meta;
 export const Footer: StoryObj = {
   parameters: {
     design: {
-      type: "figma",
       url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=1092-21721&mode=design&t=DUHsS5bjWB5UW1iG-4"
     },
     status: {
@@ -35,7 +34,6 @@ export const Footer: StoryObj = {
 export const FooterAvatarAndIcon: StoryObj = {
   parameters: {
     design: {
-      type: "figma",
       url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=1092-21721&mode=design&t=DUHsS5bjWB5UW1iG-4"
     },
     status: {
@@ -58,7 +56,6 @@ export const FooterDefaultLogo: StoryObj = {
   },
   parameters: {
     design: {
-      type: "figma",
       url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=1113-32425&mode=design&t=DUHsS5bjWB5UW1iG-4"
     },
     status: {
@@ -77,7 +74,6 @@ export const FooterCustomLogo: StoryObj = {
   },
   parameters: {
     design: {
-      type: "figma",
       url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=1113-32425&mode=design&t=DUHsS5bjWB5UW1iG-4"
     },
     status: {

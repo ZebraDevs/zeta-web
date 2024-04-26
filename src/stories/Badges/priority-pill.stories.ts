@@ -11,7 +11,6 @@ const meta: Meta<ZetaPriorityPill> = {
   },
   parameters: {
     design: {
-      type: "figma",
       url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=21931-2105&mode=design&t=j9Cv98TDx5BKLbgS-4"
     },
     status: {
