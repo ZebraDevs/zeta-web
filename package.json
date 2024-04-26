@@ -97,7 +97,7 @@
   "dependencies": {
     "@fontsource/ibm-plex-sans": "^5.0.18",
     "@lit/localize": "^0.12.1",
-    "@zebra-fed/zeta-icons": "^0.4.0",
+    "@zebra-fed/zeta-icons": "^0.4.1",
     "firebase-tools": "^13.5.2",
     "lit": "^3.0.0"
   },
