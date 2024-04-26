@@ -1,4 +1,4 @@
-@import url("../../icon-fonts.css");
+@import url("@zebra-fed/zeta-icons/index.css");
 
 :host {
   display: flex;

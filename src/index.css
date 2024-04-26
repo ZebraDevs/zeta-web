@@ -1,7 +1,6 @@
 @import url("./generated/tokens/primitives.css");
 @import url("./generated/tokens/semantics.css");
-@import url("./icon-fonts.css");
-
+@import url("@zebra-fed/zeta-icons/index.css");
 /* All tokens defined here are used in code but not from figma */
 
 :root,
