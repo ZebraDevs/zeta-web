@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
-import { ZetaFilterChip } from "../../index.js";
+import { ZetaFilterChip } from "../../components/chips/filter-chip/filter-chip.js";
 
 const meta: Meta<ZetaFilterChip> = {
   component: "zeta-filter-chip",

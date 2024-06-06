@@ -1,7 +1,7 @@
 import { customElement, property } from "lit/decorators.js";
 import { LitElement, html } from "lit";
-import { Constructor } from "../../../mixins/mixins.js";
-import styles from "./workcloud-indicator.scss?inline";
+import { type Constructor } from "../../../mixins/mixins.js";
+import styles from "./workcloud-indicator.styles.js";
 import { ZetaPriorityPill } from "../priority-pill/priority-pill.js";
 
 const OverwriteStyles = <T extends Constructor<LitElement>>(superClass: T) => {
@@ -33,8 +33,8 @@ export class ZetaWorkcloudIndicator extends ZetaWorkcloudIndicatorBase {
     const formattedNumber = this.number > 99 ? "99+" : this.number;
     return html`
       <div class="container">
-        <span aria-label="number" role="text" class="number">${this.priority === "urgent" ? "U" : formattedNumber}</span>
-        <span aria-label=${this.priority} role="text" class="text">${this.priority}</span>
+        <span aria-label="number" role="note" class="number">${this.priority === "urgent" ? "U" : formattedNumber}</span>
+        <span aria-label=${this.priority} role="status" class="text">${this.priority}</span>
       </div>
     `;
   }

@@ -1,10 +1,10 @@
 import { customElement, property } from "lit/decorators.js";
 import { html } from "lit";
-import styles from "./icon-button.scss?inline";
-import { ZetaIconName } from "@zebra-fed/zeta-icons";
-import "../../icon/icon.js";
+import styles from "./icon-button.styles.js";
+import { type ZetaIconName } from "@zebra-fed/zeta-icons";
 import { ButtonBase } from "../button-base.js";
 import { ifDefined } from "lit/directives/if-defined.js";
+import "../../icon/icon.js";
 
 // TODO slot icon name instead of passing it through a property
 /** ZetaIconButton web component.
@@ -29,29 +29,10 @@ export class ZetaIconButton extends ButtonBase {
     }
   }
 
-  private getIconColor(): string {
-    if (this.disabled) {
-      return "var(--icon-disabled)";
-    } else {
-      switch (this.flavor) {
-        case "outline":
-          return "var(--surface-flavor-primary)";
-        case "outline-subtle":
-        case "text":
-          return "var(--icon-default)";
-        case "primary":
-        case "secondary":
-        case "positive":
-        case "negative":
-          return "var(--icon-inverse)";
-      }
-    }
-  }
-
   protected render() {
-    const label = this.iconName.replaceAll("_", " ");
+    const label: string = `${this.iconName}`.replace(/_/g, " ");
     return html`<button ?disabled=${this.disabled} value=${ifDefined(this.value)} name=${ifDefined(this.name)} flavor=${this.flavor} aria-label=${label}>
-      <zeta-icon name=${this.iconName} .rounded=${this.rounded} color=${this.getIconColor()} size=${this.getIconSize()}>
+      <zeta-icon name=${this.iconName} .rounded=${this.rounded} size=${this.getIconSize()}>
         <div class=${this.flavor}></div>
       </zeta-icon>
     </button>`;

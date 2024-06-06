@@ -1,14 +1,14 @@
-import { Meta, StoryObj } from "@storybook/web-components";
-import { ZetaButtonGroupItem } from "../../index.js";
+import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
+import { ZetaButtonGroupItem } from "../../components/button-group/button-group-item/button-group-item.js";
 
 const testFunc = () => console.log("Click");
 
 const options = { testFunc, undefined };
 
 const meta: Meta<ZetaButtonGroupItem> = {
-  component: "zeta-group-item",
+  component: "zeta-button-group-item",
   title: "Button Group",
   args: {
     slot: "Label",
@@ -16,7 +16,8 @@ const meta: Meta<ZetaButtonGroupItem> = {
     rounded: true,
     disabled: false,
     name: "",
-    onclick: testFunc
+    onclick: testFunc,
+    showDropdown: false
   },
   argTypes: {
     size: {
@@ -58,9 +59,16 @@ export default meta;
 export const GroupItem: StoryObj = {
   render: args => {
     return html`
-      <zeta-group-item iconName=${args.iconName} size=${args.size} .onclick=${args.onclick} .disabled=${args.disabled} .rounded=${args.rounded}>
+      <zeta-button-group-item
+        iconName=${args.iconName}
+        size=${args.size}
+        .onclick=${args.onclick}
+        .disabled=${args.disabled}
+        .rounded=${args.rounded}
+        ?showDropdown=${args.showDropdown}
+      >
         ${args.slot}
-      </zeta-group-item>
+      </zeta-button-group-item>
     `;
   }
 };

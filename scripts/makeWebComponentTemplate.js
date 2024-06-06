@@ -57,7 +57,7 @@ const main = () => {
       .join("");
 
     buildFile(nameLower, nameCap, outDir + ".ts", readFileSync(path.normalize("./assets/web.template")), "Component");
-    buildFile(nameLower, nameCap, outDir + ".scss", readFileSync(path.normalize("./assets/web.styles.template")), "Style");
+    buildFile(nameLower, nameCap, outDir + ".css", readFileSync(path.normalize("./assets/web.styles.template")), "Style");
     buildFile(nameLower, nameCap, outDir + ".stories.ts", readFileSync(path.normalize("./assets/web.stories.template")), "Story");
     buildFile(nameLower, nameCap, testOutDir + ".test.ts", readFileSync(path.normalize("./assets/web.test.template")), "Test");
 

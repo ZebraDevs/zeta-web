@@ -1,8 +1,9 @@
 import { html, LitElement } from "lit";
 import { customElement, property, query } from "lit/decorators.js";
-import styles from "./switch.scss?inline";
-import { ZetaIconName } from "@zebra-fed/zeta-icons";
-import { Contourable, Interactive } from "../../index.js";
+import styles from "./switch.styles.js";
+import { type ZetaIconName } from "@zebra-fed/zeta-icons";
+import { Contourable, Interactive } from "../../mixins/mixins.js";
+import "../icon/icon.js";
 
 /**
  * Switches toggle the state of a single item ON or OFF.

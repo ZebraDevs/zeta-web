@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
-import { ZetaIcon } from "../../index.js";
+import { ZetaIcon } from "../../components/icon/icon.js";
 
 const meta: Meta<ZetaIcon> = {
   component: "zeta-icon",
@@ -8,7 +8,7 @@ const meta: Meta<ZetaIcon> = {
   args: {
     name: "alarm",
     size: "20rem",
-    color: "#000000",
+    color: "var(--icon-default)",
     rounded: true
   },
   argTypes: {

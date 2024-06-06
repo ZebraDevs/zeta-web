@@ -1,12 +1,14 @@
 import { customElement, property } from "lit/decorators.js";
 import { Contourable } from "../../../mixins/mixins.js";
 import { html, LitElement, nothing } from "lit";
-import styles from "./progress-circle.scss?inline";
+import styles from "./progress-circle.styles.js";
 import { classMap } from "lit/directives/class-map.js";
+import "../../icon/icon.js";
 
 /** Progress indicators express an unspecified wait time or display the length of a process. */
 @customElement("zeta-progress-circle")
 export class ZetaProgressCircle extends Contourable(LitElement) {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   static styles = [super.styles || [], styles];
 
   /** Size. */

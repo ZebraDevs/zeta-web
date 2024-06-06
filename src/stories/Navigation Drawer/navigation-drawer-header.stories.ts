@@ -1,14 +1,17 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
-import { ZetaNavigationDrawerHeader } from "../../index.js";
-import { spread } from "@open-wc/lit-helpers";
+import { ZetaNavigationDrawerHeader } from "../../components/navigation-drawer/navigation-drawer-header/navigation-drawer-header.js";
+import { spreadGenerator } from "../utils.js";
+const spread = spreadGenerator(ZetaNavigationDrawerHeader);
+import "../../components/avatar.js";
+import "../../components/icon/icon.js";
 
-const meta: Meta<ZetaNavigationDrawerHeader | { "sub-headline": string }> = {
+const meta: Meta<ZetaNavigationDrawerHeader> = {
   component: "zeta-navigation-drawer-header",
   title: "Navigation Drawer",
   args: {
     headline: "Title",
-    "sub-headline": "subtitle",
+    subHeadline: "subtitle",
     divide: false
   },
   parameters: {
@@ -23,12 +26,13 @@ const meta: Meta<ZetaNavigationDrawerHeader | { "sub-headline": string }> = {
 export default meta;
 
 export const Header: StoryObj = {
-  render: args => html`<zeta-navigation-drawer-header ${spread(args)} .divide=${args.divide}></zeta-navigation-drawer-header>`
+  render: args => html`<zeta-navigation-drawer-header ${spread(args)}></zeta-navigation-drawer-header>`
 };
 
 export const HeaderAvatarAndIcon: StoryObj = {
   render: args =>
-    html`<zeta-navigation-drawer-header ${spread(args)} .divide=${args.divide}>
-      <zeta-avatar slot="leading"></zeta-avatar><zeta-icon slot="trailing" color="white">settings</zeta-icon>
+    html`<zeta-navigation-drawer-header ${spread(args)}>
+      <zeta-avatar slot="leading"></zeta-avatar>
+      <zeta-icon slot="trailing" color="white">settings</zeta-icon>
     </zeta-navigation-drawer-header>`
 };

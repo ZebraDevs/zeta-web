@@ -1,7 +1,7 @@
 import { customElement, property } from "lit/decorators.js";
 import { html, LitElement } from "lit";
-import styles from "./radio-button.scss?inline";
-import { Interactive } from "../../index.js";
+import styles from "./radio-button.styles.js";
+import { Interactive } from "../../mixins/mixins.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 
 /**

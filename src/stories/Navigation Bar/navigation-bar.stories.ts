@@ -1,6 +1,7 @@
-import { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
-import { ZetaNavigationBar } from "../../index.js";
+import { ZetaNavigationBar } from "../../components/navigation-bar/navigation-bar.js";
+import "../../components/navigation-bar/navigation-bar-item/navigation-bar-item.js";
 
 const meta: Meta<ZetaNavigationBar> = {
   component: "zeta-navigation-bar",
@@ -23,31 +24,34 @@ export const BarIconAndLabel: StoryObj<ZetaNavigationBar> = {
     return html`<zeta-navigation-bar>
       <zeta-navigation-bar-item
         icon="star"
-        @click="${() => {
+        @click=${() => {
           selected = 0;
           console.log(selected);
-        }}"
+        }}
         label="Label"
         .active=${selected === 0}
-      ></zeta-navigation-bar-item>
+      >
+      </zeta-navigation-bar-item>
       <zeta-navigation-bar-item
         icon="star"
-        @click="${() => {
+        @click=${() => {
           selected = 1;
           console.log(selected);
-        }}"
+        }}
         label="Label"
         .active=${selected === 1}
-      ></zeta-navigation-bar-item>
+      >
+      </zeta-navigation-bar-item>
       <zeta-navigation-bar-item
         icon="star"
-        @click="${() => {
+        @click=${() => {
           selected = 2;
           console.log(selected);
-        }}"
+        }}
         label="Label"
         .active=${selected === 2}
-      ></zeta-navigation-bar-item>
+      >
+      </zeta-navigation-bar-item>
     </zeta-navigation-bar>`;
   }
 };

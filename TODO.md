@@ -1,3 +1,10 @@
+# BK TODO
+
+1. Fix having to import css in HTML
+2. Hook up react library creation
+3. see if react components work in storybook
+4. ditto, demo.
+
 # TODO before first Public PR
 
 ## Folder Structure
@@ -58,6 +65,7 @@
 ## Tests
 
 - Setup Test Framework
+- Test each expected export
 
 ## DevTools
 

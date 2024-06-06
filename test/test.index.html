@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Manual test for whether a component works by pulling the main index.js file without any extra css."
+    />
+    <meta name="color-scheme" content="light dark" />
+    <!-- link
+      rel="stylesheet"
+      href="/node_modules/@zebra-fed/zeta-web/dist/index.css"
+    /-->
+    <title>Zeta-Web index.js test</title>
+  </head>
+  <body>
+    <h1>Zeta-Web index.js test</h1>
+    <zeta-button>Hello</zeta-button>
+    <zeta-button flavor="positive">My</zeta-button>
+    <zeta-button flavor="outline" size="large">World</zeta-button>
+    <aside>
+      The
+      <pre>type="module"</pre>
+      attribute is required on the
+      <pre>&lt;script&gt;</pre>
+      Tag
+    </aside>
+  </body>
+  <script
+    type="module"
+    src="/node_modules/@zebra-fed/zeta-web/dist/index.js"
+  ></script>
+</html>

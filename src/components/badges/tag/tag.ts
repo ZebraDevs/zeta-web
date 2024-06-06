@@ -1,6 +1,6 @@
 import { html, LitElement, svg } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import styles from "./tag.scss?inline";
+import styles from "./tag.styles.js";
 import { Contourable } from "../../../mixins/mixins.js";
 
 /** ZetaTag web component.
@@ -30,7 +30,7 @@ export class ZetaTag extends Contourable(LitElement) {
     </svg>`;
 
     return html`
-      <div class="tag" role="text" aria-label=${this.text}>
+      <div class="tag" role="note" aria-label=${this.text}>
         <span class="text">${this.text}</span>
         ${point}
       </div>

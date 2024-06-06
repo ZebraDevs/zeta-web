@@ -79,14 +79,14 @@ describe("Zeta Search", () => {
   it("should render microphone icon", async () => {
     const speechRecognition = (<any>window).SpeechRecognition || (<any>window).webkitSpeechRecognition;
     if (speechRecognition) {
-      const el = await fixture<ZetaSearch>(html` <zeta-search has-icon></zeta-search> `);
+      const el = await fixture<ZetaSearch>(html` <zeta-search hasIcon></zeta-search> `);
       const icon = el.shadowRoot?.querySelector("zeta-icon[name='microphone']") as ZetaIcon;
       expect(icon).to.exist;
     }
   });
 
   it("should not render microphone icon", async () => {
-    const el = await fixture<ZetaSearch>(html` <zeta-search has-icon></zeta-search> `);
+    const el = await fixture<ZetaSearch>(html` <zeta-search hasIcon></zeta-search> `);
 
     delete (<any>window).SpeechRecognition;
     delete (<any>window).webkitSpeechRecognition;

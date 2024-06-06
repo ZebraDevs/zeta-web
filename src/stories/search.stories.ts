@@ -1,15 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
-import { ZetaSearch } from "../index.js";
-import { html } from "lit";
+import { ZetaSearch } from "../components/search/search.js";
+import "../components/search/search.js";
 
-const meta: Meta<
-  | ZetaSearch
-  | {
-      "form-action": String;
-      "has-icon": boolean;
-      "on-submit": never;
-    }
-> = {
+const meta: Meta<ZetaSearch> = {
   tags: ["autodocs"],
   title: "Search",
   component: "zeta-search",
@@ -18,8 +11,8 @@ const meta: Meta<
     disabled: false,
     size: "medium",
     rounded: false,
-    "form-action": "https://google.com/search",
-    "has-icon": true
+    formAction: "https://google.com/search",
+    hasIcon: true
   },
   argTypes: {
     size: {
@@ -28,7 +21,7 @@ const meta: Meta<
         type: "inline-radio"
       }
     },
-    "on-submit": { table: { disable: true } }
+    onSubmit: { table: { disable: true } }
   },
   parameters: {
     design: {
@@ -40,9 +33,6 @@ const meta: Meta<
   }
 };
 
-export const Search: StoryObj = {
-  render: args =>
-    html` <zeta-search .rounded=${args.rounded} .disabled=${args.disabled} ?has-icon=${args["has-icon"]} value=${args.value} size=${args.size}> </zeta-search>`
-};
+export const Search: StoryObj = {};
 
 export default meta;

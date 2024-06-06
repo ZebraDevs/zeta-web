@@ -1,6 +1,6 @@
 import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import styles from "./status-chip.scss?inline";
+import styles from "./status-chip.styles.js";
 import { Contourable } from "../../../mixins/mixins.js";
 
 /** Zeta Status Chip web component.

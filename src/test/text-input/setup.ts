@@ -1,5 +1,5 @@
 import { fixture, html } from "@open-wc/testing";
-import { ZetaIconName } from "@zebra-fed/zeta-icons";
+import { type ZetaIconName } from "@zebra-fed/zeta-icons";
 import { ZetaTextInput } from "../../index.js";
 import "../../index.js";
 
@@ -34,14 +34,14 @@ export async function setup({
     html`<zeta-text-input
       ?required=${required}
       ?error=${error}
-      hint-text=${hint}
+      hintText=${hint}
       label=${label}
       suffix=${suffix}
       prefix=${prefix}
       ?disabled=${disabled}
       leadingIcon=${leadingIcon ?? ""}
       trailingIcon=${trailingIcon ?? ""}
-      error-text=${errorText ?? ""}
+      errorText=${errorText ?? ""}
       type=${type}
     ></zeta-text-input>`
   );

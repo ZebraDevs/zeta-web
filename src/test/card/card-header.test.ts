@@ -12,7 +12,7 @@ describe("zeta-card-header", () => {
   const trailingId = "iconButton";
 
   const createComponent = (
-    template = `<zeta-card-header headline=${headingText} sub-headline=${subHeadingText}>
+    template = `<zeta-card-header headline=${headingText} subHeadline=${subHeadingText}>
   <zeta-avatar slot="leading" id=${leadingId}></zeta-avatar>
   <zeta-icon-button slot="trailing" id=${trailingId} iconname="more_vertical" flavor="basic"></zeta-icon-button>
   </zeta-card-header>`

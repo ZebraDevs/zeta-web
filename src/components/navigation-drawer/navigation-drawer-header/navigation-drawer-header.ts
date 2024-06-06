@@ -1,6 +1,6 @@
 import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import styles from "./navigation-drawer-header.scss?inline";
+import styles from "./navigation-drawer-header.styles.js";
 
 /**
  * The header used on a navigation drawer.
@@ -15,7 +15,7 @@ export class ZetaNavigationDrawerHeader extends LitElement {
   @property({ type: String }) headline?: string;
 
   /** The sub headline text.*/
-  @property({ type: String, attribute: "sub-headline" }) subHeadline?: string;
+  @property({ type: String }) subHeadline?: string;
 
   /** Shows a divider below the header. */
   @property({ type: Boolean, reflect: true }) divide: boolean = false;

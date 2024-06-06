@@ -1,6 +1,6 @@
 import { customElement, property } from "lit/decorators.js";
 import { LitElement, html } from "lit";
-import styles from "./list-item.scss?inline";
+import styles from "./list-item.styles.js";
 
 /**
  * List items are used in lists.

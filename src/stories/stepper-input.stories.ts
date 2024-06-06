@@ -1,5 +1,5 @@
-import { Meta, StoryObj } from "@storybook/web-components";
-import { ZetaStepperInput } from "../index.js";
+import type { Meta, StoryObj } from "@storybook/web-components";
+import { ZetaStepperInput } from "../components/stepper-input/stepper-input.js";
 
 const meta: Meta<ZetaStepperInput> = {
   component: "zeta-stepper-input",

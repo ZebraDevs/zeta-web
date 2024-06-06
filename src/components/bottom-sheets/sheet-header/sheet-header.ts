@@ -1,6 +1,6 @@
 import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import styles from "./sheet-header.scss?inline";
+import styles from "./sheet-header.styles.js";
 
 /** A header for a zeta-bottom-sheet.
  *

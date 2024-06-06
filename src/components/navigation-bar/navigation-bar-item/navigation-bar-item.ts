@@ -1,8 +1,8 @@
 import { customElement, property } from "lit/decorators.js";
 import { Contourable } from "../../../mixins/mixins.js";
-import { ZetaIconName } from "@zebra-fed/zeta-icons";
+import { type ZetaIconName } from "@zebra-fed/zeta-icons";
 import { html, LitElement, nothing } from "lit";
-import styles from "./navigation-bar-item.scss?inline";
+import styles from "./navigation-bar-item.styles.js";
 import "../../icon/icon.js";
 
 /**

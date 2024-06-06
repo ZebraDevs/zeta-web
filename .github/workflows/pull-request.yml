@@ -102,7 +102,7 @@ jobs:
       - name: Create custom-elements.json
         run: npm run analyze
       - name: Build storybook
-        run: npm run build-storybook
+        run: npm run storybook:build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"

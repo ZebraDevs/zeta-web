@@ -1,6 +1,9 @@
-import { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
-import { ZetaListItem } from "../../index.js";
+import { ZetaListItem } from "../../components/list/list-item/list-item.js";
+import "../../components/avatar.js";
+import "../../components/icon/icon.js";
+import "../../components/checkbox/checkbox.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 
 const meta: Meta<ZetaListItem> = {

@@ -1,30 +1,17 @@
 import { html, LitElement, nothing } from "lit";
 import { customElement, property, query } from "lit/decorators.js";
-import styles from "./slider.scss?inline";
+import styles from "./slider.styles.js";
 import { Contourable } from "../../mixins/mixins.js";
 import { styleMap } from "lit/directives/style-map.js";
+import { ZetaRangeSliderEvent, ZetaSliderEvent } from "../../events.js";
 
 export * from "./slider-input-field/slider-input-field.js";
-
-/** The type of the CustomEvent fired when a default slider is changed. */
-export interface ZetaSliderEvent {
-  /** The value of the slider */
-  value: number;
-}
-
-/** The type of the CustomEvent fired when a ranged slider is changed. */
-export interface ZetaRangeSliderEvent {
-  /** The minimum value of the range slider. */
-  min: number;
-  /** The maximum value of the range slider. */
-  max: number;
-}
 
 /**
  * Sliders allow users to make selections from a range of values.
  *
- * @event {CustomEvent<ZetaSliderEvent>} zeta-slider-change - Fired whenever value of slider is changed. Contains a single entry in details: `value:number`.
- * @event {CustomEvent<ZetaRangeSliderEvent>} zeta-range-slider-change - Fired whenever value of range slider is changed. Contains 2 values in details: `min:number`, `max:number`.
+ * @event {CustomEvent<ZetaSliderEvent>} ZetaSliderEvent:zeta-slider-change - Fired whenever value of slider is changed. Contains a single entry in details: `value:number`.
+ * @event {CustomEvent<ZetaRangeSliderEvent>} ZetaRangeSliderEvent:zeta-range-slider-change - Fired whenever value of range slider is changed. Contains 2 values in details: `min:number`, `max:number`.
  */
 @customElement("zeta-slider")
 export class ZetaSlider extends Contourable(LitElement) {
@@ -32,29 +19,29 @@ export class ZetaSlider extends Contourable(LitElement) {
   @property({ type: Boolean, reflect: true }) disabled?: boolean;
 
   /** If set, will put steps on the slider at the given increments and the slider will snap to the nearest step. */
-  @property({ type: Number, attribute: "step-increment" }) stepIncrement?: number;
+  @property({ type: Number }) stepIncrement?: number;
   /** The type of the slider. Can either be 'default' or 'range'. */
-  @property({ type: String, attribute: "type" }) type: "default" | "range" = "default";
+  @property({ type: String }) type: "default" | "range" = "default";
 
   /**
    * The value of the slider.
    *
    * Will have no effect if type is not 'default'.
    */
-  @property({ type: Number, reflect: true, attribute: "value" }) value: number = 50;
+  @property({ type: Number, reflect: true }) value: number = 50;
   /**
    * The initial value of the lower end of the slider.
    *
    * Will have no effect if type is not 'ranged'.
    */
-  @property({ type: Number, reflect: true, attribute: "lower-value" }) lowerValue: number = 10;
+  @property({ type: Number, reflect: true }) lowerValue: number = 10;
 
   /**
    * The initial value of the maximum end of the slider.
    *
    * Will have no effect if type is not 'ranged'.
    */
-  @property({ type: Number, reflect: true, attribute: "upper-value" }) upperValue: number = 90;
+  @property({ type: Number, reflect: true }) upperValue: number = 90;
 
   /** The minimum value of the slider. */
   @property({ type: Number }) min: number = 0;
@@ -138,26 +125,21 @@ export class ZetaSlider extends Contourable(LitElement) {
       this.rightHandle.style.removeProperty("background-color");
     }
   }
-
+  /**
+   * @fires ZetaSliderEvent:zeta-slider-change when the Slider value changes.
+   * @fires ZetaRangeSliderEvent:zeta-range-slider-change when the Range Slider value changes.
+   */
   private onHandleMoved = (handle: HTMLDivElement) => {
     if (this.stepIncrement) this.snapHandle(handle);
 
     if (this.type == "default") {
-      this.dispatchEvent(
-        new CustomEvent<ZetaSliderEvent>("zeta-slider-change", {
-          detail: {
-            value: this.getHandleValue(this.leftHandle)
-          }
-        })
-      );
+      this.dispatchEvent(new ZetaSliderEvent({ value: this.getHandleValue(this.leftHandle) }).toEvent());
     } else {
       this.dispatchEvent(
-        new CustomEvent<ZetaRangeSliderEvent>("zeta-range-slider-change", {
-          detail: {
-            min: this.getHandleValue(this.leftHandle),
-            max: this.getHandleValue(this.rightHandle)
-          }
-        })
+        new ZetaRangeSliderEvent({
+          min: this.getHandleValue(this.leftHandle),
+          max: this.getHandleValue(this.rightHandle)
+        }).toEvent()
       );
     }
   };

@@ -1,18 +1,16 @@
 import { customElement, property } from "lit/decorators.js";
-import styles from "./pagination.scss?inline";
+import styles from "./pagination.styles.js";
 import { html, LitElement } from "lit";
 import { classMap } from "lit/directives/class-map.js";
-import "../button/icon-button/icon-button.js";
 import { Contourable } from "../../mixins/mixins.js";
-
-export interface ZetaPageEvent {
-  page: number;
-}
+import { ZetaPageEvent } from "../../events.js";
+import "../button/icon-button/icon-button.js";
+import "../icon/icon.js";
 
 /**
  * Pagination needs a description.
  *
- *  @event {CustomEvent<zeta-page-change>} zeta-page-change - Fired when page change. Contains a single value in details: `page: number`.
+ *  @event {CustomEvent<ZetaPageEvent>} ZetaPageEvent:zeta-page-change - Fired when page change. Contains a single value in details: `page: number`.
  */
 
 @customElement("zeta-pagination")
@@ -20,13 +18,13 @@ export class ZetaPagination extends Contourable(LitElement) {
   static styles = [super.styles || [], styles];
 
   /** Total number of pages. */
-  @property({ type: Number, attribute: "total-pages" }) totalPages = 10;
+  @property({ type: Number }) totalPages = 10;
 
   /** Number of pages on both sides of current active page. */
-  @property({ type: Number, attribute: "sibling-count" }) siblingCount = 1;
+  @property({ type: Number }) siblingCount = 1;
 
   /** Current active page. */
-  @property({ type: Number, attribute: "current-page" })
+  @property({ type: Number })
   get currentPage() {
     return this.page;
   }
@@ -46,17 +44,12 @@ export class ZetaPagination extends Contourable(LitElement) {
     return Array.from({ length }, (_, idx) => idx + start);
   };
 
+  /**
+   * @fires ZetaPageEvent:zeta-page-change
+   */
   private handlePageChange = (page: number) => {
     this.currentPage = page;
-    this.dispatchEvent(
-      new CustomEvent<ZetaPageEvent>("zeta-page-change", {
-        bubbles: true,
-        composed: true,
-        detail: {
-          page: page
-        }
-      })
-    );
+    this.dispatchEvent(new ZetaPageEvent({ page }).toEvent());
   };
 
   private page = 1;

@@ -1,7 +1,7 @@
 import { customElement, property } from "lit/decorators.js";
 
 import { html, LitElement, nothing } from "lit";
-import styles from "./stepper.scss?inline";
+import styles from "./stepper.styles.js";
 import { classMap } from "lit/directives/class-map.js";
 import { Contourable } from "../../mixins/mixins.js";
 
@@ -21,7 +21,7 @@ export class ZetaStepper extends Contourable(LitElement) {
   @property({ reflect: true }) variant: "vertical" | "horizontal" = "horizontal";
 
   /** Current active step. */
-  @property({ type: Number, attribute: "active-step" }) activeStep = 0;
+  @property({ type: Number }) activeStep = 0;
 
   /** Show bar separator. */
   @property({ type: Boolean }) bar = true;
