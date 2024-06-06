@@ -1,6 +1,6 @@
 import { html, LitElement, nothing } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import styles from "./progress-bar.scss?inline";
+import styles from "./progress-bar.styles.js";
 import { Contourable } from "../../../mixins/mixins.js";
 import { styleMap } from "lit/directives/style-map.js";
 

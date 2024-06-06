@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
-import { ZetaFileUpload } from "../index.js";
+import { ZetaFileUpload } from "../components/file-upload/file-upload.js";
 
 const meta: Meta<ZetaFileUpload> = {
   component: "zeta-file-upload",

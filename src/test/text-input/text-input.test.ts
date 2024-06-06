@@ -2,6 +2,7 @@ import { expect, assert } from "@open-wc/testing";
 import { setup } from "./setup.js";
 import { ZetaIcon, ZetaTextInput } from "../../index.js";
 import "../../index.js";
+import { toRGB } from "../utils.js";
 
 describe("Zeta Input", () => {
   it("creates from document.createElement", function () {
@@ -65,9 +66,24 @@ describe("Zeta Input", () => {
     assert.equal(el.shadowRoot?.querySelector(".hint-text span")?.textContent, "hint");
   });
 
-  it("should render error hint text", async () => {
+  it("should render error icon", async () => {
     const el = await setup({ error: true, hint: "hint", disabled: false, errorText: "error" });
-    assert.equal(el.shadowRoot?.querySelector(".hint-text zeta-icon")?.getAttribute("color"), "var(--color-red-60)");
+    const icon = el.shadowRoot?.querySelector(".hint-text zeta-icon") as ZetaIcon;
+    assert.equal(icon.name, "error");
+  });
+  it("should render error icon color", async () => {
+    const el = await setup({ error: true, hint: "hint", disabled: false, errorText: "error" });
+    const icon = el.shadowRoot?.querySelector(".hint-text zeta-icon");
+    assert.equal(getComputedStyle(icon!).color, toRGB(getComputedStyle(icon!).getPropertyValue("--icon-flavor-negative")));
+  });
+  it("should render error text", async () => {
+    const el = await setup({ error: true, hint: "hint", disabled: false, errorText: "errory" });
+    assert.equal(el.shadowRoot?.querySelector(".hint-text span")?.textContent, "errory");
+  });
+  it("should render error text color", async () => {
+    const el = await setup({ error: true, hint: "hint", disabled: false, errorText: "error" });
+    const text = el.shadowRoot?.querySelector(".hint-text span");
+    assert.equal(getComputedStyle(text!).color, toRGB(getComputedStyle(text!).getPropertyValue("--text-flavor-negative")));
   });
 
   const rgbToHex = (r: number, g: number, b: number) =>

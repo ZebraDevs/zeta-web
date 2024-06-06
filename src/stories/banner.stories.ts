@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
-import { ZetaSystemBanner } from "../index.js";
+import { ZetaSystemBanner } from "../components/banner/system-banner.js";
 import { html } from "lit";
 import { ifDefined } from "lit/directives/if-defined.js";
 

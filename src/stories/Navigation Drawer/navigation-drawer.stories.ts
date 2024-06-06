@@ -1,13 +1,20 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
-import { ZetaNavigationDrawer } from "../../index.js";
+import { ZetaNavigationDrawer } from "../../components/navigation-drawer/navigation-drawer.js";
+import "../../components/navigation-drawer/navigation-drawer-sub-item/navigation-drawer-sub-item.js";
+import "../../components/navigation-drawer/navigation-drawer-item/navigation-drawer-item.js";
+import "../../components/navigation-drawer/navigation-drawer-footer/navigation-drawer-footer.js";
+import "../../components/navigation-drawer/navigation-drawer-header/navigation-drawer-header.js";
+import "../../components/avatar.js";
+import "../../components/icon/icon.js";
+import "../../components/button/button.js";
 
-const meta: Meta<ZetaNavigationDrawer | { "show-animation": boolean }> = {
+const meta: Meta<ZetaNavigationDrawer> = {
   component: "zeta-navigation-drawer",
   title: "Navigation Drawer",
   args: {
     anchor: "left",
-    "show-animation": true
+    showAnimation: true
   },
   argTypes: {
     anchor: {
@@ -32,10 +39,10 @@ const meta: Meta<ZetaNavigationDrawer | { "show-animation": boolean }> = {
 export default meta;
 
 export const NavigationDrawer: StoryObj<ZetaNavigationDrawer> = {
-  render: args => html`
-    <div style="min-height: 600px">
-      <zeta-navigation-drawer id="drawer" ?show-animation=${args.showAnimation} anchor=${args.anchor} .initialOpen="${true}">
-        <zeta-navigation-drawer-header slot="header" headline="Title" sub-headline="Subtitle">
+  render: args =>
+    html` <div style="min-height: 600px">
+      <zeta-navigation-drawer id="drawer" ?showAnimation=${args.showAnimation} anchor=${args.anchor} .initialOpen=${true}>
+        <zeta-navigation-drawer-header slot="header" headline="Title" subHeadline="Subtitle">
           <zeta-avatar slot="leading"></zeta-avatar>
           <zeta-icon slot="trailing" color="white">settings</zeta-icon>
         </zeta-navigation-drawer-header>
@@ -54,19 +61,21 @@ export const NavigationDrawer: StoryObj<ZetaNavigationDrawer> = {
         <zeta-navigation-drawer-item><zeta-icon slot="leading">star</zeta-icon> Navigation Item</zeta-navigation-drawer-item>
         <zeta-navigation-drawer-footer slot="footer" variant="logo">version 1.0.1</zeta-navigation-drawer-footer>
       </zeta-navigation-drawer>
-    </div>
-  `
+    </div>`
 };
 export const ShowNavigationDrawer: StoryObj<ZetaNavigationDrawer> = {
   render: args =>
-    html`<zeta-button
+    html`<div>
+      <zeta-button
         @click=${() => {
           const drawer = document.querySelector("#drawer") as ZetaNavigationDrawer;
           void drawer.show();
         }}
-        >Open drawer</zeta-button
-      ><zeta-navigation-drawer id="drawer" ?show-animation=${args.showAnimation} anchor=${args.anchor}>
-        <zeta-navigation-drawer-header slot="header" headline="Title" sub-headline="Subtitle">
+      >
+        Open drawer
+      </zeta-button>
+      <zeta-navigation-drawer id="drawer" ?showAnimation=${args.showAnimation} anchor=${args.anchor}>
+        <zeta-navigation-drawer-header slot="header" headline="Title" subHeadline="Subtitle">
           <zeta-avatar slot="leading"></zeta-avatar>
           <zeta-icon slot="trailing" color="white">settings</zeta-icon>
         </zeta-navigation-drawer-header>
@@ -84,5 +93,6 @@ export const ShowNavigationDrawer: StoryObj<ZetaNavigationDrawer> = {
         <zeta-navigation-drawer-item><zeta-icon slot="leading">star</zeta-icon> Navigation Item</zeta-navigation-drawer-item>
         <zeta-navigation-drawer-item><zeta-icon slot="leading">star</zeta-icon> Navigation Item</zeta-navigation-drawer-item>
         <zeta-navigation-drawer-footer slot="footer" variant="logo">version 1.0.1</zeta-navigation-drawer-footer>
-      </zeta-navigation-drawer>`
+      </zeta-navigation-drawer>
+    </div>`
 };

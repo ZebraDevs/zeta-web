@@ -1,5 +1,5 @@
-import { Meta, StoryObj } from "@storybook/web-components";
-import { ZetaAvatar } from "../index.js";
+import type { Meta, StoryObj } from "@storybook/web-components";
+import { ZetaAvatar } from "../components/avatar.js";
 
 const meta: Meta<ZetaAvatar> = {
   title: "Avatar",

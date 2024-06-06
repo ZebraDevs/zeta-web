@@ -13,6 +13,7 @@ import {
 import React from "react";
 import extractArgs from "./extractArgs";
 import { createLitRenderer } from "cem-plugin-better-lit-types/storybook";
+import "@zebra-fed/zeta-icons/index.css";
 
 setCustomElementsManifest(customElements);
 

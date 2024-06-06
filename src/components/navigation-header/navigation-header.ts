@@ -1,6 +1,6 @@
 import { LitElement, html } from "lit";
 import { customElement } from "lit/decorators.js";
-import styles from "./navigation-header.scss?inline";
+import styles from "./navigation-header.styles.js";
 
 export * from "./navigation-item/navigation-item.js";
 export * from "./navigation-profile/navigation-profile.js";

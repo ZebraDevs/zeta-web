@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
-import { ZetaIndicator } from "../../index.js";
+import { ZetaIndicator } from "../../components/badges/indicators/indicators.js";
+import "../../components/badges/indicators/indicators.js";
 import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
 import { html } from "lit";
 

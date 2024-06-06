@@ -1,7 +1,7 @@
 import { LitElement } from "lit";
 import { property } from "lit/decorators.js";
-import { Constructor } from "./_utils.js";
-import styles from "./interactive.scss?inline";
+import { type Constructor } from "./utils.js";
+import styles from "./interactive.styles.js";
 
 declare class SizeInterface {
   size: "small" | "medium" | "large";

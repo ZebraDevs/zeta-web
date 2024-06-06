@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
-import { ZetaProgressCircle } from "../../index.js";
+import { ZetaProgressCircle } from "../../components/progress-indicators/progress-circle/progress-circle.js";
 
 const meta: Meta<ZetaProgressCircle> = {
   component: "zeta-progress-circle",

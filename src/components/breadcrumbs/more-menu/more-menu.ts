@@ -1,8 +1,9 @@
 import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import styles from "./more-menu.scss?inline";
+import styles from "./more-menu.styles.js";
 import { Contourable, Interactive } from "../../../mixins/mixins.js";
-import { ZetaIconName } from "@zebra-fed/zeta-icons";
+import { type ZetaIconName } from "@zebra-fed/zeta-icons";
+import "../../icon/icon.js";
 
 @customElement("zeta-more-menu")
 export class ZetaMoreMenu extends Contourable(Interactive(LitElement)) {

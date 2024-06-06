@@ -1,4 +1,4 @@
-export * from "./_utils.js";
+export * from "./utils.js";
 export * from "./flavor.js";
 export * from "./interactive.js";
 export * from "./popup.js";

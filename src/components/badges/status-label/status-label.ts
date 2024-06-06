@@ -1,9 +1,9 @@
 import { html, LitElement, svg } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import styles from "./status-label.scss?inline";
-import { ZetaIconName } from "@zebra-fed/zeta-icons";
+import styles from "./status-label.styles.js";
+import { type ZetaIconName } from "@zebra-fed/zeta-icons";
 import { Contourable } from "../../../mixins/mixins.js";
-
+import "../../icon/icon.js";
 /**
  * To help some information, labels, or errors stand out, we present them with badges. They can look like buttons, but users can’t select them. They just guide users to things they should pay attention to.
  *

@@ -1,12 +1,14 @@
-import { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
-import { ZetaStepper } from "../index.js";
+import { spreadGenerator } from "./utils.js";
+const spread = spreadGenerator(ZetaStepper);
+import { ZetaStepper } from "../components/stepper/stepper.js";
 
-const meta: Meta<ZetaStepper | { "active-step": number }> = {
+const meta: Meta<ZetaStepper> = {
   component: "zeta-stepper",
   tags: ["autodocs"],
   title: "Stepper",
-  args: { bar: false, rounded: false, "active-step": 0 },
+  args: { bar: false, rounded: false, activeStep: 0 },
   argTypes: {
     variant: {
       table: { disable: true }
@@ -19,7 +21,7 @@ export default meta;
 export const Horizontal: StoryObj = {
   render: args => {
     return html`
-      <zeta-stepper .bar=${args.bar} active-step=${args["active-step"]} variant="horizontal" .rounded=${args.rounded}>
+      <zeta-stepper ${spread(args)} variant="horizontal">
         <li data-title="title 1" data-label="label 1"></li>
         <li data-title="title 2" data-label="label 2"></li>
         <li data-title="title 3" data-label="label 3"></li>
@@ -38,7 +40,7 @@ export const Horizontal: StoryObj = {
 export const Vertical: StoryObj = {
   render: args => {
     return html`
-      <zeta-stepper .bar=${args.bar} active-step=${args["active-step"]} variant="vertical" .rounded=${args.rounded}>
+      <zeta-stepper ${spread(args)} variant="vertical">
         <li data-title="title 1" data-label="label 1"></li>
         <li data-title="title 2" data-label="label 2"></li>
         <li data-title="title 3" data-label="label 3"></li>

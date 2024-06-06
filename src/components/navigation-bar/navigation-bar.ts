@@ -1,6 +1,6 @@
 import { customElement } from "lit/decorators.js";
 import { LitElement, html } from "lit";
-import styles from "./navigation-bar.scss?inline";
+import styles from "./navigation-bar.styles.js";
 
 export * from "./navigation-bar-item/navigation-bar-item.js";
 /**
@@ -22,7 +22,7 @@ export class ZetaNavigationBar extends LitElement {
   }
 
   static styles = [styles, super.styles || []];
-  // static styles = [styles, ContourableElement.styles || []]; //TODO: Add contourable back, check styles.
+  // static styles = [styles ContourableElement.styles || []]; //TODO: Add contourable back, check styles.
 }
 
 declare global {

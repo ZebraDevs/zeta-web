@@ -1,11 +1,11 @@
 import { customElement, property } from "lit/decorators.js";
 import { html, LitElement } from "lit";
 import { live } from "lit/directives/live.js";
-import styles from "./stepper-input.scss?inline";
+import styles from "./stepper-input.styles.js";
 import { ifDefined } from "lit/directives/if-defined.js";
+import { Contourable } from "../../mixins/mixins.js";
 import "../button/icon-button/icon-button.js";
 import "../icon/icon.js";
-import { Contourable } from "../../mixins/mixins.js";
 
 //TODO: Disable buttons when at min or max
 //TODO: disabled prop changes size of box

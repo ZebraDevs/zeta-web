@@ -1,7 +1,7 @@
 import { html, LitElement } from "lit";
 import { Contourable } from "../../mixins/mixins.js";
 import { customElement } from "lit/decorators.js";
-import styles from "./card.scss?inline";
+import styles from "./card.styles.js";
 
 export * from "./card-body/card-body.js";
 export * from "./card-footer/card-footer.js";

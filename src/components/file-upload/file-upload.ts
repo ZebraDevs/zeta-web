@@ -1,11 +1,11 @@
 import { html, LitElement, nothing } from "lit";
 import { customElement, property, query } from "lit/decorators.js";
-import styles from "./file-upload.scss?inline";
+import styles from "./file-upload.styles.js";
 
 import { msg } from "@lit/localize";
-import "../button/button.js";
 import { Contourable } from "../../mixins/mixins.js";
 import { ifDefined } from "lit/directives/if-defined.js";
+import "../button/button.js";
 
 /**
  * A file input that supports drag and drop.

@@ -1,6 +1,6 @@
 import { customElement, property } from "lit/decorators.js";
 import { LitElement, html } from "lit";
-import styles from "./card-header.scss?inline";
+import styles from "./card-header.styles.js";
 
 /**
  * Card headers are used at the top of cards.
@@ -15,7 +15,7 @@ export class ZetaCardHeader extends LitElement {
   @property({ type: String }) headline?: string;
 
   /** The sub headline text. */
-  @property({ type: String, attribute: "sub-headline" }) subHeadline?: string;
+  @property({ type: String }) subHeadline?: string;
 
   protected render() {
     return html`<div class="card-header">

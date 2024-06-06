@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
-import { ZetaSheetHandle } from "../../index.js";
+import { ZetaSheetHandle } from "../../components/bottom-sheets/sheet-handle/sheet-handle.js";
 
 const meta: Meta<ZetaSheetHandle> = {
   component: "zeta-sheet-handle",

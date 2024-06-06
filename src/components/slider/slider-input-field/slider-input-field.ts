@@ -1,19 +1,19 @@
 import { html, LitElement, nothing } from "lit";
 import { customElement, property, query } from "lit/decorators.js";
 import { Contourable } from "../../../mixins/mixins.js";
-import styles from "./slider-input-field.scss?inline";
-import "../slider.js";
-import "../../text-input/text-input.js";
+import styles from "./slider-input-field.styles.js";
 import { live } from "lit/directives/live.js";
 import { ifDefined } from "lit/directives/if-defined.js";
-import { ZetaSliderEvent } from "../slider.js";
+import { type ZetaSliderEventDetail, ZetaSliderEvent } from "../../../events.js";
+import "../../text-input/text-input.js";
+import "../slider.js";
 
 //TODO: min / max dont seem to change values of slider correctly.
 
 /**
  * An input field using a Zeta Slider
  *
- * @event {CustomEvent<ZetaSliderEvent>} change - Fired whenever value of slider is changed. Contains a single entry in detail: `value:number`.
+ * @event {CustomEvent<ZetaSliderEvent>} ZetaSliderEvent:zeta-slider-change - Fired whenever value of slider is changed. Contains a single entry in detail: `value:number`.
  */
 @customElement("zeta-slider-input-field")
 export class ZetaSliderInputField extends Contourable(LitElement) {
@@ -36,7 +36,7 @@ export class ZetaSliderInputField extends Contourable(LitElement) {
   @property({ type: Number }) max: number = 100;
 
   /** If set, will put steps on the slider at the given increments and the slider will snap to the nearest step. */
-  @property({ type: Number, attribute: "step-increment" }) stepIncrement?: number;
+  @property({ type: Number }) stepIncrement?: number;
 
   /**  Disables the input field. */
   @property({ type: Boolean, reflect: true }) disabled?: boolean;
@@ -51,23 +51,22 @@ export class ZetaSliderInputField extends Contourable(LitElement) {
     }
   }
 
-  private sliderChange = (e: CustomEvent<ZetaSliderEvent>) => {
+  /**
+   * @listens ZetaSliderEvent:zeta-slider-change
+   */
+  private sliderChange = (e: CustomEvent<ZetaSliderEventDetail>) => {
     this.value = e.detail.value;
     this.input.value = this.value.toString();
     this.onValueUpdated();
   };
 
+  /**
+   * @fires ZetaSliderEvent:zeta-slider-change
+   */
   private onValueUpdated() {
     if (this.value) {
       this.error = this.value < this.min || this.value > this.max;
-
-      this.dispatchEvent(
-        new CustomEvent<ZetaSliderEvent>("zeta-slider-change", {
-          detail: {
-            value: this.value
-          }
-        })
-      );
+      this.dispatchEvent(new ZetaSliderEvent({ value: this.value }).toEvent());
     }
   }
 
@@ -76,7 +75,7 @@ export class ZetaSliderInputField extends Contourable(LitElement) {
     ${this.getLabel()}
     <div class="slider-input-container" id="test">
       <div class="slider-container">
-        <zeta-slider id="slider" step-increment=${ifDefined(this.stepIncrement)} .rounded=${this.rounded} .disabled=${this.disabled} value=${ifDefined(this.value)} max-value=${
+        <zeta-slider id="slider" stepIncrement=${ifDefined(this.stepIncrement)} .rounded=${this.rounded} .disabled=${this.disabled} value=${ifDefined(this.value)} max-value=${
           this.max
         } min-value=${this.min} @change=${this.sliderChange}></zeta-slider>
         <div class="range-label-container">
@@ -104,6 +103,7 @@ export class ZetaSliderInputField extends Contourable(LitElement) {
     </div> `;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   static styles = [super.styles ?? [], styles];
 }
 

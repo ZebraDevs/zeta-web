@@ -1,7 +1,7 @@
 import { html } from "lit";
 import { customElement } from "lit/decorators.js";
 import { ButtonBase } from "./button-base.js";
-import styles from "./button.scss?inline";
+import styles from "./button.styles.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 export * from "./icon-button/icon-button.js";
 

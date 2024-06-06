@@ -1,9 +1,10 @@
 import { LitElement, html, nothing } from "lit";
-import styles from "./button-group-item.scss?inline";
+import styles from "./button-group-item.styles.js";
 import { customElement, property, query } from "lit/decorators.js";
-import { Contourable, Interactive } from "../../../index.js";
-import { ZetaIconName } from "@zebra-fed/zeta-icons";
+import { Contourable, Interactive } from "../../../mixins/mixins.js";
+import { type ZetaIconName } from "@zebra-fed/zeta-icons";
 import { ifDefined } from "lit/directives/if-defined.js";
+import "../../icon/icon.js";
 
 // TODO(UX-1041): Add inverse
 
@@ -12,7 +13,7 @@ import { ifDefined } from "lit/directives/if-defined.js";
  *
  * @slot - Button label content.
  */
-@customElement("zeta-group-item")
+@customElement("zeta-button-group-item")
 export class ZetaButtonGroupItem extends Contourable(Interactive(LitElement)) {
   static override shadowRootOptions: ShadowRootInit = {
     mode: "open",
@@ -31,6 +32,9 @@ export class ZetaButtonGroupItem extends Contourable(Interactive(LitElement)) {
   /** Size of button. */
   @property({ type: String, reflect: true }) size: "medium" | "large" = "medium";
 
+  /** Whether to show the dropdown icon. */
+  @property({ type: Boolean, reflect: true }) showDropdown?: boolean = false;
+
   @property() override onclick: ((this: GlobalEventHandlers, ev: MouseEvent) => unknown) | null = null;
 
   private addGap = true;
@@ -45,8 +49,6 @@ export class ZetaButtonGroupItem extends Contourable(Interactive(LitElement)) {
 
   protected override render() {
     const leadingIcon = this.iconName ? html`<zeta-icon .rounded=${this.rounded} size="20" class="icon">${this.iconName}</zeta-icon>` : nothing;
-    const dropDownIcon =
-      this.onclick !== undefined && this.onclick !== null ? html`<zeta-icon .rounded=${this.rounded} size="20"> expand_more</zeta-icon>` : nothing;
 
     return html`
       <button ?disabled=${this.disabled} name=${ifDefined(this.name)}>
@@ -60,7 +62,7 @@ export class ZetaButtonGroupItem extends Contourable(Interactive(LitElement)) {
           >
           </slot>
         </label>
-        ${dropDownIcon}
+        ${this.showDropdown ? html`<zeta-icon .rounded=${this.rounded} size="20"> expand_more</zeta-icon>` : nothing}
       </button>
     `;
   }
@@ -70,6 +72,6 @@ export class ZetaButtonGroupItem extends Contourable(Interactive(LitElement)) {
 
 declare global {
   interface HTMLElementTagNameMap {
-    "zeta-group-item": ZetaButtonGroupItem;
+    "zeta-button-group-item": ZetaButtonGroupItem;
   }
 }

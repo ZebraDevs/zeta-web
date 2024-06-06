@@ -1,6 +1,7 @@
-import { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
-import { ZetaList } from "../../index.js";
+import { ZetaList } from "../../components/list/list.js";
+import "../../components/list/list-item/list-item.js";
 
 const meta: Meta<ZetaList> = {
   component: "zeta-list",
@@ -22,8 +23,9 @@ export default meta;
 
 export const List: StoryObj<ZetaList> = {
   render: args =>
-    html`<zeta-list .divide=${args.divide}
-      ><zeta-list-item headline="List Item"></zeta-list-item><zeta-list-item headline="List Item"></zeta-list-item
-      ><zeta-list-item headline="List Item"></zeta-list-item
-    ></zeta-list>`
+    html`<zeta-list .divide=${args.divide}>
+      <zeta-list-item headline="List Item"></zeta-list-item>
+      <zeta-list-item headline="List Item"></zeta-list-item>
+      <zeta-list-item headline="List Item"></zeta-list-item>
+    </zeta-list>`
 };

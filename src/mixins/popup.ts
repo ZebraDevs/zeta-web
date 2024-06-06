@@ -1,6 +1,7 @@
 import { LitElement, css } from "lit";
 import { property, query } from "lit/decorators.js";
-import { Constructor } from "./_utils.js";
+import { type Constructor } from "./utils.js";
+import { ZetaPopupEvent } from "../events.js";
 
 declare class PopupInterface {
   returnValue: string;
@@ -35,7 +36,7 @@ export const Popup = <T extends Constructor<LitElement>>(superClass: T) => {
       dialog.showModal();
 
       /** Fires event when popup is opened. */
-      this.dispatchEvent(new Event("zeta-modal-open"));
+      this.dispatchEvent(new ZetaPopupEvent(true).toEvent());
     }
 
     async hide(returnValue = this.returnValue) {
@@ -45,7 +46,7 @@ export const Popup = <T extends Constructor<LitElement>>(superClass: T) => {
       dialog.close(returnValue);
 
       /** Fires event when popup is closed. */
-      this.dispatchEvent(new Event("zeta-modal-close"));
+      this.dispatchEvent(new ZetaPopupEvent(false).toEvent());
     }
 
     onBarrierClicked(e: Event) {

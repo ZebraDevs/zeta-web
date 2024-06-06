@@ -1,6 +1,6 @@
 import { LitElement, html } from "lit";
 import { customElement } from "lit/decorators.js";
-import styles from "./card-footer.scss?inline";
+import styles from "./card-footer.styles.js";
 
 /**
  * Used at the bottom of a card. Typically contains button elements.

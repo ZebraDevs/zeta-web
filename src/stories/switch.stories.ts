@@ -1,5 +1,5 @@
-import { Meta, StoryObj } from "@storybook/web-components";
-import { ZetaSwitch } from "../index.js";
+import type { Meta, StoryObj } from "@storybook/web-components";
+import { ZetaSwitch } from "../components/switch/switch.js";
 import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
 
 const meta: Meta<ZetaSwitch> = {

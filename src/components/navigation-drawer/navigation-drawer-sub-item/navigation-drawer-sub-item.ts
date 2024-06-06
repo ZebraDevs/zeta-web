@@ -1,7 +1,7 @@
 import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import styles from "./navigation-drawer-sub-item.scss?inline";
-import { Contourable, Interactive } from "../../../index.js";
+import styles from "./navigation-drawer-sub-item.styles.js";
+import { Contourable, Interactive } from "../../../mixins/mixins.js";
 
 /**
  * A navigation sub item to be used in a zeta-navigation-drawer

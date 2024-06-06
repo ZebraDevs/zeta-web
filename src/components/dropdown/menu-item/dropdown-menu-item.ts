@@ -1,8 +1,11 @@
 import { customElement, property } from "lit/decorators.js";
-import styles from "./dropdown-menu-item.scss?inline";
+import styles from "./dropdown-menu-item.styles.js";
 import { html, LitElement } from "lit";
-import { ZetaIconName } from "@zebra-fed/zeta-icons";
-import { Contourable, Interactive } from "../../../index.js";
+import { type ZetaIconName } from "@zebra-fed/zeta-icons";
+import { Contourable, Interactive } from "../../../mixins/mixins.js";
+import "../../icon/icon.js";
+import "../../checkbox/checkbox.js";
+import "../../radio-button/radio-button.js";
 
 /** ZetaDropdownMenuItem web component.
  *

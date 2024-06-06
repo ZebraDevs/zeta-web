@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
-import { ZetaWorkcloudIndicator } from "../../index.js";
+import { ZetaWorkcloudIndicator } from "../../components/badges/workcloud-indicator/workcloud-indicator.js";
 
 const meta: Meta<ZetaWorkcloudIndicator> = {
   title: "Badges",

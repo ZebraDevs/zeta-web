@@ -1,7 +1,7 @@
 import { LitElement } from "lit";
-import { Constructor } from "./_utils.js";
+import { type Constructor } from "./utils.js";
 import { property } from "lit/decorators.js";
-import styles from "./flavor.scss?inline";
+import styles from "./flavor.styles.js";
 
 export declare class FlavoredInterface {
   flavor: "primary" | "secondary" | "positive" | "negative" | "outline" | "outline-subtle" | "text";

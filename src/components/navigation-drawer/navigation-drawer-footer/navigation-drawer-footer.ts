@@ -1,8 +1,8 @@
 import { LitElement, html, nothing } from "lit";
 import { unsafeSVG } from "lit/directives/unsafe-svg.js";
 import { customElement, property, queryAssignedElements } from "lit/decorators.js";
-import styles from "./navigation-drawer-footer.scss?inline";
-import ZebraLogo from "../../../assets/zebra-logo.svg?raw";
+import styles from "./navigation-drawer-footer.styles.js";
+import ZebraLogo from "../../../../assets/zebra-logo.svg";
 
 /**
  * The footer used on a navigation drawer.
@@ -18,7 +18,7 @@ export class ZetaNavigationDrawerFooter extends LitElement {
   @property({ type: String }) headline?: string;
 
   /** The sub headline text. */
-  @property({ type: String, attribute: "sub-headline" }) subHeadline?: string;
+  @property({ type: String }) subHeadline?: string;
 
   /** Shows a divider above the footer. */
   @property({ type: Boolean, reflect: true }) divide: boolean = false;
@@ -30,7 +30,7 @@ export class ZetaNavigationDrawerFooter extends LitElement {
    */
   @property({ type: String, reflect: true }) variant: "profile" | "logo" = "profile";
 
-  @property({ type: Boolean, reflect: true, attribute: "hide-default-logo" }) hideDefaultLogo?: boolean;
+  @property({ type: Boolean, reflect: true }) hideDefaultLogo?: boolean;
   @queryAssignedElements({ slot: "logo", flatten: true }) customLogo!: NodeList;
 
   private getProfileFooter() {
