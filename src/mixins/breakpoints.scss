@@ -1,7 +1,0 @@
-$mobile-max-width: 1024px;
-
-@mixin sm {
-  @media (max-width: #{$mobile-max-width}) {
-    @content;
-  }
-}

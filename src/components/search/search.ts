@@ -4,10 +4,11 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { customElement, property, query } from "lit/decorators.js";
 import { html, LitElement, nothing } from "lit";
-import styles from "./search.scss?inline";
+import styles from "./search.styles.js";
 import { live } from "lit/directives/live.js";
-import { Contourable, Interactive, Size } from "../../index.js";
+import { Contourable, Interactive, Size } from "../../mixins/mixins.js";
 import { msg } from "@lit/localize";
+import "../icon/icon.js";
 
 /**
  * Supports speech recognition search on Chrome.
@@ -35,13 +36,13 @@ export class ZetaSearch extends Size(Contourable(Interactive(LitElement))) {
   @property() value = "";
 
   /** Form action. */
-  @property({ attribute: "form-action" }) formAction: string = "";
+  @property() formAction: string = "";
 
   /** Onsubmit callback. */
-  @property({ type: Object, attribute: "on-submit" }) onSubmit?: (query?: string) => void;
+  @property({ type: Object }) onSubmit?: (query?: string) => void;
 
   /** Show microphone icon. */
-  @property({ type: Boolean, attribute: "has-icon" }) hasIcon = false;
+  @property({ type: Boolean }) hasIcon = false;
 
   private handleInput = (event: Event) => {
     const target = event.currentTarget as HTMLInputElement;

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
-import { ZetaNavigationDrawerSubItem } from "../../index.js";
+import { ZetaNavigationDrawerSubItem } from "../../components/navigation-drawer/navigation-drawer-sub-item/navigation-drawer-sub-item.js";
 
 const meta: Meta<ZetaNavigationDrawerSubItem> = {
   component: "zeta-navigation-drawer-sub-item",

@@ -1,4 +1,4 @@
-<h1 class='sbdocs-title'>Zeta Web</h1>
+<h1 class='sbdocs-title'>@zebra-fed/zeta-web</h1>
 
 Zeta Web is a native web component library created by Zebra Technologies written in TypeScript.  
 The Zeta Design System includes foundations, components, and best practices that can be used when building UX.
@@ -11,48 +11,69 @@ Zeta Web Components can be directly used in many web frameworks.
 
 > ⚛️ **Note**: Using React? Zeta is not ready just yet. Whilst you wait, you can use [zds_react](https://www.npmjs.com/package/@zebra-fed/zds-react).
 
-1. Install zeta-web
+1. Install `@zebra-fed/zeta-web`
 
-```
-git clone git@github.com:zebratechnologies/zeta-web.git
-```
+   ```sh
+   # NPM
+   npm install git+https://github.com/zebratechnologies/zeta-web.git
+   # YARN
+   yarn add git+https://github.com/zebratechnologies/zeta-web.git
+   ```
 
-> 🚧 **Note**: Public npm / yarn links coming soon.
+   <details>
+   <summary>🚧 <b>Note</b>: Public npm / yarn links coming soon.</summary>
 
-<s>
+   ```sh
+   # Future install instructions
+   # NPM
+   npm install @zebra-fed/zeta-web
+   # YARN
+   yarn add @zebra-fed/zeta-web
+   ```
 
-```
-npm install @zebra-fed/zeta-web
-```
+   </details>
 
-or
+2. Import the desired Zeta Web Component into your app:
 
-```
-yarn add @zebra-fed/zeta-web
-```
+   ```js
+   /* Import the component in the JS/TS file where it is used */
+   import "@zebra-fed/zeta-web/dist/components/button/button.js";
 
-</s>
+   /* Import the Global Styles into the main App file */
+   import "@zebra-fed/zeta-web/index.css";
+   ```
 
-1. Import the desired Zeta Web Component into your app:
+   or in HTML,
 
-```
-import "@zebra-fed/zeta-web/src/components/button/button.js";
-```
+   ```html
+   <link
+     rel="stylesheet"
+     href="./node_modules/@zebra-fed/zeta-web/dist/style.css"
+   />
+   <script
+     type="module"
+     src="./node_modules/@zebra-fed/zeta-web/dist/components/button/button.js"
+   ></script>
+   ```
 
-or
+   You can also import the full package:
 
-```
-<script type="module" src="@zebra-fed/zeta-web/src/components/button/button.ts"></script>
-```
+   ```js
+   import "@zebra-fed/zeta-web";
+   ```
 
-You can also import the full package:
+3. If you use any element that uses icons, you will also need to import the index.css from [@zebra-fed/zeta-web](https://www.npmjs.com/package/@zebra-fed/zeta-icons)
+   This is a temporary step for now. This will be automatically imported where needed in the future.
 
-```
-import "@zebra-fed/zeta-web/src/index.js";
-```
+   ```html
+   <link
+     rel="stylesheet"
+     href="./node_modules/@zebra-fed/zeta-icons/dist/style.css"
+   />
+   ```
 
-3. Use the Web Component like any HTML element
+4. Use the Web Component like any HTML element
 
-```
-<zeta-button>Hello world!</zeta-button>
-```
+   ```html
+   <zeta-button>Hello world!</zeta-button>
+   ```

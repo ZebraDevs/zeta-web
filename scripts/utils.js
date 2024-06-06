@@ -54,3 +54,38 @@ export const capitalize = s =>
  * @returns The new string;
  */
 export const insert = (string, newString, index) => string.slice(0, index) + newString + string.slice(index, string.length);
+
+/**
+ * Converts a Windows path's seperators to '/'
+ * @param {string} string the path to convert
+ * @returns The path with all '\' changed to '/'
+ */
+export const convertPathToUnixStyle = (string) => string.replace(/\\/g, '/');
+
+/**
+ * Converts camelCase to PascalCase
+ * @param {string} string camelCase string to convert
+ * @returns PascalCase string representation
+ */
+export const pascalCase = (string) => pascalCaseFromParts(string.split(/(?=[A-Z])/));
+
+/**
+ * Converts kebab-case to PascalCase
+ * @param {string} string kebab-case string to convert
+ * @returns {string} PascalCase representation
+ */
+export const pascalCaseFromKebab = (string) => pascalCaseFromParts(string.split('-'));
+
+/**
+ * Converts a list of strings to a to PascalCase string
+ * @param {string[]} stringArr Array of words that make up the identifier
+ * @returns {string} A PascalCase string combining the inputted strings
+ */
+export const pascalCaseFromParts = (stringArr) => stringArr.reduce((acc, part) => acc + wordToTitleCase(part), "");;
+
+/**
+ * Capitalizes the first letter of a string
+ * @param {string} string 
+ * @returns {string} the inputted string with a Capitalized first letter
+ */
+export const wordToTitleCase = (string) => (string.slice(0,1).toUpperCase() + string.slice(1));

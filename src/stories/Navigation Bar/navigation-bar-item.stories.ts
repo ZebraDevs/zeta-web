@@ -1,8 +1,9 @@
-import { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
-import { ZetaNavigationBarItem } from "../../index.js";
+import { ZetaNavigationBarItem } from "../../components/navigation-bar/navigation-bar-item/navigation-bar-item.js";
 import { ifDefined } from "lit/directives/if-defined.js";
+import "../../components/badges/indicators/indicators.js";
 
 const meta: Meta<ZetaNavigationBarItem> = {
   component: "zeta-navigation-bar-item",

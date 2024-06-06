@@ -1,7 +1,13 @@
-import { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import { styleMap } from "lit/directives/style-map.js";
-import { ZetaCard } from "../../index.js";
+import { ZetaCard } from "../../components/card/card.js";
+import "../../components/card/card-body/card-body.js";
+import "../../components/card/card-footer/card-footer.js";
+import "../../components/card/card-header/card-header.js";
+import "../../components/button/icon-button/icon-button.js";
+import "../../components/button/button.js";
+import "../../components/icon/icon.js";
 
 const meta: Meta<ZetaCard> = {
   component: "zeta-card",
@@ -30,18 +36,20 @@ const placeholderStyle = styleMap({
   padding: "var(--spacing-12)"
 });
 
-const placeholderImg = html`<div style=${placeholderStyle}><zeta-icon size="48" color="var(--color-cool-50)">image</zeta-icon></div>`;
+const placeholderImg = html`<div style=${placeholderStyle}>
+  <zeta-icon size="48" color="var(--color-cool-50)">image</zeta-icon>
+</div>`;
 
-const cardBody = html`<zeta-card-body
-  >Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusm od tempor incididunt ut labore et do lore magna aliqua.</zeta-card-body
->`;
+const cardBody = html`<zeta-card-body>
+  Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusm od tempor incididunt ut labore et do lore magna aliqua.
+</zeta-card-body>`;
 
 export const CardWithHeader: StoryObj<ZetaCard> = {
   render: args =>
     html`<zeta-card .rounded=${args.rounded}>
-      <zeta-card-header headline="Headline" sub-headline="Subhead"
-        ><zeta-icon-button slot="trailing" iconname="more_vertical" flavor="text"></zeta-icon-button
-      ></zeta-card-header>
+      <zeta-card-header headline="Headline" subHeadline="Subhead">
+        <zeta-icon-button slot="trailing" iconname="more_vertical" flavor="text"></zeta-icon-button>
+      </zeta-card-header>
       ${placeholderImg} ${cardBody}
       <zeta-card-footer>
         <zeta-button>Button</zeta-button>
@@ -52,9 +60,9 @@ export const CardWithHeader: StoryObj<ZetaCard> = {
 export const CardWithTwoActions: StoryObj<ZetaCard> = {
   render: args =>
     html`<zeta-card .rounded=${args.rounded}>
-      <zeta-card-header headline="Headline" sub-headline="Subhead"
-        ><zeta-icon-button slot="trailing" iconname="more_vertical" flavor="text"></zeta-icon-button
-      ></zeta-card-header>
+      <zeta-card-header headline="Headline" subHeadline="Subhead">
+        <zeta-icon-button slot="trailing" iconname="more_vertical" flavor="text"></zeta-icon-button>
+      </zeta-card-header>
       ${placeholderImg} ${cardBody}
       <zeta-card-footer>
         <zeta-button flavor="outline">Button</zeta-button>
@@ -66,9 +74,9 @@ export const CardWithTwoActions: StoryObj<ZetaCard> = {
 export const CardWithOneActionLeft: StoryObj<ZetaCard> = {
   render: args =>
     html`<zeta-card .rounded=${args.rounded}>
-      <zeta-card-header headline="Headline" sub-headline="Subhead"
-        ><zeta-icon-button slot="trailing" iconname="more_vertical" flavor="text"></zeta-icon-button
-      ></zeta-card-header>
+      <zeta-card-header headline="Headline" subHeadline="Subhead">
+        <zeta-icon-button slot="trailing" iconname="more_vertical" flavor="text"></zeta-icon-button>
+      </zeta-card-header>
       ${placeholderImg} ${cardBody}
       <zeta-card-footer>
         <zeta-button flavor="text">Button</zeta-button>
@@ -80,7 +88,7 @@ export const CardWithTitle: StoryObj<ZetaCard> = {
   render: args =>
     html`<zeta-card .rounded=${args.rounded}>
       ${placeholderImg}
-      <zeta-card-header headline="Headline" sub-headline="Subhead"></zeta-card-header>
+      <zeta-card-header headline="Headline" subHeadline="Subhead"></zeta-card-header>
       ${cardBody}
       <zeta-card-footer>
         <zeta-button>Button</zeta-button>

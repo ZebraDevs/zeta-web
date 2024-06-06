@@ -1,6 +1,6 @@
-import { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
-import { ZetaDropdownMenuItem } from "../../index.js";
+import { ZetaDropdownMenuItem } from "../../components/dropdown/menu-item/dropdown-menu-item.js";
 
 import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
 import { ifDefined } from "lit/directives/if-defined.js";

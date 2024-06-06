@@ -1,10 +1,11 @@
 import { customElement, property, query } from "lit/decorators.js";
 import { html, LitElement, nothing } from "lit";
-import styles from "./text-input.scss?inline";
-import { ZetaIconName } from "@zebra-fed/zeta-icons";
+import styles from "./text-input.styles.js";
+import { type ZetaIconName } from "@zebra-fed/zeta-icons";
 import { classMap } from "lit/directives/class-map.js";
 import { live } from "lit/directives/live.js";
 import { Contourable, Interactive, Size } from "../../mixins/mixins.js";
+import "../icon/icon.js";
 
 /**
  * Text input component with icon, affix, label and hint text
@@ -33,7 +34,7 @@ export class ZetaTextInput extends Size(Contourable(Interactive(LitElement))) {
   @property({ type: String }) trailingIcon?: ZetaIconName;
 
   /** Prefix text. */
-  @property({ type: String, attribute: "prefix" }) prefix = "";
+  @property({ type: String }) prefix = "";
 
   /** Suffix text. */
   @property({ type: String }) suffix = "";
@@ -44,16 +45,16 @@ export class ZetaTextInput extends Size(Contourable(Interactive(LitElement))) {
   /**
    * Hint text shown below text field.
    *
-   * if `error`, then `error-text` is shown instead.
+   * if `error`, then `errorText` is shown instead.
    */
-  @property({ attribute: "hint-text" }) hintText = "";
+  @property() hintText = "";
 
   /**
    * Error hint text
    *
-   * Shown if `error`, replaces `hint-text`.
+   * Shown if `error`, replaces `hintText`.
    */
-  @property({ attribute: "error-text" }) errorText = "";
+  @property() errorText = "";
 
   /** Whether input is required. */
   @property({ type: Boolean }) required = false;
@@ -84,7 +85,12 @@ export class ZetaTextInput extends Size(Contourable(Interactive(LitElement))) {
         <div class=${containerClass}>
           ${this.renderLeftIcon()} ${this.renderPrefix()} ${this.renderField()} ${this.renderRightIcon()} ${this.renderSuffix()}
         </div>
-        ${this.error ? this.renderErrorText() : this.renderHintText()}
+        ${this.error || this.hintText
+          ? html`<div class="hint-text">
+              <zeta-icon .rounded=${this.rounded} size="16" name=${this.error ? "error" : "info"}></zeta-icon>
+              <span id="hint-text">${this.error ? this.errorText : this.hintText}</span>
+            </div> `
+          : nothing}
       </div>
     `;
   }
@@ -95,28 +101,6 @@ export class ZetaTextInput extends Size(Contourable(Interactive(LitElement))) {
       required: this.required
     });
     return this.label ? html` <label for="text-input" class=${labelClass}>${this.label}</label> ` : nothing;
-  }
-
-  private renderHintText() {
-    return this.hintText
-      ? html`
-          <div class="hint-text">
-            <zeta-icon .rounded=${this.rounded} color=${this.getHintColor()} size="16" name="info"></zeta-icon>
-            <span id="hint-text">${this.hintText}</span>
-          </div>
-        `
-      : nothing;
-  }
-
-  private renderErrorText() {
-    return this.errorText
-      ? html`
-          <div class="hint-text error">
-            <zeta-icon .rounded=${this.rounded} color=${this.getErrorHintColor()} size="16" name="info"></zeta-icon>
-            <span id="hint-text">${this.errorText}</span>
-          </div>
-        `
-      : this.renderHintText();
   }
 
   private renderLeftIcon() {
@@ -174,13 +158,6 @@ export class ZetaTextInput extends Size(Contourable(Interactive(LitElement))) {
 
   private getIconSize() {
     return this.size === "small" ? "16" : "20";
-  }
-
-  private getHintColor() {
-    return this.disabled ? "var(--color-cool-60)" : "var(--color-cool-70)";
-  }
-  private getErrorHintColor() {
-    return this.disabled ? "var(--color-cool-60)" : "var(--color-red-60)";
   }
 
   private getPlaceholder() {

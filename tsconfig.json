@@ -5,6 +5,7 @@
     "allowUnreachableCode": false,
     "declaration": true,
     "declarationMap": true,
+    "emitDeclarationOnly": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
@@ -12,8 +13,8 @@
     "inlineSources": true,
     "jsx": "react",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "module": "node16",
-    "moduleResolution": "node16",
+    "module": "es2022",
+    "moduleResolution": "bundler",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
@@ -21,12 +22,10 @@
     "types": ["vite/client", "jest", "node"],
     "noImplicitAny": true,
     "noImplicitThis": true,
-    "outDir": "./output",
     "plugins": [
       {
         "name": "ts-lit-plugin"
-      },
-      { "name": "typescript-plugin-css-modules" }
+      }
     ],
     "resolveJsonModule": true,
     "rootDir": "./src",
@@ -34,8 +33,9 @@
     "sourceMap": true,
     "strict": true,
     "strictNullChecks": true,
-    "target": "ES2021",
-    "useDefineForClassFields": false
+    "target": "ES2022",
+    "useDefineForClassFields": false,
+    "verbatimModuleSyntax": true,
   },
   "include": ["src/**/*.ts"],
   "exclude": ["**/generated"]

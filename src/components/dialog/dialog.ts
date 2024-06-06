@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import { customElement, property, queryAssignedElements } from "lit/decorators.js";
 import { LitElement, html, nothing } from "lit";
-import styles from "./dialog.scss?inline";
+import styles from "./dialog.styles.js";
 import { classMap } from "lit/directives/class-map.js";
 import { ZetaButton } from "../button/button.js";
-import { Contourable, Popup } from "../../index.js";
+import { Contourable, Popup } from "../../mixins/mixins.js";
+import "../icon/icon.js";
 
 /**
  * Dialog needs description.
@@ -36,7 +37,7 @@ export class ZetaDialog extends Contourable(Popup(LitElement)) {
   @property() title = "";
 
   /** Icon displayed in the dialog header. */
-  @property({ attribute: "has-icon", type: Boolean }) hasIcon: boolean = false;
+  @property({ type: Boolean }) hasIcon: boolean = false;
 
   /** Centered header. */
   @property({ type: Boolean }) centered: boolean = false;

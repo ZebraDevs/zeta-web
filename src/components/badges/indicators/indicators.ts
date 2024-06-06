@@ -1,8 +1,9 @@
 import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import styles from "./indicators.scss?inline";
-import { ZetaIconName } from "@zebra-fed/zeta-icons";
+import styles from "./indicators.styles.js";
+import { type ZetaIconName } from "@zebra-fed/zeta-icons";
 import { Contourable, Size } from "../../../mixins/mixins.js";
+import "../../icon/icon.js";
 
 /** Indicators are used to show the status of a user or any messages/notifications they might have.
  *

@@ -1,6 +1,6 @@
 import { LitElement, html } from "lit";
 import { customElement } from "lit/decorators.js";
-import styles from "./card-body.scss?inline";
+import styles from "./card-body.styles.js";
 
 /**
  * Used to display the text in a card body.

@@ -1,6 +1,6 @@
 import { LitElement, css } from "lit";
 import { property } from "lit/decorators.js";
-import { Constructor } from "./_utils.js";
+import { type Constructor } from "./utils.js";
 
 declare class ContourableInterface {
   rounded: boolean;

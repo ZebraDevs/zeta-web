@@ -1,9 +1,9 @@
 import { html, LitElement } from "lit";
 import { customElement, property, queryAssignedElements } from "lit/decorators.js";
-import styles from "./in-page-banner.scss?inline";
+import styles from "./in-page-banner.styles.js";
 import { ZetaButton } from "../button/button.js";
-import "../../index.js";
 import { Contourable } from "../../mixins/mixins.js";
+import "../icon/icon.js";
 
 /** Zeta in page banner component.
  *

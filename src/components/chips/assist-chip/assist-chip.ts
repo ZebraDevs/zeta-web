@@ -1,7 +1,8 @@
 import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import styles from "./assist-chip.scss?inline";
+import styles from "./assist-chip.styles.js";
 import { Contourable } from "../../../mixins/mixins.js";
+import "../../icon/icon.js";
 
 export class BaseChip extends Contourable(LitElement) {
   static override styles = [super.styles || []];

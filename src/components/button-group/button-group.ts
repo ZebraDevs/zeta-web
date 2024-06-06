@@ -1,7 +1,7 @@
 import { LitElement, html } from "lit";
-import styles from "./button-group.scss?inline";
+import styles from "./button-group.styles.js";
 import { customElement, property } from "lit/decorators.js";
-import { Contourable } from "../../index.js";
+import { Contourable } from "../../mixins/mixins.js";
 
 export * from "./button-group-item/button-group-item.js";
 

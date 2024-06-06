@@ -1,24 +1,18 @@
-import { Meta, StoryObj } from "@storybook/web-components";
-import { ZetaSlider } from "../../index.js";
+import type { Meta, StoryObj } from "@storybook/web-components";
+import { ZetaSlider } from "../../components/slider/slider.js";
 import { html } from "lit";
-import { spread } from "@open-wc/lit-helpers";
+import { spreadGenerator } from "../utils.js";
+const spread = spreadGenerator(ZetaSlider);
 
 // TODO: Although this component is the same code, the design is on a different page. Should this be moved?
-const meta: Meta<
-  | ZetaSlider
-  | {
-      "lower-value": number;
-      "upper-value": number;
-      "step-increment": number;
-    }
-> = {
+const meta: Meta<ZetaSlider> = {
   component: "zeta-slider",
   title: "Slider",
   args: {
     rounded: true,
     disabled: false,
-    "lower-value": 10,
-    "upper-value": 90,
+    lowerValue: 10,
+    upperValue: 90,
     min: 0,
     max: 100,
     type: "range"
@@ -26,9 +20,9 @@ const meta: Meta<
   argTypes: {
     type: { table: { disable: true } },
     value: { table: { disable: true } },
-    "lower-value": { control: { type: "number", min: 0, max: 100 } },
-    "upper-value": { control: { type: "number", min: 0, max: 100 } },
-    "step-increment": { control: { type: "number", min: 0, max: 50 } },
+    lowerValue: { control: { type: "number", min: 0, max: 100 } },
+    upperValue: { control: { type: "number", min: 0, max: 100 } },
+    stepIncrement: { control: { type: "number", min: 0, max: 50 } },
     min: { control: { type: "number", min: 0, max: 100 } },
     max: { control: { type: "number", min: 0, max: 100 } }
   },
@@ -46,12 +40,12 @@ export default meta;
 
 export const RangeSlider: StoryObj = {
   argTypes: {
-    "step-increment": { table: { disable: true } }
+    stepIncrement: { table: { disable: true } }
   },
-  render: args => html`<zeta-slider ${spread(args)} .disabled=${args.disabled} .rounded=${args.rounded}> </zeta-slider>`
+  render: args => html`<zeta-slider ${spread(args)}> </zeta-slider>`
 };
 
 export const SteppedRangeSlider: StoryObj = {
-  args: { "step-increment": 10 },
-  render: args => html`<zeta-slider ${spread(args)} .disabled=${args.disabled} .rounded=${args.rounded}> </zeta-slider>`
+  args: { stepIncrement: 10 },
+  render: args => html`<zeta-slider ${spread(args)}> </zeta-slider>`
 };

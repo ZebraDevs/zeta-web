@@ -1,7 +1,7 @@
 import { html, LitElement } from "lit";
 import { customElement } from "lit/decorators.js";
-import styles from "./navigation-profile.scss?inline";
-import { Contourable } from "../../../index.js";
+import styles from "./navigation-profile.styles.js";
+import { Contourable } from "../../../mixins/mixins.js";
 
 /**
  * @slot - The headline text.

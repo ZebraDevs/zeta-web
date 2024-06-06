@@ -1,7 +1,8 @@
 import { customElement, property } from "lit/decorators.js";
-import { Contourable, Interactive } from "../../index.js";
+import { Contourable, Interactive } from "../../mixins/mixins.js";
 import { html, LitElement } from "lit";
-import styles from "./checkbox.scss?inline";
+import styles from "./checkbox.styles.js";
+import "../icon/icon.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 
 /**

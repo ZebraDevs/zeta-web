@@ -1,13 +1,17 @@
-import { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
-import { ZetaCardHeader } from "../../index.js";
+import { ZetaCardHeader } from "../../components/card/card-header/card-header.js";
+import { spreadGenerator } from "../utils.js";
+const spread = spreadGenerator(ZetaCardHeader);
+import "../../components/avatar.js";
+import "../../components/button/icon-button/icon-button.js";
 
-const meta: Meta<ZetaCardHeader | { "sub-headline": string }> = {
+const meta: Meta<ZetaCardHeader> = {
   component: "zeta-card-header",
   title: "Cards",
   args: {
     headline: "Headline",
-    "sub-headline": "Subhead"
+    subHeadline: "Subhead"
   },
   parameters: {
     design: {
@@ -22,26 +26,24 @@ const meta: Meta<ZetaCardHeader | { "sub-headline": string }> = {
 export default meta;
 
 export const Header: StoryObj = {
-  render: args => html` <zeta-card-header headline=${args.headline} sub-headline=${args["sub-headline"]}></zeta-card-header> `
+  render: args => html` <zeta-card-header ${spread(args)}></zeta-card-header> `
 };
 
 export const HeaderWithLeadingContent: StoryObj = {
-  render: args => html`
-    <zeta-card-header headline=${args.headline} sub-headline=${args["sub-headline"]}><zeta-avatar slot="leading"></zeta-avatar></zeta-card-header>
-  `
+  render: args => html` <zeta-card-header ${spread(args)}><zeta-avatar slot="leading"></zeta-avatar></zeta-card-header> `
 };
 
 export const HeaderWithTrailingContent: StoryObj = {
   render: args => html`
-    <zeta-card-header headline=${args.headline} sub-headline=${args["sub-headline"]}
-      ><zeta-icon-button slot="trailing" iconname="more_vertical" flavor="text"></zeta-icon-button>
+    <zeta-card-header ${spread(args)}>
+      <zeta-icon-button slot="trailing" iconname="more_vertical" flavor="text"></zeta-icon-button>
     </zeta-card-header>
   `
 };
 
 export const HeaderWithLeadingAndTrailingContent: StoryObj = {
   render: args => html`
-    <zeta-card-header headline=${args.headline} sub-headline=${args["sub-headline"]}>
+    <zeta-card-header ${spread(args)}>
       <zeta-avatar slot="leading"></zeta-avatar>
       <zeta-icon-button slot="trailing" iconname="more_vertical" flavor="text"></zeta-icon-button>
     </zeta-card-header>

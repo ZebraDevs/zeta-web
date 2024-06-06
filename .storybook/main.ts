@@ -1,6 +1,5 @@
 import type { StorybookConfig } from "@storybook/web-components-vite";
 import { mergeConfig } from "vite";
-import viteConfig from "../vite.config";
 
 const config: StorybookConfig = {
   stories: [
@@ -12,7 +11,7 @@ const config: StorybookConfig = {
     "@storybook/addon-essentials",
     "@storybook/addon-a11y",
     "@storybook/addon-designs",
-    "@etchteam/storybook-addon-status",
+    "@etchteam/storybook-addon-status"
   ],
   framework: {
     name: "@storybook/web-components-vite",
@@ -22,10 +21,9 @@ const config: StorybookConfig = {
     autodocs: "tag",
   },
   core: {
-    builder: "@storybook/builder-vite",
     disableTelemetry: true,
   },
 
-  staticDirs: ["../src/assets/", "../.release-please/"],
+  staticDirs: ["../assets/", "../.release-please/"],
 };
-export default mergeConfig(viteConfig, config);
+export default config;

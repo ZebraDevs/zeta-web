@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
-import { ZetaNavigationHeader } from "../../index.js";
+import { ZetaNavigationHeader } from "../../components/navigation-header/navigation-header.js";
+import "../../components/navigation-header/navigation-item/navigation-item.js";
 
 //TODO: Component seems to be removed from figma.
 const meta: Meta<ZetaNavigationHeader> = {

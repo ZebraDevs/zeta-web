@@ -1,20 +1,23 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import { styleMap } from "lit/directives/style-map.js";
-import { ZetaNavigationDrawerFooter } from "../../index.js";
-import { spread } from "@open-wc/lit-helpers";
+import { ZetaNavigationDrawerFooter } from "../../components/navigation-drawer/navigation-drawer-footer/navigation-drawer-footer.js";
+import { spreadGenerator } from "../utils.js";
+const spread = spreadGenerator(ZetaNavigationDrawerFooter);
+import "../../components/avatar.js";
+import "../../components/icon/icon.js";
 
-const meta: Meta<ZetaNavigationDrawerFooter | { "sub-headline": string; "hide-default-logo": boolean }> = {
+const meta: Meta<ZetaNavigationDrawerFooter> = {
   title: "Navigation Drawer",
   component: "zeta-navigation-drawer-footer",
   args: {
     headline: "Title",
-    "sub-headline": "subtitle",
+    subHeadline: "subtitle",
     divide: false
   },
   argTypes: {
     variant: { table: { disable: true } },
-    "hide-default-logo": { table: { disable: true } }
+    hideDefaultLogo: { table: { disable: true } }
   }
 };
 export default meta;
@@ -28,7 +31,7 @@ export const Footer: StoryObj = {
       type: "needsAttention"
     }
   },
-  render: args => html` <zeta-navigation-drawer-footer ${spread(args)} .divide=${args.divide}> </zeta-navigation-drawer-footer> `
+  render: args => html` <zeta-navigation-drawer-footer ${spread(args)}> </zeta-navigation-drawer-footer> `
 };
 
 export const FooterAvatarAndIcon: StoryObj = {
@@ -42,8 +45,9 @@ export const FooterAvatarAndIcon: StoryObj = {
   },
 
   render: args =>
-    html`<zeta-navigation-drawer-footer ${spread(args)} .divide=${args.divide}>
-      <zeta-avatar slot="leading"></zeta-avatar><zeta-icon slot="trailing" color="white">settings</zeta-icon>
+    html`<zeta-navigation-drawer-footer ${spread(args)}>
+      <zeta-avatar slot="leading"></zeta-avatar>
+      <zeta-icon slot="trailing" color="white">settings</zeta-icon>
     </zeta-navigation-drawer-footer>`
 };
 
@@ -52,7 +56,7 @@ export const FooterDefaultLogo: StoryObj = {
     variant: "logo"
   },
   argTypes: {
-    "sub-headline": { table: { disable: true } }
+    subHeadline: { table: { disable: true } }
   },
   parameters: {
     design: {
@@ -62,7 +66,7 @@ export const FooterDefaultLogo: StoryObj = {
       type: "needsAttention"
     }
   },
-  render: args => html`<zeta-navigation-drawer-footer ${spread(args)} .divide=${args.divide}></zeta-navigation-drawer-footer>`
+  render: args => html`<zeta-navigation-drawer-footer ${spread(args)}></zeta-navigation-drawer-footer>`
 };
 
 export const FooterCustomLogo: StoryObj = {
@@ -70,7 +74,7 @@ export const FooterCustomLogo: StoryObj = {
     variant: "logo"
   },
   argTypes: {
-    "sub-headline": { table: { disable: true } }
+    subHeadline: { table: { disable: true } }
   },
   parameters: {
     design: {
@@ -80,7 +84,7 @@ export const FooterCustomLogo: StoryObj = {
       type: "needsAttention"
     }
   },
-  render: args => html`<zeta-navigation-drawer-footer ${spread(args)} .divide=${args.divide}>
+  render: args => html`<zeta-navigation-drawer-footer ${spread(args)}>
     <img style=${styleMap({
       width: "200px",
       height: "var(--spacing-20)",

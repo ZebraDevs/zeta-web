@@ -1,6 +1,6 @@
 @import url("./generated/tokens/primitives.css");
 @import url("./generated/tokens/semantics.css");
-@import url("@zebra-fed/zeta-icons/index.css");
+/*@import url("@zebra-fed/zeta-icons/index.css");*/
 /* All tokens defined here are used in code but not from figma */
 
 :root,
@@ -68,37 +68,37 @@
   --h4: var(--title-large);
   --h5: var(--title-medium);
   --h6: var(--title-small);
+}
 
-  h1 {
-    font: var(--h1);
-  }
+h1 {
+  font: var(--h1);
+}
 
-  h2 {
-    font: var(--h2);
-  }
+h2 {
+  font: var(--h2);
+}
 
-  h3 {
-    font: var(--h3);
-  }
+h3 {
+  font: var(--h3);
+}
 
-  h4 {
-    font: var(--h4);
-  }
+h4 {
+  font: var(--h4);
+}
 
-  h5 {
-    font: var(--h5);
-  }
+h5 {
+  font: var(--h5);
+}
 
-  h6 {
-    font: var(--h6);
-  }
+h6 {
+  font: var(--h6);
+}
 
-  p {
-    font: var(--body-small);
-  }
-  small {
-    font: var(--body-x-small);
-  }
+p {
+  font: var(--body-small);
+}
+small {
+  font: var(--body-x-small);
 }
 
 @media (prefers-color-scheme: dark) {

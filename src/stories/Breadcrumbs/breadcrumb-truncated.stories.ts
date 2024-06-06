@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
-import { ZetaBreadcrumbTruncated } from "../../index.js";
+import { ZetaBreadcrumbTruncated } from "../../components/breadcrumbs/breadcrumb-truncated/breadcrumb-truncated.js";
 
 const meta: Meta<ZetaBreadcrumbTruncated> = {
   component: "zeta-breadcrumb-truncated",

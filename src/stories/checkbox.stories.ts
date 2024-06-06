@@ -1,5 +1,5 @@
-import { Meta, StoryObj } from "@storybook/web-components";
-import { ZetaCheckbox } from "../index.js";
+import type { Meta, StoryObj } from "@storybook/web-components";
+import { ZetaCheckbox } from "../components/checkbox/checkbox.js";
 
 const meta: Meta<ZetaCheckbox> = {
   component: "zeta-checkbox",

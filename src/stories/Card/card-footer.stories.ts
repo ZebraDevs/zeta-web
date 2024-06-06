@@ -1,6 +1,7 @@
-import { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
-import { ZetaCardFooter } from "../../index.js";
+import { ZetaCardFooter } from "../../components/card/card-footer/card-footer.js";
+import "../../components/button/button.js";
 
 const meta: Meta<ZetaCardFooter> = {
   title: "Cards",

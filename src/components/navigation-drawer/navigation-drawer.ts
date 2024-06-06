@@ -1,6 +1,6 @@
 import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import styles from "./navigation-drawer.scss?inline";
+import styles from "./navigation-drawer.styles.js";
 import { Popup } from "../../mixins/mixins.js";
 
 export * from "./navigation-drawer-footer/navigation-drawer-footer.js";
@@ -25,7 +25,7 @@ export class ZetaNavigationDrawer extends Popup(LitElement) {
   @property({ type: String, reflect: true }) anchor: "left" | "right" = "left";
 
   /** Toggles the animation for the navigation drawer. */
-  @property({ type: Boolean, reflect: true, attribute: "show-animation" }) showAnimation: boolean = true;
+  @property({ type: Boolean, reflect: true }) showAnimation: boolean = true;
 
   /**  Whether the modal is initially open. */
   @property({ type: Boolean }) initialOpen: boolean = false;

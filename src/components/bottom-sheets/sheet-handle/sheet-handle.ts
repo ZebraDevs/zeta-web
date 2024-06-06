@@ -1,6 +1,6 @@
 import { html, LitElement } from "lit";
 import { customElement } from "lit/decorators.js";
-import styles from "./sheet-handle.scss?inline";
+import styles from "./sheet-handle.styles.js";
 
 /** A handle for a zeta-bottom-sheet
  *
@@ -12,7 +12,7 @@ export class ZetaSheetHandle extends LitElement {
   static styles = [super.styles ?? [], styles];
 
   protected override render() {
-    return html`<div class="container" />`;
+    return html`<div class="container"></div>`;
   }
 }
 declare global {

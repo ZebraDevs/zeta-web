@@ -1,7 +1,9 @@
 import { html, LitElement } from "lit";
 import { customElement } from "lit/decorators.js";
-import styles from "./breadcrumb-truncated.scss?inline";
+import styles from "./breadcrumb-truncated.styles.js";
 import { Contourable } from "../../../mixins/mixins.js";
+import "../../icon/icon.js";
+import "../more-menu/more-menu.js";
 
 /**
  * The breadcrumb is a secondary navigation patten that helps a user understand the hierarchy among levels and navigate back through them.

@@ -1,6 +1,6 @@
 import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import styles from "./label.scss?inline";
+import styles from "./label.styles.js";
 import { Contourable } from "../../../mixins/mixins.js";
 
 /**

@@ -1,5 +1,5 @@
-import { Meta, StoryObj } from "@storybook/web-components";
-import { ZetaRadioButton } from "../index.js";
+import type { Meta, StoryObj } from "@storybook/web-components";
+import { ZetaRadioButton } from "../components/radio-button/radio-button.js";
 
 const meta: Meta<ZetaRadioButton> = {
   component: "zeta-radio-button",

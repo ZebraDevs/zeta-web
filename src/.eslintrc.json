@@ -10,7 +10,10 @@
     "eslint:recommended",
     "plugin:storybook/recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    // "plugin:lit-a11y/recommended",
+    "plugin:wc/recommended",
+    "plugin:lit/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -21,7 +24,7 @@
     "sourceType": "module",
     "project": ["./tsconfig.json"]
   },
-  "plugins": ["@typescript-eslint", "wc", "eslint-plugin-tsdoc"],
+  "plugins": ["@typescript-eslint", "wc", "eslint-plugin-tsdoc", "lit-a11y"],
   "rules": {
     "wc/attach-shadow-constructor": "error",
     "wc/guard-super-call": "error",
