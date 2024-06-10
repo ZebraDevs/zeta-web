@@ -11,7 +11,7 @@ const config: StorybookConfig = {
     "@storybook/addon-essentials",
     "@storybook/addon-a11y",
     "@storybook/addon-designs",
-    "@etchteam/storybook-addon-status"
+    "@etchteam/storybook-addon-status",
   ],
   framework: {
     name: "@storybook/web-components-vite",
@@ -24,6 +24,6 @@ const config: StorybookConfig = {
     disableTelemetry: true,
   },
 
-  staticDirs: ["../assets/", "../.release-please/"],
+  staticDirs: ["../assets/"],
 };
 export default config;

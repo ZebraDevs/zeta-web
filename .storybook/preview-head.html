@@ -92,9 +92,7 @@
 
     code,
     .docblock-source {
-      background: #151519;
       width: calc(100% - 4rem);
-      color: #fafafa;
       padding: 1rem;
       margin: 1rem;
       border-radius: var(--radius-rounded);
@@ -185,25 +183,14 @@
       --dialog-height: 400px;
     }
   }
+  .sbdocs.sbdocs-content:last-child:after {
+    /* x-release-please-start-version */
+    content: 'zeta-web v0.1.0';
+    /* x-release-please-end */
+  }
 </style>
 <link rel="stylesheet" href="../src/index.css" />
 <link rel="stylesheet" href="../node_modules/@zebra-fed/zeta-icons/index.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link
-  href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500&display=swap"
-  rel="stylesheet"
-/>
-<script>
-  fetch(".release-please-manifest.json")
-    .then((res) => res.text())
-    .then((text) => {
-      document.styleSheets[0].insertRule(
-        ".sbdocs.sbdocs-content:last-child:after{content: 'Version " +
-          JSON.parse(text)["."] +
-          "';}",
-        0
-      );
-    })
-    .catch((e) => console.error(e));
-</script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet" />

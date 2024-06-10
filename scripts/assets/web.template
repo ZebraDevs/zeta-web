@@ -1,7 +1,7 @@
 import { html } from "lit";
 import { customElement } from "lit/decorators.js";
 import { ContourableElement } from "../../mixins/contour.js";
-import styles from "./_replacelower_.css?inline";
+import styles from "./_replacelower_.styles.js";
 
 /** Zeta_replacecap_ web component.
  *

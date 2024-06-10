@@ -5,6 +5,12 @@ The Zeta Design System includes foundations, components, and best practices that
 
 > 🚧 **Note**: This package is in pre-release, and so many aspects are incomplete.
 
+## Previewing the components
+
+To view examples of all the components in the library, you can pull this repo and run the Storybook instance.
+
+You can also view the latest release at [Zeta](https://zeta-ds.web.app/) or the latest commits to main [here](https://zeta-web-main.web.app/).
+
 ## How to Use
 
 Zeta Web Components can be directly used in many web frameworks.
