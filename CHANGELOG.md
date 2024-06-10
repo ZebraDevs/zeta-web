@@ -1,5 +1,70 @@
 # Changelog
 
+## [0.2.0](https://github.com/zebratechnologies/zeta-web/compare/zeta-web-v0.1.0...zeta-web-v0.2.0) (2024-06-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* renamed the package to "@zebra-fed/zeta-web"
+
+### ✨ New Features
+
+* add primitives / semantics css ([#93](https://github.com/zebratechnologies/zeta-web/issues/93)) ([319b078](https://github.com/zebratechnologies/zeta-web/commit/319b078e8fa8e414f18940957e201df1aa89b978))
+* **build:** Components can now be imported individually ([bf3c39e](https://github.com/zebratechnologies/zeta-web/commit/bf3c39ec40cc9d3e1bc63c742e0ff38a7396e1b4))
+* **build:** Exports/built files now can be used individually ([bf3c39e](https://github.com/zebratechnologies/zeta-web/commit/bf3c39ec40cc9d3e1bc63c742e0ff38a7396e1b4))
+* Button Group ([#100](https://github.com/zebratechnologies/zeta-web/issues/100)) ([133dbd0](https://github.com/zebratechnologies/zeta-web/commit/133dbd00c940b618617dfea02aadf53d56a6d040))
+* moved styles to css-in-js ([bf3c39e](https://github.com/zebratechnologies/zeta-web/commit/bf3c39ec40cc9d3e1bc63c742e0ff38a7396e1b4))
+* zeta-react auto generation ([#114](https://github.com/zebratechnologies/zeta-web/issues/114)) ([240a4c8](https://github.com/zebratechnologies/zeta-web/commit/240a4c8e28fd86f677718ff3962655e3ad24da4d))
+* zeta-react auto generation ([#114](https://github.com/zebratechnologies/zeta-web/issues/114)) ([685be62](https://github.com/zebratechnologies/zeta-web/commit/685be623674ac8535266996d7ec2b303a2cdaa14))
+
+
+### 🪲 Bug Fixes
+
+* added `showDropdown` to button-group-item ([bf3c39e](https://github.com/zebratechnologies/zeta-web/commit/bf3c39ec40cc9d3e1bc63c742e0ff38a7396e1b4))
+* update font values ([#106](https://github.com/zebratechnologies/zeta-web/issues/106)) ([506f70d](https://github.com/zebratechnologies/zeta-web/commit/506f70d0c28160b165221810eb67dffdd27a0a69))
+
+
+### 📈 Documentation
+
+* add documentation for events ([#107](https://github.com/zebratechnologies/zeta-web/issues/107)) ([62b1b2a](https://github.com/zebratechnologies/zeta-web/commit/62b1b2a31bf1192354b68634b7db0ba102900410))
+* add extractArgs script adapted from cem-plugin-better-lit-types ([#98](https://github.com/zebratechnologies/zeta-web/issues/98)) ([7594fcb](https://github.com/zebratechnologies/zeta-web/commit/7594fcb5b3342ba862661e7ee4d2a9872f91b7f8))
+* Add figma links / statuses to stories ([#95](https://github.com/zebratechnologies/zeta-web/issues/95)) ([f62b401](https://github.com/zebratechnologies/zeta-web/commit/f62b401fc723a5f76e0ede27b23c6fc672457002))
+* add version to storybook page footer ([12c265e](https://github.com/zebratechnologies/zeta-web/commit/12c265ec349cd4afc3b966cd29769cf2033e186b))
+* added "spreadGenerator" to fix bool attrs in storybook ([bf3c39e](https://github.com/zebratechnologies/zeta-web/commit/bf3c39ec40cc9d3e1bc63c742e0ff38a7396e1b4))
+* move types to individual components / mixins to improve documentation ([#99](https://github.com/zebratechnologies/zeta-web/issues/99)) ([99d4483](https://github.com/zebratechnologies/zeta-web/commit/99d4483736d1753c01b4d7953ef77caa8af841a9))
+* publish main storybook ([12c265e](https://github.com/zebratechnologies/zeta-web/commit/12c265ec349cd4afc3b966cd29769cf2033e186b))
+* style storybook ([#109](https://github.com/zebratechnologies/zeta-web/issues/109)) ([227b206](https://github.com/zebratechnologies/zeta-web/commit/227b206254c7161867f707b5461cf8174562264e))
+* update storybook args ([#112](https://github.com/zebratechnologies/zeta-web/issues/112)) ([03f023d](https://github.com/zebratechnologies/zeta-web/commit/03f023da8965d2be1973dbbc489845385f2b9dc0))
+* Updated storybook logo svgs ([bf3c39e](https://github.com/zebratechnologies/zeta-web/commit/bf3c39ec40cc9d3e1bc63c742e0ff38a7396e1b4))
+
+
+### ⛓️ Dependencies
+
+* Update zeta-icons library ([#102](https://github.com/zebratechnologies/zeta-web/issues/102)) ([bfe1857](https://github.com/zebratechnologies/zeta-web/commit/bfe1857434fb486404993818e9064cbf462a9b0a))
+* Update zeta-icons library ([#105](https://github.com/zebratechnologies/zeta-web/issues/105)) ([ba246a5](https://github.com/zebratechnologies/zeta-web/commit/ba246a516dbd60e5a14429c19eae3581803617d2))
+* Update zeta-icons library ([#113](https://github.com/zebratechnologies/zeta-web/issues/113)) ([e22958f](https://github.com/zebratechnologies/zeta-web/commit/e22958f543ff2ba02b8a31583c133ec8c9612255))
+* Update zeta-icons library ([#116](https://github.com/zebratechnologies/zeta-web/issues/116)) ([ca75da6](https://github.com/zebratechnologies/zeta-web/commit/ca75da6c69a84c92807517bee52d7bf779faa786))
+
+
+### 🧪 Tests
+
+* added /test to manually test importing in html ([bf3c39e](https://github.com/zebratechnologies/zeta-web/commit/bf3c39ec40cc9d3e1bc63c742e0ff38a7396e1b4))
+
+
+### 🧹 Miscellaneous Chores
+
+* **ci:** improved react-story generation ([bf3c39e](https://github.com/zebratechnologies/zeta-web/commit/bf3c39ec40cc9d3e1bc63c742e0ff38a7396e1b4))
+* **ci:** Update release-please.yml to run manually ([9f0c8dd](https://github.com/zebratechnologies/zeta-web/commit/9f0c8dd5f55a31c0e7a44cdc557f57d6dc7dbeff))
+* fix storybook logo to use paths not font ([#92](https://github.com/zebratechnologies/zeta-web/issues/92)) ([b4838e9](https://github.com/zebratechnologies/zeta-web/commit/b4838e99003d0f3fe7e7eccf40de5088b8c8bdde))
+* release 0.2.0 ([98f9d0a](https://github.com/zebratechnologies/zeta-web/commit/98f9d0ab137f3f60550c6c3ef09bfdf88cfd0afd))
+* removed all unsafeCSS calls ([bf3c39e](https://github.com/zebratechnologies/zeta-web/commit/bf3c39ec40cc9d3e1bc63c742e0ff38a7396e1b4))
+* Removed SCSS (changed to CSS) ([bf3c39e](https://github.com/zebratechnologies/zeta-web/commit/bf3c39ec40cc9d3e1bc63c742e0ff38a7396e1b4))
+
+
+### Continuous Integration
+
+* renamed the package to "@zebra-fed/zeta-web" ([bf3c39e](https://github.com/zebratechnologies/zeta-web/commit/bf3c39ec40cc9d3e1bc63c742e0ff38a7396e1b4))
+
 ## [0.1.0](https://github.com/zebratechnologies/zeta-web/compare/zeta-web-v0.0.1+1...zeta-web-v0.1.0) (2024-03-18)
 
 
