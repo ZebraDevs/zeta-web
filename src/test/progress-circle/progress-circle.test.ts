@@ -1,6 +1,7 @@
-import { assert, expect, fixture, html } from "@open-wc/testing";
+import { assert, expect, fixture, html, oneEvent } from "@open-wc/testing";
 import { ZetaProgressCircle } from "../../index.js";
 import "../../index.js";
+import { ZetaCancelUploadEvent } from "../../events.js";
 
 describe("ZetaProgressCircle", () => {
   it("creates from document.createElement", function () {
@@ -34,18 +35,23 @@ describe("ZetaProgressCircle", () => {
 
   it("should render uploading components", async () => {
     const el = await fixture<ZetaProgressCircle>(html`<zeta-progress-circle></zeta-progress-circle>`);
-    el.uploading = true;
+    el.type = "upload";
     await el.updateComplete;
     expect(el.shadowRoot?.querySelector(".uploading")).to.exist;
   });
 
-  it("should cancel upload on button click", async () => {
+  it("should fire a ZetaCancelUploadEvent on button click", async () => {
     const el = await fixture<ZetaProgressCircle>(html`<zeta-progress-circle></zeta-progress-circle>`);
-    el.uploading = true;
+    const eventListener = oneEvent(el, "zeta-cancel-upload");
+
+    el.type = "upload";
     await el.updateComplete;
+
     const btn = el.shadowRoot?.querySelector(".cancel") as HTMLElement;
     btn.click();
     await el.updateComplete;
-    assert.equal(el.uploading, false);
+
+    const event = await eventListener;
+    assert(event.type, new ZetaCancelUploadEvent().name);
   });
 });

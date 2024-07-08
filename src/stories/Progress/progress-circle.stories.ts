@@ -8,14 +8,19 @@ const meta: Meta<ZetaProgressCircle> = {
     progress: 75,
     size: 64,
     rounded: false,
-    loading: false,
-    uploading: true
+    type: "default"
   },
   argTypes: {
     size: {
       options: [24, 36, 40, 48, 64],
       control: {
         type: "inline-radio"
+      }
+    },
+    type: {
+      options: ["default", "upload"],
+      control: {
+        type: "select"
       }
     }
   },

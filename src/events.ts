@@ -76,3 +76,12 @@ export class ZetaPopupEvent extends ZetaEvent<ZetaPopupEventDetail> {
     this.name = isOpen ? "zeta-modal-open" : "zeta-modal-close";
   }
 }
+
+export interface ZetaCancelUploadEventDetail {}
+/** A CustomEvent factory that creates events when the cancel button on a progess circle is clicked. */
+export class ZetaCancelUploadEvent extends ZetaEvent<ZetaCancelUploadEventDetail> {
+  name: string = "zeta-cancel-upload";
+  constructor() {
+    super({ bubbles: true, composed: true });
+  }
+}

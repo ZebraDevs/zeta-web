@@ -34,8 +34,6 @@ export default css`
     display: none;
     justify-content: center;
     align-items: center;
-    width: var(--spacing-8);
-    height: var(--spacing-8);
     background-color: var(--color-cool-20);
     border-radius: var(--radius-full);
     cursor: pointer;

@@ -2,10 +2,14 @@ import { customElement, property } from "lit/decorators.js";
 import { Contourable } from "../../../mixins/mixins.js";
 import { html, LitElement, nothing } from "lit";
 import styles from "./progress-circle.styles.js";
-import { classMap } from "lit/directives/class-map.js";
 import "../../icon/icon.js";
+import { ZetaCancelUploadEvent } from "../../../events.js";
+import { styleMap } from "lit/directives/style-map.js";
 
-/** Progress indicators express an unspecified wait time or display the length of a process. */
+/** Progress indicators express an unspecified wait time or display the length of a process.
+ *
+ *  @event {CustomEvent<ZetaCancelUploadEvent>} ZetaCancelUploadEvent:zeta-cancel-upload - Fired when the cancel button is clicked.
+ */
 @customElement("zeta-progress-circle")
 export class ZetaProgressCircle extends Contourable(LitElement) {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-call
@@ -18,11 +22,9 @@ export class ZetaProgressCircle extends Contourable(LitElement) {
   @property({ type: Number }) get progress() {
     return this.progressValue;
   }
-  /** Animated state. */
-  @property({ type: Boolean }) loading = false;
 
-  /** Uploading state. */
-  @property({ type: Boolean }) uploading = false;
+  /** The type of the progress circle. */
+  @property({ type: String }) type: "default" | "upload" = "default";
 
   set progress(value: number) {
     if (value <= 0 || !value) {
@@ -43,29 +45,44 @@ export class ZetaProgressCircle extends Contourable(LitElement) {
 
   private getStrokeDasharray = () => {
     // circumference = 2 × π × radius
-    const size = this.uploading ? 48 : this.size;
-    return 2 * 3.14 * (size / 2 - this.strokeWidth);
+    return 2 * 3.14 * (this.size / 2 - this.strokeWidth);
   };
 
   private getStrokeDashoffset = () => {
     // circumference × ((100 - progress)/100)
-    const offset = this.loading ? 75 : this.progress;
-    return `${(this.getStrokeDasharray() * (100 - offset)) / 100}`;
+    return `${(this.getStrokeDasharray() * (100 - this.progress)) / 100}`;
   };
 
   private renderUploading = () => {
-    return this.uploading
+    return this.type == "upload"
       ? html`
-          <div class="uploading">
-            <span class="percentage"> ${this.progress}% </span>
+          <div
+            class="uploading"
+            style=${styleMap({
+              width: `${this.size}px`,
+              height: `${this.size}px`
+            })}
+          >
+            ${this.size > 24
+              ? html`<span
+                  class="percentage"
+                  style=${styleMap({
+                    fontSize: `${this.size / 4}px`
+                  })}
+                >
+                  ${this.progress}%
+                </span>`
+              : nothing}
             <div
               @click=${() => {
-                this.dispatchEvent(new CustomEvent("cancel-upload", { bubbles: true, composed: true }));
-                this.uploading = false;
+                this.dispatchEvent(new ZetaCancelUploadEvent().toEvent());
               }}
+              style=${styleMap({
+                padding: `${this.size / 12}px`
+              })}
               class="cancel"
             >
-              <zeta-icon name="close" size="20" color="var(--color-cool-90)"></zeta-icon>
+              <zeta-icon size=${this.size / 2} color="var(--color-cool-90)">close</zeta-icon>
             </div>
           </div>
         `
@@ -73,19 +90,14 @@ export class ZetaProgressCircle extends Contourable(LitElement) {
   };
 
   protected render() {
-    const animateClass = classMap({
-      loading: this.loading && !this.uploading
-    });
-
-    const size = this.uploading ? 48 : this.size;
-    const r = size / 2 - this.strokeWidth;
-    const cx = size / 2;
-    const cy = size / 2;
-    const trackColor = this.uploading ? "var(--color-cool-30)" : "transparent";
+    const r = this.size / 2 - this.strokeWidth;
+    const cx = this.size / 2;
+    const cy = this.size / 2;
+    const trackColor = this.type == "upload" ? "var(--color-cool-30)" : "transparent";
 
     return html`
       <div class="container">
-        <svg class=${animateClass} width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" style="transform:rotate(-90deg)">
+        <svg width="${this.size}" height="${this.size}" viewBox="0 0 ${this.size} ${this.size}" style="transform:rotate(-90deg)">
           <circle r=${r} cx=${cx} cy=${cy} fill="transparent" stroke="${trackColor}" stroke-width="${this.strokeWidth}px"></circle>
           <circle
             r=${r}
