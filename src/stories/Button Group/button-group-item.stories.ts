@@ -72,3 +72,19 @@ export const GroupItem: StoryObj = {
     `;
   }
 };
+
+export const GroupItemWithDropdown: StoryObj = {
+  args: {
+    iconName: "alert",
+    showDropdown: true
+  },
+  render: GroupItem.render,
+};
+
+export const GroupItemWithAvatar: StoryObj = {
+  args: {
+    iconName: "alert",
+    showDropdown: true
+  },
+  render: GroupItem.render,
+};

@@ -7,8 +7,8 @@ export default css`
   }
 
   .navigation-item {
-    background-color: var(--surface-default-inverse) !important;
-    color: var(--color-cool-50);
+    background-color: var(--surface-default);
+    color: var(--text-subtle);
     padding: var(--spacing-3) var(--spacing-4);
     font: var(--title-medium);
 
@@ -16,12 +16,15 @@ export default css`
       &:hover,
       &:active,
       &[active] {
-        color: var(--text-inverse);
+        color: var(--text-default);
       }
     }
 
     &[disabled] {
-      color: var(--color-cool-60) !important;
+      color: var(--text-disabled);
     }
+  }
+  :host([active]) {
+    border-bottom: 2px solid var(--border-flavor-primary);
   }
 `;

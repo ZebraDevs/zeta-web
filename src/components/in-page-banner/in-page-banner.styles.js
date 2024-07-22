@@ -13,6 +13,7 @@ export default css`
       padding-right: var(--spacing-2);
       padding-top: var(--spacing-0-5);
       align-self: stretch;
+      --icon-size: 20px;
     }
 
     > .trailing {

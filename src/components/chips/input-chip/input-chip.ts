@@ -28,19 +28,19 @@ export class ZetaInputChip extends Contourable(Interactive(LitElement)) {
         break;
 
       case "label-with-close-icon":
-        icon = html`<span>${this.text}</span> <button onclick="${() => this.handleClose()}"><zeta-icon name="close" size="18"></zeta-icon></button>`;
+        icon = html`<span>${this.text}</span> <button onclick="${() => this.handleClose()}"><zeta-icon class="close">close</zeta-icon></button>`;
         break;
 
       case "label-with-avatar-icon":
-        icon = html`<button onclick="${() => this.handleUser()}"><zeta-icon name="user" size="24"></zeta-icon></button> <span>${this.text}</span>`;
+        icon = html`<button onclick="${() => this.handleUser()}"><zeta-icon>user</zeta-icon></button> <span>${this.text}</span>`;
         break;
 
       case "label-with-both-icons":
         icon = html`
-          <button onclick="${() => this.handleUser()}"><zeta-icon name="user" size="24"></zeta-icon></button>
+          <button onclick="${() => this.handleUser()}"><zeta-icon>user</zeta-icon></button>
           <span>${this.text}</span>
           <button onclick="${() => this.handleClose()}">
-            <zeta-icon name="close" size="18"></zeta-icon>
+            <zeta-icon class="close">close</zeta-icon>
           </button>
         `;
         break;

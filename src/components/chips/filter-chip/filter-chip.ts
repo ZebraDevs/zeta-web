@@ -28,7 +28,7 @@ export class ZetaFilterChip extends Contourable(Interactive(LitElement)) {
         break;
 
       case "selected":
-        icon = html`<zeta-icon color=${this.type === "selected" ? "var(--color-cool-90)" : ""} name="check_mark" class="icon" size="20"></zeta-icon>
+        icon = html`<zeta-icon class="icon">check_mark</zeta-icon>
           <span>${this.text}</span>`;
         break;
 

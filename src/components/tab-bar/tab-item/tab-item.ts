@@ -1,16 +1,17 @@
 import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import styles from "./navigation-item.styles.js";
+import styles from "./tab-item.styles.js";
 import { Contourable, Interactive } from "../../../mixins/mixins.js";
 
 /**
- * A navigation item to be used in a zeta-navigation-header
+ * A tab item to be used in a zeta-tab-bar
  *
  * @slot - The content of the menu item.
  */
-@customElement("zeta-navigation-item")
-export class ZetaNavigationItem extends Contourable(Interactive(LitElement)) {
+@customElement("zeta-tab-item")
+export class ZetaTabItem extends Contourable(Interactive(LitElement)) {
   @property({ type: Boolean, reflect: true }) active: boolean = false;
+  @property({ type: Boolean, reflect: true }) selected: boolean = false;
 
   protected override render() {
     // TODO: dropdown variant
@@ -26,6 +27,6 @@ export class ZetaNavigationItem extends Contourable(Interactive(LitElement)) {
 
 declare global {
   interface HTMLElementTagNameMap {
-    "zeta-navigation-item": ZetaNavigationItem;
+    "zeta-tab-item": ZetaTabItem;
   }
 }

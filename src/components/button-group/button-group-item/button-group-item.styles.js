@@ -22,16 +22,21 @@ export default css`
     font: var(--label-medium);
     padding: var(--item-padding, 0);
   }
+
+  label {
+    display: flex;
+  }
+
   :host button > label.pad,
-  :host([showDropdown]) {
+  button {
     gap: var(--spacing-minimum);
   }
 
   :host([rounded]) > button {
-    border-top-left-radius: var(--group-item-left-radius, 0);
-    border-bottom-left-radius: var(--group-item-left-radius, 0);
-    border-top-right-radius: var(--group-item-right-radius, 0);
-    border-bottom-right-radius: var(--group-item-right-radius, 0);
+    border-top-left-radius: var(--group-item-left-radius, var(--radius-minimal));
+    border-bottom-left-radius: var(--group-item-left-radius, var(--radius-minimal));
+    border-top-right-radius: var(--group-item-right-radius, var(--radius-minimal));
+    border-bottom-right-radius: var(--group-item-right-radius, var(--radius-minimal));
   }
 
   :host([size="medium"]) {
@@ -47,5 +52,11 @@ export default css`
   :host([iconName=""]) > button > .icon,
   :host(:not([iconName])) > button > .icon {
     display: none;
+  }
+  :host([disabled]) label {
+    color: var(--text-disabled);
+  }
+  :host zeta-icon {
+    --icon-size: 20px;
   }
 `;

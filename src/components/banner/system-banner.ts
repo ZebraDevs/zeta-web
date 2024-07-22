@@ -1,12 +1,16 @@
 import { html, LitElement, nothing } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { customElement, property, queryAssignedElements } from "lit/decorators.js";
 import styles from "./system-banner.styles.js";
 import { Contourable } from "../../mixins/mixins.js";
 
-// TODO: Update to use zeta-icon
-
-/** A banner displays an important, succinct message, and provides action for users to address. It draws the attention to the message by displaying it at the top in various colors.
+/** 
+ * A banner displays an important, succinct message, and provides action for users to address.
+ * It draws the attention to the message by displaying it at the top in various colors.
  *
+ * @slot - Text displayed on label.
+ * @slot {zeta-icon} leadingIcon - Icon at leading side of text.
+ * @slot {zeta-icon} trailingIcon - Icon at trailing end of component.
+ * 
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=22195-43965
  * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/banner--docs
  */
@@ -21,21 +25,30 @@ export class ZetaSystemBanner extends Contourable(LitElement) {
   /**
    * Text displayed on the banner.
    *
-   * Can also be slotted.
+   * Can also be slotted with default (unnamed) slot.
+   * If both are present, text prop will be displayed and slot will not
    */
   @property({ type: String }) text?: string;
+
+  @queryAssignedElements({ slot: "leadingIcon", flatten: true }) leading?: Array<Node>;
+  @queryAssignedElements({ slot: "trailingIcon", flatten: true }) trailing?: Array<Node>;
 
   static styles = [super.styles || [], styles];
 
   protected render() {
-    const leadingIcon = html`<slot name="leading icon" class="leading icon"> </slot>`;
-    const text = this.text ? html`<div class="text">${this.text}</div>` : html`<slot name="text"></slot>`;
+    const leadingIcon = html`<div class="leading icon ${this.leading && this.leading.length > 0 ? "" : "none"}">
+      <zeta-icon .rounded=${this.rounded}><slot name="leadingIcon"></slot></zeta-icon>
+    </div>`;
+    const trailingIcon = html`<div class="trailing ${this.trailing && this.trailing.length > 0 ? "" : "none"}">
+      <zeta-icon .rounded=${this.rounded}><slot name="trailingIcon"></slot></zeta-icon>
+    </div>`;
+    const text = html`<div class="text">${this.text ?? html`<slot></slot>`}</div>`;
 
     return html`
       <div class="system-banner">
         <div>${this.align == "start" ? [leadingIcon, text] : nothing}</div>
         <div>${this.align != "start" ? [leadingIcon, text] : nothing}</div>
-        <div><slot name="trailing icon" class="trailing icon"></slot></div>
+        ${trailingIcon}
       </div>
     `;
   }

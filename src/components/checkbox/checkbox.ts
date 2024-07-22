@@ -1,9 +1,8 @@
-import { customElement, property } from "lit/decorators.js";
-import { Contourable, Interactive } from "../../mixins/mixins.js";
-import { html, LitElement } from "lit";
+import { customElement } from "lit/decorators.js";
+import { type InputType } from "../../mixins/form-field.js";
+import { BaseToggleFormElement } from "../base-toggle-form-element.js";
 import styles from "./checkbox.styles.js";
 import "../icon/icon.js";
-import { ifDefined } from "lit/directives/if-defined.js";
 
 /**
  * Checkboxes allow users to select one or more items from a set. Checkboxes can turn an option on or off.
@@ -12,52 +11,19 @@ import { ifDefined } from "lit/directives/if-defined.js";
  * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/checkbox--docs
  */
 @customElement("zeta-checkbox")
-export class ZetaCheckbox extends Contourable(Interactive(LitElement)) {
-  /**
-   * Controls the state of the checkbox.
-   *
-   * Can be either true, false or intermediate.
-   */
-  @property({ type: Boolean, reflect: true }) checked: true | false | "intermediate" = false;
-
-  /** The name of the checkbox when used in a form. */
-  @property({ type: String }) name?: string;
-
-  /** The label displayed next to the check. */
-  @property({ type: String }) label?: string;
-
-  /** The ID given to the checkbox input. */
-  @property({ type: String }) id: string = "checkbox";
-
-  private toggleCheck() {
-    if (!this.disabled) {
-      this.checked = !this.checked;
-    }
+export class ZetaCheckbox extends BaseToggleFormElement {
+  constructor() {
+    super();
+    this.internals.role = "checkbox";
   }
 
-  private getLabel() {
-    if (this.label) {
-      return html`<label for=${this.id}>${this.label}</label>`;
-    } else {
-      return undefined;
-    }
-  }
+  override type = "checkbox" as InputType;
+  override value = "on";
 
-  protected render() {
-    return html`<div class="checkbox">
-      <div class='container interactive-target' @click=${(_e: Event) => this.toggleCheck()}>
-        <input type="checkbox" id=${this.id} .checked="${this.checked === true}" aria-label=${this.label ?? "checkbox"} name=${ifDefined(this.name)}></input>
-        <div class='checkmark'>
-          <zeta-icon size=20 rounded=${this.rounded} color=${this.disabled ? "var(--icon-disabled)" : "var(--surface-default)"}>${
-            this.checked == "intermediate" ? "remove" : "check_mark"
-          }</zeta-icon>
-        </div>
-      </div>
-      ${this.getLabel()}
-    </div>`;
+  click() {
+    !this.disabled && this.input?.click();
   }
-
-  static styles = [styles, super.styles || []];
+  static styles = [styles, super.styles];
 }
 
 declare global {

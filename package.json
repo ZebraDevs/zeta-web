@@ -48,7 +48,8 @@
     "create": "cd scripts && node makeWebComponentTemplate.js",
     "localize:extract": "lit-localize extract",
     "localize:build": "lit-localize build",
-    "prepack": "npm run build"
+    "prepack": "npm run build",
+    "prepare": "npm run build"
   },
   "devDependencies": {
     "@actions/core": "^1.10.1",
@@ -91,11 +92,13 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "storybook": "^8.0.8",
+    "ts-lit-plugin": "^2.0.2",
     "typescript": "^5.4.5"
   },
   "dependencies": {
     "@fontsource/ibm-plex-sans": "^5.0.19",
     "@lit/localize": "^0.12.1",
+    "@material/web": "^1.5.0",
     "@zebra-fed/zeta-icons": "^0.5.1",
     "lit": "^3.1.3"
   },

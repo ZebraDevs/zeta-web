@@ -44,4 +44,10 @@ export default css`
     border: var(--border-size-medium) solid var(--surface-default);
     border-radius: var(--radius-full);
   }
+  :host zeta-icon {
+    --icon-color: var(--icon-disabled);
+  }
+  :host([active]) zeta-icon {
+    --icon-color: var(--icon-flavor-primary);
+  }
 `;

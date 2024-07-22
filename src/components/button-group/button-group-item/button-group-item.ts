@@ -16,6 +16,7 @@ import "../../icon/icon.js";
 @customElement("zeta-button-group-item")
 export class ZetaButtonGroupItem extends Contourable(Interactive(LitElement)) {
   static override shadowRootOptions: ShadowRootInit = {
+    ...LitElement.shadowRootOptions,
     mode: "open",
     delegatesFocus: false
   };
@@ -48,7 +49,7 @@ export class ZetaButtonGroupItem extends Contourable(Interactive(LitElement)) {
   }
 
   protected override render() {
-    const leadingIcon = this.iconName ? html`<zeta-icon .rounded=${this.rounded} size="20" class="icon">${this.iconName}</zeta-icon>` : nothing;
+    const leadingIcon = this.iconName ? html`<zeta-icon .rounded=${this.rounded} class="icon">${this.iconName}</zeta-icon>` : nothing;
 
     return html`
       <button ?disabled=${this.disabled} name=${ifDefined(this.name)}>
@@ -56,13 +57,13 @@ export class ZetaButtonGroupItem extends Contourable(Interactive(LitElement)) {
         <label class="text ${this.addGap ? "pad" : ""}">
           <slot
             @slotchange=${() => {
-              this.addGap = this.textContent?.trim() !== "";
-              this.requestUpdate();
-            }}
+        this.addGap = this.textContent?.trim() !== "";
+        this.requestUpdate();
+      }}
           >
           </slot>
         </label>
-        ${this.showDropdown ? html`<zeta-icon .rounded=${this.rounded} size="20"> expand_more</zeta-icon>` : nothing}
+        ${this.showDropdown ? html`<zeta-icon .rounded=${this.rounded}> expand_more</zeta-icon>` : nothing}
       </button>
     `;
   }

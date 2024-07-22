@@ -18,4 +18,15 @@ export default css`
     user-select: none;
     font: var(--body-medium);
   }
+
+  :host zeta-icon {
+    --icon-color: var(--icon-subtle);
+  }
+  :host([disabled]) zeta-icon {
+    --icon-color: var(--icon-disabled);
+  }
+
+  zeta-icon {
+    --icon-size: 20px;
+  }
 `;

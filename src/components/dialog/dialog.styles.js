@@ -128,4 +128,8 @@ export default /*[styles, */ css`
   dialog[open] {
     display: flex;
   }
+  zeta-icon {
+    --icon-color: var(--icon-flavor-warning);
+    --icon-size: 32px;
+  }
 ` /*]*/;

@@ -1,6 +1,7 @@
 import { fixture, html, unsafeStatic, expect, elementUpdated } from "@open-wc/testing";
-import { ZetaDropdownMenuItem } from "../../../index.js";
+import { ZetaDropdownMenuItem, ZetaIcon } from "../../../index.js";
 import "../../../index.js";
+import { getIconName } from "../../utils.js";
 
 describe("zeta-dropdown-menu-item", () => {
   const text = "Menu Item";
@@ -25,11 +26,10 @@ describe("zeta-dropdown-menu-item", () => {
     subject.icon = iconName;
     await elementUpdated(subject);
 
-    const iconElement = subject.shadowRoot?.querySelector("zeta-icon");
+    const iconElement = subject.shadowRoot?.querySelector("zeta-icon") as ZetaIcon;
 
     expect(iconElement).to.not.be.undefined;
-    // TODO: Find a way to test slot content.
-    // await expect(iconElement?.getAttribute("name")).to.equal(iconName);
+    await expect(getIconName(iconElement)).to.equal(iconName);
   });
 
   it("renders a checkbox with the 'checkbox' type", async () => {

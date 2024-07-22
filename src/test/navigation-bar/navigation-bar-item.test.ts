@@ -1,6 +1,7 @@
 import { expect, fixture, html, unsafeStatic } from "@open-wc/testing";
 import { ZetaIcon, ZetaNavigationBarItem } from "../../index.js";
 import "../../index.js";
+import { getIconName } from "../utils.js";
 
 describe("zeta-navigation-bar-item", () => {
   const label = "Label";
@@ -21,12 +22,11 @@ describe("zeta-navigation-bar-item", () => {
     subject = await createComponent();
   });
 
-  it("renders the given icon", () => {
+  it("renders the given icon", async () => {
     const iconElement = subject.shadowRoot?.querySelector("zeta-icon") as ZetaIcon;
     expect(iconElement).to.not.be.undefined;
 
-    // TODO: Find a way to test slot content.
-    // await expect(iconElement.name).to.equal(icon);
+    await expect(getIconName(iconElement)).to.equal(icon);
   });
 
   it("renders the given label", async () => {

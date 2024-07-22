@@ -1,8 +1,9 @@
-import { customElement, property } from "lit/decorators.js";
-import { html, LitElement } from "lit";
+import { customElement } from "lit/decorators.js";
+import { type InputType } from "../../mixins/form-field.js";
+import { requestUpdateOnAriaChange } from "@material/web/internal/aria/delegate.js";
+import { BaseToggleFormElement } from "../base-toggle-form-element.js";
 import styles from "./radio-button.styles.js";
-import { Interactive } from "../../mixins/mixins.js";
-import { ifDefined } from "lit/directives/if-defined.js";
+import { RadioButtonController } from "./radio-button-controller.js";
 
 /**
  * Radio buttons allow users to select one item from a set. Radio buttons can turn an option on or off.
@@ -11,45 +12,22 @@ import { ifDefined } from "lit/directives/if-defined.js";
  * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/radio-button--docs
  */
 @customElement("zeta-radio-button")
-export class ZetaRadioButton extends Interactive(LitElement) {
-  /** Controls the state of the radio button. */
-  @property({ type: Boolean, reflect: true }) checked: boolean = false;
-
-  /** The name of the radio button when used in a form. */
-  @property({ type: String }) name?: string;
-
-  /** The ID given to the radio input. */
-  @property({ type: String }) id: string = "radio";
-
-  /** The label displayed next to the check. */
-  @property({ type: String }) label?: string;
-
-  private toggleCheck() {
-    if (!this.disabled) {
-      this.checked = !this.checked;
-    }
+export class ZetaRadioButton extends BaseToggleFormElement {
+  static {
+    requestUpdateOnAriaChange(ZetaRadioButton);
   }
-
-  private getLabel() {
-    if (this.label) {
-      return html`<label for=${this.id}>${this.label}</label>`;
-    } else {
-      return undefined;
-    }
+  private readonly radioButtonController = new RadioButtonController(this);
+  constructor() {
+    super();
+    this.internals.role = "radio";
+    this.addController(this.radioButtonController);
   }
-
-  protected render() {
-    return html`<div class="radio">
-      <div class='container interactive-target' @click=${(_e: Event) => this.toggleCheck()}>
-        <input type="radio" id=${this.id} .checked="${this.checked}" name=${ifDefined(this.name)} aria-label=${this.label ?? "checkbox"}></input>
-        <div class='checkmark'>
-        </div>
-      </div>
-      ${this.getLabel()} 
-    </div>`;
+  override type: InputType = "radio";
+  override handleChange(event: Event): void {
+    this.dispatchEvent(new Event(event.type, event));
+    this.radioButtonController.handleChange();
   }
-
-  static styles = [styles, super.styles || []];
+  static styles = [styles, super.styles];
 }
 
 declare global {

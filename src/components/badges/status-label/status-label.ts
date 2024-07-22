@@ -4,6 +4,7 @@ import styles from "./status-label.styles.js";
 import { type ZetaIconName } from "@zebra-fed/zeta-icons";
 import { Contourable } from "../../../mixins/mixins.js";
 import "../../icon/icon.js";
+import { styleMap } from "lit/directives/style-map.js";
 /**
  * To help some information, labels, or errors stand out, we present them with badges. They can look like buttons, but users can’t select them. They just guide users to things they should pay attention to.
  *
@@ -32,9 +33,10 @@ export class ZetaStatusLabel extends Contourable(LitElement) {
   static styles = [super.styles ?? [], styles];
 
   protected override render() {
-    const colorName = 'var(--icon-" + ${this.status} + ")';
     const icon = this.icon
-      ? html`<zeta-icon size="20" color="${colorName}" .rounded=${this.rounded}>${this.icon}</zeta-icon> `
+      ? html`<zeta-icon .rounded=${this.rounded} style=${styleMap({
+        "--icon-color": `var(--icon-" + ${this.status} + ")`
+      })}>${this.icon}</zeta-icon>`
       : svg`
     <svg xmlns="http://www.w3.org/2000/svg" width="8" height="20" viewBox="0 0 8 8" >
     <circle cx="4" cy="4" r="4" />

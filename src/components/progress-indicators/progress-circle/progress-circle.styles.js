@@ -5,6 +5,10 @@ export default css`
     width: fit-content;
     height: fit-content;
   }
+  .cancel zeta-icon {
+    --icon-size: 20px;
+    --icon-color: var(--icon-default);
+  }
 
   svg.loading {
     @keyframes rotation {

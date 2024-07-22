@@ -45,7 +45,7 @@ export class ZetaAssistChip extends BaseChip {
         break;
 
       case "label-with-icon":
-        icon = html`<zeta-icon name="star" size="20"></zeta-icon> <span>${this.text}</span>`;
+        icon = html`<zeta-icon>star</zeta-icon> <span>${this.text}</span>`;
         break;
 
       default:

@@ -25,21 +25,19 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
 
   protected override render() {
     return html`
-      <div class="global-header">
-        <div class="global-header-content">
-          <div class="leading">
-            <div class="slotted-content">
-              <slot name="leading"></slot>
-              <div class="header">${this.headline}<slot></slot></div>
-            </div>
-            ${this.menuPosition == "inline" ? html`<slot name="navigation-menu"></slot>` : nothing}
-          </div>
+      <div class="global-header" part="global-header">
+        <div class="leading">
           <div class="slotted-content">
-            <slot name="trailing"></slot>
+            <slot name="leading"></slot>
+            <div class="header">${this.headline}<slot></slot></div>
           </div>
+          ${this.menuPosition == "inline" ? html`<slot name="navigation-menu"></slot>` : nothing}
         </div>
-        ${this.menuPosition == "below" ? html`<div class="navigation-menu"><slot name="navigation-menu"></slot></div>` : nothing}
+        <div class="slotted-content">
+          <slot name="trailing"></slot>
+        </div>
       </div>
+      ${this.menuPosition == "below" ? html`<div class="navigation-menu"><slot name="navigation-menu"></slot></div>` : nothing}
     `;
   }
 

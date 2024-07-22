@@ -1,6 +1,4 @@
 import "./index.css";
-import { BaseChip } from "./components/chips/assist-chip/assist-chip.js";
-import { ButtonBase } from "./components/button/button-base.js";
 import { ZetaAccordion } from "./components/accordion.js";
 import { ZetaAssistChip } from "./components/chips/assist-chip/assist-chip.js";
 import { ZetaAvatar } from "./components/avatar.js";
@@ -35,9 +33,7 @@ import { ZetaNavigationDrawerFooter } from "./components/navigation-drawer/navig
 import { ZetaNavigationDrawerHeader } from "./components/navigation-drawer/navigation-drawer-header/navigation-drawer-header.js";
 import { ZetaNavigationDrawerItem } from "./components/navigation-drawer/navigation-drawer-item/navigation-drawer-item.js";
 import { ZetaNavigationDrawerSubItem } from "./components/navigation-drawer/navigation-drawer-sub-item/navigation-drawer-sub-item.js";
-import { ZetaNavigationHeader } from "./components/navigation-header/navigation-header.js";
-import { ZetaNavigationItem } from "./components/navigation-header/navigation-item/navigation-item.js";
-import { ZetaNavigationProfile } from "./components/navigation-header/navigation-profile/navigation-profile.js";
+import { ZetaNavigationProfile } from "./components/navigation-profile/navigation-profile.js";
 import { ZetaNotificationIndicator } from "./components/badges/indicators/indicators.js";
 import { ZetaPagination } from "./components/pagination/pagination.js";
 import { ZetaPriorityPill } from "./components/badges/priority-pill/priority-pill.js";
@@ -55,13 +51,13 @@ import { ZetaStepper } from "./components/stepper/stepper.js";
 import { ZetaStepperInput } from "./components/stepper-input/stepper-input.js";
 import { ZetaSwitch } from "./components/switch/switch.js";
 import { ZetaSystemBanner } from "./components/banner/system-banner.js";
+import { ZetaTabBar } from "./components/tab-bar/tab-bar.js";
+import { ZetaTabItem } from "./components/tab-bar/tab-item/tab-item.js";
 import { ZetaTag } from "./components/badges/tag/tag.js";
 import { ZetaTextInput } from "./components/text-input/text-input.js";
 import { ZetaTooltip } from "./components/tooltip/tooltip.js";
 import { ZetaWorkcloudIndicator } from "./components/badges/workcloud-indicator/workcloud-indicator.js";
 export {
-  BaseChip,
-  ButtonBase,
   ZetaAccordion,
   ZetaAssistChip,
   ZetaAvatar,
@@ -96,8 +92,6 @@ export {
   ZetaNavigationDrawerHeader,
   ZetaNavigationDrawerItem,
   ZetaNavigationDrawerSubItem,
-  ZetaNavigationHeader,
-  ZetaNavigationItem,
   ZetaNavigationProfile,
   ZetaNotificationIndicator,
   ZetaPagination,
@@ -116,6 +110,8 @@ export {
   ZetaStepperInput,
   ZetaSwitch,
   ZetaSystemBanner,
+  ZetaTabBar,
+  ZetaTabItem,
   ZetaTag,
   ZetaTextInput,
   ZetaTooltip,

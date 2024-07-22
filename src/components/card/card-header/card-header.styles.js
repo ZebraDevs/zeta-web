@@ -8,6 +8,13 @@ export default css`
     gap: var(--spacing-3);
   }
 
+  /*This was copied from global-header.styles. This needs some better rethinking, how to default a button style if in a header?? */
+  ::slotted(zeta-icon-button) {
+    --icon-button-icon-color: var(--icon-default);
+    --icon-button-icon-color-disabled: var(--icon-disabled);
+    --icon-button-color: var(--surface-default);
+  }
+
   .main-content {
     display: flex;
     flex-direction: column;

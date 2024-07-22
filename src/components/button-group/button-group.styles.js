@@ -39,4 +39,8 @@ export default css`
   ::slotted(zeta-button-group-item:not(*:last-child)) {
     --group-item-border-right: 0;
   }
+  :host {
+    --group-item-right-radius: 0;
+    --group-item-left-radius: 0;
+  }
 `;

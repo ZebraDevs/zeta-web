@@ -23,11 +23,16 @@ export default [
       -moz-osx-font-smoothing: grayscale;
       font-feature-settings: "liga";
       user-select: none;
+      height: var(--icon-size, 24px);
+      width: var(--icon-size, 24px);
+      color: var(--icon-color, var(--icon-default));
+      font-size: var(--icon-size, 24px);
+      line-height: var(--icon-size, 1);
     }
-    :host .icon.rounded {
+    :host([rounded]) {
       font-family: "zeta-icons-round" !important;
     }
-    :host .icon.sharp {
+    :host {
       font-family: "zeta-icons-sharp" !important;
     }
   `

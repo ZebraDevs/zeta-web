@@ -13,6 +13,7 @@ export default css`
     > .icon-container {
       padding-left: calc(var(--spacing-2) - var(--border-size-small));
       max-height: var(--spacing-5);
+      --icon-size: 20px;
     }
     > .icon-container,
     > .icon-container div {

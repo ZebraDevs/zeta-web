@@ -1,48 +1,37 @@
-import { html, LitElement } from "lit";
+import { html, LitElement, nothing } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./icon.styles.js";
-import { type ZetaIconName } from "@zebra-fed/zeta-icons";
 import { Contourable } from "../../mixins/mixins.js";
-import { styleMap } from "lit/directives/style-map.js";
 
+/**
+ * @cssproperty --icon-size the width/height of the icon
+ * @cssproperty --icon-color the color of the icon
+ * @slot - The name of the icon. Full list of icons can be found at {@link https://zeta-icons.web.app/.}
+ */
 @customElement("zeta-icon")
 export class ZetaIcon extends Contourable(LitElement) {
-  /** The name of the icon. Full list of icons can be found at {@link https://zeta-icons.web.app/.} */
-  @property({ type: String }) name?: ZetaIconName;
-
   /**
    * Size of icon as css variable.
    *
    * If a Number is provided, will fallback to px.
+   * @deprecated Use the CSS Variable "--icon-size" instead
    */
-  @property() size: string | number = 24;
+  @property() size?: string | number;
 
   /**
-   * Color of icon as css value. This overrides the CSS Variable "--icon-color" which can be used instead
-   *
+   * Color of icon as css value
+   * @deprecated Use the CSS Variable "--icon-color" instead
    */
   @property({ type: String }) color?: string;
 
   protected render() {
-    const size = typeof this.size === "number" || /^\d+$/.test(this.size) ? this.size + "px" : this.size;
-
-    const styles = styleMap({
-      fontSize: size,
-      lineHeight: size
-    });
-
-    return html` <style>
-        :host {
-          height: ${size};
-          width: ${size};
-          ${`color: ${this.color ? this.color : "var(--icon-color)"}`};
-        }
-      </style>
-      <span class="icon ${this.rounded ? "rounded" : "sharp"}" style=${styles}>
-        <slot @slotchange=${() => this.requestUpdate()}></slot>
-        ${this.name}
-      </span>`;
+    return html`
+      <style>:host {
+        ${this.size ? `--icon-size: ${this.size}` : nothing};
+        ${this.color ? `--icon-color: ${this.color}` : nothing};
+      }</style>
+      <slot @slotchange=${() => this.requestUpdate()}></slot>`;
   }
+  static styles = [styles, super.styles || []];
 
-  static styles = [styles];
 }

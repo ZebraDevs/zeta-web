@@ -2,7 +2,7 @@ import { expect, assert } from "@open-wc/testing";
 import { setup } from "./setup.js";
 import { ZetaIcon, ZetaTextInput } from "../../index.js";
 import "../../index.js";
-import { toRGB } from "../utils.js";
+import { getIconName, getCssVarValue } from "../utils.js";
 
 describe("Zeta Input", () => {
   it("creates from document.createElement", function () {
@@ -36,13 +36,13 @@ describe("Zeta Input", () => {
 
   it("should render icon", async () => {
     const el = await setup({ leadingIcon: "star" });
-    assert.equal(el.shadowRoot?.querySelector("zeta-icon")?.getAttribute("name"), "star");
+    assert.equal(el.shadowRoot?.querySelector("zeta-icon")?.textContent?.trim(), "star");
     assert.equal(el.shadowRoot?.querySelector("zeta-icon")?.getAttribute("class")!.includes("left"), true);
   });
 
   it("should render icon on the right", async () => {
     const el = await setup({ trailingIcon: "star" });
-    assert.equal(el.shadowRoot?.querySelector("zeta-icon")?.getAttribute("name"), "star");
+    assert.equal(el.shadowRoot?.querySelector("zeta-icon")?.textContent?.trim(), "star");
     assert.equal(el.shadowRoot?.querySelector("zeta-icon")?.getAttribute("class")!.includes("right"), true);
   });
 
@@ -57,8 +57,12 @@ describe("Zeta Input", () => {
   });
 
   it("should render label", async () => {
-    const t = await setup({ label: "Label" });
-    assert.equal(t.shadowRoot?.querySelector(".label")?.textContent, "Label");
+    const labelText = "Label";
+    const t = await setup({ label: labelText });
+    const label = t.shadowRoot?.querySelector("label");
+
+    assert.notEqual(label, undefined);
+    assert.equal(label?.textContent?.includes(labelText), true);
   });
 
   it("should render hint text", async () => {
@@ -69,12 +73,12 @@ describe("Zeta Input", () => {
   it("should render error icon", async () => {
     const el = await setup({ error: true, hint: "hint", disabled: false, errorText: "error" });
     const icon = el.shadowRoot?.querySelector(".hint-text zeta-icon") as ZetaIcon;
-    assert.equal(icon.name, "error");
+    assert.equal(getIconName(icon), "error");
   });
   it("should render error icon color", async () => {
     const el = await setup({ error: true, hint: "hint", disabled: false, errorText: "error" });
     const icon = el.shadowRoot?.querySelector(".hint-text zeta-icon");
-    assert.equal(getComputedStyle(icon!).color, toRGB(getComputedStyle(icon!).getPropertyValue("--icon-flavor-negative")));
+    assert.equal(getComputedStyle(icon!).color, getCssVarValue(icon!, "--icon-flavor-negative"));
   });
   it("should render error text", async () => {
     const el = await setup({ error: true, hint: "hint", disabled: false, errorText: "errory" });
@@ -83,7 +87,7 @@ describe("Zeta Input", () => {
   it("should render error text color", async () => {
     const el = await setup({ error: true, hint: "hint", disabled: false, errorText: "error" });
     const text = el.shadowRoot?.querySelector(".hint-text span");
-    assert.equal(getComputedStyle(text!).color, toRGB(getComputedStyle(text!).getPropertyValue("--text-flavor-negative")));
+    assert.equal(getComputedStyle(text!).color, getCssVarValue(text!, "--text-flavor-negative"));
   });
 
   const rgbToHex = (r: number, g: number, b: number) =>
@@ -99,7 +103,7 @@ describe("Zeta Input", () => {
     const el = await setup({ disabled: true, leadingIcon: "star" });
     const x = el.shadowRoot?.querySelector("zeta-icon");
     expect(x).to.exist;
-    assert.equal(x!.getAttribute("name"), "star");
+    assert.equal(x!.textContent?.trim(), "star");
 
     const rgbColor = window.getComputedStyle(x!).color.split("(")[1].split(")")[0].split(",");
     const hexColor = rgbToHex(Number.parseInt(rgbColor[0]), Number.parseInt(rgbColor[1]), Number.parseInt(rgbColor[2]));
@@ -123,7 +127,7 @@ describe("Zeta Input", () => {
 
   it("should apply type password", async () => {
     const el = await setup({ type: "password" });
-    const input = el.shadowRoot?.querySelector("input");
+    const input = el.shadowRoot?.querySelector("input") as HTMLInputElement;
     assert.equal(input?.type, "password");
   });
 
@@ -141,11 +145,13 @@ describe("Zeta Input", () => {
 
   it("should apply type time", async () => {
     const el = await setup({ type: "time" });
-    assert.equal(el.shadowRoot?.querySelector("zeta-icon")?.getAttribute("name"), "clock_outline");
+    assert.equal(el.shadowRoot?.querySelector("zeta-icon")?.textContent?.trim(), "clock_outline");
   });
 
   it("should apply type data", async () => {
     const el = await setup({ type: "date" });
-    assert.equal(el.shadowRoot?.querySelector("zeta-icon")?.getAttribute("name"), "calendar_3_day");
+    assert.equal(el.shadowRoot?.querySelector("zeta-icon")?.textContent?.trim(), "calendar_3_day");
   });
+
+  //TODO autocomplete, spellcheck, autofocus, aria-describedby, aria-label, placeholder
 });

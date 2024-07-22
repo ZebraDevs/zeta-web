@@ -1,12 +1,12 @@
 import { fixture, html, unsafeStatic, expect } from "@open-wc/testing";
-import { ZetaNavigationHeader } from "../../index.js";
+import { ZetaTabBar } from "../../index.js";
 import "../../index.js";
 
-describe("zeta-navigation-header", () => {
-  let subject: ZetaNavigationHeader;
+describe("zeta-tab-bar", () => {
+  let subject: ZetaTabBar;
 
   const createComponent = (template = `<zeta-navigation-header></zeta-navigation-header>`) => {
-    return fixture<ZetaNavigationHeader>(html`${unsafeStatic(template)}`);
+    return fixture<ZetaTabBar>(html`${unsafeStatic(template)}`);
   };
 
   beforeEach(async () => {

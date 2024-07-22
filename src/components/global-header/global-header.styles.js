@@ -3,34 +3,38 @@ export default css`
   :host {
     display: block;
     min-width: min-content;
-  }
-
-  .global-header {
     display: flex;
     flex-direction: column;
+    background-color: var(--surface-default);
+    --tab-bar-background: var(--surface-default);
+    color: var(--text-default);
+  }
+
+  ::slotted(zeta-icon-button) {
+    --icon-button-icon-color: var(--icon-default);
+    --icon-button-icon-color-disabled: var(--icon-disabled);
+    --icon-button-color: var(--surface-default);
   }
 
   .slotted-content,
   .leading,
-  .global-header-content {
+  .global-header {
     display: flex;
     align-items: center;
   }
 
-  .global-header-content {
-    background-color: var(--color-cool-90);
-    color: var(--text-inverse);
-    gap: var(--spacing-11);
+  .global-header {
+    gap: var(--spacing-6);
     justify-content: space-between;
     padding: var(--spacing-2) var(--spacing-6);
   }
 
   .slotted-content {
-    gap: var(--spacing-4);
+    gap: var(--spacing-small);
   }
 
   .leading {
-    gap: var(--spacing-11);
+    gap: var(--spacing-6);
   }
 
   .header {
@@ -38,7 +42,6 @@ export default css`
   }
 
   .navigation-menu {
-    background-color: var(--color-cool-90);
     padding: 0 var(--spacing-2);
   }
 `;

@@ -1,7 +1,7 @@
 import { css } from "lit";
 export default css`
   :host([flavor="primary"]:not([disabled])) > :first-child {
-    background-color: var(--surface-flavor-primary);
+    background-color: var(--flavor-background-color, var(--surface-flavor-primary));
     color: var(--text-inverse);
 
     &:hover {
@@ -12,7 +12,7 @@ export default css`
     }
   }
   :host([flavor="secondary"]:not([disabled])) > :first-child {
-    background-color: var(--surface-flavor-secondary);
+    background-color: var(--flavor-background-color, var(--surface-flavor-secondary));
     color: var(--text-inverse);
     &:hover {
       background-color: var(--component-button-secondary-hover);
@@ -22,7 +22,7 @@ export default css`
     }
   }
   :host([flavor="positive"]:not([disabled])) > :first-child {
-    background-color: var(--surface-flavor-positive);
+    background-color: var(--flavor-background-color, var(--surface-flavor-positive));
     color: var(--text-inverse);
     &:hover {
       background-color: var(--component-button-positive-hover);
@@ -32,7 +32,7 @@ export default css`
     }
   }
   :host([flavor="negative"]:not([disabled])) > :first-child {
-    background-color: var(--surface-flavor-negative);
+    background-color: var(--flavor-background-color, var(--surface-flavor-negative));
     color: var(--text-inverse);
     &:hover {
       background-color: var(--component-button-negative-hover);
@@ -46,7 +46,7 @@ export default css`
   :host([flavor="text"]:not([disabled])) > :first-child,
   :host([flavor="basic"]:not([disabled])) > :first-child,
   :host([flavor="basic-negative"]:not([disabled])) > :first-child {
-    background-color: var(--surface-default);
+    background-color: var(--flavor-background-color, var(--surface-default));
     &:hover {
       background-color: var(--surface-hover);
     }
@@ -67,6 +67,6 @@ export default css`
   }
 
   :host([disabled]) > * {
-    background: var(--surface-disabled);
+    background: var(--flavor-disabled-background-color, var(--surface-disabled));
   }
 `;

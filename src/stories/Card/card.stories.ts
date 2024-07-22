@@ -33,11 +33,13 @@ const placeholderStyle = styleMap({
   flex: "1",
   alignItems: "center",
   justifyContent: "center",
-  padding: "var(--spacing-12)"
+  padding: "var(--spacing-12)",
+  "--icon-size": "48px",
+  "--icon-color": "var(--color-cool-50)"
 });
 
 const placeholderImg = html`<div style=${placeholderStyle}>
-  <zeta-icon size="48" color="var(--color-cool-50)">image</zeta-icon>
+  <zeta-icon>image</zeta-icon>
 </div>`;
 
 const cardBody = html`<zeta-card-body>
@@ -48,7 +50,7 @@ export const CardWithHeader: StoryObj<ZetaCard> = {
   render: args =>
     html`<zeta-card .rounded=${args.rounded}>
       <zeta-card-header headline="Headline" subHeadline="Subhead">
-        <zeta-icon-button slot="trailing" iconname="more_vertical" flavor="text"></zeta-icon-button>
+        <zeta-icon-button slot="trailing" flavor="text">more_vertical</zeta-icon-button>
       </zeta-card-header>
       ${placeholderImg} ${cardBody}
       <zeta-card-footer>
@@ -61,7 +63,7 @@ export const CardWithTwoActions: StoryObj<ZetaCard> = {
   render: args =>
     html`<zeta-card .rounded=${args.rounded}>
       <zeta-card-header headline="Headline" subHeadline="Subhead">
-        <zeta-icon-button slot="trailing" iconname="more_vertical" flavor="text"></zeta-icon-button>
+        <zeta-icon-button slot="trailing" flavor="text">more_vertical</zeta-icon-button>
       </zeta-card-header>
       ${placeholderImg} ${cardBody}
       <zeta-card-footer>
@@ -75,7 +77,7 @@ export const CardWithOneActionLeft: StoryObj<ZetaCard> = {
   render: args =>
     html`<zeta-card .rounded=${args.rounded}>
       <zeta-card-header headline="Headline" subHeadline="Subhead">
-        <zeta-icon-button slot="trailing" iconname="more_vertical" flavor="text"></zeta-icon-button>
+        <zeta-icon-button slot="trailing" flavor="text">more_vertical</zeta-icon-button>
       </zeta-card-header>
       ${placeholderImg} ${cardBody}
       <zeta-card-footer>

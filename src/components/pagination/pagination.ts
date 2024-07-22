@@ -88,13 +88,14 @@ export class ZetaPagination extends Contourable(LitElement) {
 
   getIconButton(iconName: string, pageNumber: number, disabled: boolean) {
     return html`<zeta-icon-button
+      class=${iconName}
       .disabled=${disabled}
       .rounded=${this.rounded}
       @click=${() => this.handlePageChange(pageNumber)}
       flavor="text"
-      iconname=${iconName}
       size="small"
     >
+    ${iconName}
     </zeta-icon-button>`;
   }
 
@@ -107,15 +108,15 @@ export class ZetaPagination extends Contourable(LitElement) {
       <div class="pagination">
         ${this.getIconButton("first_page", 1, disabledLeftControl)} ${this.getIconButton("chevron_left", this.currentPage - 1, disabledLeftControl)}
         ${result.map(page => {
-          const pageClass = classMap({
-            selected: this.currentPage === page
-          });
-          if (typeof page === "string") {
-            return html`<zeta-icon color="var(--color-cool-90)" size="20" name="more_horizontal"></zeta-icon>`;
-          } else {
-            return html` <button @click=${() => this.handlePageChange(page)} class="page ${pageClass}">${page}</button> `;
-          }
-        })}
+      const pageClass = classMap({
+        selected: this.currentPage === page
+      });
+      if (typeof page === "string") {
+        return html`<zeta-icon class="more">more_horizontal</zeta-icon>`;
+      } else {
+        return html` <button @click=${() => this.handlePageChange(page)} class="page ${pageClass}">${page}</button> `;
+      }
+    })}
         ${this.getIconButton("chevron_right", this.currentPage + 1, disabledRightControl)}
         ${this.getIconButton("last_page", this.totalPages, disabledRightControl)}
       </div>

@@ -5,20 +5,30 @@ import { ZetaButton } from "../button/button.js";
 import { Contourable } from "../../mixins/mixins.js";
 import "../icon/icon.js";
 
-/** Zeta in page banner component.
- *
+/**
+ * Zeta in page banner component.
+ * 
+ * This component represents a banner that can be displayed within a page.
+ * It can have a title, body text, and various status options.
+ * 
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21156-27071
  * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/in-page-banner--docs
  */
 @customElement("zeta-in-page-banner")
 export class ZetaInPageBanner extends Contourable(LitElement) {
-  /** Title of banner, displayed at top. */
+  /**
+   * Title of the banner, displayed at the top.
+   */
   @property({ type: String }) title: string = "";
 
-  /** Body text of banner. */
+  /**
+   * Body text of the banner.
+   */
   @property({ type: String }) body: string = "";
 
-  /** Status of component. .*/
+  /**
+   * Status of the component.
+   */
   @property({ type: String, reflect: true }) status: "default" | "info" | "positive" | "warning" | "negative" = "default";
 
   static styles = [styles, super.styles ?? []];
@@ -58,12 +68,12 @@ export class ZetaInPageBanner extends Contourable(LitElement) {
     return html`
       <div class="banner">
         <div class="leading">
-          <zeta-icon size="20" .rounded=${this.rounded}>${this.getIcon()}</zeta-icon>
+          <zeta-icon .rounded=${this.rounded}>${this.getIcon()}</zeta-icon>
         </div>
         <div class="trailing">
           <div class="header">
             <div class="title">${this.title}</div>
-            <zeta-icon id="close" .rounded=${this.rounded} .onclick=${() => this.remove()}>close </zeta-icon>
+            <zeta-icon id="close" .rounded=${this.rounded} .onclick=${() => this.remove()}>close</zeta-icon>
           </div>
           <div class="body">${this.body}</div>
           <div class="footer ">

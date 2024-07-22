@@ -6,13 +6,13 @@ const meta: Meta<ZetaIcon> = {
   component: "zeta-icon",
   title: "Assets",
   args: {
-    name: "alarm",
+    slot: "alarm",
     size: "20rem",
     color: "var(--icon-default)",
     rounded: true
   },
   argTypes: {
-    name: {
+    slot: {
       options: ZetaIconNameList,
       control: { type: "select" }
     }

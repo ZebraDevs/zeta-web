@@ -24,7 +24,11 @@
     "noImplicitThis": true,
     "plugins": [
       {
-        "name": "ts-lit-plugin"
+        "name": "ts-lit-plugin",
+        "strict": true,
+        "rules": {
+          "no-incompatible-type-binding": "warning"
+        }
       }
     ],
     "resolveJsonModule": true,

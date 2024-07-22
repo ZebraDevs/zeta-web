@@ -75,28 +75,8 @@ export class ZetaAvatar extends LitElement {
     } else if (this.initials) {
       return this.getInitials();
     } else {
-      return this.getPlaceholder();
+      return html`<div class="icon-container"><zeta-icon>person</zeta-icon></div>`;
     }
-  }
-
-  private getPlaceholder() {
-    const size = this.getSize();
-    const styles = styleMap({
-      width: `${size}px`,
-      height: `${size}px`
-    });
-    return html`<div style=${styles} class="icon-container">
-      <zeta-icon
-        color="var(--color-cool-50)"
-        style=${styleMap({
-          position: "relative",
-          top: 0,
-          left: "-10%"
-        })}
-        size=${size * 1.2}
-        name="person"
-      ></zeta-icon>
-    </div>`;
   }
 
   private getImage() {
@@ -107,7 +87,7 @@ export class ZetaAvatar extends LitElement {
       height: `${size}px`
     })} 
     alt=${this.altText}
-    src=${ifDefined(this.imageUrl)}></img>`;
+    src=${ifDefined(this.imageUrl)} />`;
   }
 
   private getInitials() {

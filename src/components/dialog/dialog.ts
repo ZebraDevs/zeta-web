@@ -55,7 +55,7 @@ export class ZetaDialog extends Contourable(Popup(LitElement)) {
   @queryAssignedElements({ slot: "other", flatten: true }) otherBtn!: NodeList;
 
   private renderIcon() {
-    return this.hasIcon ? html` <zeta-icon name="warning" .rounded=${this.rounded} color="var(--icon-flavor-warning)" size="32"></zeta-icon> ` : nothing;
+    return this.hasIcon ? html` <zeta-icon .rounded=${this.rounded}>warning</zeta-icon> ` : nothing;
   }
 
   // set props to buttons
@@ -94,8 +94,8 @@ export class ZetaDialog extends Contourable(Popup(LitElement)) {
           <footer>
             <slot
               @click=${() => {
-                this.hide("other");
-              }}
+        this.hide("other");
+      }}
               @slotchange=${this.handleActionButtonChange}
               name="other"
             ></slot>
@@ -103,11 +103,11 @@ export class ZetaDialog extends Contourable(Popup(LitElement)) {
               <slot @click=${() => this.hide("cancel")} @slotchange=${this.handleActionButtonChange} name="cancel"></slot>
               <slot
                 @click=${(e: Event) => {
-                  const btn = e.target as HTMLButtonElement;
-                  if (btn.type !== "submit") {
-                    this.hide("confirm");
-                  }
-                }}
+        const btn = e.target as HTMLButtonElement;
+        if (btn.type !== "submit") {
+          this.hide("confirm");
+        }
+      }}
                 @slotchange=${this.handleActionButtonChange}
                 name="confirm"
               ></slot>

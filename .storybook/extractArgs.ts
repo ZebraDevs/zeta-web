@@ -5,6 +5,12 @@
 import { reduceTypes } from "cem-plugin-better-lit-types/storybook";
 import { FIELD } from "../node_modules/cem-plugin-better-lit-types/dist/extractor/types";
 
+/**
+ * Extracts arguments for a component based on its manifest and mapArgs.
+ * @param {object} manifest - The component's manifest.
+ * @param {object} mapArgs - The mapArgs object.
+ * @returns {object} - The extracted arguments for the component.
+ */
 export default (manifest, mapArgs?) => (componentName) => {
   const declaration: any = getDeclaration(manifest, componentName);
 
@@ -105,6 +111,9 @@ export default (manifest, mapArgs?) => (componentName) => {
  * Adds event values to `args`.
  *
  * Builds values using `events` in `declaration` and adds them to `args` output.
+ * @param {object} declaration - The component's declaration.
+ * @param {object} args - The arguments object.
+ * @returns {object} - The updated arguments object.
  */
 const getEvents = (declaration, args) => {
   declaration.events.forEach((element) => {
@@ -119,6 +128,14 @@ const getEvents = (declaration, args) => {
   return args;
 };
 
+
+/**
+ * Gets the declaration for a component based on its manifest and tagName.
+ * @param {object} manifest - The component's manifest.
+ * @param {string} tagName - The component's tagName.
+ * @param {string} type - The type of declaration (optional).
+ * @returns {object} - The component's declaration.
+ */
 export const getDeclaration = (manifest, tagName, type = "") => {
   var _a;
   let _declaration;
@@ -129,18 +146,18 @@ export const getDeclaration = (manifest, tagName, type = "") => {
     null || _a === void 0
     ? void 0
     : _a.forEach((_module) => {
-        var _a;
-        (_a =
-          _module === null || _module === void 0
-            ? void 0
-            : _module.declarations) === null || _a === void 0
+      var _a;
+      (_a =
+        _module === null || _module === void 0
           ? void 0
-          : _a.forEach((declaration) => {
-              if (declaration[finder] === tagName) {
-                _declaration = declaration;
-              }
-            });
-      });
+          : _module.declarations) === null || _a === void 0
+        ? void 0
+        : _a.forEach((declaration) => {
+          if (declaration[finder] === tagName) {
+            _declaration = declaration;
+          }
+        });
+    });
 
   return _declaration;
 };

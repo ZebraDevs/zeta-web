@@ -10,13 +10,19 @@ const meta: Meta<ZetaSearch> = {
     value: "Predefined search value",
     disabled: false,
     size: "medium",
-    rounded: false,
+    round: "false",
     formAction: "https://google.com/search",
     hasIcon: true
   },
   argTypes: {
     size: {
       options: ["small", "medium", "large"],
+      control: {
+        type: "inline-radio"
+      }
+    },
+    round: {
+      options: ["false", "true", "full"],
       control: {
         type: "inline-radio"
       }

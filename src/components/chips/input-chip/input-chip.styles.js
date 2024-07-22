@@ -4,6 +4,14 @@ export default css`
     border-radius: var(--radius-full);
   }
 
+  :host([type="label-with-avatar-icon"]),
+  :host([type="label-with-both-icons"]) {
+    --icon-size: 24px;
+  }
+  :host([type="label-with-both-icons"]) zeta-icon.close {
+    --icon-size: 18px;
+  }
+
   .container {
     width: fit-content;
     display: flex;

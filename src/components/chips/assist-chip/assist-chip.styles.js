@@ -32,4 +32,7 @@ export default css`
       line-height: var(--spacing-5);
     }
   }
+  zeta-icon {
+    --icon-size: 20px;
+  }
 `;

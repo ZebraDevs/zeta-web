@@ -33,15 +33,9 @@ export class ZetaIndicator extends Size(Contourable(LitElement)) {
 
   static styles = [super.styles ?? [], styles];
 
-  readonly sizes = {
-    small: 0,
-    medium: 8,
-    large: 12
-  };
-
   private getBody() {
     if (this.type == "icon") {
-      return html`<zeta-icon size=${this.sizes[this.size]} color="var(--icon-inverse)" .rounded=${this.rounded}> ${this.icon} </zeta-icon> `;
+      return html`<zeta-icon .rounded=${this.rounded}>${this.icon}</zeta-icon> `;
     } else {
       return html` <span class="count"><slot></slot></span> `;
     }

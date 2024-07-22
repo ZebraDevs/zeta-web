@@ -9,6 +9,10 @@ export default css`
     .count {
       display: none;
     }
+
+    zeta-icon {
+      --icon-size: 0;
+    }
   }
 
   :host([size="medium"]) .container {
@@ -23,6 +27,9 @@ export default css`
       position: absolute;
       right: 1px;
     }
+    zeta-icon {
+      --icon-size: 8px;
+    }
   }
 
   :host([size="large"]) .container {
@@ -31,6 +38,9 @@ export default css`
 
     .count {
       font: var(--label-indicator);
+    }
+    zeta-icon {
+      --icon-size: 12px;
     }
   }
 
@@ -66,5 +76,8 @@ export default css`
       position: absolute;
       color: var(--text-inverse);
     }
+  }
+  :host zeta-icon {
+    --icon-color: var(--icon-inverse);
   }
 `;

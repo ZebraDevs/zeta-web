@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
-import { ZetaNavigationProfile } from "../../components/navigation-header/navigation-profile/navigation-profile.js";
-import "../../components/avatar.js";
+import { ZetaNavigationProfile } from "../components/navigation-profile/navigation-profile.js";
+import "../components/avatar.js";
 
 const meta: Meta<ZetaNavigationProfile> = {
   component: "zeta-navigation-profile",

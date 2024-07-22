@@ -15,23 +15,23 @@ describe("ZetaPagination", () => {
 
   it("should disable left controls", async () => {
     const el = await fixture(html`<zeta-pagination></zeta-pagination>`);
-    const prevButton = el.shadowRoot?.querySelector("zeta-icon-button[iconname='chevron_left']") as HTMLElement;
-    const startButton = el.shadowRoot?.querySelector("zeta-icon-button[iconname='first_page']") as HTMLElement;
+    const prevButton = el.shadowRoot?.querySelector("zeta-icon-button.chevron_left") as HTMLElement;
+    const startButton = el.shadowRoot?.querySelector("zeta-icon-button.first_page") as HTMLElement;
     expect(prevButton).to.have.attribute("disabled");
     expect(startButton).to.have.attribute("disabled");
   });
 
   it("should disable right controls", async () => {
     const el = await fixture(html`<zeta-pagination currentPage="10"></zeta-pagination>`);
-    const nextButton = el.shadowRoot?.querySelector("zeta-icon-button[iconname='chevron_right']") as HTMLElement;
-    const endButton = el.shadowRoot?.querySelector("zeta-icon-button[iconname='last_page']") as HTMLElement;
+    const nextButton = el.shadowRoot?.querySelector("zeta-icon-button.chevron_right") as HTMLElement;
+    const endButton = el.shadowRoot?.querySelector("zeta-icon-button.last_page") as HTMLElement;
     expect(nextButton).to.have.attribute("disabled");
     expect(endButton).to.have.attribute("disabled");
   });
 
   it("should increment page", async () => {
     const el = await fixture<ZetaPagination>(html`<zeta-pagination></zeta-pagination>`);
-    const next = el.shadowRoot?.querySelector("zeta-icon-button[iconname='chevron_right']") as HTMLElement;
+    const next = el.shadowRoot?.querySelector("zeta-icon-button.chevron_right") as HTMLElement;
     next.click();
     await el.updateComplete;
     assert.equal(el.currentPage, 2);
@@ -39,7 +39,7 @@ describe("ZetaPagination", () => {
 
   it("should decrement page", async () => {
     const el = await fixture<ZetaPagination>(html`<zeta-pagination currentPage="3"></zeta-pagination>`);
-    const prev = el.shadowRoot?.querySelector("zeta-icon-button[iconname='chevron_left']") as HTMLElement;
+    const prev = el.shadowRoot?.querySelector("zeta-icon-button.chevron_left") as HTMLElement;
     prev.click();
     await el.updateComplete;
     assert.equal(el.currentPage, 2);
@@ -57,13 +57,13 @@ describe("ZetaPagination", () => {
 
   it("should show left and right dots", async () => {
     const el = await fixture<ZetaPagination>(html`<zeta-pagination totalPages="10" currentPage="4"></zeta-pagination>`);
-    const dots = el.shadowRoot?.querySelectorAll("zeta-icon[name='more_horizontal']");
+    const dots = el.shadowRoot?.querySelectorAll("zeta-icon.more");
     assert.equal(dots?.length, 2);
   });
 
   it("should not show any dots", async () => {
     const el = await fixture<ZetaPagination>(html`<zeta-pagination totalPages="5"></zeta-pagination>`);
-    const dots = el.shadowRoot?.querySelectorAll("zeta-icon[name='more_horizontal']");
+    const dots = el.shadowRoot?.querySelectorAll("zeta-icon.more");
     assert.equal(dots?.length, 0);
   });
 });

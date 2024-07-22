@@ -3,9 +3,9 @@ import { html } from "lit";
 import { ZetaGlobalHeader } from "../components/global-header/global-header.js";
 import "../components/button/icon-button/icon-button.js";
 import "../components/search/search.js";
-import "../components/navigation-header/navigation-profile/navigation-profile.js";
-import "../components/navigation-header/navigation-header.js";
-import "../components/navigation-header/navigation-item/navigation-item.js";
+import "../components/navigation-profile/navigation-profile.js";
+import "../components/tab-bar/tab-bar.js";
+import "../components/tab-bar/tab-item/tab-item.js";
 import "../components/avatar.js";
 
 const meta: Meta<ZetaGlobalHeader> = {
@@ -19,8 +19,9 @@ const meta: Meta<ZetaGlobalHeader> = {
   },
   argTypes: {
     menuPosition: {
-      table: {
-        disable: true
+      options: ["inline", "below"],
+      control: {
+        type: "select"
       }
     }
   },
@@ -45,11 +46,12 @@ export const GlobalHeader: StoryObj = {
   },
   render: args => {
     return html`<zeta-global-header headline=${args.headline}>
-      <zeta-icon-button slot="leading" flavor="text" iconname="apps"></zeta-icon-button>
-      <zeta-search slot="trailing" size="small"></zeta-search>
-      <zeta-icon-button slot="trailing" flavor="text" iconname="star"></zeta-icon-button>
-      <zeta-icon-button slot="trailing" flavor="text" iconname="star"></zeta-icon-button>
-      <zeta-icon-button slot="trailing" flavor="text" iconname="star"></zeta-icon-button>
+      <zeta-icon-button slot="leading">hamburger_menu</zeta-icon-button>
+      <zeta-search slot="trailing" size="large" round="full"></zeta-search>
+      <zeta-icon-button slot="trailing">alert</zeta-icon-button>
+      <zeta-icon-button slot="trailing">star</zeta-icon-button>
+      <div slot="trailing" class="divider">&nbsp;</div>
+      <zeta-icon-button slot="trailing">apps</zeta-icon-button>
       <zeta-navigation-profile slot="trailing" rounded>
         <zeta-avatar slot="leading" size="sm"></zeta-avatar>
         My account
@@ -59,26 +61,18 @@ export const GlobalHeader: StoryObj = {
 };
 
 export const WithMenuItems: StoryObj = {
-  argTypes: {
-    menuPosition: {
-      options: ["inline", "below"],
-      control: {
-        type: "select"
-      }
-    }
-  },
   render: args =>
     html`<zeta-global-header menuPosition=${args.menuPosition} headline=${args.headline}>
-      <zeta-icon-button slot="leading" flavor="text" iconname="apps"></zeta-icon-button>
-      <zeta-navigation-header slot="navigation-menu">
-        <zeta-navigation-item active>Menu Item</zeta-navigation-item>
-        <zeta-navigation-item>Menu Item</zeta-navigation-item>
-        <zeta-navigation-item>Menu Item</zeta-navigation-item>
-        <zeta-navigation-item>Menu Item</zeta-navigation-item>
-      </zeta-navigation-header>
-      <zeta-icon-button slot="trailing" flavor="text" iconname="star"></zeta-icon-button>
-      <zeta-icon-button slot="trailing" flavor="text" iconname="star"></zeta-icon-button>
-      <zeta-icon-button slot="trailing" flavor="text" iconname="star"></zeta-icon-button>
+      <zeta-icon-button slot="leading" flavor="text">apps</zeta-icon-button>
+      <zeta-tab-bar slot="navigation-menu">
+        <zeta-tab-item active>Menu Item</zeta-tab-item>
+        <zeta-tab-item>Menu Item</zeta-tab-item>
+        <zeta-tab-item>Menu Item</zeta-tab-item>
+        <zeta-tab-item>Menu Item</zeta-tab-item>
+      </zeta-tab-bar>
+      <zeta-icon-button slot="trailing" flavor="text">star</zeta-icon-button>
+      <zeta-icon-button slot="trailing" flavor="text">star</zeta-icon-button>
+      <zeta-icon-button slot="trailing" flavor="text">star</zeta-icon-button>
       <zeta-navigation-profile slot="trailing" rounded>
         <zeta-avatar slot="leading" size="sm"></zeta-avatar>
         My account

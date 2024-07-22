@@ -14,7 +14,7 @@ describe("zeta-card-header", () => {
   const createComponent = (
     template = `<zeta-card-header headline=${headingText} subHeadline=${subHeadingText}>
   <zeta-avatar slot="leading" id=${leadingId}></zeta-avatar>
-  <zeta-icon-button slot="trailing" id=${trailingId} iconname="more_vertical" flavor="basic"></zeta-icon-button>
+  <zeta-icon-button slot="trailing" id=${trailingId} flavor="basic">more_vertical</zeta-icon-button>
   </zeta-card-header>`
   ) => {
     return fixture<ZetaCardHeader>(html`${unsafeStatic(template)}`);

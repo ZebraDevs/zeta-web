@@ -1,9 +1,10 @@
 import { html, LitElement } from "lit";
 import { customElement } from "lit/decorators.js";
 import styles from "./navigation-profile.styles.js";
-import { Contourable } from "../../../mixins/mixins.js";
+import { Contourable } from "../../mixins/mixins.js";
 
 /**
+ * TODO this has been removed from the FIGMA, this may become deprecated soon
  * @slot - The headline text.
  * @slot leading - The leading content. Typically a zeta-avatar.
  */

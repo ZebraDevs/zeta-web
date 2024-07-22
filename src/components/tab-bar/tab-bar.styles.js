@@ -1,8 +1,8 @@
 import { css } from "lit";
 export default css`
-  .navigation-header {
+  :host {
     display: flex;
-    background-color: var(--surface-default-inverse);
+    background-color: var(--tab-bar-background, var(--surface-default));
     justify-content: start;
   }
 `;

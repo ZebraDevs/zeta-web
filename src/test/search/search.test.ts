@@ -3,8 +3,12 @@
 import { assert, fixture, expect, html } from "@open-wc/testing";
 import { ZetaIcon, ZetaSearch } from "../../index.js";
 import "../../index.js";
+import { MouseActions, getCssVarValue } from "../utils.js";
 
-describe("Zeta Search", () => {
+//TODO keyboard Tab doesnt seem to work
+//TODO test enter (submit) and escape (clear) keys
+//TODO test the input event
+describe("zeta-search", () => {
   it("creates from document.createElement", function () {
     const el = document.createElement("zeta-search");
     assert.equal("ZETA-SEARCH", el.nodeName);
@@ -49,7 +53,7 @@ describe("Zeta Search", () => {
   it("should set correct default icon size", async () => {
     const el = await fixture<ZetaSearch>(html` <zeta-search></zeta-search> `);
     const icon = el.shadowRoot?.querySelectorAll("zeta-icon")[0] as ZetaIcon;
-    assert.equal(icon.size, "20");
+    await expect(getComputedStyle(icon).fontSize).to.equal("20px");
   });
 
   it("should set correct small icon size", async () => {
@@ -57,7 +61,7 @@ describe("Zeta Search", () => {
     el.size = "small";
     await el.updateComplete;
     const icon = el.shadowRoot?.querySelectorAll("zeta-icon")[0] as ZetaIcon;
-    assert.equal(icon.size, "16");
+    await expect(getComputedStyle(icon).fontSize).to.equal("16px");
   });
 
   it("should set correct large icon size", async () => {
@@ -65,7 +69,7 @@ describe("Zeta Search", () => {
     el.size = "large";
     await el.updateComplete;
     const icon = el.shadowRoot?.querySelectorAll("zeta-icon")[0] as ZetaIcon;
-    assert.equal(icon.size, "24");
+    await expect(getComputedStyle(icon).fontSize).to.equal("24px");
   });
 
   it("should set correct disabled icon color", async () => {
@@ -73,14 +77,14 @@ describe("Zeta Search", () => {
     el.disabled = true;
     await el.updateComplete;
     const icon = el.shadowRoot?.querySelectorAll("zeta-icon")[0] as ZetaIcon;
-    assert.equal(icon.color, "var(--color-cool-60)");
+    await expect(getComputedStyle(icon).color).to.equal(getCssVarValue(icon, "--icon-disabled"));
   });
 
   it("should render microphone icon", async () => {
     const speechRecognition = (<any>window).SpeechRecognition || (<any>window).webkitSpeechRecognition;
     if (speechRecognition) {
       const el = await fixture<ZetaSearch>(html` <zeta-search hasIcon></zeta-search> `);
-      const icon = el.shadowRoot?.querySelector("zeta-icon[name='microphone']") as ZetaIcon;
+      const icon = el.shadowRoot?.querySelector("zeta-icon") as ZetaIcon;
       expect(icon).to.exist;
     }
   });
@@ -94,5 +98,33 @@ describe("Zeta Search", () => {
     await el.updateComplete;
     const icon = el.shadowRoot?.querySelector("zeta-icon[name='microphone']") as ZetaIcon;
     expect(icon).not.to.exist;
+  });
+  describe.skip("interaction", () => {
+    let subject: ZetaSearch;
+    let interactiveTarget: HTMLFormElement;
+
+    describe("when disabled", () => {
+      beforeEach(async () => {
+        subject = await fixture<ZetaSearch>(html`<zeta-search></zeta-search>`);
+        interactiveTarget = subject.shadowRoot!.querySelector(".interactive-target") as HTMLFormElement;
+      });
+
+      it("should not be activatable", async () => {
+        let subjectStyles = getComputedStyle(subject!);
+        let interactiveTargetStyles = getComputedStyle(interactiveTarget!);
+        await expect(subjectStyles.outlineWidth).to.equal("0px");
+        await expect(subjectStyles.outlineStyle).to.equal("none");
+        await expect(interactiveTargetStyles.outlineWidth).to.equal("0px");
+        await expect(interactiveTargetStyles.outlineStyle).to.equal("none");
+        await MouseActions.down(subject);
+
+        subjectStyles = getComputedStyle(subject!);
+        interactiveTargetStyles = getComputedStyle(interactiveTarget!);
+        await expect(subjectStyles.outlineWidth).to.equal("0px");
+        await expect(subjectStyles.outlineStyle).to.equal("none");
+        await expect(interactiveTargetStyles.outlineWidth).to.equal("0px");
+        await expect(interactiveTargetStyles.outlineStyle).to.equal("none");
+      });
+    });
   });
 });

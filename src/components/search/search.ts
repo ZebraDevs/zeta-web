@@ -18,9 +18,24 @@ import "../icon/icon.js";
  */
 @customElement("zeta-search")
 export class ZetaSearch extends Size(Contourable(Interactive(LitElement))) {
-  static override shadowRootOptions: ShadowRootInit = { delegatesFocus: true, mode: "open" };
+  static override shadowRootOptions: ShadowRootInit = {
+    ...LitElement.shadowRootOptions,
+    delegatesFocus: true,
+    mode: "open"
+  };
 
   @query("input") private readonly inputEl!: HTMLElement | null;
+  _round: false | true | "full" = false;
+
+  @property({ type: String, reflect: true })
+  get round(): boolean | string {
+    return this._round;
+  }
+  set round(value: boolean | string) {
+    const translatedValue: boolean | "full" = `${value}`.toLowerCase() === "true" ? true : `${value}`.toLowerCase() === "full" ? "full" : false;
+    this.rounded = !!translatedValue;
+    this._round = translatedValue;
+  }
 
   static styles = [styles, super.styles || []];
 
@@ -49,21 +64,6 @@ export class ZetaSearch extends Size(Contourable(Interactive(LitElement))) {
     this.value = target.value;
   };
 
-  private getIconSize = () => {
-    switch (this.size) {
-      case "small":
-        return "16";
-      case "large":
-        return "24";
-      case "medium":
-        return "20";
-    }
-  };
-
-  private getIconColor = () => {
-    return this.disabled ? "var(--color-cool-60)" : "var(--color-cool-70)";
-  };
-
   private resetInput = () => {
     this.value = "";
   };
@@ -88,7 +88,7 @@ export class ZetaSearch extends Size(Contourable(Interactive(LitElement))) {
   private renderRightIcon = () => {
     if (("SpeechRecognition" in window || "webkitSpeechRecognition" in window) && this.hasIcon) {
       return html` <div class="divider"></div>
-        <zeta-icon @click=${() => this.handleSpeechRecognition()} size=${this.getIconSize()} name="microphone" color="var(--icon-default)"></zeta-icon>`;
+        <zeta-icon @click=${() => this.handleSpeechRecognition()} .rounded=${this.rounded} class="right">microphone</zeta-icon>`;
     } else {
       return nothing;
     }
@@ -96,7 +96,7 @@ export class ZetaSearch extends Size(Contourable(Interactive(LitElement))) {
 
   private renderCancelIcon = () => {
     return this.value
-      ? html` <zeta-icon color=${this.getIconColor()} size=${this.getIconSize()} @click=${this.resetInput} .rounded=${this.rounded} name="cancel"></zeta-icon> `
+      ? html`<zeta-icon @click=${this.resetInput} .rounded=${this.rounded}>cancel</zeta-icon>`
       : nothing;
   };
 
@@ -109,21 +109,19 @@ export class ZetaSearch extends Size(Contourable(Interactive(LitElement))) {
 
   protected render() {
     return html`
-      <form @submit=${this.handleSubmit} action=${this.formAction}>
-        <div class="search-container">
-          <zeta-icon size=${this.getIconSize()} color=${this.getIconColor()} .rounded=${this.rounded} name="search"></zeta-icon>
-          <input
-            @change=${this.handleInput}
-            placeholder=${msg("Search")}
-            autocomplete="off"
-            spellcheck="false"
-            type="search"
-            name="q"
-            .value=${live(this.value)}
-            .disabled=${this.disabled}
-          />
-          ${this.renderCancelIcon()} ${this.renderRightIcon()}
-        </div>
+      <form @submit=${this.handleSubmit} action=${this.formAction} class="contourable-target">
+        <zeta-icon .rounded=${this.rounded}>search</zeta-icon>
+        <input
+          @change=${this.handleInput}
+          placeholder=${msg("Search")}
+          autocomplete="off"
+          spellcheck="false"
+          type="search"
+          name="q"
+          .value=${live(this.value)}
+          .disabled=${this.disabled}
+        />
+        ${this.renderCancelIcon()} ${this.renderRightIcon()}
       </form>
     `;
   }

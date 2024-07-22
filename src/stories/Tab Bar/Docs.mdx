@@ -1,0 +1,16 @@
+import { Canvas, Meta, Description, ArgTypes, Title } from "@storybook/blocks";
+import * as TabBar from "./tab-bar.stories";
+import * as Items from "./tab-item.stories";
+
+<Meta of={TabBar} title="Tab Bar" />
+
+<Title />
+<Description of="zeta-tab-bar" />
+<Canvas of={TabBar.TabBar} />
+<ArgTypes of="zeta-tab-bar" />
+
+# Header
+
+<Description of="zeta-tab-item" />
+<Canvas of={Items.Item} />
+<ArgTypes of="zeta-tab-item" />

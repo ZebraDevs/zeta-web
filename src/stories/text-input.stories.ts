@@ -12,19 +12,23 @@ const meta: Meta<ZetaTextInput> = {
   component: "zeta-text-input",
   args: {
     value: "",
-    placeholder: "Placeholder",
+    label: "Label",
     hintText: "hint",
     error: false,
     disabled: false,
     errorText: "Error!",
-    label: "",
     rounded: true,
     required: false,
     prefix: "",
     suffix: ""
   },
   argTypes: {
-    type: { table: { disable: true } },
+    type: {
+      options: ["text", "textarea", "password", "time", "date"],
+      control: {
+        type: "select"
+      }
+    },
     leadingIcon: {
       options: ZetaIconNameList,
       control: {
@@ -53,15 +57,8 @@ const meta: Meta<ZetaTextInput> = {
 };
 // console.log('Text-Input attributes:', ZetaTextInput.elementProperties);
 
-export const TextInput: StoryObj = {
-  args: {
-    prefix: ""
-  },
-  name: "Default text input",
-  render: args => {
-    console.log("Default text input args:", args);
-    return html` <zeta-text-input ${spread(args)}> </zeta-text-input> `;
-  }
+export const TextInput: StoryObj<ZetaTextInput> = {
+  name: "Default text input"
 };
 
 export const TimeInput: StoryObj = {

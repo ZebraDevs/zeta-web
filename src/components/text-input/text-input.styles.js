@@ -1,10 +1,26 @@
 import { css } from "lit";
 export default css`
-  :host {
+  :host .container {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    gap: var(--spacing-1);
     width: fit-content;
     height: fit-content;
+    align-items: flex-start;
+  }
+
+  .hint-text {
+    --icon-size: 16px;
+  }
+
+  .left,
+  .right {
+    --icon-size: 20px;
+  }
+
+  :host([size="small"]) .left,
+  :host([size="small"]) .right {
+    --icon-size: 16px;
   }
 
   :host * {
@@ -109,13 +125,18 @@ export default css`
     font: var(--body-medium);
   }
 
-  .input-container input::placeholder,
-  .input-container textarea::placeholder {
-    color: var(--text-default);
+  .input-container textarea::placeholder,
+  .input-container input::placeholder {
+    color: var(--text-subtle);
   }
 
   .input-container:hover {
     box-shadow: 0 0 0 var(--border-size-small) var(--border-hover) !important;
+  }
+
+  .input-container:has(input:focus),
+  .input-container:has(textarea:focus) {
+    box-shadow: 0 0 0 var(--border-size-medium) var(--border-flavor-primary) !important;
   }
 
   input[type="date"]::-webkit-calendar-picker-indicator,
@@ -149,7 +170,7 @@ export default css`
     content: "*";
     display: flex;
     position: absolute;
-    right: -var(--spacing-2);
+    right: var(--spacing-2);
     color: var(--text-flavor-negative);
   }
 
@@ -157,7 +178,6 @@ export default css`
     display: flex;
     align-items: center;
     column-gap: var(--spacing-1);
-    margin-top: var(--spacing-1);
   }
 
   .hint-text {

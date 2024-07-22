@@ -5,10 +5,15 @@ export default css`
     align-items: center;
     width: fit-content;
     height: fit-content;
+    --icon-size: 20px;
+    --icon-color: var(--text-subtle);
+    --icon-color: var(--text-subtle);
+    border-color: var(--border-default);
   }
 
   :host([disabled]) {
-    .search-container {
+    --icon-color: var(--text-disabled);
+    .contourable-target {
       pointer-events: none;
       background-color: var(--surface-disabled);
     }
@@ -18,21 +23,32 @@ export default css`
     }
   }
 
-  .search-container {
+  :host(:not([disabled])) zeta-icon.right {
+    --icon-color: var(--icon-default);
+  }
+
+  :host([round="full"][rounded]) .contourable-target {
+    border-radius: var(--radius-full);
+  }
+
+  form {
     display: flex;
     align-items: center;
     border-radius: inherit;
     height: fit-content;
-    outline: var(--border-size-small) solid var(--border-default);
+    box-shadow: 0 0 0 var(--border-size-small) var(--border-default);
+
     background-color: var(--surface-default);
+    flex-shrink: 0;
+    gap: var(--spacing-small);
 
     &:hover {
-      outline-color: var(--border-hover);
+      box-shadow: 0 0 0 var(--border-size-small) var(--border-hover);
     }
-  }
 
-  :host(:active) .search-container {
-    outline: var(--border-size-medium) solid var(--border-flavor-primary);
+    &:has(input:focus) {
+      box-shadow: 0 0 0 var(--border-size-medium) var(--border-flavor-primary);
+    }
   }
 
   input[type="search"]::-webkit-search-decoration,
@@ -62,25 +78,26 @@ export default css`
     display: flex;
     width: var(--border-size-small);
     background-color: var(--border-default);
-    margin: 0 var(--spacing-2);
   }
 
   zeta-icon[name="search"] {
-    margin-right: var(--spacing-2);
+    margin-right: var(--spacing-2); /*TODO Semantic not yet ready*/
   }
 
   zeta-icon[name="cancel"] {
-    margin-left: var(--spacing-2);
+    margin-left: var(--spacing-2); /*TODO Semantic not yet ready*/
   }
 
   /* SIZE */
   :host([size="small"]) {
-    .search-container {
-      padding: var(--spacing-1-5) var(--spacing-3);
+    --icon-size: 16px;
+
+    .contourable-target {
+      padding: var(--spacing-1-5);
     }
 
     .divider {
-      height: var(--spacing-5);
+      height: var(--spacing-large);
     }
 
     input {
@@ -89,12 +106,14 @@ export default css`
   }
 
   :host([size="medium"]) {
-    .search-container {
-      padding: var(--spacing-2) var(--spacing-3);
+    --icon-size: 20px;
+
+    .contourable-target {
+      padding: var(--spacing-2); /*TODO Semantic not yet ready*/
     }
 
     .divider {
-      height: var(--spacing-6);
+      height: var(--spacing-6); /*TODO Semantic not yet ready*/
     }
 
     input {
@@ -103,12 +122,14 @@ export default css`
   }
 
   :host([size="large"]) {
-    .search-container {
-      padding: var(--spacing-3);
+    --icon-size: 24px;
+
+    .contourable-target {
+      padding: var(--spacing-small);
     }
 
     .divider {
-      height: var(--spacing-6);
+      height: var(--spacing-6); /*TODO Semantic not yet ready*/
     }
 
     input {

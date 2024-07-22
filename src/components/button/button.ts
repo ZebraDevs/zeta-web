@@ -1,12 +1,11 @@
+/* eslint-disable @typescript-eslint/unbound-method */
 import { html } from "lit";
 import { customElement } from "lit/decorators.js";
-import { ButtonBase } from "./button-base.js";
+import { BaseButton } from "./base-button.js";
 import styles from "./button.styles.js";
 import { ifDefined } from "lit/directives/if-defined.js";
-export * from "./icon-button/icon-button.js";
 
 //TODO text overflow broken
-//TODO: Fix icon button
 
 /** Buttons facilitate user interaction.
  *
@@ -14,15 +13,27 @@ export * from "./icon-button/icon-button.js";
  * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/buttons--docs
  */
 @customElement("zeta-button")
-export class ZetaButton extends ButtonBase {
+export class ZetaButton extends BaseButton {
   static get styles() {
     return [super.styles ?? [], styles];
   }
+  /** @internal */
+  protected _buttonType: "text" | "icon" = 'text';
+
+  /** @internal */
+  protected _slotContent?: string;
 
   protected render() {
     return html`
-      <button ?disabled=${this.disabled} value=${ifDefined(this.value)} name=${ifDefined(this.name)}>
-        <slot></slot>
+      <button
+        ?disabled=${this.disabled}
+        value=${ifDefined(this.value)}
+        name=${ifDefined(this.name)}
+        type=${ifDefined(this.type)}
+        @click=${this._handleClick}>
+        ${this._buttonType === "text" ?
+        html`<slot></slot>` :
+        html`<zeta-icon .rounded=${this.rounded}><slot>${this._slotContent}</slot></zeta-icon>`}
       </button>
     `;
   }

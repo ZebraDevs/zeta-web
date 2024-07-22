@@ -1,31 +1,26 @@
-import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./more-menu.styles.js";
-import { Contourable, Interactive } from "../../../mixins/mixins.js";
 import { type ZetaIconName } from "@zebra-fed/zeta-icons";
 import "../../icon/icon.js";
+import { ZetaIconButton } from "../../button/icon-button/icon-button.js";
 
 @customElement("zeta-more-menu")
-export class ZetaMoreMenu extends Contourable(Interactive(LitElement)) {
+export class ZetaMoreMenu extends ZetaIconButton {
   /**
    *  More menu icon.
    *
    * Full list of icons can be found at {@link https://zeta-icons.web.app/}.
    */
-  @property({ type: String }) icon: ZetaIconName = "more_horizontal";
-
-  static styles = [super.styles ?? [], styles];
-
-  protected override render() {
-    return html`
-      <button class="container" ?disabled=${this.disabled} .onclick=${() => this.handleOpen()}>
-        <zeta-icon size="16" color=${this.disabled ? "var(--color-cool-50)" : "var(--color-cool-90)"} class="icon"> ${this.icon}</zeta-icon>
-      </button>
-    `;
+  @property({ type: String })
+  set icon(value: ZetaIconName) {
+    this._slotContent = value;
   }
-  handleOpen() {
-    //To implement
+  get icon() {
+    return this._slotContent || "more_horizontal";
   }
+  _slotContent = "more_horizontal";
+
+  static get styles() { return [super.styles || [], styles]; }
 }
 
 declare global {

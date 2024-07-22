@@ -11,7 +11,8 @@ export declare class FlavoredInterface {
  * Mixin to add flavor to component.
  *
  * Adds flavor attribute and associated styles.
- *
+ * @cssproperty --flavor-background-color  an override to set the background color of the element.
+ * @cssproperty --flavor-disabled-background-color an override to set the background color of the element when it is disabled.
  * @param superClass - LitElement to add mixin to
  * @returns - component with mixin applied.
  */

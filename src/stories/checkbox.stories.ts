@@ -1,5 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaCheckbox } from "../components/checkbox/checkbox.js";
+import { spreadGenerator } from "./utils.js";
+import { html } from "lit";
+const spread = spreadGenerator(ZetaCheckbox);
 
 const meta: Meta<ZetaCheckbox> = {
   component: "zeta-checkbox",
@@ -9,17 +12,10 @@ const meta: Meta<ZetaCheckbox> = {
     rounded: true,
     disabled: false,
     checked: false,
-    label: "",
+    indeterminate: false,
+    slot: undefined,
     name: "",
     id: ""
-  },
-  argTypes: {
-    checked: {
-      options: [true, false, "intermediate"],
-      control: {
-        type: "select"
-      }
-    }
   },
   parameters: {
     design: {
@@ -34,3 +30,9 @@ const meta: Meta<ZetaCheckbox> = {
 export default meta;
 
 export const Checkbox: StoryObj<ZetaCheckbox> = {};
+export const CheckboxWithLabel: StoryObj<ZetaCheckbox> = {
+  args: { slot: "Checkbox Label" },
+  render: ({ slot, ...args }) => {
+    return html` <zeta-checkbox ${spread(args)}>${slot}</zeta-checkbox> `;
+  }
+};

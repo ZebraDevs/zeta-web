@@ -65,4 +65,8 @@ export default css`
       background-color: var(--color-cool-90);
     }
   }
+  zeta-icon.more {
+    --icon-color: var(--icon-default);
+    --icon-size: 20px;
+  }
 `;

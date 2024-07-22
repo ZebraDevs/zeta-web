@@ -1,3 +1,15 @@
+<details class="repo-header">
+    <summary>Zebra Repository Information</summary>
+    <ul>
+        <li> Zebra Business Unit : DMO - Innovation & Design</li> 
+        <li> Zebra Manager : ncvt73 </li>
+        <li> Zebra Repo Admin: ncvt73 </li>
+        <li> Zebra Jira Project ID: UX </li>
+        <li> Product: Zebra Design System (Zeta) - Web Components Library </li>
+        <li> Topics: none </li>
+    </ul>
+</details>
+
 <h1 class='sbdocs-title'>@zebra-fed/zeta-web</h1>
 
 Zeta Web is a native web component library created by Zebra Technologies written in TypeScript.  
@@ -82,4 +94,34 @@ Zeta Web Components can be directly used in many web frameworks.
 
    ```html
    <zeta-button>Hello world!</zeta-button>
+   ```
+
+## Developer Experience
+
+To improve the development experience while using the zeta web-components, the following packages can be useful:
+
+1. [`ts-lit-plugin`](https://www.npmjs.com/package/ts-lit-plugin)
+
+   ts-lit-plugin adds type checking and code completion to lit-html. To install, first setup typescript in your project, then run:
+
+   ```bash
+   # NPM
+   npm install ts-lit-plugin -D
+
+   # Yarn
+   yarn add -D ts-lit-plugin
+   ```
+
+   and add the plugin to your tsconfig.json:
+
+   ```json
+   {
+     "compilerOptions": {
+       "plugins": [
+         {
+           "name": "ts-lit-plugin"
+         }
+       ]
+     }
+   }
    ```

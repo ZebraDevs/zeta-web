@@ -1,15 +1,18 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
 import { ZetaIconButton } from "../../components/button/icon-button/icon-button.js";
+import { html } from "lit";
 
 const meta: Meta<ZetaIconButton> = {
-  component: "zeta-icon-button",
   title: "Buttons",
+  component: "zeta-icon-button",
   args: {
     disabled: false,
-    rounded: true,
     flavor: "primary",
     name: "",
+    rounded: true,
+    slot: "star",
+    type: undefined,
     value: ""
   },
   parameters: {
@@ -21,14 +24,21 @@ const meta: Meta<ZetaIconButton> = {
     }
   },
   argTypes: {
-    iconName: {
+    slot: {
       options: ZetaIconNameList,
+      control: {
+        type: "select"
+      },
+      type: "string"
+    },
+    size: {
+      options: ["small", "medium", "large"],
       control: {
         type: "select"
       }
     },
-    size: {
-      options: ["small", "medium", "large"],
+    type: {
+      options: ["button", "submit", "reset"],
       control: {
         type: "select"
       }
@@ -44,4 +54,8 @@ const meta: Meta<ZetaIconButton> = {
 
 export default meta;
 
-export const IconButton: StoryObj<ZetaIconButton> = {};
+export const IconButton: StoryObj<ZetaIconButton> = {
+  render: ({ slot, ...args }) => {
+    return html`<zeta-icon-button size=${args.size} .disabled=${args.disabled} .rounded=${args.rounded} flavor=${args.flavor}>${slot}</zeta-icon-button>`;
+  }
+};

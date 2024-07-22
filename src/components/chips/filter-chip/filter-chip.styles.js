@@ -7,6 +7,12 @@ export default css`
   :host([type="selected"]) .container {
     background: var(--surface-pressed);
   }
+  zeta-icon {
+    --icon-size: 20px;
+  }
+  :host([type="selected"]) zeta-icon {
+    --icon-color: var(--icon-inverse);
+  }
 
   .container {
     width: fit-content;
