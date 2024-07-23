@@ -1,8 +1,8 @@
-import { html, LitElement } from "lit";
+import { html, nothing } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./filter-chip.styles.js";
-import { Contourable, Interactive } from "../../../mixins/mixins.js";
 import "../../icon/icon.js";
+import { BaseChip } from "../base-chips/base-chip.js";
 
 /** Zeta Filter Chip web component.
  *
@@ -10,33 +10,31 @@ import "../../icon/icon.js";
  * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/chips--docs
  */
 @customElement("zeta-filter-chip")
-export class ZetaFilterChip extends Contourable(Interactive(LitElement)) {
-  /** Text displayed in the chip. */
-  @property({ type: String }) text: string = "Label";
-
-  /** Chips' types.*/
-  @property({ type: String, reflect: true }) type: "unselected" | "selected" = "unselected";
+export class ZetaFilterChip extends BaseChip {
+  @property({ type: Boolean, reflect: true }) active?: boolean;
 
   static styles = [super.styles ?? [], styles];
 
-  protected override render() {
-    let icon;
-
-    switch (this.type) {
-      case "unselected":
-        icon = html`<span>${this.text}</span>`;
-        break;
-
-      case "selected":
-        icon = html`<zeta-icon class="icon">check_mark</zeta-icon>
-          <span>${this.text}</span>`;
-        break;
-
-      default:
-        break;
+  getIcon() {
+    if (this.active) {
+      return html`<zeta-icon color=${this.disabled ? "var(--icon-disabled)" : "var(--icon-inverse)"} class="icon" size="20">check_mark</zeta-icon>`;
+    } else {
+      return nothing;
     }
+  }
 
-    return html`<label for="" class="container"> ${icon} </label>`;
+  clickHanlder() {
+    const event = new CustomEvent("change", {
+      detail: this.active
+    });
+    this.active = !this.active;
+    this.dispatchEvent(event);
+  }
+
+  protected override render() {
+    return html`<button class="container interactive-target" @click=${() => this.clickHanlder()} ?disabled=${this.disabled}>
+      ${this.getIcon()}<slot></slot>
+    </button>`;
   }
 }
 

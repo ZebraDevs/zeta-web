@@ -7,7 +7,6 @@ export default css`
     align-items: center;
     justify-content: center;
     position: relative;
-    padding: var(--border-size-medium);
   }
 
   :host([showStatus]) .avatar {

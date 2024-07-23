@@ -1,16 +1,22 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaAssistChip } from "../../components/chips/assist-chip/assist-chip.js";
+import { html } from "lit";
+import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
 
 const meta: Meta<ZetaAssistChip> = {
   component: "zeta-assist-chip",
   title: "Chips",
   args: {
-    type: "label-only",
-    text: "Chip",
-    rounded: true
+    rounded: true,
+    disabled: false,
+    icon: "star",
+    slot: "Label"
   },
   argTypes: {
-    type: { options: ["label-only", "label-with-icon"], control: { type: "inline-radio" } }
+    icon: {
+      options: ZetaIconNameList,
+      control: "select"
+    }
   },
   parameters: {
     design: {
@@ -24,4 +30,6 @@ const meta: Meta<ZetaAssistChip> = {
 
 export default meta;
 
-export const AssistChip: StoryObj<ZetaAssistChip> = {};
+export const AssistChip: StoryObj<ZetaAssistChip> = {
+  render: args => html`<zeta-assist-chip ?rounded=${args.rounded} ?disabled=${args.disabled} .icon=${args.icon}>${args.slot}</zeta-assist-chip>`
+};

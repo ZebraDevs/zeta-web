@@ -1,13 +1,12 @@
 import { css } from "lit";
 export default css`
-  :host,
-  :host .interactive-target {
-    outline: none;
+  :host {
+    user-select: none;
   }
 
-  :host(:not([disabled])) .interactive-target {
+  :host(:not([disabled])) .interactive-target,
+  :host(:not([disabled])) > :not(:has(.interactive-target)):first-child {
     cursor: pointer;
-    user-select: none;
   }
 
   /* :host(:not([disabled]):hover) .interactive-target {

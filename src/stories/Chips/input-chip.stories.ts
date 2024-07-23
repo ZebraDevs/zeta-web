@@ -1,17 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaInputChip } from "../../components/chips/input-chip/input-chip.js";
+import { html } from "lit";
 
 const meta: Meta<ZetaInputChip> = {
   title: "Chips",
   component: "zeta-input-chip",
   args: {
-    type: "label-only",
     rounded: false,
-    text: "Chip",
-    disabled: false
-  },
-  argTypes: {
-    type: { options: ["label-only", "label-with-close-icon", "label-with-avatar-icon", "label-with-both-icons"], control: { type: "inline-radio" } }
+    slot: "Label"
   },
   parameters: {
     design: {
@@ -25,4 +21,9 @@ const meta: Meta<ZetaInputChip> = {
 
 export default meta;
 
-export const InputChip: StoryObj<ZetaInputChip> = {};
+export const InputChip: StoryObj<ZetaInputChip> = {
+  render: args =>
+    html`<zeta-input-chip ?rounded=${args.rounded} ?disabled=${args.disabled}
+      ><zeta-avatar size="xs" slot="leading"></zeta-avatar> ${args.slot}</zeta-input-chip
+    >`
+};

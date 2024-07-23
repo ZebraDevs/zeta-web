@@ -1,17 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaFilterChip } from "../../components/chips/filter-chip/filter-chip.js";
+import { html } from "lit";
 
 const meta: Meta<ZetaFilterChip> = {
   component: "zeta-filter-chip",
   title: "Chips",
   args: {
-    type: "unselected",
+    active: false,
     rounded: false,
-    text: "Chip",
+    slot: "Chip",
     disabled: false
-  },
-  argTypes: {
-    type: { options: ["unselected", "selected"], control: { type: "inline-radio" } }
   },
   parameters: {
     design: {
@@ -25,4 +23,9 @@ const meta: Meta<ZetaFilterChip> = {
 
 export default meta;
 
-export const FilterChip: StoryObj<ZetaFilterChip> = {};
+export const FilterChip: StoryObj<ZetaFilterChip> = {
+  render: ({ slot, ...args }) =>
+    html`<zeta-filter-chip ?disabled=${args.disabled} @change=${(e: CustomEvent) => console.log(e)} ?rounded=${args.rounded} ?active=${args.active}
+      >${slot}</zeta-filter-chip
+    >`
+};
