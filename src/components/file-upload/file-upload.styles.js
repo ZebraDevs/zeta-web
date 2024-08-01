@@ -9,11 +9,11 @@ export default css`
     align-items: center;
     gap: var(--spacing-4);
     user-select: none;
+  }
 
-    &[active] {
-      border-color: var(--border-flavor-primary);
-      background-color: var(--surface-pressed);
-    }
+  :host([active]) .file-upload {
+    border-color: var(--border-flavor-primary);
+    background-color: var(--surface-pressed);
   }
 
   .main-content {
@@ -36,10 +36,10 @@ export default css`
     padding: 0 var(--spacing-4);
     margin: 0;
     pointer-events: none;
+  }
 
-    &[error] {
-      color: var(--text-flavor-negative);
-    }
+  :host([error]) h2.caption {
+    color: var(--text-flavor-negative);
   }
 
   input {

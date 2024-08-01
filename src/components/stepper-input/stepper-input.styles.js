@@ -55,5 +55,6 @@ export default css`
     &:disabled {
       color: var(--text-disabled);
     }
+    color: var(--text-default);
   }
 `;

@@ -4,26 +4,22 @@ export default css`
     width: min-content;
     display: block;
     white-space: nowrap;
-  }
-
-  .navigation-item {
     background-color: var(--surface-default);
     color: var(--text-subtle);
     padding: var(--spacing-3) var(--spacing-4);
     font: var(--title-medium);
-
-    &:not([disabled]) {
-      &:hover,
-      &:active,
-      &[active] {
-        color: var(--text-default);
-      }
-    }
-
-    &[disabled] {
-      color: var(--text-disabled);
-    }
   }
+
+  :host(:not([disabled]):hover),
+  :host(:not([disabled]):active),
+  :host(:not([disabled])[active]) {
+    color: var(--text-default);
+  }
+
+  :host([disabled]) {
+    color: var(--text-disabled);
+  }
+
   :host([active]) {
     border-bottom: 2px solid var(--border-flavor-primary);
   }

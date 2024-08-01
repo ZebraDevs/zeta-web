@@ -1,6 +1,6 @@
 import { css } from "lit";
 export default css`
-  .drawer-item {
+  :host {
     padding: var(--spacing-3);
     background: var(--surface-default);
     display: flex;
@@ -8,17 +8,14 @@ export default css`
     justify-content: space-between;
     align-items: center;
     color: var(--text-subtle);
+  }
 
-    &:not([disabled]) {
-      &[active] {
-        background-color: var(--surface-pressed);
-      }
+  :host(:not([disabled])[active]) {
+    background-color: var(--surface-pressed);
+  }
 
-      &[active],
-      &:hover {
-        color: var(--text-default);
-      }
-    }
+  :host(:not([disabled]):hover) {
+    color: var(--text-default);
   }
 
   h1 {

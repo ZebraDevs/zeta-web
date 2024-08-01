@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import { ZetaButton } from "../../components/button/button.js";
+import "../../components/icon/icon.js";
 
 const meta: Meta<ZetaButton> = {
   component: "zeta-button",

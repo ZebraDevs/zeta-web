@@ -15,11 +15,7 @@ export class ZetaTabItem extends Contourable(Interactive(LitElement)) {
 
   protected override render() {
     // TODO: dropdown variant
-    return html`
-      <div class="navigation-item" ?active=${this.active} ?disabled=${this.disabled}>
-        <slot></slot>
-      </div>
-    `;
+    return html`<slot></slot>`;
   }
 
   static styles = [super.styles ?? [], styles];

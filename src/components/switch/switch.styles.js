@@ -7,6 +7,9 @@ export default css`
     --_switch-icon-size: var(--switch-icon-size, var(--_switch-thumb-size));
     --_switch-padding: calc((var(--_switch-height) - var(--_switch-thumb-size)) / 2);
     --_switch-icon-padding: calc((var(--_switch-height) - var(--_switch-icon-size)) / 2);
+    --_switch-track-width: calc(var(--_switch-width) - var(--_switch-thumb-size) - var(--_switch-padding));
+    --_switch-icon-active-x: calc((var(--_switch-track-width) - var(--_switch-icon-size)) / 2 - var(--_switch-padding));
+    --_switch-icon-inactive-x: calc((var(--_switch-track-width) - var(--_switch-icon-size)) / 2);
 
     padding: 0;
     border: none;
@@ -56,23 +59,28 @@ export default css`
     height: var(--_switch-icon-size);
     width: var(--_switch-icon-size);
     &[part="icon active"] {
-      right: 100%;
+      /*right: 100%; //this needs to be half way of the track*/
+      /*right: var(--_switch-track-icon-pos);*/
+      right: calc(100% + var(--_switch-icon-active-x));
+      /* right: var(--_switch-icon-active-x); */
     }
     &[part="icon inactive"] {
-      right: var(--_switch-icon-padding);
+      right: var(--_switch-icon-inactive-x);
     }
   }
 
   /** This is temporary, see below */
-  :host([checked]) div[part="thumb"] {
+  :host([checked]) div[part="thumb"],
+  :host([checked]) zeta-icon {
     transform: translateX(calc(var(--_switch-width) - var(--_switch-thumb-size) - var(--_switch-padding) * 2));
   }
   :host([checked]) div[part="track"] {
     background-color: var(--switch-track-active-color, var(--icon-flavor-primary));
   }
-  :host([checked]) zeta-icon {
-    transform: translateX(calc(var(--_switch-width) - var(--_switch-icon-size) - var(--_switch-icon-padding) * 2));
-  }
+  /* :host([checked]) zeta-icon { */
+  /* transform: translateX(calc(var(--_switch-width) - var(--_switch-icon-size) - var(--_switch-icon-padding) * 2)); */
+  /* transform: translateX(var(--_switch-icon-active-x)); */
+  /* } */
 
   /*
    * This isnt working in playwright tests due to this bug

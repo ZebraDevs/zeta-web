@@ -4,6 +4,7 @@ import { customElement } from "lit/decorators.js";
 import { BaseButton } from "./base-button.js";
 import styles from "./button.styles.js";
 import { ifDefined } from "lit/directives/if-defined.js";
+import "../icon/icon.js";
 
 //TODO text overflow broken
 

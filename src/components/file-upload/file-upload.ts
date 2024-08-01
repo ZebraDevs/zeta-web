@@ -22,7 +22,7 @@ export class ZetaFileUpload extends Contourable(LitElement) {
   @property({ type: String }) headline: string = this.defaultHeadline;
 
   /** The caption text. */
-  @property({ type: String }) caption?: string;
+  @property({ type: String, reflect: true }) caption?: string;
 
   /**
    * A comma separated list of accepted file formats.
@@ -125,16 +125,6 @@ export class ZetaFileUpload extends Contourable(LitElement) {
     this.fileInput?.click();
   };
 
-  private getCaption() {
-    if (this.error) {
-      return html`<h2 error>${this.errorMsg}</h2>`;
-    } else if (this.caption) {
-      return html`<h2>${this.caption}</h2>`;
-    } else {
-      return nothing;
-    }
-  }
-
   protected override render() {
     return html`
       <div
@@ -143,16 +133,14 @@ export class ZetaFileUpload extends Contourable(LitElement) {
         @dragover=${this.dragOverHandler}
         @dragleave=${this.dragLeaveHandler}
         @mouseleave=${this.mouseLeaveHandler}
-        ?active=${this.active}
-        ?disabled=${this.error}
       >
         <div class="main-content">
           <h1>${this.headline}</h1>
           <h2>${msg("or")}</h2>
           <zeta-button .rounded=${this.rounded} @click=${this.openFileInput}>Select Files</zeta-button>
         </div>
-        ${this.getCaption()}
-        <input type=file id=${this.id} name=${ifDefined(this.name)} accept=${ifDefined(this.accept)} .multiple=${this.multiple}></input>
+        ${this.errorMsg || this.caption ? html`<h2 class="caption">${this.errorMsg || this.caption}</h2>` : nothing}
+        <input type=file id=${this.id} name=${ifDefined(this.name)} accept=${ifDefined(this.accept)} .multiple=${this.multiple} />
       </div>
     `;
   }

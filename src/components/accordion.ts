@@ -36,21 +36,17 @@ export class ZetaAccordion extends Contourable(Interactive(LitElement)) {
     if (!this.disabled) this.open = !this.open;
   }
 
-  private titleTemplate() {
-    return html`
-      <div class="title">
-        <div>${this.accordionTitle}</div>
-        <zeta-icon .rounded=${this.rounded}>${this.open ? "remove" : "add"}</zeta-icon>
-      </div>
-    `;
-  }
-
-  private bodyTemplate() {
-    return html`<div class="body" ?open=${this.open}><slot></slot></div>`;
-  }
-
   protected render() {
-    return html`<div class="accordion" @click=${(_e: Event) => this.toggleOpen()}>${this.titleTemplate()} ${this.bodyTemplate()}</div>`;
+    return html`
+      <div class="accordion" @click=${(_e: Event) => this.toggleOpen()}>
+        <div class="title">
+          <div>${this.accordionTitle}</div>
+          <zeta-icon .rounded=${this.rounded}>${this.open ? "remove" : "add"}</zeta-icon>
+        </div>
+        <div class="body">
+          <slot></slot>
+        </div>
+      </div>`;
   }
 
   static styles = [styles, super.styles || []];

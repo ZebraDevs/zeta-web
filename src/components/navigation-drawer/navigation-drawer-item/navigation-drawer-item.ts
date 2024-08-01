@@ -7,6 +7,9 @@ import { Contourable, Interactive } from "../../../mixins/mixins.js";
  * A navigation item to be used in a zeta-navigation-drawer
  *
  * @slot - The headline text.
+ * @slot badge - Content to be placed in the badge.
+ * @slot leading - Content to be placed before the headline.
+ * @slot trailing - Content to be placed after the headline.
  */
 @customElement("zeta-navigation-drawer-item")
 export class ZetaNavigationDrawerItem extends Contourable(Interactive(LitElement)) {
@@ -17,7 +20,7 @@ export class ZetaNavigationDrawerItem extends Contourable(Interactive(LitElement
   @property({ type: Boolean, reflect: true }) active: boolean = false;
 
   protected override render() {
-    return html`<div class="drawer-item" ?active=${this.active} ?disabled=${this.disabled}>
+    return html`
       <div class="leading">
         <slot name="leading"></slot>
         <h1>${this.headline}<slot></slot></h1>
@@ -26,7 +29,7 @@ export class ZetaNavigationDrawerItem extends Contourable(Interactive(LitElement
         <slot name="badge"></slot>
         <slot name="trailing"></slot>
       </div>
-    </div>`;
+    `;
   }
 
   static styles = [super.styles ?? [], styles];

@@ -3,11 +3,6 @@ export default css`
   :host {
     display: flex;
     height: fit-content;
-    width: fit-content;
-
-    .group {
-      display: flex;
-    }
   }
 
   /* Only display group items */

@@ -45,7 +45,7 @@ export class ZetaDropdownMenuItem extends Contourable(Interactive(LitElement)) {
   }
 
   protected render() {
-    return html`<div ?disabled=${this.disabled} type=${this.type} class="menu-item" @click=${(_e: Event) => this.toggleCheck()}>
+    return html`<div class="menu-item" @click=${(_e: Event) => this.toggleCheck()}>
       <div class="leading">${this.getLeadingContent()}</div>
       <div class="header">
         <slot></slot>

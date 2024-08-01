@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaButtonGroup } from "../../components/button-group/button-group.js";
 import "../../components/button-group/button-group-item/button-group-item.js";
 import { html } from "lit";
-import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
+import { ZetaIconNameList, type ZetaIconName } from "@zebra-fed/zeta-icons";
 
 const meta: Meta<ZetaButtonGroup> = {
   component: "zeta-button-group",
@@ -45,7 +45,7 @@ const meta: Meta<ZetaButtonGroup> = {
 export default meta;
 
 // type ZetaButtonGroupArgs = typeof ZetaButtonGroup | { iconName: string, count: number };
-export const ButtonGroup: StoryObj<ZetaButtonGroup & { iconName: string; count: number; showDropdown: boolean }> = {
+export const ButtonGroup: StoryObj<ZetaButtonGroup & { iconName: ZetaIconName; count: number; showDropdown: boolean }> = {
   args: {
     iconName: "star",
     count: 4,

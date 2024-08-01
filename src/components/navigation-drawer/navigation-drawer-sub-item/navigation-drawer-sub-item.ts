@@ -20,7 +20,7 @@ export class ZetaNavigationDrawerSubItem extends Contourable(Interactive(LitElem
     return html`
       <div class="container">
         <div class="border"></div>
-        <h1 class="sub-item interactive-target contourable-target" ?active=${this.active} ?disabled=${this.disabled}>${this.headline}<slot></slot></h1>
+        <h1 class="sub-item interactive-target contourable-target">${this.headline}<slot></slot></h1>
       </div>
     `;
   }

@@ -1,9 +1,9 @@
 import { css } from "lit";
 export default css`
-  :not([open]).body {
+  :not([open]) .body {
     display: none;
   }
-  :host([open]).body {
+  :host([open]) .body {
     display: block;
   }
   :host([contained]) .accordion {

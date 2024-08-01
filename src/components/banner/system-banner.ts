@@ -2,6 +2,7 @@ import { html, LitElement, nothing } from "lit";
 import { customElement, property, queryAssignedElements } from "lit/decorators.js";
 import styles from "./system-banner.styles.js";
 import { Contourable } from "../../mixins/mixins.js";
+import "../../components/icon/icon.js";
 
 /** 
  * A banner displays an important, succinct message, and provides action for users to address.

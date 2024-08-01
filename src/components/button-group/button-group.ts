@@ -18,11 +18,7 @@ export class ZetaButtonGroup extends Contourable(LitElement) {
   @property({ type: String, reflect: true }) size: "medium" | "large" = "medium";
 
   protected override render() {
-    return html`
-      <div ?rounded=${this.rounded} size=${this.size} class="group">
-        <slot></slot>
-      </div>
-    `;
+    return html`<slot></slot>`;
   }
 
   static styles = [super.styles ?? [], styles];

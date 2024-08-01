@@ -36,7 +36,7 @@ export const Dialog: StoryObj = {
 
   render: args => {
     return html`
-      <div style="{height:" var(--dialog-height, 280px)}>
+      <div style="height: var(--dialog-height, 280px);">
         <zeta-dialog id="dialog1" .rounded=${args.rounded} .centered=${args.centered} .initialOpen=${true} title=${args.title} ?hasIcon=${args.hasIcon}>
           <div slot="dialog-body">
             Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusm od tempor incididunt ut labore et do lore magna aliquaa met, conse ctetur
@@ -60,9 +60,9 @@ export const DialogWithoutIcon: StoryObj = {
     return html`<div>
       <zeta-button
         @click=${() => {
-          const dialog = document.querySelector("#dialog2") as ZetaDialog;
-          void dialog.show();
-        }}
+        const dialog = document.querySelector("#dialog2") as ZetaDialog;
+        void dialog.show();
+      }}
       >
         dialog without icon
       </zeta-button>
@@ -85,9 +85,9 @@ export const DialogWithIcon: StoryObj<ZetaDialog> = {
     return html`<div>
       <zeta-button
         @click=${() => {
-          const dialog = document.querySelector("#dialog3") as ZetaDialog;
-          void dialog.show();
-        }}
+        const dialog = document.querySelector("#dialog3") as ZetaDialog;
+        void dialog.show();
+      }}
       >
         dialog with icon
       </zeta-button>
@@ -110,9 +110,9 @@ export const DialogWith2Actions: StoryObj<ZetaDialog> = {
     return html`<div>
       <zeta-button
         @click=${() => {
-          const dialog = document.querySelector("#dialog4") as ZetaDialog;
-          void dialog.show();
-        }}
+        const dialog = document.querySelector("#dialog4") as ZetaDialog;
+        void dialog.show();
+      }}
       >
         dialog with two buttons
       </zeta-button>
@@ -134,9 +134,9 @@ export const DialogWith1Action: StoryObj<ZetaDialog> = {
     return html`<div>
       <zeta-button
         @click=${() => {
-          const dialog = document.querySelector("#dialog5") as ZetaDialog;
-          void dialog.show();
-        }}
+        const dialog = document.querySelector("#dialog5") as ZetaDialog;
+        void dialog.show();
+      }}
       >
         dialog with one button
       </zeta-button>

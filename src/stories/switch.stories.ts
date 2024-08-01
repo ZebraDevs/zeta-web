@@ -43,52 +43,52 @@ export const SwitchMuteControl: StoryObj<ZetaSwitch> = {
 export const SwitchDisabled: StoryObj<ZetaSwitch> = {
   args: { disabled: true, activeIcon: "volume_up", inactiveIcon: "volume_off" }
 };
-export const SwitchWithLabel: StoryObj<ZetaSwitch> = {
-  args: {
-    slot: "Switch lable"
-  },
-  render: ({ slot, ...args }) => {
-    return html` <zeta-switch name="labelled-switch" ${spread(args)}>${slot}</zeta-switch> `;
-  }
-};
+// export const SwitchWithLabel: StoryObj<ZetaSwitch> = {
+//   args: {
+//     slot: "Switch label"
+//   },
+//   render: ({ slot, ...args }) => {
+//     return html` <zeta-switch name="labelled-switch" ${spread(args)}>${slot}</zeta-switch> `;
+//   }
+// };
 export const SwitchCustomSize: StoryObj = {
-  args: { activeIcon: "microphone", inactiveIcon: "microphone" },
+  args: { activeIcon: "microphone", inactiveIcon: "microphone_off" },
   render: args => {
     return html`<style>
-        zeta-switch {
+        zeta-switch.custom-size {
           --switch-height: 48px;
           --switch-width: 96px;
           --switch-thumb-size: 40px;
         }
       </style>
-      <zeta-switch ${spread(args)}></zeta-switch> `;
+      <zeta-switch class="custom-size" ${spread(args)}></zeta-switch> `;
   }
 };
 export const SausageSwitch: StoryObj = {
-  args: { activeIcon: "microphone", inactiveIcon: "microphone" },
+  args: { activeIcon: "microphone", inactiveIcon: "microphone_off" },
   render: args => {
     return html`<style>
-        zeta-switch {
+        zeta-switch.sausage {
           --switch-height: 48px;
           --switch-width: 512px;
           --switch-thumb-size: 40px;
         }
       </style>
-      <zeta-switch ${spread(args)}></zeta-switch> `;
+      <zeta-switch class="sausage" ${spread(args)}></zeta-switch> `;
   }
 };
 export const PattySwitch: StoryObj = {
   args: { activeIcon: "microphone", inactiveIcon: "microphone" },
   render: args => {
     return html`<style>
-        zeta-switch {
+        zeta-switch.patty {
           --switch-height: 48px;
           --switch-width: 72px;
           --switch-thumb-size: 40px;
           --switch-icon-size: 12px;
         }
       </style>
-      <zeta-switch ${spread(args)}></zeta-switch> `;
+      <zeta-switch class="patty" ${spread(args)}></zeta-switch> `;
   }
 };
 //TODO % dont work
@@ -96,10 +96,10 @@ export const SwitchCustomIconSize: StoryObj = {
   args: { activeIcon: "microphone", inactiveIcon: "microphone" },
   render: args => {
     return html`<style>
-        zeta-switch {
+        zeta-switch.custom-icon-size {
           --switch-icon-size: 12px;
         }
       </style>
-      <zeta-switch ${spread(args)}></zeta-switch> `;
+      <zeta-switch class="custom-icon-size" ${spread(args)}></zeta-switch> `;
   }
 };

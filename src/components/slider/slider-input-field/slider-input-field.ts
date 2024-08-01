@@ -75,9 +75,16 @@ export class ZetaSliderInputField extends Contourable(LitElement) {
     ${this.getLabel()}
     <div class="slider-input-container" id="test">
       <div class="slider-container">
-        <zeta-slider id="slider" stepIncrement=${ifDefined(this.stepIncrement)} .rounded=${this.rounded} .disabled=${this.disabled} value=${ifDefined(this.value)} max-value=${
-          this.max
-        } min-value=${this.min} @change=${this.sliderChange}></zeta-slider>
+        <zeta-slider
+          id="slider"
+          stepIncrement=${ifDefined(this.stepIncrement)}
+          .rounded=${this.rounded}
+          .disabled=${this.disabled}
+          value=${ifDefined(this.value)}
+          min=${this.min}
+          max=${this.max}
+          @change=${this.sliderChange}>
+        </zeta-slider>
         <div class="range-label-container">
           <div>${this.min}</div>
           <div>${this.max}</div>
@@ -96,10 +103,9 @@ export class ZetaSliderInputField extends Contourable(LitElement) {
         step=${ifDefined(this.stepIncrement)} 
         value=${ifDefined(live(this.value))}
         @input=${(e: Event) => {
-          this.value = parseInt((e.target as HTMLInputElement).value);
-          this.onValueUpdated();
-        }}>
-      </input>
+        this.value = parseInt((e.target as HTMLInputElement).value);
+        this.onValueUpdated();
+      }} />
     </div> `;
   }
 
