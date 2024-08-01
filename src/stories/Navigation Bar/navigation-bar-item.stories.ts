@@ -12,11 +12,18 @@ const meta: Meta<ZetaNavigationBarItem> = {
     rounded: true,
     active: false,
     icon: "star",
-    label: "Label"
+    label: "Label",
+    notificationValue: ""
   },
   argTypes: {
     icon: {
       options: ZetaIconNameList,
+      control: {
+        type: "select"
+      }
+    },
+    notificationValue: {
+      options: [true, false, "1", "2", "3", "4", "5", "6", "7", "8", "9", "+"],
       control: {
         type: "select"
       }
@@ -34,11 +41,15 @@ const meta: Meta<ZetaNavigationBarItem> = {
 
 export default meta;
 
-export const Item: StoryObj<ZetaNavigationBarItem> = {};
-
-export const ItemWithBadge: StoryObj<ZetaNavigationBarItem> = {
-  render: args =>
-    html`<zeta-navigation-bar-item .rounded=${args.rounded} .active=${args.active} icon=${ifDefined(args.icon)} label=${ifDefined(args.label)}>
-      <zeta-notification-indicator>2</zeta-notification-indicator>
-    </zeta-navigation-bar-item>`
+export const Item: StoryObj<ZetaNavigationBarItem> = {
+  render: args => {
+    return html`<zeta-navigation-bar-item
+      .rounded=${args.rounded}
+      .active=${args.active}
+      icon=${ifDefined(args.icon)}
+      label=${ifDefined(args.label)}
+      .notificationValue=${args.notificationValue}
+    >
+    </zeta-navigation-bar-item>`;
+  }
 };

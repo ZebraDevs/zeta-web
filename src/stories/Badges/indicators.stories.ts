@@ -3,6 +3,7 @@ import { ZetaIndicator } from "../../components/badges/indicators/indicators.js"
 import "../../components/badges/indicators/indicators.js";
 import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
 import { html } from "lit";
+import { ifDefined } from "lit/directives/if-defined.js";
 
 class _ZetaIndicator extends ZetaIndicator {
   value!: string;
@@ -52,8 +53,7 @@ export const Indicator: StoryObj<_ZetaIndicator> = {
     icon: "alarm"
   },
   render: args =>
-    html`<zeta-indicator size=${args.size} .inverse=${args.inverse} .rounded=${args.rounded} icon=${args.icon} type=${args.type}>
-      ${args.value}
+    html`<zeta-indicator size=${args.size} .inverse=${args.inverse} .rounded=${args.rounded} icon=${args.icon} type=${args.type} value=${args.value}>
     </zeta-indicator>`
 };
 
@@ -79,10 +79,14 @@ export const NotificationIndicator: StoryObj<_ZetaIndicator> = {
   },
   argTypes: {
     icon: { table: { disable: true } },
-    type: { table: { disable: true } }
+    type: { table: { disable: true } },
+    value: {
+      control: {
+        type: "text"
+      }
+    }
   },
   render: args =>
-    html` <zeta-notification-indicator size=${args.size} .inverse=${args.inverse} .rounded=${args.rounded}>
-      <slot>${args.value}</slot>
+    html` <zeta-notification-indicator size=${args.size} .inverse=${args.inverse} .rounded=${args.rounded} value=${ifDefined(args.value)}>
     </zeta-notification-indicator>`
 };

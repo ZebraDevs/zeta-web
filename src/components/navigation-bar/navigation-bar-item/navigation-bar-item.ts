@@ -3,6 +3,7 @@ import { Contourable } from "../../../mixins/mixins.js";
 import { type ZetaIconName } from "@zebra-fed/zeta-icons";
 import { html, LitElement, nothing } from "lit";
 import styles from "./navigation-bar-item.styles.js";
+import "../../badges/badges.js";
 import "../../icon/icon.js";
 
 /**
@@ -19,6 +20,8 @@ export class ZetaNavigationBarItem extends Contourable(LitElement) {
 
   @property({ type: String, reflect: true }) label?: string;
 
+  @property({ type: String, reflect: true }) notificationValue?: string | boolean;
+
   @property({ type: Boolean, reflect: true }) active: boolean = false;
 
   private getLabel() {
@@ -31,15 +34,11 @@ export class ZetaNavigationBarItem extends Contourable(LitElement) {
 
   protected render() {
     return html`
-      <div class="nav-item" ?label=${this.label}>
-        <div class="icon-container">
-          <zeta-icon .rounded=${this.rounded}>${this.icon}</zeta-icon>
-          <div class="badge">
-            <slot name="badge"></slot>
-          </div>
-        </div>
-        ${this.getLabel()}
+      <div class="icon-container">
+        ${this.notificationValue ? html`<zeta-notification-indicator .value=${this.notificationValue}></zeta-notification-indicator>` : ""}
+        <zeta-icon .rounded=${this.rounded}>${this.icon}</zeta-icon>
       </div>
+      ${this.getLabel()}
     `;
   }
 

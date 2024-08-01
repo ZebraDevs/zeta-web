@@ -6,21 +6,15 @@ export default css`
     width: min-content;
     justify-content: center;
     cursor: pointer;
-  }
-
-  .nav-item {
-    display: flex;
     flex-direction: column;
     gap: var(--spacing-2);
     align-items: center;
+    padding: var(--spacing-2);
+    min-width: 46px;
   }
 
-  .nav-item[label] {
+  :host[label] {
     padding: var(--spacing-2) var(--spacing-6);
-  }
-
-  .nav-item:not([label]) {
-    padding: var(--spacing-5) var(--spacing-6);
   }
 
   .label {
@@ -37,15 +31,16 @@ export default css`
     position: relative;
   }
 
-  .badge {
+  zeta-notification-indicator {
     position: absolute;
     top: -2px;
     right: -2px;
     border: var(--border-size-medium) solid var(--surface-default);
     border-radius: var(--radius-full);
   }
+
   :host zeta-icon {
-    --icon-color: var(--icon-disabled);
+    --icon-color: var(--icon-subtle);
   }
   :host([active]) zeta-icon {
     --icon-color: var(--icon-flavor-primary);

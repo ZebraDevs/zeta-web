@@ -31,18 +31,21 @@ export class ZetaIndicator extends Size(Contourable(LitElement)) {
   /** Whether to render as a notification or icon indicator. */
   @property({ type: String }) type: "icon" | "notification" = "notification";
 
+  @property({ type: String, reflect: true }) value: string | true | false = false;
+
   static styles = [super.styles ?? [], styles];
 
-  private getBody() {
+  private getBody(value: string | boolean) {
     if (this.type == "icon") {
       return html`<zeta-icon .rounded=${this.rounded}>${this.icon}</zeta-icon> `;
     } else {
-      return html` <span class="count"><slot></slot></span> `;
+      return html`${value}`;
     }
   }
 
   protected override render() {
-    return html` <div class="container ${this.type}">${this.getBody()}</div> `;
+    const value = this.value === true || !this.value ? "" : this.value;
+    return html` <div class="container ${this.type} ${value.length ? "expand" : ""}">${this.size !== "small" ? this.getBody(value) : ""}</div> `;
   }
 }
 

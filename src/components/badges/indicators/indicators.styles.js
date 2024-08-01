@@ -2,12 +2,8 @@ import { css } from "lit";
 export default css`
   :host([size="small"]) {
     .container {
-      min-width: var(--spacing-2);
-      min-height: var(--spacing-2);
-    }
-
-    .count {
-      display: none;
+      width: var(--spacing-2);
+      height: var(--spacing-2);
     }
 
     zeta-icon {
@@ -15,13 +11,14 @@ export default css`
     }
   }
 
-  :host([size="medium"]) .container {
+  :host([size="medium"]) .container.expand {
     width: var(--spacing-3);
     height: var(--spacing-3);
+  }
 
-    .count {
-      font: var(--label-indicator);
-    }
+  :host([size="medium"]) .container {
+    width: var(--spacing-2);
+    height: var(--spacing-2);
 
     .icon {
       position: absolute;
@@ -33,12 +30,11 @@ export default css`
   }
 
   :host([size="large"]) .container {
-    width: var(--spacing-4);
-    height: var(--spacing-4);
+    min-width: var(--spacing-3);
+    min-height: var(--spacing-3);
+    max-width: var(--spacing-4);
+    max-height: var(--spacing-4);
 
-    .count {
-      font: var(--label-indicator);
-    }
     zeta-icon {
       --icon-size: 12px;
     }
@@ -49,17 +45,18 @@ export default css`
   }
 
   :host {
-    width: fit-content;
+    width: auto;
     display: block;
 
     .container {
       border-radius: var(--radius-full);
-      width: fit-content;
-      height: fit-content;
+      width: auto;
       display: flex;
       justify-content: center;
       align-items: center;
-      position: relative;
+      font: var(--label-indicator);
+      color: var(--text-inverse);
+      aspect-ratio: 1 / 1;
     }
   }
 
@@ -71,12 +68,6 @@ export default css`
     background-color: var(--icon-flavor-negative);
   }
 
-  :host .container {
-    .count {
-      position: absolute;
-      color: var(--text-inverse);
-    }
-  }
   :host zeta-icon {
     --icon-color: var(--icon-inverse);
   }

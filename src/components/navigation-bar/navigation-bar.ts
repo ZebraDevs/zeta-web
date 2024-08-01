@@ -1,4 +1,4 @@
-import { customElement } from "lit/decorators.js";
+import { customElement, property } from "lit/decorators.js";
 import { LitElement, html } from "lit";
 import styles from "./navigation-bar.styles.js";
 
@@ -13,12 +13,10 @@ export * from "./navigation-bar-item/navigation-bar-item.js";
  */
 @customElement("zeta-navigation-bar")
 export class ZetaNavigationBar extends LitElement {
+  @property({ type: Boolean, reflect: true }) shrinkItems: boolean = false;
+
   protected render() {
-    return html`
-      <div class="nav-bar">
-        <slot></slot>
-      </div>
-    `;
+    return html`<slot></slot>`;
   }
 
   static styles = [styles, super.styles || []];
