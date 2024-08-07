@@ -34,18 +34,34 @@ export default css`
       }
       > .body {
         margin-top: var(--spacing-1);
+        margin-right: var(--spacing-7);
         font: var(--body-small);
+      }
+
+      > .content {
+        margin-top: var(--spacing-3);
+        max-width: calc(100% - var(--spacing-7));
+
+        > ::slotted(*) {
+          max-width: 100%;
+          height: auto;
+        }
       }
 
       > .footer {
         display: flex;
         flex-direction: row;
         gap: var(--spacing-2);
+        max-width: calc(100% - var(--spacing-7));
       }
     }
   }
 
   :host([rounded]) > .banner {
+    border-radius: var(--radius-minimal);
+  }
+
+  :host([rounded]) .content ::slotted(*) {
     border-radius: var(--radius-minimal);
   }
 
@@ -89,8 +105,7 @@ export default css`
     }
   }
 
-  ::slotted([slot="leading-action"]),
-  ::slotted([slot="trailing-action"]) {
+  ::slotted([slot="action"]){
     margin-top: var(--spacing-4);
   }
 `;

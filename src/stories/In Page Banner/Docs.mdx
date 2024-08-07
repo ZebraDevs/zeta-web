@@ -1,0 +1,53 @@
+import { Canvas, Meta, Description, ArgTypes, Title, Stories, Story, Source } from "@storybook/blocks";
+import * as InPageBanner from "./in-page-banner.stories";
+
+<Meta of={InPageBanner} title="In Page Banner" />
+
+<Title />
+<Description of="zeta-in-page-banner" />
+<Canvas of={InPageBanner.Banner} />
+<ArgTypes of="zeta-in-page-banner" />
+
+---
+
+## Banner Single Action
+
+To implement a banner with a single action, insert a `<zeta-button>` element in the `leading-action` slot.
+
+> Note: Current build has incorrect colors on button. This will be resolved by UX-1146
+
+<Canvas of={InPageBanner.BannerSingleAction} />
+
+## Banner Dual Action
+
+To implement a banner with dual actions, insert `<zeta-button>` elements in the `leading-action` and `trailing-action` slots respectively.
+
+<Canvas of={InPageBanner.BannerDualAction} />
+
+## Banner With Content
+
+To add more content to your banner, insert the HTML elements as the banner’s children / in the default slot.
+
+```
+<zeta-in-page-banner>
+    INSERT YOUR CONTENT HERE
+</zeta-in-page-banner>`
+```
+
+<Canvas of={InPageBanner.BannerWithImage} />
+
+## Note:
+
+`rounded` does not effect indirect children of the default slot. If you want rounded corners on images or other elements, insure they are direct children of the default slot or manually apply rounded corners with CSS.
+
+<Canvas of={InPageBanner.BannerWithContent} />
+
+## Banner Constrained Width
+
+To limit a banner’s width, wrap it in a parent element with a specified width.
+
+For example, use `<div style="max-width: 500px">` to set the banner’s width to 500px.
+
+Any image inside the image slot will adjust to it's parent's width, making it responsive.
+
+<Canvas of={InPageBanner.BannerConstrainedWidth} />
