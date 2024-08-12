@@ -95,9 +95,7 @@ export class ZetaSearch extends Size(Contourable(Interactive(LitElement))) {
   };
 
   private renderCancelIcon = () => {
-    return this.value
-      ? html`<zeta-icon @click=${this.resetInput} .rounded=${this.rounded}>cancel</zeta-icon>`
-      : nothing;
+    return this.value ? html`<zeta-icon @click=${this.resetInput} .rounded=${this.rounded}>cancel</zeta-icon>` : nothing;
   };
 
   private handleSubmit = (e: Event) => {

@@ -13,6 +13,7 @@ import { ZetaCardHeader } from "./components/card/card-header/card-header.js";
 import { ZetaCheckbox } from "./components/checkbox/checkbox.js";
 import { ZetaDialog } from "./components/dialog/dialog.js";
 import { ZetaDropdownMenuItem } from "./components/dropdown/menu-item/dropdown-menu-item.js";
+import { ZetaFab } from "./components/fab/fab.js";
 import { ZetaFileUpload } from "./components/file-upload/file-upload.js";
 import { ZetaFilterChip } from "./components/chips/filter-chip/filter-chip.js";
 import { ZetaGlobalHeader } from "./components/global-header/global-header.js";
@@ -72,6 +73,7 @@ export {
   ZetaCheckbox,
   ZetaDialog,
   ZetaDropdownMenuItem,
+  ZetaFab,
   ZetaFileUpload,
   ZetaFilterChip,
   ZetaGlobalHeader,

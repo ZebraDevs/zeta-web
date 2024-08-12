@@ -25,6 +25,7 @@ export default [
       user-select: none;
       height: var(--icon-size, 24px);
       width: var(--icon-size, 24px);
+      transition: all 0.3s ease-in-out;
       color: var(--icon-color, var(--icon-default));
       font-size: var(--icon-size, 24px);
       line-height: var(--icon-size, 1);

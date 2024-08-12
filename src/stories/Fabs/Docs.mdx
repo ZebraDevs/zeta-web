@@ -1,0 +1,28 @@
+import { Canvas, Meta, Description, ArgTypes, Title, Controls } from "@storybook/blocks";
+import * as Fab from "./fab.stories";
+
+<Meta of={Fab} title="Fabs" />
+
+<Title />
+<Description of="zeta-fab" />
+
+## Fab
+
+<Canvas of={Fab.Fab} />
+
+## Extended Fab
+
+<Canvas of={Fab.ExtendedFab} />
+
+<div style={{ display: "flex", flexWrap: "wrap", gap: "0 50px" }}>
+  <div style={{ minWidth: "300px", flex: "1" }}>
+    ## Variant Flavor
+    <Canvas of={Fab.FabVariant} />
+  </div>
+  <div style={{ minWidth: "300px", flex: "1" }}>
+    ## Inverse Flavor
+    <Canvas of={Fab.FabInverse} />
+  </div>
+</div>
+
+<ArgTypes of={Fab} />
