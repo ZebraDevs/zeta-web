@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html, nothing } from "lit";
 import { ZetaNavigationBar } from "../../components/navigation-bar/navigation-bar.js";
-import "../../components/navigation-bar/navigation-bar-item/navigation-bar-item.js";
+import "../../components/grid-menu-item/grid-menu-item";
 import "../../components/button/button.js";
 
 type _navBarType = ZetaNavigationBar & { numItems: number } & { divider: number } & { spacer: number } & { selected: number } & { button: Boolean } & {
@@ -87,8 +87,8 @@ export const BarIconAndLabel: StoryObj<_navBarType> = {
     const navigationBarItems = Array.from({ length: args.numItems }, (_, index) => {
       return html`
         ${index == (args.spacer as number) - 1 ? html` <div class="spacer"></div>` : nothing}
-        <zeta-navigation-bar-item icon="star" label="Label" .active=${args.selected === index + 1} .notificationValue=${args.notificationValue}>
-        </zeta-navigation-bar-item>
+        <zeta-grid-menu-item icon="star" label="Label" .active=${args.selected === index + 1} .notificationValue=${args.notificationValue}>
+        </zeta-grid-menu-item>
         ${index == (args.divider as number) - 1 ? html` <div class="divider"></div>` : nothing}
         ${index == args.numItems - 1 && index + 1 == (args.spacer as number) - 1 ? html` <div class="spacer"></div>` : nothing}
         ${index == args.numItems - 1 && args.button == true ? html` <zeta-button>Button</zeta-button>` : nothing}
@@ -104,7 +104,7 @@ export const BarIconsOnly: StoryObj<_navBarType> = {
     const navigationBarItems = Array.from({ length: args.numItems }, (_, index) => {
       return html`
         ${index == (args.spacer as number) - 1 ? html` <div class="spacer"></div>` : nothing}
-        <zeta-navigation-bar-item icon="star" .active=${args.selected === index + 1} .notificationValue=${args.notificationValue}> </zeta-navigation-bar-item>
+        <zeta-grid-menu-item icon="star" .active=${args.selected === index + 1} .notificationValue=${args.notificationValue}> </zeta-grid-menu-item>
         ${index == (args.divider as number) - 1 ? html` <div class="divider"></div>` : nothing}
         ${index == args.numItems - 1 && index + 1 == (args.spacer as number) - 1 ? html` <div class="spacer"></div>` : nothing}
         ${index == args.numItems - 1 && args.button == true ? html` <zeta-button>Button</zeta-button>` : nothing}
@@ -120,11 +120,11 @@ export const WithDivider: StoryObj<_navBarType> = {
 
   render: () => {
     return html` <zeta-navigation-bar>
-      <zeta-navigation-bar-item icon="star" label="Label" .active=${true}> </zeta-navigation-bar-item>
-      <zeta-navigation-bar-item icon="star" label="Label"> </zeta-navigation-bar-item>
+      <zeta-grid-menu-item icon="star" label="Label" .active=${true}> </zeta-grid-menu-item>
+      <zeta-grid-menu-item icon="star" label="Label"> </zeta-grid-menu-item>
       <div class="divider"></div>
-      <zeta-navigation-bar-item icon="star" label="Label"> </zeta-navigation-bar-item>
-      <zeta-navigation-bar-item icon="star" label="Label"></zeta-navigation-bar-item>
+      <zeta-grid-menu-item icon="star" label="Label"> </zeta-grid-menu-item>
+      <zeta-grid-menu-item icon="star" label="Label"></zeta-grid-menu-item>
     </zeta-navigation-bar>`;
   }
 };
@@ -134,11 +134,11 @@ export const WithSpacer: StoryObj<_navBarType> = {
 
   render: () => {
     return html` <zeta-navigation-bar>
-      <zeta-navigation-bar-item icon="star" label="Label" .active=${true}> </zeta-navigation-bar-item>
-      <zeta-navigation-bar-item icon="star" label="Label"> </zeta-navigation-bar-item>
+      <zeta-grid-menu-item icon="star" label="Label" .active=${true}> </zeta-grid-menu-item>
+      <zeta-grid-menu-item icon="star" label="Label"> </zeta-grid-menu-item>
       <div class="spacer"></div>
-      <zeta-navigation-bar-item icon="star" label="Label"> </zeta-navigation-bar-item>
-      <zeta-navigation-bar-item icon="star" label="Label"></zeta-navigation-bar-item>
+      <zeta-grid-menu-item icon="star" label="Label"> </zeta-grid-menu-item>
+      <zeta-grid-menu-item icon="star" label="Label"></zeta-grid-menu-item>
     </zeta-navigation-bar>`;
   }
 };
@@ -148,11 +148,11 @@ export const WithSpacerAndShrinkItems: StoryObj<_navBarType> = {
 
   render: () => {
     return html` <zeta-navigation-bar shrinkItems>
-      <zeta-navigation-bar-item icon="star" label="Label" .active=${true}> </zeta-navigation-bar-item>
-      <zeta-navigation-bar-item icon="star" label="Label"> </zeta-navigation-bar-item>
+      <zeta-grid-menu-item icon="star" label="Label" .active=${true}> </zeta-grid-menu-item>
+      <zeta-grid-menu-item icon="star" label="Label"> </zeta-grid-menu-item>
       <div class="spacer"></div>
-      <zeta-navigation-bar-item icon="star" label="Label"> </zeta-navigation-bar-item>
-      <zeta-navigation-bar-item icon="star" label="Label"></zeta-navigation-bar-item>
+      <zeta-grid-menu-item icon="star" label="Label"> </zeta-grid-menu-item>
+      <zeta-grid-menu-item icon="star" label="Label"></zeta-grid-menu-item>
     </zeta-navigation-bar>`;
   }
 };
@@ -162,9 +162,9 @@ export const WithButton: StoryObj<_navBarType> = {
 
   render: () => {
     return html` <zeta-navigation-bar>
-      <zeta-navigation-bar-item icon="star" label="Label" .active=${true}> </zeta-navigation-bar-item>
-      <zeta-navigation-bar-item icon="star" label="Label"> </zeta-navigation-bar-item>
-      <zeta-navigation-bar-item icon="star" label="Label"> </zeta-navigation-bar-item>
+      <zeta-grid-menu-item icon="star" label="Label" .active=${true}> </zeta-grid-menu-item>
+      <zeta-grid-menu-item icon="star" label="Label"> </zeta-grid-menu-item>
+      <zeta-grid-menu-item icon="star" label="Label"> </zeta-grid-menu-item>
 
       <zeta-button>Button</zeta-button>
     </zeta-navigation-bar>`;

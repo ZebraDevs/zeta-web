@@ -1,21 +1,21 @@
 import { expect, fixture, html, unsafeStatic } from "@open-wc/testing";
-import { ZetaIcon, ZetaNavigationBarItem } from "../../index.js";
+import { ZetaIcon, ZetaGridMenuItem } from "../../index.js";
 import "../../index.js";
 import { getIconName } from "../utils.js";
 
-describe("zeta-navigation-bar-item", () => {
+describe("zeta-grid-menu-item", () => {
   const label = "Label";
   const icon = "star";
   const badgeId = "badge";
 
-  let subject: ZetaNavigationBarItem;
+  let subject: ZetaGridMenuItem;
 
   const createComponent = (
-    template = `<zeta-navigation-bar-item icon=${icon} label=${label}>
+    template = `<zeta-grid-menu-item icon=${icon} label=${label}>
     <zeta-notification-indicator slot="badge" id=${badgeId}>2</zeta-notification-indicator>
-  </zeta-navigation-bar-item>`
+  </zeta-grid-menu-item>`
   ) => {
-    return fixture<ZetaNavigationBarItem>(html`${unsafeStatic(template)}`);
+    return fixture<ZetaGridMenuItem>(html`${unsafeStatic(template)}`);
   };
 
   beforeEach(async () => {

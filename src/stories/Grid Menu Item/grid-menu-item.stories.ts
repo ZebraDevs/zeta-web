@@ -1,13 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
-import { ZetaNavigationBarItem } from "../../components/navigation-bar/navigation-bar-item/navigation-bar-item.js";
 import { ifDefined } from "lit/directives/if-defined.js";
-import "../../components/badges/indicators/indicators.js";
+import type { ZetaGridMenuItem } from "../../components/grid-menu-item/grid-menu-item.js";
+import "../../components/grid-menu-item/grid-menu-item";
 
-const meta: Meta<ZetaNavigationBarItem> = {
-  component: "zeta-navigation-bar-item",
-  title: "Navigation Bar",
+const meta: Meta<ZetaGridMenuItem> = {
+  component: "zeta-grid-menu-item",
+  title: "Grid Menu Item",
+  tags: ["autodocs"],
   args: {
     rounded: true,
     active: false,
@@ -41,15 +42,15 @@ const meta: Meta<ZetaNavigationBarItem> = {
 
 export default meta;
 
-export const Item: StoryObj<ZetaNavigationBarItem> = {
+export const Item: StoryObj<ZetaGridMenuItem> = {
   render: args => {
-    return html`<zeta-navigation-bar-item
+    return html`<zeta-grid-menu-item
       .rounded=${args.rounded}
       .active=${args.active}
       icon=${ifDefined(args.icon)}
       label=${ifDefined(args.label)}
       .notificationValue=${args.notificationValue}
     >
-    </zeta-navigation-bar-item>`;
+    </zeta-grid-menu-item>`;
   }
 };

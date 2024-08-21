@@ -1,5 +1,5 @@
 import { expect, fixture, html, unsafeStatic } from "@open-wc/testing";
-import { ZetaNavigationBar, ZetaNavigationBarItem } from "../../index.js";
+import { ZetaNavigationBar, ZetaGridMenuItem } from "../../index.js";
 import "../../index.js";
 
 describe("zeta-navigation-bar", () => {
@@ -11,15 +11,15 @@ describe("zeta-navigation-bar", () => {
 
   const createComponent = (
     template = `<zeta-navigation-bar>
-      <zeta-navigation-bar-item icon=${icon} label=${label}>
+      <zeta-grid-menu-item icon=${icon} label=${label}>
       <zeta-notification-indicator value=${badgeValue}></zeta-notification-indicator>
-    </zeta-navigation-bar-item>
-    <zeta-navigation-bar-item icon=${icon} label=${label}>
+    </zeta-grid-menu-item>
+    <zeta-grid-menu-item icon=${icon} label=${label}>
       <zeta-notification-indicator value=${badgeValue}></zeta-notification-indicator>
-    </zeta-navigation-bar-item>
-    <zeta-navigation-bar-item icon=${icon} label=${label}>
+    </zeta-grid-menu-item>
+    <zeta-grid-menu-item icon=${icon} label=${label}>
       <zeta-notification-indicator value=${badgeValue}></zeta-notification-indicator>
-    </zeta-navigation-bar-item>
+    </zeta-grid-menu-item>
     </zeta-navigation-bar>`
   ) => {
     return fixture<ZetaNavigationBar>(html`${unsafeStatic(template)}`);
@@ -34,12 +34,12 @@ describe("zeta-navigation-bar", () => {
   });
 
   it("renders the correct number of navigation bar items", async () => {
-    const items = subject.querySelectorAll("zeta-navigation-bar-item");
+    const items = subject.querySelectorAll("zeta-grid-menu-item");
     await expect(items.length).to.equal(3);
   });
 
   it("renders the correct label and icon for each navigation bar item", async () => {
-    const items = subject.querySelectorAll("zeta-navigation-bar-item");
+    const items = subject.querySelectorAll("zeta-grid-menu-item");
     await Promise.all(
       Array.from(items).map(async item => {
         const itemLabel = item.getAttribute("label");
@@ -81,13 +81,13 @@ describe("zeta-navigation-bar spacer", () => {
 
   const createComponent = (
     template = `<zeta-navigation-bar shrinkItems>
-      <zeta-navigation-bar-item icon=${icon} label=${label}>
+      <zeta-grid-menu-item icon=${icon} label=${label}>
       <zeta-notification-indicator value=${badgeValue}></zeta-notification-indicator>
-    </zeta-navigation-bar-item>
+    </zeta-grid-menu-item>
     <div class="spacer"></div>
-    <zeta-navigation-bar-item icon=${icon} label=${label}>
+    <zeta-grid-menu-item icon=${icon} label=${label}>
       <zeta-notification-indicator value=${badgeValue}></zeta-notification-indicator>
-    </zeta-navigation-bar-item>
+    </zeta-grid-menu-item>
     </zeta-navigation-bar>`
   ) => {
     return fixture<ZetaNavigationBar>(html`${unsafeStatic(template)}`);
@@ -98,7 +98,7 @@ describe("zeta-navigation-bar spacer", () => {
   });
 
   it.skip("keeps a fixed width", async () => {
-    const item0: ZetaNavigationBarItem = subject.querySelector("zeta-navigation-bar-item")!;
+    const item0: ZetaGridMenuItem = subject.querySelector("zeta-grid-menu-item")!;
     item0.setAttribute("label", "SomethingVeryVeryLong");
     await item0.updateComplete;
     await expect(item0.getBoundingClientRect().width).to.equal(62);

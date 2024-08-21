@@ -1,14 +1,15 @@
 import { Canvas, Meta, Description, ArgTypes, Title, Stories } from "@storybook/blocks";
 import * as NavigationBar from "./navigation-bar.stories";
-import * as Item from "./navigation-bar-item.stories";
 
 <Meta of={NavigationBar} title="Navigation Bar" />
 
 <Title />
 <Description of="zeta-navigation-bar" />
 <Canvas of={NavigationBar.BarIconAndLabel} />
+[View Grid Menu Item](/docs/grid-menu-item--docs)
+
 <ArgTypes of="zeta-navigation-bar" />
-<Stories of="zeta-navigation-bar-item" includePrimary={false} />
+<Stories of="zeta-navigation-bar" includePrimary={false} />
 
 ## Dividers and Spacers
 
@@ -20,19 +21,19 @@ To implement a divider in the navigation bar insert the below code between your 
 
 ```
 <zeta-navigation-bar>
-    <zeta-navigation-bar-item
+    <zeta-grid-menu-item
         icon="star"
         label="Label"
         .active=${selected === 0}
     >
-    </zeta-navigation-bar-item>
+    </zeta-grid-menu-item>
     <div class="divider"></div>
-    <zeta-navigation-bar-item
+    <zeta-grid-menu-item
         icon="star"
         label="Label"
         .active=${selected === 1}
     >
-    </zeta-navigation-bar-item>
+    </zeta-grid-menu-item>
 </zeta-navigation-bar>
 ```
 
@@ -48,28 +49,20 @@ If you want the spacer to push all the other elements away from it pass the prop
 
 ```
 <zeta-navigation-bar shrinkItems>
-    <zeta-navigation-bar-item
+    <zeta-grid-menu-item
         icon="star"
         label="Label"
         .active=${selected === 0}
     >
-    </zeta-navigation-bar-item>
+    </zeta-grid-menu-item>
     <div class="spacer"></div>
-    <zeta-navigation-bar-item
+    <zeta-grid-menu-item
         icon="star"
         label="Label"
         .active=${selected === 1}
     >
-    </zeta-navigation-bar-item>
+    </zeta-grid-menu-item>
 </zeta-navigation-bar>
 ```
 
 ---
-
-# Navigation Bar Item
-
-<Description of="zeta-navigation-bar-item" />
-<Canvas of={Item.Item} />
-<ArgTypes of="zeta-navigation-bar-item" />
-<Stories of="zeta-navigation-bar-item" includePrimary={false} />
-````

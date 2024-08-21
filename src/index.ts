@@ -2,6 +2,7 @@ import "./index.css";
 import { ZetaAccordion } from "./components/accordion.js";
 import { ZetaAssistChip } from "./components/chips/assist-chip/assist-chip.js";
 import { ZetaAvatar } from "./components/avatar.js";
+import { ZetaBottomSheet } from "./components/bottom-sheets/bottom-sheet.js";
 import { ZetaBreadcrumbTruncated } from "./components/breadcrumbs/breadcrumb-truncated/breadcrumb-truncated.js";
 import { ZetaButton } from "./components/button/button.js";
 import { ZetaButtonGroup } from "./components/button-group/button-group.js";
@@ -17,6 +18,7 @@ import { ZetaFab } from "./components/fab/fab.js";
 import { ZetaFileUpload } from "./components/file-upload/file-upload.js";
 import { ZetaFilterChip } from "./components/chips/filter-chip/filter-chip.js";
 import { ZetaGlobalHeader } from "./components/global-header/global-header.js";
+import { ZetaGridMenuItem } from "./components/grid-menu-item/grid-menu-item.js";
 import { ZetaIcon } from "./components/icon/icon.js";
 import { ZetaIconButton } from "./components/button/icon-button/icon-button.js";
 import { ZetaIconIndicator } from "./components/badges/indicators/indicators.js";
@@ -28,7 +30,6 @@ import { ZetaList } from "./components/list/list.js";
 import { ZetaListItem } from "./components/list/list-item/list-item.js";
 import { ZetaMoreMenu } from "./components/breadcrumbs/more-menu/more-menu.js";
 import { ZetaNavigationBar } from "./components/navigation-bar/navigation-bar.js";
-import { ZetaNavigationBarItem } from "./components/navigation-bar/navigation-bar-item/navigation-bar-item.js";
 import { ZetaNavigationDrawer } from "./components/navigation-drawer/navigation-drawer.js";
 import { ZetaNavigationDrawerFooter } from "./components/navigation-drawer/navigation-drawer-footer/navigation-drawer-footer.js";
 import { ZetaNavigationDrawerHeader } from "./components/navigation-drawer/navigation-drawer-header/navigation-drawer-header.js";
@@ -42,8 +43,6 @@ import { ZetaProgressBar } from "./components/progress-indicators/progress-bar/p
 import { ZetaProgressCircle } from "./components/progress-indicators/progress-circle/progress-circle.js";
 import { ZetaRadioButton } from "./components/radio-button/radio-button.js";
 import { ZetaSearch } from "./components/search/search.js";
-import { ZetaSheetHandle } from "./components/bottom-sheets/sheet-handle/sheet-handle.js";
-import { ZetaSheetHeader } from "./components/bottom-sheets/sheet-header/sheet-header.js";
 import { ZetaSlider } from "./components/slider/slider.js";
 import { ZetaSliderInputField } from "./components/slider/slider-input-field/slider-input-field.js";
 import { ZetaStatusChip } from "./components/chips/status-chip/status-chip.js";
@@ -62,6 +61,7 @@ export {
   ZetaAccordion,
   ZetaAssistChip,
   ZetaAvatar,
+  ZetaBottomSheet,
   ZetaBreadcrumbTruncated,
   ZetaButton,
   ZetaButtonGroup,
@@ -77,6 +77,7 @@ export {
   ZetaFileUpload,
   ZetaFilterChip,
   ZetaGlobalHeader,
+  ZetaGridMenuItem,
   ZetaIcon,
   ZetaIconButton,
   ZetaIconIndicator,
@@ -88,7 +89,6 @@ export {
   ZetaListItem,
   ZetaMoreMenu,
   ZetaNavigationBar,
-  ZetaNavigationBarItem,
   ZetaNavigationDrawer,
   ZetaNavigationDrawerFooter,
   ZetaNavigationDrawerHeader,
@@ -102,8 +102,6 @@ export {
   ZetaProgressCircle,
   ZetaRadioButton,
   ZetaSearch,
-  ZetaSheetHandle,
-  ZetaSheetHeader,
   ZetaSlider,
   ZetaSliderInputField,
   ZetaStatusChip,

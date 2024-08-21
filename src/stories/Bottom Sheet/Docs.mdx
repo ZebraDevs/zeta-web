@@ -1,16 +1,26 @@
 import { Canvas, Meta, Description, ArgTypes, Title } from "@storybook/blocks";
-import * as SheetHandle from "./sheet-handle.stories";
-import * as SheetHeader from "./sheet-header.stories";
+import * as BottomSheet from "./bottom-sheet.stories";
 
-<Meta of={SheetHandle} title="Bottom Sheet" />
+<Meta of={BottomSheet} title="Bottom Sheet" />
 
 <Title />
-Bottom sheets are surfaces containing supplementary content that are anchored to the bottom of the screen. # Handle
-<Description of="zeta-sheet-handle" />
-<Canvas of={SheetHandle.SheetHandle} />
+<Description of="zeta-bottom-sheet" />
+<ArgTypes of={BottomSheet.BottomSheetList} />
 
-# Header
+## Bottom Sheet List
 
-<Description of="zeta-sheet-header" />
-<Canvas of={SheetHeader.SheetHeader} />
-<ArgTypes of="zeta-sheet-header" />
+Placing `zeta-list-item`'s inside `zeta-bottom-sheet` will create a list of items in the bottom sheet.
+
+<Canvas of={BottomSheet.BottomSheetList} />
+
+## Bottom Sheet Grid
+
+Placing `zeta-grid-menu-item`'s inside `zeta-bottom-sheet` will create a grid of items in the bottom sheet.
+
+<Canvas of={BottomSheet.BottomSheetGrid} />
+
+## Bottom Sheet Generic Content
+
+Placing any content inside `zeta-bottom-sheet` will be directly rendered to the bottom sheet.
+
+<Canvas of={BottomSheet.BottomSheetGenericContent} />

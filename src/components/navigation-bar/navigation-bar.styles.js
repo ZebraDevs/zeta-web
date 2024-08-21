@@ -29,7 +29,7 @@ export default css`
     flex: 1;
   }
 
-  :host([shrinkItems]) ::slotted(zeta-navigation-bar-item) {
+  :host([shrinkItems]) ::slotted(zeta-grid-menu-item) {
     width: 62px;
     flex: 0;
   }
