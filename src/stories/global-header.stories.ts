@@ -6,7 +6,7 @@ import "../components/search/search.js";
 import "../components/navigation-profile/navigation-profile.js";
 import "../components/tab-bar/tab-bar.js";
 import "../components/tab-bar/tab-item/tab-item.js";
-import "../components/avatar.js";
+import "../components/avatar/avatar.js";
 
 const meta: Meta<ZetaGlobalHeader> = {
   component: "zeta-global-header",

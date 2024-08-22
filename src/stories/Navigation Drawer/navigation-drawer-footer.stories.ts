@@ -4,7 +4,7 @@ import { styleMap } from "lit/directives/style-map.js";
 import { ZetaNavigationDrawerFooter } from "../../components/navigation-drawer/navigation-drawer-footer/navigation-drawer-footer.js";
 import { spreadGenerator } from "../utils.js";
 const spread = spreadGenerator(ZetaNavigationDrawerFooter);
-import "../../components/avatar.js";
+import "../../components/avatar/avatar.js";
 import "../../components/icon/icon.js";
 
 const meta: Meta<ZetaNavigationDrawerFooter> = {

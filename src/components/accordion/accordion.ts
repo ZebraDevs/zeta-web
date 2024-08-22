@@ -1,8 +1,8 @@
 import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { Contourable, Interactive } from "../mixins/mixins.js";
+import { Contourable, Interactive } from "../../mixins/mixins.js";
 import styles from "./accordion.styles.js";
-import "./icon/icon.js";
+import "../icon/icon.js";
 
 /**
  * The accordion is a control element comprising a vertically stacked list of items, such as labels or thumbnails. Each item can be "expanded" or "collapsed" to reveal the content associated with that item. There can be zero expanded items, exactly one, or more than one item expanded at a time, depending on the configuration.
@@ -37,16 +37,15 @@ export class ZetaAccordion extends Contourable(Interactive(LitElement)) {
   }
 
   protected render() {
-    return html`
-      <div class="accordion" @click=${(_e: Event) => this.toggleOpen()}>
-        <div class="title">
-          <div>${this.accordionTitle}</div>
-          <zeta-icon .rounded=${this.rounded}>${this.open ? "remove" : "add"}</zeta-icon>
-        </div>
-        <div class="body">
-          <slot></slot>
-        </div>
-      </div>`;
+    return html` <div class="accordion" @click=${(_e: Event) => this.toggleOpen()}>
+      <div class="title">
+        <div>${this.accordionTitle}</div>
+        <zeta-icon .rounded=${this.rounded}>${this.open ? "remove" : "add"}</zeta-icon>
+      </div>
+      <div class="body">
+        <slot></slot>
+      </div>
+    </div>`;
   }
 
   static styles = [styles, super.styles || []];

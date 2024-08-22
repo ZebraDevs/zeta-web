@@ -1,7 +1,7 @@
 import "./index.css";
-import { ZetaAccordion } from "./components/accordion.js";
+import { ZetaAccordion } from "./components/accordion/accordion.js";
 import { ZetaAssistChip } from "./components/chips/assist-chip/assist-chip.js";
-import { ZetaAvatar } from "./components/avatar.js";
+import { ZetaAvatar } from "./components/avatar/avatar.js";
 import { ZetaBottomSheet } from "./components/bottom-sheets/bottom-sheet.js";
 import { ZetaBreadcrumbTruncated } from "./components/breadcrumbs/breadcrumb-truncated/breadcrumb-truncated.js";
 import { ZetaButton } from "./components/button/button.js";

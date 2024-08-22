@@ -3,7 +3,7 @@ import { html } from "lit";
 import { ZetaCardHeader } from "../../components/card/card-header/card-header.js";
 import { spreadGenerator } from "../utils.js";
 const spread = spreadGenerator(ZetaCardHeader);
-import "../../components/avatar.js";
+import "../../components/avatar/avatar.js";
 import "../../components/button/icon-button/icon-button.js";
 
 const meta: Meta<ZetaCardHeader> = {

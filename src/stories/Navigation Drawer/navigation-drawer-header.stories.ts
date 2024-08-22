@@ -3,7 +3,7 @@ import { html } from "lit";
 import { ZetaNavigationDrawerHeader } from "../../components/navigation-drawer/navigation-drawer-header/navigation-drawer-header.js";
 import { spreadGenerator } from "../utils.js";
 const spread = spreadGenerator(ZetaNavigationDrawerHeader);
-import "../../components/avatar.js";
+import "../../components/avatar/avatar.js";
 import "../../components/icon/icon.js";
 
 const meta: Meta<ZetaNavigationDrawerHeader> = {

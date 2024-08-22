@@ -67,6 +67,15 @@ export class ZetaPageEvent<T extends ZetaPageEventDetail> extends ZetaEvent<T> {
   }
 }
 
+export interface ZetaCloseEventDetail {}
+
+export class ZetaCloseEvent extends ZetaEvent<ZetaCloseEventDetail> {
+  name: string = "close";
+  constructor() {
+    super({ bubbles: true, composed: true });
+  }
+}
+
 export interface ZetaPopupEventDetail {}
 /** A CustomEvent factory that creates events when a standard slider is changed. */
 export class ZetaPopupEvent extends ZetaEvent<ZetaPopupEventDetail> {

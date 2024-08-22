@@ -5,7 +5,7 @@ import "../../components/navigation-drawer/navigation-drawer-sub-item/navigation
 import "../../components/navigation-drawer/navigation-drawer-item/navigation-drawer-item.js";
 import "../../components/navigation-drawer/navigation-drawer-footer/navigation-drawer-footer.js";
 import "../../components/navigation-drawer/navigation-drawer-header/navigation-drawer-header.js";
-import "../../components/avatar.js";
+import "../../components/avatar/avatar.js";
 import "../../components/icon/icon.js";
 import "../../components/button/button.js";
 

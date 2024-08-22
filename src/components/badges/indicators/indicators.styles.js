@@ -11,14 +11,9 @@ export default css`
     }
   }
 
-  :host([size="medium"]) .container.expand {
+  :host([size="medium"]) .container {
     width: var(--spacing-3);
     height: var(--spacing-3);
-  }
-
-  :host([size="medium"]) .container {
-    width: var(--spacing-2);
-    height: var(--spacing-2);
 
     .icon {
       position: absolute;
@@ -30,10 +25,8 @@ export default css`
   }
 
   :host([size="large"]) .container {
-    min-width: var(--spacing-3);
-    min-height: var(--spacing-3);
-    max-width: var(--spacing-4);
-    max-height: var(--spacing-4);
+    width: var(--spacing-5);
+    height: var(--spacing-5);
 
     zeta-icon {
       --icon-size: 12px;
