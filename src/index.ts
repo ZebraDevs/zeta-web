@@ -3,7 +3,8 @@ import { ZetaAccordion } from "./components/accordion/accordion.js";
 import { ZetaAssistChip } from "./components/chips/assist-chip/assist-chip.js";
 import { ZetaAvatar } from "./components/avatar/avatar.js";
 import { ZetaBottomSheet } from "./components/bottom-sheets/bottom-sheet.js";
-import { ZetaBreadcrumbTruncated } from "./components/breadcrumbs/breadcrumb-truncated/breadcrumb-truncated.js";
+import { ZetaBreadcrumbItem } from "./components/breadcrumbs/breadcrumb-item/breadcrumb-item.js";
+import { ZetaBreadcrumb } from "./components/breadcrumbs/breadcrumb.js";
 import { ZetaButton } from "./components/button/button.js";
 import { ZetaButtonGroup } from "./components/button-group/button-group.js";
 import { ZetaButtonGroupItem } from "./components/button-group/button-group-item/button-group-item.js";
@@ -28,7 +29,6 @@ import { ZetaInputChip } from "./components/chips/input-chip/input-chip.js";
 import { ZetaLabel } from "./components/badges/label/label.js";
 import { ZetaList } from "./components/list/list.js";
 import { ZetaListItem } from "./components/list/list-item/list-item.js";
-import { ZetaMoreMenu } from "./components/breadcrumbs/more-menu/more-menu.js";
 import { ZetaNavigationBar } from "./components/navigation-bar/navigation-bar.js";
 import { ZetaNavigationDrawer } from "./components/navigation-drawer/navigation-drawer.js";
 import { ZetaNavigationDrawerFooter } from "./components/navigation-drawer/navigation-drawer-footer/navigation-drawer-footer.js";
@@ -62,7 +62,8 @@ export {
   ZetaAssistChip,
   ZetaAvatar,
   ZetaBottomSheet,
-  ZetaBreadcrumbTruncated,
+  ZetaBreadcrumb,
+  ZetaBreadcrumbItem,
   ZetaButton,
   ZetaButtonGroup,
   ZetaButtonGroupItem,
@@ -87,7 +88,6 @@ export {
   ZetaLabel,
   ZetaList,
   ZetaListItem,
-  ZetaMoreMenu,
   ZetaNavigationBar,
   ZetaNavigationDrawer,
   ZetaNavigationDrawerFooter,

@@ -60,5 +60,9 @@ export class MouseActions {
   static up = async (button: "left" | "right" | "middle" = "left") => {
     return await sendMouse({ type: "up", button });
   };
+  static click = async (element: HTMLElement, mouseButton: "left" | "right" | "middle" = "left") => {
+    await this.down(element, mouseButton);
+    return await this.up(mouseButton);
+  };
   static reset = resetMouse;
 }
