@@ -4,6 +4,7 @@ abstract class ZetaEvent<T> {
   bubbles: boolean;
   composed: boolean;
   cancelable: boolean;
+
   constructor(
     detail: T,
     options?: {
@@ -67,12 +68,10 @@ export class ZetaPageEvent<T extends ZetaPageEventDetail> extends ZetaEvent<T> {
   }
 }
 
-export interface ZetaCloseEventDetail {}
-
-export class ZetaCloseEvent extends ZetaEvent<ZetaCloseEventDetail> {
-  name: string = "close";
+export class ZetaAvatarCloseEvent extends ZetaEvent<undefined> {
+  name: string = "avatar-close";
   constructor() {
-    super({ bubbles: true, composed: true });
+    super(undefined, { bubbles: true, composed: true });
   }
 }
 
@@ -91,6 +90,6 @@ export interface ZetaCancelUploadEventDetail {}
 export class ZetaCancelUploadEvent extends ZetaEvent<ZetaCancelUploadEventDetail> {
   name: string = "zeta-cancel-upload";
   constructor() {
-    super({ bubbles: true, composed: true });
+    super({}, { bubbles: true, composed: true });
   }
 }

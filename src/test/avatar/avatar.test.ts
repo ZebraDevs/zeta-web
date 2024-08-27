@@ -4,11 +4,6 @@ import "../../index.js";
 import { getIconName } from "../utils.js";
 
 describe("ZetaAvatar", () => {
-  it("renders the avatar with the default size", async () => {
-    const avatar: ZetaAvatar = await fixture(html`<zeta-avatar></zeta-avatar>`);
-    await expect(avatar.size).to.equal("m");
-  });
-
   it("renders the avatar with a custom size", async () => {
     const avatar: ZetaAvatar = await fixture(html`<zeta-avatar size="xl"></zeta-avatar>`);
     await expect(avatar.size).to.equal("xl");

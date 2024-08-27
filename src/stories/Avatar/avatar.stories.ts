@@ -18,8 +18,6 @@ const meta: Meta<AvatarStory> = {
         type: "select"
       }
     },
-    slot: { table: { disable: true } },
-    status: { table: { disable: true } },
     showRing: { table: { disable: true } },
     showClose: { table: { disable: true } }
   },
@@ -45,13 +43,21 @@ export const AvatarWithInitials: StoryObj<AvatarStory> = {
 
 export const AvatarWithImage: StoryObj<AvatarStory> = {
   args: {
-    slot: "https://s3-alpha-sig.figma.com/img/7c9e/15bf/1cdf54aaa216aa8c95c3f6cd1aebffdf?Expires=1725235200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=jeZ0xnld5wp6oqKCI30EILi3rn-cbyxvFblwA~QLphFSqWXobXPkp-dH~JZrNNNftDqCWi6JMMuR~HT1L5JcDARkBd0iIRIc~Z3GZGeYW-InJ8CMDQwzKepY~la~GPbEvKorgxJU5rh-Wc-xqLAh2GCjjaSDPvg9d8ZAnafFciGKTuJgXwD7QliB5ISUcC-11uLfgwa8zM1WMKcMh3Qwh9sl0y3f4o-sksu-JdVbLlkDcsBJmWGz1SkrKGV3qMNwh-7NvHNwnirmE0BXnUtogSXUbaS2cuGQ3Oh5V9tnWpF63xQz2cxa-buUAWCzD24XU1xhC6MgvdxwCP14fgCBjA__"
+    slot: "<img src='https://s3-alpha-sig.figma.com/img/7c9e/15bf/1cdf54aaa216aa8c95c3f6cd1aebffdf?Expires=1725235200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=jeZ0xnld5wp6oqKCI30EILi3rn-cbyxvFblwA~QLphFSqWXobXPkp-dH~JZrNNNftDqCWi6JMMuR~HT1L5JcDARkBd0iIRIc~Z3GZGeYW-InJ8CMDQwzKepY~la~GPbEvKorgxJU5rh-Wc-xqLAh2GCjjaSDPvg9d8ZAnafFciGKTuJgXwD7QliB5ISUcC-11uLfgwa8zM1WMKcMh3Qwh9sl0y3f4o-sksu-JdVbLlkDcsBJmWGz1SkrKGV3qMNwh-7NvHNwnirmE0BXnUtogSXUbaS2cuGQ3Oh5V9tnWpF63xQz2cxa-buUAWCzD24XU1xhC6MgvdxwCP14fgCBjA__'></img>"
+  },
+  argTypes: {
+    slot: { table: { disable: true } },
+    status: { table: { disable: true } }
   }
 };
 
 export const AvatarWithIcon: StoryObj<AvatarStory> = {
   args: {
     slot: "<zeta-icon>groups</zeta-icon>"
+  },
+  argTypes: {
+    slot: { table: { disable: true } },
+    status: { table: { disable: true } }
   }
 };
 
@@ -59,6 +65,10 @@ export const AvatarWithStatus: StoryObj<AvatarStory> = {
   args: {
     slot: "WW",
     status: "<zeta-icon-indicator icon='star' slot='status'></zeta-icon-indicator>"
+  },
+  argTypes: {
+    slot: { table: { disable: true } },
+    status: { table: { disable: true } }
   }
 };
 
@@ -66,5 +76,9 @@ export const AvatarWithCloseIcon: StoryObj<AvatarStory> = {
   args: {
     slot: "WW",
     "show-close": true
+  },
+  argTypes: {
+    slot: { table: { disable: true } },
+    status: { table: { disable: true } }
   }
 };
