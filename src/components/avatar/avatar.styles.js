@@ -75,6 +75,7 @@ export default css`
     height: 100%;
     width: 100%;
     display: flex;
+    object-fit: cover;
   }
 
   ::slotted(zeta-icon) {

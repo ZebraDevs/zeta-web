@@ -8,7 +8,6 @@ export default css`
     --icon-size: 20px;
     --icon-color: var(--text-subtle);
     --icon-color: var(--text-subtle);
-    border-color: var(--border-default);
   }
 
   :host([disabled]) {
@@ -23,6 +22,10 @@ export default css`
     }
   }
 
+  #search-icon {
+    display: var(--search-icon-display, block);
+  }
+
   :host(:not([disabled])) zeta-icon.right {
     --icon-color: var(--icon-default);
   }
@@ -33,10 +36,11 @@ export default css`
 
   form {
     display: flex;
+    flex: 1;
     align-items: center;
     border-radius: inherit;
     height: fit-content;
-    box-shadow: 0 0 0 var(--border-size-small) var(--border-default);
+    box-shadow: 0 0 0 var(--border-size-small) var(--search-border-color, var(--border-default));
 
     background-color: var(--surface-default);
     flex-shrink: 0;
@@ -78,14 +82,6 @@ export default css`
     display: flex;
     width: var(--border-size-small);
     background-color: var(--border-default);
-  }
-
-  zeta-icon[name="search"] {
-    margin-right: var(--spacing-2); /*TODO Semantic not yet ready*/
-  }
-
-  zeta-icon[name="cancel"] {
-    margin-left: var(--spacing-2); /*TODO Semantic not yet ready*/
   }
 
   /* SIZE */

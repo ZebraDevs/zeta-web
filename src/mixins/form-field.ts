@@ -4,7 +4,7 @@ import { property, query, queryAssignedNodes, state } from "lit/decorators.js";
 import { type AbstractConstructor } from "./utils.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 import { live } from "lit/directives/live.js";
-export type InputType = "checkbox" | "text" | "textarea" | "password" | "time" | "date" | "radio"; //Extend this when adding more form controls
+export type InputType = "checkbox" | "text" | "textarea" | "password" | "time" | "date" | "radio" | "search"; //Extend this when adding more form controls
 
 //TODO add all properties here
 declare abstract class FormFieldInterface /* extends InteractiveInterface*/ {
