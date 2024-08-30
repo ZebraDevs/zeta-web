@@ -1,6 +1,6 @@
-import { LitElement, type PropertyValues } from "lit";
+import type { LitElement, PropertyValues } from "lit";
 import { property, query } from "lit/decorators.js";
-import { type Constructor } from "./utils.js";
+import type { Constructor } from "./utils.js";
 import styles from "./interactive.styles.js";
 
 export declare class InteractiveInterface {
@@ -27,7 +27,7 @@ export const Interactive = <T extends Constructor<LitElement>>(superClass: T) =>
         this.interactiveElement.addEventListener("focus", this._handleFocus);
         this._listenerTarget = "target";
       } else if (this.interactiveChild) {
-        this.interactiveChild?.classList.add('interactive-target');
+        this.interactiveChild?.classList.add("interactive-target");
         this.interactiveChild?.addEventListener("focus", this._handleFocus);
         this._listenerTarget = "firstChild";
       }
@@ -36,8 +36,12 @@ export const Interactive = <T extends Constructor<LitElement>>(superClass: T) =>
     disconnectedCallback(): void {
       super.disconnectedCallback();
       switch (this._listenerTarget) {
-        case "target": this.interactiveElement?.removeEventListener("focus", this._handleFocus); break;
-        case "firstChild": this.interactiveChild?.removeEventListener("focus", this._handleFocus); break;
+        case "target":
+          this.interactiveElement?.removeEventListener("focus", this._handleFocus);
+          break;
+        case "firstChild":
+          this.interactiveChild?.removeEventListener("focus", this._handleFocus);
+          break;
       }
     }
 

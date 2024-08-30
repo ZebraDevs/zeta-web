@@ -1,21 +1,24 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
 import { ZetaIcon } from "../../components/icon/icon.js";
+import { spreadGenerator } from "../utils.js";
+import { html } from "lit";
+const spread = spreadGenerator(ZetaIcon);
 
 const meta: Meta<ZetaIcon> = {
   component: "zeta-icon",
   title: "Assets",
   args: {
     slot: "alarm",
-    size: "20rem",
-    color: "var(--icon-default)",
     rounded: true
   },
   argTypes: {
     slot: {
       options: ZetaIconNameList,
       control: { type: "select" }
-    }
+    },
+    size: { table: { disable: true } },
+    color: { table: { disable: true } }
   },
   parameters: {
     design: {
@@ -28,4 +31,13 @@ const meta: Meta<ZetaIcon> = {
 };
 export default meta;
 
-export const Icon: StoryObj<ZetaIcon> = {};
+export const Icon: StoryObj = {
+  render: ({ slot, ...args }) => html`
+  <style>
+    :root {
+      ${args["--icon-color"] && `--icon-color: ${args["--icon-color"]}`} ;
+      ${args["--icon-size"] && `--icon-size: ${args["--icon-size"]}`} ;
+    } 
+  </style>
+  <zeta-icon ${spread(args)}>${slot}</zeta-icon>`
+};

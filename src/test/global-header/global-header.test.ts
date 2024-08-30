@@ -1,8 +1,9 @@
 import { fixture, html, unsafeStatic, expect } from "@open-wc/testing";
 import { emulateMedia } from '@web/test-runner-commands';
-import { ZetaGlobalHeader } from "../../index.js";
-import "../../index.js";
-import { getCssVarValue } from "../utils.js";
+import type { ZetaGlobalHeader } from "../../components/global-header/global-header.js";
+import "../../components/global-header/global-header.js";
+import "../../index.css";
+import { getCssVarColorValue } from "../utils.js";
 
 describe("zeta-global-header", () => {
   let subject: ZetaGlobalHeader;
@@ -20,14 +21,14 @@ describe("zeta-global-header", () => {
   });
 
   it("renders background color", async () => {
-    await expect(getComputedStyle(subject!).backgroundColor).to.equal(getCssVarValue(subject!, "--surface-default"));
+    await expect(getComputedStyle(subject!).backgroundColor).to.equal(getCssVarColorValue(subject!, "--surface-default"));
   });
 
   it("renders background in dark-mode", async () => {
-    const lightVarColor = getCssVarValue(subject!, "--surface-default");
+    const lightVarColor = getCssVarColorValue(subject!, "--surface-default");
     await emulateMedia({ colorScheme: 'dark' });
     const darkSubjectColor = getComputedStyle(subject!).backgroundColor;
-    const darkVarColor = getCssVarValue(subject!, "--surface-default");
+    const darkVarColor = getCssVarColorValue(subject!, "--surface-default");
     await expect(darkSubjectColor).to.equal(darkVarColor);
     await expect(darkSubjectColor).to.not.equal(lightVarColor);
   });

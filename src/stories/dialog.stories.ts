@@ -1,9 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
-import { html } from "lit";
+import { html, nothing } from "lit";
 import { ZetaDialog } from "../components/dialog/dialog.js";
+import "../components/dialog/dialog.js";
 import "../components/button/button.js";
 
-const meta: Meta<ZetaDialog> = {
+import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
+
+const meta: Meta<ZetaDialog | { confirm: string; cancel: string; other: string; icon?: String; "--icon-color": String }> = {
   component: "zeta-dialog",
   title: "Dialog",
   tags: ["autodocs"],
@@ -11,7 +14,11 @@ const meta: Meta<ZetaDialog> = {
     centered: false,
     rounded: false,
     title: "Title",
-    hasIcon: true
+    slot: "Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusm od tempor incididunt ut labore et do lore magna aliquaa met, conse ctetur adipisc.",
+    confirm: "Confirm",
+    cancel: "Cancel",
+    other: "Learn more",
+    icon: "warning"
   },
   argTypes: {
     initialOpen: {
@@ -19,7 +26,12 @@ const meta: Meta<ZetaDialog> = {
     },
     open: {
       table: { disable: true }
-    }
+    },
+    icon: {
+      options: [null, ...ZetaIconNameList],
+      control: { type: "select" }
+    },
+    "--icon-color": { control: "color" }
   },
   parameters: {
     design: {
@@ -36,118 +48,20 @@ export const Dialog: StoryObj = {
 
   render: args => {
     return html`
-      <div style="height: var(--dialog-height, 280px);">
-        <zeta-dialog id="dialog1" .rounded=${args.rounded} .centered=${args.centered} .initialOpen=${true} title=${args.title} ?hasIcon=${args.hasIcon}>
-          <div slot="dialog-body">
-            Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusm od tempor incididunt ut labore et do lore magna aliquaa met, conse ctetur
-            adipisc.
-          </div>
-          <zeta-button slot="confirm">Confirm</zeta-button>
-          <zeta-button slot="cancel">Cancel</zeta-button>
-          <zeta-button slot="other">Learn more</zeta-button>
+      <style>
+        :root {
+          ${args["--icon-color"] && `--icon-color: ${args["--icon-color"]}`} ;
+        }
+      </style>
+      <div class="box">
+        <zeta-dialog id="dialog1" .rounded=${args.rounded} .centered=${args.centered} .initialOpen=${true} title=${args.title}>
+          ${args.slot} ${args.icon ? html`<zeta-icon slot="icon">${args.icon}</zeta-icon>` : nothing}
+          ${args.confirm && args.confirm.length > 0 ? html`<zeta-button slot="confirm">${args.confirm}</zeta-button>` : nothing}
+          ${args.cancel && args.cancel.length > 0 ? html`<zeta-button slot="cancel">${args.cancel}</zeta-button>` : nothing}
+          ${args.other && args.other.length > 0 ? html`<zeta-button slot="other">${args.other}</zeta-button>` : nothing}
         </zeta-dialog>
       </div>
     `;
-  }
-};
-
-export const DialogWithoutIcon: StoryObj = {
-  name: "Dialog without icon",
-  args: {
-    hasIcon: false
-  },
-  render: args => {
-    return html`<div>
-      <zeta-button
-        @click=${() => {
-        const dialog = document.querySelector("#dialog2") as ZetaDialog;
-        void dialog.show();
-      }}
-      >
-        dialog without icon
-      </zeta-button>
-      <zeta-dialog id="dialog2" .rounded=${args.rounded} .centered=${args.centered} title="Dialog title">
-        <div slot="dialog-body">
-          Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusm od tempor incididunt ut labore et do lore magna aliquaa met, conse ctetur
-          adipisc.
-        </div>
-        <zeta-button slot="confirm">Confirm</zeta-button>
-        <zeta-button slot="cancel">Cancel</zeta-button>
-        <zeta-button slot="other">Learn more</zeta-button>
-      </zeta-dialog>
-    </div>`;
-  }
-};
-
-export const DialogWithIcon: StoryObj<ZetaDialog> = {
-  name: "Dialog with icon",
-  render: args => {
-    return html`<div>
-      <zeta-button
-        @click=${() => {
-        const dialog = document.querySelector("#dialog3") as ZetaDialog;
-        void dialog.show();
-      }}
-      >
-        dialog with icon
-      </zeta-button>
-      <zeta-dialog hasIcon id="dialog3" .rounded=${args.rounded} .centered=${args.centered} title="Dialog title">
-        <div slot="dialog-body">
-          Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusm od tempor incididunt ut labore et do lore magna aliquaa met, conse ctetur
-          adipisc.
-        </div>
-        <zeta-button slot="confirm">Confirm</zeta-button>
-        <zeta-button slot="cancel">Cancel</zeta-button>
-        <zeta-button slot="other">Learn more</zeta-button>
-      </zeta-dialog>
-    </div>`;
-  }
-};
-
-export const DialogWith2Actions: StoryObj<ZetaDialog> = {
-  name: "Dialog with two action buttons",
-  render: args => {
-    return html`<div>
-      <zeta-button
-        @click=${() => {
-        const dialog = document.querySelector("#dialog4") as ZetaDialog;
-        void dialog.show();
-      }}
-      >
-        dialog with two buttons
-      </zeta-button>
-      <zeta-dialog hasIcon id="dialog4" .rounded=${args.rounded} .centered=${args.centered} title="Dialog title">
-        <div slot="dialog-body">
-          Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusm od tempor incididunt ut labore et do lore magna aliquaa met, conse ctetur
-          adipisc.
-        </div>
-        <zeta-button slot="confirm">Confirm</zeta-button>
-        <zeta-button slot="cancel">Cancel</zeta-button>
-      </zeta-dialog>
-    </div> `;
-  }
-};
-
-export const DialogWith1Action: StoryObj<ZetaDialog> = {
-  name: "Dialog with one action button",
-  render: args => {
-    return html`<div>
-      <zeta-button
-        @click=${() => {
-        const dialog = document.querySelector("#dialog5") as ZetaDialog;
-        void dialog.show();
-      }}
-      >
-        dialog with one button
-      </zeta-button>
-      <zeta-dialog hasIcon id="dialog5" .rounded=${args.rounded} .centered=${args.centered} title="Dialog title">
-        <div slot="dialog-body">
-          Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusm od tempor incididunt ut labore et do lore magna aliquaa met, conse ctetur
-          adipisc.
-        </div>
-        <zeta-button slot="confirm">Confirm</zeta-button>
-      </zeta-dialog>
-    </div>`;
   }
 };
 

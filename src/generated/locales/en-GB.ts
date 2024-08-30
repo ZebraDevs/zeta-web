@@ -13,6 +13,5 @@
 'sa192dac6f544578d': `Selection contains files with invalid types.`,
 's7008dc713aed8339': `Multiple files are not allowed.`,
 's08b05407b5565ca4': `or`,
-'s5d929ff1619ac0c9': `Search`,
     };
   

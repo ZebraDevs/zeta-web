@@ -24,7 +24,7 @@ export class ZetaIndicator extends Size(Contourable(LitElement)) {
   /**
    * Icon to be shown on icon type indicator.
    *
-   * Full list of icons can be found at {@link https://zeta-icons.web.app/}.
+   * Full list of icons can be found at {@link https://zeta-icons.web.app/ Zeta Icons}.
    */
   @property({ type: String }) icon: ZetaIconName = "star";
 

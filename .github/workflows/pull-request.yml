@@ -50,7 +50,7 @@ jobs:
       - name: Run lit-analyzer
         run: npm run lint:lit-analyzer
       - name: Run tests
-        run: npm run test
+        run: npm run test -- --debug
       - name: Test tsdoc
         run: npm run docs
       - name: Check for modified files

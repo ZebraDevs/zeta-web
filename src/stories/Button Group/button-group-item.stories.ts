@@ -26,7 +26,7 @@ const meta: Meta<ZetaButtonGroupItem> = {
         type: "select"
       }
     },
-    iconName: {
+    icon: {
       options: [null, ...ZetaIconNameList],
       control: {
         type: "select"
@@ -60,7 +60,6 @@ export const GroupItem: StoryObj = {
   render: args => {
     return html`
       <zeta-button-group-item
-        iconName=${args.iconName}
         size=${args.size}
         .onclick=${args.onclick}
         .disabled=${args.disabled}
@@ -68,6 +67,7 @@ export const GroupItem: StoryObj = {
         ?showDropdown=${args.showDropdown}
       >
         ${args.slot}
+        ${args.icon && html`<zeta-icon slot="icon">${args.icon}</zeta-icon>`}
       </zeta-button-group-item>
     `;
   }
@@ -75,16 +75,7 @@ export const GroupItem: StoryObj = {
 
 export const GroupItemWithDropdown: StoryObj = {
   args: {
-    iconName: "alert",
     showDropdown: true
   },
-  render: GroupItem.render,
-};
-
-export const GroupItemWithAvatar: StoryObj = {
-  args: {
-    iconName: "alert",
-    showDropdown: true
-  },
-  render: GroupItem.render,
+  render: GroupItem.render
 };

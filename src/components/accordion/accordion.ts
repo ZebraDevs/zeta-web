@@ -19,16 +19,13 @@ export class ZetaAccordion extends Contourable(Interactive(LitElement)) {
   /** The title of the accordion. */
   @property({ type: String }) accordionTitle?: string;
 
-  /** Creates a border around the accordion.
-   *
-   * @default false
+  /**
+   * Creates a border around the accordion.
    */
   @property({ type: Boolean, reflect: true }) contained: boolean = false;
 
   /**
    * Whether the accordion is open.
-   *
-   * @default false
    */
   @property({ type: Boolean, reflect: true }) open = false;
 

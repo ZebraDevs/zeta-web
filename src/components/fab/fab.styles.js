@@ -74,7 +74,7 @@ export default css`
   /** BORDER RADIUS END */
 
   /** FLAVOR START */
-  :host([flavor="variant"]:not([disabled])) {
+  :host([flavor="secondary"]:not([disabled])) {
     > button {
       background-color: var(--color-yellow-40);
       /** TODO: Change to semantic token */
@@ -110,7 +110,7 @@ export default css`
   :host([flavor="inverse"]:not([disabled])[extended]) > button > .label {
     color: var(--text-inverse);
   }
-  :host([flavor="variant"]:not([disabled])[extended]) > button > .label {
+  :host([flavor="secondary"]:not([disabled])[extended]) > button > .label {
     color: var(--text-default);
   }
   /** FLAVOR END */

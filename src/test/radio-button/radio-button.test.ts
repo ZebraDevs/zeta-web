@@ -1,6 +1,6 @@
 import { fixture, html, unsafeStatic, expect, elementUpdated } from "@open-wc/testing";
-import { ZetaRadioButton } from "../../index.js";
-import "../../index.js";
+import type { ZetaRadioButton } from "../../components/radio-button/radio-button.js";
+import "../../components/radio-button/radio-button.js";
 
 describe("zeta-radio-button", () => {
   let subject: ZetaRadioButton;

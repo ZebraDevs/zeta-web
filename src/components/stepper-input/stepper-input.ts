@@ -29,10 +29,8 @@ export class ZetaStepperInput extends Contourable(LitElement) {
     return this.inputValue;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   set value(value: number) {
     const valueToNumber = Number(value);
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     if (isNaN(valueToNumber) || valueToNumber === undefined) {
       this.inputValue = 0;
     } else if (this.max && valueToNumber >= this.max) {

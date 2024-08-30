@@ -1,6 +1,6 @@
 import { fixture, html, unsafeStatic, expect } from "@open-wc/testing";
-import { ZetaNavigationDrawerItem } from "../../index.js";
-import "../../index.js";
+import type { ZetaNavigationDrawerItem } from "../../components/navigation-drawer/navigation-drawer-item/navigation-drawer-item.js";
+import "../../components/navigation-drawer/navigation-drawer-item/navigation-drawer-item.js";
 
 describe("zeta-navigation-drawer-item", () => {
   let subject: ZetaNavigationDrawerItem;

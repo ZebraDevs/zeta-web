@@ -51,7 +51,6 @@ export class ZetaSwitch extends FormField(Interactive(Contourable(LitElement))) 
   override handleChange(event: Event) {
     this.dispatchEvent(new Event(event.type, event));
     this.internals.ariaChecked = this.input.checked ? "true" : "false";
-    console.log("ariaChecked:", this.input.ariaChecked);
   }
 
   key(e: KeyboardEvent, type: "down" | "up") {

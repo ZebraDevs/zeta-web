@@ -1,6 +1,6 @@
 import { fixture, html, unsafeStatic, expect } from "@open-wc/testing";
-import { ZetaSlider } from "../../index.js";
-import "../../index.js";
+import type { ZetaSlider } from "../../components/slider/slider.js";
+import "../../components/slider/slider.js";
 
 describe("zeta-slider", () => {
   let subject: ZetaSlider;

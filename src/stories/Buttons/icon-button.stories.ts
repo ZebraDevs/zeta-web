@@ -1,7 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
 import { ZetaIconButton } from "../../components/button/icon-button/icon-button.js";
+import { spreadGenerator } from "../utils.js";
 import { html } from "lit";
+const spread = spreadGenerator(ZetaIconButton);
 
 const meta: Meta<ZetaIconButton> = {
   title: "Buttons",
@@ -54,8 +56,17 @@ const meta: Meta<ZetaIconButton> = {
 
 export default meta;
 
-export const IconButton: StoryObj<ZetaIconButton> = {
+export const IconButton: StoryObj = {
   render: ({ slot, ...args }) => {
-    return html`<zeta-icon-button size=${args.size} .disabled=${args.disabled} .rounded=${args.rounded} flavor=${args.flavor}>${slot}</zeta-icon-button>`;
+    return html`
+      <style>
+        :root {
+          ${args["--icon-button-color"] && `--icon-button-color: ${args["--icon-button-color"]}`} ;
+          ${args["--icon-button-icon-color"] && `--icon-button-icon-color: ${args["--icon-button-icon-color"]}`} ;
+          ${args["--icon-button-icon-color-disabled"] && `--icon-button-icon-color-disabled: ${args["--icon-button-icon-color-disabled"]}`} ;
+        }
+      </style>
+      <zeta-icon-button ${spread(args)}>${slot}</zeta-icon-button>
+    `;
   }
 };

@@ -1,10 +1,12 @@
 import "./index.css";
 import { ZetaAccordion } from "./components/accordion/accordion.js";
+import { ZetaAppbar } from "./components/appbar/appbar.js";
 import { ZetaAssistChip } from "./components/chips/assist-chip/assist-chip.js";
 import { ZetaAvatar } from "./components/avatar/avatar.js";
+import { ZetaAvatarRail } from "./components/avatar-rail/avatar-rail.js";
 import { ZetaBottomSheet } from "./components/bottom-sheets/bottom-sheet.js";
-import { ZetaBreadcrumbItem } from "./components/breadcrumbs/breadcrumb-item/breadcrumb-item.js";
 import { ZetaBreadcrumb } from "./components/breadcrumbs/breadcrumb.js";
+import { ZetaBreadcrumbItem } from "./components/breadcrumbs/breadcrumb-item/breadcrumb-item.js";
 import { ZetaButton } from "./components/button/button.js";
 import { ZetaButtonGroup } from "./components/button-group/button-group.js";
 import { ZetaButtonGroupItem } from "./components/button-group/button-group-item/button-group-item.js";
@@ -59,8 +61,10 @@ import { ZetaTooltip } from "./components/tooltip/tooltip.js";
 import { ZetaWorkcloudIndicator } from "./components/badges/workcloud-indicator/workcloud-indicator.js";
 export {
   ZetaAccordion,
+  ZetaAppbar,
   ZetaAssistChip,
   ZetaAvatar,
+  ZetaAvatarRail,
   ZetaBottomSheet,
   ZetaBreadcrumb,
   ZetaBreadcrumbItem,

@@ -1,6 +1,8 @@
 import { fixture, html, elementUpdated, expect, unsafeStatic } from "@open-wc/testing";
-import { ZetaBottomSheet } from "../../index.js";
-import "../../index.js";
+import type { ZetaBottomSheet } from "../../components/bottom-sheets/bottom-sheet.js";
+import "../../components/bottom-sheets/bottom-sheet.js";
+import "../../components/list/list-item/list-item.js";
+import "../../components/grid-menu-item/grid-menu-item.js";
 
 describe("ZetaBottomSheet List Items", () => {
   let subject: ZetaBottomSheet;
@@ -74,7 +76,7 @@ describe("ZetaBottomSheet Grid Items", () => {
       <zeta-grid-menu-item>Item 1</zeta-grid-menu-item>
         <zeta-grid-menu-item>Item 2</zeta-grid-menu-item>
         <zeta-grid-menu-item>Item 3</zeta-grid-menu-item>
-        <zetagrid-menu-item>Item 4</zeta-grid-menu-item>
+        <zeta-grid-menu-item>Item 4</zeta-grid-menu-item>
       </zeta-bottom-sheet>`
   ) => {
     return fixture<ZetaBottomSheet>(html`${unsafeStatic(template)}`);

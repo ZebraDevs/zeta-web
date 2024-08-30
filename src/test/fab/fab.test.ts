@@ -1,7 +1,8 @@
 import { expect, fixture, html, unsafeStatic } from "@open-wc/testing";
-import { ZetaFab } from "../../index.js";
-import "../../index.js";
+import type { ZetaFab } from "../../components/fab/fab.js";
 import { getCssVarValue } from "../utils.js";
+import "../../components/fab/fab.js";
+import "../../index.css";
 
 // NOTE: Half the tests are failing due to getCssVarValue not being defined properly in utils.ts. This should be fixed when slotted icons PR is merged
 describe("zeta-fab", () => {

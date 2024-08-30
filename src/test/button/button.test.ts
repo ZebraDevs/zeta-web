@@ -1,6 +1,6 @@
 import { fixture, html, expect, unsafeStatic } from "@open-wc/testing";
-import { ZetaButton } from "../../index.js";
-import "../../index.js";
+import type { ZetaButton } from "../../components/button/button.js";
+import "../../components/button/button.js";
 
 const buttonText = "Button";
 const flavors = ["primary", "secondary", "positive", "negative", "outline", "outline-subtle", "text"];

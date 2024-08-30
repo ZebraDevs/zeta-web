@@ -1,7 +1,8 @@
 import { fixture, html, unsafeStatic, expect, elementUpdated } from "@open-wc/testing";
-import { ZetaDropdownMenuItem, ZetaIcon } from "../../../index.js";
-import "../../../index.js";
-import { getIconName } from "../../utils.js";
+import type { ZetaDropdownMenuItem } from "../../../index.js";
+import { getSlottedIconName } from "../../utils.js";
+import "../../../components/dropdown/menu-item/dropdown-menu-item.js";
+import "../../../components/icon/icon.js";
 
 describe("zeta-dropdown-menu-item", () => {
   const text = "Menu Item";
@@ -19,19 +20,13 @@ describe("zeta-dropdown-menu-item", () => {
   it("renders the given text", async () => {
     await expect(subject.lastChild?.nodeValue).to.equal(text);
   });
-
   it("renders an icon with the correct name with the 'default' type", async () => {
-    const iconName = "star";
-
-    subject.icon = iconName;
+    const icon = await fixture(html`<zeta-icon slot="icon">star</zeta-icon>`);
+    subject.appendChild(icon);
     await elementUpdated(subject);
 
-    const iconElement = subject.shadowRoot?.querySelector("zeta-icon") as ZetaIcon;
-
-    expect(iconElement).to.not.be.undefined;
-    await expect(getIconName(iconElement)).to.equal(iconName);
+    await expect(getSlottedIconName(subject)).to.equal("star");
   });
-
   it("renders a checkbox with the 'checkbox' type", async () => {
     subject.type = "checkbox";
     await elementUpdated(subject);

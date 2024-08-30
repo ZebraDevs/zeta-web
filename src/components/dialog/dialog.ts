@@ -6,11 +6,17 @@ import { classMap } from "lit/directives/class-map.js";
 import { ZetaButton } from "../button/button.js";
 import { Contourable, Popup } from "../../mixins/mixins.js";
 import "../icon/icon.js";
+import { styleMap } from "lit/directives/style-map.js";
 
 /**
- * Dialog needs description.
+ * A reusable dialog or modal window with a customizable interface and functionality.
  *
- * Use `zeta-button` for the action button slots; button props/variants are handled here.
+ * A dialog should popup either in response to user action or to get the users attention.
+ * @slot - Body of dialog; typically text.
+ * @slot {zeta-icon} icon - A `zeta-icon` element. Size will be restricted based on dialog type.
+ * @slot {zeta-button} confirm - Button used in footer. Must be of type zeta-button.
+ * @slot {zeta-button} cancel - Button used in footer. Must be of type zeta-button.
+ * @slot {zeta-button} other - Button used in footer. Must be of type zeta-button.
  */
 @customElement("zeta-dialog")
 export class ZetaDialog extends Contourable(Popup(LitElement)) {
@@ -34,16 +40,18 @@ export class ZetaDialog extends Contourable(Popup(LitElement)) {
   };
 
   /** Title of the dialog. */
-  @property() title = "";
+  @property({ type: String }) title: string = "";
 
   /** Icon displayed in the dialog header. */
   @property({ type: Boolean }) hasIcon: boolean = false;
 
-  /** Centered header. */
+  /** Whether header text should be centered. */
   @property({ type: Boolean }) centered: boolean = false;
 
   /** Whether the modal is initially open. */
   @property({ type: Boolean }) initialOpen: boolean = false;
+
+  @queryAssignedElements({ slot: "icon", flatten: true }) icon!: NodeList;
 
   /** Action button 1 (Confirm). */
   @queryAssignedElements({ slot: "confirm", flatten: true }) confirmBtn!: NodeList;
@@ -53,10 +61,6 @@ export class ZetaDialog extends Contourable(Popup(LitElement)) {
 
   /** Action button 3 (Learn more/Other). */
   @queryAssignedElements({ slot: "other", flatten: true }) otherBtn!: NodeList;
-
-  private renderIcon() {
-    return this.hasIcon ? html` <zeta-icon .rounded=${this.rounded}>warning</zeta-icon> ` : nothing;
-  }
 
   // set props to buttons
   private handleActionButtonChange = () => {
@@ -83,19 +87,22 @@ export class ZetaDialog extends Contourable(Popup(LitElement)) {
       col3: Boolean(this.otherBtn.length)
     });
 
+    const hide = styleMap({ display: "none" });
+    const icon = html`<span style="${this.icon && this.icon.length > 0 ? nothing : hide}">
+      <slot name="icon"></slot>
+    </span>`;
+
     return html`
       <dialog .returnValue=${this.returnValue} @click=${this.onBarrierClicked} id=${this.id} .open=${this.initialOpen}>
         <div class=${classes}>
           <header>
-            ${this.renderIcon()}
+            ${icon}
             <h1 class="dialog-title">${this.title}</h1>
           </header>
-          <slot name="dialog-body"></slot>
+          <div class="body"><slot></slot></div>
           <footer>
             <slot
-              @click=${() => {
-        this.hide("other");
-      }}
+              @click=${() => this.hide("other")}
               @slotchange=${this.handleActionButtonChange}
               name="other"
             ></slot>

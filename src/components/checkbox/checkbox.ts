@@ -21,7 +21,7 @@ export class ZetaCheckbox extends BaseToggleFormElement {
   override value = "on";
 
   click() {
-    !this.disabled && this.input?.click();
+    if (!this.disabled) this.input?.click();
   }
   static styles = [styles, super.styles];
 }

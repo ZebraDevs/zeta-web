@@ -1,6 +1,6 @@
 import { fixture, html, unsafeStatic, expect, elementUpdated, assert } from "@open-wc/testing";
-import { ZetaCheckbox } from "../../index.js";
-import "../../index.js";
+import { ZetaCheckbox } from "../../components/checkbox/checkbox.js";
+import "../../components/checkbox/checkbox.js";
 
 describe("zeta-checkbox", () => {
   let subject: ZetaCheckbox;

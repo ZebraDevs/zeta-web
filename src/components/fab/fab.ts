@@ -2,8 +2,11 @@ import { html, nothing } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./fab.styles.js";
 import "../icon/icon.js";
-import { ZetaButton } from "../button/button.js";
 import { ifDefined } from "lit/directives/if-defined.js";
+import type { Flavor } from "../../mixins/flavor.js";
+import { BaseButton } from "../button/base-button.js";
+
+export type FabFlavor = Exclude<Flavor, "positive" | "negative" | "outline" | "outline-subtle" | "text">;
 
 /** Floating action buttons are used for a promoted action.
  *
@@ -14,7 +17,7 @@ import { ifDefined } from "lit/directives/if-defined.js";
  */
 
 @customElement("zeta-fab")
-export class ZetaFab extends ZetaButton {
+export class ZetaFab extends BaseButton {
   static get styles() {
     return [super.styles ?? [], styles];
   }
@@ -23,11 +26,12 @@ export class ZetaFab extends ZetaButton {
    */
   @property({ type: String }) label: string = "";
 
+  @property({ type: String, reflect: true }) flavor: FabFlavor = "primary";
+
   _round: boolean | "full" = "full";
 
   /**
    * The border radius of the button. Used in place of rounded prop.
-   * @default "full"
    */
   @property({ type: String, reflect: true })
   get round(): boolean | "full" {

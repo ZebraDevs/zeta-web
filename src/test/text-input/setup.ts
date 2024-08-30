@@ -1,7 +1,7 @@
 import { fixture, html } from "@open-wc/testing";
-import { type ZetaIconName } from "@zebra-fed/zeta-icons";
-import { ZetaTextInput } from "../../index.js";
-import "../../index.js";
+import type { ZetaIconName } from "@zebra-fed/zeta-icons";
+import type { ZetaTextInput } from "../../components/text-input/text-input.js";
+import "../../components/text-input/text-input.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 
 interface Props {
@@ -43,8 +43,8 @@ export async function setup({
       suffix=${suffix}
       prefix=${prefix}
       ?disabled=${disabled}
-      leadingIcon=${leadingIcon ?? ""}
-      trailingIcon=${trailingIcon ?? ""}
+      leadingIcon=${ifDefined(leadingIcon)}
+      trailingIcon=${ifDefined(trailingIcon)}
       errorText=${errorText ?? ""}
       type=${type}
       name=${ifDefined(name)}

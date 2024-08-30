@@ -12,7 +12,6 @@ import { styleMap } from "lit/directives/style-map.js";
  */
 @customElement("zeta-progress-circle")
 export class ZetaProgressCircle extends Contourable(LitElement) {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   static styles = [super.styles || [], styles];
 
   /** Size. */
@@ -59,27 +58,27 @@ export class ZetaProgressCircle extends Contourable(LitElement) {
           <div
             class="uploading"
             style=${styleMap({
-              width: `${this.size}px`,
-              height: `${this.size}px`
-            })}
+        width: `${this.size}px`,
+        height: `${this.size}px`
+      })}
           >
             ${this.size > 24
-              ? html`<span
+          ? html`<span
                   class="percentage"
                   style=${styleMap({
-                    fontSize: `${this.size / 4}px`
-                  })}
+            fontSize: `${this.size / 4}px`
+          })}
                 >
                   ${this.progress}%
                 </span>`
-              : nothing}
+          : nothing}
             <div
               @click=${() => {
-                this.dispatchEvent(new ZetaCancelUploadEvent().toEvent());
-              }}
+          this.dispatchEvent(new ZetaCancelUploadEvent().toEvent());
+        }}
               style=${styleMap({
-                padding: `${this.size / 12}px`
-              })}
+          padding: `${this.size / 12}px`
+        })}
               class="cancel"
             >
               <zeta-icon size=${this.size / 2} color="var(--color-cool-90)">close</zeta-icon>

@@ -1,8 +1,7 @@
 import { LitElement, html, nothing } from "lit";
 import styles from "./button-group-item.styles.js";
-import { customElement, property, query } from "lit/decorators.js";
+import { customElement, property, query, queryAssignedElements } from "lit/decorators.js";
 import { Contourable, Interactive } from "../../../mixins/mixins.js";
-import { type ZetaIconName } from "@zebra-fed/zeta-icons";
 import { ifDefined } from "lit/directives/if-defined.js";
 import "../../icon/icon.js";
 
@@ -12,6 +11,7 @@ import "../../icon/icon.js";
  * Button which is used by button groups.
  *
  * @slot - Button label content.
+ * @slot {zeta-icon} icon - Icon to display on leading side of button. Full list of icons can be found at https://zeta-icons.web.app/
  */
 @customElement("zeta-button-group-item")
 export class ZetaButtonGroupItem extends Contourable(Interactive(LitElement)) {
@@ -21,14 +21,9 @@ export class ZetaButtonGroupItem extends Contourable(Interactive(LitElement)) {
     delegatesFocus: false
   };
 
-  @query("button") private readonly buttonElement!: HTMLElement | null;
-
   /** Name for the button, used if the button is in a form.*/
   //TODO: Does this even work in a form?
   @property({ type: String }) name?: string;
-
-  /** The name of the icon displayed on the button. */
-  @property({ type: String }) iconName?: ZetaIconName;
 
   /** Size of button. */
   @property({ type: String, reflect: true }) size: "medium" | "large" = "medium";
@@ -38,6 +33,9 @@ export class ZetaButtonGroupItem extends Contourable(Interactive(LitElement)) {
 
   @property() override onclick: ((this: GlobalEventHandlers, ev: MouseEvent) => unknown) | null = null;
 
+  @query("button") private readonly buttonElement!: HTMLElement | null;
+
+  @queryAssignedElements({ slot: "icon", flatten: true }) icon?: Array<Node>;
   private addGap = true;
 
   override focus() {
@@ -49,11 +47,9 @@ export class ZetaButtonGroupItem extends Contourable(Interactive(LitElement)) {
   }
 
   protected override render() {
-    const leadingIcon = this.iconName ? html`<zeta-icon .rounded=${this.rounded} class="icon">${this.iconName}</zeta-icon>` : nothing;
-
     return html`
       <button ?disabled=${this.disabled} name=${ifDefined(this.name)}>
-        ${leadingIcon}
+        <slot name="icon"></slot>
         <label class="text ${this.addGap ? "pad" : ""}">
           <slot
             @slotchange=${() => {

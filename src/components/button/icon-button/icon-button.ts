@@ -9,7 +9,7 @@ import "../../icon/icon.js";
  * @cssproperty --icon-button-color the color of the button.
  * @cssproperty --icon-button-icon-color the color of the icon.
  * @cssproperty --icon-button-icon-color-disabled the color of the icon when the button is disabled.
- * @slot - The name of the icon. Full list of icons can be found at {@link https://zeta-icons.web.app/.}
+ * @slot {ZetaIconName} - The name of the icon. Full list of icons can be found at {@link https://zeta-icons.web.app/ Zeta Icons}.
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=23126-110314
  * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/buttons--docs
  */

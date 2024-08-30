@@ -11,7 +11,7 @@ const meta: Meta<ZetaSearch> = {
     disabled: false,
     size: "medium",
     round: "false",
-    formAction: "https://google.com/search",
+    // formAction: "https://google.com/search", // BK to @mikecoomber, I removed this to get the story working after search was changed to a FormField.
     hasIcon: true
   },
   argTypes: {
@@ -27,7 +27,7 @@ const meta: Meta<ZetaSearch> = {
         type: "inline-radio"
       }
     },
-    onSubmit: { table: { disable: true } }
+    // onSubmit: { table: { disable: true } } // BK to @mikecoomber, I removed this to get the story working after search was changed to a FormField.
   },
   parameters: {
     design: {

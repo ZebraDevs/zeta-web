@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/unbound-method */
-import { LitElement, html, nothing, type PropertyValues } from "lit";
+import type { LitElement, PropertyValues } from "lit";
+import { html, nothing } from "lit";
 import { property, query, queryAssignedNodes, state } from "lit/decorators.js";
 import { type AbstractConstructor } from "./utils.js";
 import { ifDefined } from "lit/directives/if-defined.js";
@@ -213,7 +214,7 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
      * or if it is a checkbox-like input, when the checkbox is toggled.
      * or if it is a radio-like input, when the radio is selected (but not unselected).
      */
-    handleChange(_event: Event): void {}
+    handleChange(_event: Event): void { }
 
     /*
       max=${'date'|'month'|'week'|'time'|'datetime-local'|'number'|'range'}

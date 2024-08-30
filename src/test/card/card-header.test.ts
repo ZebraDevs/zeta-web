@@ -1,6 +1,8 @@
 import { fixture, html, unsafeStatic, expect } from "@open-wc/testing";
-import { ZetaCardHeader } from "../../index.js";
-import "../../index.js";
+import type { ZetaCardHeader } from "../../components/card/card-header/card-header.js";
+import "../../components/card/card-header/card-header.js";
+import "../../components/avatar/avatar.js";
+import "../../components/button/icon-button/icon-button.js";
 
 describe("zeta-card-header", () => {
   let subject: ZetaCardHeader;

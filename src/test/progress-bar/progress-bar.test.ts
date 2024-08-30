@@ -1,6 +1,6 @@
 import { fixture, html, unsafeStatic, expect } from "@open-wc/testing";
-import { ZetaProgressBar } from "../../index.js";
-import "../../index.js";
+import type { ZetaProgressBar } from "../../components/progress-indicators/progress-bar/progress-bar.js";
+import "../../components/progress-indicators/progress-bar/progress-bar.js";
 
 describe("zeta-progress-bar", () => {
   let subject: ZetaProgressBar;

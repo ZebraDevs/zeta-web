@@ -105,7 +105,12 @@ export default css`
     }
   }
 
-  ::slotted([slot="action"]){
+  ::slotted([slot="action"]) {
     margin-top: var(--spacing-4);
+  }
+
+  ::slotted([slot="leadingAction"]:not(zeta-button)),
+  ::slotted([slot="trailingAction"]:not(zeta-button)) {
+    display: none;
   }
 `;

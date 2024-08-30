@@ -1,6 +1,6 @@
 import { assert, fixture, html } from "@open-wc/testing";
-import { ZetaStepper } from "../../index.js";
-import "../../index.js";
+import { ZetaStepper } from "../../components/stepper/stepper.js";
+import "../../components/stepper/stepper.js";
 
 describe("ZetaStepper", () => {
   it("creates from document.createElement", function () {

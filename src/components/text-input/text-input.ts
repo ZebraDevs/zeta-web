@@ -1,8 +1,6 @@
 import { customElement, property, query } from "lit/decorators.js";
 import { html, LitElement, nothing } from "lit";
 import styles from "./text-input.styles.js";
-
-import { requestUpdateOnAriaChange } from "@material/web/internal/aria/delegate.js";
 import { type ZetaIconName } from "@zebra-fed/zeta-icons";
 import { classMap } from "lit/directives/class-map.js";
 import { Contourable, Interactive, Size } from "../../mixins/mixins.js";
@@ -17,9 +15,7 @@ import { FormField } from "../../mixins/form-field.js";
  */
 @customElement("zeta-text-input")
 export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitElement)))) {
-  static {
-    requestUpdateOnAriaChange(ZetaTextInput);
-  }
+
   static override shadowRootOptions: ShadowRootInit = { delegatesFocus: true, mode: "open" };
 
   static styles = [styles, super.styles ?? []];
@@ -119,9 +115,9 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
       : this.type === "password" || this.toggled
         ? html`<zeta-icon
             @click=${() => {
-              this.toggled = !this.toggled;
-              this.type = this.type === "text" ? "password" : "text";
-            }}
+            this.toggled = !this.toggled;
+            this.type = this.type === "text" ? "password" : "text";
+          }}
             class="right"
             .rounded=${this.rounded}
           >

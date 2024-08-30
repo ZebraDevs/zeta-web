@@ -32,25 +32,29 @@ export default css`
   :host([status="default"]) > .system-banner {
     background: var(--surface-flavor-primary);
     color: var(--text-inverse);
-    fill: var(--text-inverse);
+    --icon-color: var(--text-inverse);
   }
   :host([status="positive"]) > .system-banner {
     background: var(--surface-flavor-positive);
     color: var(--text-inverse);
-    fill: var(--text-inverse);
+    --icon-color: var(--text-inverse);
   }
   :host([status="warning"]) > .system-banner {
     background: var(--surface-flavor-warning);
     color: var(--text-default);
-    fill: var(--text-default);
+    --icon-color: var(--text-default);
   }
   :host([status="negative"]) > .system-banner {
     background: var(--surface-flavor-negative);
     color: var(--text-inverse);
-    fill: var(--text-inverse);
+    --icon-color: var(--text-inverse);
   }
 
   :host([rounded]) > .system-banner {
     border-radius: var(--radius-none) !important;
+  }
+
+  .none {
+    display: none;
   }
 `;

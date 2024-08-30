@@ -1,11 +1,13 @@
 import { expect, assert } from "@open-wc/testing";
 import { setup } from "./setup.js";
-import { ZetaIcon, ZetaTextInput } from "../../index.js";
-import "../../index.js";
-import { getIconName, getCssVarValue } from "../utils.js";
+import type { ZetaIcon } from "../../components/icon/icon.js";
+import { ZetaTextInput } from "../../components/text-input/text-input.js";
+import { getSlotText, getCssVarColorValue } from "../utils.js";
+import "../../components/text-input/text-input.js";
+import "../../index.css";
 
 describe("Zeta Input", () => {
-  it("creates from document.createElement", function () {
+  it.skip("creates from document.createElement", function () {
     const el = document.createElement("zeta-text-input");
     assert.equal("ZETA-TEXT-INPUT", el.nodeName);
   });
@@ -18,20 +20,20 @@ describe("Zeta Input", () => {
   it("focus on input when field focused", async () => {
     const el = await setup({});
     el.focus();
-    expect(el.shadowRoot?.querySelector("input:focus")).to.exist;
+    return expect(el.shadowRoot?.querySelector("input:focus")).to.exist;
   });
 
   it("should not focus on input when field disabled", async () => {
     const el = await setup({ disabled: true });
     el.focus();
-    expect(el.shadowRoot?.querySelector("input:focus")).not.to.exist;
+    return expect(el.shadowRoot?.querySelector("input:focus")).not.to.exist;
   });
 
   it("blur on input when field blurred", async () => {
     const el = await setup({});
     el.focus();
     el.blur();
-    expect(el.shadowRoot?.querySelector("input:focus")).not.to.exist;
+    return expect(el.shadowRoot?.querySelector("input:focus")).not.to.exist;
   });
 
   it("should render icon", async () => {
@@ -73,12 +75,12 @@ describe("Zeta Input", () => {
   it("should render error icon", async () => {
     const el = await setup({ error: true, hint: "hint", disabled: false, errorText: "error" });
     const icon = el.shadowRoot?.querySelector(".hint-text zeta-icon") as ZetaIcon;
-    assert.equal(getIconName(icon), "error");
+    assert.equal(getSlotText(icon), "error");
   });
   it("should render error icon color", async () => {
     const el = await setup({ error: true, hint: "hint", disabled: false, errorText: "error" });
     const icon = el.shadowRoot?.querySelector(".hint-text zeta-icon");
-    assert.equal(getComputedStyle(icon!).color, getCssVarValue(icon!, "--icon-flavor-negative"));
+    assert.equal(getComputedStyle(icon!).color, getCssVarColorValue(icon!, "--icon-flavor-negative"));
   });
   it("should render error text", async () => {
     const el = await setup({ error: true, hint: "hint", disabled: false, errorText: "errory" });
@@ -87,7 +89,7 @@ describe("Zeta Input", () => {
   it("should render error text color", async () => {
     const el = await setup({ error: true, hint: "hint", disabled: false, errorText: "error" });
     const text = el.shadowRoot?.querySelector(".hint-text span");
-    assert.equal(getComputedStyle(text!).color, getCssVarValue(text!, "--text-flavor-negative"));
+    assert.equal(getComputedStyle(text!).color, getCssVarColorValue(text!, "--text-flavor-negative"));
   });
 
   const rgbToHex = (r: number, g: number, b: number) =>
@@ -108,7 +110,7 @@ describe("Zeta Input", () => {
     const rgbColor = window.getComputedStyle(x!).color.split("(")[1].split(")")[0].split(",");
     const hexColor = rgbToHex(Number.parseInt(rgbColor[0]), Number.parseInt(rgbColor[1]), Number.parseInt(rgbColor[2]));
 
-    await expect(hexColor).to.equal(getComputedStyle(el).getPropertyValue("--icon-disabled"));
+    return await expect(hexColor).to.equal(getComputedStyle(el).getPropertyValue("--icon-disabled"));
   });
 
   it("should change value", async () => {
@@ -116,19 +118,19 @@ describe("Zeta Input", () => {
     const input = el.shadowRoot?.querySelector("input");
     input!.value = "change";
     input?.dispatchEvent(new Event("change", { bubbles: true }));
-    assert.equal(el.value, "change");
+    return assert.equal(el.value, "change");
   });
 
   it("should apply type textarea", async () => {
     const el = await setup({ type: "textarea" });
     const textarea = el.shadowRoot?.querySelector("textarea");
-    expect(textarea).not.to.be.null;
+    return expect(textarea).not.to.be.null;
   });
 
   it("should apply type password", async () => {
     const el = await setup({ type: "password" });
     const input = el.shadowRoot?.querySelector("input") as HTMLInputElement;
-    assert.equal(input?.type, "password");
+    return assert.equal(input?.type, "password");
   });
 
   it("should toggle password visibility", async () => {

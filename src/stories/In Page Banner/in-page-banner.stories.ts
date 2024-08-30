@@ -116,7 +116,7 @@ export const BannerWithContent: StoryObj = {
     action: { table: { disable: true } }
   },
   render: args => {
-    const renderedBanner = html` <zeta-in-page-banner title=${args.title} body=${args.body} ?rounded=${args.rounded} status=${args.status}>
+    const renderedBanner = html` <zeta-in-page-banner title=${args.title} ?rounded=${args.rounded} status=${args.status}>
       ${unsafeHTML(`${args.slot}`)}
       <zeta-button slot="action">Button</zeta-button>
     </zeta-in-page-banner>`;

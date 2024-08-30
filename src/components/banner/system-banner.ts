@@ -38,10 +38,10 @@ export class ZetaSystemBanner extends Contourable(LitElement) {
 
   protected render() {
     const leadingIcon = html`<div class="leading icon ${this.leading && this.leading.length > 0 ? "" : "none"}">
-      <zeta-icon .rounded=${this.rounded}><slot name="leadingIcon"></slot></zeta-icon>
+      <slot name="leadingIcon"></slot>
     </div>`;
     const trailingIcon = html`<div class="trailing ${this.trailing && this.trailing.length > 0 ? "" : "none"}">
-      <zeta-icon .rounded=${this.rounded}><slot name="trailingIcon"></slot></zeta-icon>
+      <slot name="trailingIcon"></slot>
     </div>`;
     const text = html`<div class="text">${this.text ?? html`<slot></slot>`}</div>`;
 

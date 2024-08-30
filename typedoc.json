@@ -3,5 +3,5 @@
     "$schema": "https://typedoc.org/schema.json",
     "entryPoints": ["./src/index.ts"],
     "out": "docs",
-    "exclude":["*.stories.ts", "*.mdx", "*.test.ts", "*.md"]
+    "exclude":["*.stories.ts", "*.mdx", "*.test.ts", "*.md", "**/node_modules/**"]
 }

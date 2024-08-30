@@ -1,6 +1,6 @@
 import { assert, fixture, html } from "@open-wc/testing";
-import { ZetaDialog } from "../../index.js";
-import "../../index.js";
+import { ZetaDialog } from "../../components/dialog/dialog.js";
+import "../../components/dialog/dialog.js";
 
 describe("zeta-dialog", () => {
   it("creates from document.createElement", function () {

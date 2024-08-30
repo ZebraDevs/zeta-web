@@ -1,6 +1,6 @@
 import { customElement } from "lit/decorators.js";
 import { type InputType } from "../../mixins/form-field.js";
-import { requestUpdateOnAriaChange } from "@material/web/internal/aria/delegate.js";
+
 import { BaseToggleFormElement } from "../base-toggle-form-element.js";
 import styles from "./radio-button.styles.js";
 import { RadioButtonController } from "./radio-button-controller.js";
@@ -13,9 +13,6 @@ import { RadioButtonController } from "./radio-button-controller.js";
  */
 @customElement("zeta-radio-button")
 export class ZetaRadioButton extends BaseToggleFormElement {
-  static {
-    requestUpdateOnAriaChange(ZetaRadioButton);
-  }
   private readonly radioButtonController = new RadioButtonController(this);
   constructor() {
     super();

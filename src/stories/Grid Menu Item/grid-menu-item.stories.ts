@@ -1,11 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
-import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
-import { ifDefined } from "lit/directives/if-defined.js";
+import { ZetaIconNameList, type ZetaIconName } from "@zebra-fed/zeta-icons";
 import type { ZetaGridMenuItem } from "../../components/grid-menu-item/grid-menu-item.js";
 import "../../components/grid-menu-item/grid-menu-item";
+import "../../components/badges/indicators/indicators.js";
+import "../../components/icon/icon.js";
 
-const meta: Meta<ZetaGridMenuItem> = {
+const meta: Meta<ZetaGridMenuItem | { icon?: ZetaIconName }> = {
   component: "zeta-grid-menu-item",
   title: "Grid Menu Item",
   tags: ["autodocs"],
@@ -13,7 +14,7 @@ const meta: Meta<ZetaGridMenuItem> = {
     rounded: true,
     active: false,
     icon: "star",
-    label: "Label",
+    slot: "Label",
     notificationValue: ""
   },
   argTypes: {
@@ -42,15 +43,15 @@ const meta: Meta<ZetaGridMenuItem> = {
 
 export default meta;
 
-export const Item: StoryObj<ZetaGridMenuItem> = {
+export const Item: StoryObj<ZetaGridMenuItem & { icon: ZetaIconName }> = {
   render: args => {
     return html`<zeta-grid-menu-item
       .rounded=${args.rounded}
       .active=${args.active}
-      icon=${ifDefined(args.icon)}
-      label=${ifDefined(args.label)}
       .notificationValue=${args.notificationValue}
     >
-    </zeta-grid-menu-item>`;
+      <zeta-icon slot="icon">${args.icon}</zeta-icon>
+      ${args.slot}
+      </zeta-grid-menu-item>`;
   }
 };

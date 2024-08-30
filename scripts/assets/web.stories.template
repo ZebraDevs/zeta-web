@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
-import { Zeta_replacecap_ } from "./_replacelower_.js";
+import type { Zeta_replacecap_ } from "./_replacelower_.js";
 import "./_replacelower_.js";
 
 const meta: Meta<Zeta_replacecap_> = {

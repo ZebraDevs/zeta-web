@@ -1,6 +1,6 @@
 import { fixture, html, unsafeStatic, expect } from "@open-wc/testing";
-import { ZetaInPageBanner } from "../../index.js";
-import "../../index.js";
+import type { ZetaInPageBanner } from "../../components/in-page-banner/in-page-banner.js";
+import "../../components/in-page-banner/in-page-banner.js";
 
 describe("zeta-in-page-banner", () => {
   let subject: ZetaInPageBanner;

@@ -39,10 +39,10 @@ export default css`
     border-radius: var(--radius-full);
   }
 
-  :host zeta-icon {
+  :host ::slotted(zeta-icon) {
     --icon-color: var(--icon-subtle);
   }
-  :host([active]) zeta-icon {
+  :host([active]) ::slotted(zeta-icon) {
     --icon-color: var(--icon-flavor-primary);
   }
 `;

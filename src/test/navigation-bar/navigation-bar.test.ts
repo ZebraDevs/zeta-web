@@ -1,6 +1,9 @@
 import { expect, fixture, html, unsafeStatic } from "@open-wc/testing";
-import { ZetaNavigationBar, ZetaGridMenuItem } from "../../index.js";
-import "../../index.js";
+import type { ZetaNavigationBar } from "../../components/navigation-bar/navigation-bar.js";
+import type { ZetaGridMenuItem } from "../../components/grid-menu-item/grid-menu-item.js";
+import "../../components/grid-menu-item/grid-menu-item.js";
+import "../../components/navigation-bar/navigation-bar.js";
+import "../../components/badges/indicators/indicators.js";
 
 describe("zeta-navigation-bar", () => {
   const label = "Label";

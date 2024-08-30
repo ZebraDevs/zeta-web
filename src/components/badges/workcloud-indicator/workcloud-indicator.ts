@@ -1,5 +1,6 @@
 import { customElement, property } from "lit/decorators.js";
-import { LitElement, html } from "lit";
+import type { LitElement } from "lit";
+import { html } from "lit";
 import { type Constructor } from "../../../mixins/mixins.js";
 import styles from "./workcloud-indicator.styles.js";
 import { ZetaPriorityPill } from "../priority-pill/priority-pill.js";

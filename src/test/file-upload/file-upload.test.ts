@@ -1,6 +1,6 @@
 import { fixture, html, unsafeStatic, expect } from "@open-wc/testing";
-import { ZetaFileUpload } from "../../index.js";
-import "../../index.js";
+import type { ZetaFileUpload } from "../../components/file-upload/file-upload.js";
+import "../../components/file-upload/file-upload.js";
 
 describe("zeta-file-upload", () => {
   let subject: ZetaFileUpload;

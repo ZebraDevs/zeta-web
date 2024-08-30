@@ -1,17 +1,18 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
-import { html } from "lit";
+import { html, nothing } from "lit";
 import { ZetaButton } from "../../components/button/button.js";
+import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
 import "../../components/icon/icon.js";
 
 const meta: Meta<ZetaButton> = {
-  component: "zeta-button",
   title: "Buttons",
+  component: "zeta-button",
   args: {
     disabled: false,
     flavor: "primary",
     name: "",
     rounded: true,
-    slot: "Button",
+    slot: "Button Name",
     type: undefined,
     value: ""
   },
@@ -41,40 +42,23 @@ const meta: Meta<ZetaButton> = {
       control: {
         type: "select"
       }
+    },
+    leading: {
+      options: [null, ...ZetaIconNameList],
+      control: { type: "select" }
+    },
+    trailing: {
+      options: [null, ...ZetaIconNameList],
+      control: { type: "select" }
     }
   }
 };
 export default meta;
 
-export const ButtonWithText: StoryObj<ZetaButton> = {
-  render: args => html`<zeta-button size=${args.size} .disabled=${args.disabled} .rounded=${args.rounded} flavor=${args.flavor}>
-    ${args.slot}
-  </zeta-button> `
+export const Button: StoryObj<ZetaButton> = {
+  render: args =>
+    html`<zeta-button size=${args.size} .disabled=${args.disabled} .rounded=${args.rounded} flavor=${args.flavor}>
+      ${args.leading && args.leading.length > 1 ? html`<zeta-icon slot="leadingIcon">${args.leading}</zeta-icon>` : nothing}${args.slot}
+      ${args.trailing && args.trailing.length > 1 ? html`<zeta-icon slot="trailingIcon">${args.trailing}</zeta-icon>` : nothing}
+    </zeta-button> `
 };
-export const ButtonWithIconAndText: StoryObj<ZetaButton> = {
-  render: args => html`<zeta-button size=${args.size} .disabled=${args.disabled} .rounded=${args.rounded} flavor=${args.flavor}>
-    <zeta-icon .rounded=${args.rounded}>star</zeta-icon>
-    ${args.slot}
-  </zeta-button> `
-};
-
-/*const ButtonWithAvatarAndIcon: StoryObj = {
-  args: {
-    trailingIcon: false
-  },
-  render: args => {
-    return html`<zeta-button
-      text=${args.text}
-      type=${args.type}
-      shape=${args.shape}
-      size=${args.size}
-      .disabled=${args.disabled}
-      .trailingIcon=${args.trailingIcon}
-      .onClick=${args.onClick}
-      name=${args.name}
-    >
-      <zeta-avatar></zeta-avatar>
-      Hi Ben
-    </zeta-button>`;
-  }
-};*/

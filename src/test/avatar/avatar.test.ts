@@ -1,7 +1,11 @@
 import { expect, fixture, html } from "@open-wc/testing";
-import { ZetaAvatar, ZetaIcon, ZetaIconIndicator } from "../../index.js";
-import "../../index.js";
-import { getIconName } from "../utils.js";
+import type { ZetaIcon } from "../../components/icon/icon.js";
+import type { ZetaAvatar } from "../../components/avatar/avatar.js";
+import type { ZetaIconIndicator } from "../../components/badges/indicators/indicators.js";
+import "../../components/icon/icon.js";
+import "../../components/avatar/avatar.js";
+import "../../components/badges/indicators/indicators.js";
+import { getSlotText } from "../utils.js";
 
 describe("ZetaAvatar", () => {
   it("renders the avatar with a custom size", async () => {
@@ -11,32 +15,32 @@ describe("ZetaAvatar", () => {
 
   it("renders the avatar with the ring", async () => {
     const avatar: ZetaAvatar = await fixture(html`<zeta-avatar show-ring></zeta-avatar>`);
-    expect(avatar.showRing).to.be.true;
+    return expect(avatar.showRing).to.be.true;
   });
 
   it("renders the avatar without the ring", async () => {
     const avatar: ZetaAvatar = await fixture(html`<zeta-avatar></zeta-avatar>`);
-    expect(avatar.showRing).to.be.false;
+    return expect(avatar.showRing).to.be.false;
   });
 
   it("renders the avatar with the close icon", async () => {
     const avatar: ZetaAvatar = await fixture(html`<zeta-avatar show-close></zeta-avatar>`);
-    expect(avatar.showClose).to.be.true;
+    return expect(avatar.showClose).to.be.true;
   });
 
   it("renders the avatar without the close icon", async () => {
     const avatar: ZetaAvatar = await fixture(html`<zeta-avatar></zeta-avatar>`);
-    expect(avatar.showClose).to.be.false;
+    return expect(avatar.showClose).to.be.false;
   });
 
   it("renders the avatar with an image", async () => {
     const url = "https://example.com/image.jpg";
-    const avatar: ZetaAvatar = await fixture(html`<zeta-avatar><img src=${url}></img></zeta-avatar>`);
+    const avatar: ZetaAvatar = await fixture(html`<zeta-avatar><img src=${url} /></zeta-avatar>`);
     const slot: HTMLSlotElement | null | undefined = avatar.shadowRoot?.querySelector("#CONTENT_SLOT");
     const img = slot?.assignedElements()[0] as HTMLImageElement;
 
     expect(img).to.exist;
-    await expect(img?.src).to.equal(url);
+    return await expect(img?.src).to.equal(url);
   });
 
   it("renders the avatar with an icon", async () => {
@@ -46,7 +50,7 @@ describe("ZetaAvatar", () => {
     const icon = slot?.assignedElements()[0] as ZetaIcon;
 
     expect(icon).to.exist;
-    await expect(getIconName(icon)).to.equal(iconName);
+    await expect(getSlotText(icon)).to.equal(iconName);
   });
 
   it("renders the badge on the avatar", async () => {

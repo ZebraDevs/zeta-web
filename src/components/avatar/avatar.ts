@@ -13,6 +13,8 @@ import type { AvatarSize } from "./avatar-size.js";
  * @cssproperty --avatar-initials-color - The color of the initials
  * @slot - The content of the avatar. Should be an img element, a zeta-icon, or text.
  * @slot status - The content of the status slot. Usually used for indicators or badges.
+ * @attr {boolean} show-ring - Shows the ring around the avatar.
+ * @attr {boolean} show-close - Shows the close icon.
  * @event {CustomEvent<ZetaAvatarCloseEvent>} ZetaAvatarCloseEvent:avatar-close - Fired when the close icon is clicked.
  *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=20816-388
@@ -45,8 +47,8 @@ export class ZetaAvatar extends LitElement {
       <div
         class="close"
         @click=${() => {
-          this.dispatchEvent(new ZetaAvatarCloseEvent().toEvent());
-        }}
+        this.dispatchEvent(new ZetaAvatarCloseEvent().toEvent());
+      }}
       >
         <zeta-icon>close</zeta-icon>
       </div>

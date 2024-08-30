@@ -4,6 +4,9 @@ import "../../components/button-group/button-group-item/button-group-item.js";
 import { html } from "lit";
 import { ZetaIconNameList, type ZetaIconName } from "@zebra-fed/zeta-icons";
 
+const testFunc = () => console.log("Click");
+const options = { testFunc, undefined };
+
 const meta: Meta<ZetaButtonGroup> = {
   component: "zeta-button-group",
   title: "Button Group",
@@ -14,22 +17,19 @@ const meta: Meta<ZetaButtonGroup> = {
   argTypes: {
     size: {
       options: ["medium", "large"],
+      control: { type: "select" }
+    },
+    onclick: {
+      options: Object.keys(options),
+      mapping: options,
       control: {
-        type: "select"
+        type: "select",
+        labels: {
+          testFunc: "Dropdown on",
+          undefined: "Dropdown off"
+        }
       }
     },
-
-    // onclick: {
-    //   options: Object.keys(options),
-    //   mapping: options,
-    //   control: {
-    //     type: "select",
-    //     labels: {
-    //       testFunc: "Dropdown on",
-    //       undefined: "Dropdown off"
-    //     }
-    //   }
-    // },
     slot: { table: { disable: true } }
   },
   parameters: {
@@ -44,16 +44,15 @@ const meta: Meta<ZetaButtonGroup> = {
 
 export default meta;
 
-// type ZetaButtonGroupArgs = typeof ZetaButtonGroup | { iconName: string, count: number };
-export const ButtonGroup: StoryObj<ZetaButtonGroup & { iconName: ZetaIconName; count: number; showDropdown: boolean }> = {
+export const ButtonGroup: StoryObj<ZetaButtonGroup & { count: number; showDropdown: boolean; icon?: ZetaIconName }> = {
   args: {
-    iconName: "star",
+    icon: "star",
     count: 4,
     showDropdown: false
   },
   argTypes: {
-    iconName: {
-      options: ZetaIconNameList,
+    icon: {
+      options: [null, ...ZetaIconNameList],
       control: {
         type: "select"
       }
@@ -62,9 +61,13 @@ export const ButtonGroup: StoryObj<ZetaButtonGroup & { iconName: ZetaIconName; c
   render: args => {
     const array = Array(args.count).fill(0);
     const mappedArray = array.map((_, index) => {
-      return html`<zeta-button-group-item iconName=${args.iconName} .onclick=${args.onclick} ?showDropdown=${args.showDropdown}
-        >Label ${index}</zeta-button-group-item
-      >`;
+      return html`<zeta-button-group-item
+        .onclick=${args.onclick}
+        ?showDropdown=${args.showDropdown}>
+        Label ${index}
+        ${args.icon && html`<zeta-icon slot="icon">${args.icon}</zeta-icon>`}
+      </zeta-button-group-item>
+      `;
     });
 
     return html` <zeta-button-group .rounded=${args.rounded} size=${args.size}> ${mappedArray.flat()} </zeta-button-group> `;

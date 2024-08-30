@@ -15,5 +15,5 @@
   "tabWidth": 2,
   "trailingComma": "none",
   "useTabs": false,
-  "filepath": "src/.eslintrc.json"
+  "filepath": "eslint.config.mjs"
 }

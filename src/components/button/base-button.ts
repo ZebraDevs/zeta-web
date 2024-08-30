@@ -3,6 +3,7 @@ import { property } from "lit/decorators.js";
 import { Flavored } from "../../mixins/mixins.js";
 import { Contourable, Interactive, Size } from "../../mixins/mixins.js";
 import { LitElement } from "lit";
+import styles from "./button.styles.js";
 
 export class BaseButton extends Size(Contourable(Flavored(Interactive(LitElement)))) {
   static formAssociated = true;
@@ -12,10 +13,14 @@ export class BaseButton extends Size(Contourable(Flavored(Interactive(LitElement
     mode: "open",
     delegatesFocus: true
   };
+
+  static get styles() {
+    return [super.styles ?? [], styles];
+  }
+
   /** The type of the button when used in a form */
   @property({ type: String }) type?: "submit" | "reset" | "button";
   constructor() {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     super();
     this.internals = this.attachInternals();
   }
@@ -38,16 +43,15 @@ export class BaseButton extends Size(Contourable(Flavored(Interactive(LitElement
   }
 
   override click() {
-    !this.disabled && this.button?.click();
+    if (!this.disabled) this.button?.click();
   }
 
   //TODO do i need to change the target of on click events?
   protected _handleClick(event: Event) {
-    if (this.type === 'submit') {
+    if (this.type === "submit") {
       const form = this.internals.form as HTMLFormElement;
       form?.dispatchEvent(new Event("submit"));
-    }
-    else if (this.type === 'reset') {
+    } else if (this.type === "reset") {
       const form = this.internals.form as HTMLFormElement;
       form?.reset();
     }

@@ -17,6 +17,10 @@ const _spread = (_spreadData: SpreadData, properties: PropertyDeclarationMap): D
     } else if (property?.attribute === false) {
       newKey = `.${key}`;
     }
+    // Fix for css-variables, which don't have a type
+    if (property?.type == undefined) {
+      return acc;
+    }
     acc[newKey] = value;
     return acc;
   }, {} as SpreadData);

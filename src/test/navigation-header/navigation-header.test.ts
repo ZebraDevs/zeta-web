@@ -1,6 +1,6 @@
 import { fixture, html, unsafeStatic, expect } from "@open-wc/testing";
-import { ZetaTabBar } from "../../index.js";
-import "../../index.js";
+import type { ZetaTabBar } from "../../components/tab-bar/tab-bar.js";
+import "../../components/tab-bar/tab-bar.js";
 
 describe("zeta-tab-bar", () => {
   let subject: ZetaTabBar;

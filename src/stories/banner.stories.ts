@@ -1,9 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaSystemBanner } from "../components/banner/system-banner.js";
-import { html } from "lit";
+import { html, nothing } from "lit";
 import { ifDefined } from "lit/directives/if-defined.js";
+import { ZetaIconNameList, type ZetaIconName } from "@zebra-fed/zeta-icons";
+import "../components/banner/system-banner.js";
 
-const meta: Meta<ZetaSystemBanner> = {
+const meta: Meta<ZetaSystemBanner | { leadingIcon: ZetaIconName; trailingIcon: ZetaIconName }> = {
   title: "Banner",
   tags: ["autodocs"],
   parameters: {
@@ -20,7 +22,9 @@ const meta: Meta<ZetaSystemBanner> = {
     text: "Banner title",
     align: "center",
     status: "default",
-    rounded: true
+    rounded: true,
+    leadingIcon: "star",
+    trailingIcon: "star"
   },
   argTypes: {
     status: {
@@ -31,59 +35,21 @@ const meta: Meta<ZetaSystemBanner> = {
     },
     align: {
       options: ["center", "start"],
-      control: {
-        type: "radio"
-      }
-    }
+      control: { type: "radio" }
+    },
+    leadingIcon: { options: [null, ...ZetaIconNameList], control: { type: "select" } },
+    trailingIcon: { options: [null, ...ZetaIconNameList], control: { type: "select" } }
   }
 };
 export default meta;
 
-export const Banner: StoryObj<ZetaSystemBanner> = {};
-
-export const BannerSingleIcon: StoryObj<ZetaSystemBanner> = {
+export const Banner: StoryObj = {
+  argTypes: {
+    slot: { table: { disable: true } }
+  },
   render: args =>
     html`<zeta-system-banner align=${ifDefined(args.align)} status=${ifDefined(args.status)} text=${ifDefined(args.text)} .rounded=${args.rounded}>
-      <svg slot="leadingIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-        <g clip-path="url(#clip0_1034_16007)">
-          <path
-            d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 17C11.45 17 11 16.55 11 16V12C11 11.45 11.45 11 12 11C12.55 11 13 11.45 13 12V16C13 16.55 12.55 17 12 17ZM13 9H11V7H13V9Z"
-          />
-        </g>
-        <defs>
-          <clipPath id="clip0_1034_16007">
-            <rect width="24" height="24" fill="white" />
-          </clipPath>
-        </defs>
-      </svg>
+      ${args.leadingIcon && args.leadingIcon.length > 1 ? html`<zeta-icon slot="leadingIcon">${args.leadingIcon}</zeta-icon>` : nothing}
+      ${args.trailingIcon && args.trailingIcon.length > 1 ? html`<zeta-icon slot="trailingIcon">${args.trailingIcon}</zeta-icon>` : nothing}
     </zeta-system-banner>`
-};
-
-export const BannerDualIcon: StoryObj<ZetaSystemBanner> = {
-  render: args => html`
-    <zeta-system-banner align=${ifDefined(args.align)} status=${ifDefined(args.status)} text=${ifDefined(args.text)} .rounded=${args.rounded}>
-      <svg slot="leadingIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-        <g clip-path="url(#clip0_1034_16007)">
-          <path
-            d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 17C11.45 17 11 16.55 11 16V12C11 11.45 11.45 11 12 11C12.55 11 13 11.45 13 12V16C13 16.55 12.55 17 12 17ZM13 9H11V7H13V9Z"
-          />
-        </g>
-        <defs>
-          <clipPath id="clip0_1034_16007">
-            <rect width="24" height="24" />
-          </clipPath>
-        </defs>
-      </svg>
-      <svg slot="trailingIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-        <g clip-path="url(#clip0_1111_28300)">
-          <path d="M9.99984 6L8.58984 7.41L13.1698 12L8.58984 16.59L9.99984 18L15.9998 12L9.99984 6Z" />
-        </g>
-        <defs>
-          <clipPath id="clip0_1111_28300">
-            <rect width="24" height="24" />
-          </clipPath>
-        </defs>
-      </svg>
-    </zeta-system-banner>
-  `
 };

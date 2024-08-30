@@ -109,7 +109,6 @@ export class ZetaSliderInputField extends Contourable(LitElement) {
     </div> `;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   static styles = [super.styles ?? [], styles];
 }
 

@@ -1,6 +1,6 @@
 import { assert, expect, fixture, html } from "@open-wc/testing";
-import { ZetaPagination } from "../../index.js";
-import "../../index.js";
+import { ZetaPagination } from "../../components/pagination/pagination.js";
+import "../../components/pagination/pagination.js";
 
 describe("ZetaPagination", () => {
   it("creates from document.createElement", function () {

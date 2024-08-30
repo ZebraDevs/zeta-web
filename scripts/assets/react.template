@@ -1,6 +1,6 @@
 import * as React from "react";
 import { createComponent } from "@lit/react";
-import { Zeta_replacecap_ as Zeta_replacecap_WC } from "zeta-web";
+import type { Zeta_replacecap_ as Zeta_replacecap_WC } from "zeta-web";
 
 export const Zeta_replacecap_ = createComponent({
   tagName: "zeta-_replacelower_",

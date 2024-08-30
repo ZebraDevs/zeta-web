@@ -68,7 +68,8 @@ const meta: Meta<_navBarType> = {
       control: {
         type: "select"
       }
-    }
+    },
+    slot: { table: { disable: true } }
   },
   parameters: {
     design: {
@@ -87,7 +88,9 @@ export const BarIconAndLabel: StoryObj<_navBarType> = {
     const navigationBarItems = Array.from({ length: args.numItems }, (_, index) => {
       return html`
         ${index == (args.spacer as number) - 1 ? html` <div class="spacer"></div>` : nothing}
-        <zeta-grid-menu-item icon="star" label="Label" .active=${args.selected === index + 1} .notificationValue=${args.notificationValue}>
+        <zeta-grid-menu-item .active=${args.selected === index + 1} .notificationValue=${args.notificationValue}>
+          <zeta-icon slot="icon">star</zeta-icon>
+          Label
         </zeta-grid-menu-item>
         ${index == (args.divider as number) - 1 ? html` <div class="divider"></div>` : nothing}
         ${index == args.numItems - 1 && index + 1 == (args.spacer as number) - 1 ? html` <div class="spacer"></div>` : nothing}
@@ -104,7 +107,8 @@ export const BarIconsOnly: StoryObj<_navBarType> = {
     const navigationBarItems = Array.from({ length: args.numItems }, (_, index) => {
       return html`
         ${index == (args.spacer as number) - 1 ? html` <div class="spacer"></div>` : nothing}
-        <zeta-grid-menu-item icon="star" .active=${args.selected === index + 1} .notificationValue=${args.notificationValue}> </zeta-grid-menu-item>
+        <zeta-grid-menu-item .active=${args.selected === index + 1} .notificationValue=${args.notificationValue}><zeta-icon slot="icon">star</zeta-icon></zeta-grid-menu-item>
+
         ${index == (args.divider as number) - 1 ? html` <div class="divider"></div>` : nothing}
         ${index == args.numItems - 1 && index + 1 == (args.spacer as number) - 1 ? html` <div class="spacer"></div>` : nothing}
         ${index == args.numItems - 1 && args.button == true ? html` <zeta-button>Button</zeta-button>` : nothing}
@@ -120,11 +124,11 @@ export const WithDivider: StoryObj<_navBarType> = {
 
   render: () => {
     return html` <zeta-navigation-bar>
-      <zeta-grid-menu-item icon="star" label="Label" .active=${true}> </zeta-grid-menu-item>
-      <zeta-grid-menu-item icon="star" label="Label"> </zeta-grid-menu-item>
+      <zeta-grid-menu-item .active=${true}><zeta-icon slot="icon">star</zeta-icon>Label</zeta-grid-menu-item>
+      <zeta-grid-menu-item><zeta-icon slot="icon">star</zeta-icon>Label</zeta-grid-menu-item>
       <div class="divider"></div>
-      <zeta-grid-menu-item icon="star" label="Label"> </zeta-grid-menu-item>
-      <zeta-grid-menu-item icon="star" label="Label"></zeta-grid-menu-item>
+      <zeta-grid-menu-item><zeta-icon slot="icon">star</zeta-icon>Label</zeta-grid-menu-item>
+      <zeta-grid-menu-item><zeta-icon slot="icon">star</zeta-icon>Label</zeta-grid-menu-item>
     </zeta-navigation-bar>`;
   }
 };
@@ -134,11 +138,11 @@ export const WithSpacer: StoryObj<_navBarType> = {
 
   render: () => {
     return html` <zeta-navigation-bar>
-      <zeta-grid-menu-item icon="star" label="Label" .active=${true}> </zeta-grid-menu-item>
-      <zeta-grid-menu-item icon="star" label="Label"> </zeta-grid-menu-item>
+      <zeta-grid-menu-item .active=${true}><zeta-icon slot="icon">star</zeta-icon>Label</zeta-grid-menu-item>
+      <zeta-grid-menu-item><zeta-icon slot="icon">star</zeta-icon>Label</zeta-grid-menu-item>
       <div class="spacer"></div>
-      <zeta-grid-menu-item icon="star" label="Label"> </zeta-grid-menu-item>
-      <zeta-grid-menu-item icon="star" label="Label"></zeta-grid-menu-item>
+      <zeta-grid-menu-item><zeta-icon slot="icon">star</zeta-icon>Label</zeta-grid-menu-item>
+      <zeta-grid-menu-item><zeta-icon slot="icon">star</zeta-icon>Label</zeta-grid-menu-item>
     </zeta-navigation-bar>`;
   }
 };
@@ -148,11 +152,11 @@ export const WithSpacerAndShrinkItems: StoryObj<_navBarType> = {
 
   render: () => {
     return html` <zeta-navigation-bar shrinkItems>
-      <zeta-grid-menu-item icon="star" label="Label" .active=${true}> </zeta-grid-menu-item>
-      <zeta-grid-menu-item icon="star" label="Label"> </zeta-grid-menu-item>
+      <zeta-grid-menu-item .active=${true}><zeta-icon slot="icon">star</zeta-icon>Label</zeta-grid-menu-item>
+      <zeta-grid-menu-item><zeta-icon slot="icon">star</zeta-icon>Label</zeta-grid-menu-item>
       <div class="spacer"></div>
-      <zeta-grid-menu-item icon="star" label="Label"> </zeta-grid-menu-item>
-      <zeta-grid-menu-item icon="star" label="Label"></zeta-grid-menu-item>
+      <zeta-grid-menu-item><zeta-icon slot="icon">star</zeta-icon>Label</zeta-grid-menu-item>
+      <zeta-grid-menu-item><zeta-icon slot="icon">star</zeta-icon>Label</zeta-grid-menu-item>
     </zeta-navigation-bar>`;
   }
 };
@@ -162,10 +166,9 @@ export const WithButton: StoryObj<_navBarType> = {
 
   render: () => {
     return html` <zeta-navigation-bar>
-      <zeta-grid-menu-item icon="star" label="Label" .active=${true}> </zeta-grid-menu-item>
-      <zeta-grid-menu-item icon="star" label="Label"> </zeta-grid-menu-item>
-      <zeta-grid-menu-item icon="star" label="Label"> </zeta-grid-menu-item>
-
+      <zeta-grid-menu-item .active=${true}><zeta-icon slot="icon">star</zeta-icon>Label</zeta-grid-menu-item>
+      <zeta-grid-menu-item><zeta-icon slot="icon">star</zeta-icon>Label</zeta-grid-menu-item>
+      <zeta-grid-menu-item><zeta-icon slot="icon">star</zeta-icon>Label</zeta-grid-menu-item>
       <zeta-button>Button</zeta-button>
     </zeta-navigation-bar>`;
   }

@@ -1,10 +1,12 @@
-import { LitElement } from "lit";
-import { type Constructor } from "./utils.js";
+import type { LitElement } from "lit";
+import type { Constructor } from "./utils.js";
 import { property } from "lit/decorators.js";
 import styles from "./flavor.styles.js";
 
+export type Flavor = "primary" | "secondary" | "positive" | "negative" | "outline" | "outline-subtle" | "text" | "inverse";
+
 export declare class FlavoredInterface {
-  flavor: "primary" | "secondary" | "positive" | "negative" | "outline" | "outline-subtle" | "text";
+  flavor: Flavor;
 }
 
 /**
@@ -29,7 +31,7 @@ export const Flavored = <T extends Constructor<LitElement>>(superClass: T) => {
      * * outline-subtle - grey outline only.
      * * text - primary text only.
      */
-    @property({ type: String, reflect: true }) flavor: "primary" | "secondary" | "positive" | "negative" | "outline" | "outline-subtle" | "text" = "primary";
+    @property({ type: String, reflect: true }) flavor: Flavor = "primary";
 
     static styles = [(superClass as unknown as typeof LitElement).styles ?? [], styles];
   }

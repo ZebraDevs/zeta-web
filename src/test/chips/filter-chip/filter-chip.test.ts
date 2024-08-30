@@ -1,5 +1,5 @@
 import { fixture, html, expect, unsafeStatic, elementUpdated } from "@open-wc/testing";
-import { ZetaFilterChip } from "../../../index.js";
+import type { ZetaFilterChip } from "../../../index.js";
 import "../../../index.js";
 
 const labelText = "Label";

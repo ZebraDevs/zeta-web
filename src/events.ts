@@ -75,7 +75,7 @@ export class ZetaAvatarCloseEvent extends ZetaEvent<undefined> {
   }
 }
 
-export interface ZetaPopupEventDetail {}
+export type ZetaPopupEventDetail = object
 /** A CustomEvent factory that creates events when a standard slider is changed. */
 export class ZetaPopupEvent extends ZetaEvent<ZetaPopupEventDetail> {
   name: string = "zeta-modal-open";
@@ -85,7 +85,7 @@ export class ZetaPopupEvent extends ZetaEvent<ZetaPopupEventDetail> {
   }
 }
 
-export interface ZetaCancelUploadEventDetail {}
+export type ZetaCancelUploadEventDetail = object
 /** A CustomEvent factory that creates events when the cancel button on a progess circle is clicked. */
 export class ZetaCancelUploadEvent extends ZetaEvent<ZetaCancelUploadEventDetail> {
   name: string = "zeta-cancel-upload";

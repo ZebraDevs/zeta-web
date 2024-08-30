@@ -1,6 +1,6 @@
 import { fixture, html, elementUpdated, expect, unsafeStatic } from "@open-wc/testing";
-import { ZetaTag } from "../../index.js";
-import "../../index.js";
+import type { ZetaTag } from "../../components/badges/tag/tag.js";
+import "../../components/badges/tag/tag.js";
 
 describe("ZetaTag", () => {
   let subject: ZetaTag;

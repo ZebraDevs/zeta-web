@@ -1,6 +1,6 @@
 import { fixture, html, unsafeStatic, expect } from "@open-wc/testing";
-import { ZetaSliderInputField } from "../../index.js";
-import "../../index.js";
+import type { ZetaSliderInputField } from "../../components/slider/slider-input-field/slider-input-field.js";
+import "../../components/slider/slider-input-field/slider-input-field.js";
 
 describe("zeta-slider-input-field", () => {
   let subject: ZetaSliderInputField;

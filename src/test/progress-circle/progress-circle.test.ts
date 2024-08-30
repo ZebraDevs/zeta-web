@@ -1,6 +1,6 @@
 import { assert, expect, fixture, html, oneEvent } from "@open-wc/testing";
-import { ZetaProgressCircle } from "../../index.js";
-import "../../index.js";
+import { ZetaProgressCircle } from "../../components/progress-indicators/progress-circle/progress-circle.js";
+import "../../components/progress-indicators/progress-circle/progress-circle.js";
 import { ZetaCancelUploadEvent } from "../../events.js";
 
 describe("ZetaProgressCircle", () => {

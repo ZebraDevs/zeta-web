@@ -6,7 +6,7 @@ import { Contourable } from "../../mixins/mixins.js";
 /**
  * @cssproperty --icon-size the width/height of the icon
  * @cssproperty --icon-color the color of the icon
- * @slot - The name of the icon. Full list of icons can be found at {@link https://zeta-icons.web.app/.}
+ * @slot - {ZetaIconName} Name of icon to be displayed. Full list of icons can be found at {@link https://zeta-icons.web.app/ Zeta Icons}
  */
 @customElement("zeta-icon")
 export class ZetaIcon extends Contourable(LitElement) {
@@ -24,14 +24,16 @@ export class ZetaIcon extends Contourable(LitElement) {
    */
   @property({ type: String }) color?: string;
 
+  private sizeIsNum = () => typeof this.size === "number" || !isNaN(this.size as unknown as number);
+
   protected render() {
+    const size = this.sizeIsNum() ? this.size + "px" : this.size;
     return html`
       <style>:host {
-        ${this.size ? `--icon-size: ${this.size}` : nothing};
+        ${this.size ? `--icon-size: ${size}` : nothing};
         ${this.color ? `--icon-color: ${this.color}` : nothing};
       }</style>
       <slot @slotchange=${() => this.requestUpdate()}></slot>`;
   }
   static styles = [styles, super.styles || []];
-
 }

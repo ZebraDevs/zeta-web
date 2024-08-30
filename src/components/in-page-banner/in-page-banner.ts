@@ -7,6 +7,8 @@ import "../icon/icon.js";
 /**
  * Zeta in page banner component.
  *
+ * In page banners display an important, succinct message, and may provide actions for users to address. Banners should be displayed at the top of the screen,below a top app bar. Only one banner should be shown at a time.
+ *
  * This component represents a banner that can be displayed within a page.
  * It can have a title, body text, and various status options.
  *
@@ -46,9 +48,7 @@ export class ZetaInPageBanner extends Contourable(LitElement) {
   protected render() {
     return html`
       <div class="banner">
-        <div class="leading">
-          <zeta-icon .rounded=${this.rounded}>${this.getIcon()}</zeta-icon>
-        </div>
+        <div class="leading"><zeta-icon .rounded=${this.rounded}>${this.getIcon()}</zeta-icon></div>
         <div class="trailing">
           <div class="header">
             <div class="title">${this.title}</div>

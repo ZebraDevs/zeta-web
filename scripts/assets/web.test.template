@@ -1,5 +1,5 @@
 import { fixture, html, unsafeStatic, expect } from "@open-wc/testing";
-import { Zeta_replacecap_ } from "../../src/index.js";
+import type { Zeta_replacecap_ } from "../../src/index.js";
 import "../../src/index.js";
 
 describe("zeta-_replacelower_", () => {

@@ -1,4 +1,4 @@
-import { LitElement } from "lit";
+import type { LitElement } from "lit";
 import { property } from "lit/decorators.js";
 import { type Constructor } from "./utils.js";
 import styles from "./interactive.styles.js";

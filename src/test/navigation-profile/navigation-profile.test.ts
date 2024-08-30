@@ -1,6 +1,6 @@
 import { fixture, html, unsafeStatic, expect } from "@open-wc/testing";
-import { ZetaNavigationProfile } from "../../index.js";
-import "../../index.js";
+import type { ZetaNavigationProfile } from "../../components/navigation-profile/navigation-profile.js";
+import "../../components/navigation-profile/navigation-profile.js";
 
 describe("zeta-navigation-profile", () => {
   let subject: ZetaNavigationProfile;

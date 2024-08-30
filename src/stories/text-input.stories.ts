@@ -61,6 +61,11 @@ export const TextInput: StoryObj<ZetaTextInput> = {
   name: "Default text input"
 };
 
+export const EmptyTextInput: StoryObj<ZetaTextInput> = {
+  name: "Empty",
+  render: _args => html` <zeta-text-input> </zeta-text-input> `
+};
+
 export const TimeInput: StoryObj = {
   name: "Time input",
   args: {

@@ -86,6 +86,10 @@ export default /*[styles, */ css`
     justify-content: flex-end;
     margin-top: var(--spacing-6);
 
+    ::slotted(:not([slot="icon"]):not(zeta-button)) {
+      display: none;
+    }
+
     ::slotted(zeta-button) {
       width: 100%;
     }
@@ -120,7 +124,8 @@ export default /*[styles, */ css`
     padding: 0;
   }
 
-  ::slotted([slot="dialog-body"]) {
+  ::slotted([slot="dialog-body"]),
+  .body {
     padding: var(--spacing-2) var(--spacing-6);
     font: var(--body-small);
   }
@@ -129,7 +134,6 @@ export default /*[styles, */ css`
     display: flex;
   }
   zeta-icon {
-    --icon-color: var(--icon-flavor-warning);
     --icon-size: 32px;
   }
 ` /*]*/;

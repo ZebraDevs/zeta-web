@@ -4,6 +4,7 @@ import { ZetaNavigationDrawerItem } from "../../components/navigation-drawer/nav
 import { ifDefined } from "lit/directives/if-defined.js";
 import "../../components/icon/icon.js";
 import "../../components/badges/label/label.js";
+import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
 
 const meta: Meta<ZetaNavigationDrawerItem> = {
   component: "zeta-navigation-drawer-item",
@@ -31,26 +32,63 @@ export const Item: StoryObj<ZetaNavigationDrawerItem> = {
   }
 };
 
-export const ItemWithLeadingIcon: StoryObj<ZetaNavigationDrawerItem> = {
+export const ItemWithLeadingIcon: StoryObj<ZetaNavigationDrawerItem | any> = {
+  args: {
+    leading: "star"
+  },
+  argTypes: {
+    leading: {
+      options: ZetaIconNameList,
+      control: { type: "select" }
+    }
+  },
   render: args =>
     html`<zeta-navigation-drawer-item headline=${ifDefined(args.headline)} .rounded=${args.rounded} .disabled=${args.disabled} .active=${args.active}>
-      <zeta-icon slot="leading">star</zeta-icon>
+      <zeta-icon slot="leading">${args.leading}</zeta-icon>
     </zeta-navigation-drawer-item>`
 };
 
-export const ItemWithLeadingAndTrailingIcon: StoryObj<ZetaNavigationDrawerItem> = {
+export const ItemWithLeadingAndTrailingIcon: StoryObj<ZetaNavigationDrawerItem | any> = {
+  args: {
+    leading: "star",
+    trailing: "more_vertical"
+  },
+  argTypes: {
+    leading: {
+      options: ZetaIconNameList,
+      control: { type: "select" }
+    },
+    trailing: {
+      options: ZetaIconNameList,
+      control: { type: "select" }
+    }
+  },
   render: args =>
     html`<zeta-navigation-drawer-item headline=${ifDefined(args.headline)} .rounded=${args.rounded} .disabled=${args.disabled} .active=${args.active}>
-      <zeta-icon slot="leading">star</zeta-icon>
-      <zeta-icon slot="trailing">more_vertical</zeta-icon>
+      <zeta-icon slot="leading">${args.leading}</zeta-icon>
+      <zeta-icon slot="trailing">${args.trailing}</zeta-icon>
     </zeta-navigation-drawer-item>`
 };
 
-export const ItemWithBadge: StoryObj<ZetaNavigationDrawerItem> = {
+export const ItemWithBadge: StoryObj<ZetaNavigationDrawerItem | any> = {
+  args: {
+    leading: "star",
+    trailing: "more_vertical"
+  },
+  argTypes: {
+    leading: {
+      options: ZetaIconNameList,
+      control: { type: "select" }
+    },
+    trailing: {
+      options: ZetaIconNameList,
+      control: { type: "select" }
+    }
+  },
   render: args =>
     html`<zeta-navigation-drawer-item headline=${ifDefined(args.headline)} .rounded=${args.rounded} .disabled=${args.disabled} .active=${args.active}>
-      <zeta-icon slot="leading">star</zeta-icon>
+      <zeta-icon slot="leading">${args.leading}</zeta-icon>
       <zeta-label slot="badge" status="info">99+</zeta-label>
-      <zeta-icon slot="trailing">more_vertical</zeta-icon>
+      <zeta-icon slot="trailing">${args.trailing}</zeta-icon>
     </zeta-navigation-drawer-item>`
 };
