@@ -1,5 +1,6 @@
 import "./index.css";
 import { ZetaAccordion } from "./components/accordion/accordion.js";
+import { ZetaActionMenuButton } from "./components/action-menu/action-menu-button.js";
 import { ZetaAppbar } from "./components/appbar/appbar.js";
 import { ZetaAssistChip } from "./components/chips/assist-chip/assist-chip.js";
 import { ZetaAvatar } from "./components/avatar/avatar.js";
@@ -16,7 +17,9 @@ import { ZetaCardFooter } from "./components/card/card-footer/card-footer.js";
 import { ZetaCardHeader } from "./components/card/card-header/card-header.js";
 import { ZetaCheckbox } from "./components/checkbox/checkbox.js";
 import { ZetaDialog } from "./components/dialog/dialog.js";
+import { ZetaDropdownMenuButton } from "./components/dropdown/dropdown-menu/dropdown-menu-button.js";
 import { ZetaDropdownMenuItem } from "./components/dropdown/menu-item/dropdown-menu-item.js";
+import { ZetaDroppable } from "./components/dropdown/droppable.js";
 import { ZetaFab } from "./components/fab/fab.js";
 import { ZetaFileUpload } from "./components/file-upload/file-upload.js";
 import { ZetaFilterChip } from "./components/chips/filter-chip/filter-chip.js";
@@ -61,6 +64,7 @@ import { ZetaTooltip } from "./components/tooltip/tooltip.js";
 import { ZetaWorkcloudIndicator } from "./components/badges/workcloud-indicator/workcloud-indicator.js";
 export {
   ZetaAccordion,
+  ZetaActionMenuButton,
   ZetaAppbar,
   ZetaAssistChip,
   ZetaAvatar,
@@ -77,7 +81,9 @@ export {
   ZetaCardHeader,
   ZetaCheckbox,
   ZetaDialog,
+  ZetaDropdownMenuButton,
   ZetaDropdownMenuItem,
+  ZetaDroppable,
   ZetaFab,
   ZetaFileUpload,
   ZetaFilterChip,

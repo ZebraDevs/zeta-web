@@ -9,24 +9,37 @@ export default css`
     display: flex;
   }
 
-  .menu-item {
+  .droppable-item {
     background-color: var(--surface-default);
-    padding: var(--spacing-3) var(--spacing-2);
+    padding: var(--spacing-small) var(--spacing-medium);
     display: flex;
     align-items: center;
-    gap: var(--spacing-3);
+    gap: var(--spacing-small);
     user-select: none;
     font: var(--body-medium);
   }
 
-  :host zeta-icon {
+  .droppable-item:hover {
+    background-color: var(--surface-hover);
+  }
+
+  .droppable-item:active {
+    background-color: var(--surface-pressed);
+  }
+
+  :host([disabled]) .droppable-item {
+    background-color: var(--surface-disabled);
+    color: var(--text-disabled);
+  }
+
+  :host ::slotted(zeta-icon) {
     --icon-color: var(--icon-subtle);
   }
-  :host([disabled]) zeta-icon {
+  :host([disabled]) ::slotted(zeta-icon) {
     --icon-color: var(--icon-disabled);
   }
 
-  zeta-icon {
+  ::slotted(zeta-icon) {
     --icon-size: 20px;
   }
 `;

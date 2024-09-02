@@ -1,12 +1,149 @@
-import { Canvas, Meta, Description, ArgTypes, Title } from "@storybook/blocks";
+import { Canvas, Meta, Description, ArgTypes, Title, Stories, Story, Source } from "@storybook/blocks";
 import * as DropdownMenuItem from "./dropdown-menu-item.stories";
+import * as DropdownMenuButton from "./dropdown-menu-button.stories";
+import * as Droppable from "./droppable.stories";
 
-<Meta of={DropdownMenuItem} title="Dropdown" />
+<Meta of={DropdownMenuButton} title="Dropdown" />
 
 <Title />
+
+# Dropdown Menu Button
+
+<Description of="zeta-dropdown-menu-button" />
+<div
+  style={{
+    margin: "25px 30px 0",
+    padding: "40px 30px",
+    borderRadius: "4px",
+    background: "#FFFFFF",
+    boxShadow: "rgba(0, 0, 0, 0.10) 0 1px 3px 0",
+    border: "1px solid hsla(203, 50%, 30%, 0.15)"
+  }}>
+  <Story of={DropdownMenuButton.DropdownMenuButton} />
+
+</div>
+
+Pass an array of objects to the `items` property. Each object must have a `label` and can optionally include an `icon` property, a `checked` boolean property to precheck one or more items (only check one if using radio buttons), and a `function` property which runs when that item is clicked.
+
+Use the `type` prop to define the type of dropdown menu button. The options are `text-dropdown`, `dropdown-radio`, and `dropdown-checkbox`. The default is `text-dropdown`. The `dropdown-checkbox` type allows for multiple items to be selected. The `dropdown-radio` type allows for only one item to be selected.
+
+Get the data from the dropdown menu button by wrapping it in a form and listening for the submit event. Use the `FormData` constructor to get the data from the form.
+
+As you use the dropdown menu button, think about whether you'd rather put the dropdown menu items in a prop or in a slot. Please let the development team know for future reference.
+
+<div
+  style={{
+    margin: "0 15px",
+  }}>
+  ```jsx
+    const items = [
+      { label: "Item 1", icon: "star"},
+      { label: "Item 2", icon: "star"},
+      { label: "Item 3", icon: "star"},
+    ];
+
+    <form
+      id="form"
+      @submit=${(ev: Event) => {
+        ev.preventDefault();
+        console.log("Submit", ev);
+        const data = new FormData(ev.target as HTMLFormElement);
+        console.log(Object.fromEntries(data));
+      }}
+      @reset=${(e: Event) => {
+        console.error("Form reset", e);
+      }}
+    >
+      <zeta-dropdown-menu-button
+          items=${items}
+          type="dropdown-checkbox"
+          rounded=true
+          size="medium"
+          name=< ENTER NAME IF MORE THAN ONE DROPDOWN IS PRESENT >
+          flavor="primary">
+          Dropdown Menu
+      </zeta-dropdown-menu-button>
+
+      <button type="submit">Submit</button>
+    </form>
+    ```
+
+</div>
+
+<ArgTypes of="zeta-dropdown-menu-button" />
+
+---
+
+---
+
+---
+
+# Droppable
+
+<Description of="zeta-droppable" />
+
+Droppable is used by the dropdown menu button to display the dropdown menu items. However, it could be used independently or with another component as the anchor.
+
+<div
+  style={{
+    margin: "25px 30px 0",
+    padding: "40px 30px",
+    borderRadius: "4px",
+    background: "#FFFFFF",
+    boxShadow: "rgba(0, 0, 0, 0.10) 0 1px 3px 0",
+    border: "1px solid hsla(203, 50%, 30%, 0.15)",
+    height: "280px"
+  }}>
+  <Story of={Droppable.Droppable} />
+</div>
+
+<div
+  style={{
+    margin: "0 15px",
+  }}>
+  ```jsx
+    <zeta-droppable rounded=true open=true >
+      <zeta-dropdown-menu-item icon="star" rounded=true > Menu Item </zeta-dropdown-menu-item>
+      <zeta-dropdown-menu-item icon="star" rounded=true > Menu Item </zeta-dropdown-menu-item>
+      <zeta-dropdown-menu-item icon="star" rounded=true > Menu Item </zeta-dropdown-menu-item>
+    </zeta-droppable>
+  ```
+
+</div>
+
+<ArgTypes of="zeta-droppable" />
+
+---
+
+---
+
+---
 
 # Dropdown Menu Item
 
 <Description of="zeta-dropdown-menu-item" />
-<Canvas of={DropdownMenuItem.DropdownMenuItem} />
+<div
+  style={{
+    margin: "25px 30px 0",
+    padding: "40px 30px",
+    borderRadius: "4px",
+    background: "#FFFFFF",
+    boxShadow: "rgba(0, 0, 0, 0.10) 0 1px 3px 0",
+    border: "1px solid hsla(203, 50%, 30%, 0.15)"
+  }}>
+  <Story of={DropdownMenuItem.DropdownMenuItem} />
+</div>
+
+<div
+  style={{
+    margin: "0 15px",
+  }}>
+  ```jsx
+        <zeta-dropdown-menu-item icon="star" rounded=true disabled=false > Menu Item </zeta-dropdown-menu-item>
+
+```
+
+</div>
+
 <ArgTypes of="zeta-dropdown-menu-item" />
+```

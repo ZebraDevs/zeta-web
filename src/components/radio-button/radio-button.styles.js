@@ -1,7 +1,13 @@
 import { css } from "lit";
 export default css`
   :host {
-    background-color: transparent !important;
+    background-color: transparent;
+  }
+
+  label {
+    cursor: pointer;
+    width: auto !important;
+    height: 100% !important;
   }
 
   .container {

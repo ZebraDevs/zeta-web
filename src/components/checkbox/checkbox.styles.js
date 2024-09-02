@@ -18,4 +18,10 @@ export default css`
   :host([rounded]) > .container {
     border-radius: 2px !important;
   }
+
+  label {
+    cursor: pointer;
+    width: auto !important;
+    height: 100% !important;
+  }
 `;

@@ -5,7 +5,18 @@ import { property, query, queryAssignedNodes, state } from "lit/decorators.js";
 import { type AbstractConstructor } from "./utils.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 import { live } from "lit/directives/live.js";
-export type InputType = "checkbox" | "text" | "textarea" | "password" | "time" | "date" | "radio" | "search"; //Extend this when adding more form controls
+export type InputType =
+  | "checkbox"
+  | "text"
+  | "textarea"
+  | "password"
+  | "time"
+  | "date"
+  | "radio"
+  | "search"
+  | "text-dropdown"
+  | "checkbox-dropdown"
+  | "radio-dropdown"; //Extend this when adding more form controls
 
 //TODO add all properties here
 declare abstract class FormFieldInterface /* extends InteractiveInterface*/ {
@@ -214,7 +225,7 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
      * or if it is a checkbox-like input, when the checkbox is toggled.
      * or if it is a radio-like input, when the radio is selected (but not unselected).
      */
-    handleChange(_event: Event): void { }
+    handleChange(_event: Event): void {}
 
     /*
       max=${'date'|'month'|'week'|'time'|'datetime-local'|'number'|'range'}
@@ -272,6 +283,26 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
             @change=${this._handleChange}
             .value=${live(this.value ?? "")}
           ></textarea>`;
+        case "text-dropdown":
+        case "checkbox-dropdown":
+        case "radio-dropdown":
+          return html`<input
+            type=${this.type}
+            id=${ifDefined(this.id !== "" ? this.id : undefined)}
+            name=${ifDefined(this.name)}
+            ?disabled=${this.disabled}
+            aria-disabled=${this.disabled ? "true" : "false"}
+            ?required=${this.required}
+            aria-required=${this.required ? "true" : "false"}
+            autocapitalize=${ifDefined(notUrlEmailPassword ? this.autoCapitalize : undefined)}
+            autocomplete=${ifDefined(this.autoComplete)}
+            placeholder=${ifDefined(this.placeholder)}
+            ?readonly=${this.readOnly}
+            .value=${live(this.value ?? "")}
+            @input=${this.handleInput}
+            @change=${this._handleChange}
+            ?hidden=${true}
+          /> `;
         default:
           return html`<input
             type=${this.type}
@@ -289,6 +320,7 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
             @input=${this.handleInput}
             @change=${this._handleChange}
           /> `;
+
         /*
         -spellcheck
           list

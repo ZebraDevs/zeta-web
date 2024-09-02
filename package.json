@@ -100,7 +100,8 @@
     "react-dom": "^18.3.1",
     "storybook": "^8.2.9",
     "ts-lit-plugin": "^2.0.2",
-    "typescript": "^5.5.4"
+    "typescript": "^5.5.4",
+    "sinon": "^18.0.0"
   },
   "dependencies": {
     "@fontsource/ibm-plex-sans": "^5.0.21",
