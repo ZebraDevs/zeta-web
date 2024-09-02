@@ -29,12 +29,7 @@ export default [
       color: var(--icon-color, var(--icon-default));
       font-size: var(--icon-size, 24px);
       line-height: var(--icon-size, 1);
-    }
-    :host([rounded]) {
-      font-family: "zeta-icons-round" !important;
-    }
-    :host {
-      font-family: "zeta-icons-sharp" !important;
+      font-family: var(--icon-font, "zeta-icons-round");
     }
   `
 ];

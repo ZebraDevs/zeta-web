@@ -24,18 +24,23 @@ export const Contourable = <T extends Constructor<LitElement>>(superClass: T) =>
      *
      * Otherwise, this value will be `--radius-none`.
      */
-    @property({ type: Boolean, reflect: true }) rounded = true;
+    @property({ type: Boolean, reflect: true }) rounded?: boolean;
 
     static styles = [
       (superClass as unknown as typeof LitElement).styles ?? [],
       css`
+        :host([rounded]) {
+          --contour: var(--radius-minimal);
+          --computed-icon-font: "zeta-icons-round";
+        }
+        :host([rounded="false"]) {
+          --contour: var(--radius-none);
+          --computed-icon-font: "zeta-icons-sharp";
+        }
         :host > *,
         :host .contourable-target {
-          border-radius: var(--radius-none);
-        }
-        :host([rounded]) > *,
-        :host([rounded]) .contourable-target {
-          border-radius: var(--radius-minimal);
+          --icon-font: var(--computed-icon-font, "zeta-icons-sharp");
+          border-radius: var(--contour, var(--radius-none));
         }
       `
     ];
