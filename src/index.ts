@@ -63,6 +63,7 @@ import { ZetaTabItem } from "./components/tab-bar/tab-item/tab-item.js";
 import { ZetaTag } from "./components/badges/tag/tag.js";
 import { ZetaTextInput } from "./components/text-input/text-input.js";
 import { ZetaTooltip } from "./components/tooltip/tooltip.js";
+import { ZetaUploadItem } from "./components/upload-item/upload-item.js";
 import { ZetaWorkcloudIndicator } from "./components/badges/workcloud-indicator/workcloud-indicator.js";
 export {
   ZetaAccordion,
@@ -129,5 +130,6 @@ export {
   ZetaTag,
   ZetaTextInput,
   ZetaTooltip,
+  ZetaUploadItem,
   ZetaWorkcloudIndicator
 };

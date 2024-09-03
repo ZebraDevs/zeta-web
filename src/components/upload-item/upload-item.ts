@@ -1,0 +1,65 @@
+import { html, LitElement } from "lit";
+import { customElement, property } from "lit/decorators.js";
+import styles from "./upload-item.styles.js";
+import { Contourable } from "../../mixins/contour.js";
+import "../icon/icon";
+import "../progress-indicators/progress-circle/progress-circle";
+import { ZetaCloseEvent } from "../../events.js";
+
+/** Represents a file being uploaded. 
+  
+  @slot - The title of the file being uploaded.
+  @slot subtitle - Any extra information about the upload.
+  @slot leading - The thumbnail of the file being uploaded.
+
+  @event {CustomEvent<ZetaCloseEvent>} ZetaCloseEvent:close - Fired when the close icon is clicked.
+  @event {CustomEvent<ZetaCancelUploadEvent>} ZetaCancelUploadEvent:cancel-upload - Fired when the cancel button inside the progress circle is clicked.
+
+*/
+@customElement("zeta-upload-item")
+export class ZetaUploadItem extends Contourable(LitElement) {
+  /** The flavor of the upload item. */
+  @property({ type: String }) flavor: "default" | "completed" | "error" = "default";
+
+  /** The progress shown on the progress circle on the upload item. */
+  @property({ type: Number }) progress = 0;
+
+  private getTrailingContent() {
+    switch (this.flavor) {
+      case "completed":
+        return html`<zeta-icon>check_circle</zeta-icon>`;
+      case "error":
+        return html`<zeta-icon>error</zeta-icon>`;
+      default:
+        return html` <zeta-progress-circle size="48" type="upload" progress=${this.progress}></zeta-progress-circle>`;
+    }
+  }
+
+  private onCancelClicked() {
+    this.dispatchEvent(new ZetaCloseEvent().toEvent());
+  }
+
+  protected render() {
+    return html`
+      <div>
+        <slot name="leading"> </slot>
+        <div class="body">
+          <div class="title"><slot></slot></div>
+          <div class="subtitle"><slot name="subtitle">4.6MB of 5.7MB</slot></div>
+        </div>
+        <div class="trailing">
+          ${this.getTrailingContent()}
+          <zeta-icon id="cancel" @click=${() => this.onCancelClicked()}>close</zeta-icon>
+        </div>
+      </div>
+    `;
+  }
+
+  static styles = [styles, super.styles || []];
+}
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "zeta-upload-item": ZetaUploadItem;
+  }
+}

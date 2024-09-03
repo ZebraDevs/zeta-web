@@ -24,7 +24,7 @@ abstract class ZetaEvent<T> {
       composed: this.composed,
       cancelable: this.cancelable,
       detail: this.detail
-    });
+    });    
   }
 }
 
@@ -68,14 +68,15 @@ export class ZetaPageEvent<T extends ZetaPageEventDetail> extends ZetaEvent<T> {
   }
 }
 
-export class ZetaAvatarCloseEvent extends ZetaEvent<undefined> {
-  name: string = "avatar-close";
+/** A CustomEvent factory that creates events when a close button is clicked, e.g. on an avatar. */
+export class ZetaCloseEvent extends ZetaEvent<object> {
+  name: string = "close";
   constructor() {
-    super(undefined, { bubbles: true, composed: true });
+    super({}, { bubbles: true, composed: true });
   }
 }
 
-export type ZetaPopupEventDetail = object
+export type ZetaPopupEventDetail = object;
 /** A CustomEvent factory that creates events when a standard slider is changed. */
 export class ZetaPopupEvent extends ZetaEvent<ZetaPopupEventDetail> {
   name: string = "zeta-modal-open";
@@ -85,10 +86,9 @@ export class ZetaPopupEvent extends ZetaEvent<ZetaPopupEventDetail> {
   }
 }
 
-export type ZetaCancelUploadEventDetail = object
 /** A CustomEvent factory that creates events when the cancel button on a progess circle is clicked. */
-export class ZetaCancelUploadEvent extends ZetaEvent<ZetaCancelUploadEventDetail> {
-  name: string = "zeta-cancel-upload";
+export class ZetaCancelUploadEvent extends ZetaEvent<object> {
+  name: string = "cancel-upload";
   constructor() {
     super({}, { bubbles: true, composed: true });
   }

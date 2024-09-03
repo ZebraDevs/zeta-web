@@ -3,7 +3,7 @@ import { LitElement, html } from "lit";
 import styles from "./avatar.styles.js";
 import "../icon/icon.js";
 import "../badges/indicators/indicators.js";
-import { ZetaAvatarCloseEvent } from "../../events.js";
+import { ZetaCloseEvent } from "../../events.js";
 import type { AvatarSize } from "./avatar-size.js";
 
 /**
@@ -15,7 +15,7 @@ import type { AvatarSize } from "./avatar-size.js";
  * @slot status - The content of the status slot. Usually used for indicators or badges.
  * @attr {boolean} show-ring - Shows the ring around the avatar.
  * @attr {boolean} show-close - Shows the close icon.
- * @event {CustomEvent<ZetaAvatarCloseEvent>} ZetaAvatarCloseEvent:avatar-close - Fired when the close icon is clicked.
+ * @event {CustomEvent<ZetaCloseEvent>} ZetaCloseEvent:close - Fired when the close icon is clicked.
  *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=20816-388
  * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/avatar--docs
@@ -47,8 +47,8 @@ export class ZetaAvatar extends LitElement {
       <div
         class="close"
         @click=${() => {
-        this.dispatchEvent(new ZetaAvatarCloseEvent().toEvent());
-      }}
+          this.dispatchEvent(new ZetaCloseEvent().toEvent());
+        }}
       >
         <zeta-icon>close</zeta-icon>
       </div>
