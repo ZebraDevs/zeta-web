@@ -58,30 +58,30 @@ export class ZetaProgressCircle extends Contourable(LitElement) {
           <div
             class="uploading"
             style=${styleMap({
-        width: `${this.size}px`,
-        height: `${this.size}px`
-      })}
+              width: `${this.size}px`,
+              height: `${this.size}px`
+            })}
           >
             ${this.size > 24
-          ? html`<span
+              ? html`<span
                   class="percentage"
                   style=${styleMap({
-            fontSize: `${this.size / 4}px`
-          })}
+                    fontSize: `${this.size / 4}px`
+                  })}
                 >
                   ${this.progress}%
                 </span>`
-          : nothing}
+              : nothing}
             <div
               @click=${() => {
-          this.dispatchEvent(new ZetaCancelUploadEvent().toEvent());
-        }}
+                this.dispatchEvent(new ZetaCancelUploadEvent().toEvent());
+              }}
               style=${styleMap({
-          padding: `${this.size / 12}px`
-        })}
+                padding: `${this.size / 12}px`
+              })}
               class="cancel"
             >
-              <zeta-icon size=${this.size / 2} color="var(--color-cool-90)">close</zeta-icon>
+              <zeta-icon size=${this.size / 2}>close</zeta-icon>
             </div>
           </div>
         `
@@ -92,7 +92,7 @@ export class ZetaProgressCircle extends Contourable(LitElement) {
     const r = this.size / 2 - this.strokeWidth;
     const cx = this.size / 2;
     const cy = this.size / 2;
-    const trackColor = this.type == "upload" ? "var(--color-cool-30)" : "transparent";
+    const trackColor = this.type == "upload" ? "var(--main-light)" : "transparent";
 
     return html`
       <div class="container">
@@ -102,7 +102,7 @@ export class ZetaProgressCircle extends Contourable(LitElement) {
             r=${r}
             cx=${cx}
             cy=${cy}
-            stroke="var(--icon-flavor-primary)"
+            stroke="var(--main-primary)"
             stroke-linecap=${this.rounded ? "round" : "square"}
             fill="transparent"
             stroke-width="${this.strokeWidth}px"

@@ -7,24 +7,24 @@ export default css`
     justify-content: center;
     cursor: pointer;
     flex-direction: column;
-    gap: var(--spacing-2);
+    gap: var(--spacing-small);
     align-items: center;
-    padding: var(--spacing-2);
+    padding: var(--spacing-small);
     min-width: 46px;
   }
 
   :host[label] {
-    padding: var(--spacing-2) var(--spacing-6);
+    padding: var(--spacing-small) var(--spacing-2xl);
   }
 
   .label {
-    color: var(--text-subtle);
+    color: var(--main-subtle);
     font: var(--label-small);
     user-select: none;
   }
 
   :host([active]) .label {
-    color: var(--text-flavor-primary);
+    color: var(--main-primary);
   }
 
   .icon-container {
@@ -40,9 +40,9 @@ export default css`
   }
 
   :host ::slotted(zeta-icon) {
-    --icon-color: var(--icon-subtle);
+    --icon-color: var(--main-subtle);
   }
   :host([active]) ::slotted(zeta-icon) {
-    --icon-color: var(--icon-flavor-primary);
+    --icon-color: var(--main-primary);
   }
 `;

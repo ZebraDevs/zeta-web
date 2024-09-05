@@ -1,11 +1,11 @@
 import { css } from "lit";
 export default css`
   .list-item {
-    padding: var(--spacing-5) var(--spacing-4);
+    padding: var(--spacing-xl) var(--spacing-large);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: var(--spacing-3);
+    gap: var(--spacing-medium);
     box-shadow: inherit;
   }
 

@@ -21,7 +21,7 @@ export default /*[styles, */ css`
         width: 100%;
       }
 
-      padding: var(--spacing-4) var(--spacing-6);
+      padding: var(--spacing-large) var(--spacing-2xl);
     }
     ::slotted([slot="other"]) {
       width: 100%;
@@ -33,7 +33,7 @@ export default /*[styles, */ css`
     border: none;
     border-radius: inherit;
     background-color: var(--surface-default);
-    color: var(--text-default);
+    color: var(--main-default);
     box-shadow: var(--elevation-6);
     width: fit-content;
     height: fit-content;
@@ -75,16 +75,16 @@ export default /*[styles, */ css`
   header {
     display: flex;
     flex-direction: column;
-    padding: var(--spacing-6) var(--spacing-6) var(--spacing-3);
-    row-gap: var(--spacing-2);
+    padding: var(--spacing-2xl) var(--spacing-2xl) var(--spacing-medium);
+    row-gap: var(--spacing-small);
   }
 
   footer {
     display: flex;
-    padding: var(--spacing-4) var(--spacing-6) var(--spacing-6) var(--spacing-6);
-    gap: var(--spacing-4);
+    padding: var(--spacing-large) var(--spacing-2xl) var(--spacing-2xl) var(--spacing-2xl);
+    gap: var(--spacing-large);
     justify-content: flex-end;
-    margin-top: var(--spacing-6);
+    margin-top: var(--spacing-2xl);
 
     ::slotted(:not([slot="icon"]):not(zeta-button)) {
       display: none;
@@ -96,7 +96,7 @@ export default /*[styles, */ css`
 
     .actions {
       display: flex;
-      gap: var(--spacing-4);
+      gap: var(--spacing-large);
       width: fit-content;
     }
 
@@ -105,7 +105,7 @@ export default /*[styles, */ css`
       width: 100%;
     }
 
-    padding: var(--spacing-4) var(--spacing-6);
+    padding: var(--spacing-large) var(--spacing-2xl);
   } */
   }
 
@@ -126,7 +126,7 @@ export default /*[styles, */ css`
 
   ::slotted([slot="dialog-body"]),
   .body {
-    padding: var(--spacing-2) var(--spacing-6);
+    padding: var(--spacing-small) var(--spacing-2xl);
     font: var(--body-small);
   }
 

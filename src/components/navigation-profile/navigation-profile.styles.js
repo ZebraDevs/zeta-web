@@ -5,27 +5,27 @@ export default css`
     width: min-content;
     display: block;
     white-space: nowrap;
-    color: var(--text-inverse);
+    color: var(--main-inverse);
   }
 
   .navigation-profile {
-    padding: var(--spacing-1) var(--spacing-3);
+    padding: var(--spacing-minimum) var(--spacing-medium);
     display: flex;
     align-items: center;
-    gap: var(--spacing-1);
+    gap: var(--spacing-minimum);
     font: var(--title-medium);
 
     /*@include tertiary-interactive;*/
     /* Once Firefox 127 is released, we can use CSS Properties (above) instead of the following code (below) */
     background-color: var(--surface-default-inverse);
-    color: var(--text-inverse);
+    color: var(--main-inverse);
 
     &:hover {
-      background-color: var(--color-cool-80) !important;
+      background-color: var(--state-inverse-hover) !important;
     }
 
     &:active {
-      background-color: var(--color-cool-90) !important;
+      background-color: var(--state-inverse-selected) !important;
     }
   }
 `;

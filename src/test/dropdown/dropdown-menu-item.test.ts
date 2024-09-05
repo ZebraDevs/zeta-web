@@ -15,7 +15,7 @@ describe("zeta-dropdown-menu-item", () => {
     template = `<zeta-dropdown-menu-item size="medium" rounded=true disabled=false>
     <zeta-icon slot="icon">star</zeta-icon>${text}</zeta-dropdown-menu-item>`
   ) => {
-    return fixture<ZetaDropdownMenuItem>(html`${unsafeStatic(template)}`);
+    return fixture<ZetaDropdownMenuItem> (html`${unsafeStatic(template)}`);
   };
 
   beforeEach(async () => {
@@ -74,7 +74,7 @@ describe("zeta-dropdown-menu-item", () => {
     const droppableItemElement = subject.shadowRoot?.querySelector(".droppable-item") as HTMLElement;
     const style = window.getComputedStyle(droppableItemElement);
 
-    await expect(style.color).to.equal(getCssVarColorValue(droppableItemElement, "--text-default"));
+    await expect(style.color).to.equal(getCssVarColorValue(droppableItemElement, "--main-default"));
     await expect(style.backgroundColor).to.equal(getCssVarColorValue(droppableItemElement, "--surface-default"));
   });
 
@@ -85,7 +85,7 @@ describe("zeta-dropdown-menu-item", () => {
     const droppableItemElement = subject.shadowRoot?.querySelector(".droppable-item") as HTMLElement;
     const style = window.getComputedStyle(droppableItemElement);
 
-    await expect(style.color).to.equal(getCssVarColorValue(droppableItemElement, "--text-disabled"));
+    await expect(style.color).to.equal(getCssVarColorValue(droppableItemElement, "--main-disabled"));
     await expect(style.backgroundColor).to.equal(getCssVarColorValue(droppableItemElement, "--surface-disabled"));
   });
 
@@ -97,7 +97,7 @@ describe("zeta-dropdown-menu-item", () => {
     const iconElement = subject.shadowRoot?.querySelector("zeta-icon") as Element;
     const style = window.getComputedStyle(iconElement);
 
-    await expect(style.color).to.equal(getCssVarColorValue(iconElement, "--icon-subtle"));
+    await expect(style.color).to.equal(getCssVarColorValue(iconElement, "--main-subtle"));
   });
 
   it.skip("sets the correct icon color when disabled", async () => {
@@ -108,7 +108,7 @@ describe("zeta-dropdown-menu-item", () => {
     const iconElement = subject.shadowRoot?.querySelector("zeta-icon") as ZetaIcon;
     const style = window.getComputedStyle(iconElement as Element);
 
-    await expect(style.color).to.equal(getCssVarColorValue(iconElement, "--text-disabled"));
+    await expect(style.color).to.equal(getCssVarColorValue(iconElement, "--main-disabled"));
   });
 
   it("sets the correct border radius when rounded is true", async () => {

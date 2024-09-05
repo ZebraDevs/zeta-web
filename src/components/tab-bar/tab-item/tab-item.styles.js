@@ -5,22 +5,22 @@ export default css`
     display: block;
     white-space: nowrap;
     background-color: var(--surface-default);
-    color: var(--text-subtle);
-    padding: var(--spacing-3) var(--spacing-4);
+    color: var(--main-subtle);
+    padding: var(--spacing-medium) var(--spacing-large);
     font: var(--title-medium);
   }
 
   :host(:not([disabled]):hover),
   :host(:not([disabled]):active),
   :host(:not([disabled])[active]) {
-    color: var(--text-default);
+    color: var(--main-default);
   }
 
   :host([disabled]) {
-    color: var(--text-disabled);
+    color: var(--main-disabled);
   }
 
   :host([active]) {
-    border-bottom: 2px solid var(--border-flavor-primary);
+    border-bottom: 2px solid var(--border-primary);
   }
 `;

@@ -10,16 +10,16 @@ export default css`
   }
 
   :host([size="large"]) > button {
-    padding: var(--spacing-3);
+    padding: var(--spacing-medium);
   }
 
   :host > button,
   :host([size="medium"]) > button {
-    padding: var(--spacing-2);
+    padding: var(--spacing-small);
   }
 
   :host([size="small"]) > button {
-    padding: var(--spacing-1-5);
+    padding: var(--spacing-minimum);
   }
 
   :host([flavor]:not([disabled]):not(:hover):not(:active)) > button {

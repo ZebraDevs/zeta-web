@@ -12,11 +12,11 @@ export default css`
 
   /*  Handle sizes for group buttons */
   :host([size="medium"]) {
-    --group-item-padding: var(--spacing-3);
+    --group-item-padding: var(--spacing-medium);
   }
 
   :host([size="large"]) {
-    --group-item-padding: var(--spacing-4);
+    --group-item-padding: var(--spacing-large);
   }
 
   :host([rounded]) {

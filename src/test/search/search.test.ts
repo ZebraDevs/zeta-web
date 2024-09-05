@@ -77,7 +77,7 @@ describe("zeta-search", () => {
     el.disabled = true;
     await el.updateComplete;
     const icon = el.shadowRoot?.querySelectorAll("zeta-icon")[0] as ZetaIcon;
-    await expect(getComputedStyle(icon).color).to.equal(getCssVarColorValue(icon, "--icon-disabled"));
+    await expect(getComputedStyle(icon).color).to.equal(getCssVarColorValue(icon, "--main-disabled"));
   });
 
   it("should render microphone icon", async () => {

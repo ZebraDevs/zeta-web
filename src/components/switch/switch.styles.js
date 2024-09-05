@@ -1,9 +1,9 @@
 import { css } from "lit";
 export default css`
   :host {
-    --_switch-width: var(--switch-width, var(--spacing-13));
-    --_switch-height: var(--switch-height, var(--spacing-8));
-    --_switch-thumb-size: var(--switch-thumb-size, var(--spacing-6));
+    --_switch-width: var(--switch-width, var(--spacing-9xl));
+    --_switch-height: var(--switch-height, var(--spacing-4xl));
+    --_switch-thumb-size: var(--switch-thumb-size, var(--spacing-2xl));
     --_switch-icon-size: var(--switch-icon-size, var(--_switch-thumb-size));
     --_switch-padding: calc((var(--_switch-height) - var(--_switch-thumb-size)) / 2);
     --_switch-icon-padding: calc((var(--_switch-height) - var(--_switch-icon-size)) / 2);
@@ -15,7 +15,7 @@ export default css`
     border: none;
     display: flex;
     width: fit-content;
-    gap: var(--spacing-3);
+    gap: var(--spacing-medium);
     align-items: center;
   }
 
@@ -29,7 +29,7 @@ export default css`
     overflow: hidden;
     position: relative;
     width: var(--_switch-width);
-    background-color: var(--switch-track-color, var(--icon-disabled));
+    background-color: var(--switch-track-color, var(--main-disabled));
   }
 
   div[part="thumb"] {
@@ -39,7 +39,7 @@ export default css`
     position: absolute;
     top: var(--_switch-padding);
     left: var(--_switch-padding);
-    background-color: var(--switch-thumb-color, var(--icon-inverse));
+    background-color: var(--switch-thumb-color, var(--main-inverse));
   }
 
   input {
@@ -54,7 +54,7 @@ export default css`
 
   zeta-icon {
     position: absolute;
-    color: var(--switch-icon-color, var(--icon-inverse));
+    color: var(--switch-icon-color, var(--main-inverse));
     top: var(--_switch-icon-padding);
     height: var(--_switch-icon-size);
     width: var(--_switch-icon-size);
@@ -75,7 +75,7 @@ export default css`
     transform: translateX(calc(var(--_switch-width) - var(--_switch-thumb-size) - var(--_switch-padding) * 2));
   }
   :host([checked]) div[part="track"] {
-    background-color: var(--switch-track-active-color, var(--icon-flavor-primary));
+    background-color: var(--switch-track-active-color, var(--main-primary));
   }
   /* :host([checked]) zeta-icon { */
   /* transform: translateX(calc(var(--_switch-width) - var(--_switch-icon-size) - var(--_switch-icon-padding) * 2)); */
@@ -91,7 +91,7 @@ export default css`
       transform: translateX(calc(var(--_switch-width) - var(--_switch-thumb-size) - var(--_switch-padding) * 2));
     }
     & div[part="track"] {
-      background-color: var(--switch-track-active-color, var(--icon-flavor-primary));
+      background-color: var(--switch-track-active-color, var(--main-primary));
     }
     & zeta-icon {
       transform: translateX(calc(var(--_switch-width) - var(--_switch-icon-size) - var(--_switch-icon-padding) * 2));
@@ -100,7 +100,7 @@ export default css`
 
   /** This is temporary, see below */
   :host([disabled]) div[part="thumb"] {
-    background-color: var(--switch-thumb-disabled-color, var(--icon-disabled));
+    background-color: var(--switch-thumb-disabled-color, var(--main-disabled));
   }
 
   :host([disabled]) div[part="track"] {
@@ -108,7 +108,7 @@ export default css`
   }
 
   :host([disabled]) zeta-icon {
-    color: var(--switch-icon-disabled-color, var(--icon-disabled));
+    color: var(--switch-icon-disabled-color, var(--main-disabled));
   }
 
   /*
@@ -116,10 +116,10 @@ export default css`
    * https://github.com/microsoft/playwright/issues/31607
   :host([disabled]) {
     & zeta-icon {
-      color: var(--switch-icon-disabled-color, var(--icon-disabled));
+      color: var(--switch-icon-disabled-color, var(--main-disabled));
     }
     & div[part="thumb"] {
-      background-color: var(--switch-thumb-disabled-color, var(--icon-disabled));
+      background-color: var(--switch-thumb-disabled-color, var(--main-disabled));
     }
     & div[part="track"] {
       background-color: var(--switch-track-disabled-color, var(--surface-disabled));

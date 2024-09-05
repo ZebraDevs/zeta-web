@@ -14,19 +14,19 @@ export default css`
   } */
 
   /* :host(:not([disabled]):active) .interactive-target {
-    background: var(--surface-pressed);
+    background: var(--surface-selected);
   } */
 
   :host([disabled]) > *,
   :host([disabled]) ::slotted(zeta-icon) {
     cursor: not-allowed;
-    --icon-color: var(--text-disabled);
+    --icon-color: var(--main-disabled);
   }
 
   :host(:focus-visible) .interactive-target,
   .interactive-target:focus-visible {
     outline-width: var(--border-size-medium);
-    outline-color: var(--border-flavor-primary);
+    outline-color: var(--border-primary);
     outline-style: solid;
     z-index: 1;
   }

@@ -3,20 +3,20 @@ export default css`
   :host {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-1);
+    gap: var(--spacing-minimum);
   }
 
   :host([disabled]) {
-    color: var(--text-disabled);
+    color: var(--main-disabled);
   }
 
   .slider-input-container {
     display: flex;
-    gap: var(--spacing-4);
+    gap: var(--spacing-large);
   }
 
   label {
-    margin-left: var(--spacing-2);
+    margin-left: var(--spacing-small);
   }
 
   .slider-container {
@@ -29,9 +29,9 @@ export default css`
   .range-label-container {
     display: flex;
     justify-content: space-between;
-    padding-right: var(--spacing-1);
-    padding-left: var(--spacing-2);
-    padding-bottom: var(--spacing-1);
+    padding-right: var(--spacing-minimum);
+    padding-left: var(--spacing-small);
+    padding-bottom: var(--spacing-minimum);
   }
 
   /*TODO refactor to shared input styles*/
@@ -55,15 +55,15 @@ export default css`
   }
 
   :host([disabled]) input {
-    color: var(--text-disabled);
+    color: var(--main-disabled);
     border-color: var(--border-disabled);
     background-color: var(--surface-disabled);
   }
 
   :host([error]:not([disabled])) {
     input {
-      background-color: var(--surface-flavor-negative-subtle);
-      border: var(--border-size-small) var(--border-flavor-negative) solid;
+      background-color: var(--surface-negative-subtle);
+      border: var(--border-size-small) var(--border-negative) solid;
     }
   }
 `;

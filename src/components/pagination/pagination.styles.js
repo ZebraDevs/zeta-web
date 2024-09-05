@@ -4,7 +4,7 @@ export default css`
     display: inline-flex;
     align-items: center;
     border-radius: inherit;
-    gap: var(--spacing-2);
+    gap: var(--spacing-small);
   }
 
   button {
@@ -17,7 +17,7 @@ export default css`
 
   .pagination-control {
     cursor: pointer;
-    padding: var(--spacing-1-5);
+    padding: var(--spacing-small) var(--spacing-minimum);
 
     &:disabled {
       pointer-events: none;
@@ -25,48 +25,48 @@ export default css`
     }
 
     &:hover {
-      background-color: var(--color-cool-20);
+      background-color: var(--state-default-hover);
     }
 
     &:active {
-      background-color: var(--color-cool-30);
+      background-color: var(--state-default-selected);
     }
 
-    &:focus {
+    &:focus-visible {
       border: none;
       outline: none;
-      box-shadow: 0 0 0 var(--border-size-medium) var(--border-flavor-primary);
+      box-shadow: 0 0 0 var(--border-size-medium) var(--border-primary);
     }
   }
 
   .page {
     text-align: center;
-    padding: var(--spacing-1-5) var(--spacing-1);
+    padding: var(--spacing-small) var(--spacing-minimum);
     font: var(--body-small);
-    width: var(--spacing-8);
-    color: var(--text-default);
+    width: var(--spacing-4xl);
+    color: var(--main-default);
 
     &:hover {
-      background-color: var(--color-cool-20);
+      background-color: var(--state-default-hover);
     }
 
     &:active {
-      background-color: var(--color-cool-30);
+      background-color: var(--state-default-selected);
     }
 
-    &:focus {
+    &:focus-visible {
       border: none;
       outline: none;
-      box-shadow: 0 0 0 var(--border-size-medium) var(--border-flavor-primary);
+      box-shadow: 0 0 0 var(--border-size-medium) var(--border-primary);
     }
 
     &.selected {
-      color: var(--color-cool-20);
-      background-color: var(--color-cool-90);
+      color: var(--main-inverse);
+      background-color: var(--state-inverse-selected);
     }
   }
   zeta-icon.more {
-    --icon-color: var(--icon-default);
+    --icon-color: var(--main-default);
     --icon-size: 20px;
   }
 `;

@@ -3,20 +3,20 @@ export default css`
   :host {
     display: flex;
 
-    --thin-size: var(--spacing-2);
-    --medium-size: var(--spacing-4);
+    --thin-size: var(--spacing-small);
+    --medium-size: var(--spacing-large);
   }
 
   .progress-bar {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-4);
+    gap: var(--spacing-large);
     width: 100%;
   }
 
   .wrapper {
     display: flex;
-    gap: var(--spacing-4);
+    gap: var(--spacing-large);
     width: 100%;
   }
 
@@ -33,7 +33,7 @@ export default css`
   }
 
   :host([rounded]) .wrapper {
-    border-radius: var(--radius-l);
+    border-radius: var(--radius-large);
   }
 
   .track {
@@ -64,7 +64,7 @@ export default css`
   }
 
   .bar {
-    background-color: var(--surface-flavor-primary);
+    background-color: var(--surface-primary);
     height: 100%;
     border-radius: inherit;
   }

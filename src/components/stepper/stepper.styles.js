@@ -24,11 +24,11 @@ export default css`
 
   .bar {
     display: flex;
-    height: var(--spacing-8);
-    width: var(--spacing-15);
+    height: var(--spacing-4xl);
+    width: var(--spacing-11xl);
     align-items: center;
     justify-content: center;
-    margin-left: var(--spacing-4);
+    margin-left: var(--spacing-large);
 
     &:after {
       content: "";
@@ -36,7 +36,7 @@ export default css`
       width: 100%;
       height: var(--spacing-0-5);
       border-radius: inherit;
-      background-color: var(--text-disabled);
+      background-color: var(--main-disabled);
     }
 
     &:not(.show) {
@@ -47,13 +47,13 @@ export default css`
 
     &.active {
       &:after {
-        background-color: var(--surface-flavor-primary);
+        background-color: var(--surface-primary);
       }
     }
 
     &.completed {
       &:after {
-        background-color: var(--surface-flavor-positive);
+        background-color: var(--surface-positive);
       }
     }
   }
@@ -64,33 +64,33 @@ export default css`
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 0 var(--spacing-4);
+    padding: 0 var(--spacing-large);
 
     span {
       display: flex;
     }
 
     &:not(.active):not(.completed) {
-      color: var(--text-disabled);
+      color: var(--main-disabled);
     }
 
     &.active {
       .step-label {
-        color: var(--surface-flavor-primary);
+        color: var(--surface-primary);
       }
 
       .step-number {
-        background-color: var(--surface-flavor-primary);
+        background-color: var(--surface-primary);
       }
     }
 
     &.completed {
       .step-label {
-        color: var(--surface-flavor-positive);
+        color: var(--surface-positive);
       }
 
       .step-number {
-        background-color: var(--surface-flavor-positive);
+        background-color: var(--surface-positive);
       }
     }
   }
@@ -101,7 +101,7 @@ export default css`
     align-self: baseline;
 
     .step-title {
-      margin-top: var(--spacing-2);
+      margin-top: var(--spacing-small);
       font: var(--body-medium);
     }
 
@@ -111,12 +111,12 @@ export default css`
   }
 
   .step-number {
-    width: var(--spacing-8);
-    height: var(--spacing-8);
+    width: var(--spacing-4xl);
+    height: var(--spacing-4xl);
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--text-disabled);
+    background-color: var(--main-disabled);
     color: var(--surface-default);
     font: var(--label-large);
   }
@@ -143,7 +143,7 @@ export default css`
 
     .step-container {
       flex-direction: column;
-      margin-bottom: var(--spacing-5);
+      margin-bottom: var(--spacing-xl);
     }
 
     .step {
@@ -153,20 +153,20 @@ export default css`
     }
 
     .bar {
-      height: var(--spacing-8);
-      width: var(--spacing-8);
-      margin-top: var(--spacing-1);
+      height: var(--spacing-4xl);
+      width: var(--spacing-4xl);
+      margin-top: var(--spacing-minimum);
       margin-left: 0;
 
       &:after {
         content: "";
-        width: var(--spacing-1);
+        width: var(--spacing-minimum);
         height: 100%;
       }
     }
 
     .step-title {
-      margin-top: var(--spacing-1);
+      margin-top: var(--spacing-minimum);
       font: var(--title-large);
     }
 
@@ -176,10 +176,10 @@ export default css`
     }
 
     .step-number {
-      width: var(--spacing-8);
-      height: var(--spacing-8);
+      width: var(--spacing-4xl);
+      height: var(--spacing-4xl);
       font: var(--label-medium);
-      margin-right: var(--spacing-6);
+      margin-right: var(--spacing-2xl);
       align-self: baseline;
     }
   }

@@ -2,43 +2,43 @@ import { css } from "lit";
 export default css`
   :host([priority="urgent"]) {
     .number {
-      background: var(--surface-flavor-negative);
+      background: var(--surface-negative);
     }
     .container {
-      background: var(--surface-flavor-negative-subtle);
+      background: var(--surface-negative-subtle);
     }
   }
 
   :host([priority="high"]) {
     .number {
-      background: var(--border-flavor-warning);
+      background: var(--border-warning);
     }
     .container {
-      background: var(--surface-flavor-warning-subtle);
+      background: var(--surface-warning-subtle);
     }
   }
 
   :host([priority="medium"]) {
     .number {
-      background: var(--surface-flavor-primary);
+      background: var(--surface-primary);
     }
     .container {
-      background: var(--surface-flavor-primary-subtle);
+      background: var(--surface-primary-subtle);
     }
   }
 
   :host([priority="low"]) {
     .number {
-      background: var(--surface-flavor-positive);
+      background: var(--surface-positive);
     }
     .container {
-      background: var(--surface-flavor-positive-subtle);
+      background: var(--surface-positive-subtle);
     }
   }
 
   :host([size="medium"]) {
     .text {
-      padding: var(--spacing-0-5) var(--spacing-2) var(--spacing-0-5) var(--spacing-1);
+      padding: var(--spacing-0-5) var(--spacing-small) var(--spacing-0-5) var(--spacing-minimum);
     }
     .text,
     .number {
@@ -46,8 +46,8 @@ export default css`
       line-height: 1;
     }
     .number {
-      width: var(--spacing-6);
-      height: var(--spacing-6);
+      width: var(--spacing-2xl);
+      height: var(--spacing-2xl);
     }
   }
 
@@ -58,8 +58,8 @@ export default css`
       line-height: 1;
     }
     .number {
-      width: var(--spacing-5);
-      height: var(--spacing-5);
+      width: var(--spacing-xl);
+      height: var(--spacing-xl);
     }
   }
 
@@ -69,9 +69,9 @@ export default css`
     }
     .number {
       font: var(--body-x-small);
-      width: var(--spacing-5);
-      height: var(--spacing-5);
-      color: var(--text-inverse);
+      width: var(--spacing-xl);
+      height: var(--spacing-xl);
+      color: var(--main-inverse);
     }
   }
 
@@ -80,7 +80,7 @@ export default css`
     .text {
       height: auto;
       text-transform: capitalize;
-      padding: 0 var(--spacing-2) 0 var(--spacing-1);
+      padding: 0 var(--spacing-small) 0 var(--spacing-minimum);
     }
   }
 `;

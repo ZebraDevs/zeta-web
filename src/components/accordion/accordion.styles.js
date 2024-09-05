@@ -11,19 +11,20 @@ export default css`
   }
   :host([disabled]) .accordion {
     border-color: var(--border-disabled);
+    color: var(--main-disabled);
   }
   .title {
     font: var(--title-medium);
-    padding: var(--spacing-4);
+    padding: var(--spacing-large);
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
   .body {
-    padding: var(--spacing-2) 0;
+    padding: var(--spacing-small) 0;
   }
   .body ::slotted(li) {
-    padding: var(--spacing-2) var(--spacing-4);
+    padding: var(--spacing-small) var(--spacing-large);
     list-style-type: none;
     font: var(--body-medium);
   }

@@ -25,6 +25,6 @@ export default meta;
 export const InputChip: StoryObj<ZetaInputChip> = {
   render: args =>
     html`<zeta-input-chip ?rounded=${args.rounded} ?disabled=${args.disabled}
-      ><zeta-avatar size="xs" slot="leading"></zeta-avatar> ${args.slot}</zeta-input-chip
+      ><zeta-avatar size="xxxs"><img src="https://tinyurl.com/yn89fmc4"></img></zeta-avatar> ${args.slot}</zeta-input-chip
     >`
 };

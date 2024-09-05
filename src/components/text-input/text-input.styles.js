@@ -3,7 +3,7 @@ export default css`
   :host .container {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-1);
+    gap: var(--spacing-minimum);
     width: fit-content;
     height: fit-content;
     align-items: flex-start;
@@ -29,25 +29,25 @@ export default css`
   }
 
   zeta-icon {
-    --icon-color: var(--icon-default);
+    --icon-color: var(--main-default);
   }
 
   zeta-icon.subtle {
-    --icon-color: var(--icon-subtle);
+    --icon-color: var(--main-subtle);
   }
 
   /* ERROR */
   :host([error]:not([disabled])) .input-container {
-    background-color: var(--surface-flavor-negative-subtle);
-    box-shadow: 0 0 0 var(--border-size-medium) var(--border-flavor-negative);
+    background-color: var(--surface-negative-subtle);
+    box-shadow: 0 0 0 var(--border-size-medium) var(--border-negative);
   }
 
   :host([error]:not([disabled])) .hint-text zeta-icon {
-    --icon-color: var(--icon-flavor-negative);
+    --icon-color: var(--main-negative);
   }
 
   :host([error]:not([disabled])) .hint-text {
-    color: var(--text-flavor-negative);
+    color: var(--main-negative);
   }
 
   /* DISABLED */
@@ -57,7 +57,7 @@ export default css`
   }
 
   :host([disabled]) zeta-icon {
-    --icon-color: var(--icon-disabled);
+    --icon-color: var(--main-disabled);
   }
 
   :host([disabled]) input,
@@ -65,7 +65,7 @@ export default css`
   :host([disabled]) .affix,
   :host([disabled]) .label,
   :host([disabled]) .hint-text span {
-    color: var(--text-disabled);
+    color: var(--main-disabled);
   }
   :host([disabled]) input::placeholder,
   :host([disabled]) textarea::placeholder,
@@ -77,7 +77,7 @@ export default css`
 
   /* SIZE */
   :host([size="small"]) .input-container:not(.text-area) {
-    padding: var(--spacing-2) var(--spacing-2);
+    padding: var(--spacing-small) var(--spacing-small);
   }
 
   :host([size="small"]) input,
@@ -85,7 +85,7 @@ export default css`
     font: var(--body-small);
   }
   :host([size="medium"]) .input-container:not(.text-area) {
-    padding: var(--spacing-2) var(--spacing-3);
+    padding: var(--spacing-small) var(--spacing-medium);
   }
 
   :host([size="medium"]) input,
@@ -94,7 +94,7 @@ export default css`
   }
 
   :host([size="large"]) .input-container:not(.text-area) {
-    padding: var(--spacing-3);
+    padding: var(--spacing-medium);
   }
 
   :host([size="large"]) input,
@@ -110,15 +110,15 @@ export default css`
     min-width: 328px;
     height: fit-content;
     background-color: var(--surface-default);
-    padding: var(--spacing-3);
+    padding: var(--spacing-medium);
     box-shadow: 0 0 0 var(--border-size-small) var(--border-default);
   }
 
   .input-container input,
   .input-container textarea {
     background-color: inherit;
-    caret-color: var(--icon-flavor-primary);
-    color: var(--text-default);
+    caret-color: var(--main-primary);
+    color: var(--main-default);
     flex: 1;
     padding: 0;
     margin: 0;
@@ -127,7 +127,7 @@ export default css`
 
   .input-container textarea::placeholder,
   .input-container input::placeholder {
-    color: var(--text-subtle);
+    color: var(--main-subtle);
   }
 
   .input-container:hover {
@@ -136,7 +136,7 @@ export default css`
 
   .input-container:has(input:focus),
   .input-container:has(textarea:focus) {
-    box-shadow: 0 0 0 var(--border-size-medium) var(--border-flavor-primary) !important;
+    box-shadow: 0 0 0 var(--border-size-medium) var(--border-primary) !important;
   }
 
   input[type="date"]::-webkit-calendar-picker-indicator,
@@ -146,22 +146,22 @@ export default css`
   }
 
   .left {
-    margin-right: var(--spacing-2);
+    margin-right: var(--spacing-small);
   }
 
   .right {
-    margin-left: var(--spacing-2);
+    margin-left: var(--spacing-small);
   }
 
   .affix {
-    color: var(--text-subtle);
+    color: var(--main-subtle);
   }
 
   .label {
     font: var(--body-small);
-    margin-bottom: var(--spacing-1);
+    margin-bottom: var(--spacing-minimum);
     display: flex;
-    color: var(--text-default);
+    color: var(--main-default);
     position: relative;
     width: fit-content;
   }
@@ -170,19 +170,19 @@ export default css`
     content: "*";
     display: flex;
     position: absolute;
-    right: var(--spacing-2);
-    color: var(--text-flavor-negative);
+    right: var(--spacing-small);
+    color: var(--main-negative);
   }
 
   .hint-text {
     display: flex;
     align-items: center;
-    column-gap: var(--spacing-1);
+    column-gap: var(--spacing-minimum);
   }
 
   .hint-text {
     font: var(--body-x-small);
-    color: var(--text-subtle);
+    color: var(--main-subtle);
   }
 
   textarea {

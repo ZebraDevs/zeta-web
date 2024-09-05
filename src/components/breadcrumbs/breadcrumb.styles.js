@@ -17,15 +17,15 @@ export default css`
   .more-menu:before {
     content: "chevron_right";
     font-size: var(--spacing-large);
-    color: var(--icon-subtle);
-    margin-right: var(--spacing-2);
+    color: var(--main-subtle);
+    margin-right: var(--spacing-small);
   }
 
   :host,
   .container {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--spacing-2);
+    gap: var(--spacing-small);
   }
 
   .more-menu {
@@ -34,7 +34,7 @@ export default css`
   }
 
   button {
-    padding: var(--spacing-minimum) var(--spacing-2);
+    padding: var(--spacing-minimum) var(--spacing-small);
     border: var(--border-size-small) solid var(--border-default);
     background-color: var(--surface-warm);
     cursor: pointer;
@@ -50,6 +50,6 @@ export default css`
   }
 
   button:active {
-    background: var(--surface-pressed);
+    background: var(--surface-selected);
   }
 `;

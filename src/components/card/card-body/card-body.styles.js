@@ -1,8 +1,8 @@
 import { css } from "lit";
 export default css`
   .card-body {
-    padding: var(--spacing-3) var(--spacing-4);
-    color: var(--text-subtle);
+    padding: var(--spacing-medium) var(--spacing-large);
+    color: var(--main-subtle);
     font: var(--body-small);
   }
 `;

@@ -3,14 +3,14 @@ export default css`
   .banner {
     display: flex;
     flex-direction: row;
-    padding: var(--spacing-3);
+    padding: var(--spacing-medium);
     justify-content: center;
     align-items: center;
     border: var(--border-size-small) solid;
-    color: var(--text-default);
+    color: var(--main-default);
 
     > .leading {
-      padding-right: var(--spacing-2);
+      padding-right: var(--spacing-small);
       padding-top: var(--spacing-0-5);
       align-self: stretch;
       --icon-size: 20px;
@@ -24,7 +24,7 @@ export default css`
         justify-content: space-between;
 
         zeta-icon#close {
-          fill: var(--icon-default);
+          fill: var(--main-default);
           cursor: pointer;
         }
 
@@ -33,14 +33,14 @@ export default css`
         }
       }
       > .body {
-        margin-top: var(--spacing-1);
-        margin-right: var(--spacing-7);
+        margin-top: var(--spacing-minimum);
+        margin-right: var(--spacing-3xl);
         font: var(--body-small);
       }
 
       > .content {
-        margin-top: var(--spacing-3);
-        max-width: calc(100% - var(--spacing-7));
+        margin-top: var(--spacing-medium);
+        max-width: calc(100% - var(--spacing-3xl));
 
         > ::slotted(*) {
           max-width: 100%;
@@ -51,8 +51,8 @@ export default css`
       > .footer {
         display: flex;
         flex-direction: row;
-        gap: var(--spacing-2);
-        max-width: calc(100% - var(--spacing-7));
+        gap: var(--spacing-small);
+        max-width: calc(100% - var(--spacing-3xl));
       }
     }
   }
@@ -69,44 +69,44 @@ export default css`
   :host([status="default"]) > .banner {
     border-color: var(--border-default);
     background: var(--surface-default);
-    fill: var(--icon-default);
+    fill: var(--main-default);
   }
 
   :host([status="info"]) > .banner {
-    border-color: var(--border-flavor-info);
-    background: var(--surface-flavor-info-subtle);
+    border-color: var(--border-info);
+    background: var(--surface-info-subtle);
     zeta-icon {
-      --icon-color: var(--icon-flavor-info);
+      --icon-color: var(--main-info);
     }
   }
 
   :host([status="positive"]) > .banner {
-    border-color: var(--border-flavor-positive);
-    background: var(--surface-flavor-positive-subtle);
+    border-color: var(--border-positive);
+    background: var(--surface-positive-subtle);
     zeta-icon {
-      --icon-color: var(--icon-flavor-positive);
+      --icon-color: var(--main-positive);
     }
   }
 
   :host([status="warning"]) > .banner {
-    border-color: var(--border-flavor-warning);
-    background: var(--surface-flavor-warning-subtle);
+    border-color: var(--border-warning);
+    background: var(--surface-warning-subtle);
 
     zeta-icon {
-      --icon-color: var(--icon-flavor-warning);
+      --icon-color: var(--main-warning);
     }
   }
 
   :host([status="negative"]) > .banner {
-    border-color: var(--border-flavor-negative);
-    background: var(--surface-flavor-negative-subtle);
+    border-color: var(--border-negative);
+    background: var(--surface-negative-subtle);
     zeta-icon {
-      --icon-color: var(--icon-flavor-negative);
+      --icon-color: var(--main-negative);
     }
   }
 
   ::slotted([slot="action"]) {
-    margin-top: var(--spacing-4);
+    margin-top: var(--spacing-large);
   }
 
   ::slotted([slot="leadingAction"]:not(zeta-button)),

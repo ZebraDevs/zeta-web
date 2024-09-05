@@ -7,12 +7,12 @@ export default css`
     flex-direction: column;
     background-color: var(--surface-default);
     --tab-bar-background: var(--surface-default);
-    color: var(--text-default);
+    color: var(--main-default);
   }
 
   ::slotted(zeta-icon-button) {
-    --icon-button-icon-color: var(--icon-default);
-    --icon-button-icon-color-disabled: var(--icon-disabled);
+    --icon-button-icon-color: var(--main-default);
+    --icon-button-icon-color-disabled: var(--main-disabled);
     --icon-button-color: var(--surface-default);
   }
 
@@ -24,9 +24,9 @@ export default css`
   }
 
   .global-header {
-    gap: var(--spacing-6);
+    gap: var(--spacing-2xl);
     justify-content: space-between;
-    padding: var(--spacing-2) var(--spacing-6);
+    padding: var(--spacing-small) var(--spacing-2xl);
   }
 
   .slotted-content {
@@ -34,7 +34,7 @@ export default css`
   }
 
   .leading {
-    gap: var(--spacing-6);
+    gap: var(--spacing-2xl);
   }
 
   .header {
@@ -42,6 +42,6 @@ export default css`
   }
 
   .navigation-menu {
-    padding: 0 var(--spacing-2);
+    padding: 0 var(--spacing-small);
   }
 `;

@@ -33,9 +33,9 @@ const placeholderStyle = styleMap({
   flex: "1",
   alignItems: "center",
   justifyContent: "center",
-  padding: "var(--spacing-12)",
+  padding: "var(--spacing-8xl)",
   "--icon-size": "48px",
-  "--icon-color": "var(--color-cool-50)"
+  "--icon-color": "var(--main-subtle)"
 });
 
 const placeholderImg = html`<div style=${placeholderStyle}>

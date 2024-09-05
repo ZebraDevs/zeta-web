@@ -2,18 +2,18 @@ import { css } from "lit";
 export default css`
   .file-upload {
     border: var(--border-size-medium) dashed var(--border-default);
-    padding: var(--spacing-8);
+    padding: var(--spacing-4xl);
     display: flex;
     flex-direction: column;
     text-align: center;
     align-items: center;
-    gap: var(--spacing-4);
+    gap: var(--spacing-large);
     user-select: none;
   }
 
   :host([active]) .file-upload {
-    border-color: var(--border-flavor-primary);
-    background-color: var(--surface-pressed);
+    border-color: var(--border-primary);
+    background-color: var(--surface-selected);
   }
 
   .main-content {
@@ -21,7 +21,7 @@ export default css`
     flex-direction: column;
     text-align: center;
     align-items: center;
-    gap: var(--spacing-2);
+    gap: var(--spacing-small);
   }
 
   h1 {
@@ -32,14 +32,14 @@ export default css`
 
   h2 {
     font: var(--body-small);
-    color: var(--text-subtle);
-    padding: 0 var(--spacing-4);
+    color: var(--main-subtle);
+    padding: 0 var(--spacing-large);
     margin: 0;
     pointer-events: none;
   }
 
   :host([error]) h2.caption {
-    color: var(--text-flavor-negative);
+    color: var(--main-negative);
   }
 
   input {

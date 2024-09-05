@@ -1,17 +1,17 @@
 import { css } from "lit";
 export default css`
   .card-header {
-    padding: var(--spacing-2-5) var(--spacing-4);
+    padding: var(--spacing-small) var(--spacing-large);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: var(--spacing-3);
+    gap: var(--spacing-medium);
   }
 
   /*This was copied from global-header.styles. This needs some better rethinking, how to default a button style if in a header?? */
   ::slotted(zeta-icon-button) {
-    --icon-button-icon-color: var(--icon-default);
-    --icon-button-icon-color-disabled: var(--icon-disabled);
+    --icon-button-icon-color: var(--main-default);
+    --icon-button-icon-color-disabled: var(--main-disabled);
     --icon-button-color: var(--surface-default);
   }
 

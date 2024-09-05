@@ -58,9 +58,9 @@ export default css`
 
   .avatar {
     border-radius: var(--radius-full);
-    color: var(--avatar-initials-color, var(--text-inverse));
+    color: var(--avatar-initials-color, var(--main-inverse));
     font-weight: 500;
-    background-color: var(--avatar-color, var(--component-avatar-purple));
+    background-color: var(--avatar-color, var(--surface-avatar-purple));
     width: 100%;
     height: 100%;
     display: flex;
@@ -79,7 +79,7 @@ export default css`
   }
 
   ::slotted(zeta-icon) {
-    color: var(--text-inverse);
+    color: var(--main-inverse);
   }
 
   .close,
@@ -98,8 +98,8 @@ export default css`
     visibility: var(--show-close, hidden);
     top: 0;
     --icon-size: calc(var(--computed-avatar-size) * 0.3);
-    --icon-color: var(--icon-inverse);
-    background-color: var(--icon-disabled);
+    --icon-color: var(--main-inverse);
+    background-color: var(--main-disabled);
     cursor: pointer;
   }
 

@@ -12,20 +12,20 @@ export default css`
 
   :host([size="large"]) {
     .input-container {
-      padding: var(--spacing-3);
+      padding: var(--spacing-medium);
     }
   }
 
   .container {
     display: flex;
-    gap: var(--spacing-2);
+    gap: var(--spacing-small);
   }
 
   .input-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: var(--spacing-2) var(--spacing-3);
+    padding: var(--spacing-small) var(--spacing-medium);
     box-shadow: 0 0 0 var(--border-size-small) var(--border-default);
     border-radius: inherit;
 
@@ -37,7 +37,7 @@ export default css`
 
   input {
     font: var(--body-medium);
-    width: var(--spacing-12);
+    width: var(--spacing-8xl);
     background-color: transparent;
     text-align: center;
     outline: none;
@@ -53,8 +53,8 @@ export default css`
     }
 
     &:disabled {
-      color: var(--text-disabled);
+      color: var(--main-disabled);
     }
-    color: var(--text-default);
+    color: var(--main-default);
   }
 `;

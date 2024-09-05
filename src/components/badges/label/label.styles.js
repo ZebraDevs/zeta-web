@@ -1,31 +1,31 @@
 import { css } from "lit";
 export default css`
   :host([status="info"]) .container {
-    background: var(--surface-flavor-info);
+    background: var(--surface-info);
   }
 
   :host([status="positive"]) .container {
-    background: var(--surface-flavor-positive);
+    background: var(--surface-positive);
   }
 
   :host([status="warning"]) .container {
-    background: var(--surface-flavor-warning);
+    background: var(--surface-warning);
   }
 
   :host([status="negative"]) .container {
-    background: var(--surface-flavor-negative);
+    background: var(--surface-negative);
   }
 
   .container,
   :host([status="neutral"]) .container {
-    background: var(--icon-light);
+    background: var(--main-light);
     .text {
-      color: var(--text-default);
+      color: var(--main-default);
     }
   }
 
   :host(:not([status="neutral"])) .container .text {
-    color: var(--text-inverse);
+    color: var(--main-inverse);
   }
 
   .container {
@@ -36,7 +36,7 @@ export default css`
     width: fit-content;
 
     .text {
-      padding: 2px var(--spacing-1);
+      padding: 2px var(--spacing-minimum);
       font: var(--label-small);
     }
   }

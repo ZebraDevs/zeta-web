@@ -6,8 +6,8 @@ export default css`
     justify-content: center;
     width: fit-content;
     height: fit-content;
-    background: var(--icon-default);
-    padding: var(--spacing-1) var(--spacing-2);
+    background: var(--main-default);
+    padding: var(--spacing-minimum) var(--spacing-small);
     position: relative;
 
     @media (prefers-color-scheme: light) {
@@ -17,11 +17,11 @@ export default css`
 
   .label {
     font: var(--label-small);
-    color: var(--text-inverse);
+    color: var(--main-inverse);
   }
 
   .point {
-    fill: var(--icon-default);
+    fill: var(--main-default);
     position: absolute;
 
     path {

@@ -19,7 +19,7 @@ export default css`
   :host > * {
     display: flex;
     width: fit-content;
-    padding: var(--spacing-1);
+    padding: var(--spacing-minimum);
     background-color: var(--surface-disabled);
   }
 

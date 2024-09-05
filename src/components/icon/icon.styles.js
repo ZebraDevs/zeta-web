@@ -26,7 +26,7 @@ export default [
       height: var(--icon-size, 24px);
       width: var(--icon-size, 24px);
       transition: all 0.3s ease-in-out;
-      color: var(--icon-color, var(--icon-default));
+      color: var(--icon-color, var(--main-default));
       font-size: var(--icon-size, 24px);
       line-height: var(--icon-size, 1);
       font-family: var(--icon-font, "zeta-icons-round");

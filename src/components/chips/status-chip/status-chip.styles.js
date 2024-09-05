@@ -4,8 +4,8 @@ export default css`
     width: fit-content;
     display: flex;
     align-items: center;
-    padding: var(--spacing-1) var(--spacing-2);
-    background-color: var(--color-warm-30);
+    padding: var(--spacing-minimum) var(--spacing-small);
+    background-color: var(--surface-warm);
     font: var(--body-x-small);
   }
 `;

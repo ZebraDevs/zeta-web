@@ -2,13 +2,13 @@ import { css } from "lit";
 export default css`
   :host([active]:not([disabled])) .container {
     background: var(--surface-default-inverse) !important;
-    color: var(--text-inverse);
+    color: var(--main-inverse);
   }
   zeta-icon {
     --icon-size: 20px;
   }
   :host([type="selected"]) zeta-icon {
-    --icon-color: var(--icon-inverse);
+    --icon-color: var(--main-inverse);
   }
 
   .container {

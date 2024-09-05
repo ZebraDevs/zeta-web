@@ -45,7 +45,7 @@ export default css`
   }
 
   ::slotted(zeta-button) {
-    margin: var(--spacing-large) var(--spacing-6);
+    margin: var(--spacing-large) var(--spacing-2xl);
     flex: 1;
   }
 `;

@@ -16,13 +16,13 @@ export default css`
 
   *[part="icon"] {
     position: absolute;
-    width: var(--spacing-2-5);
-    height: var(--spacing-2-5);
+    width: 10px;
+    height: 10px;
     border-radius: var(--radius-full);
-    background-color: var(--icon-flavor-primary);
+    background-color: var(--main-primary);
   }
 
-  :host([checked]:not([disabled]):hover) .container:hover *[part="icon"] {
+  :host([checked]:not([disabled]):hover) label:hover *[part="icon"] {
     background-color: var(--border-hover);
   }
 

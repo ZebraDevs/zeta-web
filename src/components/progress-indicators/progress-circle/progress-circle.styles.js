@@ -7,7 +7,7 @@ export default css`
   }
   .cancel zeta-icon {
     --icon-size: 20px;
-    --icon-color: var(--icon-default);
+    --icon-color: var(--main-default);
   }
 
   svg.loading {
@@ -31,14 +31,14 @@ export default css`
 
   .percentage {
     font: var(--label-small);
-    color: var(--color-cool-90);
+    color: var(--main-default);
   }
 
   .cancel {
     display: none;
     justify-content: center;
     align-items: center;
-    background-color: var(--color-cool-20);
+    background-color: var(--surface-hover);
     border-radius: var(--radius-full);
     cursor: pointer;
   }

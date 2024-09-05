@@ -122,20 +122,19 @@ export class ZetaDroppable extends Contourable(LitElement) {
     }
   };
 
-  protected firstUpdated() {
+  protected updated() {
+    if (this.open) {
+      this.setDroppablePosition();
+    }
+
     const anchorPosition = this.getAnchorPosition();
 
     if (this.anchor) {
       this.style.top = `${anchorPosition.top + anchorPosition.height}px`;
     }
     if (this.matchParentWidth) {
-      this.style.width = `${anchorPosition.width - 32}px`;
-    }
-  }
-
-  protected updated() {
-    if (this.open) {
-      this.setDroppablePosition();
+      const style = window.getComputedStyle(this);
+      this.style.width = `calc(${anchorPosition.width}px - ${style.paddingLeft} - ${style.paddingRight})`;
     }
   }
 

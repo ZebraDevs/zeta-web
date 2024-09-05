@@ -12,7 +12,7 @@ export default css`
   }
 
   :host > button {
-    color: var(--text-default);
+    color: var(--main-default);
     background-color: var(--surface-default);
     border: var(--border-size-small) solid var(--border-subtle);
     border-right: var(--group-item-border-right, var(--border-size-small) solid var(--border-subtle));
@@ -40,12 +40,12 @@ export default css`
   }
 
   :host([size="medium"]) {
-    --item-padding: var(--group-item-padding, var(--spacing-3));
-    height: var(--spacing-11);
+    --item-padding: var(--group-item-padding, var(--spacing-medium));
+    height: var(--spacing-7xl);
   }
 
   :host([size="large"]) {
-    --item-padding: var(--group-item-padding, var(--spacing-4));
+    --item-padding: var(--group-item-padding, var(--spacing-large));
     height: 52px; /*TODO: 52px is not tokenized?*/
   }
 
@@ -54,7 +54,7 @@ export default css`
     display: none;
   }
   :host([disabled]) label {
-    color: var(--text-disabled);
+    color: var(--main-disabled);
   }
   :host zeta-icon {
     --icon-size: 20px;

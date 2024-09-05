@@ -4,25 +4,25 @@ export default css`
     display: flex;
     display: inline-flex;
     align-items: center;
-    background: var(--surface-flavor-primary-subtle);
+    background: var(--surface-primary-subtle);
     white-space: nowrap;
-    line-height: var(--spacing-5);
+    line-height: var(--spacing-xl);
     font: var(--body-small);
 
     > .number {
       display: flex;
-      width: var(--spacing-7);
-      height: var(--spacing-7);
+      width: var(--spacing-3xl);
+      height: var(--spacing-3xl);
       padding: 0;
       justify-content: center;
       align-items: center;
       text-align: center;
-      background: var(--icon-flavor-primary);
-      color: var(--text-inverse);
+      background: var(--main-primary);
+      color: var(--main-inverse);
     }
 
     > .text {
-      padding: var(--spacing-1) var(--spacing-2);
+      padding: var(--spacing-minimum) var(--spacing-small);
     }
   }
 

@@ -14,14 +14,14 @@ export default css`
     display: flex;
     height: fit-content;
     flex-direction: column;
-    gap: var(--spacing-4);
+    gap: var(--spacing-large);
     background-color: var(--surface-default);
-    padding: var(--spacing-5) var(--spacing-4);
+    padding: var(--spacing-xl) var(--spacing-large);
     font-size: 20px;
   }
 
   .body {
-    gap: var(--spacing-4);
+    gap: var(--spacing-large);
     display: flex;
     align-items: center;
     justify-content: space-between;

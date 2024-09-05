@@ -1,13 +1,13 @@
 import { css } from "lit";
 export default css`
   :host([disabled]) *[part="icon"] {
-    color: var(--icon-disabled);
+    color: var(--main-disabled);
   }
 
   :host([indeterminate]:not([disabled])) label,
   :host([checked]:not([disabled])) label {
     .container {
-      background-color: var(--surface-flavor-primary);
+      background-color: var(--surface-primary);
     }
 
     &:hover .container {

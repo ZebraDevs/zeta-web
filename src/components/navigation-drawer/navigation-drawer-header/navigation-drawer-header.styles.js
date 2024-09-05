@@ -1,10 +1,10 @@
 import { css } from "lit";
 export default css`
   .drawer-header {
-    padding: var(--spacing-6) var(--spacing-4);
+    padding: var(--spacing-2xl) var(--spacing-large);
     background: var(--surface-default-inverse);
     display: flex;
-    gap: var(--spacing-4);
+    gap: var(--spacing-large);
     justify-content: space-between;
     align-items: center;
   }
@@ -20,13 +20,13 @@ export default css`
 
   h1 {
     font: var(--title-medium);
-    color: var(--text-inverse);
+    color: var(--main-inverse);
     margin: 0;
   }
 
   h2 {
     font: var(--body-x-small);
-    color: var(--color-cool-50);
+    color: var(--main-subtle); // TODO May need to be changed when the designs get updated
     margin: 0;
   }
 

@@ -6,21 +6,21 @@ export default css`
 
   :host([disabled]) .container {
     background-color: var(--surface-disabled);
-    color: var(--text-disabled);
+    color: var(--main-disabled);
     outline-color: var(--border-disabled);
   }
 
   .container {
-    height: var(--spacing-9);
+    height: var(--spacing-5xl);
     width: fit-content;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: var(--spacing-2);
-    padding: var(--spacing-2) var(--spacing-3);
+    gap: var(--spacing-small);
+    padding: var(--spacing-small) var(--spacing-medium);
     outline: var(--border-default) solid var(--border-size-small);
     border: none;
-    color: var(--text-default);
+    color: var(--main-default);
     transition: background-color 0.2s ease-out;
     background-color: var(--surface-default);
 

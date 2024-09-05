@@ -6,19 +6,19 @@ export default css`
     width: fit-content;
     height: fit-content;
     --icon-size: 20px;
-    --icon-color: var(--text-subtle);
-    --icon-color: var(--text-subtle);
+    --icon-color: var(--main-subtle);
+    --icon-color: var(--main-subtle);
   }
 
   :host([disabled]) {
-    --icon-color: var(--text-disabled);
+    --icon-color: var(--main-disabled);
     .contourable-target {
       pointer-events: none;
       background-color: var(--surface-disabled);
     }
 
     input {
-      color: var(--text-subtle);
+      color: var(--main-subtle);
     }
   }
 
@@ -27,7 +27,7 @@ export default css`
   }
 
   :host(:not([disabled])) zeta-icon.right {
-    --icon-color: var(--icon-default);
+    --icon-color: var(--main-default);
   }
 
   :host([round="full"][rounded]) .contourable-target {
@@ -51,7 +51,7 @@ export default css`
     }
 
     &:has(input:focus) {
-      box-shadow: 0 0 0 var(--border-size-medium) var(--border-flavor-primary);
+      box-shadow: 0 0 0 var(--border-size-medium) var(--border-primary);
     }
   }
 
@@ -66,8 +66,8 @@ export default css`
     background-color: inherit;
     border: none;
     outline: none;
-    caret-color: var(--text-flavor-primary);
-    color: var(--text-subtle);
+    caret-color: var(--main-primary);
+    color: var(--main-subtle);
     flex: 1;
     padding: 0;
     margin: 0;
@@ -89,7 +89,7 @@ export default css`
     --icon-size: 16px;
 
     .contourable-target {
-      padding: var(--spacing-1-5);
+      padding: var(--spacing-minimum-5);
     }
 
     .divider {
@@ -105,11 +105,11 @@ export default css`
     --icon-size: 20px;
 
     .contourable-target {
-      padding: var(--spacing-2); /*TODO Semantic not yet ready*/
+      padding: var(--spacing-small);
     }
 
     .divider {
-      height: var(--spacing-6); /*TODO Semantic not yet ready*/
+      height: var(--spacing-2xl);
     }
 
     input {
@@ -125,7 +125,7 @@ export default css`
     }
 
     .divider {
-      height: var(--spacing-6); /*TODO Semantic not yet ready*/
+      height: var(--spacing-2xl);
     }
 
     input {

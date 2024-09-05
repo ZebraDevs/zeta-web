@@ -23,7 +23,7 @@ export const Form: StoryObj = {
         flexDirection: "column",
         width: "fit-content",
         maxWidth: "100%",
-        gap: "var(--spacing-4)"
+        gap: "var(--spacing-large)"
       })}
       id="form"
       @submit=${(e: FormEvent) => {
@@ -62,7 +62,7 @@ export const Form: StoryObj = {
           <zeta-checkbox name="zeta-checkbox-2">Checkbox 2</zeta-checkbox>
           <zeta-checkbox name="zeta-checkbox-3">Checkbox 3</zeta-checkbox>
         </div>
-        <fieldset style=${styleMap({ display: "flex", flexDirection: "column", gap: "var(--spacing-2)", flex: 1, margin: 0, borderWidth: 0, padding: 0 })}>
+        <fieldset style=${styleMap({ display: "flex", flexDirection: "column", gap: "var(--spacing-small)", flex: 1, margin: 0, borderWidth: 0, padding: 0 })}>
           <h4 style=${subheadingStyle}>Radio Buttons WORK IN PROGRESS</h4>
           <zeta-radio-button name="zeta-radio-button-1" value="val">Radio 1</zeta-radio-button>
           <zeta-radio-button name="zeta-radio-button-1">Radio 2</zeta-radio-button>
@@ -84,6 +84,6 @@ export const Form: StoryObj = {
   `
 };
 
-const columnStyle = styleMap({ display: "flex", flexDirection: "column", gap: "var(--spacing-2)", flex: 1 });
-const rowStyle = styleMap({ display: "flex", gap: "var(--spacing-4)", flex: 1 });
+const columnStyle = styleMap({ display: "flex", flexDirection: "column", gap: "var(--spacing-small)", flex: 1 });
+const rowStyle = styleMap({ display: "flex", gap: "var(--spacing-large)", flex: 1 });
 const subheadingStyle = styleMap({ margin: 0 });

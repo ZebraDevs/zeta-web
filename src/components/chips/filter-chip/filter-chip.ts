@@ -17,7 +17,7 @@ export class ZetaFilterChip extends BaseChip {
 
   getIcon() {
     if (this.active) {
-      return html`<zeta-icon color=${this.disabled ? "var(--icon-disabled)" : "var(--icon-inverse)"} class="icon" size="20">check_mark</zeta-icon>`;
+      return html`<zeta-icon color=${this.disabled ? "var(--main-disabled)" : "var(--main-inverse)"} class="icon" size="20">check_mark</zeta-icon>`;
     } else {
       return nothing;
     }

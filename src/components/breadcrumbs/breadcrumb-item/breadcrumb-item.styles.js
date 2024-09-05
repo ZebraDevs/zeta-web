@@ -8,29 +8,29 @@ export default css`
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
-    color: var(--icon-subtle);
+    color: var(--main-subtle);
     text-decoration: none;
-    gap: var(--spacing-2);
+    gap: var(--spacing-small);
   }
 
   a:hover ::slotted([slot="icon"]) {
-    --icon-color: var(--text-flavor-primary);
+    --icon-color: var(--main-primary);
   }
 
   a:active ::slotted([slot="icon"]) {
-    --icon-color: var(--icon-default);
+    --icon-color: var(--main-default);
   }
 
   a:hover {
-    color: var(--text-flavor-primary);
+    color: var(--main-primary);
   }
 
   a:active {
-    color: var(--text-default);
+    color: var(--main-default);
   }
 
   ::slotted([slot="icon"]) {
-    --icon-color: var(--icon-subtle);
+    --icon-color: var(--main-subtle);
     margin: var(--spacing-none) var(--spacing-minimum);
   }
 `;

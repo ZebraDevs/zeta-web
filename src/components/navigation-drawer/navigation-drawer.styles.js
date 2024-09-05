@@ -77,8 +77,8 @@ export default css`
   .content {
     flex-direction: column;
     display: flex;
-    gap: var(--spacing-1);
-    padding: var(--spacing-1) var(--spacing-2);
+    gap: var(--spacing-minimum);
+    padding: var(--spacing-minimum) var(--spacing-small);
     flex: 1;
   }
 `;

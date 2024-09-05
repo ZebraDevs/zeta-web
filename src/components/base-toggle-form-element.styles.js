@@ -3,7 +3,7 @@ export default css`
   :host label {
     display: flex;
     width: fit-content;
-    gap: var(--spacing-3);
+    gap: var(--spacing-medium);
     align-items: center;
     position: relative;
   }
@@ -33,9 +33,9 @@ export default css`
     align-items: center;
     background: var(--surface-default);
     position: relative;
-    border: var(--border-size-medium) solid var(--icon-subtle);
-    height: var(--spacing-4);
-    width: var(--spacing-4);
+    border: var(--border-size-medium) solid var(--main-subtle);
+    height: var(--spacing-large);
+    width: var(--spacing-large);
     justify-content: center;
   }
 
@@ -46,7 +46,7 @@ export default css`
   :host([indeterminate]:not([disabled])) label,
   :host([checked]:not([disabled])) label {
     .container {
-      border-color: var(--surface-flavor-primary);
+      border-color: var(--surface-primary);
     }
     &:hover .container {
       border-color: var(--border-hover);
@@ -56,7 +56,7 @@ export default css`
   :host([indeterminate]) *[part="icon"],
   :host([checked]) *[part="icon"] {
     /* TODO add animation */
-    --icon-color: var(--icon-inverse);
+    --icon-color: var(--main-inverse);
     display: block;
   }
 

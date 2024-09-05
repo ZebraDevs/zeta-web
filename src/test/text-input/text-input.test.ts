@@ -80,7 +80,7 @@ describe("Zeta Input", () => {
   it("should render error icon color", async () => {
     const el = await setup({ error: true, hint: "hint", disabled: false, errorText: "error" });
     const icon = el.shadowRoot?.querySelector(".hint-text zeta-icon");
-    assert.equal(getComputedStyle(icon!).color, getCssVarColorValue(icon!, "--icon-flavor-negative"));
+    assert.equal(getComputedStyle(icon!).color, getCssVarColorValue(icon!, "--main-negative"));
   });
   it("should render error text", async () => {
     const el = await setup({ error: true, hint: "hint", disabled: false, errorText: "errory" });
@@ -89,7 +89,7 @@ describe("Zeta Input", () => {
   it("should render error text color", async () => {
     const el = await setup({ error: true, hint: "hint", disabled: false, errorText: "error" });
     const text = el.shadowRoot?.querySelector(".hint-text span");
-    assert.equal(getComputedStyle(text!).color, getCssVarColorValue(text!, "--text-flavor-negative"));
+    assert.equal(getComputedStyle(text!).color, getCssVarColorValue(text!, "--main-negative"));
   });
 
   const rgbToHex = (r: number, g: number, b: number) =>
@@ -110,7 +110,7 @@ describe("Zeta Input", () => {
     const rgbColor = window.getComputedStyle(x!).color.split("(")[1].split(")")[0].split(",");
     const hexColor = rgbToHex(Number.parseInt(rgbColor[0]), Number.parseInt(rgbColor[1]), Number.parseInt(rgbColor[2]));
 
-    return await expect(hexColor).to.equal(getComputedStyle(el).getPropertyValue("--icon-disabled"));
+    return await expect(hexColor).to.equal(getComputedStyle(el).getPropertyValue("--main-disabled"));
   });
 
   it("should change value", async () => {

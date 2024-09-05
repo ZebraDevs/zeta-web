@@ -10,7 +10,7 @@ export default css`
 
   .label {
     font-size: var(--spacing-medium);
-    line-height: var(--spacing-4);
+    line-height: var(--spacing-large);
     /** TODO: Change to semantic token */
   }
 
@@ -76,42 +76,42 @@ export default css`
   /** FLAVOR START */
   :host([flavor="secondary"]:not([disabled])) {
     > button {
-      background-color: var(--color-yellow-40);
+      background-color: var(--state-secondary-enabled);
       /** TODO: Change to semantic token */
       zeta-icon {
-        --icon-color: var(--text-default);
+        --icon-color: var(--main-default);
       }
     }
 
     > button:hover {
-      background-color: var(--color-yellow-30);
+      background-color: var(--state-secondary-hover);
       /** TODO: Change to semantic token */
     }
 
     > button:active {
-      background-color: var(--color-yellow-50);
+      background-color: var(--state-secondary-selected);
       /** TODO: Change to semantic token */
     }
   }
 
   :host([flavor="inverse"]:not([disabled])) {
     > button {
-      background-color: var(--component-button-Inverse-active);
+      background-color: var(--state-inverse-selected);
       zeta-icon {
-        --icon-color: var(--text-inverse);
+        --icon-color: var(--main-inverse);
       }
     }
 
     > button:hover {
-      background-color: var(--component-button-Inverse-hover);
+      background-color: var(--state-inverse-hover);
     }
   }
 
   :host([flavor="inverse"]:not([disabled])[extended]) > button > .label {
-    color: var(--text-inverse);
+    color: var(--main-inverse);
   }
   :host([flavor="secondary"]:not([disabled])[extended]) > button > .label {
-    color: var(--text-default);
+    color: var(--main-default);
   }
   /** FLAVOR END */
 `;

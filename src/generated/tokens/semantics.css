@@ -1,276 +1,252 @@
-:root,
-:host {
-
-  /* TEXT */
-  --text-default: var(--color-cool-90);
-  --text-subtle: var(--color-cool-70);
-  --text-inverse: var(--color-pure-0);
-  --text-disabled: var(--color-cool-50);
-  /* flavor */
-  --text-flavor-primary: var(--color-blue-60);
-  --text-flavor-secondary: var(--color-yellow-60);
-  --text-flavor-positive: var(--color-green-60);
-  --text-flavor-warning: var(--color-orange-60);
-  --text-flavor-negative: var(--color-red-60);
-  --text-flavor-info: var(--color-purple-60);
+:root {
 
   /* SURFACE */
   --surface-default: var(--color-pure-0);
   --surface-default-inverse: var(--color-warm-100);
-  /* ERROR in variable name: surface-Header Bar */
+  --surface-hover: var(--color-cool-20);
+  --surface-selected: var(--color-blue-10);
+  --surface-selected-hover: var(--color-blue-20);
+  --surface-disabled: var(--color-cool-30);
   --surface-cool: var(--color-cool-10);
   --surface-warm: var(--color-warm-10);
-  --surface-hover: var(--color-cool-20);
-  --surface-pressed: var(--color-blue-10);
-  --surface-pressed-hover: var(--color-blue-20);
-  /* flavor */
-  --surface-flavor-primary: var(--color-blue-60);
-  --surface-flavor-primary-subtle: var(--color-blue-10);
-  --surface-flavor-secondary: var(--color-yellow-60);
-  --surface-flavor-secondary-subtle: var(--color-yellow-10);
-  --surface-flavor-positive: var(--color-green-60);
-  --surface-flavor-positive-subtle: var(--color-green-10);
-  --surface-flavor-warning: var(--color-orange-60);
-  --surface-flavor-warning-subtle: var(--color-orange-10);
-  --surface-flavor-negative: var(--color-red-60);
-  --surface-flavor-negative-subtle: var(--color-red-10);
-  --surface-flavor-info: var(--color-purple-60);
-  --surface-flavor-info-subtle: var(--color-purple-10);
-  --surface-disabled: var(--color-cool-30);
+  --surface-primary: var(--color-blue-60);
+  --surface-primary-subtle: var(--color-blue-10);
+  --surface-secondary: var(--color-yellow-60);
+  /* avatar */
+  --surface-avatar-blue: var(--color-blue-80);
+  --surface-avatar-green: var(--color-green-60);
+  --surface-avatar-orange: var(--color-orange-50);
+  --surface-avatar-pink: var(--color-pink-80);
+  --surface-avatar-purple: var(--color-purple-80);
+  --surface-avatar-teal: var(--color-teal-80);
+  --surface-avatar-yellow: var(--color-yellow-50);
+  --surface-secondary-subtle: var(--color-yellow-10);
+  --surface-positive: var(--color-green-60);
+  --surface-positive-subtle: var(--color-green-10);
+  --surface-warning: var(--color-orange-60);
+  --surface-warning-subtle: var(--color-orange-10);
+  --surface-negative: var(--color-red-60);
+  --surface-negative-subtle: var(--color-red-10);
+  --surface-info: var(--color-purple-60);
+  --surface-info-subtle: var(--color-purple-10);
 
   /* BORDER */
   --border-default: var(--color-cool-40);
-  --border-subtle: var(--color-cool-30);
+  --border-selected: var(--color-cool-90);
   --border-hover: var(--color-cool-90);
-  --border-pressed: var(--color-cool-90);
+  --border-subtle: var(--color-cool-30);
   --border-disabled: var(--color-cool-20);
-  /* flavor */
-  --border-flavor-primary: var(--color-blue-50);
-  --border-flavor-secondary: var(--color-yellow-50);
-  --border-flavor-positive: var(--color-green-50);
-  --border-flavor-warning: var(--color-orange-50);
-  --border-flavor-negative: var(--color-red-50);
-  --border-flavor-info: var(--color-purple-50);
   --border-pure: var(--color-pure-0);
+  --border-primary-main: var(--color-blue-60);
+  --border-primary: var(--color-blue-50);
+  --border-secondary: var(--color-yellow-50);
+  --border-positive: var(--color-green-50);
+  --border-warning: var(--color-orange-50);
+  --border-negative: var(--color-red-50);
+  --border-info: var(--color-purple-50);
 
-  /* ICON */
-  --icon-default: var(--color-cool-90);
-  --icon-subtle: var(--color-cool-70);
-  --icon-inverse: var(--color-cool-20);
-  --icon-disabled: var(--color-cool-50);
-  /* flavor */
-  --icon-flavor-primary: var(--color-blue-60);
-  --icon-flavor-secondary: var(--color-yellow-60);
-  --icon-flavor-positive: var(--color-green-60);
-  --icon-flavor-warning: var(--color-orange-60);
-  --icon-flavor-negative: var(--color-red-60);
-  --icon-flavor-info: var(--color-purple-60);
-  --icon-light: var(--color-cool-30);
+  /* MAIN */
+  --main-default: var(--color-cool-90);
+  --main-subtle: var(--color-cool-70);
+  --main-primary: var(--color-blue-60);
+  --main-secondary: var(--color-yellow-60);
+  --main-positive: var(--color-green-60);
+  --main-warning: var(--color-orange-60);
+  --main-negative: var(--color-red-60);
+  --main-info: var(--color-purple-60);
+  --main-disabled: var(--color-cool-50);
+  --main-light: var(--color-cool-30);
+  --main-inverse: var(--color-cool-20);
 
-  /* COMPONENT */
-  /* avatar */
-  --component-avatar-blue: var(--color-blue-80);
-  --component-avatar-green: var(--color-green-60);
-  --component-avatar-orange: var(--color-orange-50);
-  --component-avatar-pink: var(--color-pink-80);
-  --component-avatar-purple: var(--color-purple-80);
-  --component-avatar-teal: var(--color-teal-80);
-  --component-avatar-yellow: var(--color-yellow-50);
-  /* button */
+  /* STATE */
+  /* disabled */
+  --state-disabled-disabled: var(--color-cool-30);
+  /* default */
+  --state-default-enabled: var(--color-pure-0);
+  --state-default-hover: var(--color-cool-20);
+  --state-default-selected: var(--color-blue-10);
+  --state-default-focus: var(--color-pure-0);
   /* primary */
-  --component-button-primary-active: var(--color-blue-60);
-  --component-button-primary-hover: var(--color-blue-50);
-  --component-button-primary-pressed: var(--color-blue-70);
-  --component-button-primary-focus: var(--color-blue-60);
-  --component-button-primary-disabled: var(--surface-disabled);
-  --component-button-secondary: var(--color-yellow-60);
-  --component-button-positive: var(--color-green-60);
-  --component-button-warning: var(--color-orange-60);
-  --component-button-negative: var(--color-red-60);
-  --component-button-info: var(--color-purple-60);
-  /* outline-text */
-  --component-button-outline-text-active: var(--surface-default);
-  --component-button-outline-text-hover: var(--surface-hover);
-  --component-button-outline-text-pressed: var(--surface-pressed);
-  --component-button-outline-text-focus: var(--surface-default);
-  --component-button-outline-text-disabled: var(--surface-disabled);
-  --component-button-outline-text-text: var(--text-flavor-primary);
-  --component-button-outline-text-text-subtle: var(--text-default);
-  --component-button-outline-text-border: var(--color-blue-60);
-  --component-button-outline-text-border-focus: var(--border-flavor-primary);
-  --component-button-outline-text-border-subtle: var(--border-default);
+  --state-primary-enabled: var(--color-blue-60);
+  --state-primary-hover: var(--color-blue-50);
+  --state-primary-selected: var(--color-blue-70);
+  --state-primary-focus: var(--color-blue-60);
+  /* secondary */
+  --state-secondary-enabled: var(--color-yellow-40);
+  --state-secondary-hover: var(--color-yellow-30);
+  --state-secondary-selected: var(--color-yellow-50);
+  --state-secondary-focus: var(--color-yellow-40);
+  /* negative */
+  --state-negative-enabled: var(--color-red-60);
+  --state-negative-hover: var(--color-red-50);
+  --state-negative-selected: var(--color-red-70);
+  --state-negative-focus: var(--color-red-60);
+  /* info */
+  --state-info-enabled: var(--color-purple-60);
+  --state-info-hover: var(--color-purple-50);
+  --state-info-selected: var(--color-purple-70);
+  --state-info-focus: var(--color-purple-60);
   /* Inverse */
-  --component-button-Inverse-active: var(--color-cool-100);
-  --component-button-Inverse-hover: var(--color-cool-90);
-  --component-button-Inverse-Pressed: var(--color-cool-100);
-  --component-button-Inverse-focus: var(--color-cool-100);
-  --component-button-Inverse-disabled: var(--surface-disabled);
-  /* top app bar */
-  /* ERROR in variable name: component-top app bar-top app bar */
+  --state-inverse-enabled: var(--color-cool-100);
+  --state-inverse-hover: var(--color-cool-90);
+  --state-inverse-selected: var(--color-cool-100);
+  --state-inverse-focus: var(--color-cool-100);
+  /* positive */
+  --state-positive-enabled: var(--color-green-60);
+  --state-positive-hover: var(--color-green-50);
+  --state-positive-selected: var(--color-green-70);
+  --state-positive-focus: var(--color-green-60);
 
   /* SPACING */
   --spacing-none: var(--spacing-0);
   --spacing-minimum: var(--spacing-1);
-  /* ERROR in variable name: spacing-very small */
-  --spacing-small: var(--spacing-3);
-  --spacing-medium: var(--spacing-4);
-  --spacing-large: var(--spacing-5);
-  /* ERROR in variable name: spacing-very large */
-  --spacing-xl: var(--spacing-7);
-  --spacing-xxl: var(--spacing-8);
-  --spacing-xxxl: var(--spacing-9);
-  --spacing-4xl: var(--spacing-10);
-  --spacing-5xl: var(--spacing-11);
-  --spacing-6xl: var(--spacing-12);
-  --spacing-7xl: var(--spacing-13);
-  --spacing-8xl: var(--spacing-14);
-  --spacing-9xl: var(--spacing-15);
+  --spacing-small: var(--spacing-2);
+  --spacing-medium: var(--spacing-3);
+  --spacing-large: var(--spacing-4);
+  --spacing-xl: var(--spacing-5);
+  --spacing-2xl: var(--spacing-6);
+  --spacing-3xl: var(--spacing-7);
+  --spacing-4xl: var(--spacing-8);
+  --spacing-5xl: var(--spacing-9);
+  --spacing-6xl: var(--spacing-10);
+  --spacing-7xl: var(--spacing-11);
+  --spacing-8xl: var(--spacing-12);
+  --spacing-9xl: var(--spacing-13);
+  --spacing-10xl: var(--spacing-14);
+  --spacing-11xl: var(--spacing-15);
 
   /* RADIUS */
   --radius-none: 0px;
   --radius-minimal: var(--radius-s);
   --radius-rounded: var(--radius-m);
   --radius-large: var(--radius-l);
-  --radius-wide: var(--radius-b);
-  --radius-full: var(--radius-xxxl);
+  --radius-xl: var(--radius-xl);
+  --radius-full: var(--radius-4xl);
 }
-
-@media (prefers-contrast: more) {
-
-  :root,
-  :host {
-
-    /* TEXT */
-    --text-default: var(--color-cool-100);
-    --text-subtle: var(--color-cool-90);
-    --text-inverse: var(--color-pure-0);
-    --text-disabled: var(--color-cool-60);
-    /* flavor */
-    --text-flavor-primary: var(--color-blue-80);
-    --text-flavor-secondary: var(--color-yellow-80);
-    --text-flavor-positive: var(--color-green-80);
-    --text-flavor-warning: var(--color-orange-80);
-    --text-flavor-negative: var(--color-red-80);
-    --text-flavor-info: var(--color-purple-80);
-
+@media (prefers-contrast: more){
+  :root {
+  
     /* SURFACE */
     --surface-default: var(--color-pure-0);
     --surface-default-inverse: var(--color-pure-1000);
-    /* ERROR in variable name: surface-Header Bar */
+    --surface-hover: var(--color-cool-20);
+    --surface-selected: var(--color-blue-10);
+    --surface-selected-hover: var(--color-blue-20);
+    --surface-disabled: var(--color-cool-30);
     --surface-cool: var(--color-cool-10);
     --surface-warm: var(--color-warm-10);
-    --surface-hover: var(--color-cool-20);
-    --surface-pressed: var(--color-blue-10);
-    --surface-pressed-hover: var(--color-blue-20);
-    /* flavor */
-    --surface-flavor-primary: var(--color-blue-60);
-    --surface-flavor-primary-subtle: var(--color-blue-10);
-    --surface-flavor-secondary: var(--color-yellow-60);
-    --surface-flavor-secondary-subtle: var(--color-yellow-10);
-    --surface-flavor-positive: var(--color-green-60);
-    --surface-flavor-positive-subtle: var(--color-green-10);
-    --surface-flavor-warning: var(--color-orange-60);
-    --surface-flavor-warning-subtle: var(--color-orange-10);
-    --surface-flavor-negative: var(--color-red-60);
-    --surface-flavor-negative-subtle: var(--color-red-10);
-    --surface-flavor-info: var(--color-purple-60);
-    --surface-flavor-info-subtle: var(--color-purple-10);
-    --surface-disabled: var(--color-cool-30);
-
+    --surface-primary: var(--color-blue-80);
+    --surface-primary-subtle: var(--color-blue-10);
+    --surface-secondary: var(--color-yellow-80);
+    /* avatar */
+    --surface-avatar-blue: var(--color-blue-80);
+    --surface-avatar-green: var(--color-green-60);
+    --surface-avatar-orange: var(--color-orange-50);
+    --surface-avatar-pink: var(--color-pink-80);
+    --surface-avatar-purple: var(--color-purple-80);
+    --surface-avatar-teal: var(--color-teal-80);
+    --surface-avatar-yellow: var(--color-yellow-50);
+    --surface-secondary-subtle: var(--color-yellow-10);
+    --surface-positive: var(--color-green-80);
+    --surface-positive-subtle: var(--color-green-10);
+    --surface-warning: var(--color-orange-80);
+    --surface-warning-subtle: var(--color-orange-10);
+    --surface-negative: var(--color-red-80);
+    --surface-negative-subtle: var(--color-red-10);
+    --surface-info: var(--color-purple-80);
+    --surface-info-subtle: var(--color-purple-10);
+  
     /* BORDER */
     --border-default: var(--color-cool-100);
-    --border-subtle: var(--color-cool-80);
+    --border-selected: var(--color-cool-90);
     --border-hover: var(--color-cool-90);
-    --border-pressed: var(--color-cool-90);
+    --border-subtle: var(--color-cool-80);
     --border-disabled: var(--color-cool-20);
-    /* flavor */
-    --border-flavor-primary: var(--color-blue-70);
-    --border-flavor-secondary: var(--color-yellow-70);
-    --border-flavor-positive: var(--color-green-70);
-    --border-flavor-warning: var(--color-orange-70);
-    --border-flavor-negative: var(--color-red-70);
-    --border-flavor-info: var(--color-purple-70);
     --border-pure: var(--color-pure-0);
-
-    /* ICON */
-    --icon-default: var(--color-cool-100);
-    --icon-subtle: var(--color-cool-80);
-    --icon-inverse: var(--color-pure-0);
-    --icon-disabled: var(--color-cool-60);
-    /* flavor */
-    --icon-flavor-primary: var(--color-blue-80);
-    --icon-flavor-secondary: var(--color-yellow-80);
-    --icon-flavor-positive: var(--color-green-80);
-    --icon-flavor-warning: var(--color-orange-80);
-    --icon-flavor-negative: var(--color-red-80);
-    --icon-flavor-info: var(--color-purple-80);
-    --icon-light: var(--color-pure-0);
-
-    /* COMPONENT */
-    /* avatar */
-    --component-avatar-blue: var(--color-blue-80);
-    --component-avatar-green: var(--color-green-60);
-    --component-avatar-orange: var(--color-orange-50);
-    --component-avatar-pink: var(--color-pink-80);
-    --component-avatar-purple: var(--color-purple-80);
-    --component-avatar-teal: var(--color-teal-80);
-    --component-avatar-yellow: var(--color-yellow-50);
-    /* button */
+    --border-primary-main: var(--color-blue-80);
+    --border-primary: var(--color-blue-70);
+    --border-secondary: var(--color-yellow-70);
+    --border-positive: var(--color-green-70);
+    --border-warning: var(--color-orange-70);
+    --border-negative: var(--color-red-70);
+    --border-info: var(--color-purple-70);
+  
+    /* MAIN */
+    --main-default: var(--color-cool-100);
+    --main-subtle: var(--color-cool-90);
+    --main-primary: var(--color-blue-80);
+    --main-secondary: var(--color-yellow-80);
+    --main-positive: var(--color-green-80);
+    --main-warning: var(--color-orange-80);
+    --main-negative: var(--color-red-80);
+    --main-info: var(--color-purple-80);
+    --main-disabled: var(--color-cool-60);
+    --main-light: var(--color-pure-0);
+    --main-inverse: var(--color-pure-0);
+  
+    /* STATE */
+    /* disabled */
+    --state-disabled-disabled: var(--color-cool-30);
+    /* default */
+    --state-default-enabled: var(--color-pure-0);
+    --state-default-hover: var(--color-cool-20);
+    --state-default-selected: var(--color-blue-10);
+    --state-default-focus: var(--color-pure-0);
     /* primary */
-    --component-button-primary-active: var(--color-blue-80);
-    --component-button-primary-hover: var(--color-blue-70);
-    --component-button-primary-pressed: var(--color-blue-90);
-    --component-button-primary-focus: var(--color-blue-80);
-    --component-button-primary-disabled: var(--surface-disabled);
-    --component-button-secondary: var(--color-yellow-80);
-    --component-button-positive: var(--color-green-80);
-    --component-button-warning: var(--color-orange-80);
-    --component-button-negative: var(--color-red-80);
-    --component-button-info: var(--color-purple-80);
-    /* outline-text */
-    --component-button-outline-text-active: var(--surface-default);
-    --component-button-outline-text-hover: var(--surface-hover);
-    --component-button-outline-text-pressed: var(--surface-pressed);
-    --component-button-outline-text-focus: var(--surface-default);
-    --component-button-outline-text-disabled: var(--surface-disabled);
-    --component-button-outline-text-text: var(--text-flavor-primary);
-    --component-button-outline-text-text-subtle: var(--text-default);
-    --component-button-outline-text-border: var(--color-blue-60);
-    --component-button-outline-text-border-focus: var(--border-flavor-primary);
-    --component-button-outline-text-border-subtle: var(--border-default);
+    --state-primary-enabled: var(--color-blue-80);
+    --state-primary-hover: var(--color-blue-70);
+    --state-primary-selected: var(--color-blue-90);
+    --state-primary-focus: var(--color-blue-80);
+    /* secondary */
+    --state-secondary-enabled: var(--color-yellow-80);
+    --state-secondary-hover: var(--color-yellow-70);
+    --state-secondary-selected: var(--color-yellow-90);
+    --state-secondary-focus: var(--color-yellow-80);
+    /* negative */
+    --state-negative-enabled: var(--color-red-80);
+    --state-negative-hover: var(--color-red-70);
+    --state-negative-selected: var(--color-red-90);
+    --state-negative-focus: var(--color-red-80);
+    /* info */
+    --state-info-enabled: var(--color-purple-80);
+    --state-info-hover: var(--color-purple-70);
+    --state-info-selected: var(--color-purple-90);
+    --state-info-focus: var(--color-purple-80);
     /* Inverse */
-    --component-button-Inverse-active: var(--color-pure-1000);
-    --component-button-Inverse-hover: var(--color-cool-90);
-    --component-button-Inverse-Pressed: var(--color-pure-1000);
-    --component-button-Inverse-focus: var(--color-pure-1000);
-    --component-button-Inverse-disabled: var(--surface-disabled);
-    /* top app bar */
-    /* ERROR in variable name: component-top app bar-top app bar */
-
+    --state-inverse-enabled: var(--color-pure-1000);
+    --state-inverse-hover: var(--color-cool-90);
+    --state-inverse-selected: var(--color-pure-1000);
+    --state-inverse-focus: var(--color-pure-1000);
+    /* positive */
+    --state-positive-enabled: var(--color-green-80);
+    --state-positive-hover: var(--color-green-70);
+    --state-positive-selected: var(--color-green-90);
+    --state-positive-focus: var(--color-green-80);
+  
     /* SPACING */
     --spacing-none: var(--spacing-0);
     --spacing-minimum: var(--spacing-1);
-    /* ERROR in variable name: spacing-very small */
-    --spacing-small: var(--spacing-3);
-    --spacing-medium: var(--spacing-4);
-    --spacing-large: var(--spacing-5);
-    /* ERROR in variable name: spacing-very large */
-    --spacing-xl: var(--spacing-7);
-    --spacing-xxl: var(--spacing-8);
-    --spacing-xxxl: var(--spacing-9);
-    --spacing-4xl: var(--spacing-10);
-    --spacing-5xl: var(--spacing-11);
-    --spacing-6xl: var(--spacing-12);
-    --spacing-7xl: var(--spacing-13);
-    --spacing-8xl: var(--spacing-14);
-    --spacing-9xl: var(--spacing-15);
-
+    --spacing-small: var(--spacing-2);
+    --spacing-medium: var(--spacing-3);
+    --spacing-large: var(--spacing-4);
+    --spacing-xl: var(--spacing-5);
+    --spacing-2xl: var(--spacing-6);
+    --spacing-3xl: var(--spacing-7);
+    --spacing-4xl: var(--spacing-8);
+    --spacing-5xl: var(--spacing-9);
+    --spacing-6xl: var(--spacing-10);
+    --spacing-7xl: var(--spacing-11);
+    --spacing-8xl: var(--spacing-12);
+    --spacing-9xl: var(--spacing-13);
+    --spacing-10xl: var(--spacing-14);
+    --spacing-11xl: var(--spacing-15);
+  
     /* RADIUS */
     --radius-none: 0px;
     --radius-minimal: 0px;
     --radius-rounded: 0px;
     --radius-large: 0px;
-    --radius-wide: 0px;
+    --radius-xl: 0px;
     --radius-full: 0px;
   }
 }

@@ -5,17 +5,17 @@ export default css`
     border: none;
     display: flex;
     width: fit-content;
-    padding: var(--spacing-1) var(--spacing-4);
+    padding: var(--spacing-minimum) var(--spacing-large);
     font-weight: 500;
     font-size: 14px;
-    color: var(--text-disabled);
-    --icon-color: var(--text-disabled);
+    color: var(--main-disabled);
+    --icon-color: var(--main-disabled);
     cursor: pointer;
   }
 
   :host([active]) > * {
-    color: var(--text-default);
+    color: var(--main-default);
     background-color: var(--surface-default);
-    --icon-color: var(--icon-default);
+    --icon-color: var(--main-default);
   }
 `;

@@ -1,10 +1,10 @@
 import { css } from "lit";
 export default css`
   .drawer-footer-profile {
-    padding: var(--spacing-4);
+    padding: var(--spacing-large);
     background: var(--surface-default-inverse);
     display: flex;
-    gap: var(--spacing-4);
+    gap: var(--spacing-large);
     justify-content: space-between;
     align-items: center;
 
@@ -15,13 +15,13 @@ export default css`
 
     h1 {
       font: var(--body-small);
-      color: var(--text-inverse);
+      color: var(--main-inverse);
       margin: 0;
     }
 
     h2 {
       font: var(--body-x-small);
-      color: var(--color-cool-50);
+      color: var(--main-subtle);
       margin: 0;
     }
 
@@ -42,7 +42,7 @@ export default css`
   }
 
   .drawer-footer-logo {
-    padding: var(--spacing-3) var(--spacing-4);
+    padding: var(--spacing-medium) var(--spacing-large);
     background: var(--surface);
     display: flex;
     flex-direction: column;
@@ -51,12 +51,12 @@ export default css`
 
     .logo {
       width: var(--spacing-20);
-      height: var(--spacing-8);
+      height: var(--spacing-4xl);
     }
 
     h3 {
       font: var(--body-x-small);
-      color: var(--text-subtle);
+      color: var(--main-subtle);
       text-align: center;
       font-weight: 400;
     }

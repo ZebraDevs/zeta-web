@@ -1,8 +1,8 @@
 import { css } from "lit";
 export default css`
   :host {
-    --handle-size: var(--spacing-4);
-    --track-height: var(--spacing-1);
+    --handle-size: var(--spacing-large);
+    --track-height: var(--spacing-minimum);
   }
 
   .slider {
@@ -15,12 +15,12 @@ export default css`
 
   .track {
     background-color: var(--surface-disabled);
-    height: var(--spacing-1);
+    height: var(--spacing-minimum);
     width: 100%;
   }
 
   .handle {
-    background-color: var(--icon-default);
+    background-color: var(--main-default);
     width: var(--handle-size);
     height: var(--handle-size);
     cursor: pointer;
@@ -37,7 +37,7 @@ export default css`
 
   :host([disabled]) {
     .handle {
-      background-color: var(--icon-disabled);
+      background-color: var(--main-disabled);
       cursor: not-allowed;
     }
 
@@ -51,7 +51,7 @@ export default css`
   }
 
   .selected-area {
-    background-color: var(--icon-default);
+    background-color: var(--main-default);
     height: var(--track-height);
     position: absolute;
     z-index: 1;
@@ -67,7 +67,7 @@ export default css`
     position: absolute;
     z-index: 5;
     margin-left: var(--spacing-0-5);
-    margin-right: var(--spacing-1);
+    margin-right: var(--spacing-minimum);
   }
 
   .step {

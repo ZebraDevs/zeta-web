@@ -2,8 +2,8 @@ import { css } from "lit";
 export default css`
   :host([size="small"]) {
     .container {
-      width: var(--spacing-2);
-      height: var(--spacing-2);
+      width: var(--spacing-small);
+      height: var(--spacing-small);
     }
 
     zeta-icon {
@@ -12,8 +12,8 @@ export default css`
   }
 
   :host([size="medium"]) .container {
-    width: var(--spacing-3);
-    height: var(--spacing-3);
+    width: var(--spacing-medium);
+    height: var(--spacing-medium);
 
     .icon {
       position: absolute;
@@ -25,8 +25,8 @@ export default css`
   }
 
   :host([size="large"]) .container {
-    width: var(--spacing-5);
-    height: var(--spacing-5);
+    width: var(--spacing-xl);
+    height: var(--spacing-xl);
 
     zeta-icon {
       --icon-size: 12px;
@@ -34,7 +34,7 @@ export default css`
   }
 
   :host([inverse]) .container {
-    border: var(--border-size-medium) solid var(--icon-default);
+    border: var(--border-size-medium) solid var(--main-default);
   }
 
   :host {
@@ -48,20 +48,20 @@ export default css`
       justify-content: center;
       align-items: center;
       font: var(--label-indicator);
-      color: var(--text-inverse);
+      color: var(--main-inverse);
       aspect-ratio: 1 / 1;
     }
   }
 
   .container.icon {
-    background-color: var(--icon-flavor-primary);
+    background-color: var(--main-primary);
   }
 
   .container.notification {
-    background-color: var(--icon-flavor-negative);
+    background-color: var(--main-negative);
   }
 
   :host zeta-icon {
-    --icon-color: var(--icon-inverse);
+    --icon-color: var(--main-inverse);
   }
 `;

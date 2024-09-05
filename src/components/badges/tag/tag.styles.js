@@ -26,12 +26,12 @@ export default css`
   }
 
   .point {
-    fill: var(--icon-light);
+    fill: var(--main-light);
   }
 
   .text {
-    background: var(--icon-light);
-    padding: var(--spacing-1) var(--spacing-2);
+    background: var(--main-light);
+    padding: var(--spacing-minimum) var(--spacing-small);
     font: var(--body-small);
   }
 `;

@@ -24,19 +24,19 @@ export default css`
   }
 
   .droppable-item:active {
-    background-color: var(--surface-pressed);
+    background-color: var(--surface-selected);
   }
 
   :host([disabled]) .droppable-item {
     background-color: var(--surface-disabled);
-    color: var(--text-disabled);
+    color: var(--main-disabled);
   }
 
   :host ::slotted(zeta-icon) {
-    --icon-color: var(--icon-subtle);
+    --icon-color: var(--main-subtle);
   }
   :host([disabled]) ::slotted(zeta-icon) {
-    --icon-color: var(--icon-disabled);
+    --icon-color: var(--main-disabled);
   }
 
   ::slotted(zeta-icon) {

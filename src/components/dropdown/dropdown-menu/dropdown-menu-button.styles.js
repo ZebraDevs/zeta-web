@@ -15,7 +15,7 @@ export default css`
   }
 
   .droppable-item:active {
-    background-color: var(--surface-pressed);
+    background-color: var(--surface-selected);
   }
 
   :host([rounded]) .droppable-item {

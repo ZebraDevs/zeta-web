@@ -6,7 +6,6 @@ import { ifDefined } from "lit/directives/if-defined.js";
 import { styleMap } from "lit/directives/style-map.js";
 import "../icon/icon.js";
 import type { Flavor } from "../../mixins/flavor.js";
-
 //TODO text overflow broken
 
 export type ButtonFlavor = Exclude<Flavor, "inverse">;

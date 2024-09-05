@@ -1,10 +1,10 @@
 import { css } from "lit";
 export default css`
   .system-banner {
-    height: var(--spacing-6);
-    line-height: var(--spacing-6);
+    height: var(--spacing-2xl);
+    line-height: var(--spacing-2xl);
     white-space: nowrap;
-    padding: var(--spacing-2) var(--spacing-4);
+    padding: var(--spacing-small) var(--spacing-large);
     display: flex;
     justify-content: space-between;
     overflow: hidden;
@@ -18,36 +18,36 @@ export default css`
     }
     .leading,
     ::slotted([slot="leading icon"]) {
-      padding-inline-end: var(--spacing-2);
+      padding-inline-end: var(--spacing-small);
     }
 
     .trailing,
     ::slotted([slot="trailing icon"]) {
-      padding-inline-start: var(--spacing-2);
+      padding-inline-start: var(--spacing-small);
       justify-self: end;
     }
   }
 
   .system-banner,
   :host([status="default"]) > .system-banner {
-    background: var(--surface-flavor-primary);
-    color: var(--text-inverse);
-    --icon-color: var(--text-inverse);
+    background: var(--surface-primary);
+    color: var(--main-inverse);
+    --icon-color: var(--main-inverse);
   }
   :host([status="positive"]) > .system-banner {
-    background: var(--surface-flavor-positive);
-    color: var(--text-inverse);
-    --icon-color: var(--text-inverse);
+    background: var(--surface-positive);
+    color: var(--main-inverse);
+    --icon-color: var(--main-inverse);
   }
   :host([status="warning"]) > .system-banner {
-    background: var(--surface-flavor-warning);
-    color: var(--text-default);
-    --icon-color: var(--text-default);
+    background: var(--surface-warning);
+    color: var(--main-default);
+    --icon-color: var(--main-default);
   }
   :host([status="negative"]) > .system-banner {
-    background: var(--surface-flavor-negative);
-    color: var(--text-inverse);
-    --icon-color: var(--text-inverse);
+    background: var(--surface-negative);
+    color: var(--main-inverse);
+    --icon-color: var(--main-inverse);
   }
 
   :host([rounded]) > .system-banner {

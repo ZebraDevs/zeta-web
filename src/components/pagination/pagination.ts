@@ -87,6 +87,7 @@ export class ZetaPagination extends Contourable(LitElement) {
   };
 
   getIconButton(iconName: string, pageNumber: number, disabled: boolean) {
+    // TODO: need to migrate away from icon button, the icon colour and size is now incorrect on the text flavour
     return html`<zeta-icon-button
       class=${iconName}
       .disabled=${disabled}

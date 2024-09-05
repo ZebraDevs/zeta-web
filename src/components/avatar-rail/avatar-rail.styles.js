@@ -7,7 +7,7 @@ export default css`
     max-width: 100%;
     overflow-x: auto;
     height: min-content;
-    gap: var(--spacing-2);
+    gap: var(--spacing-small);
   }
 
   :host([show-close]) {

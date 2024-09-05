@@ -31,7 +31,7 @@ export default css`
 
   .handle {
     display: inherit;
-    background-color: var(--color-cool-80);
+    background-color: var(--surface-disabled);
     width: var(--spacing-4xl);
     height: var(--spacing-minimum);
     border-radius: var(--radius-full);
@@ -50,7 +50,7 @@ export default css`
     display: inherit;
     width: calc(100% - var(--spacing-xl) * 2);
     justify-content: flex-start;
-    color: var(--text-default);
+    color: var(--main-default);
     padding: var(--spacing-xl);
     font: var(--title-large);
   }
