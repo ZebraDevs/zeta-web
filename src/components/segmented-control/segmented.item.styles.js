@@ -11,6 +11,7 @@ export default css`
     color: var(--main-disabled);
     --icon-color: var(--main-disabled);
     cursor: pointer;
+    transition: color 0.3s ease-in-out;
   }
 
   :host([active]) > * {
