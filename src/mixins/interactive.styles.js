@@ -21,6 +21,7 @@ export default css`
   :host([disabled]) ::slotted(zeta-icon) {
     cursor: not-allowed;
     --icon-color: var(--main-disabled);
+    color: var(--main-disabled);
   }
 
   :host(:focus-visible) .interactive-target,

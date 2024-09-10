@@ -9,7 +9,6 @@ export default css`
     flex-wrap: nowrap;
     align-items: center;
     color: var(--main-subtle);
-    text-decoration: none;
     gap: var(--spacing-small);
   }
 

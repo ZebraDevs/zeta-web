@@ -5,7 +5,7 @@ import type { AvatarSize } from "../avatar/avatar-size.js";
 
 /** Avatar rail is a container for multiple avatars.
  *
- * @slot - The avatars to be displayed in the rail.
+ * @slot {zeta-avatar-rail[]} - The avatars to be displayed in the rail.
  */
 @customElement("zeta-avatar-rail")
 export class ZetaAvatarRail extends LitElement {

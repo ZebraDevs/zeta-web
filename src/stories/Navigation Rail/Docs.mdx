@@ -1,0 +1,32 @@
+import { Canvas, Meta, Description, ArgTypes, Title } from "@storybook/blocks";
+
+import * as NavigationRail from "./navigation-rail.stories";
+import * as NavigationRailItem from "./navigation-rail-item.stories";
+
+<Meta of={NavigationRail} title="Navigation Rail" />
+
+<Title />
+
+<Canvas of={NavigationRail.NavigationRail}/>
+
+<Description of={NavigationRail} />
+
+<ArgTypes of={NavigationRail} />
+
+## Navigation Rail with Navigation
+
+To add navigation to a navigation rail, add provide urls to the `href` attribute of each `zeta-navigation-rail-item`.
+
+You can then conditionally set the `selected` attribute on the current pages navigation item based on the current url.
+
+To see this working, [see the example here](./?path=/story/navigation-rail--navigation-rail-with-navigation).
+
+# Navigation Rail item
+
+<Canvas of={NavigationRailItem.NavigationRailItem}/>
+
+<Description of={NavigationRailItem} />
+
+<ArgTypes of={NavigationRailItem}/>
+
+

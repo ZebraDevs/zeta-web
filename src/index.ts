@@ -41,6 +41,8 @@ import { ZetaNavigationDrawerHeader } from "./components/navigation-drawer/navig
 import { ZetaNavigationDrawerItem } from "./components/navigation-drawer/navigation-drawer-item/navigation-drawer-item.js";
 import { ZetaNavigationDrawerSubItem } from "./components/navigation-drawer/navigation-drawer-sub-item/navigation-drawer-sub-item.js";
 import { ZetaNavigationProfile } from "./components/navigation-profile/navigation-profile.js";
+import { ZetaNavigationRail } from "./components/navigation-rail/navigation-rail.js";
+import { ZetaNavigationRailItem } from "./components/navigation-rail/navigation-rail-item.js";
 import { ZetaNotificationIndicator } from "./components/badges/indicators/indicators.js";
 import { ZetaPagination } from "./components/pagination/pagination.js";
 import { ZetaPriorityPill } from "./components/badges/priority-pill/priority-pill.js";
@@ -108,6 +110,8 @@ export {
   ZetaNavigationDrawerItem,
   ZetaNavigationDrawerSubItem,
   ZetaNavigationProfile,
+  ZetaNavigationRail,
+  ZetaNavigationRailItem,
   ZetaNotificationIndicator,
   ZetaPagination,
   ZetaPriorityPill,

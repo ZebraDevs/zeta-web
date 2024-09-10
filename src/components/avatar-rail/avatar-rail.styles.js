@@ -49,4 +49,8 @@ export default css`
   :host([size="xxxl"]) {
     --avatar-size: 200px;
   }
+
+  ::slotted(:not(zeta-avatar)) {
+    display: none;
+  }
 `;
