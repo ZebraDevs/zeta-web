@@ -54,6 +54,7 @@ import { ZetaSegmentedControl } from "./components/segmented-control/segmented-c
 import { ZetaSegmentedItem } from "./components/segmented-control/segmented-item.js";
 import { ZetaSlider } from "./components/slider/slider.js";
 import { ZetaSliderInputField } from "./components/slider/slider-input-field/slider-input-field.js";
+import { ZetaSnackbar } from "./components/snackbar/snackbar.js";
 import { ZetaStatusChip } from "./components/chips/status-chip/status-chip.js";
 import { ZetaStatusLabel } from "./components/badges/status-label/status-label.js";
 import { ZetaStepper } from "./components/stepper/stepper.js";
@@ -123,6 +124,7 @@ export {
   ZetaSegmentedItem,
   ZetaSlider,
   ZetaSliderInputField,
+  ZetaSnackbar,
   ZetaStatusChip,
   ZetaStatusLabel,
   ZetaStepper,
