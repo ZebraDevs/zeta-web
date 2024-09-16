@@ -1,0 +1,29 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: zeta-web
+  title: Zeta Web Components Library
+  description: |
+    A library of UI Web components for the Zeta project.
+    This library is intended to be used by any Zebra web application to ensure a consistent look and feel by using UI components that implement the Zebra Design System User Experience.
+  links:
+    - url: https://design-zebra.web.app/web/storybook/
+      title: Storybook
+    - url: https://design-zebra.web.app/web/tsdoc/
+      title: TSDoc
+#    - url: https://npmjs.com/package/@zebra/zeta-web
+#      title: npm
+  tags: 
+    - typescript
+    - web-components
+  annotations:
+    github.com/project-slug: zebratechnologies/zeta-web
+    github.com/team-slug: zebratechnologies/front-end-development
+#    backstage.io/techdocs-ref: dir:.
+spec:
+  type: library
+  owner: group:DMO-FED
+  lifecycle: experimental
+  system: zeta
+  dependsOn:
+    - Resource:zeta-figma
