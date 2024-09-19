@@ -8,6 +8,9 @@ import { customElement, property } from "lit/decorators.js";
  * @slot - The content of the appbar.
  * @slot leading - The content to be placed at the start of the appbar.
  * @slot trailing - The content to be placed at the end of the appbar.
+ *
+ * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-37&node-type=canvas&m=dev
+ * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/appbar--docs
  */
 @customElement("zeta-appbar")
 export class ZetaAppbar extends LitElement {

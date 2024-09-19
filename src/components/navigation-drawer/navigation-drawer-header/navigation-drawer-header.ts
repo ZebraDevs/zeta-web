@@ -8,6 +8,9 @@ import styles from "./navigation-drawer-header.styles.js";
  * @slot - The headline text.
  * @slot leading - Content placed before the headline.
  * @slot trailing - Content placed after the headline.
+ * 
+ * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=1075-21296&node-type=canvas&m=dev
+ * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/navigation-drawer--docs
  */
 @customElement("zeta-navigation-drawer-header")
 export class ZetaNavigationDrawerHeader extends LitElement {

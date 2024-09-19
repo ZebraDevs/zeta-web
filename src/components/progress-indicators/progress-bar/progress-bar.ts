@@ -4,7 +4,11 @@ import styles from "./progress-bar.styles.js";
 import { Contourable } from "../../../mixins/mixins.js";
 import { styleMap } from "lit/directives/style-map.js";
 
-/** Progress indicators express an unspecified wait time or display the length of a process. */
+/** Progress indicators express an unspecified wait time or display the length of a process.
+ *
+ * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-22&node-type=canvas&m=dev
+ * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/progress--docs
+ */
 @customElement("zeta-progress-bar")
 export class ZetaProgressBar extends Contourable(LitElement) {
   /** The size of the progress indicator. Can either be 'medium' or 'thin'. */

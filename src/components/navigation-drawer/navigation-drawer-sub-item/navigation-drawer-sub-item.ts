@@ -7,6 +7,9 @@ import { Contourable, Interactive } from "../../../mixins/mixins.js";
  * A navigation sub item to be used in a zeta-navigation-drawer
  *
  * @slot - The headline text.
+ *
+ * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=1075-21296&node-type=canvas&m=dev
+ * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/navigation-drawer--docs
  */
 @customElement("zeta-navigation-drawer-sub-item")
 export class ZetaNavigationDrawerSubItem extends Contourable(Interactive(LitElement)) {

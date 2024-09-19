@@ -11,6 +11,9 @@ import { Interactive } from "../../mixins/interactive.js";
  *
  * @slot - The text of the snackbar.
  * @slot icon - The icon of the snackbar.
+ *
+ * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-13&node-type=canvas&m=dev
+ * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/snackbar--docs
  */
 @customElement("zeta-snackbar")
 export class ZetaSnackbar extends Interactive(LitElement) {
@@ -66,15 +69,13 @@ export class ZetaSnackbar extends Interactive(LitElement) {
       </div>
       <div>
         ${this.actionLabel && this.actionClick ? html` <button id="action" @click=${this.actionClick}>${this.actionLabel}</button> ` : nothing}
-        ${
-          this.hasCloseAction
-            ? html`
+        ${this.hasCloseAction
+          ? html`
               <button id="closeButton" @click=${() => this.remove()}>
                 <zeta-icon id="closeIcon" .rounded=${this._rounded}>close</zeta-icon>
               </button>
             `
-            : nothing
-        }
+          : nothing}
       </div>
     `;
   }

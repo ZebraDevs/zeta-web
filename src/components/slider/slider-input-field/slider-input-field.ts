@@ -14,6 +14,9 @@ import "../slider.js";
  * An input field using a Zeta Slider
  *
  * @event {CustomEvent<ZetaSliderEvent>} ZetaSliderEvent:zeta-slider-change - Fired whenever value of slider is changed. Contains a single entry in detail: `value:number`.
+ *
+ * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=875-11860&node-type=canvas&m=dev
+ * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/slider--docs
  */
 @customElement("zeta-slider-input-field")
 export class ZetaSliderInputField extends Contourable(LitElement) {
@@ -71,42 +74,45 @@ export class ZetaSliderInputField extends Contourable(LitElement) {
   }
 
   protected override render() {
-    return html` 
-    ${this.getLabel()}
-    <div class="slider-input-container" id="test">
-      <div class="slider-container">
-        <zeta-slider
-          id="slider"
-          stepIncrement=${ifDefined(this.stepIncrement)}
-          .rounded=${this.rounded}
-          .disabled=${this.disabled}
-          value=${ifDefined(this.value)}
+    return html`
+      ${this.getLabel()}
+      <div class="slider-input-container" id="test">
+        <div class="slider-container">
+          <zeta-slider
+            id="slider"
+            stepIncrement=${ifDefined(this.stepIncrement)}
+            .rounded=${this.rounded}
+            .disabled=${this.disabled}
+            value=${ifDefined(this.value)}
+            min=${this.min}
+            max=${this.max}
+            @change=${this.sliderChange}
+          >
+          </zeta-slider>
+          <div class="range-label-container">
+            <div>${this.min}</div>
+            <div>${this.max}</div>
+          </div>
+        </div>
+        <input
+          id="slider-input"
+          aria-label=${this.label ?? "slider input"}
+          ?disabled=${this.disabled}
+          .id=${this.id}
+          class="contourable-target"
+          type="number"
           min=${this.min}
           max=${this.max}
-          @change=${this.sliderChange}>
-        </zeta-slider>
-        <div class="range-label-container">
-          <div>${this.min}</div>
-          <div>${this.max}</div>
-        </div>
+          name=${ifDefined(this.name)}
+          step=${ifDefined(this.stepIncrement)}
+          value=${ifDefined(live(this.value))}
+          @input=${(e: Event) => {
+            this.value = parseInt((e.target as HTMLInputElement).value);
+            this.onValueUpdated();
+          }}
+        />
       </div>
-      <input 
-        id="slider-input" 
-        aria-label=${this.label ?? "slider input"} 
-        ?disabled=${this.disabled} 
-        .id=${this.id} 
-        class="contourable-target" 
-        type="number" 
-        min=${this.min} 
-        max=${this.max} 
-        name=${ifDefined(this.name)} 
-        step=${ifDefined(this.stepIncrement)} 
-        value=${ifDefined(live(this.value))}
-        @input=${(e: Event) => {
-        this.value = parseInt((e.target as HTMLInputElement).value);
-        this.onValueUpdated();
-      }} />
-    </div> `;
+    `;
   }
 
   static styles = [super.styles ?? [], styles];

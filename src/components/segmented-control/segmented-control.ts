@@ -16,6 +16,9 @@ const animationDuration = 300;
  * To set the active segment, set the `active` property on the `zeta-segmented-item` element.
  *
  * @slot {zeta-segmented-item[]} - The content of the segmented control. Should be a collection of `zeta-segmented-item` elements.
+ *
+ * @fimga https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=1046-20148&node-type=canvas&m=dev
+ * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/segmented-control--docs
  */
 @customElement("zeta-segmented-control")
 export class ZetaSegmentedControl extends Contourable(LitElement) {

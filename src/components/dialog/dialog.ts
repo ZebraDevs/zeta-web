@@ -17,6 +17,9 @@ import { styleMap } from "lit/directives/style-map.js";
  * @slot {zeta-button} confirm - Button used in footer. Must be of type zeta-button.
  * @slot {zeta-button} cancel - Button used in footer. Must be of type zeta-button.
  * @slot {zeta-button} other - Button used in footer. Must be of type zeta-button.
+ *
+ * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-14&node-type=canvas&m=dev
+ * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/dialog--docs
  */
 @customElement("zeta-dialog")
 export class ZetaDialog extends Contourable(Popup(LitElement)) {
@@ -101,20 +104,16 @@ export class ZetaDialog extends Contourable(Popup(LitElement)) {
           </header>
           <div class="body"><slot></slot></div>
           <footer>
-            <slot
-              @click=${() => this.hide("other")}
-              @slotchange=${this.handleActionButtonChange}
-              name="other"
-            ></slot>
+            <slot @click=${() => this.hide("other")} @slotchange=${this.handleActionButtonChange} name="other"></slot>
             <div class="actions">
               <slot @click=${() => this.hide("cancel")} @slotchange=${this.handleActionButtonChange} name="cancel"></slot>
               <slot
                 @click=${(e: Event) => {
-        const btn = e.target as HTMLButtonElement;
-        if (btn.type !== "submit") {
-          this.hide("confirm");
-        }
-      }}
+                  const btn = e.target as HTMLButtonElement;
+                  if (btn.type !== "submit") {
+                    this.hide("confirm");
+                  }
+                }}
                 @slotchange=${this.handleActionButtonChange}
                 name="confirm"
               ></slot>

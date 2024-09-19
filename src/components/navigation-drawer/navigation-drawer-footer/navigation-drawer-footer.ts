@@ -11,6 +11,9 @@ import ZebraLogo from "../../../../assets/zebra-logo.svg";
  * @slot leading - Content placed before the headline. Not shown if 'variant' is set to 'logo'.
  * @slot trailing - Content placed after the headline. Not shown if 'variant' is set to 'logo'.
  * @slot logo - The element that replaces the default Zebra logo. Not shown if 'variant' is set to 'profile'.
+ * 
+ * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=1075-21296&node-type=canvas&m=dev
+ * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/navigation-drawer--docs
  */
 @customElement("zeta-navigation-drawer-footer")
 export class ZetaNavigationDrawerFooter extends LitElement {

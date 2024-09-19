@@ -9,6 +9,9 @@ import { styleMap } from "lit/directives/style-map.js";
 /** Progress indicators express an unspecified wait time or display the length of a process.
  *
  *  @event {CustomEvent<ZetaCancelUploadEvent>} ZetaCancelUploadEvent:zeta-cancel-upload - Fired when the cancel button is clicked.
+ *
+ * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-22&node-type=canvas&m=dev
+ * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/progress--docs
  */
 @customElement("zeta-progress-circle")
 export class ZetaProgressCircle extends Contourable(LitElement) {

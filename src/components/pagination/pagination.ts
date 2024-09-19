@@ -11,6 +11,9 @@ import "../icon/icon.js";
  * Pagination needs a description.
  *
  *  @event {CustomEvent<ZetaPageEvent>} ZetaPageEvent:zeta-page-change - Fired when page change. Contains a single value in details: `page: number`.
+ *
+ * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-24&node-type=canvas&m=dev
+ * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/pagination--docs
  */
 
 @customElement("zeta-pagination")

@@ -12,6 +12,9 @@ import "../../icon/icon.js";
  *
  * @slot - Button label content.
  * @slot {zeta-icon} icon - Icon to display on leading side of button. Full list of icons can be found at https://zeta-icons.web.app/
+ *
+ * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-45&node-type=canvas&m=dev
+ * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/button-group--docs
  */
 @customElement("zeta-button-group-item")
 export class ZetaButtonGroupItem extends Contourable(Interactive(LitElement)) {
@@ -53,9 +56,9 @@ export class ZetaButtonGroupItem extends Contourable(Interactive(LitElement)) {
         <label class="text ${this.addGap ? "pad" : ""}">
           <slot
             @slotchange=${() => {
-        this.addGap = this.textContent?.trim() !== "";
-        this.requestUpdate();
-      }}
+              this.addGap = this.textContent?.trim() !== "";
+              this.requestUpdate();
+            }}
           >
           </slot>
         </label>
