@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import { customElement, property, queryAssignedElements } from "lit/decorators.js";
-import { LitElement, html, nothing } from "lit";
+import { LitElement, html } from "lit";
 import styles from "./dialog.styles.js";
 import { classMap } from "lit/directives/class-map.js";
 import { ZetaButton } from "../button/button.js";
 import { Contourable, Popup } from "../../mixins/mixins.js";
 import "../icon/icon.js";
-import { styleMap } from "lit/directives/style-map.js";
 
 /**
  * A reusable dialog or modal window with a customizable interface and functionality.
@@ -42,11 +41,16 @@ export class ZetaDialog extends Contourable(Popup(LitElement)) {
     this.hide(submitter.getAttribute("value") ?? this.returnValue);
   };
 
+  private _title: string = "";
   /** Title of the dialog. */
-  @property({ type: String }) title: string = "";
+  @property({ type: String })
+  get title() {
+    return this._title;
+  }
 
-  /** Icon displayed in the dialog header. */
-  @property({ type: Boolean }) hasIcon: boolean = false;
+  set title(value: string) {
+    this._title = value;
+  }
 
   /** Whether header text should be centered. */
   @property({ type: Boolean }) centered: boolean = false;
@@ -90,17 +94,12 @@ export class ZetaDialog extends Contourable(Popup(LitElement)) {
       col3: Boolean(this.otherBtn.length)
     });
 
-    const hide = styleMap({ display: "none" });
-    const icon = html`<span style="${this.icon && this.icon.length > 0 ? nothing : hide}">
-      <slot name="icon"></slot>
-    </span>`;
-
     return html`
       <dialog .returnValue=${this.returnValue} @click=${this.onBarrierClicked} id=${this.id} .open=${this.initialOpen}>
         <div class=${classes}>
           <header>
-            ${icon}
-            <h1 class="dialog-title">${this.title}</h1>
+            <slot name="icon"></slot>
+            <h1 class="dialog-title">${this._title}</h1>
           </header>
           <div class="body"><slot></slot></div>
           <footer>
@@ -109,11 +108,11 @@ export class ZetaDialog extends Contourable(Popup(LitElement)) {
               <slot @click=${() => this.hide("cancel")} @slotchange=${this.handleActionButtonChange} name="cancel"></slot>
               <slot
                 @click=${(e: Event) => {
-                  const btn = e.target as HTMLButtonElement;
-                  if (btn.type !== "submit") {
-                    this.hide("confirm");
-                  }
-                }}
+        const btn = e.target as HTMLButtonElement;
+        if (btn.type !== "submit") {
+          this.hide("confirm");
+        }
+      }}
                 @slotchange=${this.handleActionButtonChange}
                 name="confirm"
               ></slot>

@@ -54,7 +54,7 @@ export const Dialog: StoryObj = {
         }
       </style>
       <div class="box">
-        <zeta-dialog id="dialog1" .rounded=${args.rounded} .centered=${args.centered} .initialOpen=${true} title=${args.title}>
+        <zeta-dialog id="dialog1" .rounded=${args.rounded} .centered=${args.centered} .initialOpen=${true} .title=${args.title}>
           ${args.slot} ${args.icon ? html`<zeta-icon slot="icon">${args.icon}</zeta-icon>` : nothing}
           ${args.confirm && args.confirm.length > 0 ? html`<zeta-button slot="confirm">${args.confirm}</zeta-button>` : nothing}
           ${args.cancel && args.cancel.length > 0 ? html`<zeta-button slot="cancel">${args.cancel}</zeta-button>` : nothing}

@@ -1,6 +1,6 @@
 import { css } from "lit";
 export default css`
-  .banner {
+  :host {
     display: flex;
     flex-direction: row;
     padding: var(--spacing-medium);
@@ -18,18 +18,25 @@ export default css`
 
     > .trailing {
       flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-minimum);
+
       > .header {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
 
-        zeta-icon#close {
-          fill: var(--main-default);
+        zeta-icon-button {
+          margin-top: -4px;
+          margin-right: -4px;
+          --icon-button-color: transparent;
+          --icon-button-icon-color: var(--main-default);
           cursor: pointer;
         }
 
         > .title {
-          font: var(--title-medium);
+          font: var(--label-large);
         }
       }
       > .body {
@@ -39,7 +46,6 @@ export default css`
       }
 
       > .content {
-        margin-top: var(--spacing-medium);
         max-width: calc(100% - var(--spacing-3xl));
 
         > ::slotted(*) {
@@ -57,22 +63,18 @@ export default css`
     }
   }
 
-  :host([rounded]) > .banner {
-    border-radius: var(--radius-minimal);
-  }
-
+  :host([rounded]),
   :host([rounded]) .content ::slotted(*) {
     border-radius: var(--radius-minimal);
   }
 
-  .banner,
-  :host([status="default"]) > .banner {
+  :host([status="default"]) {
     border-color: var(--border-default);
     background: var(--surface-default);
     fill: var(--main-default);
   }
 
-  :host([status="info"]) > .banner {
+  :host([status="info"]) {
     border-color: var(--border-info);
     background: var(--surface-info-subtle);
     zeta-icon {
@@ -80,7 +82,7 @@ export default css`
     }
   }
 
-  :host([status="positive"]) > .banner {
+  :host([status="positive"]) {
     border-color: var(--border-positive);
     background: var(--surface-positive-subtle);
     zeta-icon {
@@ -88,7 +90,7 @@ export default css`
     }
   }
 
-  :host([status="warning"]) > .banner {
+  :host([status="warning"]) {
     border-color: var(--border-warning);
     background: var(--surface-warning-subtle);
 
@@ -97,7 +99,7 @@ export default css`
     }
   }
 
-  :host([status="negative"]) > .banner {
+  :host([status="negative"]) {
     border-color: var(--border-negative);
     background: var(--surface-negative-subtle);
     zeta-icon {

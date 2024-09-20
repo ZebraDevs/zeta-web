@@ -2,7 +2,7 @@ import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./in-page-banner.styles.js";
 import { Contourable } from "../../mixins/mixins.js";
-import "../icon/icon.js";
+import "../button/icon-button/icon-button.js";
 
 /**
  * Zeta in page banner component.
@@ -47,19 +47,17 @@ export class ZetaInPageBanner extends Contourable(LitElement) {
 
   protected render() {
     return html`
-      <div class="banner">
-        <div class="leading"><zeta-icon .rounded=${this.rounded}>${this.getIcon()}</zeta-icon></div>
-        <div class="trailing">
-          <div class="header">
-            <div class="title">${this.title}</div>
-            <zeta-icon id="close" .rounded=${this.rounded} .onclick=${() => this.remove()}>close</zeta-icon>
-          </div>
-          <div class="content">
-            <slot></slot>
-          </div>
-          <div class="footer">
-            <slot name="action"></slot>
-          </div>
+      <div class="leading"><zeta-icon .rounded=${this.rounded}>${this.getIcon()}</zeta-icon></div>
+      <div class="trailing">
+        <div class="header">
+          <div class="title">${this.title}</div>
+          <zeta-icon-button flavor="text" size="small" .rounded=${this.rounded} .onclick=${() => this.remove()}>close</zeta-icon-button>
+        </div>
+        <div class="content">
+          <slot></slot>
+        </div>
+        <div class="footer">
+          <slot name="action"></slot>
         </div>
       </div>
     `;

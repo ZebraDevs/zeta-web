@@ -1,5 +1,6 @@
 import { css } from "lit";
 //import styles from "../../mixins/breakpoints.styles.js";
+//TODO text-align is bleeding from outside the component.
 export default /*[styles, */ css`
   @media (max-width: --mobile-max-width) {
     dialog {
@@ -29,7 +30,7 @@ export default /*[styles, */ css`
   }
 
   dialog {
-    padding: 0;
+    padding: 0 var(--spacing-large);
     border: none;
     border-radius: inherit;
     background-color: var(--surface-default);
@@ -74,9 +75,10 @@ export default /*[styles, */ css`
 
   header {
     display: flex;
-    flex-direction: column;
+    flex-direction: var(--_dialog-header-direction, column);
     padding: var(--spacing-2xl) var(--spacing-2xl) var(--spacing-medium);
     row-gap: var(--spacing-small);
+    column-gap: var(--spacing-large);
   }
 
   footer {
