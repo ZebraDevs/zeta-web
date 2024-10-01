@@ -1,6 +1,9 @@
 import { css } from "lit";
 export default css`
   :host {
+    display: flex;
+    height: fit-content;
+    width: fit-content;
     cursor: pointer;
     flex-direction: column;
     align-items: center;
@@ -28,6 +31,13 @@ export default css`
   :host button {
     width: min-content;
     transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    border: none;
+    justify-content: center;
+    overflow-x: ellipsis;
+    font: var(--label-large);
+    gap: var(--spacing-small);
   }
 
   :host([size="large"]) > button {
@@ -74,6 +84,12 @@ export default css`
   /** BORDER RADIUS END */
 
   /** FLAVOR START */
+  :host([flavor="primary"]:not([disabled])) {
+    zeta-icon {
+      --icon-color: var(--main-inverse);
+    }
+  }
+
   :host([flavor="secondary"]:not([disabled])) {
     > button {
       background-color: var(--state-secondary-enabled);
@@ -113,5 +129,6 @@ export default css`
   :host([flavor="secondary"]:not([disabled])[extended]) > button > .label {
     color: var(--main-default);
   }
+
   /** FLAVOR END */
 `;

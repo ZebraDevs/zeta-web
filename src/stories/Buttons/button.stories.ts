@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html, nothing } from "lit";
 import { ZetaButton } from "../../components/button/button.js";
+import "../../components/button/base-button.js";
 import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
 import "../../components/icon/icon.js";
 
@@ -60,5 +61,5 @@ export const Button: StoryObj<ZetaButton> = {
     html`<zeta-button size=${args.size} .disabled=${args.disabled} .rounded=${args.rounded} flavor=${args.flavor}>
       ${args.leading && args.leading.length > 1 ? html`<zeta-icon slot="leadingIcon">${args.leading}</zeta-icon>` : nothing}${args.slot}
       ${args.trailing && args.trailing.length > 1 ? html`<zeta-icon slot="trailingIcon">${args.trailing}</zeta-icon>` : nothing}
-    </zeta-button> `
+    </zeta-button>`
 };

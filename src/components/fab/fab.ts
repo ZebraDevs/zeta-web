@@ -3,7 +3,7 @@ import { customElement, property } from "lit/decorators.js";
 import styles from "./fab.styles.js";
 import "../icon/icon.js";
 import { ifDefined } from "lit/directives/if-defined.js";
-import type { Flavor } from "../../mixins/flavor.js";
+import { Flavored, type Flavor } from "../../mixins/flavor.js";
 import { BaseButton } from "../button/base-button.js";
 
 export type FabFlavor = Exclude<Flavor, "positive" | "negative" | "outline" | "outline-subtle" | "text">;
@@ -17,7 +17,7 @@ export type FabFlavor = Exclude<Flavor, "positive" | "negative" | "outline" | "o
  */
 
 @customElement("zeta-fab")
-export class ZetaFab extends BaseButton {
+export class ZetaFab extends Flavored(BaseButton) {
   static get styles() {
     return [super.styles ?? [], styles];
   }

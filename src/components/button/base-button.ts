@@ -1,11 +1,10 @@
 import { query, state } from "lit/decorators.js";
 import { property } from "lit/decorators.js";
-import { Flavored } from "../../mixins/mixins.js";
 import { Contourable, Interactive, Size } from "../../mixins/mixins.js";
 import { LitElement } from "lit";
-import styles from "./button.styles.js";
+import styles from "./base-button.styles.js";
 
-export class BaseButton extends Size(Contourable(Flavored(Interactive(LitElement)))) {
+export class BaseButton extends Size(Contourable(Interactive(LitElement))) {
   static formAssociated = true;
   /** @internal */
   static override shadowRootOptions: ShadowRootInit = {
@@ -13,10 +12,6 @@ export class BaseButton extends Size(Contourable(Flavored(Interactive(LitElement
     mode: "open",
     delegatesFocus: true
   };
-
-  static get styles() {
-    return [super.styles ?? [], styles];
-  }
 
   /** The type of the button when used in a form */
   @property({ type: String }) type?: "submit" | "reset" | "button";
@@ -59,4 +54,6 @@ export class BaseButton extends Size(Contourable(Flavored(Interactive(LitElement
   }
   /** @internal */
   @query("button") private readonly buttonElement!: HTMLElement;
+
+  static styles = [super.styles ?? [], styles];
 }

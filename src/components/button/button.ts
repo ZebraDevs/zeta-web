@@ -5,7 +5,9 @@ import { BaseButton } from "./base-button.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 import { styleMap } from "lit/directives/style-map.js";
 import "../icon/icon.js";
-import type { Flavor } from "../../mixins/flavor.js";
+import { Flavored, type Flavor } from "../../mixins/flavor.js";
+import styles from "./button.styles.js";
+
 //TODO text overflow broken
 
 export type ButtonFlavor = Exclude<Flavor, "inverse">;
@@ -21,9 +23,13 @@ export type ButtonFlavor = Exclude<Flavor, "inverse">;
  * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/buttons--docs
  */
 @customElement("zeta-button")
-export class ZetaButton extends BaseButton {
+export class ZetaButton extends Flavored(BaseButton) {
   /** @internal */
   protected _buttonType: "text" | "icon" = "text";
+
+  static get styles() {
+    return [super.styles ?? [], styles];
+  }
 
   @queryAssignedElements({ slot: "leadingIcon", flatten: true }) leading?: Array<Node>;
   @queryAssignedElements({ slot: "trailingIcon", flatten: true }) trailing?: Array<Node>;
