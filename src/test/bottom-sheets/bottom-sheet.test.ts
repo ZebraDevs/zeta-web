@@ -1,12 +1,10 @@
-import { fixture, html, elementUpdated, expect, unsafeStatic } from "@open-wc/testing";
+import { fixture, html, expect, unsafeStatic, elementUpdated } from "@open-wc/testing";
 import type { ZetaBottomSheet } from "../../components/bottom-sheets/bottom-sheet.js";
 import "../../components/bottom-sheets/bottom-sheet.js";
-import "../../components/list/list-item/list-item.js";
-import "../../components/grid-menu-item/grid-menu-item.js";
+const headerText = "Title";
 
-describe("ZetaBottomSheet List Items", () => {
+describe("zeta-bottom-sheet + zeta-list-item", () => {
   let subject: ZetaBottomSheet;
-  const headerText = "Title";
 
   const createComponent = (
     template = `<zeta-bottom-sheet headerText=${headerText}>
@@ -15,6 +13,7 @@ describe("ZetaBottomSheet List Items", () => {
     <zeta-list-item headline=${"Item 3"}></zeta-list-item>
     </zeta-bottom-sheet>`
   ) => {
+    // prettier-ignore
     return fixture<ZetaBottomSheet>(html`${unsafeStatic(template)}`);
   };
 
@@ -22,54 +21,67 @@ describe("ZetaBottomSheet List Items", () => {
     subject = await createComponent();
   });
 
-  it("renders the bottom sheet", () => {
-    expect(subject).to.exist;
+  describe("Accessibility Tests", () => {
+    it("it meets accessibility requirements", async () => {
+      await expect(subject).shadowDom.to.be.accessible();
+    });
   });
 
-  it("displays the header text correctly", async () => {
-    const headerText = "Custom Header Text";
-    subject.headerText = headerText;
-    await elementUpdated(subject);
+  describe("Content Tests", () => {
+    it("renders the bottom sheet", () => {
+      expect(subject).to.exist;
+    });
 
-    const headerElement = subject.shadowRoot?.querySelector(".header");
-    await expect(headerElement?.textContent).to.equal(headerText);
+    it("displays the header text correctly", async () => {
+      const headerText = "Custom Header Text";
+      subject.headerText = headerText;
+      await elementUpdated(subject);
+
+      const headerElement = subject.shadowRoot?.querySelector(".header");
+      await expect(headerElement?.textContent).to.equal(headerText);
+    });
+
+    it("updates when isExpanded changes", async () => {
+      subject.isExpanded = true;
+      await elementUpdated(subject);
+
+      await expect(subject.isExpanded).to.not.equal(false);
+    });
   });
 
-  it("applies the correct header alignment", async () => {
-    const headerAlignment = "center";
-    subject.headerAlignment = headerAlignment;
-    await elementUpdated(subject);
+  describe("Dimensions Tests", () => {
+    it("applies the correct header alignment", async () => {
+      const headerAlignment = "center";
+      subject.headerAlignment = headerAlignment;
+      await elementUpdated(subject);
 
-    const headerElement = subject.shadowRoot?.querySelector(".header");
-    await expect(getComputedStyle(headerElement!).justifyContent).to.equal(headerAlignment);
+      const headerElement = subject.shadowRoot?.querySelector(".header");
+      await expect(getComputedStyle(headerElement!).justifyContent).to.equal(headerAlignment);
 
-    const headerAlignmentStart = "start";
-    subject.headerAlignment = headerAlignmentStart;
-    await elementUpdated(subject);
+      const headerAlignmentStart = "start";
+      subject.headerAlignment = headerAlignmentStart;
+      await elementUpdated(subject);
 
-    await expect(getComputedStyle(headerElement!).justifyContent).to.equal("flex-" + headerAlignmentStart);
+      await expect(getComputedStyle(headerElement!).justifyContent).to.equal("flex-" + headerAlignmentStart);
+    });
+
+    it("applies the correct css display for list items", async () => {
+      const sheetContent = subject.shadowRoot?.querySelector(".content");
+      await expect(getComputedStyle(sheetContent!).display).to.equal("flex");
+    });
   });
 
-  it("applies the correct styles for list items", async () => {
-    const sheetContent = subject.shadowRoot?.querySelector(".content");
-    await expect(getComputedStyle(sheetContent!).display).to.equal("flex");
-  });
+  // describe("Styling Tests", () => {});
 
-  it("updates when isExpanded changes", async () => {
-    subject.isExpanded = true;
-    await elementUpdated(subject);
+  // describe("Interaction Tests", () => {});
 
-    await expect(subject.isExpanded).to.not.equal(false);
-  });
+  // describe("Golden Tests", () => {});
 
-  it("it meets accessibility requirements", async () => {
-    await expect(subject).shadowDom.to.be.accessible();
-  });
+  // describe("Performance Tests", () => {});
 });
 
-describe("ZetaBottomSheet Grid Items", () => {
+describe("zeta-bottom-sheet + zeta-grid-menu-item", () => {
   let subject: ZetaBottomSheet;
-  const headerText = "Title";
 
   const createComponent = (
     template = `<zeta-bottom-sheet headerText=${headerText}>
@@ -79,6 +91,7 @@ describe("ZetaBottomSheet Grid Items", () => {
         <zeta-grid-menu-item>Item 4</zeta-grid-menu-item>
       </zeta-bottom-sheet>`
   ) => {
+    // prettier-ignore
     return fixture<ZetaBottomSheet>(html`${unsafeStatic(template)}`);
   };
 
@@ -86,57 +99,70 @@ describe("ZetaBottomSheet Grid Items", () => {
     subject = await createComponent();
   });
 
-  it("renders the bottom sheet", () => {
-    expect(subject).to.exist;
+  describe("Accessibility Tests", () => {
+    it("it meets accessibility requirements", async () => {
+      await expect(subject).shadowDom.to.be.accessible();
+    });
   });
 
-  it("displays the header text correctly", async () => {
-    const headerText = "Custom Header Text";
-    subject.headerText = headerText;
-    await elementUpdated(subject);
+  describe("Content Tests", () => {
+    it("renders the bottom sheet", () => {
+      expect(subject).to.exist;
+    });
 
-    const headerElement = subject.shadowRoot?.querySelector(".header");
-    await expect(headerElement?.textContent).to.equal(headerText);
+    it("displays the header text correctly", async () => {
+      const headerText = "Custom Header Text";
+      subject.headerText = headerText;
+      await elementUpdated(subject);
+
+      const headerElement = subject.shadowRoot?.querySelector(".header");
+      await expect(headerElement?.textContent).to.equal(headerText);
+    });
+
+    it("updates when isExpanded changes", async () => {
+      subject.isExpanded = true;
+      await elementUpdated(subject);
+
+      await expect(subject.isExpanded).to.not.equal(false);
+    });
   });
 
-  it("applies the correct header alignment", async () => {
-    const headerAlignment = "center";
-    subject.headerAlignment = headerAlignment;
-    await elementUpdated(subject);
+  describe("Dimensions Tests", () => {
+    it("applies the correct header alignment", async () => {
+      const headerAlignment = "center";
+      subject.headerAlignment = headerAlignment;
+      await elementUpdated(subject);
 
-    const headerElement = subject.shadowRoot?.querySelector(".header");
-    await expect(getComputedStyle(headerElement!).justifyContent).to.equal(headerAlignment);
+      const headerElement = subject.shadowRoot?.querySelector(".header");
+      await expect(getComputedStyle(headerElement!).justifyContent).to.equal(headerAlignment);
 
-    const headerAlignmentStart = "start";
-    subject.headerAlignment = headerAlignmentStart;
-    await elementUpdated(subject);
+      const headerAlignmentStart = "start";
+      subject.headerAlignment = headerAlignmentStart;
+      await elementUpdated(subject);
 
-    await expect(getComputedStyle(headerElement!).justifyContent).to.equal("flex-" + headerAlignmentStart);
+      await expect(getComputedStyle(headerElement!).justifyContent).to.equal("flex-" + headerAlignmentStart);
+    });
+
+    it("applies the correct css display for grid items", async () => {
+      subject.isGrid = true;
+      await elementUpdated(subject);
+
+      const sheetContent = subject.shadowRoot?.querySelector(".content");
+      await expect(getComputedStyle(sheetContent!).display).to.equal("grid");
+    });
   });
 
-  it("applies the correct styles for grid items", async () => {
-    subject.isGrid = true;
-    await elementUpdated(subject);
+  // describe("Styling Tests", () => {});
 
-    const sheetContent = subject.shadowRoot?.querySelector(".content");
-    await expect(getComputedStyle(sheetContent!).display).to.equal("grid");
-  });
+  // describe("Interaction Tests", () => {});
 
-  it("updates when isExpanded changes", async () => {
-    subject.isExpanded = true;
-    await elementUpdated(subject);
+  // describe("Golden Tests", () => {});
 
-    await expect(subject.isExpanded).to.not.equal(false);
-  });
-
-  it("it meets accessibility requirements", async () => {
-    await expect(subject).shadowDom.to.be.accessible();
-  });
+  // describe("Performance Tests", () => {});
 });
 
-describe("ZetaBottomSheet Generic Content", () => {
+describe("zeta-bottom-sheet + generic content", () => {
   let subject: ZetaBottomSheet;
-  const headerText = "Title";
 
   const createComponent = (
     template = `<zeta-bottom-sheet headerText=${headerText}>
@@ -166,6 +192,7 @@ describe("ZetaBottomSheet Generic Content", () => {
         </div>
       </zeta-bottom-sheet>`
   ) => {
+    // prettier-ignore
     return fixture<ZetaBottomSheet>(html`${unsafeStatic(template)}`);
   };
 
@@ -173,50 +200,64 @@ describe("ZetaBottomSheet Generic Content", () => {
     subject = await createComponent();
   });
 
-  it("renders the bottom sheet", () => {
-    expect(subject).to.exist;
+  describe("Accessibility Tests", () => {
+    it("it meets accessibility requirements", async () => {
+      await expect(subject).shadowDom.to.be.accessible();
+    });
   });
 
-  it("displays the header text correctly", async () => {
-    const headerText = "Custom Header Text";
-    subject.headerText = headerText;
-    await elementUpdated(subject);
+  describe("Content Tests", () => {
+    it("renders the bottom sheet", () => {
+      expect(subject).to.exist;
+    });
 
-    const headerElement = subject.shadowRoot?.querySelector(".header");
-    await expect(headerElement?.textContent).to.equal(headerText);
+    it("displays the header text correctly", async () => {
+      const headerText = "Custom Header Text";
+      subject.headerText = headerText;
+      await elementUpdated(subject);
+
+      const headerElement = subject.shadowRoot?.querySelector(".header");
+      await expect(headerElement?.textContent).to.equal(headerText);
+    });
+
+    it("updates when isExpanded changes", async () => {
+      subject.isExpanded = true;
+      await elementUpdated(subject);
+
+      await expect(subject.isExpanded).to.not.equal(false);
+    });
   });
 
-  it("applies the correct header alignment", async () => {
-    const headerAlignment = "center";
-    subject.headerAlignment = headerAlignment;
-    await elementUpdated(subject);
+  describe("Dimensions Tests", () => {
+    it("applies the correct header alignment", async () => {
+      const headerAlignment = "center";
+      subject.headerAlignment = headerAlignment;
+      await elementUpdated(subject);
 
-    const headerElement = subject.shadowRoot?.querySelector(".header");
-    await expect(getComputedStyle(headerElement!).justifyContent).to.equal(headerAlignment);
+      const headerElement = subject.shadowRoot?.querySelector(".header");
+      await expect(getComputedStyle(headerElement!).justifyContent).to.equal(headerAlignment);
 
-    const headerAlignmentStart = "start";
-    subject.headerAlignment = headerAlignmentStart;
-    await elementUpdated(subject);
+      const headerAlignmentStart = "start";
+      subject.headerAlignment = headerAlignmentStart;
+      await elementUpdated(subject);
 
-    await expect(getComputedStyle(headerElement!).justifyContent).to.equal("flex-" + headerAlignmentStart);
+      await expect(getComputedStyle(headerElement!).justifyContent).to.equal("flex-" + headerAlignmentStart);
+    });
+
+    it("applies the correct css display for generic content", async () => {
+      subject.isGenericContent = true;
+      await elementUpdated(subject);
+
+      const sheetContent = subject.shadowRoot?.querySelector(".content");
+      await expect(getComputedStyle(sheetContent!).display).to.equal("block");
+    });
   });
 
-  it("applies the correct styles for generic content", async () => {
-    subject.isGenericContent = true;
-    await elementUpdated(subject);
+  // describe("Styling Tests", () => {});
 
-    const sheetContent = subject.shadowRoot?.querySelector(".content");
-    await expect(getComputedStyle(sheetContent!).display).to.equal("block");
-  });
+  // describe("Interaction Tests", () => {});
 
-  it("updates when isExpanded changes", async () => {
-    subject.isExpanded = true;
-    await elementUpdated(subject);
+  // describe("Golden Tests", () => {});
 
-    await expect(subject.isExpanded).to.not.equal(false);
-  });
-
-  it("it meets accessibility requirements", async () => {
-    await expect(subject).shadowDom.to.be.accessible();
-  });
+  // describe("Performance Tests", () => {});
 });

@@ -25,6 +25,7 @@ describe("zeta-navigation-bar", () => {
     </zeta-grid-menu-item>
     </zeta-navigation-bar>`
   ) => {
+    // prettier-ignore
     return fixture<ZetaNavigationBar>(html`${unsafeStatic(template)}`);
   };
 
@@ -32,47 +33,61 @@ describe("zeta-navigation-bar", () => {
     subject = await createComponent();
   });
 
-  it("meets accessability requirements", async () => {
-    await expect(subject).shadowDom.to.be.accessible();
+  describe("Accessibility Tests", () => {
+    it("meets accessability requirements", async () => {
+      await expect(subject).shadowDom.to.be.accessible();
+    });
   });
 
-  it("renders the correct number of navigation bar items", async () => {
-    const items = subject.querySelectorAll("zeta-grid-menu-item");
-    await expect(items.length).to.equal(3);
+  describe("Content Tests", () => {
+    it("renders the correct number of navigation bar items", async () => {
+      const items = subject.querySelectorAll("zeta-grid-menu-item");
+      await expect(items.length).to.equal(3);
+    });
+
+    it("renders the correct label and icon for each navigation bar item", async () => {
+      const items = subject.querySelectorAll("zeta-grid-menu-item");
+      await Promise.all(
+        Array.from(items).map(async item => {
+          const itemLabel = item.getAttribute("label");
+          const itemIcon = item.getAttribute("icon");
+          await expect(itemLabel).to.equal(label);
+          await expect(itemIcon).to.equal(icon);
+        })
+      );
+    });
+
+    it("renders the correct badge content for each navigation bar item", async () => {
+      const badges = subject.querySelectorAll("zeta-notification-indicator");
+      await Promise.all(
+        Array.from(badges).map(async badge => {
+          await expect(badge.getAttribute("value")).to.equal(badgeValue);
+        })
+      );
+    });
+
+    it("updates badge content when the value changes", async () => {
+      const newBadgeValue = "5";
+      const badges = subject.querySelectorAll("zeta-notification-indicator");
+      await Promise.all(
+        Array.from(badges).map(async badge => {
+          badge.setAttribute("value", newBadgeValue);
+          await badge.updateComplete;
+          await expect(badge.value).to.equal(newBadgeValue);
+        })
+      );
+    });
   });
 
-  it("renders the correct label and icon for each navigation bar item", async () => {
-    const items = subject.querySelectorAll("zeta-grid-menu-item");
-    await Promise.all(
-      Array.from(items).map(async item => {
-        const itemLabel = item.getAttribute("label");
-        const itemIcon = item.getAttribute("icon");
-        await expect(itemLabel).to.equal(label);
-        await expect(itemIcon).to.equal(icon);
-      })
-    );
-  });
+  // describe("Dimensions Tests", () => {});
 
-  it("renders the correct badge content for each navigation bar item", async () => {
-    const badges = subject.querySelectorAll("zeta-notification-indicator");
-    await Promise.all(
-      Array.from(badges).map(async badge => {
-        await expect(badge.getAttribute("value")).to.equal(badgeValue);
-      })
-    );
-  });
+  // describe("Styling Tests", () => {});
 
-  it("updates badge content when the value changes", async () => {
-    const newBadgeValue = "5";
-    const badges = subject.querySelectorAll("zeta-notification-indicator");
-    await Promise.all(
-      Array.from(badges).map(async badge => {
-        badge.setAttribute("value", newBadgeValue);
-        await badge.updateComplete;
-        await expect(badge.value).to.equal(newBadgeValue);
-      })
-    );
-  });
+  // describe("Interaction Tests", () => {});
+
+  // describe("Golden Tests", () => {});
+
+  // describe("Performance Tests", () => {});
 });
 
 describe("zeta-navigation-bar spacer", () => {
@@ -93,6 +108,7 @@ describe("zeta-navigation-bar spacer", () => {
     </zeta-grid-menu-item>
     </zeta-navigation-bar>`
   ) => {
+    // prettier-ignore
     return fixture<ZetaNavigationBar>(html`${unsafeStatic(template)}`);
   };
 
@@ -100,10 +116,24 @@ describe("zeta-navigation-bar spacer", () => {
     subject = await createComponent();
   });
 
-  it.skip("keeps a fixed width", async () => {
-    const item0: ZetaGridMenuItem = subject.querySelector("zeta-grid-menu-item")!;
-    item0.setAttribute("label", "SomethingVeryVeryLong");
-    await item0.updateComplete;
-    await expect(item0.getBoundingClientRect().width).to.equal(62);
+  // describe("Accessibility Tests", () => {});
+
+  // describe("Content Tests", () => {});
+
+  describe("Dimensions Tests", () => {
+    it.skip("keeps a fixed width", async () => {
+      const item0: ZetaGridMenuItem = subject.querySelector("zeta-grid-menu-item")!;
+      item0.setAttribute("label", "SomethingVeryVeryLong");
+      await item0.updateComplete;
+      await expect(item0.getBoundingClientRect().width).to.equal(62);
+    });
   });
+
+  // describe("Styling Tests", () => {});
+
+  // describe("Interaction Tests", () => {});
+
+  // describe("Golden Tests", () => {});
+
+  // describe("Performance Tests", () => {});
 });

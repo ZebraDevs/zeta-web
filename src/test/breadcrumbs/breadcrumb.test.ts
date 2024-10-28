@@ -1,15 +1,10 @@
-import { fixture, html, unsafeStatic, expect } from "@open-wc/testing";
+import { fixture, html, expect, unsafeStatic } from "@open-wc/testing";
 import type { ZetaBreadcrumb } from "../../components/breadcrumbs/breadcrumb.js";
 import "../../components/breadcrumbs/breadcrumb.js";
-import "../../components/breadcrumbs/breadcrumb-item/breadcrumb-item.js";
-import "../../components/icon/icon.js";
 import { MouseActions } from "../utils.js";
-import "../../index.css";
-import "@zebra-fed/zeta-icons/index.css";
 
 describe("zeta-breadcrumb", () => {
   let subject: ZetaBreadcrumb;
-
   const maxItems = 4;
   const rounded = true;
 
@@ -26,6 +21,7 @@ describe("zeta-breadcrumb", () => {
       </zeta-breadcrumb-item>
     </zeta-breadcrumb>`
   ) => {
+    // prettier-ignore
     return fixture<ZetaBreadcrumb>(html`${unsafeStatic(template)}`);
   };
 
@@ -33,30 +29,44 @@ describe("zeta-breadcrumb", () => {
     subject = await createComponent();
   });
 
-  it("renders the correct number of breadcrumb items", async () => {
-    const breadcrumbItems = subject.shadowRoot!.querySelectorAll("zeta-breadcrumb-item");
-
-    await expect(breadcrumbItems.length).to.equal(4);
+  describe("Accessibility Tests", () => {
+    it("meets accessibility requirements", async () => {
+      await expect(subject).shadowDom.to.be.accessible();
+    });
   });
 
-  it("renders the truncated breadcrumb ", () => {
-    const moreMenu = subject.shadowRoot!.querySelector(".more-menu");
+  describe("Content Tests", () => {
+    it("renders the correct number of breadcrumb items", async () => {
+      const breadcrumbItems = subject.shadowRoot!.querySelectorAll("zeta-breadcrumb-item");
 
-    expect(moreMenu).to.not.be.null;
+      await expect(breadcrumbItems.length).to.equal(4);
+    });
+
+    it("renders the truncated breadcrumb ", () => {
+      const moreMenu = subject.shadowRoot!.querySelector(".more-menu");
+
+      expect(moreMenu).to.not.be.null;
+    });
   });
 
-  it.skip("renders the correct number of breadcrumb items after the more menu has been clicked", async () => {
-    const moreMenu = subject.shadowRoot!.querySelector(".more-menu > button") as HTMLButtonElement;
-    await MouseActions.click(moreMenu);
+  // describe("Dimensions Tests", () => {});
 
-    subject.requestUpdate();
+  // describe("Styling Tests", () => {});
 
-    const breadcrumbItems = subject.shadowRoot!.querySelectorAll("zeta-breadcrumb-item");
+  describe("Interaction Tests", () => {
+    it.skip("renders the correct number of breadcrumb items after the more menu has been clicked", async () => {
+      const moreMenu = subject.shadowRoot!.querySelector(".more-menu > button") as HTMLButtonElement;
+      await MouseActions.click(moreMenu);
 
-    await expect(breadcrumbItems.length).to.equal(6);
+      subject.requestUpdate();
+
+      const breadcrumbItems = subject.shadowRoot!.querySelectorAll("zeta-breadcrumb-item");
+
+      await expect(breadcrumbItems.length).to.equal(6);
+    });
   });
 
-  it("meets accessibility requirements", async () => {
-    await expect(subject).shadowDom.to.be.accessible();
-  });
+  // describe("Golden Tests", () => {});
+
+  // describe("Performance Tests", () => {});
 });

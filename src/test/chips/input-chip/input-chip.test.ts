@@ -4,10 +4,11 @@ import "../../../index.js";
 
 const labelText = "Label";
 
-describe("ZetaInputChip", () => {
+describe("zeta-input-chip", () => {
   let subject: ZetaInputChip;
 
   const createComponent = (template = `<zeta-input-chip>${labelText}</zeta-input-chip>`) => {
+    // prettier-ignore
     return fixture<ZetaInputChip>(html`${unsafeStatic(template)}`);
   };
 
@@ -15,11 +16,25 @@ describe("ZetaInputChip", () => {
     subject = await createComponent();
   });
 
-  it("sets the correct text on the chip", async () => {
-    await expect(subject.lastChild?.nodeValue).to.equal(labelText);
+  describe("Accessibility Tests", () => {
+    it("it meets accessibility requirements", async () => {
+      await expect(subject).shadowDom.to.be.accessible();
+    });
   });
 
-  it("it meets accessibility requirements", async () => {
-    await expect(subject).shadowDom.to.be.accessible();
+  describe("Content Tests", () => {
+    it("sets the correct text on the chip", async () => {
+      await expect(subject.lastChild?.nodeValue).to.equal(labelText);
+    });
   });
+
+  // describe("Dimensions Tests", () => {});
+
+  // describe("Styling Tests", () => {});
+
+  // describe("Interaction Tests", () => {});
+
+  // describe("Golden Tests", () => {});
+
+  // describe("Performance Tests", () => {});
 });

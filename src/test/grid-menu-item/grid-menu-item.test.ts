@@ -1,9 +1,7 @@
 import { expect, fixture, html, unsafeStatic } from "@open-wc/testing";
 import type { ZetaGridMenuItem } from "../../components/grid-menu-item/grid-menu-item.js";
-import "../../components/badges/indicators/indicators.js";
-import "../../components/icon/icon.js";
-import "../../components/grid-menu-item/grid-menu-item.js";
 import { getSlottedIconName, getSlotText } from "../utils.js";
+import "../../components/grid-menu-item/grid-menu-item.js";
 
 describe("zeta-grid-menu-item", () => {
   const label = "Label";
@@ -19,6 +17,7 @@ describe("zeta-grid-menu-item", () => {
     ${label}
   </zeta-grid-menu-item>`
   ) => {
+    // prettier-ignore
     return fixture<ZetaGridMenuItem>(html`${unsafeStatic(template)}`);
   };
 
@@ -26,21 +25,35 @@ describe("zeta-grid-menu-item", () => {
     subject = await createComponent();
   });
 
-  it("renders the given icon", async () => {
-    await expect(getSlottedIconName(subject)).to.equal(icon);
+  describe("Accessibility Tests", () => {
+    it("meets accessibility requirements", async () => {
+      await expect(subject).shadowDom.to.be.accessible();
+    });
   });
 
-  it("renders the given label", async () => {
-    await expect(getSlotText(subject)).to.equal(label);
+  describe("Content Tests", () => {
+    it("renders the given icon", async () => {
+      await expect(getSlottedIconName(subject)).to.equal(icon);
+    });
+
+    it("renders the given label", async () => {
+      await expect(getSlotText(subject)).to.equal(label);
+    });
+
+    it("renders the given badge", () => {
+      const badgeElement = subject.shadowRoot?.querySelector(`#${badgeId}`);
+
+      expect(badgeElement).to.not.be.undefined;
+    });
   });
 
-  it("renders the given badge", () => {
-    const badgeElement = subject.shadowRoot?.querySelector(`#${badgeId}`);
+  // describe("Dimensions Tests", () => {});
 
-    expect(badgeElement).to.not.be.undefined;
-  });
+  // describe("Styling Tests", () => {});
 
-  it("meets accessibility requirements", async () => {
-    await expect(subject).shadowDom.to.be.accessible();
-  });
+  // describe("Interaction Tests", () => {});
+
+  // describe("Golden Tests", () => {});
+
+  // describe("Performance Tests", () => {});
 });

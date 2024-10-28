@@ -46,6 +46,7 @@
     "pretest:package": "npm pack --pack-destination ./test && cd test && npm install && cd ..",
     "test:package": "cd test && npm run dev",
     "test:watch": "web-test-runner \"src/test/**/*.test.ts\" --node-resolve --watch",
+    "test:count": "tsx scripts/test/test_counter.ts",
     "create": "cd scripts && node makeWebComponentTemplate.js",
     "localize:extract": "lit-localize extract",
     "localize:build": "lit-localize build",
@@ -98,10 +99,11 @@
     "prettier": "3.3.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "sinon": "^18.0.0",
     "storybook": "^8.2.9",
     "ts-lit-plugin": "^2.0.2",
-    "typescript": "^5.5.4",
-    "sinon": "^18.0.0"
+    "ts-morph": "^24.0.0",
+    "typescript": "^5.5.4"
   },
   "dependencies": {
     "@fontsource/ibm-plex-sans": "^5.0.21",

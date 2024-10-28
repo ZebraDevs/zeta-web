@@ -9,126 +9,144 @@ import "../../index.css";
 //TODO test enter (submit) and escape (clear) keys
 //TODO test the input event
 describe("zeta-search", () => {
-  it("creates from document.createElement", function () {
-    const el = document.createElement("zeta-search");
-    assert.equal("ZETA-SEARCH", el.nodeName);
-  });
+  // describe("Accessibility Tests", () => {});
 
-  it("creates from constructor", function () {
-    const el = new ZetaSearch();
-    assert.equal("ZETA-SEARCH", el.nodeName);
-  });
+  describe("Content Tests", () => {
+    it("creates from document.createElement", function () {
+      const el = document.createElement("zeta-search");
+      assert.equal("ZETA-SEARCH", el.nodeName);
+    });
 
-  it("focus on input when field focused", async () => {
-    const el = await fixture<ZetaSearch>(html` <zeta-search></zeta-search> `);
-    el.focus();
-    expect(el.shadowRoot?.querySelector("input:focus")).to.exist;
-  });
+    it("creates from constructor", function () {
+      const el = new ZetaSearch();
+      assert.equal("ZETA-SEARCH", el.nodeName);
+    });
 
-  it("blur input when field is blurred", async () => {
-    const el = await fixture<ZetaSearch>(html` <zeta-search></zeta-search> `);
-    el.focus();
-    el.blur();
-    expect(el.shadowRoot?.querySelector("input:focus")).not.to.exist;
-  });
+    it("focus on input when field focused", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaSearch>(html` <zeta-search></zeta-search> `);
+      el.focus();
+      expect(el.shadowRoot?.querySelector("input:focus")).to.exist;
+    });
 
-  it("clears input", async () => {
-    const el = await fixture<ZetaSearch>(html` <zeta-search></zeta-search> `);
-    el.value = "change";
-    await el.updateComplete;
-    const icon = el.shadowRoot?.querySelectorAll("zeta-icon")[1] as ZetaIcon;
-    icon.click();
-    await el.updateComplete;
-    assert.equal(el.value, "");
-  });
+    it("blur input when field is blurred", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaSearch>(html` <zeta-search></zeta-search> `);
+      el.focus();
+      el.blur();
+      expect(el.shadowRoot?.querySelector("input:focus")).not.to.exist;
+    });
 
-  it("should call input onchange", async () => {
-    const el = await fixture<ZetaSearch>(html` <zeta-search></zeta-search> `);
-    const input = el.shadowRoot?.querySelector("input");
-    input!.value = "change";
-    input?.dispatchEvent(new Event("change", { bubbles: true }));
-    assert.equal(el.value, "change");
-  });
+    it("should render microphone icon", async () => {
+      const speechRecognition = (<any>window).SpeechRecognition || (<any>window).webkitSpeechRecognition;
+      if (speechRecognition) {
+        // prettier-ignore
+        const el = await fixture<ZetaSearch>(html` <zeta-search hasIcon></zeta-search> `);
+        const icons = [...el.shadowRoot!.querySelectorAll("zeta-icon")];
+        expect(icons).to.exist;
+        expect(icons).to.have.lengthOf(2);
+        const icon = icons.find((e: any) => e.innerText === "microphone");
+        expect(icon).to.exist;
+      }
+    });
 
-  it("should set correct default icon size", async () => {
-    const el = await fixture<ZetaSearch>(html` <zeta-search></zeta-search> `);
-    const icon = el.shadowRoot?.querySelectorAll("zeta-icon")[0] as ZetaIcon;
-    await expect(getComputedStyle(icon).fontSize).to.equal("20px");
-  });
-
-  it("should set correct small icon size", async () => {
-    const el = await fixture<ZetaSearch>(html` <zeta-search></zeta-search> `);
-    el.size = "small";
-    await el.updateComplete;
-    const icon = el.shadowRoot?.querySelectorAll("zeta-icon")[0] as ZetaIcon;
-    await expect(getComputedStyle(icon).fontSize).to.equal("16px");
-  });
-
-  it("should set correct large icon size", async () => {
-    const el = await fixture<ZetaSearch>(html` <zeta-search></zeta-search> `);
-    el.size = "large";
-    await el.updateComplete;
-    const icon = el.shadowRoot?.querySelectorAll("zeta-icon")[0] as ZetaIcon;
-    await expect(getComputedStyle(icon).fontSize).to.equal("24px");
-  });
-
-  it("should set correct disabled icon color", async () => {
-    const el = await fixture<ZetaSearch>(html` <zeta-search></zeta-search> `);
-    el.disabled = true;
-    await el.updateComplete;
-    const icon = el.shadowRoot?.querySelectorAll("zeta-icon")[0] as ZetaIcon;
-    await expect(getComputedStyle(icon).color).to.equal(getCssVarColorValue(icon, "--main-disabled"));
-  });
-
-  it("should render microphone icon", async () => {
-    const speechRecognition = (<any>window).SpeechRecognition || (<any>window).webkitSpeechRecognition;
-    if (speechRecognition) {
+    it("should not render microphone icon", async () => {
       const el = await fixture<ZetaSearch>(html` <zeta-search hasIcon></zeta-search> `);
-      const icons = [...el.shadowRoot!.querySelectorAll("zeta-icon")];
-      expect(icons).to.exist;
-      expect(icons).to.have.lengthOf(2);
-      const icon = icons.find((e: any) => e.innerText === "microphone");
-      expect(icon).to.exist;
-    }
+      delete (<any>window).SpeechRecognition;
+      delete (<any>window).webkitSpeechRecognition;
+      el.requestUpdate();
+      await el.updateComplete;
+      const icon = el.shadowRoot?.querySelectorAll("zeta-icon");
+      /// If only 1 icon displayed, that will be the search icon, not microphone.
+      expect(icon).to.have.lengthOf(1);
+    });
   });
 
-  it("should not render microphone icon", async () => {
-    const el = await fixture<ZetaSearch>(html` <zeta-search hasIcon></zeta-search> `);
+  describe("Dimensions Tests", () => {
+    it("should set correct default icon size", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaSearch>(html` <zeta-search></zeta-search> `);
+      const icon = el.shadowRoot?.querySelectorAll("zeta-icon")[0] as ZetaIcon;
+      await expect(getComputedStyle(icon).fontSize).to.equal("20px");
+    });
 
-    delete (<any>window).SpeechRecognition;
-    delete (<any>window).webkitSpeechRecognition;
-    el.requestUpdate();
-    await el.updateComplete;
-    const icon = el.shadowRoot?.querySelectorAll("zeta-icon");
-    /// If only 1 icon displayed, that will be the search icon, not microphone.
-    expect(icon).to.have.lengthOf(1);
+    it("should set correct small icon size", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaSearch>(html` <zeta-search></zeta-search> `);
+      el.size = "small";
+      await el.updateComplete;
+      const icon = el.shadowRoot?.querySelectorAll("zeta-icon")[0] as ZetaIcon;
+      await expect(getComputedStyle(icon).fontSize).to.equal("16px");
+    });
+
+    it("should set correct large icon size", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaSearch>(html` <zeta-search></zeta-search> `);
+      el.size = "large";
+      await el.updateComplete;
+      const icon = el.shadowRoot?.querySelectorAll("zeta-icon")[0] as ZetaIcon;
+      await expect(getComputedStyle(icon).fontSize).to.equal("24px");
+    });
   });
-  describe.skip("interaction", () => {
+
+  describe("Styling Tests", () => {
+    it("should set correct disabled icon color", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaSearch>(html` <zeta-search></zeta-search> `);
+      el.disabled = true;
+      await el.updateComplete;
+      const icon = el.shadowRoot?.querySelectorAll("zeta-icon")[0] as ZetaIcon;
+      await expect(getComputedStyle(icon).color).to.equal(getCssVarColorValue(icon, "--main-disabled"));
+    });
+  });
+
+  describe("Interaction Tests", () => {
+    it("clears input", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaSearch>(html` <zeta-search></zeta-search> `);
+      el.value = "change";
+      await el.updateComplete;
+      const icon = el.shadowRoot?.querySelectorAll("zeta-icon")[1] as ZetaIcon;
+      icon.click();
+      await el.updateComplete;
+      assert.equal(el.value, "");
+    });
+
+    it("should call input onchange", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaSearch>(html` <zeta-search></zeta-search> `);
+      const input = el.shadowRoot?.querySelector("input");
+      input!.value = "change";
+      input?.dispatchEvent(new Event("change", { bubbles: true }));
+      assert.equal(el.value, "change");
+    });
+
     let subject: ZetaSearch;
     let interactiveTarget: HTMLFormElement;
 
-    describe("when disabled", () => {
-      beforeEach(async () => {
-        subject = await fixture<ZetaSearch>(html`<zeta-search></zeta-search>`);
-        interactiveTarget = subject.shadowRoot!.querySelector(".interactive-target") as HTMLFormElement;
-      });
+    it.skip("should not be activatable", async () => {
+      // prettier-ignore
+      subject = await fixture<ZetaSearch>(html`<zeta-search></zeta-search>`);
+      interactiveTarget = subject.shadowRoot!.querySelector(".interactive-target") as HTMLFormElement;
 
-      it("should not be activatable", async () => {
-        let subjectStyles = getComputedStyle(subject!);
-        let interactiveTargetStyles = getComputedStyle(interactiveTarget!);
-        await expect(subjectStyles.outlineWidth).to.equal("0px");
-        await expect(subjectStyles.outlineStyle).to.equal("none");
-        await expect(interactiveTargetStyles.outlineWidth).to.equal("0px");
-        await expect(interactiveTargetStyles.outlineStyle).to.equal("none");
-        await MouseActions.down(subject);
+      let subjectStyles = getComputedStyle(subject!);
+      let interactiveTargetStyles = getComputedStyle(interactiveTarget!);
+      await expect(subjectStyles.outlineWidth).to.equal("0px");
+      await expect(subjectStyles.outlineStyle).to.equal("none");
+      await expect(interactiveTargetStyles.outlineWidth).to.equal("0px");
+      await expect(interactiveTargetStyles.outlineStyle).to.equal("none");
+      await MouseActions.down(subject);
 
-        subjectStyles = getComputedStyle(subject!);
-        interactiveTargetStyles = getComputedStyle(interactiveTarget!);
-        await expect(subjectStyles.outlineWidth).to.equal("0px");
-        await expect(subjectStyles.outlineStyle).to.equal("none");
-        await expect(interactiveTargetStyles.outlineWidth).to.equal("0px");
-        await expect(interactiveTargetStyles.outlineStyle).to.equal("none");
-      });
+      subjectStyles = getComputedStyle(subject!);
+      interactiveTargetStyles = getComputedStyle(interactiveTarget!);
+      await expect(subjectStyles.outlineWidth).to.equal("0px");
+      await expect(subjectStyles.outlineStyle).to.equal("none");
+      await expect(interactiveTargetStyles.outlineWidth).to.equal("0px");
+      await expect(interactiveTargetStyles.outlineStyle).to.equal("none");
     });
   });
+
+  // describe("Golden Tests", () => {});
+
+  // describe("Performance Tests", () => {});
 });

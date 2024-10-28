@@ -6,6 +6,7 @@ describe("zeta-slider-input-field", () => {
   let subject: ZetaSliderInputField;
 
   const createComponent = (template = `<zeta-slider-input-field></zeta-slider-input-field>`) => {
+    // prettier-ignore
     return fixture<ZetaSliderInputField>(html`${unsafeStatic(template)}`);
   };
 
@@ -13,7 +14,21 @@ describe("zeta-slider-input-field", () => {
     subject = await createComponent();
   });
 
-  it("meets accessibility requirements", async () => {
-    await expect(subject).shadowDom.to.be.accessible();
+  describe("Accessibility Tests", () => {
+    it("meets accessibility requirements", async () => {
+      await expect(subject).shadowDom.to.be.accessible();
+    });
   });
+
+  // describe("Content Tests", () => {});
+
+  // describe("Dimensions Tests", () => {});
+
+  // describe("Styling Tests", () => {});
+
+  // describe("Interaction Tests", () => {});
+
+  // describe("Golden Tests", () => {});
+
+  // describe("Performance Tests", () => {});
 });

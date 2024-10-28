@@ -19,6 +19,7 @@ describe("zeta-card-header", () => {
   <zeta-icon-button slot="trailing" id=${trailingId} flavor="basic">more_vertical</zeta-icon-button>
   </zeta-card-header>`
   ) => {
+    // prettier-ignore
     return fixture<ZetaCardHeader>(html`${unsafeStatic(template)}`);
   };
 
@@ -26,33 +27,47 @@ describe("zeta-card-header", () => {
     subject = await createComponent();
   });
 
-  it("sets the heading correctly", () => {
-    const headerElement = subject.shadowRoot?.querySelector("h1");
-
-    expect(headerElement).to.not.be.undefined;
-    void expect(headerElement?.textContent).to.equal(headingText);
+  describe("Accessibility Tests", () => {
+    it("meets accessability requirements", async () => {
+      await expect(subject).shadowDom.to.be.accessible();
+    });
   });
 
-  it("sets the subheading correctly", async () => {
-    const subHeaderElement = subject.shadowRoot?.querySelector("h2");
+  describe("Content Tests", () => {
+    it("sets the heading correctly", () => {
+      const headerElement = subject.shadowRoot?.querySelector("h1");
 
-    expect(subHeaderElement).to.not.be.undefined;
-    await expect(subHeaderElement?.textContent).to.equal(subHeadingText);
+      expect(headerElement).to.not.be.undefined;
+      void expect(headerElement?.textContent).to.equal(headingText);
+    });
+
+    it("sets the subheading correctly", async () => {
+      const subHeaderElement = subject.shadowRoot?.querySelector("h2");
+
+      expect(subHeaderElement).to.not.be.undefined;
+      await expect(subHeaderElement?.textContent).to.equal(subHeadingText);
+    });
+
+    it("sets the leading content correctly", () => {
+      const leadingElement = subject.shadowRoot?.querySelector(`#${leadingId}`);
+
+      expect(leadingElement).to.not.be.undefined;
+    });
+
+    it("sets the trailing content correctly", () => {
+      const trailingElement = subject.shadowRoot?.querySelector(`#${trailingId}`);
+
+      expect(trailingElement).to.not.be.undefined;
+    });
   });
 
-  it("sets the leading content correctly", () => {
-    const leadingElement = subject.shadowRoot?.querySelector(`#${leadingId}`);
+  // describe("Dimensions Tests", () => {});
 
-    expect(leadingElement).to.not.be.undefined;
-  });
+  // describe("Styling Tests", () => {});
 
-  it("sets the trailing content correctly", () => {
-    const trailingElement = subject.shadowRoot?.querySelector(`#${trailingId}`);
+  // describe("Interaction Tests", () => {});
 
-    expect(trailingElement).to.not.be.undefined;
-  });
+  // describe("Golden Tests", () => {});
 
-  it("meets accessability requirements", async () => {
-    await expect(subject).shadowDom.to.be.accessible();
-  });
+  // describe("Performance Tests", () => {});
 });

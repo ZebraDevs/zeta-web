@@ -6,6 +6,7 @@ describe("zeta-navigation-drawer-item", () => {
   let subject: ZetaNavigationDrawerItem;
 
   const createComponent = (template = `<zeta-navigation-drawer-item>Navigation Item</zeta-navigation-drawer-item>`) => {
+    // prettier-ignore
     return fixture<ZetaNavigationDrawerItem>(html`${unsafeStatic(template)}`);
   };
 
@@ -13,7 +14,21 @@ describe("zeta-navigation-drawer-item", () => {
     subject = await createComponent();
   });
 
-  it("meets accessibility requirements", async () => {
-    await expect(subject).shadowDom.to.be.accessible();
+  describe("Accessibility Tests", () => {
+    it("meets accessibility requirements", async () => {
+      await expect(subject).shadowDom.to.be.accessible();
+    });
   });
+
+  // describe("Content Tests", () => {});
+
+  // describe("Dimensions Tests", () => {});
+
+  // describe("Styling Tests", () => {});
+
+  // describe("Interaction Tests", () => {});
+
+  // describe("Golden Tests", () => {});
+
+  // describe("Performance Tests", () => {});
 });

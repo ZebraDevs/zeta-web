@@ -5,50 +5,64 @@ import type { ZetaProgressCircle } from "../../components/progress-indicators/pr
 import { ZetaCloseEvent } from "../../events";
 import "../../components/upload-item/upload-item.js";
 
-describe("ZetaUploadItem", () => {
-  it("renders default flavor correctly", async () => {
-    const element: ZetaUploadItem = await fixture(html` <zeta-upload-item></zeta-upload-item> `);
+describe("zeta-upload-item", () => {
+  // describe("Accessibility Tests", () => {});
 
-    await expect(element.flavor).to.equal("default");
+  describe("Content Tests", () => {
+    it("renders default flavor correctly", async () => {
+      const element: ZetaUploadItem = await fixture(html` <zeta-upload-item></zeta-upload-item> `);
+
+      await expect(element.flavor).to.equal("default");
+    });
+
+    it("renders completed flavor correctly", async () => {
+      const element: ZetaUploadItem = await fixture(html` <zeta-upload-item flavor="completed"></zeta-upload-item> `);
+
+      await expect(element.flavor).to.equal("completed");
+
+      const progressCircle = element.shadowRoot?.querySelector("zeta-progress-circle");
+      expect(progressCircle).to.not.exist;
+    });
+
+    it("renders error flavor correctly", async () => {
+      const element: ZetaUploadItem = await fixture(html` <zeta-upload-item flavor="error"></zeta-upload-item> `);
+
+      await expect(element.flavor).to.equal("error");
+
+      const progressCircle = element.shadowRoot?.querySelector("zeta-progress-circle");
+      expect(progressCircle).to.not.exist;
+    });
+
+    it("updates progress correctly", async () => {
+      const element: ZetaUploadItem = await fixture(html` <zeta-upload-item progress="50"></zeta-upload-item> `);
+
+      await expect(element.progress).to.equal(50);
+
+      const progressCircle: ZetaProgressCircle | null | undefined = element.shadowRoot?.querySelector("zeta-progress-circle");
+
+      await expect(progressCircle?.progress).to.equal(50);
+    });
   });
 
-  it("renders completed flavor correctly", async () => {
-    const element: ZetaUploadItem = await fixture(html` <zeta-upload-item flavor="completed"></zeta-upload-item> `);
+  // describe("Dimensions Tests", () => {});
 
-    await expect(element.flavor).to.equal("completed");
+  // describe("Styling Tests", () => {});
 
-    const progressCircle = element.shadowRoot?.querySelector("zeta-progress-circle");
-    expect(progressCircle).to.not.exist;
+  describe("Interaction Tests", () => {
+    it("fires ZetaCloseEvent:close when close icon is clicked", async () => {
+      const element: ZetaUploadItem = await fixture(html` <zeta-upload-item flavor="completed"></zeta-upload-item> `);
+      const eventListener = oneEvent(element, "close");
+
+      const btn = element.shadowRoot?.querySelector("#cancel") as HTMLElement;
+      btn.click();
+      await element.updateComplete;
+
+      const event = await eventListener;
+      await expect(event.type).to.equal(new ZetaCloseEvent().name);
+    });
   });
 
-  it("renders error flavor correctly", async () => {
-    const element: ZetaUploadItem = await fixture(html` <zeta-upload-item flavor="error"></zeta-upload-item> `);
+  // describe("Golden Tests", () => {});
 
-    await expect(element.flavor).to.equal("error");
-
-    const progressCircle = element.shadowRoot?.querySelector("zeta-progress-circle");
-    expect(progressCircle).to.not.exist;
-  });
-
-  it("updates progress correctly", async () => {
-    const element: ZetaUploadItem = await fixture(html` <zeta-upload-item progress="50"></zeta-upload-item> `);
-
-    await expect(element.progress).to.equal(50);
-
-    const progressCircle: ZetaProgressCircle | null | undefined = element.shadowRoot?.querySelector("zeta-progress-circle");
-
-    await expect(progressCircle?.progress).to.equal(50);
-  });
-
-  it("fires ZetaCloseEvent:close when close icon is clicked", async () => {
-    const element: ZetaUploadItem = await fixture(html` <zeta-upload-item flavor="completed"></zeta-upload-item> `);
-    const eventListener = oneEvent(element, "close");
-
-    const btn = element.shadowRoot?.querySelector("#cancel") as HTMLElement;
-    btn.click();
-    await element.updateComplete;
-
-    const event = await eventListener;
-    await expect(event.type).to.equal(new ZetaCloseEvent().name);
-  });
+  // describe("Performance Tests", () => {});
 });

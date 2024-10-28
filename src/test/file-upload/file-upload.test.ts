@@ -6,6 +6,7 @@ describe("zeta-file-upload", () => {
   let subject: ZetaFileUpload;
 
   const createComponent = (template = `<zeta-file-upload></zeta-file-upload>`) => {
+    // prettier-ignore
     return fixture<ZetaFileUpload>(html`${unsafeStatic(template)}`);
   };
 
@@ -13,7 +14,21 @@ describe("zeta-file-upload", () => {
     subject = await createComponent();
   });
 
-  it("meets accessibility requirements", async () => {
-    await expect(subject).shadowDom.to.be.accessible();
+  describe("Accessibility Tests", () => {
+    it("meets accessibility requirements", async () => {
+      await expect(subject).shadowDom.to.be.accessible();
+    });
   });
+
+  // describe("Content Tests", () => {});
+
+  // describe("Dimensions Tests", () => {});
+
+  // describe("Styling Tests", () => {});
+
+  // describe("Interaction Tests", () => {});
+
+  // describe("Golden Tests", () => {});
+
+  // describe("Performance Tests", () => {});
 });

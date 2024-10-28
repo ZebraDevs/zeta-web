@@ -2,10 +2,11 @@ import { fixture, html, elementUpdated, expect, unsafeStatic } from "@open-wc/te
 import type { ZetaTag } from "../../components/badges/tag/tag.js";
 import "../../components/badges/tag/tag.js";
 
-describe("ZetaTag", () => {
+describe("zeta-tag", () => {
   let subject: ZetaTag;
 
   const createComponent = (template = "<zeta-tag></zeta-tag>") => {
+    // prettier-ignore
     return fixture<ZetaTag>(html`${unsafeStatic(template)}`);
   };
 
@@ -13,40 +14,54 @@ describe("ZetaTag", () => {
     subject = await createComponent();
   });
 
-  it("sets the default properties correctly", async () => {
-    await expect(subject.point).to.equal("right");
-    await expect(subject.text).to.equal("");
+  describe("Accessibility Tests", () => {
+    it("it meets accessibility requirements", async () => {
+      await expect(subject).shadowDom.to.be.accessible();
+    });
   });
 
-  it("manages point attribute correctly", async () => {
-    let pointValue = "left";
+  describe("Content Tests", () => {
+    it("sets the default properties correctly", async () => {
+      await expect(subject.point).to.equal("right");
+      await expect(subject.text).to.equal("");
+    });
 
-    subject.setAttribute("point", pointValue);
-    await expect(subject.point).to.equal(pointValue);
+    it("manages point attribute correctly", async () => {
+      let pointValue = "left";
 
-    pointValue = "right";
+      subject.setAttribute("point", pointValue);
+      await expect(subject.point).to.equal(pointValue);
 
-    subject.setAttribute("point", pointValue);
-    await expect(subject.point).to.equal(pointValue);
+      pointValue = "right";
+
+      subject.setAttribute("point", pointValue);
+      await expect(subject.point).to.equal(pointValue);
+    });
+
+    it("manages text attribute correctly", async () => {
+      const textValue = "Testing service";
+      subject.setAttribute("text", textValue);
+      await expect(subject.text).to.equal(textValue);
+    });
+
+    it("renders the passed text into a span", async () => {
+      const textValue = "Testing service";
+      subject.setAttribute("text", textValue);
+      await elementUpdated(subject);
+
+      const spanEl = subject.shadowRoot ? (subject.shadowRoot.querySelector("span") as HTMLSpanElement) : (subject.querySelector("span") as HTMLSpanElement);
+
+      await expect(spanEl.textContent).to.equal(textValue);
+    });
   });
 
-  it("manages text attribute correctly", async () => {
-    const textValue = "Testing service";
-    subject.setAttribute("text", textValue);
-    await expect(subject.text).to.equal(textValue);
-  });
+  // describe("Dimensions Tests", () => {});
 
-  it("renders the passed text into a span", async () => {
-    const textValue = "Testing service";
-    subject.setAttribute("text", textValue);
-    await elementUpdated(subject);
+  // describe("Styling Tests", () => {});
 
-    const spanEl = subject.shadowRoot ? (subject.shadowRoot.querySelector("span") as HTMLSpanElement) : (subject.querySelector("span") as HTMLSpanElement);
+  // describe("Interaction Tests", () => {});
 
-    await expect(spanEl.textContent).to.equal(textValue);
-  });
+  // describe("Golden Tests", () => {});
 
-  it("it meets accessibility requirements", async () => {
-    await expect(subject).shadowDom.to.be.accessible();
-  });
+  // describe("Performance Tests", () => {});
 });

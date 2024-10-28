@@ -18,6 +18,7 @@ describe("zeta-in-page-banner", () => {
         ${subHeadingText}
         </zeta-in-page-banner>`
   ) => {
+    // prettier-ignore
     return fixture<ZetaInPageBanner>(html`${unsafeStatic(template)}`);
   };
 
@@ -25,20 +26,34 @@ describe("zeta-in-page-banner", () => {
     subject = await createComponent();
   });
 
-  it("sets the heading correctly", () => {
-    const headerElement = subject.shadowRoot?.querySelector(".title");
-
-    expect(headerElement).to.not.be.undefined;
-    void expect(headerElement?.textContent).to.equal(headingText);
+  describe("Accessibility Tests", () => {
+    it("meets accessibility requirements", async () => {
+      await expect(subject).shadowDom.to.be.accessible();
+    });
   });
 
-  it("sets the subheading correctly", async () => {
-    const slot = subject.shadowRoot!.querySelector("slot");
-    const slotContent = (slot?.assignedNodes()[0] as Text)?.data.trim();
-    await expect(slotContent).to.equal(subHeadingText);
+  describe("Content Tests", () => {
+    it("sets the heading correctly", () => {
+      const headerElement = subject.shadowRoot?.querySelector(".title");
+
+      expect(headerElement).to.not.be.undefined;
+      void expect(headerElement?.textContent).to.equal(headingText);
+    });
+
+    it("sets the subheading correctly", async () => {
+      const slot = subject.shadowRoot!.querySelector("slot");
+      const slotContent = (slot?.assignedNodes()[0] as Text)?.data.trim();
+      await expect(slotContent).to.equal(subHeadingText);
+    });
   });
 
-  it("meets accessibility requirements", async () => {
-    await expect(subject).shadowDom.to.be.accessible();
-  });
+  // describe("Dimensions Tests", () => {});
+
+  // describe("Styling Tests", () => {});
+
+  // describe("Interaction Tests", () => {});
+
+  // describe("Golden Tests", () => {});
+
+  // describe("Performance Tests", () => {});
 });
