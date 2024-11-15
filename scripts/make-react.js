@@ -16,10 +16,26 @@ import { pascalCaseFromKebab } from "./utils.js";
 
 const { outdir } = commandLineArgs({ name: "outdir", type: String });
 
-const reactSrcDir = path.join("../../zeta-react/src");
+const reactSrcDir = path.join("../zeta-react/src");
 const reactStorybookDir = path.join(reactSrcDir, "../.storybook");
 const webStorybookDir = path.join("./.storybook");
 //TODO change this
+
+const errors = {};
+const _collateError = (type, file) => {
+  if (errors[type] === undefined) {
+    errors[type] = [];
+  }
+  errors[type].push(file);
+};
+const _reportErrors = () => {
+  const errArr = Object.entries(errors);
+  errArr.forEach(([type, files]) => {
+    console.error(`⛔ ${files.length} ${type} error(s) found:`);
+    files.forEach((file) => console.error(`  - ${file}`));
+  });
+  process.exitCode = errArr.length > 0 ? 1 : 0;
+};
 
 // Fetch component metadata
 const components = getAllComponents(true).map((component) => {
@@ -52,6 +68,7 @@ const generateComponentFile = ({
   componentDir,
   componentFile /*, path*/,
 }) => {
+  let hasErrored = false;
   // const importPath = path.replace(/\.ts$/, '.js');
   const enhancedEvents = (events || []).map(({ name: fullName }) => {
     const [_, eventClass, name] = /(?:([a-zA-Z0-9_]+):)?([a-zA-Z-]+)/g.exec(
@@ -70,15 +87,28 @@ const generateComponentFile = ({
   });
   const eventDefs = {};
   enhancedEvents.forEach(({ reactName, name, eventName }) => {
-    const key = `${reactName}: '${name}'`;
-    if (eventDefs[key] === undefined) {
-      console.log("Non defined event: " + key, eventName, eventDefs);
-      eventDefs[key] = `${eventName}Detail`;
-    } else {
-      eventDefs[key] = `${eventDefs[key]} | ${eventName}Detail`;
-      console.log("Defined event: " + key, eventName, eventDefs);
+    try {
+      const key = `${reactName}: '${name}'`;
+      if (eventDefs[key] === undefined) {
+        console.log("New event found: " + key, eventName, eventDefs);
+        if (name === "undefined") {
+          throw new Error(`Event name is undefined: ${tagName}`);
+        }
+        eventDefs[key] = `${eventName}Detail`;
+      } else {
+        eventDefs[key] = `${eventDefs[key]} | ${eventName}Detail`;
+        console.log("Defined event: " + key, eventName, eventDefs);
+      }
+    } catch (e) {
+      _collateError("undefinedEvent", componentFile);
+      // console.warn(e.message);
+      hasErrored = true;
     }
   });
+  if (hasErrored) {
+    // console.error("⛔ Error in generating event details", componentFile);
+    return;
+  }
 
   const eventNameImport =
     (events || []).length > 0
@@ -118,13 +148,21 @@ const generateComponentFile = ({
     fs.mkdir(componentDir, { recursive: true }),
   ]).then(([source, _fileName]) => fs.writeFile(componentFile, source, "utf8"));
 };
-// Clear build directory
-await deleteAsync(reactSrcDir, { force: true }).then(() =>
-  fs.mkdir(reactSrcDir, { recursive: true })
-);
-Promise.all([
-  ...components.map(generateComponentFile),
-  // Generate the index file
-  fs.writeFile(path.join(reactSrcDir, "index.ts"), index.join("\n"), "utf8"),
-  ...copyStorybookFiles(),
-]);
+
+const main = async () => {
+  // Clear build directory
+  await deleteAsync(reactSrcDir, { force: true }).then(() =>
+    fs.mkdir(reactSrcDir, { recursive: true })
+  );
+
+  Promise.all([
+    ...components.map(generateComponentFile),
+    // Generate the index file
+    fs.writeFile(path.join(reactSrcDir, "index.ts"), index.join("\n"), "utf8"),
+    ...copyStorybookFiles(),
+  ]);
+
+  return _reportErrors(errors);
+};
+
+main();
