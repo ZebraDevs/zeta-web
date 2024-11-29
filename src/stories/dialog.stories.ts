@@ -1,12 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html, nothing } from "lit";
 import { ZetaDialog } from "../components/dialog/dialog.js";
+import { fn } from '@storybook/test';
 import "../components/dialog/dialog.js";
 import "../components/button/button.js";
+import "../components/icon/icon.js";
 
-import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
+import { ZetaIconNameList, type ZetaIconName } from "@zebra-fed/zeta-icons";
 
-const meta: Meta<ZetaDialog | { confirm: string; cancel: string; other: string; icon?: String; "--icon-color": String }> = {
+const meta: Meta<Omit<ZetaDialog, "icon"> & { confirm: string; cancel: string; other: string; icon?: ZetaIconName; "--icon-color": String; onOpen: () => void; onClose: () => void; onCancel: () => void }> = {
   component: "zeta-dialog",
   title: "Dialog",
   tags: ["autodocs"],
@@ -18,9 +20,17 @@ const meta: Meta<ZetaDialog | { confirm: string; cancel: string; other: string; 
     confirm: "Confirm",
     cancel: "Cancel",
     other: "Learn more",
-    icon: "warning"
+    icon: "star",
+    size: "large",
+    onOpen: fn(),
+    onClose: fn(),
+    onCancel: fn()
   },
   argTypes: {
+    size: {
+      options: ["small", "large"],
+      control: { type: "radio" }
+    },
     initialOpen: {
       table: { disable: true }
     },
@@ -54,7 +64,31 @@ export const Dialog: StoryObj = {
         }
       </style>
       <div class="box">
-        <zeta-dialog id="dialog1" .rounded=${args.rounded} .centered=${args.centered} .initialOpen=${true} .title=${args.title}>
+        <zeta-dialog id="dialog1" .rounded=${args.rounded} ?centered=${args.centered} .initialOpen=${true} .title=${args.title} size=${args.size} @open=${args.onOpen} @close=${args.onClose} @cancel=${args.onCancel}>
+          ${args.slot} ${args.icon ? html`<zeta-icon slot="icon">${args.icon}</zeta-icon>` : nothing}
+          ${args.confirm && args.confirm.length > 0 ? html`<zeta-button slot="confirm">${args.confirm}</zeta-button>` : nothing}
+          ${args.cancel && args.cancel.length > 0 ? html`<zeta-button slot="cancel">${args.cancel}</zeta-button>` : nothing}
+          ${args.other && args.other.length > 0 ? html`<zeta-button slot="other">${args.other}</zeta-button>` : nothing}
+        </zeta-dialog>
+      </div>
+    `;
+  }
+};
+
+export const DialogOpen: StoryObj = {
+  name: "Trigger Dialog Opening",
+
+  render: args => {
+    return html`
+      <style>
+        :root {
+          ${args["--icon-color"] && `--icon-color: ${args["--icon-color"]}`} ;
+        }
+      </style>
+      <div class="box">
+        <zeta-button @click=${() => { (document.querySelector('#dialog1') as ZetaDialog)?.showModal() }}><zeta-icon>open</zeta-icon>Open Dialog as Modal</zeta-button>
+        <zeta-button @click=${() => { (document.querySelector('#dialog1') as ZetaDialog)?.show() }}><zeta-icon>open</zeta-icon>Open Dialog</zeta-button>
+        <zeta-dialog id="dialog1" .rounded=${args.rounded} .centered=${args.centered} .title=${args.title} size=${args.size} @open=${args.onOpen} @close=${args.onClose} @cancel=${args.onCancel}>
           ${args.slot} ${args.icon ? html`<zeta-icon slot="icon">${args.icon}</zeta-icon>` : nothing}
           ${args.confirm && args.confirm.length > 0 ? html`<zeta-button slot="confirm">${args.confirm}</zeta-button>` : nothing}
           ${args.cancel && args.cancel.length > 0 ? html`<zeta-button slot="cancel">${args.cancel}</zeta-button>` : nothing}

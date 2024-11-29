@@ -20,7 +20,6 @@ export class BaseButton extends Size(Contourable(Interactive(LitElement))) {
     this.internals = this.attachInternals();
   }
   @state() protected internals: ElementInternals;
-  @query("button") private button?: HTMLButtonElement;
 
   /** Name for the button, used if the button is in a form. */
   //TODO: Does this even work in a form?
@@ -38,7 +37,7 @@ export class BaseButton extends Size(Contourable(Interactive(LitElement))) {
   }
 
   override click() {
-    if (!this.disabled) this.button?.click();
+    if (!this.disabled) this.buttonElement?.click();
   }
 
   //TODO do i need to change the target of on click events?

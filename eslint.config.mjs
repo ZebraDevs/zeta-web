@@ -1,45 +1,31 @@
-import typescriptEslint from "@typescript-eslint/eslint-plugin";
+import eslint from "@eslint/js";
+import tseslint from "typescript-eslint";
 import wc from "eslint-plugin-wc";
+import lit from "eslint-plugin-lit";
 import tsdoc from "eslint-plugin-tsdoc";
+import storybook from "eslint-plugin-storybook";
 import litA11Y from "eslint-plugin-lit-a11y";
-import tsParser from "@typescript-eslint/parser";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-import js from "@eslint/js";
-import { FlatCompat } from "@eslint/eslintrc";
+import prettier from "eslint-config-prettier";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all,
-});
-
-export default [
+export default tseslint.config(
+  eslint.configs.recommended,
+  ...tseslint.configs.recommendedTypeChecked,
+  prettier,
+  storybook.configs["flat/recommended"],
+  wc.configs["flat/recommended"],
+  lit.configs["flat/recommended"],
   {
     ignores: ["**/*.stories.*", "**/generated"],
   },
-  ...compat.extends(
-    "prettier",
-    "eslint:recommended",
-    "plugin:storybook/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "plugin:wc/recommended",
-    "plugin:lit/recommended"
-  ),
   {
     files: ["src/**/*.ts"],
     plugins: {
-      "@typescript-eslint": typescriptEslint,
-      wc,
-      tsdoc,
+      tsdoc: tsdoc,
       "lit-a11y": litA11Y,
     },
 
     languageOptions: {
-      parser: tsParser,
+      parser: tseslint.parser,
       ecmaVersion: "latest",
       sourceType: "module",
 
@@ -106,5 +92,5 @@ export default [
       "@typescript-eslint/no-unsafe-assignment": 0,
       "@typescript-eslint/no-unsafe-member-access": 0,
     },
-  },
-];
+  }
+);

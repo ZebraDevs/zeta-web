@@ -1,76 +1,24 @@
 import { css } from "lit";
-//import styles from "../../mixins/breakpoints.styles.js";
-//TODO text-align is bleeding from outside the component.
-export default /*[styles, */ css`
-  @media (max-width: --mobile-max-width) {
-    dialog {
-      max-width: 312px;
-    }
-    .container {
-      &.col3 {
-        footer {
-          flex-direction: column-reverse;
-
-          .actions {
-            flex-direction: column-reverse;
-          }
-        }
-      }
-    }
-    footer {
-      .actions {
-        width: 100%;
-      }
-
-      padding: var(--spacing-large) var(--spacing-2xl);
-    }
-    ::slotted([slot="other"]) {
-      width: 100%;
-    }
-  }
-
+export default css`
   dialog {
-    padding: 0 var(--spacing-large);
+    flex-direction: column;
+    width: fit-content;
+    width: 100%;
+    max-width: 480px;
+    max-height: 80vh;
+    overflow: auto;
+
     border: none;
     border-radius: inherit;
+    padding: 0 var(--spacing-large);
+
     background-color: var(--surface-default);
     color: var(--main-default);
     box-shadow: var(--elevation-6);
-    width: fit-content;
-    height: fit-content;
-    overflow: visible;
-    width: 100%;
-    max-width: 480px;
-
-    /*@include sm {
-    max-width: 312px;
-  }*/
   }
 
-  .container {
-    width: 100%;
-    flex-direction: column;
+  dialog[open] {
     display: flex;
-
-    &.centered {
-      header {
-        align-items: center;
-      }
-    }
-
-    &.col3 {
-      footer {
-        justify-content: space-between;
-
-        /*@include sm {
-        flex-direction: column-reverse;
-
-        .actions {
-          flex-direction: column-reverse;
-        }
-      }*/
-      }
-    }
   }
 
   header {
@@ -81,14 +29,20 @@ export default /*[styles, */ css`
     column-gap: var(--spacing-large);
   }
 
+  :host([centered]) header {
+    align-items: center;
+  }
+
   footer {
     display: flex;
+    flex-shrink: 0;
     padding: var(--spacing-large) var(--spacing-2xl) var(--spacing-2xl) var(--spacing-2xl);
     gap: var(--spacing-large);
     justify-content: flex-end;
     margin-top: var(--spacing-2xl);
+    overflow: auto;
 
-    ::slotted(:not([slot="icon"]):not(zeta-button)) {
+    ::slotted(:not(zeta-button)) {
       display: none;
     }
 
@@ -99,43 +53,65 @@ export default /*[styles, */ css`
     .actions {
       display: flex;
       gap: var(--spacing-large);
-      width: fit-content;
-    }
-
-    /* @include sm {
-    .actions {
       width: 100%;
     }
-
-    padding: var(--spacing-large) var(--spacing-2xl);
-  } */
   }
 
-  ::slotted([slot="other"]) {
+  /*::slotted([slot="other"]) {
     display: flex;
     width: fit-content;
+  }*/
 
-    /* @include sm {
-    width: 100%;
-  } */
-  }
-
-  .dialog-title {
+  h1 {
     font: var(--headline-small);
     margin: 0;
     padding: 0;
   }
 
-  ::slotted([slot="dialog-body"]),
-  .body {
-    padding: var(--spacing-small) var(--spacing-2xl);
-    font: var(--body-small);
+  div[part="body"] {
+    display: flex;
+    margin: var(--spacing-small) var(--spacing-2xl);
+    flex: 1;
+    min-height: 1.125rem;
+    overflow: auto;
   }
 
-  dialog[open] {
-    display: flex;
+  /*default size = small*/
+  :host(:not([size="large"])) div[part="body"] {
+    font: var(--body-small);
+    min-height: 1.125rem;
   }
+
+  :host([size="large"]) div[part="body"] {
+    /*Note: the designs as of 28/11/2024 show a different font size for the large dialog body ("Standard/Body/Large"). This isnt in ZDS tokens and needs to be changed in Figma*/
+    font: var(--body-medium);
+    min-height: 1.5rem;
+  }
+
+  :host(:not([size="large"])) {
+    footer {
+      flex-direction: row;
+    }
+    footer[data-element-count="3"] {
+      flex-direction: column-reverse;
+      & .actions {
+        flex-direction: column-reverse;
+      }
+    }
+  }
+
+  :host([size="large"]) {
+    footer[data-element-count="3"] {
+      justify-content: space-between;
+    }
+
+    & .actions,
+    & ::slotted([slot="other"]) {
+      width: fit-content;
+    }
+  }
+
   zeta-icon {
     --icon-size: 32px;
   }
-` /*]*/;
+`;

@@ -3,6 +3,7 @@ import { ZetaSwitch } from "../components/switch/switch.js";
 import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
 import { spreadGenerator } from "./utils.js";
 import { html } from "lit";
+import { fn } from '@storybook/test';
 
 const spread = spreadGenerator(ZetaSwitch);
 
@@ -10,7 +11,13 @@ const meta: Meta<ZetaSwitch> = {
   component: "zeta-switch",
   tags: ["autodocs"],
   title: "Switch",
-  args: { rounded: true, disabled: false },
+  args: {
+    rounded: true,
+    disabled: false,
+    onclick: fn(),
+    onchange: fn(),
+    oninput: fn(),
+  },
   argTypes: {
     activeIcon: {
       options: ZetaIconNameList,

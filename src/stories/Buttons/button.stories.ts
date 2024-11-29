@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html, nothing } from "lit";
 import { ZetaButton } from "../../components/button/button.js";
-import "../../components/button/base-button.js";
 import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
+import { fn } from '@storybook/test';
+import "../../components/button/base-button.js";
 import "../../components/icon/icon.js";
 
 const meta: Meta<ZetaButton> = {
@@ -15,7 +16,8 @@ const meta: Meta<ZetaButton> = {
     rounded: true,
     slot: "Button Name",
     type: undefined,
-    value: ""
+    value: "",
+    onclick: fn()
   },
   parameters: {
     design: {
@@ -58,7 +60,7 @@ export default meta;
 
 export const Button: StoryObj<ZetaButton> = {
   render: args =>
-    html`<zeta-button size=${args.size} .disabled=${args.disabled} .rounded=${args.rounded} flavor=${args.flavor}>
+    html`<zeta-button size=${args.size} .disabled=${args.disabled} .rounded=${args.rounded} flavor=${args.flavor} @click=${args.onclick}>
       ${args.leading && args.leading.length > 1 ? html`<zeta-icon slot="leadingIcon">${args.leading}</zeta-icon>` : nothing}${args.slot}
       ${args.trailing && args.trailing.length > 1 ? html`<zeta-icon slot="trailingIcon">${args.trailing}</zeta-icon>` : nothing}
     </zeta-button>`
