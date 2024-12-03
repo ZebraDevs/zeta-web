@@ -1,8 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaSearch } from "../components/search/search.js";
 import "../components/search/search.js";
+import { fn } from '@storybook/test';
+import { html } from "lit";
+import { spreadGenerator } from "./utils.js";
+const spread = spreadGenerator(ZetaSearch);
 
-const meta: Meta<ZetaSearch> = {
+type SearchStory = ZetaSearch & { oninput: () => void, onchange: () => void, onfocus: () => void, onblur: () => void };
+
+const meta: Meta<SearchStory> = {
   tags: ["autodocs"],
   title: "Search",
   component: "zeta-search",
@@ -12,7 +18,11 @@ const meta: Meta<ZetaSearch> = {
     size: "medium",
     round: "false",
     // formAction: "https://google.com/search", // BK to @mikecoomber, I removed this to get the story working after search was changed to a FormField.
-    hasIcon: true
+    hasIcon: true,
+    oninput: fn(),
+    onchange: fn(),
+    onfocus: fn(),
+    onblur: fn()
   },
   argTypes: {
     size: {
@@ -27,7 +37,10 @@ const meta: Meta<ZetaSearch> = {
         type: "inline-radio"
       }
     },
-    // onSubmit: { table: { disable: true } } // BK to @mikecoomber, I removed this to get the story working after search was changed to a FormField.
+    oninput: { table: { disable: true } },
+    onchange: { table: { disable: true } },
+    onfocus: { table: { disable: true } },
+    onblur: { table: { disable: true } },
   },
   parameters: {
     design: {
@@ -39,6 +52,9 @@ const meta: Meta<ZetaSearch> = {
   }
 };
 
-export const Search: StoryObj = {};
+export const Search: StoryObj<SearchStory> = {
+
+  render: ({ oninput, onchange, onfocus, onblur, ...args }) => html`<zeta-search @input=${oninput} @change=${onchange} @focus=${onfocus} @blur=${onblur} ${spread(args)}></zeta-search>`
+};
 
 export default meta;

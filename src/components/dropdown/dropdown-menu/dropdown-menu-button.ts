@@ -1,4 +1,4 @@
-import { customElement, property, query, state } from "lit/decorators.js";
+import { customElement, eventOptions, property, query, state } from "lit/decorators.js";
 import styles from "./dropdown-menu-button.styles.js";
 import { html, LitElement } from "lit";
 import { Contourable, Flavored, Size } from "../../../mixins/mixins.js";
@@ -10,12 +10,19 @@ import "../../checkbox/checkbox.js";
 import "../menu-item/dropdown-menu-item.js";
 import "./../droppable";
 import type { ZetaIconName } from "@zebra-fed/zeta-icons";
+import { ZetaDropdownEvent, ZetaInputEvent } from "../../../events.js";
 
 export type ZetaDropdownItem = { label: string; icon?: ZetaIconName; checked?: boolean; disabled?: boolean; onClick?: () => void };
 
+//TODO check to see if this works with keyboard input
+//     include check to see if input event is fired too
 /** Zeta Dropdown Menu Button places a button that when clicked opens a dropdown menu containing the items passed into it through the items prop.
  *
  * @slot - The slotted text will be displayed on the dropdown menu button.
+ * @event {CustomEvent<ZetaDropdownEvent>} ZetaDropdownEvent:open - Fired when the dropdown is opened.
+ * @event {CustomEvent<ZetaDropdownEvent>} ZetaDropdownEvent:close - Fired when the dropdown is closed.
+ * @event {CustomEvent<ZetaInputEvent>} ZetaInputEvent:input - Fired when the dropdown is closed.
+ * 
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=22391-10146
  * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/dropdown--docs
  */
@@ -55,8 +62,20 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
 
   @query("zeta-droppable") droppable!: ZetaDroppable;
 
-  override handleChange(event: Event): void {
-    this.dispatchEvent(new Event(event.type, event));
+  /* 
+   * @internal
+   */
+  handleChange(_event: Event): void {
+    //The input is disabled so we can ignore these
+    return;
+  }
+
+  /* 
+   * @internal
+   */
+  handleInput(_event: Event): void {
+    //The input is disabled so we can ignore these
+    return;
   }
 
   protected firstUpdated() {
@@ -69,15 +88,15 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
         } else if (this.type === "radio-dropdown") {
           this.input.value = item.label;
         }
-        this.input.dispatchEvent(new Event("input"));
       }
     });
   }
 
   private handleItemClick(text: string) {
-    if (this.type === "text-dropdown") {
+    if (this.type === "radio-dropdown" || this.type === "text-dropdown") {
       this.input.value = text;
-      this.handleClick();
+      if (this.type === "text-dropdown") this.handleClick();
+      this.input.dispatchEvent(new ZetaInputEvent({ value: this.input.value }).toEvent());
     } else if (this.type === "checkbox-dropdown") {
       if (this.checkedValues.includes(text)) {
         this.checkedValues = this.checkedValues.filter((item: string) => item !== text);
@@ -85,21 +104,21 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
         this.checkedValues = [...this.checkedValues, text];
       }
       this.input.value = this.checkedValues.toString();
-    } else if (this.type === "radio-dropdown") {
-      this.input.value = text;
+      this.input.dispatchEvent(new ZetaInputEvent({ value: this.checkedValues }).toEvent());
     }
-    this.input.dispatchEvent(new Event("input"));
   }
 
+  @eventOptions({ capture: true })
   private handleClick() {
     this.open = !this.open;
-    if (this.open) {
+    if (this.open) { //TODO move this to CSS
       document.body.style.overflow = "hidden";
       this.icon = "expand_more";
     } else {
       document.body.style.overflow = "auto";
       this.icon = "chevron_left";
     }
+    this.dispatchEvent(new ZetaDropdownEvent(this.open).toEvent());
   }
 
   private handleOutsideClick(e: Event) {
@@ -129,11 +148,11 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
         return html`
           <zeta-checkbox
             @change=${() => {
-              this.handleItemClick(item.label);
-              if (item.onClick) {
-                item.onClick();
-              }
-            }}
+            this.handleItemClick(item.label);
+            if (item.onClick) {
+              item.onClick();
+            }
+          }}
             class="droppable-item"
             name=${this.name}
             ?rounded=${this.rounded}
@@ -163,9 +182,7 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
     return html`
       <zeta-button
         id="anchor"
-        @click=${() => {
-          this.handleClick();
-        }}
+        @click=${() => this.handleClick()}
         .size=${this.size}
         ?rounded=${this.rounded}
         .flavor=${this.flavor}

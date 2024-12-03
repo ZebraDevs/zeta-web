@@ -15,6 +15,7 @@ export declare class InteractiveInterface {
  * @param superClass - LitElement to add mixin to
  * @returns - component with mixin applied.
  */
+//TODO BK: add @events (what are these? onFocus? onBlur?)
 export const Interactive = <T extends Constructor<LitElement>>(superClass: T) => {
   class InteractiveClass extends superClass {
     /**@internal tracks what the focus listener has been applied to */

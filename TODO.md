@@ -4,6 +4,14 @@
 2. Hook up react library creation
 3. see if react components work in storybook
 4. ditto, demo.
+5. Events:
+
+- Add linter to catch standard "Event" -> needs to be defined in events.ts
+- Work out how to inherit tsdoc comments for `@event`
+- Lint to make sure `@event`s are documented
+- Event tests:
+  - Event is fired when it is supposed to
+  - No other events are fired
 
 # TODO before first Public PR
 

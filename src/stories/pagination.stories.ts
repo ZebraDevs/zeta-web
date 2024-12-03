@@ -2,9 +2,11 @@ import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaPagination } from "../components/pagination/pagination.js";
 import { html } from "lit";
 import { spreadGenerator } from "./utils.js";
+import { fn } from '@storybook/test';
 const spread = spreadGenerator(ZetaPagination);
 
-const meta: Meta<ZetaPagination> = {
+type PaginationStory = ZetaPagination & { onpagechange: () => void };
+const meta: Meta<PaginationStory> = {
   component: "zeta-pagination",
   tags: ["autodocs"],
   title: "Pagination",
@@ -12,7 +14,8 @@ const meta: Meta<ZetaPagination> = {
     rounded: false,
     totalPages: 10,
     currentPage: 1,
-    siblingCount: 1
+    siblingCount: 1,
+    onpagechange: fn()
   },
   parameters: {
     design: {
@@ -26,6 +29,6 @@ const meta: Meta<ZetaPagination> = {
 
 export default meta;
 
-export const Pagination: StoryObj = {
-  render: args => html`<zeta-pagination ${spread(args)}></zeta-pagination>`
+export const Pagination: StoryObj<PaginationStory> = {
+  render: ({ onpagechange, ...args }) => html`<zeta-pagination  @page-change=${onpagechange} ${spread(args)}></zeta-pagination>`
 };

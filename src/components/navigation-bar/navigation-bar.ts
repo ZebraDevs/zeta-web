@@ -3,6 +3,7 @@ import { LitElement, html } from "lit";
 import styles from "./navigation-bar.styles.js";
 
 export * from "../grid-menu-item/grid-menu-item.js";
+//TODO this needs to share a mixin with Pagination or similar (need selected attribute/part, onSelectedChange event)
 /**
  * Navigation Bars (Bottom navigation) allow movement between primary destinations in an app.
  *

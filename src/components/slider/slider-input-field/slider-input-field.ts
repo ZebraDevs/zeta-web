@@ -13,7 +13,7 @@ import "../slider.js";
 /**
  * An input field using a Zeta Slider
  *
- * @event {CustomEvent<ZetaSliderEvent>} ZetaSliderEvent:zeta-slider-change - Fired whenever value of slider is changed. Contains a single entry in detail: `value:number`.
+ * @event {CustomEvent<ZetaSliderEvent>} ZetaSliderEvent:change - Fired whenever value of slider is changed. Contains a single entry in detail: `value:number`.
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=875-11860&node-type=canvas&m=dev
  * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/slider--docs
@@ -55,7 +55,7 @@ export class ZetaSliderInputField extends Contourable(LitElement) {
   }
 
   /**
-   * @listens ZetaSliderEvent:zeta-slider-change
+   * @listens ZetaSliderEvent:change
    */
   private sliderChange = (e: CustomEvent<ZetaSliderEventDetail>) => {
     this.value = e.detail.value;
@@ -64,7 +64,7 @@ export class ZetaSliderInputField extends Contourable(LitElement) {
   };
 
   /**
-   * @fires ZetaSliderEvent:zeta-slider-change
+   * @fires ZetaSliderEvent:change
    */
   private onValueUpdated() {
     if (this.value) {
@@ -107,9 +107,9 @@ export class ZetaSliderInputField extends Contourable(LitElement) {
           step=${ifDefined(this.stepIncrement)}
           value=${ifDefined(live(this.value))}
           @input=${(e: Event) => {
-            this.value = parseInt((e.target as HTMLInputElement).value);
-            this.onValueUpdated();
-          }}
+        this.value = parseInt((e.target as HTMLInputElement).value);
+        this.onValueUpdated();
+      }}
         />
       </div>
     `;

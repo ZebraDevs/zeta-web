@@ -4,7 +4,7 @@ import styles from "./upload-item.styles.js";
 import { Contourable } from "../../mixins/contour.js";
 import "../icon/icon";
 import "../progress-indicators/progress-circle/progress-circle";
-import { ZetaCloseEvent } from "../../events.js";
+import { ZetaCancelUploadEvent } from "../../events.js";
 
 /** Represents a file being uploaded.
  *
@@ -12,7 +12,6 @@ import { ZetaCloseEvent } from "../../events.js";
  * @slot subtitle - Any extra information about the upload.
  * @slot leading - The thumbnail of the file being uploaded.
  *
- * @event {CustomEvent<ZetaCloseEvent>} ZetaCloseEvent:close - Fired when the close icon is clicked.
  * @event {CustomEvent<ZetaCancelUploadEvent>} ZetaCancelUploadEvent:cancel-upload - Fired when the cancel button inside the progress circle is clicked.
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-42&node-type=canvas&m=dev
@@ -38,7 +37,7 @@ export class ZetaUploadItem extends Contourable(LitElement) {
   }
 
   private onCancelClicked() {
-    this.dispatchEvent(new ZetaCloseEvent().toEvent());
+    this.dispatchEvent(new ZetaCancelUploadEvent().toEvent());
   }
 
   protected render() {

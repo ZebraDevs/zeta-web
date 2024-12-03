@@ -1,5 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaAvatar } from "../../components/avatar/avatar.js";
+import { fn } from '@storybook/test';
+import { spread } from "@open-wc/lit-helpers";
+import { html } from "lit";
 
 type AvatarStory = ZetaAvatar & { "show-ring": boolean; "show-close": boolean; status: string };
 
@@ -9,7 +12,8 @@ const meta: Meta<AvatarStory> = {
   args: {
     size: "m",
     "show-ring": false,
-    "show-close": false
+    "show-close": false,
+    onclose: fn()
   },
   argTypes: {
     size: {
@@ -38,7 +42,11 @@ export const AvatarWithInitials: StoryObj<AvatarStory> = {
     slot: "WW",
     showRing: false,
     showClose: false
+  },
+  render: ({ slot, onclose, ...args }) => {
+    return html`<zeta-avatar ${spread(args)} @close=${onclose}>${slot}</zeta-avatar> `;
   }
+
 };
 
 export const AvatarWithImage: StoryObj<AvatarStory> = {
@@ -48,7 +56,8 @@ export const AvatarWithImage: StoryObj<AvatarStory> = {
   argTypes: {
     slot: { table: { disable: true } },
     status: { table: { disable: true } }
-  }
+  },
+  render: AvatarWithInitials.render
 };
 
 export const AvatarWithIcon: StoryObj<AvatarStory> = {
@@ -58,7 +67,8 @@ export const AvatarWithIcon: StoryObj<AvatarStory> = {
   argTypes: {
     slot: { table: { disable: true } },
     status: { table: { disable: true } }
-  }
+  },
+  render: AvatarWithInitials.render
 };
 
 export const AvatarWithStatus: StoryObj<AvatarStory> = {
@@ -69,7 +79,8 @@ export const AvatarWithStatus: StoryObj<AvatarStory> = {
   argTypes: {
     slot: { table: { disable: true } },
     status: { table: { disable: true } }
-  }
+  },
+  render: AvatarWithInitials.render
 };
 
 export const AvatarWithCloseIcon: StoryObj<AvatarStory> = {
@@ -80,5 +91,6 @@ export const AvatarWithCloseIcon: StoryObj<AvatarStory> = {
   argTypes: {
     slot: { table: { disable: true } },
     status: { table: { disable: true } }
-  }
+  },
+  render: AvatarWithInitials.render
 };

@@ -34,7 +34,7 @@ export interface ZetaSliderEventDetail {
 }
 /** A CustomEvent factory that creates events when a standard slider is changed. */
 export class ZetaSliderEvent<T extends ZetaSliderEventDetail> extends ZetaEvent<T> {
-  name: string = "zeta-slider-change";
+  name: string = "change";
   constructor(detail: T) {
     super(detail);
   }
@@ -49,7 +49,7 @@ export interface ZetaRangeSliderEventDetail {
 }
 /** A CustomEvent factory that creates events when a ranged slider is changed. */
 export class ZetaRangeSliderEvent<T extends ZetaRangeSliderEventDetail> extends ZetaEvent<T> {
-  name: string = "zeta-range-slider-change";
+  name: string = "change";
   constructor(detail: T) {
     super(detail);
   }
@@ -62,7 +62,7 @@ export interface ZetaPageEventDetail {
 }
 /** A CustomEvent factory that creates events when a ranged slider is changed. */
 export class ZetaPageEvent<T extends ZetaPageEventDetail> extends ZetaEvent<T> {
-  name: string = "zeta-page-change";
+  name: string = "page-change";
   constructor(detail: T) {
     super(detail, { bubbles: true, composed: true });
   }
@@ -94,10 +94,28 @@ export class ZetaCancelUploadEvent extends ZetaEvent<object> {
   }
 }
 
-export type ZetaChangeEventDetail = object;
+export type ZetaInputChangeEventDetail = object; //TODO BK
 /** A CustomEvent factory that creates events for when an input value changes. */
-export class ZetaChangeEvent extends ZetaEvent<ZetaChangeEventDetail> {
+export class ZetaInputChangeEvent extends ZetaEvent<ZetaInputChangeEventDetail> {
   name: string = "change";
+  constructor() {
+    super({});
+  }
+}
+
+export type ZetaFocusEventDetail = object; //TODO BK
+/** A CustomEvent factory that creates events for when an interactable element is focused. */
+export class ZetaFocusEvent extends ZetaEvent<ZetaFocusEventDetail> {
+  name: string = "focus";
+  constructor() {
+    super({});
+  }
+}
+
+export type ZetaBlurEventDetail = object; //TODO BK
+/** A CustomEvent factory that creates events for when an interactable element is focused. */
+export class ZetaBlurEvent extends ZetaEvent<ZetaBlurEventDetail> {
+  name: string = "blur";
   constructor() {
     super({});
   }
@@ -114,11 +132,11 @@ export class ZetaInputEvent<S, T extends ZetaInputEventDetail<S>> extends ZetaEv
   }
 }
 
-// export class ZetaDropdownEvent extends ZetaEvent<ZetaDropdownEventDetail> {
-//   name: string = "dropdown-open";
-//   name: string = "dropdown-close";
-//   constructor(isOpen: boolean) {
-//     super({});
-//     this.name = isOpen ? "zeta-modal-open" : "zeta-modal-close";
-//   }
-// }
+export type ZetaDropdownEventDetail = object; //TODO BK
+export class ZetaDropdownEvent extends ZetaEvent<ZetaDropdownEventDetail> {
+  name: string = "open";
+  constructor(isOpen: boolean) {
+    super({});
+    this.name = isOpen ? "open" : "close";
+  }
+}

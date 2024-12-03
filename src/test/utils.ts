@@ -1,5 +1,5 @@
 import type { ZetaIcon } from "../components/icon/icon";
-import { sendMouse, resetMouse } from "@web/test-runner-commands";
+import { sendMouse, resetMouse, sendKeys/*, type SendKeysPayload*/ } from "@web/test-runner-commands";
 
 /**
  * Converts a color hex string to its RGB representation.
@@ -101,6 +101,11 @@ export const getMiddleOfElement = (element: HTMLElement): { x: number; y: number
   };
 };
 
+export const getCoordsOfElement = (element: HTMLElement): { x: number; y: number, width: number, height: number } => {
+  const a: Pick<DOMRect, "x" | "y" | "height" | "width"> = element.getBoundingClientRect();
+  return a;
+};
+
 /**
  * Provides mouse actions such as hover, click, and reset.
  */
@@ -145,4 +150,17 @@ export class MouseActions {
    * Resets the mouse position to the top left corner of the viewport
    */
   static reset = resetMouse;
+
+  static clickOutside = async (element: HTMLElement, button: "left" | "right" | "middle" = "left") => {
+    const { x, y, width, height } = getCoordsOfElement(element);
+    await sendMouse({ type: "move", position: [x + width + 2, y + height + 2] });
+    await sendMouse({ type: "down", button });
+    return await sendMouse({ type: "up", button });
+  };
+}
+
+export class KeyboardActions {
+  static press = async (keys: string): Promise<void> => {
+    return await sendKeys({ press: keys });
+  };
 }

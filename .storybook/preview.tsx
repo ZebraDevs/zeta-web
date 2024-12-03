@@ -10,6 +10,7 @@ import {
   Stories,
   ArgTypes,
 } from "@storybook/addon-docs";
+import { withActions } from "@storybook/addon-actions/decorator";
 import React from "react";
 import extractArgs from "./extractArgs";
 import { createLitRenderer } from "cem-plugin-better-lit-types/storybook";
@@ -19,7 +20,7 @@ setCustomElementsManifest(customElements);
 
 const preview: Preview = {
   parameters: {
-    actions: { argTypesRegex: "^on[A-Z].*" },
+    actions: { argTypesRegex: "^on.*" },
     controls: {
       matchers: {
         color: /(background|color)$/i,
@@ -92,6 +93,7 @@ const preview: Preview = {
       },
     },
   },
+  decorators: [withActions],
 };
 
 export default preview;

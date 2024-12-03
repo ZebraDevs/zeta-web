@@ -10,7 +10,7 @@ import "../icon/icon.js";
 /**
  * Pagination needs a description.
  *
- *  @event {CustomEvent<ZetaPageEvent>} ZetaPageEvent:zeta-page-change - Fired when page change. Contains a single value in details: `page: number`.
+ *  @event {CustomEvent<ZetaPageEvent>} ZetaPageEvent:page-change - Fired when page change. Contains a single value in details: `page: number`.
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-24&node-type=canvas&m=dev
  * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/pagination--docs
@@ -48,7 +48,7 @@ export class ZetaPagination extends Contourable(LitElement) {
   };
 
   /**
-   * @fires ZetaPageEvent:zeta-page-change
+   * @fires ZetaPageEvent:page-change
    */
   private handlePageChange = (page: number) => {
     this.currentPage = page;
@@ -112,15 +112,15 @@ export class ZetaPagination extends Contourable(LitElement) {
       <div class="pagination">
         ${this.getIconButton("first_page", 1, disabledLeftControl)} ${this.getIconButton("chevron_left", this.currentPage - 1, disabledLeftControl)}
         ${result.map(page => {
-          const pageClass = classMap({
-            selected: this.currentPage === page
-          });
-          if (typeof page === "string") {
-            return html`<zeta-icon class="more">more_horizontal</zeta-icon>`;
-          } else {
-            return html` <button @click=${() => this.handlePageChange(page)} class="page ${pageClass}">${page}</button> `;
-          }
-        })}
+      const pageClass = classMap({
+        selected: this.currentPage === page
+      });
+      if (typeof page === "string") {
+        return html`<zeta-icon class="more">more_horizontal</zeta-icon>`;
+      } else {
+        return html` <button @click=${() => this.handlePageChange(page)} class="page ${pageClass}">${page}</button> `;
+      }
+    })}
         ${this.getIconButton("chevron_right", this.currentPage + 1, disabledRightControl)}
         ${this.getIconButton("last_page", this.totalPages, disabledRightControl)}
       </div>

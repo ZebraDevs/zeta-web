@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaSlider } from "../../components/slider/slider.js";
 import { html } from "lit";
 import { spreadGenerator } from "../utils.js";
+import { fn } from '@storybook/test';
 const spread = spreadGenerator(ZetaSlider);
 
 const meta: Meta<ZetaSlider> = {
@@ -14,7 +15,8 @@ const meta: Meta<ZetaSlider> = {
     lowerValue: { control: { type: "number", min: 0, max: 100 } },
     upperValue: { control: { type: "number", min: 0, max: 100 } },
     min: { control: { type: "number", min: 0, max: 100 } },
-    max: { control: { type: "number", min: 0, max: 100 } }
+    max: { control: { type: "number", min: 0, max: 100 } },
+    onchange: fn()
   },
   parameters: {
     design: {
@@ -32,7 +34,7 @@ export const Slider: StoryObj = {
   argTypes: {
     stepIncrement: { table: { disable: true } }
   },
-  render: args => html`<zeta-slider ${spread(args)}> </zeta-slider>`
+  render: ({ onchange, ...args }) => html`<zeta-slider @change=${onchange} ${spread(args)}> </zeta-slider>`
 };
 
 export const SteppedSlider: StoryObj = {
@@ -40,5 +42,5 @@ export const SteppedSlider: StoryObj = {
     stepIncrement: { control: { type: "number", min: 0, max: 50 } }
   },
   args: { stepIncrement: 10 },
-  render: args => html`<zeta-slider ${spread(args)}> </zeta-slider>`
+  render: Slider.render
 };

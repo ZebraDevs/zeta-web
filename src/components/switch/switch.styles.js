@@ -42,16 +42,6 @@ export default css`
     background-color: var(--switch-thumb-color, var(--main-inverse));
   }
 
-  input {
-    visibility: hidden;
-    height: 0;
-    width: 0;
-    position: absolute;
-    margin: 0;
-    top: 50%;
-    left: 50%;
-  }
-
   zeta-icon {
     position: absolute;
     color: var(--switch-icon-color, var(--main-inverse));

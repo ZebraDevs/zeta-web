@@ -10,8 +10,8 @@ export * from "./slider-input-field/slider-input-field.js";
 /**
  * Sliders allow users to make selections from a range of values.
  *
- * @event {CustomEvent<ZetaSliderEvent>} ZetaSliderEvent:zeta-slider-change - Fired whenever value of slider is changed. Contains a single entry in details: `value:number`.
- * @event {CustomEvent<ZetaRangeSliderEvent>} ZetaRangeSliderEvent:zeta-range-slider-change - Fired whenever value of range slider is changed. Contains 2 values in details: `min:number`, `max:number`.
+ * @event {CustomEvent<ZetaSliderEvent>} ZetaSliderEvent:change - Fired whenever value of slider is changed. Contains a single entry in details: `value:number`.
+ * @event {CustomEvent<ZetaRangeSliderEvent>} ZetaRangeSliderEvent:change - Fired whenever value of range slider is changed. Contains 2 values in details: `min:number`, `max:number`.
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=875-11860&node-type=canvas&m=dev
  * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/slider--docs
@@ -129,8 +129,8 @@ export class ZetaSlider extends Contourable(LitElement) {
     }
   }
   /**
-   * @fires ZetaSliderEvent:zeta-slider-change when the Slider value changes.
-   * @fires ZetaRangeSliderEvent:zeta-range-slider-change when the Range Slider value changes.
+   * @fires ZetaSliderEvent:change when the Slider value changes.
+   * @fires ZetaRangeSliderEvent:change when the Range Slider value changes.
    */
   private onHandleMoved = (handle: HTMLDivElement) => {
     if (this.stepIncrement) this.snapHandle(handle);
@@ -259,8 +259,8 @@ export class ZetaSlider extends Contourable(LitElement) {
         html`<div
           class="step"
           style=${styleMap({
-            left: `${position}%`
-          })}
+          left: `${position}%`
+        })}
         ></div>`
       );
     }
@@ -297,8 +297,8 @@ export class ZetaSlider extends Contourable(LitElement) {
         <div id="selected-area" class="selected-area contourable-target" @click=${this.trackClickHandler}></div>
         <div id="handle-l" class="handle" @mousedown=${(e: MouseEvent) => this.mouseDownHandler(e, this.leftHandle)}></div>
         ${this.type == "range"
-          ? html`<div id="handle-r" class="handle" @mousedown=${(e: MouseEvent) => this.mouseDownHandler(e, this.rightHandle)}></div>`
-          : nothing}
+        ? html`<div id="handle-r" class="handle" @mousedown=${(e: MouseEvent) => this.mouseDownHandler(e, this.rightHandle)}></div>`
+        : nothing}
       </div>
     `;
   }

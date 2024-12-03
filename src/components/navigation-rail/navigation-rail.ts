@@ -2,7 +2,7 @@ import { html, LitElement } from "lit";
 import { Contourable } from "../../mixins/contour";
 import { customElement } from "lit/decorators.js";
 import styles from "./navigation-rail.styles.js";
-
+//TODO this needs to share a mixin with Pagination or similar (need selected attribute/part, onSelectedChange event)
 /**
  * Navigation rails allow navigation between sections of an app.
  *

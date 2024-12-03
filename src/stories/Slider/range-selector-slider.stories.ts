@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaSlider } from "../../components/slider/slider.js";
 import { html } from "lit";
 import { spreadGenerator } from "../utils.js";
+import { fn } from '@storybook/test';
 const spread = spreadGenerator(ZetaSlider);
 
 // TODO: Although this component is the same code, the design is on a different page. Should this be moved?
@@ -15,7 +16,8 @@ const meta: Meta<ZetaSlider> = {
     upperValue: 90,
     min: 0,
     max: 100,
-    type: "range"
+    type: "range",
+    onchange: fn()
   },
   argTypes: {
     type: { table: { disable: true } },
@@ -42,10 +44,10 @@ export const RangeSlider: StoryObj = {
   argTypes: {
     stepIncrement: { table: { disable: true } }
   },
-  render: args => html`<zeta-slider ${spread(args)}> </zeta-slider>`
+  render: ({ onchange, ...args }) => html`<zeta-slider @change=${onchange} ${spread(args)}> </zeta-slider>`
 };
 
 export const SteppedRangeSlider: StoryObj = {
   args: { stepIncrement: 10 },
-  render: args => html`<zeta-slider ${spread(args)}> </zeta-slider>`
+  render: RangeSlider.render
 };

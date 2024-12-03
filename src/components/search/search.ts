@@ -1,16 +1,20 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { customElement, property, query } from "lit/decorators.js";
 import { html, LitElement, nothing } from "lit";
 import styles from "./search.styles.js";
 import { Contourable, Interactive, Size } from "../../mixins/mixins.js";
 import "../icon/icon.js";
 import { FormField, type InputType } from "../../mixins/form-field.js";
+import { ZetaInputChangeEvent } from "../../events.js";
+
+//TODO onsubmit
 
 /**
  * Supports speech recognition search on Chrome.
+ * 
+ * @event {CustomEvent<ZetaFocusEvent>} ZetaFocusEvent:focus - Fired when the search field is focused
+ * @event {CustomEvent<ZetaBlurEvent>} ZetaBlurEvent:blur - Fired when the search field is blurred
+ * @event {CustomEvent<ZetaInputChangeEvent>} ZetaInputChangeEvent:change - Fired when the search value changes and is committed
+ * @event {CustomEvent<ZetaInputEvent>} ZetaInputEvent:input - Fired when the search value changes
  *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21286-35997
  * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/search--docs
@@ -41,7 +45,7 @@ export class ZetaSearch extends FormField(Size(Contourable(Interactive(LitElemen
   }
 
   override handleChange(_event: Event): void {
-    this.dispatchEvent(new Event(_event.type, _event));
+    this.dispatchEvent(new ZetaInputChangeEvent().toEvent());
   }
 
   override focus() {
@@ -59,6 +63,10 @@ export class ZetaSearch extends FormField(Size(Contourable(Interactive(LitElemen
     this.value = "";
   };
 
+  /* eslint-disable @typescript-eslint/no-unsafe-call */
+  /* eslint-disable @typescript-eslint/no-unsafe-member-access */
+  /* eslint-disable @typescript-eslint/no-explicit-any */
+  /* eslint-disable @typescript-eslint/no-unsafe-assignment */
   private handleSpeechRecognition = () => {
     const SpeechRecognition = (<any>window).SpeechRecognition || (<any>window).webkitSpeechRecognition;
     if (SpeechRecognition) {

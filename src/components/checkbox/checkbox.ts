@@ -7,6 +7,9 @@ import "../icon/icon.js";
 /**
  * Checkboxes allow users to select one or more items from a set. Checkboxes can turn an option on or off.
  *
+ * @event {CustomEvent<ZetaInputChangeEvent>} ZetaInputChangeEvent:change - Fired when the checkbox value changes 
+ * @event {CustomEvent<ZetaInputEvent>} ZetaInputEvent:input - Fired when the checkbox value changes
+ * 
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21510-54003
  * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/checkbox--docs
  */
@@ -19,10 +22,6 @@ export class ZetaCheckbox extends BaseToggleFormElement {
 
   override type = "checkbox" as InputType;
   override value = "on";
-
-  click() {
-    if (!this.disabled) this.input?.click();
-  }
   static styles = [styles, super.styles];
 }
 
