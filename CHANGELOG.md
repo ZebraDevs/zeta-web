@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.0](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.3.0...zeta-web-v0.3.0) (2024-12-03)
+
+
+### 🧹 Miscellaneous Chores
+
+* **main:** release zeta-web 0.3.0 ([#1](https://github.com/ZebraDevs/zeta-web/issues/1)) ([da14d9a](https://github.com/ZebraDevs/zeta-web/commit/da14d9a76cd21fc24ad7bd33e1f905f4939016d1))
+* release-as 0.3.0 ([ecbc8d9](https://github.com/ZebraDevs/zeta-web/commit/ecbc8d9e9626360783809292819744e030f3247b))
+
 ## [0.3.0](https://github.com/zebratechnologies/zeta-web/compare/zeta-web-v0.2.0...zeta-web-v0.3.0) (2024-12-03)
 
 ### ✨ New Features
