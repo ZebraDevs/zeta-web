@@ -1,15 +1,3 @@
-<details class="repo-header">
-    <summary>Zebra Repository Information</summary>
-    <ul>
-        <li> Zebra Business Unit : DMO - Innovation & Design</li> 
-        <li> Zebra Manager : ncvt73 </li>
-        <li> Zebra Repo Admin: ncvt73 </li>
-        <li> Zebra Jira Project ID: UX </li>
-        <li> Product: Zebra Design System (Zeta) - Web Components Library </li>
-        <li> Topics: none </li>
-    </ul>
-</details>
-
 <h1 class='sbdocs-title'>@zebra-fed/zeta-web</h1>
 
 Zeta Web is a native web component library created by Zebra Technologies written in TypeScript.  
@@ -32,24 +20,12 @@ Zeta Web Components can be directly used in many web frameworks.
 1. Install `@zebra-fed/zeta-web`
 
    ```sh
-   # NPM
-   npm install git+https://github.com/zebratechnologies/zeta-web.git
-   # YARN
-   yarn add git+https://github.com/zebratechnologies/zeta-web.git
-   ```
-
-   <details>
-   <summary>🚧 <b>Note</b>: Public npm / yarn links coming soon.</summary>
-
-   ```sh
    # Future install instructions
    # NPM
    npm install @zebra-fed/zeta-web
    # YARN
    yarn add @zebra-fed/zeta-web
    ```
-
-   </details>
 
 2. Import the desired Zeta Web Component into your app:
 
@@ -64,14 +40,8 @@ Zeta Web Components can be directly used in many web frameworks.
    or in HTML,
 
    ```html
-   <link
-     rel="stylesheet"
-     href="./node_modules/@zebra-fed/zeta-web/dist/style.css"
-   />
-   <script
-     type="module"
-     src="./node_modules/@zebra-fed/zeta-web/dist/components/button/button.js"
-   ></script>
+   <link rel="stylesheet" href="./node_modules/@zebra-fed/zeta-web/dist/style.css" />
+   <script type="module" src="./node_modules/@zebra-fed/zeta-web/dist/components/button/button.js"></script>
    ```
 
    You can also import the full package:
@@ -84,10 +54,7 @@ Zeta Web Components can be directly used in many web frameworks.
    This is a temporary step for now. This will be automatically imported where needed in the future.
 
    ```html
-   <link
-     rel="stylesheet"
-     href="./node_modules/@zebra-fed/zeta-icons/dist/style.css"
-   />
+   <link rel="stylesheet" href="./node_modules/@zebra-fed/zeta-icons/dist/style.css" />
    ```
 
 4. Use the Web Component like any HTML element

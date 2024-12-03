@@ -1,6 +1,6 @@
 {
   "name": "@zebra-fed/zeta-web",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "files": [
     "dist",
     "custom-elements.json",
@@ -17,7 +17,13 @@
     "./index.css": "./dist/index.css"
   },
   "description": "Zebra Zeta Design System - Web Components",
-  "repository": "https://github.com/zebratechnologies/zeta-web",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZebraDevs/zeta-web.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "Zebra Front-end Development Team",
   "license": "MIT",
   "type": "module",
