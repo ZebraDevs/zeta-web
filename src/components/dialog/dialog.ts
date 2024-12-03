@@ -2,11 +2,13 @@
 import { customElement, property, queryAssignedElements } from "lit/decorators.js";
 import { LitElement, html } from "lit";
 import styles from "./dialog.styles.js";
-import { classMap } from "lit/directives/class-map.js";
 import { ZetaButton } from "../button/button.js";
 import { Contourable, Popup } from "../../mixins/mixins.js";
 import "../icon/icon.js";
 
+/* 
+ * TODO: dialog Autofocus. 
+ */
 /**
  * A reusable dialog or modal window with a customizable interface and functionality.
  *
@@ -16,6 +18,10 @@ import "../icon/icon.js";
  * @slot {zeta-button} confirm - Button used in footer. Must be of type zeta-button.
  * @slot {zeta-button} cancel - Button used in footer. Must be of type zeta-button.
  * @slot {zeta-button} other - Button used in footer. Must be of type zeta-button.
+ * 
+ * @part body - Styles the dialog body
+ * @part footer - Styles the dialog footer
+ * @part header - Styles the dialog header
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-14&node-type=canvas&m=dev
  * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/dialog--docs
@@ -53,10 +59,12 @@ export class ZetaDialog extends Contourable(Popup(LitElement)) {
   }
 
   /** Whether header text should be centered. */
-  @property({ type: Boolean }) centered: boolean = false;
+  @property({ type: Boolean, reflect: true }) centered: boolean = false;
 
   /** Whether the modal is initially open. */
   @property({ type: Boolean }) initialOpen: boolean = false;
+
+  @property({ type: String, reflect: true }) size: "small" | "large" = "small";
 
   @queryAssignedElements({ slot: "icon", flatten: true }) icon!: NodeList;
 
@@ -72,53 +80,51 @@ export class ZetaDialog extends Contourable(Popup(LitElement)) {
   // set props to buttons
   private handleActionButtonChange = () => {
     this.requestUpdate();
+    let count = 0;
     if (this.confirmBtn[0] && this.confirmBtn[0] instanceof ZetaButton) {
       this.confirmBtn[0].flavor = "primary";
       this.confirmBtn[0].rounded = this.rounded;
+      count++;
     }
     if (this.cancelBtn[0] && this.cancelBtn[0] instanceof ZetaButton) {
       this.cancelBtn[0].flavor = "outline-subtle";
       this.cancelBtn[0].rounded = this.rounded;
+      count++;
     }
     if (this.otherBtn[0] && this.otherBtn[0] instanceof ZetaButton) {
       this.otherBtn[0].flavor = "text";
       this.otherBtn[0].rounded = this.rounded;
+      count++;
     }
+    return count;
   };
 
   protected render() {
-    this.handleActionButtonChange();
-    const classes = classMap({
-      centered: this.centered,
-      container: true,
-      col3: Boolean(this.otherBtn.length)
-    });
+    const count = this.handleActionButtonChange();
 
     return html`
-      <dialog .returnValue=${this.returnValue} @click=${this.onBarrierClicked} id=${this.id} .open=${this.initialOpen}>
-        <div class=${classes}>
-          <header>
-            <slot name="icon"></slot>
-            <h1 class="dialog-title">${this._title}</h1>
-          </header>
-          <div class="body"><slot></slot></div>
-          <footer>
-            <slot @click=${() => this.hide("other")} @slotchange=${this.handleActionButtonChange} name="other"></slot>
-            <div class="actions">
-              <slot @click=${() => this.hide("cancel")} @slotchange=${this.handleActionButtonChange} name="cancel"></slot>
-              <slot
-                @click=${(e: Event) => {
+      <dialog .returnValue=${this.returnValue} id=${this.id} ?open=${this.initialOpen}>
+        <header part="header">
+          <slot name="icon"></slot>
+          <h1>${this._title}</h1>
+        </header>
+        <div part="body"><slot></slot></div>
+        <footer data-element-count=${count} part="footer">
+          <slot @click=${() => this.hide("other")} @slotchange=${this.handleActionButtonChange} name="other"></slot>
+          <div class="actions">
+            <slot @click=${() => this.hide("cancel")} @slotchange=${this.handleActionButtonChange} name="cancel"></slot>
+            <slot
+              @click=${(e: Event) => {
         const btn = e.target as HTMLButtonElement;
         if (btn.type !== "submit") {
           this.hide("confirm");
         }
       }}
-                @slotchange=${this.handleActionButtonChange}
-                name="confirm"
-              ></slot>
-            </div>
-          </footer>
-        </div>
+              @slotchange=${this.handleActionButtonChange}
+              name="confirm"
+            ></slot>
+          </div>
+        </footer>
       </dialog>
     `;
   }

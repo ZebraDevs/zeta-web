@@ -24,7 +24,7 @@ abstract class ZetaEvent<T> {
       composed: this.composed,
       cancelable: this.cancelable,
       detail: this.detail
-    });    
+    });
   }
 }
 
@@ -79,10 +79,10 @@ export class ZetaCloseEvent extends ZetaEvent<object> {
 export type ZetaPopupEventDetail = object;
 /** A CustomEvent factory that creates events when a standard slider is changed. */
 export class ZetaPopupEvent extends ZetaEvent<ZetaPopupEventDetail> {
-  name: string = "zeta-modal-open";
-  constructor(isOpen: boolean) {
+  name: string = "open";
+  constructor(type: "open" | "close" | "cancel") {
     super({});
-    this.name = isOpen ? "zeta-modal-open" : "zeta-modal-close";
+    this.name = type;
   }
 }
 
@@ -93,3 +93,32 @@ export class ZetaCancelUploadEvent extends ZetaEvent<object> {
     super({}, { bubbles: true, composed: true });
   }
 }
+
+export type ZetaChangeEventDetail = object;
+/** A CustomEvent factory that creates events for when an input value changes. */
+export class ZetaChangeEvent extends ZetaEvent<ZetaChangeEventDetail> {
+  name: string = "change";
+  constructor() {
+    super({});
+  }
+}
+
+export type ZetaInputEventDetail<S> = {
+  value: S;
+};
+/** A CustomEvent factory that creates events for when an input value changes. */
+export class ZetaInputEvent<S, T extends ZetaInputEventDetail<S>> extends ZetaEvent<T> {
+  name: string = "input";
+  constructor(detail: T) {
+    super(detail);
+  }
+}
+
+// export class ZetaDropdownEvent extends ZetaEvent<ZetaDropdownEventDetail> {
+//   name: string = "dropdown-open";
+//   name: string = "dropdown-close";
+//   constructor(isOpen: boolean) {
+//     super({});
+//     this.name = isOpen ? "zeta-modal-open" : "zeta-modal-close";
+//   }
+// }

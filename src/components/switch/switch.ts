@@ -23,6 +23,11 @@ import "../icon/icon.js";
  * @cssproperty --switch-thumb-size Height & Width of the switch thumb
  * @cssproperty --switch-icon-size Height & Width of the activeIcon & inactiveIcon
  *
+ * @part track - The switch track
+ * @part thumb - The switch thumb
+ * @part icon active - The active icon
+ * @part icon inactive - The inactive icon
+ * 
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=1153-26923
  * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/switch--docs
  */
