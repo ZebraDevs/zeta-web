@@ -1,0 +1,55 @@
+import { Canvas, Meta, Description, ArgTypes, Title, Stories, Story, Source } from "@storybook/blocks";
+
+import * as ActionMenuButton from "./action-menu-button.stories";
+
+<Meta of={ActionMenuButton} title="ActionMenu" />
+
+<Title />
+
+# Action Menu Button
+
+<Description of="zeta-action-menu-button" />
+<div
+  style={{
+    margin: "25px 30px 0",
+    padding: "40px 30px",
+    borderRadius: "4px",
+    background: "#FFFFFF",
+    boxShadow: "rgba(0, 0, 0, 0.10) 0 1px 3px 0",
+    border: "1px solid hsla(203, 50%, 30%, 0.15)"
+  }}
+>
+  <Story of={ActionMenuButton.ActionMenuButton} />
+</div>
+
+Use the function field in the items array to define the action to be taken when the item is clicked.
+
+Pass an array of objects to the `items` property. Each object must have a `label` and an `icon` property, and optionally a `function` property which runs when that item is clicked.
+
+As you use the action menu button, think about whether you'd rather put the action menu items in a prop or in a slot. Please let the development team know for future reference.
+
+<div
+  style={{
+    margin: "0 15px",
+  }}>
+   
+    ```
+    const items = [
+      { label: "Item 1", icon: "star", function: () => console.log("Item 1 clicked")},
+      { label: "Item 2", icon: "star", function: () => console.log("Item 2 clicked")},
+      { label: "Item 3", icon: "star", function: () => console.log("Item 3 clicked")},
+    ];
+
+    <zeta-action-menu-button
+        items=${items}
+        alignment="start"
+        icon="more_vertical"
+        rounded=true
+        size="medium"
+        flavor="primary">
+    </zeta-action-menu-button>
+    ```
+
+</div>
+
+<ArgTypes of="zeta-action-menu-button" />

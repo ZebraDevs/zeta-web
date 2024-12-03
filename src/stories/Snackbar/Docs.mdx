@@ -1,0 +1,37 @@
+import { Canvas, Meta, Description, ArgTypes, Title, Story } from "@storybook/blocks";
+import * as Snackbar from "./snackbar.stories";
+
+<Meta of={Snackbar} title="Snackbar" />
+
+<Title />
+<Description of="zeta-snackbar" />
+ 
+<div
+  style={{
+    margin: "25px 30px 0",
+    padding: "40px 30px",
+    borderRadius: "4px",
+    background: "#FFFFFF",
+    boxShadow: "rgba(0, 0, 0, 0.10) 0 1px 3px 0",
+    border: "1px solid hsla(203, 50%, 30%, 0.15)"
+  }}>
+  <Story of={Snackbar.Snackbar} />
+
+</div>
+
+<div
+  style={{
+    margin: "0 15px"
+  }}
+>
+  ```jsx
+  <zeta-snackbar status="default" round="full" hasCloseAction actionLabel="Action" actionClick={() => console.log("Action Clicked")}>
+    <zeta-icon slot="icon">happy</zeta-icon>
+    Message
+  </zeta-snackbar>
+  ```
+</div>
+
+The action button will only be shown if the `actionLabel` and `actionClick` props are provided.
+
+<ArgTypes of="zeta-snackbar" />

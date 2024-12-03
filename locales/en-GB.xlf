@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+<file target-language="en-GB" source-language="en" original="lit-localize-inputs" datatype="plaintext">
+<body>
+<trans-unit id="se6ce0e7d35ca8a05">
+  <source>Drop files here to upload</source>
+</trans-unit>
+<trans-unit id="sa192dac6f544578d">
+  <source>Selection contains files with invalid types.</source>
+</trans-unit>
+<trans-unit id="s7008dc713aed8339">
+  <source>Multiple files are not allowed.</source>
+</trans-unit>
+<trans-unit id="s08b05407b5565ca4">
+  <source>or</source>
+</trans-unit>
+</body>
+</file>
+</xliff>

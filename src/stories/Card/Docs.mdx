@@ -1,0 +1,33 @@
+import { Canvas, Meta, Description, ArgTypes, Title } from "@storybook/blocks";
+import * as Card from "./card.stories";
+import * as Header from "./card-header.stories";
+import * as Body from "./card-body.stories";
+import * as Footer from "./card-footer.stories";
+
+<Meta of={Card} title="Cards" />
+
+<Title />
+
+# Card
+
+<Description of="zeta-card" />
+<Canvas of={Card.CardWithHeader} />
+<ArgTypes of="zeta-card" />
+
+# Header
+
+<Description of="zeta-card-header" />
+<Canvas of={Header.Header} />
+<ArgTypes of="zeta-card-header" />
+
+# Body
+
+<Description of="zeta-card-body" />
+<Canvas of={Body.Body} />
+<ArgTypes of="zeta-card-body" />
+
+# Footer
+
+<Description of="zeta-card-footer" />
+<Canvas of={Footer.FooterOneAction} />
+<ArgTypes of="zeta-card-footer" />

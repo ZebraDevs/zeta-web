@@ -1,0 +1,40 @@
+import { Canvas, Meta, Description, ArgTypes, Title } from "@storybook/blocks";
+import * as Avatar from "./avatar.stories";
+
+<Meta of={Avatar} title="Avatar" />
+
+<Title />
+<Canvas of={Avatar.AvatarWithInitials} />
+<Description of="zeta-avatar" />
+<ArgTypes of={Avatar.AvatarWithInitials} />
+
+# Avatar with Initials
+
+To create an avatar with initials, slot the initials into the main slot of the `zeta-avatar` component.
+To change the color of the initials, set the `--avatar-initials-color` CSS variable to the desired color.
+
+<Canvas of={Avatar.AvatarWithInitials} />
+
+# Avatar with Image
+
+To create an avatar with an image, slot an img element into the main slot of the `zeta-avatar` component.
+
+<Canvas of={Avatar.AvatarWithImage} />
+
+# Avatar with Icon
+
+To create an avatar with an icon, slot a `zeta-icon` into the main slot of the `zeta-avatar` component.
+
+<Canvas of={Avatar.AvatarWithIcon} />
+
+# Avatar with Status badge
+
+To add a status badge to an avatar, slot the component into the `status` slot of the `zeta-avatar` component.
+
+<Canvas of={Avatar.AvatarWithStatus} />
+
+# Avatar with Close icon
+
+To show a close icon on an avatar, set `show-close` to `true`. The component will fire a `@avatar-close` event when this button is clicked.
+
+<Canvas of={Avatar.AvatarWithCloseIcon} />

@@ -1,0 +1,125 @@
+name: CI - Pull Request
+
+on: pull_request
+
+# Pull Request Runs on the same branch will be cancelled
+concurrency:
+  group: ${{ github.head_ref }}
+  cancel-in-progress: true
+
+jobs:
+  code-quality:
+    name: Check the code quality
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.head_ref }}
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x.x
+          cache: "npm"
+      - name: Install dependencies
+        run: npm ci
+      - name: Store Playwright's Version
+        id: store-playwright-version
+        run: |
+          PLAYWRIGHT_VERSION=$(npm ls @playwright/test | grep @playwright | sed 's/.*@//')
+          echo "Playwright's Version: $PLAYWRIGHT_VERSION"
+          echo "PLAYWRIGHT_VERSION=$PLAYWRIGHT_VERSION" >> $GITHUB_ENV
+      - name: Cache Playwright Browsers for Playwright's Version
+        id: cache-playwright-browsers
+        uses: actions/cache@v3
+        env:
+          PLAYWRIGHT_VERSION: ${{ steps.store-playwright-version.outputs.PLAYWRIGHT_VERSION }}
+        if: env.PLAYWRIGHT_VERSION == 'true'
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-browsers-${{ env.PLAYWRIGHT_VERSION }}
+      - name: Install playwright browsers
+        if: steps.cache-playwright-browsers.outputs.cache-hit != 'true'
+        run: npx playwright install --with-deps
+      - name: Run custom elements manifest analyzer
+        run: npm run analyze
+      - name: Run eslint
+        run: npm run lint
+      - name: Run prettier
+        run: npm run prettier
+      - name: Run lit-analyzer
+        run: npm run lint:lit-analyzer
+      - name: Run tests
+        run: npm run test -- --debug
+      - name: Test tsdoc
+        run: npm run docs
+      - name: Check for modified files
+        id: git-check
+        run: echo "modified=$(if [ -n "$(git status --porcelain)" ]; then echo "true"; else echo "false"; fi)" >> $GITHUB_ENV
+      - name: Update changes in GitHub repository
+        env:
+          MODIFIED: ${{ steps.git-check.outputs.modified }}
+        if: env.MODIFIED == 'true'
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add -A
+          git commit -m '[automated commit] lint format and import sort'
+          git push
+  generate-localizations:
+    name: Generate localizations.
+    needs: [code-quality]
+    timeout-minutes: 20
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x.x
+          cache: "npm"
+      - name: Install dependencies
+        run: npm ci
+      - name: Run lit-localize extract
+        run: npm run localize:extract
+      - name: Run lit-localize build
+        run: npm run localize:build
+      - name: Check diff
+        id: diff
+        run: git diff --quiet . || echo "changed=true" >> $GITHUB_OUTPUT
+      - name: Commit files
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git add .
+          git commit -m "Generated locales"
+          git push
+  deploy-preview:
+    timeout-minutes: 20
+    name: Deploy preview version of the storybook on firebase
+    needs: [generate-localizations]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x.x
+          cache: "npm"
+      - name: Install dependencies
+        run: npm ci
+      - name: Create custom-elements.json
+        run: npm run analyze
+      - name: Build storybook
+        run: npm run storybook:build
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_ZETA_DS }}"
+          expires: 7d
+          channelId: "pr-${{ github.event.number }}-${{ github.event.pull_request.head.ref }}"

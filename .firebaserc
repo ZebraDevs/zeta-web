@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "zeta-ds"
+  },
+  "targets": {
+    "zeta-ds": {
+      "hosting": {
+        "web": [
+          "zeta-web-main"
+        ]
+      }
+    }
+  }
+}

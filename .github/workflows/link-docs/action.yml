@@ -1,0 +1,9 @@
+name: "Create documentation links"
+description: "Create storybook links on the Figma components"
+inputs:
+  figma-access-token:
+    description: "The personal access token given by Figma. Required to make API calls"
+    required: true
+runs:
+  using: "node20"
+  main: "index.js"

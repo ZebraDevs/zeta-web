@@ -1,0 +1,69 @@
+import { Canvas, Meta, Description, ArgTypes, Title, Source, Story } from "@storybook/blocks";
+import * as Breadcrumb from "./breadcrumb.stories";
+import * as BreadcrumbItem from "./breadcrumb-item.stories";
+import "../../components/icon/icon";
+
+<Meta of={Breadcrumb} title="Breadcrumb" />
+
+<Title />
+
+<Description of="zeta-breadcrumb" />
+
+<div style={{padding: '15px', display: "flex"}}>
+ 
+> "You leave a trail of breadcrumbs any wolf could follow, then act shocked when a wolf is outside your door." - Victor LaValle
+
+</div>
+
+## Breadcrumb Items
+
+To display breadcrumb items you must place the `<zeta-breadcrumb-item>` component inside the `<zeta-breadcrumb>` component.
+
+The chevron separator is automatically applied before each breadcrumb item except the first one. So you don't need to add it manually.
+
+Use the `<zeta-icon>` component with the slot name "icon" to place an icon in a breadcrumb item.
+
+Like this:
+
+<Canvas of={BreadcrumbItem.BreadcrumbItem} />
+
+```html
+<zeta-breadcrumb-item>
+  <zeta-icon slot="icon">star</zeta-icon>
+  Icon before with separator
+</zeta-breadcrumb-item>
+```
+
+<ArgTypes of={BreadcrumbItem} />
+
+---
+
+---
+
+# Breadcrumb
+
+## 2 Items
+
+<Canvas of={Breadcrumb.Breadcrumb2Items} />
+
+## 3 Items
+
+<Canvas of={Breadcrumb.Breadcrumb3Items} />
+
+## 4 Items
+
+<Canvas of={Breadcrumb.Breadcrumb4Items} />
+
+## Truncated
+
+<Canvas of={Breadcrumb.BreadcrumbTruncated} />
+
+The `maxItems` prop allows you to specify the maximum number of items to display in the breadcrumb. If the number of items exceeds the maximum, the breadcrumb will truncate the items in the middle and display a "More Menu".
+
+Specify maxItems like this: `<zeta-breadcrumb maxItems={4}>...</zeta-breadcrumb>`
+
+You must not programmatically change the `maxItems` prop. It is a static prop that should be set when the component is first rendered.
+
+Clicking the ellipse button will reveal the hidden items.
+
+<ArgTypes of={Breadcrumb} />

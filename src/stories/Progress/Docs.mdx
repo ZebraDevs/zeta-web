@@ -1,0 +1,19 @@
+import { Canvas, Meta, Description, ArgTypes, Title } from "@storybook/blocks";
+import * as Circle from "./progress-circle.stories";
+import * as Bar from "./progress-bar.stories";
+
+<Meta of={Circle} title="Progress" />
+
+<Title />
+
+# Progress Circle
+
+<Description of="zeta-progress-circle" />
+<Canvas of={Circle.ProgressCircle} />
+<ArgTypes of="zeta-progress-circle" />
+
+# Progress Bar
+
+<Description of="zeta-progress-bar" />
+<Canvas of={Bar.ProgressBar} />
+<ArgTypes of="zeta-progress-bar" />

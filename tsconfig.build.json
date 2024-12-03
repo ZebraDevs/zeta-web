@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "exclude": ["**/generated", "**/stories", "**/test"],
+  "include": ["src/**/*.ts", "src/**/*.js"],
+  "compilerOptions": {
+    "allowJs": true,
+    "emitDeclarationOnly": false,
+    "outDir": "./dist"
+  },
+}

@@ -1,0 +1,30 @@
+import { Canvas, Meta, Description, ArgTypes, Title } from "@storybook/blocks";
+import * as ZetaSegmentedControl from "./segmented-control.stories.ts";
+import * as ZetaSegmentedItem from "./segmented-item.stories.ts";
+
+<Meta of={ZetaSegmentedControl} title="Segmented Control" />
+
+<Title />
+<Canvas of={ZetaSegmentedControl.SegmentedControl} />
+
+<Description of="zeta-segmented-control" />
+
+<ArgTypes of={ZetaSegmentedControl} />
+
+## Segmented Control with Icons
+
+<Canvas of={ZetaSegmentedControl.SegmentedControlWithIcons} />
+
+# Segmented Item
+
+<Description of="zeta-segmented-item" />
+
+<ArgTypes of={ZetaSegmentedItem} />
+
+## Segmented Item with text
+
+<Canvas of={ZetaSegmentedItem.SegmentedItemText} />
+
+## Segmented Item with an icon
+
+<Canvas of={ZetaSegmentedItem.SegmentedItemIcon} />

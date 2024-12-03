@@ -1,0 +1,202 @@
+<style type="text/css">
+  .sbdocs > h1,
+  .sbdocs > h2,
+  .sbdocs > h3,
+  .sbdocs > h4,
+  .docblock-code-toggle {
+    font-weight: 500 !important;
+  }
+
+  #storybook-docs,
+  .sbdocs.sbdocs-wrapper {
+    background-color: #000;
+  }
+
+  .sbdocs.sbdocs-wrapper .sbdocs-content {
+    max-width: 1400px;
+  }
+
+  .sbdocs-content {
+    background-color: var(--surface-default);
+    border-radius: 20px;
+
+    h1.sbdocs-title::before {
+      content: "";
+      background: no-repeat url("zebra-logo-head.svg");
+      height: 80px;
+      width: 80px;
+      display: flex;
+      flex-direction: row;
+    }
+
+    table.docblock-argstable {
+      margin: 0;
+      margin-top: 2rem;
+
+      tr > td:nth-of-type(2) > div:first-of-type > span {
+        font: var(--body-small);
+      }
+    }
+
+    div:has(> table) {
+      overflow-x: auto;
+    }
+
+    > div:first-child > *:not(:first-child) {
+      margin: 1.5rem 24px;
+    }
+
+    > p,
+    > div,
+    > div > p {
+      font: var(--body-medium) !important;
+    }
+
+    > p,
+    > div,
+    > h1:not(:first-of-type) {
+      margin: 1rem 2rem;
+    }
+
+    > div:first-child {
+      margin: 0;
+    }
+
+    s,
+    s * {
+      text-decoration: line-through;
+      margin: 0;
+      margin: 0 26px;
+    }
+
+    h2 {
+      margin-left: 2rem;
+    }
+
+    ol li {
+      font: var(--body-medium);
+    }
+
+    ol li::marker {
+      font: var(--label-large);
+    }
+
+    p code {
+      width: auto;
+      line-height: 0.5rem;
+    }
+
+    td span code {
+      width: auto;
+    }
+
+    code,
+    .docblock-source {
+      width: calc(100% - 4rem);
+      padding: 1rem;
+      margin: 1rem;
+      border-radius: var(--radius-rounded);
+      overflow-x: auto;
+    }
+
+    p + blockquote,
+    pre + blockquote {
+      margin: 2rem;
+      border-left-color: var(--color-cool-30);
+
+      p {
+        margin: 0;
+        padding: 10px 0;
+      }
+    }
+
+    blockquote {
+      background: var(--color-cool-20) !important;
+    }
+
+    h1.sbdocs-title {
+      display: flex;
+      flex-direction: row;
+      font: var(--display-large) !important;
+      line-height: 80px !important;
+      background-color: var(--color-cool-20) !important;
+      padding: 60px 3rem 40px !important;
+      background-color: var(--color-cool-20);
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      gap: 40px;
+    }
+
+    h1.sbdocs-title + p {
+      margin-top: 2rem;
+    }
+
+    .sbdocs h1 a {
+      margin-left: 4px;
+    }
+  }
+
+  .sbdocs.sbdocs-content:last-child:after {
+    padding: 60px 4rem 32px 3rem !important;
+    display: block;
+    font: var(--title-medium);
+    color: var(--main-subtle);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    h1.sbdocs-title::before {
+      filter: invert(100%);
+    }
+
+    body {
+      background: #0c0d0e;
+    }
+
+    .sbdocs-content {
+      code,
+      .docblock-source {
+        background: #000;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .sbdocs-content {
+      h1.sbdocs-title::before {
+        height: 60px;
+        width: 60px;
+      }
+
+      h1.sbdocs-title {
+        font: var(--display-small) !important;
+        line-height: 60px !important;
+      }
+
+      .sbdocs.sbdocs-wrapper {
+        padding: 2rem 1rem;
+      }
+    }
+  }
+  @media (max-width: 1020px) {
+    :root,
+    :host {
+      --dialog-height: 400px;
+    }
+  }
+  .sbdocs.sbdocs-content:last-child:after {
+    /* x-release-please-start-version */
+    content: "zeta-web v0.2.0";
+    /* x-release-please-end */
+  }
+  details.repo-header {
+    display: none;
+  }
+</style>
+<link rel="stylesheet" href="../src/index.css" />
+<link rel="stylesheet" href="../node_modules/@zebra-fed/zeta-icons/index.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500&display=swap"
+  rel="stylesheet"
+/>

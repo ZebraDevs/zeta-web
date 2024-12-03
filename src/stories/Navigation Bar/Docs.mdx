@@ -1,0 +1,68 @@
+import { Canvas, Meta, Description, ArgTypes, Title, Stories } from "@storybook/blocks";
+import * as NavigationBar from "./navigation-bar.stories";
+
+<Meta of={NavigationBar} title="Navigation Bar" />
+
+<Title />
+<Description of="zeta-navigation-bar" />
+<Canvas of={NavigationBar.BarIconAndLabel} />
+[View Grid Menu Item](/docs/grid-menu-item--docs)
+
+<ArgTypes of="zeta-navigation-bar" />
+<Stories of="zeta-navigation-bar" includePrimary={false} />
+
+## Dividers and Spacers
+
+## Divider Example
+
+To implement a divider in the navigation bar insert the below code between your nav-items:
+
+`<div class="divider"></div>`
+
+```
+<zeta-navigation-bar>
+    <zeta-grid-menu-item
+        icon="star"
+        label="Label"
+        .active=${selected === 0}
+    >
+    </zeta-grid-menu-item>
+    <div class="divider"></div>
+    <zeta-grid-menu-item
+        icon="star"
+        label="Label"
+        .active=${selected === 1}
+    >
+    </zeta-grid-menu-item>
+</zeta-navigation-bar>
+```
+
+## Spacer Example
+
+To implement a spacer in the navigation bar insert the below code between your nav-items:
+
+`<div class="spacer"></div>`
+
+If you want the spacer to push all the other elements away from it pass the prop `shrinkItems` to `zeta-navigation-bar` like this:
+
+`<zeta-navigation-bar shrinkItems>`
+
+```
+<zeta-navigation-bar shrinkItems>
+    <zeta-grid-menu-item
+        icon="star"
+        label="Label"
+        .active=${selected === 0}
+    >
+    </zeta-grid-menu-item>
+    <div class="spacer"></div>
+    <zeta-grid-menu-item
+        icon="star"
+        label="Label"
+        .active=${selected === 1}
+    >
+    </zeta-grid-menu-item>
+</zeta-navigation-bar>
+```
+
+---

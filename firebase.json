@@ -1,0 +1,17 @@
+{
+  "hosting": {
+    "public": "storybook-static",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+      "target": "web",
+      "rewrites": [
+          {
+              "source": "**",
+              "destination": "/index.html"
+          }
+      ]
+  }
+}

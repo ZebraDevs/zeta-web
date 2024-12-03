@@ -1,0 +1,32 @@
+import { html } from "lit";
+import { customElement } from "lit/decorators.js";
+import { ContourableElement } from "../../mixins/contour.js";
+import styles from "./_replacelower_.styles.js";
+
+/** Zeta_replacecap_ web component.
+ *
+ * //TODO: Add description
+ * //TODO: Add slot description
+ * //TODO: Add figma link(s)
+ * //TODO: Add storybook link
+ *
+ * @public */
+@customElement("zeta-_replacelower_")
+export class Zeta_replacecap_ extends ContourableElement {
+
+
+  protected override render() {
+    return html`
+      <div>// TODO:</div>
+    `;
+  }
+  
+  static styles = [super.styles ?? [], styles];
+}
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "zeta-_replacelower_": Zeta_replacecap_;
+  }
+}
+
