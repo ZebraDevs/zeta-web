@@ -1,5 +1,7 @@
 /**
  * Adapted from cem-plugin-better-lit-types: https://github.com/Uscreen-video/cem-plugin-better-lit-types.
+ *
+ * See LICENSE_3RD_PARTY file for license information.
  */
 
 import { reduceTypes } from "cem-plugin-better-lit-types/storybook";
@@ -21,10 +23,7 @@ export default (manifest, mapArgs?) => (componentName) => {
       Object.assign(
         Object.assign(
           Object.assign(
-            Object.assign(
-              {},
-              reduceTypes(declaration.attributes, FIELD.attributes, mapArgs)
-            ),
+            Object.assign({}, reduceTypes(declaration.attributes, FIELD.attributes, mapArgs)),
             reduceTypes(declaration.members, FIELD.properties, mapArgs)
           ),
           reduceTypes(declaration.slots, FIELD.slots, mapArgs)
@@ -44,39 +43,25 @@ export default (manifest, mapArgs?) => (componentName) => {
         ) {
           const name = f!["name"] === "default" ? "" : f!["name"];
           if (declaration["slots"].some((e) => e["name"] === name)) {
-            const decValue = declaration["slots"].find(
-              (e) => e["name"] === name
-            );
+            const decValue = declaration["slots"].find((e) => e["name"] === name);
 
             if (decValue["type"]) f!["type"] = decValue["type"];
           }
         }
 
         /** Move value of `type.text` to `type`. */
-        if (
-          f!["type"] &&
-          f!["type"]["text"] &&
-          !f!["type"]["text"].includes("boolean")
-        ) {
+        if (f!["type"] && f!["type"]["text"] && !f!["type"]["text"].includes("boolean")) {
           f!["type"] = f!["type"]["text"];
         }
 
         /** Set values for boolean */
-        if (
-          f!["type"] &&
-          f!["type"]["text"] &&
-          f!["type"]["text"].includes("boolean")
-        ) {
+        if (f!["type"] && f!["type"]["text"] && f!["type"]["text"].includes("boolean")) {
           f!["type"] = "boolean";
           f!["control"] = { type: "boolean" };
         }
 
         /** Set controls for plain strings. */
-        if (
-          f!["type"] &&
-          typeof f!["type"] === "string" &&
-          f!["type"].includes("string")
-        ) {
+        if (f!["type"] && typeof f!["type"] === "string" && f!["type"].includes("string")) {
           f!["control"] = { type: "text" };
         }
 
@@ -128,7 +113,6 @@ const getEvents = (declaration, args) => {
   return args;
 };
 
-
 /**
  * Gets the declaration for a component based on its manifest and tagName.
  * @param {object} manifest - The component's manifest.
@@ -141,23 +125,18 @@ export const getDeclaration = (manifest, tagName, type = "") => {
   let _declaration;
   const finder = type === "mixin" ? "name" : "tagName";
 
-  (_a =
-    manifest === null || manifest === void 0 ? void 0 : manifest.modules) ===
-    null || _a === void 0
+  (_a = manifest === null || manifest === void 0 ? void 0 : manifest.modules) === null || _a === void 0
     ? void 0
     : _a.forEach((_module) => {
-      var _a;
-      (_a =
-        _module === null || _module === void 0
+        var _a;
+        (_a = _module === null || _module === void 0 ? void 0 : _module.declarations) === null || _a === void 0
           ? void 0
-          : _module.declarations) === null || _a === void 0
-        ? void 0
-        : _a.forEach((declaration) => {
-          if (declaration[finder] === tagName) {
-            _declaration = declaration;
-          }
-        });
-    });
+          : _a.forEach((declaration) => {
+              if (declaration[finder] === tagName) {
+                _declaration = declaration;
+              }
+            });
+      });
 
   return _declaration;
 };
