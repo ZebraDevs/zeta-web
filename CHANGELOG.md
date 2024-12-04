@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.3.1](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.3.0...zeta-web-v0.3.1) (2024-12-04)
+
+### 📈 Documentation
+
+- Update installation instructions in readme and update links in storybook ([99b71e4](https://github.com/ZebraDevs/zeta-web/commit/99b71e49c9aad2b831e70ea0ac3efa2cf117dec9))
+
+### 🧹 Miscellaneous Chores
+
+- **UX-1177:** Update license information ([#3](https://github.com/ZebraDevs/zeta-web/issues/3)) ([99b71e4](https://github.com/ZebraDevs/zeta-web/commit/99b71e49c9aad2b831e70ea0ac3efa2cf117dec9))
+
 ## [0.3.0](https://github.com/zebratechnologies/zeta-web/compare/zeta-web-v0.2.0...zeta-web-v0.3.0) (2024-12-03)
 
 ### ✨ New Features
