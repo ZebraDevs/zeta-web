@@ -120,7 +120,7 @@ jobs:
               });
             }
       - name: Post failure comment
-        if: failure()
+        if: always()
         uses: actions/github-script@v6
         with:
           script: |
@@ -136,10 +136,13 @@ jobs:
               { name: 'Update changes in GitHub repository', conclusion: '${{ steps.update-changes-in-github-repository.outcome }}' }
             ].filter(step => step.conclusion === 'failure');
             const failedStepsDetails = failedSteps.map(step => `- ${step.name}: ${step.conclusion}`).join('\n');
-            const commentBody = `
+            const commentBody = failedSteps.length > 0 ? `
               ## Code Quality Checks Failed
               The following checks failed:
               ${failedStepsDetails}
+            `; : `
+              ## Code Quality Checks Failed
+              No checks failed.
             `;
             const { data: comments } = await github.rest.issues.listComments({
               issue_number: context.issue.number,
