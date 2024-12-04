@@ -137,7 +137,7 @@ jobs:
             ].filter(step => step.conclusion === 'failure');
             const failedStepsDetails = failedSteps.map(step => `- ${step.name}`).join('\n');
             const commentBody = failedSteps.length > 0 ? `
-              ## Code Quality Checks Failed
+              ## Code Quality Checks
               The following checks failed:
               ${failedStepsDetails}
             ` : `
