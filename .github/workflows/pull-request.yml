@@ -135,12 +135,12 @@ jobs:
               { name: 'Check for modified files', conclusion: '${{ steps.git-check.outcome }}' },
               { name: 'Update changes in GitHub repository', conclusion: '${{ steps.update-changes-in-github-repository.outcome }}' }
             ].filter(step => step.conclusion === 'failure');
-            const failedStepsDetails = failedSteps.map(step => `- ${step.name}: ${step.conclusion}`).join('\n');
+            const failedStepsDetails = failedSteps.map(step => `- ${step.name}`).join('\n');
             const commentBody = failedSteps.length > 0 ? `
               ## Code Quality Checks Failed
               The following checks failed:
               ${failedStepsDetails}
-            `; : `
+            ` : `
               ## Code Quality Checks Failed
               No checks failed.
             `;
