@@ -50,8 +50,8 @@ jobs:
         run: npm run prettier
       - name: Run lit-analyzer
         run: npm run lint:lit-analyzer
-      - name: Run tests
-        run: npm run test -- --debug
+      - name: Run tests and generate coverage
+        run: npm run test -- --coverage --debug
       - name: Test tsdoc
         run: npm run docs
       - name: Check for modified files
@@ -67,6 +67,53 @@ jobs:
           git add -A
           git commit -m '[automated commit] lint format and import sort'
           git push
+      - name: Post coverage comment
+        if: always()
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            const coverage = fs.readFileSync("coverage/lcov-report/index.html", "utf8");
+            const coverageData = coverage
+              .split('<table class="coverage-summary">')
+              .pop()
+              ?.split("</table>")[0]
+              .replaceAll(/<a [^>]*>([^<]*)<\/a>/g, "$1");
+            const commentBody = `
+            ## Test Coverage Report
+            <details>
+            <summary>
+              Code Coverage Report
+            </summary>
+            <table class="coverage-summary">
+            ${coverageData}
+            </table>
+            </details>
+              `;
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: commentBody
+            });
+      - name: Post failure comment
+        if: failure()
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const failedSteps = context.payload.workflow_run.jobs.filter(job => job.conclusion === 'failure');
+            const failedStepsDetails = failedSteps.map(step => `- ${step.name}: ${step.conclusion}`).join('\n');
+            const commentBody = `
+              ## Code Quality Checks Failed
+              The following checks failed:
+              ${failedStepsDetails}
+            `;
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: commentBody
+            });
   generate-localizations:
     name: Generate localizations.
     needs: [code-quality]
