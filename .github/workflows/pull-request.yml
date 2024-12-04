@@ -101,7 +101,7 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const failedSteps = context.payload.workflow_run.jobs.filter(job => job.conclusion === 'failure');
+            const failedSteps = steps.git-check.filter(step => step.conclusion === 'failure');
             const failedStepsDetails = failedSteps.map(step => `- ${step.name}: ${step.conclusion}`).join('\n');
             const commentBody = `
               ## Code Quality Checks Failed
