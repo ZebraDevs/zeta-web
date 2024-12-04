@@ -56,7 +56,8 @@ export class ZetaFab extends Flavored(BaseButton) {
   @property({ type: String, reflect: true }) size: "small" | "large" = "small";
 
   private getLabel() {
-    return this.label ? html`<div class="label">${this.label}</div>` : nothing;
+    // return this.label ? html`<div class="label">${this.label}</div>` : nothing;
+    return nothing;
   }
   protected render() {
     return html`
