@@ -103,7 +103,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo
             });
-            const comment = comments.find(comment => comment.body.includes('## Test Coverage Report'));
+            const comment = comments.find(comment => comment.body.includes('Test Coverage Report'));
             if (comment) {
               await github.rest.issues.updateComment({
                 comment_id: comment.id,
@@ -146,7 +146,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo
             });
-            const comment = comments.find(comment => comment.body.includes('## Code Quality Checks Failed'));
+            const comment = comments.find(comment => comment.body.includes('Code Quality Checks Failed'));
             if (comment) {
               await github.rest.issues.updateComment({
                 comment_id: comment.id,
