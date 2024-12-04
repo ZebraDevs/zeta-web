@@ -141,8 +141,8 @@ jobs:
               The following checks failed:
               ${failedStepsDetails}
             ` : `
-              ## Code Quality Checks Failed
-              No checks failed.
+              ## Code Quality Checks
+              All code quality checks passed.
             `;
             const { data: comments } = await github.rest.issues.listComments({
               issue_number: context.issue.number,
