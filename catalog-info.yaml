@@ -11,13 +11,13 @@ metadata:
       title: Storybook
     - url: https://design-zebra.web.app/web/tsdoc/
       title: TSDoc
-#    - url: https://npmjs.com/package/@zebra/zeta-web
-#      title: npm
+   - url: https://npmjs.com/package/@zebra-fed/zeta-web
+     title: npm
   tags: 
     - typescript
     - web-components
   annotations:
-    github.com/project-slug: zebratechnologies/zeta-web
+    github.com/project-slug: ZebraDevs/zeta-web
     github.com/team-slug: zebratechnologies/front-end-development
 #    backstage.io/techdocs-ref: dir:.
 spec:

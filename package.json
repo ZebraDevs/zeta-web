@@ -4,7 +4,8 @@
   "files": [
     "dist",
     "custom-elements.json",
-    "assets"
+    "assets",
+    "LICENSE-3RD-PARTY"
   ],
   "main": "./dist/index.js",
   "module": "./dist/index.js",
