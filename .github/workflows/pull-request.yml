@@ -103,6 +103,8 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo
             });
+            console.log(comments);
+            console.log(coverageData);
             const comment = comments.find(comment => comment.body.includes('Test Coverage Report'));
             if (comment) {
               await github.rest.issues.updateComment({
