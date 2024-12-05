@@ -105,7 +105,8 @@ jobs:
               .split('<table class="coverage-summary">')
               .pop()
               ?.split("</table>")[0]
-              .replaceAll(/<a [^>]*>([^<]*)<\/a>/g, "$1");
+              .replaceAll(/<a [^>]*>([^<]*)<\/a>/g, "$1")
+              .replaceAll(/<td[^>]*class="pic high"[^>]*>[^<]*<\/td>/g, "");
 
             const commentBody = `
             ## PR Checks Complete
@@ -114,7 +115,7 @@ jobs:
             ${passedSteps.length > 0 ? `${passedStepsDetails}` : ''}
             <details>
             <summary>
-              📈 - Code Coverage Report
+              📈 - Code Coverage: 
             </summary>
             <table class="coverage-summary">
             ${coverageData}
