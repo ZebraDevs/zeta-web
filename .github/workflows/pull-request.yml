@@ -149,7 +149,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo
             });
-            const comment = comments.find(comment => comment.body.includes('Code Quality Checks Failed'));
+            const comment = comments.find(comment => comment.body.includes('Code Quality Checks'));
             if (comment) {
               await github.rest.issues.updateComment({
                 comment_id: comment.id,

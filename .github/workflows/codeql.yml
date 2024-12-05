@@ -31,6 +31,43 @@ jobs:
         with:
           languages: ${{ matrix.language }}
       - name: Perform CodeQL Analysis
+        id: perform-codeql-analysis
         uses: github/codeql-action/analyze@v2
         with:
           category: "/language:${{matrix.language}}"
+      - name: Post failure comment
+        if: always()
+        # if: failure()
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const conclusion = ${{ steps.perform-codeql-analysis.conclusion }};
+            const outcome = ${{ steps.perform-codeql-analysis.outcome }};
+            const sarif = ${{ steps.perform-codeql-analysis.outputs.sarif-output }};
+            const commentBody = `
+              ## CodeQL Analysis
+              ${conclusion}
+              ${outcome}
+              ${sarif}
+            `;
+            const { data: comments } = await github.rest.issues.listComments({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo
+            });
+            const comment = comments.find(comment => comment.body.includes('CodeQL Analysis'));
+            if (comment) {
+              await github.rest.issues.updateComment({
+                comment_id: comment.id,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: commentBody
+              });
+            } else {
+              await github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: commentBody
+              });
+            }
