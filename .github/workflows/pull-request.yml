@@ -83,11 +83,11 @@ jobs:
             const fs = require('fs');
             const steps = [
               { name: 'Install dependencies', conclusion: '${{ steps.install-dependencies.outcome }}' },
-              { name: 'Run custom elements manifest analyzer', conclusion: '${{ steps.run-custom-elements-manifest-analyzer.outcome }}' },
-              { name: 'Run eslint', conclusion: '${{ steps.run-eslint.outcome }}' },
-              { name: 'Run prettier', conclusion: '${{ steps.run-prettier.outcome }}' },
-              { name: 'Run lit-analyzer', conclusion: '${{ steps.run-lit-analyzer.outcome }}' },
-              { name: 'Run tests and generate coverage', conclusion: '${{ steps.run-tests-and-generate-coverage.outcome }}' },
+              { name: 'Custom elements manifest analyzer', conclusion: '${{ steps.run-custom-elements-manifest-analyzer.outcome }}' },
+              { name: 'Eslint', conclusion: '${{ steps.run-eslint.outcome }}' },
+              { name: 'Prettier', conclusion: '${{ steps.run-prettier.outcome }}' },
+              { name: 'Lit-analyzer', conclusion: '${{ steps.run-lit-analyzer.outcome }}' },
+              { name: 'Tests and coverage', conclusion: '${{ steps.run-tests-and-generate-coverage.outcome }}' },
               { name: 'Test tsdoc', conclusion: '${{ steps.test-tsdoc.outcome }}' },
               { name: 'Check for modified files', conclusion: '${{ steps.git-check.outcome }}' },
               { name: 'Update changes in GitHub repository', conclusion: '${{ steps.update-changes-in-github-repository.outcome }}' }
