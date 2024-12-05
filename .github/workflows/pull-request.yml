@@ -106,7 +106,8 @@ jobs:
               .pop()
               ?.split("</table>")[0]
               .replaceAll(/<a [^>]*>([^<]*)<\/a>/g, "$1")
-              .replaceAll(/<td[^>]*class="pic high"[^>]*>[^<]*<\/td>/g, "");
+              .replaceAll(/<td[^>]*class="pic high"[^>]*>[^<]*<\/td>/g, "")
+              .replace("<th data-col="pic" data-type="number" data-fmt="html" data-html="true" class="pic"></th>", "");
 
             const commentBody = `
             ## PR Checks Complete
