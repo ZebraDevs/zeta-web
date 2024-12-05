@@ -43,7 +43,7 @@ jobs:
           script: |
             const conclusion = '${{ steps.perform-codeql-analysis.conclusion }}';
             const outcome = '${{ steps.perform-codeql-analysis.outcome }}';
-            const sarif = '${{ steps.perform-codeql-analysis.outputs.sarif-output }}';
+            const sarif = '${{ steps.perform-codeql-analysis.outputs.db-locations }}';
             const commentBody = `
               ## CodeQL Analysis
               ${conclusion}
