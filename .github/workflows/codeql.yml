@@ -41,9 +41,9 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const conclusion = ${{ steps.perform-codeql-analysis.conclusion }};
-            const outcome = ${{ steps.perform-codeql-analysis.outcome }};
-            const sarif = ${{ steps.perform-codeql-analysis.outputs.sarif-output }};
+            const conclusion = '${{ steps.perform-codeql-analysis.conclusion }}';
+            const outcome = '${{ steps.perform-codeql-analysis.outcome }}';
+            const sarif = '${{ steps.perform-codeql-analysis.outputs.sarif-output }}';
             const commentBody = `
               ## CodeQL Analysis
               ${conclusion}
