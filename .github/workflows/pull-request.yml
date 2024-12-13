@@ -23,7 +23,7 @@ jobs:
           node-version: 18.x.x
           cache: "npm"
       - name: Code Quality
-        uses: ZebraDevs/web-components-code-quality@v0.0.4
+        uses: ZebraDevs/web-components-code-quality@v0.0.5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
