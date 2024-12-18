@@ -1,7 +1,7 @@
 import { html, nothing } from "lit";
 import { customElement, property, eventOptions } from "lit/decorators.js";
 import styles from "./fab.styles.js";
-// import "../icon/icon.js";
+import "../icon/icon.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 import { Flavored, type Flavor } from "../../mixins/flavor.js";
 import { BaseButton } from "../button/base-button.js";
