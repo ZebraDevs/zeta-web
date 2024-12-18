@@ -42,7 +42,7 @@
     "gen:react-stories": "node ./scripts/react-stories.js",
     "pregen:react": "npm run analyze",
     "gen:react": "node scripts/make-react.js",
-    "lint:lit-analyzer": "lit-analyzer",
+    "lint:lit-analyzer": "lit-analyzer --quiet",
     "lint": "eslint -f unix \"src/**/*.{ts,tsx}\"",
     "localize:build": "lit-localize build",
     "localize:extract": "lit-localize extract",
