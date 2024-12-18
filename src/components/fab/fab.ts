@@ -59,7 +59,7 @@ export class ZetaFab extends Flavored(BaseButton) {
     return html`
       <button ?disabled=${this.disabled} value=${ifDefined(this.value)} name=${ifDefined(this.name)} type=${ifDefined(this.type)}>
         <zeta-icon .rounded=${this.rounded}><slot></slot></zeta-icon>
-      </button>
+      </button
     `;
   }
   // private getLabel() {
