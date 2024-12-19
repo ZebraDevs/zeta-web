@@ -14,9 +14,13 @@ import prettier from "prettier";
 import { getAllComponents } from "./shared.js";
 import { pascalCaseFromKebab } from "./utils.js";
 
+return new Error(
+  "React wrappers are no longer needed due to Custom Elements full support in react@19"
+);
+
 const { outdir } = commandLineArgs({ name: "outdir", type: String });
 
-const reactSrcDir = path.join("../zeta-react/src");
+const reactSrcDir = path.join("./packages/zeta-react/src");
 const reactStorybookDir = path.join(reactSrcDir, "../.storybook");
 const webStorybookDir = path.join("./.storybook");
 //TODO change this

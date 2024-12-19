@@ -1,3 +1,8 @@
+return new Error(`
+  React wrappers are no longer needed due to Custom Elements full support in react@19
+  This script is now dramatically out of date. It might be useful in the future, but will require significant rework.
+`);
+
 import { readdirSync, lstatSync, readFileSync } from "fs";
 import * as path from "path";
 import {
@@ -11,8 +16,8 @@ import {
 const ZETA_REACT_NAME = "zeta-react";
 const SRC_FOLDER_PATH = `${ZETA_REACT_NAME}/src`;
 const SRC_FOLDER = `${SRC_FOLDER_PATH}/`;
-const SRC_PATH = `../${SRC_FOLDER}`;
-const ZETA_FOLDER_PATH = `../${ZETA_REACT_NAME}/`;
+const SRC_PATH = `./packages/${SRC_FOLDER}`;
+const ZETA_FOLDER_PATH = `./packages/${ZETA_REACT_NAME}/`;
 
 /** Slots that don't work in React.
  *
