@@ -11,6 +11,4 @@ export default css`
   ::slotted(:not(zeta-navigation-rail-item)) {
     display: none;
   }
-
-  
 `;
