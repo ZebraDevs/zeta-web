@@ -1,5 +1,5 @@
 import { html, nothing } from "lit";
-import { customElement, property, eventOptions } from "lit/decorators.js";
+import { customElement, property } from "lit/decorators.js";
 import styles from "./fab.styles.js";
 import "../icon/icon.js";
 import { ifDefined } from "lit/directives/if-defined.js";
@@ -55,25 +55,18 @@ export class ZetaFab extends Flavored(BaseButton) {
 
   @property({ type: String, reflect: true }) size: "small" | "large" = "small";
 
+  private getLabel() {
+    return this.label ? html`<div class="label">${this.label}</div>` : nothing;
+  }
   protected render() {
     return html`
       <button ?disabled=${this.disabled} value=${ifDefined(this.value)} name=${ifDefined(this.name)} type=${ifDefined(this.type)}>
         <zeta-icon .rounded=${this.rounded}><slot></slot></zeta-icon>
-      </button
+        ${this.extended ? this.getLabel() : nothing}
+      </button>
+      ${this.extended ? nothing : this.getLabel()}
     `;
   }
-  // private getLabel() {
-  //   return this.label ? html`<div class="label">${this.label}</div>` : nothing;
-  // }
-  // protected render() {
-  //   return html`
-  //     <button ?disabled=${this.disabled} value=${ifDefined(this.value)} name=${ifDefined(this.name)} type=${ifDefined(this.type)}>
-  //       <zeta-icon .rounded=${this.rounded}><slot></slot></zeta-icon>
-  //       ${this.extended ? this.getLabel() : nothing}
-  //     </button>
-  //     ${this.extended ? nothing : this.getLabel()}
-  //   `;
-  // }
 }
 
 declare global {
