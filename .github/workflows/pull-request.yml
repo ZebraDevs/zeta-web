@@ -26,6 +26,7 @@ jobs:
         uses: ZebraDevs/web-components-code-quality@action-setup
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          run-code-formatting: false
 
   generate-localizations:
     name: Generate localizations.
