@@ -19,7 +19,7 @@ export type FabFlavor = Exclude<Flavor, "positive" | "negative" | "outline" | "o
 @customElement("zeta-fab")
 export class ZetaFab extends Flavored(BaseButton) {
   static get styles() {
-    return [super.styles ?? [], styles];
+    return [super.styles                ?? [], styles];
   }
   /**
    * The label display on or below the button.
@@ -28,7 +28,7 @@ export class ZetaFab extends Flavored(BaseButton) {
 
   @property({ type: String, reflect: true }) flavor: FabFlavor = "primary";
 
-  _round: boolean | "full" = "full";
+  _round: boolean | "full"            = "full";
 
   /**
    * The border radius of the button. Used in place of rounded prop.
@@ -38,8 +38,8 @@ export class ZetaFab extends Flavored(BaseButton) {
     return this._round;
   }
   set round(value: boolean | "full") {
-    const translatedValue: boolean | "full" = `${value}`.toLowerCase() === "true" ? true : `${value}`.toLowerCase() === "full" ? "full" : false;
-    this.rounded = !!translatedValue;
+    const translatedValue: boolean | "full" =          `${value}`.toLowerCase() === "true" ? true : `${value}`.toLowerCase() === "full" ? "full" : false;
+                   this.rounded = !!translatedValue;
     this._round = translatedValue;
   }
 
@@ -51,9 +51,9 @@ export class ZetaFab extends Flavored(BaseButton) {
   /**
    * Whether or not the FAB is extended.
    */
-  @property({ type: Boolean, reflect: true }) extended: boolean = false;
+            @property({ type: Boolean, reflect: true }) extended: boolean = false;
 
-  @property({ type: String, reflect: true }) size: "small" | "large" = "small";
+  @property({ type: String,              reflect: true }) size: "small" | "large" = "small";
 
   private getLabel() {
     return this.label ? html`<div class="label">${this.label}</div>` : nothing;
