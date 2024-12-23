@@ -63,7 +63,7 @@ export class ZetaFab extends Flavored(BaseButton) {
       </button>
     `;
   }
-  // TESTING
+  // TESTING END
 
   // private getLabel() {
   //   return this.label ? html`<div class="label">${this.label}</div>` : nothing;
