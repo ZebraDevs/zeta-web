@@ -119,6 +119,7 @@
   "dependencies": {
     "@fontsource/ibm-plex-sans": "^5.0.21",
     "@lit/localize": "^0.12.2",
+    "@web/test-runner-junit-reporter": "^0.7.2",
     "@zebra-fed/zeta-icons": "^0.9.0",
     "lit": "^3.2.1"
   },

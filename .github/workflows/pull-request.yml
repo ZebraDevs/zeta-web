@@ -26,6 +26,7 @@ jobs:
         uses: ZebraDevs/web-components-code-quality@action-setup
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          test-results-path: "src/test/test-results.xml"
 
   generate-localizations:
     name: Generate localizations.
