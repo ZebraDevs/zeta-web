@@ -1,5 +1,6 @@
 import { vitePlugin } from "@remcovaes/web-test-runner-vite-plugin";
 import { playwrightLauncher } from "@web/test-runner-playwright";
+import { esbuildPlugin } from "@web/dev-server-esbuild";
 
 const LOG_FILTER = ["Lit is in dev mode", "[vite] connecting..."];
 
@@ -18,7 +19,7 @@ export default {
   },
   files: ["src/test/**/*.js", "src/test/**/*.ts", "src/index.js"],
   nodeResolve: true,
-  plugins: [vitePlugin()],
+  plugins: [vitePlugin(), esbuildPlugin({ ts: true, target: "auto" })],
   browsers: [getBrowser("chromium")],
   filterBrowserLogs: ({ args }) => {
     return !args.some((log) => {
