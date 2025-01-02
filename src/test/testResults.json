@@ -15,7 +15,7 @@
           "skipped": "0",
           "errors": "0",
           "failures": "0",
-          "time": "0.07800000000000001"
+          "time": "0.1"
         },
         "properties": {
           "property": [
@@ -43,7 +43,7 @@
           {
             "_attributes": {
               "name": "meets accessability requirements",
-              "time": "0.07",
+              "time": "0.09",
               "classname": "zeta-action-menu-button Accessibility Tests",
               "file": "src/test/action-menu/action-menu-button.test.ts"
             }
@@ -51,7 +51,7 @@
           {
             "_attributes": {
               "name": "aligns the zeta droppable to the start",
-              "time": "0.002",
+              "time": "0.004",
               "classname": "zeta-action-menu-button Dimensions Tests",
               "file": "src/test/action-menu/action-menu-button.test.ts"
             }
@@ -59,7 +59,7 @@
           {
             "_attributes": {
               "name": "aligns the zeta droppable to the center",
-              "time": "0.001",
+              "time": "0.002",
               "classname": "zeta-action-menu-button Dimensions Tests",
               "file": "src/test/action-menu/action-menu-button.test.ts"
             }
@@ -83,7 +83,7 @@
           {
             "_attributes": {
               "name": "closes the dropdown menu when clicked outside",
-              "time": "0.002",
+              "time": "0.001",
               "classname": "zeta-action-menu-button Interaction Tests",
               "file": "src/test/action-menu/action-menu-button.test.ts"
             }
@@ -98,7 +98,7 @@
           "skipped": "0",
           "errors": "0",
           "failures": "0",
-          "time": "0.007"
+          "time": "0.009000000000000001"
         },
         "properties": {
           "property": [
@@ -134,14 +134,6 @@
           {
             "_attributes": {
               "name": "renders the appbar with centered title",
-              "time": "0",
-              "classname": "zeta-top-appbar Content Tests",
-              "file": "src/test/appbar/appbar.test.ts"
-            }
-          },
-          {
-            "_attributes": {
-              "name": "renders the appbar with extended title",
               "time": "0.001",
               "classname": "zeta-top-appbar Content Tests",
               "file": "src/test/appbar/appbar.test.ts"
@@ -149,8 +141,16 @@
           },
           {
             "_attributes": {
-              "name": "renders content in the appbars leading slot",
+              "name": "renders the appbar with extended title",
               "time": "0",
+              "classname": "zeta-top-appbar Content Tests",
+              "file": "src/test/appbar/appbar.test.ts"
+            }
+          },
+          {
+            "_attributes": {
+              "name": "renders content in the appbars leading slot",
+              "time": "0.001",
               "classname": "zeta-top-appbar Content Tests",
               "file": "src/test/appbar/appbar.test.ts"
             }
@@ -166,7 +166,7 @@
           {
             "_attributes": {
               "name": "renders content in the appbar",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-top-appbar Content Tests",
               "file": "src/test/appbar/appbar.test.ts"
             }
@@ -181,7 +181,7 @@
           "skipped": "0",
           "errors": "0",
           "failures": "0",
-          "time": "0.015000000000000003"
+          "time": "0.016"
         },
         "properties": {
           "property": [
@@ -209,7 +209,7 @@
           {
             "_attributes": {
               "name": "renders the avatar with a custom size",
-              "time": "0.008",
+              "time": "0.005",
               "classname": "zeta-avatar Content Tests",
               "file": "src/test/avatar/avatar.test.ts"
             }
@@ -217,14 +217,6 @@
           {
             "_attributes": {
               "name": "renders the avatar with the ring",
-              "time": "0",
-              "classname": "zeta-avatar Content Tests",
-              "file": "src/test/avatar/avatar.test.ts"
-            }
-          },
-          {
-            "_attributes": {
-              "name": "renders the avatar without the ring",
               "time": "0.001",
               "classname": "zeta-avatar Content Tests",
               "file": "src/test/avatar/avatar.test.ts"
@@ -232,8 +224,16 @@
           },
           {
             "_attributes": {
-              "name": "renders the avatar with the close icon",
+              "name": "renders the avatar without the ring",
               "time": "0",
+              "classname": "zeta-avatar Content Tests",
+              "file": "src/test/avatar/avatar.test.ts"
+            }
+          },
+          {
+            "_attributes": {
+              "name": "renders the avatar with the close icon",
+              "time": "0.001",
               "classname": "zeta-avatar Content Tests",
               "file": "src/test/avatar/avatar.test.ts"
             }
@@ -249,7 +249,7 @@
           {
             "_attributes": {
               "name": "renders the avatar with an image",
-              "time": "0.001",
+              "time": "0.004",
               "classname": "zeta-avatar Content Tests",
               "file": "src/test/avatar/avatar.test.ts"
             }
@@ -257,7 +257,7 @@
           {
             "_attributes": {
               "name": "renders the avatar with an icon",
-              "time": "0.001",
+              "time": "0.002",
               "classname": "zeta-avatar Content Tests",
               "file": "src/test/avatar/avatar.test.ts"
             }
@@ -265,7 +265,7 @@
           {
             "_attributes": {
               "name": "renders the badge on the avatar",
-              "time": "0.003",
+              "time": "0.002",
               "classname": "zeta-avatar Content Tests",
               "file": "src/test/avatar/avatar.test.ts"
             }
@@ -280,7 +280,7 @@
           "skipped": "0",
           "errors": "0",
           "failures": "0",
-          "time": "0.226"
+          "time": "0.25"
         },
         "properties": {
           "property": [
@@ -308,7 +308,7 @@
           {
             "_attributes": {
               "name": "it meets accessibility requirements",
-              "time": "0.117",
+              "time": "0.121",
               "classname": "zeta-bottom-sheet + zeta-list-item Accessibility Tests",
               "file": "src/test/bottom-sheets/bottom-sheet.test.ts"
             }
@@ -316,7 +316,7 @@
           {
             "_attributes": {
               "name": "renders the bottom sheet",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-bottom-sheet + zeta-list-item Content Tests",
               "file": "src/test/bottom-sheets/bottom-sheet.test.ts"
             }
@@ -324,7 +324,7 @@
           {
             "_attributes": {
               "name": "displays the header text correctly",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-bottom-sheet + zeta-list-item Content Tests",
               "file": "src/test/bottom-sheets/bottom-sheet.test.ts"
             }
@@ -332,7 +332,7 @@
           {
             "_attributes": {
               "name": "updates when isExpanded changes",
-              "time": "0.001",
+              "time": "0",
               "classname": "zeta-bottom-sheet + zeta-list-item Content Tests",
               "file": "src/test/bottom-sheets/bottom-sheet.test.ts"
             }
@@ -348,7 +348,7 @@
           {
             "_attributes": {
               "name": "applies the correct css display for list items",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-bottom-sheet + zeta-list-item Dimensions Tests",
               "file": "src/test/bottom-sheets/bottom-sheet.test.ts"
             }
@@ -356,7 +356,7 @@
           {
             "_attributes": {
               "name": "it meets accessibility requirements",
-              "time": "0.038",
+              "time": "0.039",
               "classname": "zeta-bottom-sheet + zeta-grid-menu-item Accessibility Tests",
               "file": "src/test/bottom-sheets/bottom-sheet.test.ts"
             }
@@ -388,14 +388,6 @@
           {
             "_attributes": {
               "name": "applies the correct header alignment",
-              "time": "0",
-              "classname": "zeta-bottom-sheet + zeta-grid-menu-item Dimensions Tests",
-              "file": "src/test/bottom-sheets/bottom-sheet.test.ts"
-            }
-          },
-          {
-            "_attributes": {
-              "name": "applies the correct css display for grid items",
               "time": "0.001",
               "classname": "zeta-bottom-sheet + zeta-grid-menu-item Dimensions Tests",
               "file": "src/test/bottom-sheets/bottom-sheet.test.ts"
@@ -403,8 +395,16 @@
           },
           {
             "_attributes": {
+              "name": "applies the correct css display for grid items",
+              "time": "0",
+              "classname": "zeta-bottom-sheet + zeta-grid-menu-item Dimensions Tests",
+              "file": "src/test/bottom-sheets/bottom-sheet.test.ts"
+            }
+          },
+          {
+            "_attributes": {
               "name": "it meets accessibility requirements",
-              "time": "0.067",
+              "time": "0.084",
               "classname": "zeta-bottom-sheet + generic content Accessibility Tests",
               "file": "src/test/bottom-sheets/bottom-sheet.test.ts"
             }
@@ -428,7 +428,7 @@
           {
             "_attributes": {
               "name": "updates when isExpanded changes",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-bottom-sheet + generic content Content Tests",
               "file": "src/test/bottom-sheets/bottom-sheet.test.ts"
             }
@@ -444,7 +444,7 @@
           {
             "_attributes": {
               "name": "applies the correct css display for generic content",
-              "time": "0.001",
+              "time": "0",
               "classname": "zeta-bottom-sheet + generic content Dimensions Tests",
               "file": "src/test/bottom-sheets/bottom-sheet.test.ts"
             }
@@ -459,7 +459,7 @@
           "skipped": "1",
           "errors": "0",
           "failures": "0",
-          "time": "0.102"
+          "time": "0.105"
         },
         "properties": {
           "property": [
@@ -487,7 +487,7 @@
           {
             "_attributes": {
               "name": "meets accessibility requirements",
-              "time": "0.102",
+              "time": "0.105",
               "classname": "zeta-breadcrumb Accessibility Tests",
               "file": "src/test/breadcrumbs/breadcrumb.test.ts"
             }
@@ -563,7 +563,7 @@
           {
             "_attributes": {
               "name": "should render the correct text within the button",
-              "time": "0.001",
+              "time": "0",
               "classname": "zeta-button Content Tests",
               "file": "src/test/button/button.test.ts"
             }
@@ -571,7 +571,7 @@
           {
             "_attributes": {
               "name": "should reset forms",
-              "time": "0.001",
+              "time": "0.002",
               "classname": "zeta-button AS form reset control Interaction Tests",
               "file": "src/test/button/button.test.ts"
             }
@@ -602,7 +602,7 @@
           "skipped": "0",
           "errors": "0",
           "failures": "0",
-          "time": "0.22299999999999998"
+          "time": "0.266"
         },
         "properties": {
           "property": [
@@ -630,7 +630,7 @@
           {
             "_attributes": {
               "name": "meets accessibility requirements for the primary flavor",
-              "time": "0.088",
+              "time": "0.1",
               "classname": "zeta-icon-button Accessibility Tests",
               "file": "src/test/button/icon-button.test.ts"
             }
@@ -638,7 +638,7 @@
           {
             "_attributes": {
               "name": "meets accessibility requirements for the positive flavor",
-              "time": "0.022",
+              "time": "0.031",
               "classname": "zeta-icon-button Accessibility Tests",
               "file": "src/test/button/icon-button.test.ts"
             }
@@ -646,7 +646,7 @@
           {
             "_attributes": {
               "name": "meets accessibility requirements for the negative flavor",
-              "time": "0.023",
+              "time": "0.026",
               "classname": "zeta-icon-button Accessibility Tests",
               "file": "src/test/button/icon-button.test.ts"
             }
@@ -654,7 +654,7 @@
           {
             "_attributes": {
               "name": "meets accessibility requirements for the outline flavor",
-              "time": "0.022",
+              "time": "0.028",
               "classname": "zeta-icon-button Accessibility Tests",
               "file": "src/test/button/icon-button.test.ts"
             }
@@ -662,7 +662,7 @@
           {
             "_attributes": {
               "name": "meets accessibility requirements for the outline-subtle flavor",
-              "time": "0.034",
+              "time": "0.041",
               "classname": "zeta-icon-button Accessibility Tests",
               "file": "src/test/button/icon-button.test.ts"
             }
@@ -670,7 +670,7 @@
           {
             "_attributes": {
               "name": "meets accessibility requirements for the text flavor",
-              "time": "0.021",
+              "time": "0.023",
               "classname": "zeta-icon-button Accessibility Tests",
               "file": "src/test/button/icon-button.test.ts"
             }
@@ -702,7 +702,7 @@
           {
             "_attributes": {
               "name": "should display correct icon color for negative flavor",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-icon-button Styling Tests",
               "file": "src/test/button/icon-button.test.ts"
             }
@@ -742,7 +742,7 @@
           {
             "_attributes": {
               "name": "button should have correct background color for the positive flavor",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-icon-button Styling Tests",
               "file": "src/test/button/icon-button.test.ts"
             }
@@ -750,7 +750,7 @@
           {
             "_attributes": {
               "name": "button should have correct background color for the negative flavor",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-icon-button Styling Tests",
               "file": "src/test/button/icon-button.test.ts"
             }
@@ -758,7 +758,7 @@
           {
             "_attributes": {
               "name": "button should have correct background color for the outline flavor",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-icon-button Styling Tests",
               "file": "src/test/button/icon-button.test.ts"
             }
@@ -766,7 +766,7 @@
           {
             "_attributes": {
               "name": "button should have correct background color for the outline-subtle flavor",
-              "time": "0.001",
+              "time": "0",
               "classname": "zeta-icon-button Styling Tests",
               "file": "src/test/button/icon-button.test.ts"
             }
@@ -774,7 +774,7 @@
           {
             "_attributes": {
               "name": "button should have correct background color for the text flavor",
-              "time": "0.001",
+              "time": "0",
               "classname": "zeta-icon-button Styling Tests",
               "file": "src/test/button/icon-button.test.ts"
             }
@@ -790,7 +790,7 @@
           {
             "_attributes": {
               "name": "should render the icon with the correct color when set by CSS Variable",
-              "time": "0.001",
+              "time": "0.002",
               "classname": "zeta-icon-button Styling Tests",
               "file": "src/test/button/icon-button.test.ts"
             }
@@ -822,7 +822,7 @@
           {
             "_attributes": {
               "name": "should not reset forms if disabled via DOM",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-icon-button AS form reset control Interaction Tests",
               "file": "src/test/button/icon-button.test.ts"
             }
@@ -837,7 +837,7 @@
           "skipped": "0",
           "errors": "0",
           "failures": "0",
-          "time": "0.079"
+          "time": "0.091"
         },
         "properties": {
           "property": [
@@ -865,7 +865,7 @@
           {
             "_attributes": {
               "name": "meets accessability requirements",
-              "time": "0.079",
+              "time": "0.091",
               "classname": "zeta-card-header Accessibility Tests",
               "file": "src/test/card/card-header.test.ts"
             }
@@ -940,7 +940,7 @@
           {
             "_attributes": {
               "name": "sets the name attribute correctly",
-              "time": "0.001",
+              "time": "0.002",
               "classname": "zeta-checkbox Content Tests",
               "file": "src/test/checkbox/checkbox.test.ts"
             }
@@ -948,7 +948,7 @@
           {
             "_attributes": {
               "name": "sets the id attribute correctly",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-checkbox Content Tests",
               "file": "src/test/checkbox/checkbox.test.ts"
             }
@@ -972,7 +972,7 @@
           {
             "_attributes": {
               "name": "changes the checked state when clicked",
-              "time": "0.001",
+              "time": "0",
               "classname": "zeta-checkbox Interaction Tests",
               "file": "src/test/checkbox/checkbox.test.ts"
             }
@@ -980,7 +980,7 @@
           {
             "_attributes": {
               "name": "renders the checkbox label correctly",
-              "time": "0.001",
+              "time": "0",
               "classname": "zeta-checkbox + label Content Tests",
               "file": "src/test/checkbox/checkbox.test.ts"
             }
@@ -1047,7 +1047,7 @@
           "skipped": "0",
           "errors": "0",
           "failures": "0",
-          "time": "0.008"
+          "time": "0.010000000000000002"
         },
         "properties": {
           "property": [
@@ -1099,7 +1099,7 @@
           {
             "_attributes": {
               "name": "changes open property on close",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-dialog Content Tests",
               "file": "src/test/dialog/dialog.test.ts"
             }
@@ -1107,7 +1107,7 @@
           {
             "_attributes": {
               "name": "calls close method and sets return value",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-dialog Content Tests",
               "file": "src/test/dialog/dialog.test.ts"
             }
@@ -1122,7 +1122,7 @@
           "skipped": "1",
           "errors": "0",
           "failures": "0",
-          "time": "0.030000000000000002"
+          "time": "0.024999999999999998"
         },
         "properties": {
           "property": [
@@ -1183,7 +1183,7 @@
           {
             "_attributes": {
               "name": "opens the dropdown menu when clicked",
-              "time": "0.002",
+              "time": "0.001",
               "classname": "zeta-dropdown-menu-button Interaction Tests",
               "file": "src/test/dropdown/dropdown-menu-button.test.ts"
             }
@@ -1191,14 +1191,6 @@
           {
             "_attributes": {
               "name": "closes the dropdown menu when clicked outside",
-              "time": "0.003",
-              "classname": "zeta-dropdown-menu-button Interaction Tests",
-              "file": "src/test/dropdown/dropdown-menu-button.test.ts"
-            }
-          },
-          {
-            "_attributes": {
-              "name": "closes the dropdown menu when clicked inside",
               "time": "0.002",
               "classname": "zeta-dropdown-menu-button Interaction Tests",
               "file": "src/test/dropdown/dropdown-menu-button.test.ts"
@@ -1206,8 +1198,16 @@
           },
           {
             "_attributes": {
+              "name": "closes the dropdown menu when clicked inside",
+              "time": "0.003",
+              "classname": "zeta-dropdown-menu-button Interaction Tests",
+              "file": "src/test/dropdown/dropdown-menu-button.test.ts"
+            }
+          },
+          {
+            "_attributes": {
               "name": "returns the selected item when a wrapping form is submitted",
-              "time": "0.004",
+              "time": "0.003",
               "classname": "zeta-dropdown-menu-button Interaction Tests",
               "file": "src/test/dropdown/dropdown-menu-button.test.ts"
             }
@@ -1215,7 +1215,7 @@
           {
             "_attributes": {
               "name": "returns the selected checkboxes when a wrapping form is submitted",
-              "time": "0.009",
+              "time": "0.006",
               "classname": "zeta-dropdown-menu-button Interaction Tests",
               "file": "src/test/dropdown/dropdown-menu-button.test.ts"
             }
@@ -1300,7 +1300,7 @@
           "skipped": "2",
           "errors": "0",
           "failures": "0",
-          "time": "0.092"
+          "time": "0.10700000000000001"
         },
         "properties": {
           "property": [
@@ -1328,7 +1328,7 @@
           {
             "_attributes": {
               "name": "meets accessability requirements",
-              "time": "0.086",
+              "time": "0.1",
               "classname": "zeta-dropdown-menu-item Accessibility Tests",
               "file": "src/test/dropdown/dropdown-menu-item.test.ts"
             }
@@ -1336,7 +1336,7 @@
           {
             "_attributes": {
               "name": "renders the given text",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-dropdown-menu-item Content Tests",
               "file": "src/test/dropdown/dropdown-menu-item.test.ts"
             }
@@ -1360,7 +1360,7 @@
           {
             "_attributes": {
               "name": "sets the disabled attribute correctly",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-dropdown-menu-item Content Tests",
               "file": "src/test/dropdown/dropdown-menu-item.test.ts"
             }
@@ -1376,7 +1376,7 @@
           {
             "_attributes": {
               "name": "sets the correct colors when disabled",
-              "time": "0.002",
+              "time": "0.001",
               "classname": "zeta-dropdown-menu-item Styling Tests",
               "file": "src/test/dropdown/dropdown-menu-item.test.ts"
             }
@@ -1425,7 +1425,7 @@
           "skipped": "0",
           "errors": "0",
           "failures": "0",
-          "time": "0.061000000000000006"
+          "time": "0.067"
         },
         "properties": {
           "property": [
@@ -1453,7 +1453,7 @@
           {
             "_attributes": {
               "name": "meets accessability requirements",
-              "time": "0.057",
+              "time": "0.065",
               "classname": "zeta-droppable Accessibility Tests",
               "file": "src/test/dropdown/droppable.test.ts"
             }
@@ -1469,7 +1469,7 @@
           {
             "_attributes": {
               "name": "is visible when open is true",
-              "time": "0.001",
+              "time": "0",
               "classname": "zeta-droppable Content Tests",
               "file": "src/test/dropdown/droppable.test.ts"
             }
@@ -1477,7 +1477,7 @@
           {
             "_attributes": {
               "name": "is not visible when open is false",
-              "time": "0.001",
+              "time": "0",
               "classname": "zeta-droppable Content Tests",
               "file": "src/test/dropdown/droppable.test.ts"
             }
@@ -1493,7 +1493,7 @@
           {
             "_attributes": {
               "name": "sets the correct border radius when rounded is true",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-droppable Styling Tests",
               "file": "src/test/dropdown/droppable.test.ts"
             }
@@ -1501,7 +1501,7 @@
           {
             "_attributes": {
               "name": "sets the correct border radius when rounded is false",
-              "time": "0.001",
+              "time": "0",
               "classname": "zeta-droppable Styling Tests",
               "file": "src/test/dropdown/droppable.test.ts"
             }
@@ -1516,7 +1516,7 @@
           "skipped": "0",
           "errors": "3",
           "failures": "3",
-          "time": "0.098"
+          "time": "0.1"
         },
         "properties": {
           "property": [
@@ -1544,7 +1544,7 @@
           {
             "_attributes": {
               "name": "meets accessability requirements",
-              "time": "0.09",
+              "time": "0.092",
               "classname": "zeta-fab Accessibility Tests",
               "file": "src/test/fab/fab.test.ts"
             }
@@ -1552,7 +1552,7 @@
           {
             "_attributes": {
               "name": "renders a button with a label",
-              "time": "0.002",
+              "time": "0.001",
               "classname": "zeta-fab Content Tests",
               "file": "src/test/fab/fab.test.ts",
               "line": "35"
@@ -1562,7 +1562,7 @@
                 "message": "expected null to exist",
                 "type": "AssertionError"
               },
-              "_cdata": "AssertionError: expected null to exist\n  at n.<anonymous> (src/test/fab/fab.test.ts?wtr-session-id=gdzzksEhE1DRKDCTPOPBJ:35:61)"
+              "_cdata": "AssertionError: expected null to exist\n  at n.<anonymous> (src/test/fab/fab.test.ts?wtr-session-id=UWBpFz79unXcwwpuINsle:35:61)"
             }
           },
           {
@@ -1584,7 +1584,7 @@
           {
             "_attributes": {
               "name": "renders an extended fab",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-fab Content Tests",
               "file": "src/test/fab/fab.test.ts",
               "line": "54"
@@ -1594,13 +1594,13 @@
                 "message": "expected null to exist",
                 "type": "AssertionError"
               },
-              "_cdata": "AssertionError: expected null to exist\n  at n.<anonymous> (src/test/fab/fab.test.ts?wtr-session-id=gdzzksEhE1DRKDCTPOPBJ:54:34)"
+              "_cdata": "AssertionError: expected null to exist\n  at n.<anonymous> (src/test/fab/fab.test.ts?wtr-session-id=UWBpFz79unXcwwpuINsle:54:34)"
             }
           },
           {
             "_attributes": {
               "name": "renders a default fab",
-              "time": "0.001",
+              "time": "0",
               "classname": "zeta-fab Content Tests",
               "file": "src/test/fab/fab.test.ts",
               "line": "63"
@@ -1610,7 +1610,7 @@
                 "message": "expected null to exist",
                 "type": "AssertionError"
               },
-              "_cdata": "AssertionError: expected null to exist\n  at n.<anonymous> (src/test/fab/fab.test.ts?wtr-session-id=gdzzksEhE1DRKDCTPOPBJ:63:30)"
+              "_cdata": "AssertionError: expected null to exist\n  at n.<anonymous> (src/test/fab/fab.test.ts?wtr-session-id=UWBpFz79unXcwwpuINsle:63:30)"
             }
           },
           {
@@ -1624,7 +1624,7 @@
           {
             "_attributes": {
               "name": "renders a large fab",
-              "time": "0.001",
+              "time": "0.002",
               "classname": "zeta-fab Dimensions Tests",
               "file": "src/test/fab/fab.test.ts"
             }
@@ -1712,7 +1712,7 @@
           "skipped": "0",
           "errors": "0",
           "failures": "0",
-          "time": "0.034"
+          "time": "0.013000000000000001"
         },
         "properties": {
           "property": [
@@ -1740,7 +1740,7 @@
           {
             "_attributes": {
               "name": "renders default flavor correctly",
-              "time": "0.029",
+              "time": "0.009",
               "classname": "zeta-upload-item Content Tests",
               "file": "src/test/file-upload/upload-item.test.ts"
             }
@@ -1764,7 +1764,7 @@
           {
             "_attributes": {
               "name": "updates progress correctly",
-              "time": "0.002",
+              "time": "0.001",
               "classname": "zeta-upload-item Content Tests",
               "file": "src/test/file-upload/upload-item.test.ts"
             }
@@ -1787,7 +1787,7 @@
           "skipped": "0",
           "errors": "0",
           "failures": "0",
-          "time": "0.08"
+          "time": "0.063"
         },
         "properties": {
           "property": [
@@ -1815,7 +1815,7 @@
           {
             "_attributes": {
               "name": "meets accessibility requirements",
-              "time": "0.075",
+              "time": "0.058",
               "classname": "zeta-global-header Accessibility Tests",
               "file": "src/test/global-header/global-header.test.ts"
             }
@@ -1846,7 +1846,7 @@
           "skipped": "0",
           "errors": "0",
           "failures": "0",
-          "time": "0.08"
+          "time": "0.074"
         },
         "properties": {
           "property": [
@@ -1874,7 +1874,7 @@
           {
             "_attributes": {
               "name": "meets accessibility requirements",
-              "time": "0.079",
+              "time": "0.073",
               "classname": "zeta-grid-menu-item Accessibility Tests",
               "file": "src/test/grid-menu-item/grid-menu-item.test.ts"
             }
@@ -1882,7 +1882,7 @@
           {
             "_attributes": {
               "name": "renders the given icon",
-              "time": "0.001",
+              "time": "0",
               "classname": "zeta-grid-menu-item Content Tests",
               "file": "src/test/grid-menu-item/grid-menu-item.test.ts"
             }
@@ -1890,7 +1890,7 @@
           {
             "_attributes": {
               "name": "renders the given label",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-grid-menu-item Content Tests",
               "file": "src/test/grid-menu-item/grid-menu-item.test.ts"
             }
@@ -1913,7 +1913,7 @@
           "skipped": "0",
           "errors": "0",
           "failures": "0",
-          "time": "0.111"
+          "time": "0.091"
         },
         "properties": {
           "property": [
@@ -1941,7 +1941,7 @@
           {
             "_attributes": {
               "name": "meets accessibility requirements",
-              "time": "0.11",
+              "time": "0.09",
               "classname": "zeta-in-page-banner Accessibility Tests",
               "file": "src/test/in-page-banner/in-page-banner.test.ts"
             }
@@ -1949,7 +1949,7 @@
           {
             "_attributes": {
               "name": "sets the heading correctly",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-in-page-banner Content Tests",
               "file": "src/test/in-page-banner/in-page-banner.test.ts"
             }
@@ -1957,7 +1957,7 @@
           {
             "_attributes": {
               "name": "sets the subheading correctly",
-              "time": "0.001",
+              "time": "0",
               "classname": "zeta-in-page-banner Content Tests",
               "file": "src/test/in-page-banner/in-page-banner.test.ts"
             }
@@ -1972,7 +1972,7 @@
           "skipped": "1",
           "errors": "0",
           "failures": "0",
-          "time": "0.103"
+          "time": "0.093"
         },
         "properties": {
           "property": [
@@ -2000,7 +2000,7 @@
           {
             "_attributes": {
               "name": "meets accessability requirements",
-              "time": "0.103",
+              "time": "0.091",
               "classname": "zeta-navigation-bar Accessibility Tests",
               "file": "src/test/navigation-bar/navigation-bar.test.ts"
             }
@@ -2016,7 +2016,7 @@
           {
             "_attributes": {
               "name": "renders the correct label and icon for each navigation bar item",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-navigation-bar Content Tests",
               "file": "src/test/navigation-bar/navigation-bar.test.ts"
             }
@@ -2032,7 +2032,7 @@
           {
             "_attributes": {
               "name": "updates badge content when the value changes",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-navigation-bar Content Tests",
               "file": "src/test/navigation-bar/navigation-bar.test.ts"
             }
@@ -2056,7 +2056,7 @@
           "skipped": "0",
           "errors": "0",
           "failures": "0",
-          "time": "0.056"
+          "time": "0.052"
         },
         "properties": {
           "property": [
@@ -2083,7 +2083,7 @@
         "testcase": {
           "_attributes": {
             "name": "meets accessibility requirements",
-            "time": "0.056",
+            "time": "0.052",
             "classname": "zeta-navigation-drawer Accessibility Tests",
             "file": "src/test/navigation-drawer/navigation-drawer.test.ts"
           }
@@ -2100,7 +2100,7 @@
           "skipped": "0",
           "errors": "0",
           "failures": "0",
-          "time": "0.081"
+          "time": "0.08"
         },
         "properties": {
           "property": [
@@ -2127,7 +2127,7 @@
         "testcase": {
           "_attributes": {
             "name": "meets accessibility requirements",
-            "time": "0.081",
+            "time": "0.08",
             "classname": "zeta-navigation-drawer-footer Accessibility Tests",
             "file": "src/test/navigation-drawer-footer/navigation-drawer-footer.test.ts"
           }
@@ -2144,7 +2144,7 @@
           "skipped": "0",
           "errors": "0",
           "failures": "0",
-          "time": "0.074"
+          "time": "0.084"
         },
         "properties": {
           "property": [
@@ -2171,7 +2171,7 @@
         "testcase": {
           "_attributes": {
             "name": "meets accessibility requirements",
-            "time": "0.074",
+            "time": "0.084",
             "classname": "zeta-navigation-drawer-item Accessibility Tests",
             "file": "src/test/navigation-drawer-item/navigation-drawer-item.test.ts"
           }
@@ -2185,7 +2185,7 @@
           "skipped": "0",
           "errors": "0",
           "failures": "0",
-          "time": "0.07"
+          "time": "0.084"
         },
         "properties": {
           "property": [
@@ -2212,7 +2212,7 @@
         "testcase": {
           "_attributes": {
             "name": "meets accessibility requirements",
-            "time": "0.07",
+            "time": "0.084",
             "classname": "zeta-navigation-drawer-sub-item Accessibility Tests",
             "file": "src/test/navigation-drawer-sub-item/navigation-drawer-sub-item.test.ts"
           }
@@ -2226,7 +2226,7 @@
           "skipped": "0",
           "errors": "0",
           "failures": "0",
-          "time": "0.053"
+          "time": "0.048"
         },
         "properties": {
           "property": [
@@ -2253,7 +2253,7 @@
         "testcase": {
           "_attributes": {
             "name": "meets accessibility requirements",
-            "time": "0.053",
+            "time": "0.048",
             "classname": "zeta-navigation-header Accessibility Tests",
             "file": "src/test/navigation-header/navigation-header.test.ts"
           }
@@ -2267,7 +2267,7 @@
           "skipped": "0",
           "errors": "0",
           "failures": "0",
-          "time": "0.053"
+          "time": "0.052"
         },
         "properties": {
           "property": [
@@ -2294,7 +2294,7 @@
         "testcase": {
           "_attributes": {
             "name": "meets accessibility requirements",
-            "time": "0.053",
+            "time": "0.052",
             "classname": "zeta-navigation-profile Accessibility Tests",
             "file": "src/test/navigation-profile/navigation-profile.test.ts"
           }
@@ -2308,7 +2308,7 @@
           "skipped": "1",
           "errors": "0",
           "failures": "0",
-          "time": "0.038000000000000006"
+          "time": "0.008"
         },
         "properties": {
           "property": [
@@ -2336,7 +2336,7 @@
           {
             "_attributes": {
               "name": "renders the label slot correctly",
-              "time": "0.035",
+              "time": "0.005",
               "classname": "zeta-navigation-rail-item Content Tests",
               "file": "src/test/navigation-rail/navigation-rail-item.test.ts"
             }
@@ -2376,7 +2376,7 @@
           "skipped": "0",
           "errors": "0",
           "failures": "0",
-          "time": "0.01"
+          "time": "0.009999999999999998"
         },
         "properties": {
           "property": [
@@ -2404,7 +2404,7 @@
           {
             "_attributes": {
               "name": "renders the navigation items",
-              "time": "0.008",
+              "time": "0.009",
               "classname": "zeta-navigation-rail Content Tests",
               "file": "src/test/navigation-rail/navigation-rail.test.ts"
             }
@@ -2412,7 +2412,7 @@
           {
             "_attributes": {
               "name": "hides any slotted elements that aren't zeta-navigation-rail-item",
-              "time": "0.002",
+              "time": "0.001",
               "classname": "zeta-navigation-rail Content Tests",
               "file": "src/test/navigation-rail/navigation-rail.test.ts"
             }
@@ -2427,7 +2427,7 @@
           "skipped": "0",
           "errors": "0",
           "failures": "0",
-          "time": "0.03"
+          "time": "0.027999999999999997"
         },
         "properties": {
           "property": [
@@ -2455,7 +2455,7 @@
           {
             "_attributes": {
               "name": "creates from document.createElement",
-              "time": "0.001",
+              "time": "0",
               "classname": "zeta-pagination Content Tests",
               "file": "src/test/pagination/pagination.test.ts"
             }
@@ -2471,7 +2471,7 @@
           {
             "_attributes": {
               "name": "should disable left controls",
-              "time": "0.011",
+              "time": "0.009",
               "classname": "zeta-pagination Content Tests",
               "file": "src/test/pagination/pagination.test.ts"
             }
@@ -2479,7 +2479,7 @@
           {
             "_attributes": {
               "name": "should disable right controls",
-              "time": "0.004",
+              "time": "0.003",
               "classname": "zeta-pagination Content Tests",
               "file": "src/test/pagination/pagination.test.ts"
             }
@@ -2495,7 +2495,7 @@
           {
             "_attributes": {
               "name": "should not set invalid page",
-              "time": "0.002",
+              "time": "0.003",
               "classname": "zeta-pagination Content Tests",
               "file": "src/test/pagination/pagination.test.ts"
             }
@@ -2511,7 +2511,7 @@
           {
             "_attributes": {
               "name": "should not show any dots",
-              "time": "0.002",
+              "time": "0.003",
               "classname": "zeta-pagination Content Tests",
               "file": "src/test/pagination/pagination.test.ts"
             }
@@ -2574,7 +2574,7 @@
           "skipped": "0",
           "errors": "0",
           "failures": "0",
-          "time": "0.064"
+          "time": "0.07"
         },
         "properties": {
           "property": [
@@ -2601,7 +2601,7 @@
         "testcase": {
           "_attributes": {
             "name": "meets accessibility requirements",
-            "time": "0.064",
+            "time": "0.07",
             "classname": "zeta-progress-bar Accessibility Tests",
             "file": "src/test/progress-bar/progress-bar.test.ts"
           }
@@ -2615,7 +2615,7 @@
           "skipped": "0",
           "errors": "0",
           "failures": "0",
-          "time": "0.010000000000000002"
+          "time": "0.014000000000000002"
         },
         "properties": {
           "property": [
@@ -2659,7 +2659,7 @@
           {
             "_attributes": {
               "name": "should set value to 100 if above 100",
-              "time": "0.005",
+              "time": "0.007",
               "classname": "ZetaProgressCircle Content Tests",
               "file": "src/test/progress-circle/progress-circle.test.ts"
             }
@@ -2675,7 +2675,7 @@
           {
             "_attributes": {
               "name": "should set value ",
-              "time": "0",
+              "time": "0.001",
               "classname": "ZetaProgressCircle Content Tests",
               "file": "src/test/progress-circle/progress-circle.test.ts"
             }
@@ -2683,7 +2683,7 @@
           {
             "_attributes": {
               "name": "should render uploading components",
-              "time": "0.002",
+              "time": "0.003",
               "classname": "ZetaProgressCircle Content Tests",
               "file": "src/test/progress-circle/progress-circle.test.ts"
             }
@@ -2706,7 +2706,7 @@
           "skipped": "3",
           "errors": "0",
           "failures": "0",
-          "time": "0.007"
+          "time": "0.003"
         },
         "properties": {
           "property": [
@@ -2769,7 +2769,7 @@
           {
             "_attributes": {
               "name": "sets the id attribute correctly",
-              "time": "0.002",
+              "time": "0",
               "classname": "zeta-radio-button Content Tests",
               "file": "src/test/radio-button/radio-button.test.ts"
             }
@@ -2777,7 +2777,7 @@
           {
             "_attributes": {
               "name": "renders the radio button as unchecked by default",
-              "time": "0.001",
+              "time": "0",
               "classname": "zeta-radio-button Content Tests",
               "file": "src/test/radio-button/radio-button.test.ts"
             }
@@ -2801,7 +2801,7 @@
           {
             "_attributes": {
               "name": "checks the radio when label is clicked",
-              "time": "0.002",
+              "time": "0.001",
               "classname": "zeta-radio-button label Interaction Tests",
               "file": "src/test/radio-button/radio-button.test.ts"
             }
@@ -2845,7 +2845,7 @@
           "skipped": "0",
           "errors": "0",
           "failures": "0",
-          "time": "0.109"
+          "time": "0.111"
         },
         "properties": {
           "property": [
@@ -2873,7 +2873,7 @@
           {
             "_attributes": {
               "name": "meets accessibility requirements",
-              "time": "0.105",
+              "time": "0.103",
               "classname": "zeta-range-selector Accessibility Tests",
               "file": "src/test/range-selector/range-selector.test.ts"
             }
@@ -2889,7 +2889,7 @@
           {
             "_attributes": {
               "name": "renders the label",
-              "time": "0.001",
+              "time": "0",
               "classname": "zeta-range-selector Content Tests",
               "file": "src/test/range-selector/range-selector.test.ts"
             }
@@ -2921,7 +2921,7 @@
           {
             "_attributes": {
               "name": "sets the lower input width and height correctly",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-range-selector Dimensions Tests",
               "file": "src/test/range-selector/range-selector.test.ts"
             }
@@ -2929,7 +2929,7 @@
           {
             "_attributes": {
               "name": "sets the upper input width and height correctly",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-range-selector Dimensions Tests",
               "file": "src/test/range-selector/range-selector.test.ts"
             }
@@ -2945,7 +2945,7 @@
           {
             "_attributes": {
               "name": "sets the correct styles for the lower input",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-range-selector Styling Tests",
               "file": "src/test/range-selector/range-selector.test.ts"
             }
@@ -2953,7 +2953,7 @@
           {
             "_attributes": {
               "name": "sets the correct styles for the upper input",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-range-selector Styling Tests",
               "file": "src/test/range-selector/range-selector.test.ts"
             }
@@ -2977,7 +2977,7 @@
           {
             "_attributes": {
               "name": "updates the slider value when the lower input value changes",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-range-selector Interaction Tests",
               "file": "src/test/range-selector/range-selector.test.ts"
             }
@@ -3036,7 +3036,7 @@
           "skipped": "1",
           "errors": "0",
           "failures": "0",
-          "time": "0.021000000000000005"
+          "time": "0.022000000000000006"
         },
         "properties": {
           "property": [
@@ -3128,7 +3128,7 @@
           {
             "_attributes": {
               "name": "should set correct large icon size",
-              "time": "0.001",
+              "time": "0.002",
               "classname": "zeta-search Dimensions Tests",
               "file": "src/test/search/search.test.ts"
             }
@@ -3176,7 +3176,7 @@
           "skipped": "0",
           "errors": "0",
           "failures": "0",
-          "time": "0.012"
+          "time": "0.015"
         },
         "properties": {
           "property": [
@@ -3204,7 +3204,7 @@
           {
             "_attributes": {
               "name": "renders the segmented control with the correct number of items",
-              "time": "0.009",
+              "time": "0.011",
               "classname": "zeta-segmented-control Content Tests",
               "file": "src/test/segmented-control/segmented-control.test.ts"
             }
@@ -3212,7 +3212,7 @@
           {
             "_attributes": {
               "name": "sets the first item as active by default",
-              "time": "0.001",
+              "time": "0.002",
               "classname": "zeta-segmented-control Content Tests",
               "file": "src/test/segmented-control/segmented-control.test.ts"
             }
@@ -3257,7 +3257,7 @@
           "skipped": "0",
           "errors": "0",
           "failures": "0",
-          "time": "0.07600000000000001"
+          "time": "0.099"
         },
         "properties": {
           "property": [
@@ -3285,7 +3285,7 @@
           {
             "_attributes": {
               "name": "meets accessibility requirements",
-              "time": "0.069",
+              "time": "0.086",
               "classname": "zeta-slider Accessibility Tests",
               "file": "src/test/slider/slider.test.ts"
             }
@@ -3317,7 +3317,7 @@
           {
             "_attributes": {
               "name": "sets initial values correctly",
-              "time": "0.001",
+              "time": "0",
               "classname": "zeta-slider Content Tests",
               "file": "src/test/slider/slider.test.ts"
             }
@@ -3325,7 +3325,7 @@
           {
             "_attributes": {
               "name": "sets the track height correctly",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-slider Dimensions Tests",
               "file": "src/test/slider/slider.test.ts"
             }
@@ -3333,7 +3333,7 @@
           {
             "_attributes": {
               "name": "sets the handle width and height correctly",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-slider Dimensions Tests",
               "file": "src/test/slider/slider.test.ts"
             }
@@ -3349,7 +3349,7 @@
           {
             "_attributes": {
               "name": "sets the correct background color for the track",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-slider Styling Tests",
               "file": "src/test/slider/slider.test.ts"
             }
@@ -3365,7 +3365,7 @@
           {
             "_attributes": {
               "name": "sets the correct background color for the handle",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-slider Styling Tests",
               "file": "src/test/slider/slider.test.ts"
             }
@@ -3389,7 +3389,7 @@
           {
             "_attributes": {
               "name": "sets the correct border radius for the track",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-slider Styling Tests",
               "file": "src/test/slider/slider.test.ts"
             }
@@ -3397,7 +3397,7 @@
           {
             "_attributes": {
               "name": "updates the value when the handle is dragged",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-slider Interaction Tests",
               "file": "src/test/slider/slider.test.ts"
             }
@@ -3405,7 +3405,7 @@
           {
             "_attributes": {
               "name": "updates the lower and upper values when the handles are dragged",
-              "time": "0.002",
+              "time": "0.003",
               "classname": "zeta-slider Interaction Tests",
               "file": "src/test/slider/slider.test.ts"
             }
@@ -3420,7 +3420,7 @@
           "skipped": "0",
           "errors": "0",
           "failures": "0",
-          "time": "0.109"
+          "time": "0.126"
         },
         "properties": {
           "property": [
@@ -3448,7 +3448,7 @@
           {
             "_attributes": {
               "name": "meets accessibility requirements",
-              "time": "0.088",
+              "time": "0.101",
               "classname": "zeta-slider-input-field Accessibility Tests",
               "file": "src/test/slider-input-field/slider-input-field.test.ts"
             }
@@ -3464,7 +3464,7 @@
           {
             "_attributes": {
               "name": "renders the label",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-slider-input-field Content Tests",
               "file": "src/test/slider-input-field/slider-input-field.test.ts"
             }
@@ -3480,7 +3480,7 @@
           {
             "_attributes": {
               "name": "renders the min and max labels",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-slider-input-field Content Tests",
               "file": "src/test/slider-input-field/slider-input-field.test.ts"
             }
@@ -3488,7 +3488,7 @@
           {
             "_attributes": {
               "name": "sets the initial values correctly",
-              "time": "0.001",
+              "time": "0",
               "classname": "zeta-slider-input-field Content Tests",
               "file": "src/test/slider-input-field/slider-input-field.test.ts"
             }
@@ -3504,7 +3504,7 @@
           {
             "_attributes": {
               "name": "sets the correct styles for the label",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-slider-input-field Styling Tests",
               "file": "src/test/slider-input-field/slider-input-field.test.ts"
             }
@@ -3512,7 +3512,7 @@
           {
             "_attributes": {
               "name": "sets the correct styles for the input",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-slider-input-field Styling Tests",
               "file": "src/test/slider-input-field/slider-input-field.test.ts"
             }
@@ -3520,7 +3520,7 @@
           {
             "_attributes": {
               "name": "sets the correct styles for the range labels",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-slider-input-field Styling Tests",
               "file": "src/test/slider-input-field/slider-input-field.test.ts"
             }
@@ -3528,7 +3528,7 @@
           {
             "_attributes": {
               "name": "updates the hidden input value when the slider value changes",
-              "time": "0.001",
+              "time": "0.002",
               "classname": "zeta-slider-input-field Interaction Tests",
               "file": "src/test/slider-input-field/slider-input-field.test.ts"
             }
@@ -3544,7 +3544,7 @@
           {
             "_attributes": {
               "name": "returns the correct data when in a form",
-              "time": "0.017",
+              "time": "0.016",
               "classname": "zeta-slider-input-field Interaction Tests",
               "file": "src/test/slider-input-field/slider-input-field.test.ts"
             }
@@ -3600,7 +3600,7 @@
           "skipped": "1",
           "errors": "0",
           "failures": "0",
-          "time": "0.16999999999999998"
+          "time": "0.218"
         },
         "properties": {
           "property": [
@@ -3645,7 +3645,7 @@
           {
             "_attributes": {
               "name": "displays the correct text in the action button",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-snackbar Content Tests",
               "file": "src/test/snackbar/snackbar.test.ts"
             }
@@ -3653,7 +3653,7 @@
           {
             "_attributes": {
               "name": "displays the correct icon in the slot",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-snackbar Content Tests",
               "file": "src/test/snackbar/snackbar.test.ts"
             }
@@ -3669,7 +3669,7 @@
           {
             "_attributes": {
               "name": "sets true border radius correctly",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-snackbar Styling Tests",
               "file": "src/test/snackbar/snackbar.test.ts"
             }
@@ -3685,7 +3685,7 @@
           {
             "_attributes": {
               "name": "sets the correct colors for default status",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-snackbar Styling Tests",
               "file": "src/test/snackbar/snackbar.test.ts"
             }
@@ -3693,7 +3693,7 @@
           {
             "_attributes": {
               "name": "sets the correct colors for positive status",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-snackbar Styling Tests",
               "file": "src/test/snackbar/snackbar.test.ts"
             }
@@ -3733,7 +3733,7 @@
           {
             "_attributes": {
               "name": "removes the element from the screen when the close icon is clicked",
-              "time": "0.029",
+              "time": "0.021",
               "classname": "zeta-snackbar Interaction Tests",
               "file": "src/test/snackbar/snackbar.test.ts"
             }
@@ -3741,7 +3741,7 @@
           {
             "_attributes": {
               "name": "removes the element from the screen when the close icon is enter pressed",
-              "time": "0.006",
+              "time": "0.029",
               "classname": "zeta-snackbar Interaction Tests",
               "file": "src/test/snackbar/snackbar.test.ts"
             }
@@ -3749,7 +3749,7 @@
           {
             "_attributes": {
               "name": "removes the element from the screen when the close icon is space pressed",
-              "time": "0.004",
+              "time": "0.037",
               "classname": "zeta-snackbar Interaction Tests",
               "file": "src/test/snackbar/snackbar.test.ts"
             }
@@ -3757,7 +3757,7 @@
           {
             "_attributes": {
               "name": "calls the action function on enter pressed",
-              "time": "0.052",
+              "time": "0.055",
               "classname": "zeta-snackbar Interaction Tests",
               "file": "src/test/snackbar/snackbar.test.ts"
             }
@@ -3773,7 +3773,7 @@
           {
             "_attributes": {
               "name": "calls the action function on mouse click",
-              "time": "0.02",
+              "time": "0.012",
               "classname": "zeta-snackbar Interaction Tests",
               "file": "src/test/snackbar/snackbar.test.ts"
             }
@@ -3961,7 +3961,7 @@
           "skipped": "0",
           "errors": "0",
           "failures": "0",
-          "time": "0.015000000000000003"
+          "time": "0.019000000000000003"
         },
         "properties": {
           "property": [
@@ -4005,7 +4005,7 @@
           {
             "_attributes": {
               "name": "sets value",
-              "time": "0.007",
+              "time": "0.009",
               "classname": "zeta-stepper-input Content Tests",
               "file": "src/test/stepper-input/stepper-input.test.ts"
             }
@@ -4013,7 +4013,7 @@
           {
             "_attributes": {
               "name": "sets value to max value",
-              "time": "0.001",
+              "time": "0.002",
               "classname": "zeta-stepper-input Content Tests",
               "file": "src/test/stepper-input/stepper-input.test.ts"
             }
@@ -4053,7 +4053,7 @@
           {
             "_attributes": {
               "name": "sets value to max value via input onchange",
-              "time": "0.001",
+              "time": "0.002",
               "classname": "zeta-stepper-input Content Tests",
               "file": "src/test/stepper-input/stepper-input.test.ts"
             }
@@ -4068,7 +4068,7 @@
           "skipped": "0",
           "errors": "0",
           "failures": "0",
-          "time": "0.006"
+          "time": "0.007"
         },
         "properties": {
           "property": [
@@ -4112,7 +4112,7 @@
           {
             "_attributes": {
               "name": "should render steps",
-              "time": "0.005",
+              "time": "0.006",
               "classname": "zeta-stepper Content Tests",
               "file": "src/test/stepper-input/stepper.test.ts"
             }
@@ -4127,7 +4127,7 @@
           "skipped": "0",
           "errors": "0",
           "failures": "0",
-          "time": "0.137"
+          "time": "0.131"
         },
         "properties": {
           "property": [
@@ -4155,7 +4155,7 @@
           {
             "_attributes": {
               "name": "creates from document.createElement",
-              "time": "0.001",
+              "time": "0",
               "classname": "zeta-switch Content Tests",
               "file": "src/test/switch/switch.test.ts"
             }
@@ -4171,7 +4171,7 @@
           {
             "_attributes": {
               "name": "focus on button when switch focused",
-              "time": "0.001",
+              "time": "0.002",
               "classname": "zeta-switch Content Tests",
               "file": "src/test/switch/switch.test.ts"
             }
@@ -4195,7 +4195,7 @@
           {
             "_attributes": {
               "name": "inactiveIcon color",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-switch Styling Tests",
               "file": "src/test/switch/switch.test.ts"
             }
@@ -4203,7 +4203,7 @@
           {
             "_attributes": {
               "name": "track backgroundColor",
-              "time": "0.001",
+              "time": "0",
               "classname": "zeta-switch Styling Tests",
               "file": "src/test/switch/switch.test.ts"
             }
@@ -4211,7 +4211,7 @@
           {
             "_attributes": {
               "name": "thumb backgroundColor",
-              "time": "0.001",
+              "time": "0",
               "classname": "zeta-switch Styling Tests",
               "file": "src/test/switch/switch.test.ts"
             }
@@ -4219,7 +4219,7 @@
           {
             "_attributes": {
               "name": "should toggle the state when clicked by accessibility tools",
-              "time": "0.002",
+              "time": "0.001",
               "classname": "zeta-switch Interaction Tests",
               "file": "src/test/switch/switch.test.ts"
             }
@@ -4227,7 +4227,7 @@
           {
             "_attributes": {
               "name": "inactiveIcon color, :hover color",
-              "time": "0.021",
+              "time": "0.004",
               "classname": "zeta-switch disabled Styling Tests",
               "file": "src/test/switch/switch.test.ts"
             }
@@ -4235,7 +4235,7 @@
           {
             "_attributes": {
               "name": "activeIcon color, :hover color",
-              "time": "0.014",
+              "time": "0.015",
               "classname": "zeta-switch disabled Styling Tests",
               "file": "src/test/switch/switch.test.ts"
             }
@@ -4243,7 +4243,7 @@
           {
             "_attributes": {
               "name": "track backgroundColor, :hover backgroundColor",
-              "time": "0.016",
+              "time": "0.015",
               "classname": "zeta-switch disabled Styling Tests",
               "file": "src/test/switch/switch.test.ts"
             }
@@ -4251,7 +4251,7 @@
           {
             "_attributes": {
               "name": "thumb backgroundColor, :hover backgroundColor",
-              "time": "0.014",
+              "time": "0.016",
               "classname": "zeta-switch disabled Styling Tests",
               "file": "src/test/switch/switch.test.ts"
             }
@@ -4267,7 +4267,7 @@
           {
             "_attributes": {
               "name": "thumb backgroundColor",
-              "time": "0.032",
+              "time": "0.043",
               "classname": "zeta-switch:hover Styling Tests",
               "file": "src/test/switch/switch.test.ts"
             }
@@ -4329,7 +4329,7 @@
           "skipped": "0",
           "errors": "0",
           "failures": "0",
-          "time": "0.056"
+          "time": "0.06"
         },
         "properties": {
           "property": [
@@ -4357,7 +4357,7 @@
           {
             "_attributes": {
               "name": "it meets accessibility requirements",
-              "time": "0.055",
+              "time": "0.059",
               "classname": "zeta-tag Accessibility Tests",
               "file": "src/test/tag/tag.test.ts"
             }
@@ -4373,7 +4373,7 @@
           {
             "_attributes": {
               "name": "manages point attribute correctly",
-              "time": "0",
+              "time": "0.001",
               "classname": "zeta-tag Content Tests",
               "file": "src/test/tag/tag.test.ts"
             }
@@ -4389,7 +4389,7 @@
           {
             "_attributes": {
               "name": "renders the passed text into a span",
-              "time": "0.001",
+              "time": "0",
               "classname": "zeta-tag Content Tests",
               "file": "src/test/tag/tag.test.ts"
             }
@@ -4404,7 +4404,7 @@
           "skipped": "1",
           "errors": "0",
           "failures": "0",
-          "time": "0.039000000000000014"
+          "time": "0.04500000000000002"
         },
         "properties": {
           "property": [
@@ -4449,7 +4449,7 @@
           {
             "_attributes": {
               "name": "focus on input when field focused",
-              "time": "0.01",
+              "time": "0.011",
               "classname": "zeta-text-input Content Tests",
               "file": "src/test/text-input/text-input.test.ts"
             }
@@ -4457,7 +4457,7 @@
           {
             "_attributes": {
               "name": "should not focus on input when field disabled",
-              "time": "0",
+              "time": "0.002",
               "classname": "zeta-text-input Content Tests",
               "file": "src/test/text-input/text-input.test.ts"
             }
@@ -4473,7 +4473,7 @@
           {
             "_attributes": {
               "name": "should render icon",
-              "time": "0.002",
+              "time": "0.001",
               "classname": "zeta-text-input Content Tests",
               "file": "src/test/text-input/text-input.test.ts"
             }
@@ -4481,7 +4481,7 @@
           {
             "_attributes": {
               "name": "should render icon on the right",
-              "time": "0.001",
+              "time": "0.002",
               "classname": "zeta-text-input Content Tests",
               "file": "src/test/text-input/text-input.test.ts"
             }
@@ -4513,7 +4513,7 @@
           {
             "_attributes": {
               "name": "should render hint text",
-              "time": "0.001",
+              "time": "0.002",
               "classname": "zeta-text-input Content Tests",
               "file": "src/test/text-input/text-input.test.ts"
             }
@@ -4561,7 +4561,7 @@
           {
             "_attributes": {
               "name": "should apply type time",
-              "time": "0.005",
+              "time": "0.006",
               "classname": "zeta-text-input Content Tests",
               "file": "src/test/text-input/text-input.test.ts"
             }
@@ -4601,7 +4601,7 @@
           {
             "_attributes": {
               "name": "should toggle password visibility",
-              "time": "0.001",
+              "time": "0.002",
               "classname": "zeta-text-input Interaction Tests",
               "file": "src/test/text-input/text-input.test.ts"
             }
@@ -4616,7 +4616,7 @@
           "skipped": "0",
           "errors": "0",
           "failures": "0",
-          "time": "0.106"
+          "time": "0.105"
         },
         "properties": {
           "property": [
@@ -4644,7 +4644,7 @@
           {
             "_attributes": {
               "name": "meets accessibility requirements",
-              "time": "0.106",
+              "time": "0.105",
               "classname": "zeta-assist-chip Accessibility Tests",
               "file": "src/test/chips/assist-chip/assist-chip.test.ts"
             }
@@ -4675,7 +4675,7 @@
           "skipped": "0",
           "errors": "0",
           "failures": "0",
-          "time": "0.089"
+          "time": "0.1"
         },
         "properties": {
           "property": [
@@ -4703,7 +4703,7 @@
           {
             "_attributes": {
               "name": "it meets accessibility requirements",
-              "time": "0.086",
+              "time": "0.096",
               "classname": "zeta-filter-chip Accessibility Tests",
               "file": "src/test/chips/filter-chip/filter-chip.test.ts"
             }
@@ -4719,7 +4719,7 @@
           {
             "_attributes": {
               "name": "shows the check icon when active",
-              "time": "0.003",
+              "time": "0.004",
               "classname": "zeta-filter-chip Content Tests",
               "file": "src/test/chips/filter-chip/filter-chip.test.ts"
             }
@@ -4734,7 +4734,7 @@
           "skipped": "0",
           "errors": "0",
           "failures": "0",
-          "time": "0.056"
+          "time": "0.066"
         },
         "properties": {
           "property": [
@@ -4762,7 +4762,7 @@
           {
             "_attributes": {
               "name": "it meets accessibility requirements",
-              "time": "0.056",
+              "time": "0.066",
               "classname": "zeta-input-chip Accessibility Tests",
               "file": "src/test/chips/input-chip/input-chip.test.ts"
             }
