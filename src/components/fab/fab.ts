@@ -34,19 +34,19 @@ export class ZetaFab extends Flavored(BaseButton) {
    * The border radius of the button. Used in place of rounded prop.
    */
   @property({ type: String, reflect: true })
-  get round(): boolean | "full" {
-    return this._round;
-  }
-  set round(value: boolean | "full") {
-    const translatedValue: boolean | "full" = `${value}`.toLowerCase() === "true" ? true : `${value}`.toLowerCase() === "full" ? "full" : false;
-    this.rounded = !!translatedValue;
-    this._round = translatedValue;
-  }
-
+  // get round(): boolean | "full" {
+  //   return this._round;
+  // }
+  // set round(value: boolean | "full") {
+  //   const translatedValue: boolean | "full" = `${value}`.toLowerCase() === "true" ? true : `${value}`.toLowerCase() === "full" ? "full" : false;
+  //   this.rounded = !!translatedValue;
+  //   this._round = translatedValue;
+  // }
   /**
    * @internal
    */
-  @property({ type: Boolean, reflect: true }) rounded: boolean = false;
+  @property({ type: Boolean, reflect: true })
+  rounded: boolean = false;
 
   /**
    * Whether or not the FAB is extended.
