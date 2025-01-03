@@ -34,14 +34,14 @@ export class ZetaFab extends Flavored(BaseButton) {
    * The border radius of the button. Used in place of rounded prop.
    */
   @property({ type: String, reflect: true })
-  // get round(): boolean | "full" {
-  //   return this._round;
-  // }
-  // set round(value: boolean | "full") {
-  //   const translatedValue: boolean | "full" = `${value}`.toLowerCase() === "true" ? true : `${value}`.toLowerCase() === "full" ? "full" : false;
-  //   this.rounded = !!translatedValue;
-  //   this._round = translatedValue;
-  // }
+  get round(): boolean | "full" {
+    return this._round;
+  }
+  set round(value: boolean | "full") {
+    const translatedValue: boolean | "full" = `${value}`.toLowerCase() === "true" ? true : `${value}`.toLowerCase() === "full" ? "full" : false;
+    this.rounded = !!translatedValue;
+    this._round = translatedValue;
+  }
   /**
    * @internal
    */
@@ -55,28 +55,18 @@ export class ZetaFab extends Flavored(BaseButton) {
 
   @property({ type: String, reflect: true }) size: "small" | "large" = "small";
 
-  // TESTING
+  private getLabel() {
+    return this.label ? html`<div class="label">${this.label}</div>` : nothing;
+  }
   protected render() {
     return html`
       <button ?disabled=${this.disabled} value=${ifDefined(this.value)} name=${ifDefined(this.name)} type=${ifDefined(this.type)}>
         <zeta-icon .rounded=${this.rounded}><slot></slot></zeta-icon>
+        ${this.extended ? this.getLabel() : nothing}
       </button>
+      ${this.extended ? nothing : this.getLabel()}
     `;
   }
-  // TESTING END
-
-  // private getLabel() {
-  //   return this.label ? html`<div class="label">${this.label}</div>` : nothing;
-  // }
-  // protected render() {
-  //   return html`
-  //     <button ?disabled=${this.disabled} value=${ifDefined(this.value)} name=${ifDefined(this.name)} type=${ifDefined(this.type)}>
-  //       <zeta-icon .rounded=${this.rounded}><slot></slot></zeta-icon>
-  //       ${this.extended ? this.getLabel() : nothing}
-  //     </button>
-  //     ${this.extended ? nothing : this.getLabel()}
-  //   `;
-  // }
 }
 
 declare global {
