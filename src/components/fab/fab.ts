@@ -1,5 +1,5 @@
 import { html, nothing } from "lit";
-// import { customElement, property } from "lit/decorators.js";
+import { customElement, property } from "lit/decorators.js";
 import styles from "./fab.styles.js";
 import "../icon/icon.js";
 import { ifDefined } from "lit/directives/if-defined.js";
