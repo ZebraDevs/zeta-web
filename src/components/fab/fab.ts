@@ -55,18 +55,26 @@ export class ZetaFab extends Flavored(BaseButton) {
 
   @property({ type: String, reflect: true }) size: "small" | "large" = "small";
 
-  private getLabel() {
-    return this.label ? html`<div class="label">${this.label}</div>` : nothing;
-  }
   protected render() {
     return html`
       <button ?disabled=${this.disabled} value=${ifDefined(this.value)} name=${ifDefined(this.name)} type=${ifDefined(this.type)}>
         <zeta-icon .rounded=${this.rounded}><slot></slot></zeta-icon>
-        ${this.extended ? this.getLabel() : nothing}
       </button>
-      ${this.extended ? nothing : this.getLabel()}
     `;
   }
+
+  // private getLabel() {
+  //   return this.label ? html`<div class="label">${this.label}</div>` : nothing;
+  // }
+  // protected render() {
+  //   return html`
+  //     <button ?disabled=${this.disabled} value=${ifDefined(this.value)} name=${ifDefined(this.name)} type=${ifDefined(this.type)}>
+  //       <zeta-icon .rounded=${this.rounded}><slot></slot></zeta-icon>
+  //       ${this.extended ? this.getLabel() : nothing}
+  //     </button>
+  //     ${this.extended ? nothing : this.getLabel()}
+  //   `;
+  // }
 }
 
 declare global {
