@@ -1,6 +1,0 @@
-[96msrc/components/fab/fab.ts[0m:[93m1[0m:[93m16[0m - [91merror[0m[90m TS6133: [0m'nothing' is declared but its value is never read.
-
-[7m1[0m import { html, nothing } from "lit";
-[7m [0m [91m               ~~~~~~~[0m
-
-[91m[error][0m Found 1 errors and 0 warnings

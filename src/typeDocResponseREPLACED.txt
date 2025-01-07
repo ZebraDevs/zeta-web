@@ -1,6 +1,0 @@
-src/components/fab/fab.ts:1:16 - error TS6133: 'nothing' is declared but its value is never read.
-
-1 import { html, nothing } from "lit";
-                 ~~~~~~~
-
-[error] Found 1 errors and 0 warnings
