@@ -2908,14 +2908,12 @@ SF:src/components/fab/fab.ts
 FN:20,ZetaFab
 FN:37,get round
 FN:40,set round
-FN:58,getLabel
-FN:61,render
-FNF:5
-FNH:5
+FN:58,render
+FNF:4
+FNH:4
 FNDA:16,ZetaFab
 FNDA:61,get round
 FNDA:3,set round
-FNDA:21,getLabel
 FNDA:21,render
 DA:1,4
 DA:2,4
@@ -2977,15 +2975,15 @@ DA:57,4
 DA:58,4
 DA:59,21
 DA:60,21
-DA:61,4
+DA:61,21
 DA:62,21
 DA:63,21
 DA:64,21
-DA:65,21
-DA:66,21
-DA:67,21
-DA:68,21
-DA:69,21
+DA:65,4
+DA:66,4
+DA:67,4
+DA:68,4
+DA:69,4
 DA:70,4
 DA:71,4
 DA:72,4
@@ -2993,8 +2991,16 @@ DA:73,4
 DA:74,4
 DA:75,4
 DA:76,4
-LF:76
-LH:76
+DA:77,4
+DA:78,4
+DA:79,4
+DA:80,4
+DA:81,4
+DA:82,4
+DA:83,4
+DA:84,4
+LF:84
+LH:84
 BRDA:20,0,0,16
 BRDA:22,1,0,0
 BRDA:37,2,0,61
@@ -3003,15 +3009,8 @@ BRDA:41,4,0,2
 BRDA:41,5,0,1
 BRDA:41,6,0,1
 BRDA:58,7,0,21
-BRDA:59,8,0,13
-BRDA:59,9,0,8
-BRDA:61,10,0,21
-BRDA:65,11,0,1
-BRDA:65,12,0,20
-BRDA:67,13,0,1
-BRDA:67,14,0,20
-BRF:15
-BRH:14
+BRF:8
+BRH:7
 end_of_record
 TN:
 SF:src/components/file-upload/file-upload.ts
