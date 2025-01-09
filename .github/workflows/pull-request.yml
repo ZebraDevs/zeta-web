@@ -23,7 +23,7 @@ jobs:
           node-version: 18.x.x
           cache: "npm"
       - name: Code Quality
-        uses: ZebraDevs/web-components-code-quality@action-setup
+        uses: ZebraDevs/web-components-code-quality@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           test-results-path: "src/test/test-results.xml"
