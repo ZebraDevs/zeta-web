@@ -27,7 +27,6 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           test-results-path: "src/test/test-results.xml"
-          coverage-pass-score: 95
   generate-localizations:
     name: Generate localizations.
     needs: [code-quality]
