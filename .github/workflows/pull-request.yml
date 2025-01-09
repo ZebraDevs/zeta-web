@@ -22,51 +22,11 @@ jobs:
         with:
           node-version: 18.x.x
           cache: "npm"
-      - name: Install dependencies
-        run: npm ci
-      - name: Store Playwright's Version
-        id: store-playwright-version
-        run: |
-          PLAYWRIGHT_VERSION=$(npm ls @playwright/test | grep @playwright | sed 's/.*@//')
-          echo "Playwright's Version: $PLAYWRIGHT_VERSION"
-          echo "PLAYWRIGHT_VERSION=$PLAYWRIGHT_VERSION" >> $GITHUB_ENV
-      - name: Cache Playwright Browsers for Playwright's Version
-        id: cache-playwright-browsers
-        uses: actions/cache@v3
-        env:
-          PLAYWRIGHT_VERSION: ${{ steps.store-playwright-version.outputs.PLAYWRIGHT_VERSION }}
-        if: env.PLAYWRIGHT_VERSION == 'true'
+      - name: Code Quality
+        uses: ZebraDevs/web-components-code-quality@v1
         with:
-          path: ~/.cache/ms-playwright
-          key: playwright-browsers-${{ env.PLAYWRIGHT_VERSION }}
-      - name: Install playwright browsers
-        if: steps.cache-playwright-browsers.outputs.cache-hit != 'true'
-        run: npx playwright install --with-deps
-      - name: Run custom elements manifest analyzer
-        run: npm run analyze
-      - name: Run eslint
-        run: npm run lint
-      - name: Run prettier
-        run: npm run prettier
-      - name: Run lit-analyzer
-        run: npm run lint:lit-analyzer
-      - name: Run tests
-        run: npm run test -- --debug
-      - name: Test tsdoc
-        run: npm run docs
-      - name: Check for modified files
-        id: git-check
-        run: echo "modified=$(if [ -n "$(git status --porcelain)" ]; then echo "true"; else echo "false"; fi)" >> $GITHUB_ENV
-      - name: Update changes in GitHub repository
-        env:
-          MODIFIED: ${{ steps.git-check.outputs.modified }}
-        if: env.MODIFIED == 'true'
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
-          git add -A
-          git commit -m '[automated commit] lint format and import sort'
-          git push
+          token: ${{ secrets.GITHUB_TOKEN }}
+          test-results-path: "src/test/test-results.xml"
   generate-localizations:
     name: Generate localizations.
     needs: [code-quality]
