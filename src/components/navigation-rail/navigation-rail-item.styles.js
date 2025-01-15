@@ -5,7 +5,7 @@ export default css`
     display: flex;
     max-width: 64px;
   }
-  slot{
+  slot {
     font: var(--label-small);
   }
 
@@ -13,8 +13,6 @@ export default css`
     --icon-color: var(--text-default);
     background-color: var(--surface-selected);
   }
-
-
 
   :host > * {
     display: flex;

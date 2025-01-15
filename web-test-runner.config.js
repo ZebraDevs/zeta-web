@@ -1,5 +1,7 @@
 import { vitePlugin } from "@remcovaes/web-test-runner-vite-plugin";
 import { playwrightLauncher } from "@web/test-runner-playwright";
+import { defaultReporter } from "@web/test-runner";
+import { junitReporter } from "@web/test-runner-junit-reporter";
 
 const LOG_FILTER = ["Lit is in dev mode", "[vite] connecting..."];
 
@@ -33,4 +35,11 @@ export default {
       timeout: 1000,
     },
   },
+  reporters: [
+    defaultReporter({ reportTestResults: false, reportTestProgress: true }),
+    junitReporter({
+      outputPath: "src/test/test-results.xml", // default `'./test-results.xml'`
+      reportLogs: true, // default `false`
+    }),
+  ],
 };
