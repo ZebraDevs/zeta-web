@@ -104,7 +104,21 @@ const testingStructure = {
           node.callee.type === "Identifier" &&
           node.callee.name === "it"
         ) {
-          if (sourceCode.getAncestors(node).length !== 10) {
+          console.log(sourceCode.getAncestors(node));
+          const ancestors = sourceCode.getAncestors(node);
+          let hasCategoryDescribe;
+          ancestors.forEach((ancestor) => {
+            if (
+              ancestor.type === "CallExpression" &&
+              ancestor.callee.name === "describe"
+            ) {
+              if (testCategories.includes(ancestor.arguments[0].value)) {
+                hasCategoryDescribe = true;
+              }
+            }
+          });
+          if (!hasCategoryDescribe) {
+            // if (sourceCode.getAncestors(node).length < 10) {
             context.report({
               node: node,
               message: "Tests should be inside nested describe blocks.",

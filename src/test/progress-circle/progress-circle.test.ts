@@ -3,7 +3,7 @@ import { ZetaProgressCircle } from "../../components/progress-indicators/progres
 import "../../components/progress-indicators/progress-circle/progress-circle.js";
 import { ZetaCancelUploadEvent } from "../../events.js";
 
-describe("ZetaProgressCircle", () => {
+describe("zeta-progress-circle", () => {
   // describe("Accessibility", () => {});
 
   describe("Content", () => {
