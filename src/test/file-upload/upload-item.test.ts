@@ -6,9 +6,9 @@ import { ZetaCloseEvent } from "../../events";
 import "../../components/upload-item/upload-item.js";
 
 describe("zeta-upload-item", () => {
-  // describe("Accessibility Tests", () => {});
+  // describe("Accessibility", () => {});
 
-  describe("Content Tests", () => {
+  describe("Content", () => {
     it("renders default flavor correctly", async () => {
       const element: ZetaUploadItem = await fixture(html` <zeta-upload-item></zeta-upload-item> `);
 
@@ -44,11 +44,11 @@ describe("zeta-upload-item", () => {
     });
   });
 
-  // describe("Dimensions Tests", () => {});
+  // describe("Dimensions", () => {});
 
-  // describe("Styling Tests", () => {});
+  // describe("Styling", () => {});
 
-  describe("Interaction Tests", () => {
+  describe("Interaction", () => {
     it("fires ZetaCloseEvent:close when close icon is clicked", async () => {
       const element: ZetaUploadItem = await fixture(html` <zeta-upload-item flavor="completed"></zeta-upload-item> `);
       const eventListener = oneEvent(element, "close");
@@ -62,7 +62,7 @@ describe("zeta-upload-item", () => {
     });
   });
 
-  // describe("Golden Tests", () => {});
+  // describe("Golden", () => {});
 
-  // describe("Performance Tests", () => {});
+  // describe("Performance", () => {});
 });

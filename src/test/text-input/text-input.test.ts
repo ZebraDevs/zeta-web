@@ -7,9 +7,9 @@ import "../../components/text-input/text-input.js";
 import "../../index.css";
 
 describe("zeta-text-input", () => {
-  // describe("Accessibility Tests", () => {});
+  // describe("Accessibility", () => {});
 
-  describe("Content Tests", () => {
+  describe("Content", () => {
     it.skip("creates from document.createElement", function () {
       const el = document.createElement("zeta-text-input");
       assert.equal("ZETA-TEXT-INPUT", el.nodeName);
@@ -117,9 +117,9 @@ describe("zeta-text-input", () => {
     });
   });
 
-  // describe("Dimensions Tests", () => {});
+  // describe("Dimensions", () => {});
 
-  describe("Styling Tests", () => {
+  describe("Styling", () => {
     it("should render error icon color", async () => {
       const el = await setup({ error: true, hint: "hint", disabled: false, errorText: "error" });
       const icon = el.shadowRoot?.querySelector(".hint-text zeta-icon");
@@ -154,7 +154,7 @@ describe("zeta-text-input", () => {
     });
   });
 
-  describe("Interaction Tests", () => {
+  describe("Interaction", () => {
     it("should toggle password visibility", async () => {
       const el = await setup({ type: "password" });
       const input = el.shadowRoot?.querySelector("input");
@@ -168,9 +168,9 @@ describe("zeta-text-input", () => {
     });
   });
 
-  // describe("Golden Tests", () => {});
+  // describe("Golden", () => {});
 
-  // describe("Performance Tests", () => {});
+  // describe("Performance", () => {});
 
   //TODO autocomplete, spellcheck, autofocus, aria-describedby, aria-label, placeholder
 });

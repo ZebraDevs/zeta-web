@@ -4,9 +4,9 @@ import "../../components/progress-indicators/progress-circle/progress-circle.js"
 import { ZetaCancelUploadEvent } from "../../events.js";
 
 describe("ZetaProgressCircle", () => {
-  // describe("Accessibility Tests", () => {});
+  // describe("Accessibility", () => {});
 
-  describe("Content Tests", () => {
+  describe("Content", () => {
     it("creates from document.createElement", function () {
       const el = document.createElement("zeta-progress-circle");
       assert.equal("ZETA-PROGRESS-CIRCLE", el.nodeName);
@@ -48,11 +48,11 @@ describe("ZetaProgressCircle", () => {
     });
   });
 
-  // describe("Dimensions Tests", () => {});
+  // describe("Dimensions", () => {});
 
-  // describe("Styling Tests", () => {});
+  // describe("Styling", () => {});
 
-  describe("Interaction Tests", () => {
+  describe("Interaction", () => {
     it("should fire a ZetaCancelUploadEvent on button click", async () => {
       // prettier-ignore
       const el = await fixture<ZetaProgressCircle>(html`<zeta-progress-circle></zeta-progress-circle>`);
@@ -70,7 +70,7 @@ describe("ZetaProgressCircle", () => {
     });
   });
 
-  // describe("Golden Tests", () => {});
+  // describe("Golden", () => {});
 
-  // describe("Performance Tests", () => {});
+  // describe("Performance", () => {});
 });

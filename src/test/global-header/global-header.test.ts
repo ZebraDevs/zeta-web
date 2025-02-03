@@ -17,17 +17,17 @@ describe("zeta-global-header", () => {
     subject = await createComponent();
   });
 
-  describe("Accessibility Tests", () => {
+  describe("Accessibility", () => {
     it("meets accessibility requirements", async () => {
       await expect(subject).shadowDom.to.be.accessible();
     });
   });
 
-  // describe("Content Tests", () => {});
+  // describe("Content", () => {});
 
-  // describe("Dimensions Tests", () => {});
+  // describe("Dimensions", () => {});
 
-  describe("Styling Tests", () => {
+  describe("Styling", () => {
     it("renders background color", async () => {
       await expect(getComputedStyle(subject!).backgroundColor).to.equal(getCssVarColorValue(subject!, "--surface-default"));
     });
@@ -42,9 +42,9 @@ describe("zeta-global-header", () => {
     });
   });
 
-  // describe("Interaction Tests", () => {});
+  // describe("Interaction", () => {});
 
-  // describe("Golden Tests", () => {});
+  // describe("Golden", () => {});
 
-  // describe("Performance Tests", () => {});
+  // describe("Performance", () => {});
 });

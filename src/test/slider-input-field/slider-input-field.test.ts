@@ -18,13 +18,13 @@ describe("zeta-slider-input-field", () => {
     await subject.updateComplete;
   });
 
-  describe("Accessibility Tests", () => {
+  describe("Accessibility", () => {
     it("meets accessibility requirements", async () => {
       await expect(subject).shadowDom.to.be.accessible();
     });
   });
 
-  describe("Content Tests", () => {
+  describe("Content", () => {
     it("renders the zeta slider", () => {
       const slider = subject.shadowRoot?.querySelector("zeta-slider");
       expect(slider).to.exist;
@@ -76,7 +76,7 @@ describe("zeta-slider-input-field", () => {
     });
   });
 
-  describe("Dimensions Tests", () => {
+  describe("Dimensions", () => {
     it("sets the input width and height correctly", async () => {
       const input = subject.shadowRoot?.querySelector("input.contourable-target");
       const inputPaddingLeft = getComputedStyle(input!).paddingLeft?.split("px")?.shift();
@@ -92,7 +92,7 @@ describe("zeta-slider-input-field", () => {
     });
   });
 
-  describe("Styling Tests", () => {
+  describe("Styling", () => {
     it("sets the correct styles for the label", async () => {
       subject.label = "Label";
       await subject.updateComplete;
@@ -132,7 +132,7 @@ describe("zeta-slider-input-field", () => {
     });
   });
 
-  describe("Interaction Tests", () => {
+  describe("Interaction", () => {
     it("updates the hidden input value when the slider value changes", async () => {
       const slider = subject.shadowRoot?.querySelector("zeta-slider");
       slider?.dispatchEvent(new CustomEvent("zeta-slider-change", { detail: { value: 75 } }));
@@ -183,7 +183,7 @@ describe("zeta-slider-input-field", () => {
     });
   });
 
-  describe("Golden Tests", () => {});
+  describe("Golden", () => {});
 
-  describe("Performance Tests", () => {});
+  describe("Performance", () => {});
 });

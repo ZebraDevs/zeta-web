@@ -15,7 +15,7 @@ describe("zeta-radio-button", () => {
   });
 
   /** TODO need a full reassess of form control labels */
-  describe.skip("Accessibility Tests", () => {
+  describe.skip("Accessibility", () => {
     it("meets accessibility requirements", async () => {
       const el = await fixture(html`<label for="checky">Label</label><zeta-radio-button name="checky"></zeta-radio-button>`);
       await expect(el).to.be.accessible();
@@ -32,7 +32,7 @@ describe("zeta-radio-button", () => {
     });
   });
 
-  describe("Content Tests", () => {
+  describe("Content", () => {
     it("sets the name attribute correctly", async () => {
       const name = "myRadioButton";
       subject.name = name;
@@ -58,20 +58,20 @@ describe("zeta-radio-button", () => {
     });
   });
 
-  // describe("Dimensions Tests", () => {});
+  // describe("Dimensions", () => {});
 
-  // describe("Styling Tests", () => {});
+  // describe("Styling", () => {});
 
-  describe("Interaction Tests", () => {
+  describe("Interaction", () => {
     it("changes the checked state when clicked", async () => {
       (subject.shadowRoot?.querySelector(".container") as HTMLElement)?.click();
       await expect(subject.checked).to.equal(true);
     });
   });
 
-  // describe("Golden Tests", () => {});
+  // describe("Golden", () => {});
 
-  // describe("Performance Tests", () => {});
+  // describe("Performance", () => {});
 });
 
 describe("zeta-radio-button label", () => {
@@ -87,9 +87,9 @@ describe("zeta-radio-button label", () => {
     subject = await createComponent();
   });
 
-  // describe("Accessibility Tests", () => {});
+  // describe("Accessibility", () => {});
 
-  describe("Content Tests", () => {
+  describe("Content", () => {
     it("renders the radio label correctly", async () => {
       const slot = subject.shadowRoot?.querySelector("slot");
       await expect(
@@ -101,11 +101,11 @@ describe("zeta-radio-button label", () => {
     });
   });
 
-  // describe("Dimensions Tests", () => {});
+  // describe("Dimensions", () => {});
 
-  // describe("Styling Tests", () => {});
+  // describe("Styling", () => {});
 
-  describe("Interaction Tests", () => {
+  describe("Interaction", () => {
     it("checks the radio when label is clicked", async () => {
       const labelText = subject.shadowRoot?.querySelector("label");
       expect(subject.getAttribute("checked")).to.be.null;
@@ -116,7 +116,7 @@ describe("zeta-radio-button label", () => {
     });
   });
 
-  // describe("Golden Tests", () => {});
+  // describe("Golden", () => {});
 
-  // describe("Performance Tests", () => {});
+  // describe("Performance", () => {});
 });
