@@ -31,7 +31,6 @@ const testingStructure = {
             typeof firstArg.value === "string"
           ) {
             if (!firstArg.value.startsWith("zeta-")) {
-              console.log(firstArg);
               context.report({
                 node: firstArg,
                 message:
@@ -104,13 +103,12 @@ const testingStructure = {
           node.callee.type === "Identifier" &&
           node.callee.name === "it"
         ) {
-          console.log(sourceCode.getAncestors(node));
-          const ancestors = sourceCode.getAncestors(node);
           let hasCategoryDescribe;
-          ancestors.forEach((ancestor) => {
+          sourceCode.getAncestors(node).forEach((ancestor) => {
             if (
               ancestor.type === "CallExpression" &&
-              ancestor.callee.name === "describe"
+              (ancestor.callee.name === "describe" ||
+                ancestor.callee.property.name === "skip")
             ) {
               if (testCategories.includes(ancestor.arguments[0].value)) {
                 hasCategoryDescribe = true;
@@ -118,7 +116,6 @@ const testingStructure = {
             }
           });
           if (!hasCategoryDescribe) {
-            // if (sourceCode.getAncestors(node).length < 10) {
             context.report({
               node: node,
               message: "Tests should be inside nested describe blocks.",
