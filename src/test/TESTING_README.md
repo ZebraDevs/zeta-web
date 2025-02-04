@@ -2,28 +2,28 @@
 
 ### Groups
 
-- **Accessibility Tests**  
+- **Accessibility**  
   Semantic labels, touch areas, contrast ratios, etc.
 
-- **Content Tests**  
+- **Content**  
   Finds the component, parameter statuses, etc.  
   Checking for the value of props and attributes of the component. Checking for the presence of sub-element.
 
-- **Dimensions Tests**  
+- **Dimensions**  
   Size, padding, margin, alignment, etc.
 
-- **Styling Tests**  
+- **Styling**  
   Rendered colors, fonts, borders, radii etc.
   Checking the style of elements and child elements.
 
-- **Interaction Tests**  
+- **Interaction**  
   Gesture recognizers, taps, drags, etc.
   For example, using a boolean to check if the elements interaction function runs.
 
-- **Golden Tests**  
+- **Golden**  
   Compares the rendered component with the golden file.
 
-- **Performance Tests**  
+- **Performance**  
   Animation performance, rendering performance, data manupulation performance, etc.
 
 ### Rules
@@ -47,36 +47,44 @@
 
 ```ts
 import { fixture, html, expect, unsafeStatic } from "@open-wc/testing";
-import type { ZETA_TYPE } from "PATH_TO_COMPONENT";
+import type { Zeta_replacecap_ } from "PATH_TO_COMPONENT";
 import "PATH_TO_COMPONENT";
 
 import "../../index.css";
 
-describe("replace-with-zeta-tag", () => {
-  let subject: REPLACE_WITH_ZETA_TYPE;
+describe("zeta-_replacelower_", () => {
+  let subject: Zeta_replacecap_;
 
-  const createComponent = (template = `<zeta-element></zeta-element>`) => {
+  const createComponent = (template = `<zeta-_replacelower_></zeta-_replacelower_>`) => {
     // prettier-ignore
-    return fixture<REPLACE_WITH_ZETA_TYPE>(html`${unsafeStatic(template)}`);
+    return fixture<Zeta_replacecap_>(html`${unsafeStatic(template)}`);
   };
 
   beforeEach(async () => {
     subject = await createComponent();
   });
 
-  // Keep unnecessary
-  // describe("Accessibility Tests", () => {});
+  describe("Accessibility", () => {
+    it("meets accessibility requirements", async () => {
+      await expect(subject).shadowDom.to.be.accessible();
+    });
+  });
 
-  // describe("Content Tests", () => {});
+  // describe("Content", () => {});
 
-  // describe("Dimensions Tests", () => {});
+  // describe("Dimensions", () => {});
 
-  // describe("Styling Tests", () => {});
+  // describe("Styling", () => {});
 
-  // describe("Interaction Tests", () => {});
+  // describe("Interaction", () => {});
 
-  // describe("Golden Tests", () => {});
+  // describe("Golden", () => {});
 
-  // describe("Performance Tests", () => {});
+  // describe("Performance", () => {});
 });
 ```
+
+### New Group Checklist
+
+- Update TESTING_README
+- Update `scripts\assets\web.test.categories.json`

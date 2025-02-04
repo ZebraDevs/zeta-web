@@ -23,13 +23,13 @@ describe("zeta-fab", () => {
     subject = await createComponent();
   });
 
-  describe("Accessibility Tests", () => {
+  describe("Accessibility", () => {
     it("meets accessability requirements", async () => {
       await expect(subject).shadowDom.to.be.accessible();
     });
   });
 
-  describe("Content Tests", () => {
+  describe("Content", () => {
     it("renders a button with a label", () => {
       expect(subject.shadowRoot?.querySelector("button")).to.exist;
       expect(subject.shadowRoot?.querySelector(".label")).to.exist;
@@ -64,7 +64,7 @@ describe("zeta-fab", () => {
     });
   });
 
-  describe("Dimensions Tests", () => {
+  describe("Dimensions", () => {
     it("renders a small fab", async () => {
       const el = subject.shadowRoot?.querySelector("button");
       const height = getComputedStyle(el!).height;
@@ -83,7 +83,7 @@ describe("zeta-fab", () => {
     });
   });
 
-  describe("Styling Tests", () => {
+  describe("Styling", () => {
     it("renders a full rounded fab", async () => {
       const el = subject.shadowRoot?.querySelector("button");
       const borderRadius = getComputedStyle(el!).borderRadius;
@@ -130,9 +130,9 @@ describe("zeta-fab", () => {
     });
   });
 
-  // describe("Interaction Tests", () => {});
+  // describe("Interaction", () => {});
 
-  // describe("Golden Tests", () => {});
+  // describe("Golden", () => {});
 
-  // describe("Performance Tests", () => {});
+  // describe("Performance", () => {});
 });

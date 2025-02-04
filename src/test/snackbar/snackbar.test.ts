@@ -23,14 +23,14 @@ describe("zeta-snackbar", () => {
     subject.actionClick = () => console.log("Action Clicked");
   });
 
-  describe("Accessibility Tests", () => {
+  describe("Accessibility", () => {
     // TODO: collaborate with design to fix contrast ratio of action button text in default status
     it.skip("meets accessibility requirements", async () => {
       await expect(subject).shadowDom.to.be.accessible();
     });
   });
 
-  describe("Content Tests", () => {
+  describe("Content", () => {
     it("displays the correct text in the slot", async () => {
       const slotContent = (subject.shadowRoot!.querySelector("slot:not([name='icon'])") as HTMLSlotElement)?.assignedNodes({ flatten: true });
       const textNode = slotContent.find(node => node.nodeType === Node.TEXT_NODE) as Text;
@@ -52,9 +52,9 @@ describe("zeta-snackbar", () => {
     });
   });
 
-  // describe("Dimensions Tests", () => {});
+  // describe("Dimensions", () => {});
 
-  describe("Styling Tests", () => {
+  describe("Styling", () => {
     beforeEach(async () => {
       subject = await createComponent();
       subject.actionClick = () => console.log("Action Clicked");
@@ -171,7 +171,7 @@ describe("zeta-snackbar", () => {
     });
   });
 
-  describe("Interaction Tests", () => {
+  describe("Interaction", () => {
     it("removes the element from the screen when the close icon is clicked", async () => {
       const closeIcon = subject.shadowRoot!.querySelector("#closeIcon") as ZetaIcon;
       await MouseActions.click(closeIcon, "left");
@@ -237,7 +237,7 @@ describe("zeta-snackbar", () => {
     });
   });
 
-  // describe("Golden Tests", () => {});
+  // describe("Golden", () => {});
 
-  // describe("Performance Tests", () => {});
+  // describe("Performance", () => {});
 });

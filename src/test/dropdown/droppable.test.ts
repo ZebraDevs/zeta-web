@@ -19,13 +19,13 @@ describe("zeta-droppable", () => {
     subject = await createComponent();
   });
 
-  describe("Accessibility Tests", () => {
+  describe("Accessibility", () => {
     it("meets accessability requirements", async () => {
       await expect(subject).shadowDom.to.be.accessible();
     });
   });
 
-  describe("Content Tests", () => {
+  describe("Content", () => {
     it("sets the open attribute correctly", async () => {
       let open = true;
       subject.open = open;
@@ -67,9 +67,9 @@ describe("zeta-droppable", () => {
     });
   });
 
-  // describe("Dimensions Tests", () => {});
+  // describe("Dimensions", () => {});
 
-  describe("Styling Tests", () => {
+  describe("Styling", () => {
     it("sets the correct border radius when rounded is true", async () => {
       subject.rounded = true;
       await elementUpdated(subject);
@@ -89,9 +89,9 @@ describe("zeta-droppable", () => {
     });
   });
 
-  // describe("Interaction Tests", () => {});
+  // describe("Interaction", () => {});
 
-  // describe("Golden Tests", () => {});
+  // describe("Golden", () => {});
 
-  // describe("Performance Tests", () => {});
+  // describe("Performance", () => {});
 });

@@ -4,9 +4,9 @@ import type { ZetaSegmentedControl } from "../../components/segmented-control/se
 import "../../components/segmented-control/segmented-control.js";
 
 describe("zeta-segmented-control", () => {
-  // describe("Accessibility Tests", () => {});
+  // describe("Accessibility", () => {});
 
-  describe("Content Tests", () => {
+  describe("Content", () => {
     it("renders the segmented control with the correct number of items", async () => {
       const items = [
         html`<zeta-segmented-item>Item 1</zeta-segmented-item>`,
@@ -44,11 +44,11 @@ describe("zeta-segmented-control", () => {
     });
   });
 
-  // describe("Dimensions Tests", () => {});
+  // describe("Dimensions", () => {});
 
-  // describe("Styling Tests", () => {});
+  // describe("Styling", () => {});
 
-  describe("Interaction Tests", () => {
+  describe("Interaction", () => {
     it("updates the active item when a different item is clicked", async () => {
       const items = [
         html`<zeta-segmented-item>Item 1</zeta-segmented-item>`,
@@ -64,7 +64,7 @@ describe("zeta-segmented-control", () => {
     });
   });
 
-  // describe("Golden Tests", () => {});
+  // describe("Golden", () => {});
 
-  // describe("Performance Tests", () => {});
+  // describe("Performance", () => {});
 });

@@ -1,11 +1,14 @@
-import { fixture, html, unsafeStatic, expect } from "@open-wc/testing";
-import type { Zeta_replacecap_ } from "../../src/index.js";
-import "../../src/index.js";
+import { fixture, html, expect, unsafeStatic } from "@open-wc/testing";
+import type { Zeta_replacecap_ } from "PATH_TO_COMPONENT";
+import "PATH_TO_COMPONENT";
+
+import "../../index.css";
 
 describe("zeta-_replacelower_", () => {
   let subject: Zeta_replacecap_;
 
   const createComponent = (template = `<zeta-_replacelower_></zeta-_replacelower_>`) => {
+    // prettier-ignore
     return fixture<Zeta_replacecap_>(html`${unsafeStatic(template)}`);
   };
 
@@ -13,7 +16,21 @@ describe("zeta-_replacelower_", () => {
     subject = await createComponent();
   });
 
-  it("meets accessibility requirements", async () => {
-    await expect(subject).shadowDom.to.be.accessible();
+  describe("Accessibility", () => {
+    it("meets accessibility requirements", async () => {
+      await expect(subject).shadowDom.to.be.accessible();
+    });
   });
+
+  // describe("Content", () => {});
+
+  // describe("Dimensions", () => {});
+
+  // describe("Styling", () => {});
+
+  // describe("Interaction", () => {});
+
+  // describe("Golden", () => {});
+
+  // describe("Performance", () => {});
 });

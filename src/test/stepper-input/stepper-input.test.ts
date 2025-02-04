@@ -3,9 +3,9 @@ import { ZetaStepperInput } from "../../components/stepper-input/stepper-input.j
 import "../../components/stepper-input/stepper-input.js";
 
 describe("zeta-stepper-input", () => {
-  // describe("Accessibility Tests", () => {});
+  // describe("Accessibility", () => {});
 
-  describe("Content Tests", () => {
+  describe("Content", () => {
     it("creates from document.createElement", function () {
       const el = document.createElement("zeta-stepper-input");
       assert.equal("ZETA-STEPPER-INPUT", el.nodeName);
@@ -69,13 +69,13 @@ describe("zeta-stepper-input", () => {
     });
   });
 
-  // describe("Dimensions Tests", () => {});
+  // describe("Dimensions", () => {});
 
-  // describe("Styling Tests", () => {});
+  // describe("Styling", () => {});
 
-  // describe("Interaction Tests", () => {});
+  // describe("Interaction", () => {});
 
-  // describe("Golden Tests", () => {});
+  // describe("Golden", () => {});
 
-  // describe("Performance Tests", () => {});
+  // describe("Performance", () => {});
 });

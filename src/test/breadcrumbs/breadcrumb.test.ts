@@ -29,13 +29,13 @@ describe("zeta-breadcrumb", () => {
     subject = await createComponent();
   });
 
-  describe("Accessibility Tests", () => {
+  describe("Accessibility", () => {
     it("meets accessibility requirements", async () => {
       await expect(subject).shadowDom.to.be.accessible();
     });
   });
 
-  describe("Content Tests", () => {
+  describe("Content", () => {
     it("renders the correct number of breadcrumb items", async () => {
       const breadcrumbItems = subject.shadowRoot!.querySelectorAll("zeta-breadcrumb-item");
 
@@ -49,11 +49,11 @@ describe("zeta-breadcrumb", () => {
     });
   });
 
-  // describe("Dimensions Tests", () => {});
+  // describe("Dimensions", () => {});
 
-  // describe("Styling Tests", () => {});
+  // describe("Styling", () => {});
 
-  describe("Interaction Tests", () => {
+  describe("Interaction", () => {
     it.skip("renders the correct number of breadcrumb items after the more menu has been clicked", async () => {
       const moreMenu = subject.shadowRoot!.querySelector(".more-menu > button") as HTMLButtonElement;
       await MouseActions.click(moreMenu);
@@ -66,7 +66,7 @@ describe("zeta-breadcrumb", () => {
     });
   });
 
-  // describe("Golden Tests", () => {});
+  // describe("Golden", () => {});
 
-  // describe("Performance Tests", () => {});
+  // describe("Performance", () => {});
 });
