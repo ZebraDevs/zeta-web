@@ -18,7 +18,8 @@ export type InputType =
   | "checkbox-dropdown"
   | "radio-dropdown"
   | "slider"
-  | "range-selector"; //Extend this when adding more form controls
+  | "range-selector"
+  | "select"; //Extend this when adding more form controls
 
 //TODO add all properties here
 declare abstract class FormFieldInterface /* extends InteractiveInterface*/ {
@@ -31,6 +32,7 @@ declare abstract class FormFieldInterface /* extends InteractiveInterface*/ {
   indeterminate: boolean;
   input: HTMLInputElement;
   internals: ElementInternals;
+  placeholder: string;
   abstract handleChange(event: Event): void;
 }
 
@@ -121,7 +123,7 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
     @property({ type: Boolean, reflect: true }) indeterminate: boolean = false;
 
     /** Placeholder text shown when value is empty. */
-    @property({ type: String, reflect: true }) placeholder? = "";
+    @property({ type: String, reflect: true }) placeholder?: string;
 
     /** Placeholder text shown when value is empty. */
     @property({ type: Boolean, reflect: true }) readOnly?: boolean;
@@ -337,6 +339,21 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
             @change=${this._handleChange}
             ?hidden=${true}
           />`;
+        case "select":
+          return html`
+            <select
+              id=${ifDefined(this.id !== "" ? this.id : undefined)}
+              name=${this.name}
+              ?disabled=${this.disabled}
+              aria-disabled=${this.disabled ? "true" : "false"}
+              ?required=${this.required}
+              aria-required=${this.required ? "true" : "false"}
+              .value=${live(this.value ?? "")}
+              @input=${this.handleInput}
+              @change=${this._handleChange}
+              ?hidden=${true}
+            ></select>
+          `;
         default:
           return html`<input
             type=${this.type}
