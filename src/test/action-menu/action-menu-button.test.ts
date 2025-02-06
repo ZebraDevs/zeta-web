@@ -23,13 +23,13 @@ describe("zeta-action-menu-button", () => {
     subject = await createComponent();
   });
 
-  describe("Accessibility Tests", () => {
+  describe("Accessibility", () => {
     it("meets accessability requirements", async () => {
       await expect(subject).shadowDom.to.be.accessible();
     });
   });
 
-  // describe("Content Tests", () => {
+  // describe("Content", () => {
   // it.skip("renders an icon with the correct name", async () => {
   //   // fails due to slotting icon changes
   //   const iconName = "more_vertical";
@@ -39,7 +39,7 @@ describe("zeta-action-menu-button", () => {
   // });
   // });
 
-  describe("Dimensions Tests", () => {
+  describe("Dimensions", () => {
     it("aligns the zeta droppable to the start", async () => {
       (subject.shadowRoot?.querySelector("zeta-icon-button") as ZetaIconButton).click();
       await subject.updateComplete;
@@ -82,9 +82,9 @@ describe("zeta-action-menu-button", () => {
     });
   });
 
-  // describe("Styling Tests", () => {});
+  // describe("Styling", () => {});
 
-  describe("Interaction Tests", () => {
+  describe("Interaction", () => {
     it("opens the action menu when clicked", async () => {
       (subject.shadowRoot?.querySelector("zeta-icon-button") as ZetaIconButton).click();
       await subject.updateComplete;
@@ -102,11 +102,11 @@ describe("zeta-action-menu-button", () => {
     });
   });
 
-  // describe("Golden Tests", () => {
+  // describe("Golden", () => {
   // it("renders the action menu button correctly", () => {
   //   expect(subject).shadowDom.to.equalSnapshot();
   // });
   // });
 
-  // describe("Performance Tests", () => {});
+  // describe("Performance", () => {});
 });

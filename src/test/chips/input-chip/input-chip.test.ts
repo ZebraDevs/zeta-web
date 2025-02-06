@@ -16,25 +16,25 @@ describe("zeta-input-chip", () => {
     subject = await createComponent();
   });
 
-  describe("Accessibility Tests", () => {
+  describe("Accessibility", () => {
     it("it meets accessibility requirements", async () => {
       await expect(subject).shadowDom.to.be.accessible();
     });
   });
 
-  describe("Content Tests", () => {
+  describe("Content", () => {
     it("sets the correct text on the chip", async () => {
       await expect(subject.lastChild?.nodeValue).to.equal(labelText);
     });
   });
 
-  // describe("Dimensions Tests", () => {});
+  // describe("Dimensions", () => {});
 
-  // describe("Styling Tests", () => {});
+  // describe("Styling", () => {});
 
-  // describe("Interaction Tests", () => {});
+  // describe("Interaction", () => {});
 
-  // describe("Golden Tests", () => {});
+  // describe("Golden", () => {});
 
-  // describe("Performance Tests", () => {});
+  // describe("Performance", () => {});
 });

@@ -7,9 +7,9 @@ import { getSlotText } from "../utils";
 import type { ZetaIcon } from "../../components/icon/icon";
 
 describe("zeta-navigation-rail", () => {
-  // describe("Accessibility Tests", () => {});
+  // describe("Accessibility", () => {});
 
-  describe("Content Tests", () => {
+  describe("Content", () => {
     it("renders the navigation items", async () => {
       const items = [
         { label: "Home", icon: "home" },
@@ -52,13 +52,13 @@ describe("zeta-navigation-rail", () => {
     });
   });
 
-  // describe("Dimensions Tests", () => {});
+  // describe("Dimensions", () => {});
 
-  // describe("Styling Tests", () => {});
+  // describe("Styling", () => {});
 
-  // describe("Interaction Tests", () => {});
+  // describe("Interaction", () => {});
 
-  // describe("Golden Tests", () => {});
+  // describe("Golden", () => {});
 
-  // describe("Performance Tests", () => {});
+  // describe("Performance", () => {});
 });

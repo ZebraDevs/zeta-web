@@ -9,9 +9,9 @@ import "../../index.css";
 //TODO test enter (submit) and escape (clear) keys
 //TODO test the input event
 describe("zeta-search", () => {
-  // describe("Accessibility Tests", () => {});
+  // describe("Accessibility", () => {});
 
-  describe("Content Tests", () => {
+  describe("Content", () => {
     it("creates from document.createElement", function () {
       const el = document.createElement("zeta-search");
       assert.equal("ZETA-SEARCH", el.nodeName);
@@ -62,7 +62,7 @@ describe("zeta-search", () => {
     });
   });
 
-  describe("Dimensions Tests", () => {
+  describe("Dimensions", () => {
     it("should set correct default icon size", async () => {
       // prettier-ignore
       const el = await fixture<ZetaSearch>(html` <zeta-search></zeta-search> `);
@@ -89,7 +89,7 @@ describe("zeta-search", () => {
     });
   });
 
-  describe("Styling Tests", () => {
+  describe("Styling", () => {
     it("should set correct disabled icon color", async () => {
       // prettier-ignore
       const el = await fixture<ZetaSearch>(html` <zeta-search></zeta-search> `);
@@ -100,7 +100,7 @@ describe("zeta-search", () => {
     });
   });
 
-  describe("Interaction Tests", () => {
+  describe("Interaction", () => {
     it("clears input", async () => {
       // prettier-ignore
       const el = await fixture<ZetaSearch>(html` <zeta-search></zeta-search> `);
@@ -146,7 +146,7 @@ describe("zeta-search", () => {
     });
   });
 
-  // describe("Golden Tests", () => {});
+  // describe("Golden", () => {});
 
-  // describe("Performance Tests", () => {});
+  // describe("Performance", () => {});
 });

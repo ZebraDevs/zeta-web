@@ -6,6 +6,7 @@ import tsdoc from "eslint-plugin-tsdoc";
 import storybook from "eslint-plugin-storybook";
 import litA11Y from "eslint-plugin-lit-a11y";
 import prettier from "eslint-config-prettier";
+import testingStructure from "./scripts/enforce-testing-structure.js";
 
 export default tseslint.config(
   eslint.configs.recommended,
@@ -85,7 +86,11 @@ export default tseslint.config(
   },
   {
     files: ["src/**/*.test.ts"],
+    plugins: {
+      "testing-structure": testingStructure,
+    },
     rules: {
+      "testing-structure/enforce-testing-structure": "error",
       "no-unused-expressions": 0,
       "@typescript-eslint/no-unused-expressions": 0,
       "@typescript-eslint/no-explicit-any": 0,

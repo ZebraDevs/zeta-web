@@ -14,9 +14,9 @@ describe("zeta-top-appbar", () => {
   //   subject = await createComponent();
   // });
 
-  // describe("Accessibility Tests", () => {});
+  // describe("Accessibility", () => {});
 
-  describe("Content Tests", () => {
+  describe("Content", () => {
     it("renders the appbar with default values", async () => {
       const appbar: ZetaTopAppbar = await fixture(html`<zeta-top-appbar></zeta-top-appbar>`);
       expect(appbar.centered).to.be.false;
@@ -65,13 +65,13 @@ describe("zeta-top-appbar", () => {
     });
   });
 
-  // describe("Dimensions Tests", () => {});
+  // describe("Dimensions", () => {});
 
-  // describe("Styling Tests", () => {});
+  // describe("Styling", () => {});
 
-  // describe("Interaction Tests", () => {});
+  // describe("Interaction", () => {});
 
-  // describe("Golden Tests", () => {});
+  // describe("Golden", () => {});
 
-  // describe("Performance Tests", () => {});
+  // describe("Performance", () => {});
 });

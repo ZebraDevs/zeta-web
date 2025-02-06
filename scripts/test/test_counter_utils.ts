@@ -135,7 +135,7 @@ String.prototype.capitalizeEachWord = function (): string {
  * @returns The sanitized string.
  */
 String.prototype.sanitizeGroupName = function (): string {
-  return this.replaceAll(" Tests", "").replaceAll("SKIPPED ", "");
+  return this.replaceAll("SKIPPED ", "");
 };
 
 /**
@@ -193,23 +193,23 @@ String.prototype.matchDescribeText = function (): string {
  * const data: string[] = [];
  * const testCounts: TestCounts = {
  *   ComponentA: {
- *     "Accessibility Tests": 5,
- *     "Content Tests": 3,
- *     "Dimensions Tests": 2,
- *     "Styling Tests": 4,
- *     "Interaction Tests": 1,
- *     "Golden Tests": 0,
- *     "Performance Tests": 2,
+ *     "Accessibility": 5,
+ *     "Content": 3,
+ *     "Dimensions": 2,
+ *     "Styling": 4,
+ *     "Interaction": 1,
+ *     "Golden": 0,
+ *     "Performance": 2,
  *     "unorganised": 1,
  *   },
  *   ComponentB: {
- *     "Accessibility Tests": 2,
- *     "Content Tests": 1,
- *     "Dimensions Tests": 3,
- *     "Styling Tests": 2,
- *     "Interaction Tests": 4,
- *     "Golden Tests": 1,
- *     "Performance Tests": 0,
+ *     "Accessibility": 2,
+ *     "Content": 1,
+ *     "Dimensions": 3,
+ *     "Styling": 2,
+ *     "Interaction": 4,
+ *     "Golden": 1,
+ *     "Performance": 0,
  *     "unorganised": 0,
  *   },
  * };

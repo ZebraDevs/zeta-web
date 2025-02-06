@@ -8,7 +8,7 @@ const flavors = ["primary", "secondary", "positive", "negative", "outline", "out
 const iconName = "check";
 
 describe("zeta-icon-button", () => {
-  describe("Accessibility Tests", () => {
+  describe("Accessibility", () => {
     flavors.map(flavor => {
       if (flavor !== "secondary") {
         // TODO: from designs, the secondary flavor does not meet accessability requirements
@@ -24,7 +24,7 @@ describe("zeta-icon-button", () => {
     });
   });
 
-  describe("Content Tests", () => {
+  describe("Content", () => {
     it("should render the correct icon", async () => {
       const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button>${iconName}</zeta-icon-button>`);
 
@@ -32,9 +32,9 @@ describe("zeta-icon-button", () => {
     });
   });
 
-  // describe("Dimensions Tests", () => {});
+  // describe("Dimensions", () => {});
 
-  describe("Styling Tests", () => {
+  describe("Styling", () => {
     it("should display correct icon color when disabled", async () => {
       const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button>${iconName}</zeta-icon-button>`);
 
@@ -142,11 +142,11 @@ describe("zeta-icon-button", () => {
     });
   });
 
-  // describe("Interaction Tests", () => {});
+  // describe("Interaction", () => {});
 
-  // describe("Golden Tests", () => {});
+  // describe("Golden", () => {});
 
-  // describe("Performance Tests", () => {});
+  // describe("Performance", () => {});
 });
 
 describe("zeta-icon-button AS form reset control", () => {
@@ -166,15 +166,15 @@ describe("zeta-icon-button AS form reset control", () => {
     button = form.querySelector("zeta-icon-button[type='reset']") as ZetaIconButton;
   });
 
-  // describe("Accessibility Tests", () => {});
+  // describe("Accessibility", () => {});
 
-  // describe("Content Tests", () => {});
+  // describe("Content", () => {});
 
-  // describe("Dimensions Tests", () => {});
+  // describe("Dimensions", () => {});
 
-  // describe("Styling Tests", () => {});
+  // describe("Styling", () => {});
 
-  describe("Interaction Tests", () => {
+  describe("Interaction", () => {
     it("should reset forms", async () => {
       expect(input?.value).to.be.empty;
       input.value = TEST_STRING;
@@ -202,7 +202,7 @@ describe("zeta-icon-button AS form reset control", () => {
     });
   });
 
-  // describe("Golden Tests", () => {});
+  // describe("Golden", () => {});
 
-  // describe("Performance Tests", () => {});
+  // describe("Performance", () => {});
 });
