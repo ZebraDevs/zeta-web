@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
   <testsuite name="Chromium_playwright_\src\test\action-menu\action-menu-button.test.ts" id="0" tests="6" skipped="0" errors="0" failures="0" time="0.161">
+  <testsuite name="Chromium_playwright_/src/test/action-menu/action-menu-button.test.ts" id="0" tests="6" skipped="0" errors="0" failures="0" time="0.07500000000000001">
     <properties>
       <property name="test.fileName" value="src\test\action-menu\action-menu-button.test.ts"/>
       <property name="browser.name" value="Chromium"/>

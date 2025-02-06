@@ -3,9 +3,9 @@ import { ZetaDialog } from "../../components/dialog/dialog.js";
 import "../../components/dialog/dialog.js";
 
 describe("zeta-dialog", () => {
-  // describe("Accessibility Tests", () => {});
+  // describe("Accessibility", () => {});
 
-  describe("Content Tests", () => {
+  describe("Content", () => {
     it("creates from document.createElement", function () {
       const el = document.createElement("zeta-dialog");
       assert.equal("ZETA-DIALOG", el.nodeName);
@@ -41,13 +41,13 @@ describe("zeta-dialog", () => {
     });
   });
 
-  // describe("Dimensions Tests", () => {});
+  // describe("Dimensions", () => {});
 
-  // describe("Styling Tests", () => {});
+  // describe("Styling", () => {});
 
-  // describe("Interaction Tests", () => {});
+  // describe("Interaction", () => {});
 
-  // describe("Golden Tests", () => {});
+  // describe("Golden", () => {});
 
-  // describe("Performance Tests", () => {});
+  // describe("Performance", () => {});
 });

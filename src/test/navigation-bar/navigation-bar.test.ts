@@ -33,13 +33,13 @@ describe("zeta-navigation-bar", () => {
     subject = await createComponent();
   });
 
-  describe("Accessibility Tests", () => {
+  describe("Accessibility", () => {
     it("meets accessability requirements", async () => {
       await expect(subject).shadowDom.to.be.accessible();
     });
   });
 
-  describe("Content Tests", () => {
+  describe("Content", () => {
     it("renders the correct number of navigation bar items", async () => {
       const items = subject.querySelectorAll("zeta-grid-menu-item");
       await expect(items.length).to.equal(3);
@@ -79,15 +79,15 @@ describe("zeta-navigation-bar", () => {
     });
   });
 
-  // describe("Dimensions Tests", () => {});
+  // describe("Dimensions", () => {});
 
-  // describe("Styling Tests", () => {});
+  // describe("Styling", () => {});
 
-  // describe("Interaction Tests", () => {});
+  // describe("Interaction", () => {});
 
-  // describe("Golden Tests", () => {});
+  // describe("Golden", () => {});
 
-  // describe("Performance Tests", () => {});
+  // describe("Performance", () => {});
 });
 
 describe("zeta-navigation-bar spacer", () => {
@@ -116,11 +116,11 @@ describe("zeta-navigation-bar spacer", () => {
     subject = await createComponent();
   });
 
-  // describe("Accessibility Tests", () => {});
+  // describe("Accessibility", () => {});
 
-  // describe("Content Tests", () => {});
+  // describe("Content", () => {});
 
-  describe("Dimensions Tests", () => {
+  describe("Dimensions", () => {
     it.skip("keeps a fixed width", async () => {
       const item0: ZetaGridMenuItem = subject.querySelector("zeta-grid-menu-item")!;
       item0.setAttribute("label", "SomethingVeryVeryLong");
@@ -129,11 +129,11 @@ describe("zeta-navigation-bar spacer", () => {
     });
   });
 
-  // describe("Styling Tests", () => {});
+  // describe("Styling", () => {});
 
-  // describe("Interaction Tests", () => {});
+  // describe("Interaction", () => {});
 
-  // describe("Golden Tests", () => {});
+  // describe("Golden", () => {});
 
-  // describe("Performance Tests", () => {});
+  // describe("Performance", () => {});
 });

@@ -11,9 +11,9 @@ describe("zeta-switch", () => {
     subject = await fixture(html`<zeta-switch activeIcon="microphone" inactiveIcon="microphone_off"></zeta-switch>`);
   });
 
-  // describe("Accessibility Tests", () => {});
+  // describe("Accessibility", () => {});
 
-  describe("Content Tests", () => {
+  describe("Content", () => {
     it("creates from document.createElement", function () {
       const el = document.createElement("zeta-switch");
       assert.equal("ZETA-SWITCH", el.nodeName);
@@ -37,9 +37,9 @@ describe("zeta-switch", () => {
     });
   });
 
-  // describe("Dimensions Tests", () => {});
+  // describe("Dimensions", () => {});
 
-  describe("Styling Tests", () => {
+  describe("Styling", () => {
     let subject: ZetaSwitch;
     let track: HTMLElement | null | undefined;
     let thumb: HTMLElement | null | undefined;
@@ -67,7 +67,7 @@ describe("zeta-switch", () => {
     });
   });
 
-  describe("Interaction Tests", () => {
+  describe("Interaction", () => {
     it("should toggle the state when clicked by accessibility tools", async () => {
       const t: ZetaSwitch = await fixture(html`<zeta-switch></zeta-switch>`);
       const input = t.shadowRoot?.querySelector("input") as HTMLInputElement;
@@ -82,13 +82,13 @@ describe("zeta-switch", () => {
     });
   });
 
-  // describe("Golden Tests", () => {});
+  // describe("Golden", () => {});
 
-  // describe("Performance Tests", () => {});
+  // describe("Performance", () => {});
 });
 
 describe("zeta-switch disabled", () => {
-  describe("Styling Tests", () => {
+  describe("Styling", () => {
     let subject: ZetaSwitch;
     let track: HTMLElement | null | undefined;
     let thumb: HTMLElement | null | undefined;
@@ -127,7 +127,7 @@ describe("zeta-switch disabled", () => {
 });
 
 describe("zeta-switch:hover", () => {
-  describe("Styling Tests", () => {
+  describe("Styling", () => {
     let subject: ZetaSwitch;
     let track: HTMLElement | null | undefined;
     let thumb: HTMLElement | null | undefined;

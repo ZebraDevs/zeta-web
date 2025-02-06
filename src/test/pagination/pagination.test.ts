@@ -3,9 +3,9 @@ import { ZetaPagination } from "../../components/pagination/pagination.js";
 import "../../components/pagination/pagination.js";
 
 describe("zeta-pagination", () => {
-  // describe("Accessibility Tests", () => {});
+  // describe("Accessibility", () => {});
 
-  describe("Content Tests", () => {
+  describe("Content", () => {
     it("creates from document.createElement", function () {
       const el = document.createElement("zeta-pagination");
       assert.equal("ZETA-PAGINATION", el.nodeName);
@@ -59,11 +59,11 @@ describe("zeta-pagination", () => {
     });
   });
 
-  // describe("Dimensions Tests", () => {});
+  // describe("Dimensions", () => {});
 
-  // describe("Styling Tests", () => {});
+  // describe("Styling", () => {});
 
-  describe("Interaction Tests", () => {
+  describe("Interaction", () => {
     it("should increment page", async () => {
       // prettier-ignore
       const el = await fixture<ZetaPagination>(html`<zeta-pagination></zeta-pagination>`);
@@ -83,7 +83,7 @@ describe("zeta-pagination", () => {
     });
   });
 
-  // describe("Golden Tests", () => {});
+  // describe("Golden", () => {});
 
-  // describe("Performance Tests", () => {});
+  // describe("Performance", () => {});
 });

@@ -15,7 +15,7 @@ describe("zeta-checkbox", () => {
   });
 
   /** TODO need a full reassess of form control labels */
-  // describe("Accessibility Tests", () => {
+  // describe("Accessibility", () => {
   //   it.skip("meets accessibility requirements", async () => {
   //     const el = await fixture(html`<label for="checky">Label</label><zeta-checkbox name="checky"></zeta-checkbox>`);
   //     await expect(el).to.be.accessible();
@@ -32,7 +32,7 @@ describe("zeta-checkbox", () => {
   //   });
   // });
 
-  describe("Content Tests", () => {
+  describe("Content", () => {
     it("sets the name attribute correctly", async () => {
       const name = "myCheckbox";
       subject.name = name;
@@ -64,20 +64,20 @@ describe("zeta-checkbox", () => {
     });
   });
 
-  // describe("Dimensions Tests", () => {});
+  // describe("Dimensions", () => {});
 
-  // describe("Styling Tests", () => {});
+  // describe("Styling", () => {});
 
-  describe("Interaction Tests", () => {
+  describe("Interaction", () => {
     it("changes the checked state when clicked", async () => {
       subject.click();
       await expect(subject.checked).to.equal(true);
     });
   });
 
-  // describe("Golden Tests", () => {});
+  // describe("Golden", () => {});
 
-  // describe("Performance Tests", () => {});
+  // describe("Performance", () => {});
 });
 
 describe("zeta-checkbox + label", () => {
@@ -93,9 +93,9 @@ describe("zeta-checkbox + label", () => {
     subject = await createComponent();
   });
 
-  // describe("Accessibility Tests", () => {});
+  // describe("Accessibility", () => {});
 
-  describe("Content Tests", () => {
+  describe("Content", () => {
     it("renders the checkbox label correctly", async () => {
       const slot = subject.shadowRoot?.querySelector("slot");
       await expect(
@@ -107,11 +107,11 @@ describe("zeta-checkbox + label", () => {
     });
   });
 
-  // describe("Dimensions Tests", () => {});
+  // describe("Dimensions", () => {});
 
-  // describe("Styling Tests", () => {});
+  // describe("Styling", () => {});
 
-  describe("Interaction Tests", () => {
+  describe("Interaction", () => {
     it("checks the checkbox when label is clicked", async () => {
       const labelText = subject.shadowRoot?.querySelector("label");
       expect(subject.getAttribute("checked")).to.be.null;
@@ -122,7 +122,7 @@ describe("zeta-checkbox + label", () => {
     });
   });
 
-  // describe("Golden Tests", () => {});
+  // describe("Golden", () => {});
 
-  // describe("Performance Tests", () => {});
+  // describe("Performance", () => {});
 });

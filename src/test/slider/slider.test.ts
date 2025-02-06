@@ -17,13 +17,13 @@ describe("zeta-slider", () => {
     await subject.updateComplete;
   });
 
-  describe("Accessibility Tests", () => {
+  describe("Accessibility", () => {
     it("meets accessibility requirements", async () => {
       await expect(subject).shadowDom.to.be.accessible();
     });
   });
 
-  describe("Content Tests", () => {
+  describe("Content", () => {
     it("renders the track", () => {
       const track = subject.shadowRoot?.querySelector(".track");
       expect(track).to.exist;
@@ -55,7 +55,7 @@ describe("zeta-slider", () => {
     });
   });
 
-  describe("Dimensions Tests", () => {
+  describe("Dimensions", () => {
     it("sets the track height correctly", async () => {
       const track = subject.shadowRoot?.querySelector(".track");
 
@@ -74,7 +74,7 @@ describe("zeta-slider", () => {
     });
   });
 
-  describe("Styling Tests", () => {
+  describe("Styling", () => {
     it("sets the correct background color for the track", async () => {
       const track = subject.shadowRoot?.querySelector(".track");
       await expect(getComputedStyle(track as Element).backgroundColor).to.equal(getCssVarColorValue(track!, "--surface-disabled"));
@@ -121,7 +121,7 @@ describe("zeta-slider", () => {
     });
   });
 
-  describe("Interaction Tests", () => {
+  describe("Interaction", () => {
     it("updates the value when the handle is dragged", async () => {
       const handle = subject.shadowRoot?.querySelector(".handle");
       handle?.dispatchEvent(new MouseEvent("mousedown", { bubbles: true, composed: true }));
@@ -154,7 +154,7 @@ describe("zeta-slider", () => {
     });
   });
 
-  describe("Golden Tests", () => {});
+  describe("Golden", () => {});
 
-  describe("Performance Tests", () => {});
+  describe("Performance", () => {});
 });

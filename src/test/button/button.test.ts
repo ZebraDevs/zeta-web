@@ -16,27 +16,27 @@ describe("zeta-button", () => {
     subject = await createComponent();
   });
 
-  describe("Accessibility Tests", () => {
+  describe("Accessibility", () => {
     it("meets accessibility requirements", async () => {
       await expect(subject).shadowDom.to.be.accessible();
     });
   });
 
-  describe("Content Tests", () => {
+  describe("Content", () => {
     it("should render the correct text within the button", async () => {
       await expect(subject.lastChild?.nodeValue).to.equal(buttonText);
     });
   });
 
-  // describe("Dimensions Tests", () => {});
+  // describe("Dimensions", () => {});
 
-  // describe("Styling Tests", () => {});
+  // describe("Styling", () => {});
 
-  // describe("Interaction Tests", () => {});
+  // describe("Interaction", () => {});
 
-  // describe("Golden Tests", () => {});
+  // describe("Golden", () => {});
 
-  // describe("Performance Tests", () => {});
+  // describe("Performance", () => {});
 
   // flavors.map(flavor =>
   //   describe(`zeta-button ${flavor}`, () => {
@@ -65,15 +65,15 @@ describe("zeta-button AS form reset control", () => {
     button = form.querySelector("zeta-button[type='reset']") as ZetaButton;
   });
 
-  // describe("Accessibility Tests", () => {});
+  // describe("Accessibility", () => {});
 
-  // describe("Content Tests", () => {});
+  // describe("Content", () => {});
 
-  // describe("Dimensions Tests", () => {});
+  // describe("Dimensions", () => {});
 
-  // describe("Styling Tests", () => {});
+  // describe("Styling", () => {});
 
-  describe("Interaction Tests", () => {
+  describe("Interaction", () => {
     it("should reset forms", async () => {
       // debugger;
       expect(input?.value).to.be.empty;
@@ -103,7 +103,7 @@ describe("zeta-button AS form reset control", () => {
     });
   });
 
-  // describe("Golden Tests", () => {});
+  // describe("Golden", () => {});
 
-  // describe("Performance Tests", () => {});
+  // describe("Performance", () => {});
 });
