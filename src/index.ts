@@ -43,6 +43,7 @@ import { ZetaNavigationProfile } from "./components/navigation-profile/navigatio
 import { ZetaNavigationRail } from "./components/navigation-rail/navigation-rail.js";
 import { ZetaNavigationRailItem } from "./components/navigation-rail/navigation-rail-item.js";
 import { ZetaNotificationIndicator } from "./components/badges/indicators/indicators.js";
+import { ZetaOption } from "./components/select-input/option.js";
 import { ZetaPagination } from "./components/pagination/pagination.js";
 import { ZetaPriorityPill } from "./components/badges/priority-pill/priority-pill.js";
 import { ZetaProgressBar } from "./components/progress-indicators/progress-bar/progress-bar.js";
@@ -52,6 +53,7 @@ import { ZetaRangeSelector } from "./components/slider/range-selector/range-sele
 import { ZetaSearch } from "./components/search/search.js";
 import { ZetaSegmentedControl } from "./components/segmented-control/segmented-control.js";
 import { ZetaSegmentedItem } from "./components/segmented-control/segmented-item.js";
+import { ZetaSelectInput } from "./components/select-input/select-input.js";
 import { ZetaSlider } from "./components/slider/slider.js";
 import { ZetaSliderInputField } from "./components/slider/slider-input-field/slider-input-field.js";
 import { ZetaSnackbar } from "./components/snackbar/snackbar.js";
@@ -114,6 +116,7 @@ export {
   ZetaNavigationRail,
   ZetaNavigationRailItem,
   ZetaNotificationIndicator,
+  ZetaOption,
   ZetaPagination,
   ZetaPriorityPill,
   ZetaProgressBar,
@@ -123,6 +126,7 @@ export {
   ZetaSearch,
   ZetaSegmentedControl,
   ZetaSegmentedItem,
+  ZetaSelectInput,
   ZetaSlider,
   ZetaSliderInputField,
   ZetaSnackbar,
