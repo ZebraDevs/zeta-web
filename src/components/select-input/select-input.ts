@@ -14,6 +14,13 @@ import type { ZetaIconName } from "@zebra-fed/zeta-icons";
 import "../icon/icon";
 
 /**
+ * TODO:
+ * Multi-select
+ * Typing
+ * Arrow keys to navigate options
+ */
+
+/**
  * ZetaSelectInput web component. Text input with dropdown select.
  * Currently no typing or multi-select support.
  *
