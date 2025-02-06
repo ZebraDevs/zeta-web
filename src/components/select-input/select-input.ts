@@ -76,8 +76,10 @@ export class ZetaSelectInput extends FormField(Size(Contourable(Interactive(LitE
       const newValue = customEvent.detail.value;
 
       if (this.value === newValue) {
-        this.setValue("");
-        this.isSelected = false;
+        // this.setValue("");
+        // this.isSelected = false;
+        // comment out below and uncomment above to enable deselect
+        this.toggleOpen();
       } else {
         this.setValue(newValue);
 
@@ -161,8 +163,8 @@ export class ZetaSelectInput extends FormField(Size(Contourable(Interactive(LitE
   };
 
   key(e: KeyboardEvent, type: "down" | "up") {
-    if (type === "up") {
-      if (e.key === " ") {
+    if (type === "down") {
+      if (e.key === " " || e.key === "Enter") {
         this.toggleOpen();
       }
     }

@@ -22,14 +22,15 @@ export class ZetaOption extends Contourable(Interactive(Size(LitElement))) {
 
   private _handleClick = () => {
     if (!this.disabled) {
-      this.selected = !this.selected;
+      // uncomment this to enable deselection
+      // this.selected = !this.selected;
       this.dispatchEvent(new CustomEvent("zeta-option-click", { bubbles: true, detail: { value: this.value } }));
     }
   };
 
   key(e: KeyboardEvent, type: "down" | "up") {
     if (type === "down") {
-      if (e.key === " ") {
+      if (e.key === " " || e.key === "Enter") {
         this._handleClick();
       }
     }
