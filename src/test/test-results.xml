@@ -811,33 +811,33 @@
     <testcase name="should set disabled color to icon when field is disabled" time="0.003" classname="zeta-text-input Styling Tests" file="src\test\text-input\text-input.test.ts"/>
     <testcase name="should toggle password visibility" time="0.002" classname="zeta-text-input Interaction Tests" file="src\test\text-input\text-input.test.ts"/>
   </testsuite>
-  <testsuite name="Chromium_playwright_\src\test\chips\assist-chip\assist-chip.test.ts" id="0" tests="3" skipped="0" errors="0" failures="0" time="0.105">
+  <testsuite name="Chromium_playwright_\src\test\chips\assist-chip\assist-chip.test.ts" id="1" tests="3" skipped="0" errors="0" failures="0" time="0.122">
     <properties>
       <property name="test.fileName" value="src\test\chips\assist-chip\assist-chip.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
-    <testcase name="meets accessibility requirements" time="0.104" classname="zeta-assist-chip Accessibility Tests" file="src\test\chips\assist-chip\assist-chip.test.ts"/>
-    <testcase name="sets the correct text on the chip" time="0.001" classname="zeta-assist-chip Content Tests" file="src\test\chips\assist-chip\assist-chip.test.ts"/>
-    <testcase name="displays the correct icon" time="0" classname="zeta-assist-chip Content Tests" file="src\test\chips\assist-chip\assist-chip.test.ts"/>
+    <testcase name="meets accessibility requirements" time="0.121" classname="zeta-assist-chip Accessibility Tests" file="src\test\chips\assist-chip\assist-chip.test.ts"/>
+    <testcase name="sets the correct text on the chip" time="0" classname="zeta-assist-chip Content Tests" file="src\test\chips\assist-chip\assist-chip.test.ts"/>
+    <testcase name="displays the correct icon" time="0.001" classname="zeta-assist-chip Content Tests" file="src\test\chips\assist-chip\assist-chip.test.ts"/>
   </testsuite>
-  <testsuite name="Chromium_playwright_\src\test\chips\filter-chip\filter-chip.test.ts" id="0" tests="3" skipped="0" errors="0" failures="0" time="0.081">
+  <testsuite name="Chromium_playwright_\src\test\chips\filter-chip\filter-chip.test.ts" id="1" tests="3" skipped="0" errors="0" failures="0" time="0.113">
     <properties>
       <property name="test.fileName" value="src\test\chips\filter-chip\filter-chip.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
-    <testcase name="it meets accessibility requirements" time="0.079" classname="zeta-filter-chip Accessibility Tests" file="src\test\chips\filter-chip\filter-chip.test.ts"/>
+    <testcase name="it meets accessibility requirements" time="0.11" classname="zeta-filter-chip Accessibility Tests" file="src\test\chips\filter-chip\filter-chip.test.ts"/>
     <testcase name="sets the correct text on the chip" time="0" classname="zeta-filter-chip Content Tests" file="src\test\chips\filter-chip\filter-chip.test.ts"/>
-    <testcase name="shows the check icon when active" time="0.002" classname="zeta-filter-chip Content Tests" file="src\test\chips\filter-chip\filter-chip.test.ts"/>
+    <testcase name="shows the check icon when active" time="0.003" classname="zeta-filter-chip Content Tests" file="src\test\chips\filter-chip\filter-chip.test.ts"/>
   </testsuite>
-  <testsuite name="Chromium_playwright_\src\test\chips\input-chip\input-chip.test.ts" id="0" tests="2" skipped="0" errors="0" failures="0" time="0.08">
+  <testsuite name="Chromium_playwright_\src\test\chips\input-chip\input-chip.test.ts" id="1" tests="2" skipped="0" errors="0" failures="0" time="0.088">
     <properties>
       <property name="test.fileName" value="src\test\chips\input-chip\input-chip.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
-    <testcase name="it meets accessibility requirements" time="0.08" classname="zeta-input-chip Accessibility Tests" file="src\test\chips\input-chip\input-chip.test.ts"/>
+    <testcase name="it meets accessibility requirements" time="0.088" classname="zeta-input-chip Accessibility Tests" file="src\test\chips\input-chip\input-chip.test.ts"/>
     <testcase name="sets the correct text on the chip" time="0" classname="zeta-input-chip Content Tests" file="src\test\chips\input-chip\input-chip.test.ts"/>
   </testsuite>
 </testsuites>
