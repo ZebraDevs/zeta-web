@@ -9,6 +9,7 @@ import "../../components/checkbox/checkbox";
 import "../../components/radio-button/radio-button";
 import "../../components/slider/slider-input-field/slider-input-field.js";
 import "../../components/slider/range-selector/range-selector.js";
+import "../../components/select-input/select-input.js";
 
 const meta: Meta = {
   title: "Form"
@@ -75,6 +76,15 @@ export const Form: StoryObj = {
           <zeta-radio-button name="zeta-radio-button-1" value="notVal">Radio 3</zeta-radio-button>
         </fieldset>
       </div>
+
+      <zeta-select-input name="zeta-select-input" icon="star" rounded>
+        <zeta-option value="1">Option 1</zeta-option>
+        <zeta-option value="2">Option 2</zeta-option>
+        <zeta-option value="3">Option 3</zeta-option>
+        <zeta-option value="4">Option 4</zeta-option>
+        <zeta-option value="5">Option 5</zeta-option>
+        <zeta-option value="6">Option 6</zeta-option>
+      </zeta-select-input>
 
       <div
         style=${styleMap({
