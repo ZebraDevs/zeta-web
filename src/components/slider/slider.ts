@@ -10,8 +10,8 @@ export * from "./slider-input-field/slider-input-field.js";
 /**
  * Sliders allow users to make selections from a range of values.
  *
- * @event {CustomEvent<ZetaSliderEvent>} ZetaSliderEvent:change - Fired whenever value of slider is changed. Contains a single entry in details: `value:number`.
- * @event {CustomEvent<ZetaRangeSliderEvent>} ZetaRangeSliderEvent:change - Fired whenever value of range slider is changed. Contains 2 values in details: `min:number`, `max:number`.
+ * @event {CustomEvent<ZetaSliderEventDetail>} change - Fired whenever value of slider is changed. Contains a single entry in details: `value:number`.
+ * @event {CustomEvent<ZetaRangeSliderEventDetail>} change - Fired whenever value of range slider is changed. Contains 2 values in details: `min:number`, `max:number`.
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=875-11860&node-type=canvas&m=dev
  * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/slider--docs

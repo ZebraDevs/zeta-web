@@ -12,7 +12,7 @@ describe("zeta-dropdown-menu-button", () => {
   let subject: ZetaDropdownMenuButton;
 
   const createComponent = (
-    template = ` <zeta-dropdown-menu-button
+    template = `<zeta-dropdown-menu-button
             size="medium"
             name="dropdown-menu"
             rounded=true
@@ -198,8 +198,10 @@ describe("zeta-dropdown-menu-button", () => {
 
       const event = new Event("submit");
       form.dispatchEvent(event);
+      await subject.updateComplete;
 
       const data = new FormData(event.target as HTMLFormElement);
+      console.log("FormData", data);
 
       await expect(Object.fromEntries(data)["dropdown-menu"]).to.equal(selectedItem1.label);
     });

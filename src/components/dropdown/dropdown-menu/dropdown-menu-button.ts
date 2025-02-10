@@ -10,7 +10,7 @@ import "../../checkbox/checkbox.js";
 import "../menu-item/dropdown-menu-item.js";
 import "./../droppable";
 import type { ZetaIconName } from "@zebra-fed/zeta-icons";
-import { ZetaDropdownEvent, ZetaInputEvent } from "../../../events.js";
+import { ZetaDropdownEvent } from "../../../events.js";
 
 export type ZetaDropdownItem = { label: string; icon?: ZetaIconName; checked?: boolean; disabled?: boolean; onClick?: () => void };
 
@@ -19,9 +19,9 @@ export type ZetaDropdownItem = { label: string; icon?: ZetaIconName; checked?: b
 /** Zeta Dropdown Menu Button places a button that when clicked opens a dropdown menu containing the items passed into it through the items prop.
  *
  * @slot - The slotted text will be displayed on the dropdown menu button.
- * @event {CustomEvent<ZetaDropdownEvent>} ZetaDropdownEvent:open - Fired when the dropdown is opened.
- * @event {CustomEvent<ZetaDropdownEvent>} ZetaDropdownEvent:close - Fired when the dropdown is closed.
- * @event {CustomEvent<ZetaInputEvent>} ZetaInputEvent:input - Fired when the dropdown is closed.
+ * @event {CustomEvent<ZetaDropdownEventDetail>} open - Fired when the dropdown is opened.
+ * @event {CustomEvent<ZetaDropdownEventDetail>} close - Fired when the dropdown is closed.
+ * @event {InputEvent} input - Fired when the dropdown is closed.
  * 
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=22391-10146
  * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/dropdown--docs
@@ -96,7 +96,7 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
     if (this.type === "radio-dropdown" || this.type === "text-dropdown") {
       this.input.value = text;
       if (this.type === "text-dropdown") this.handleClick();
-      this.input.dispatchEvent(new ZetaInputEvent({ value: this.input.value }).toEvent());
+      this.input.dispatchEvent(new InputEvent("input"));
     } else if (this.type === "checkbox-dropdown") {
       if (this.checkedValues.includes(text)) {
         this.checkedValues = this.checkedValues.filter((item: string) => item !== text);
@@ -104,7 +104,7 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
         this.checkedValues = [...this.checkedValues, text];
       }
       this.input.value = this.checkedValues.toString();
-      this.input.dispatchEvent(new ZetaInputEvent({ value: this.checkedValues }).toEvent());
+      this.input.dispatchEvent(new InputEvent("input"));
     }
   }
 

@@ -163,4 +163,7 @@ export class KeyboardActions {
   static press = async (keys: string): Promise<void> => {
     return await sendKeys({ press: keys });
   };
+  static type = async (keys: string): Promise<void> => {
+    return await sendKeys({ type: keys });
+  };
 }

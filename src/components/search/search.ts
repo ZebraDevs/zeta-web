@@ -4,17 +4,17 @@ import styles from "./search.styles.js";
 import { Contourable, Interactive, Size } from "../../mixins/mixins.js";
 import "../icon/icon.js";
 import { FormField, type InputType } from "../../mixins/form-field.js";
-import { ZetaInputChangeEvent } from "../../events.js";
 
 //TODO onsubmit
 
 /**
  * Supports speech recognition search on Chrome.
  * 
- * @event {CustomEvent<ZetaFocusEvent>} ZetaFocusEvent:focus - Fired when the search field is focused
- * @event {CustomEvent<ZetaBlurEvent>} ZetaBlurEvent:blur - Fired when the search field is blurred
- * @event {CustomEvent<ZetaInputChangeEvent>} ZetaInputChangeEvent:change - Fired when the search value changes and is committed
- * @event {CustomEvent<ZetaInputEvent>} ZetaInputEvent:input - Fired when the search value changes
+ * @event {FocusEvent} focus - Fired when the search field is focused
+ * @event {FocusEvent} blur - Fired when the search field is blurred
+ * @event {Event} change - Fired when the search value changes and is committed
+ * @event {Event} submit - Fired when the enter is pressed within the search box
+ * @event {InputEvent} input - Fired when the search value changes
  *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21286-35997
  * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/search--docs
@@ -44,8 +44,9 @@ export class ZetaSearch extends FormField(Size(Contourable(Interactive(LitElemen
     this._round = translatedValue;
   }
 
-  override handleChange(_event: Event): void {
-    this.dispatchEvent(new ZetaInputChangeEvent().toEvent());
+  override handleChange(_event: Event) {
+    return _event;
+    // this.dispatchEvent(new ZetaInputChangeEvent().toEvent());
   }
 
   override focus() {
@@ -60,7 +61,9 @@ export class ZetaSearch extends FormField(Size(Contourable(Interactive(LitElemen
   @property({ type: Boolean, reflect: true }) hasIcon = false;
 
   private resetInput = () => {
+    console.log("resetInput");
     this.value = "";
+    this.dispatchEvent(new InputEvent("input", { inputType: "deleteContent" }));
   };
 
   /* eslint-disable @typescript-eslint/no-unsafe-call */
@@ -99,7 +102,7 @@ export class ZetaSearch extends FormField(Size(Contourable(Interactive(LitElemen
 
   protected render() {
     return html`
-      <form class="contourable-target">
+      <form class="contourable-target" @submit=${(e: Event) => { e.preventDefault(); return e; }}>
         <zeta-icon id="search-icon" .rounded=${this.rounded}>search</zeta-icon>
         ${super.render()} ${this.renderCancelIcon()} ${this.renderRightIcon()}
       </form>

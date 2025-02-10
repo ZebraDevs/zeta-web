@@ -61,7 +61,7 @@ export const GroupItem: StoryObj = {
     return html`
       <zeta-button-group-item
         size=${args.size}
-        .onclick=${args.onclick}
+        @click=${args.onclick}
         .disabled=${args.disabled}
         .rounded=${args.rounded}
         ?showDropdown=${args.showDropdown}

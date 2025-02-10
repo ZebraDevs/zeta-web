@@ -3,13 +3,12 @@ import { Contourable, Interactive } from "../mixins/mixins.js";
 import styles from "./base-toggle-form-element.styles.js";
 import { FormField } from "../mixins/form-field.js";
 import "./icon/icon";
-import { ZetaInputChangeEvent } from "../events.js";
 
 /**
  * Base Class for Form Elements that toggle (i.e. Checkbox, Radio, Switch)
  * 
- * @event {CustomEvent<ZetaInputEvent>} ZetaInputEvent:input - Fired when the value of the element changes.
- * @event {CustomEvent<ZetaInputChangeEvent>} ZetaInputChangeEvent:change - Fired when the value of the element changes and is committed.
+ * @event {InputEvent} input - Fired when the value of the element changes.
+ * @event {Event} change - Fired when the value of the element changes and is committed.
  * 
  * @part icon - The icon of the element.
  */
@@ -20,11 +19,13 @@ export abstract class BaseToggleFormElement extends FormField(Interactive(Contou
     delegatesFocus: true
   };
 
-  override handleChange(_event: Event): void {
-    this.dispatchEvent(new ZetaInputChangeEvent().toEvent());
+  override handleChange(_event: Event): Event | void {
+    return _event;
+    // this.dispatchEvent(new ZetaInputChangeEvent().toEvent());
   }
 
   override focus() {
+    console.log("focus");
     this.input.focus();
   }
 

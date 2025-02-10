@@ -12,7 +12,7 @@ import { ZetaCancelUploadEvent } from "../../events.js";
  * @slot subtitle - Any extra information about the upload.
  * @slot leading - The thumbnail of the file being uploaded.
  *
- * @event {CustomEvent<ZetaCancelUploadEvent>} ZetaCancelUploadEvent:cancel-upload - Fired when the cancel button inside the progress circle is clicked.
+ * @event {CustomEvent<ZetaCancelUploadEventDetail>} cancelUpload - Fired when the cancel button inside the progress circle is clicked.
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-42&node-type=canvas&m=dev
  * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/file-upload--docs

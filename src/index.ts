@@ -34,6 +34,7 @@ import { ZetaInputChip } from "./components/chips/input-chip/input-chip.js";
 import { ZetaLabel } from "./components/badges/label/label.js";
 import { ZetaList } from "./components/list/list.js";
 import { ZetaListItem } from "./components/list/list-item/list-item.js";
+import { ZetaLoginPage } from "./components/login-page/login-page.js";
 import { ZetaNavigationBar } from "./components/navigation-bar/navigation-bar.js";
 import { ZetaNavigationDrawer } from "./components/navigation-drawer/navigation-drawer.js";
 import { ZetaNavigationDrawerFooter } from "./components/navigation-drawer/navigation-drawer-footer/navigation-drawer-footer.js";
@@ -104,6 +105,7 @@ export {
   ZetaLabel,
   ZetaList,
   ZetaListItem,
+  ZetaLoginPage,
   ZetaNavigationBar,
   ZetaNavigationDrawer,
   ZetaNavigationDrawerFooter,

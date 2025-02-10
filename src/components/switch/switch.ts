@@ -28,8 +28,8 @@ import "../icon/icon.js";
  * @part icon active - The active icon
  * @part icon inactive - The inactive icon
  * 
- * @event {CustomEvent<ZetaInputChangeEvent>} ZetaInputChangeEvent:change - Fired when the checkbox value changes
- * @event {CustomEvent<ZetaInputEvent>} ZetaInputEvent:input - Fired when the checkbox value changes
+ * @event {Event} change - Fired when the checkbox value changes
+ * @event {InputEvent} input - Fired when the checkbox value changes
  * 
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=1153-26923
  * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/switch--docs

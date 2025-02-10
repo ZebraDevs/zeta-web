@@ -25,9 +25,7 @@ You can also view the latest release at [Zeta](https://zeta-ds.web.app/) or the 
 
 ## How to Use
 
-Zeta Web Components can be directly used in many web frameworks.
-
-> ⚛️ **Note**: Using React? Zeta is not ready just yet. Whilst you wait, you can use [zds_react](https://www.npmjs.com/package/@zebra-fed/zds-react).
+Zeta Web Components can be directly used in many web frameworks including Angular, React.
 
 1. Install `@zebra-fed/zeta-web`
 
@@ -95,6 +93,24 @@ Zeta Web Components can be directly used in many web frameworks.
    ```html
    <zeta-button>Hello world!</zeta-button>
    ```
+
+### React
+
+From React 19 web-components work natively. `zeta-web` can be imported into your React project and used directly in JSX.
+
+#### TypeScript and "JSX.IntrinsicElements" errors.
+
+If you find TypeScript complains that `Property 'zeta-*' does not exist on type 'JSX.IntrinsicElements'`, you need to add the declared zeta components into React's JSX.IntrinsicElements namespace. To do this:
+
+```ts
+import { CustomElements } from "@zebra-fed/zeta-web/jsx";
+
+declare module "react" {
+  namespace JSX {
+    interface IntrinsicElements extends CustomElements {}
+  }
+}
+```
 
 ## Developer Experience
 

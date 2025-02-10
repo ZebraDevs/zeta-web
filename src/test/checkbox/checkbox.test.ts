@@ -1,6 +1,7 @@
 import { fixture, html, unsafeStatic, expect, elementUpdated, assert } from "@open-wc/testing";
 import { ZetaCheckbox } from "../../components/checkbox/checkbox.js";
 import "../../components/checkbox/checkbox.js";
+import { MouseActions } from "../utils.js";
 
 describe("zeta-checkbox", () => {
   let subject: ZetaCheckbox;
@@ -70,7 +71,7 @@ describe("zeta-checkbox", () => {
 
   describe("Interaction Tests", () => {
     it("changes the checked state when clicked", async () => {
-      subject.click();
+      await MouseActions.click(subject);
       await expect(subject.checked).to.equal(true);
     });
   });

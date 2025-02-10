@@ -1,6 +1,6 @@
 {
   "name": "@zebra-fed/zeta-web",
-  "version": "0.2.0",
+  "version": "0.4.0",
   "files": [
     "dist",
     "custom-elements.json",
@@ -14,7 +14,8 @@
     "./events.js": "./dist/events.js",
     "./components/*": "./dist/components/*",
     "./custom-elements.json": "./custom-elements.json",
-    "./index.css": "./dist/index.css"
+    "./index.css": "./dist/index.css",
+    "./jsx.d.ts": "./dist/jsx.d.ts"
   },
   "description": "Zebra Zeta Design System - Web Components",
   "repository": "https://github.com/zebratechnologies/zeta-web",
@@ -31,9 +32,6 @@
     "prebuild": "npm run analyze && node scripts/make-index.js",
     "build": "tsc -P tsconfig.build.json && npx clean-css-cli ./src/index.css -o ./dist/index.css",
     "docs": "npx typedoc --logLevel Warn",
-    "pregen:react": "npm run analyze",
-    "gen:react": "node scripts/make-react.js",
-    "gen:react-stories": "node ./scripts/react-stories.js",
     "lint": "eslint -f unix \"src/**/*.{ts,tsx}\"",
     "lint:lit-analyzer": "lit-analyzer --quiet",
     "prettier": "prettier src --write --ignore-unknown",
@@ -74,12 +72,13 @@
     "@types/jest": "^29.5.14",
     "@types/node": "^22.10.1",
     "@web/dev-server": "^0.4.6",
-    "@web/test-runner": "^0.20.1",
+    "@web/test-runner": "^0.19.0",
     "@web/test-runner-commands": "^0.9.0",
     "@web/test-runner-playwright": "^0.11.0",
     "axe-playwright": "^2.0.3",
     "cem-plugin-better-lit-types": "^0.2.1",
     "cem-plugin-custom-jsdoc-tags": "^1.1.2",
+    "custom-element-jsx-integration": "^1.6.0",
     "del": "^7.1.0",
     "esbuild": "0.24.0",
     "eslint": "^9.16.0",

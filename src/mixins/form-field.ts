@@ -5,7 +5,7 @@ import { property, query, queryAssignedNodes, state } from "lit/decorators.js";
 import { type AbstractConstructor } from "./utils.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 import { live } from "lit/directives/live.js";
-import { ZetaBlurEvent, ZetaFocusEvent, ZetaInputEvent, type ZetaInputEventDetail } from "../events.js";
+
 export type InputType =
   | "checkbox"
   | "text"
@@ -42,9 +42,9 @@ declare abstract class FormFieldInterface /* extends InteractiveInterface*/ {
  * @slot - Slot for a label.
  * @param superClass - LitElement to add mixin to
  * 
- * @event {CustomEvent<ZetaFocusEvent>} ZetaFocusEvent:focus - Fired when the form field is focused
- * @event {CustomEvent<ZetaBlurEvent>} ZetaBlurEvent:blur - Fired when the form field is blurred
- * @event {CustomEvent<ZetaInputEvent>} ZetaInputEvent:input - Fired when the value of the element changes.
+ * @event {FocusEvent>} focus - Fired when the form field is focused
+ * @event {BlurEvent} blur - Fired when the form field is blurred
+ * @event {InputEvent} input - Fired when the value of the element changes.
  * 
  * @returns - component with mixin applied.
  */
@@ -62,7 +62,7 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
       this.internals = this.attachInternals();
     }
     @state() internals: ElementInternals;
-    @query("input") input!: HTMLInputElement;
+    @query("input") input: HTMLInputElement;
     @query("label") label?: HTMLLabelElement;
     @queryAssignedNodes() slottedElements!: Array<HTMLElement>;
 
@@ -110,7 +110,7 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
      */
     @property({ type: String }) value: string | null = null;
 
-    _checked?: boolean;
+    _checked: boolean = false;
     /**
      * The state of the Switch or Checkbox that is submitted when part of a form.
      */
@@ -118,7 +118,7 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
     get checked() {
       return this._checked;
     }
-    set checked(value: boolean | undefined) {
+    set checked(value: boolean) {
       this._checked = value;
       this.internals.setFormValue(value ? (this.value !== null ? this.value : "on") : null);
     }
@@ -185,7 +185,7 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
 
     firstUpdated(_changedProperties: PropertyValues): void {
       super.firstUpdated(_changedProperties);
-      this.setToInitialValues();
+      // this.setToInitialValues();
 
       if (this.isCheckable) this.addEventListener("click", this.click);
     }
@@ -213,7 +213,6 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
     private _handleInput(event: Event, isInput: boolean = true) {
       const input = event.target as HTMLInputElement;
       this._setValue(input);
-      console.log("_handleInput", isInput);
       if (isInput) this.handleInput(event as InputEvent);
     }
 
@@ -221,7 +220,7 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
       const newVal = this.getValue(input.value, input.checked);
 
       if (this.isCheckable) {
-        this.checked = input.checked;
+        this.checked = !!input.checked;
         this.indeterminate = false;
       } else {
         this.value = newVal;
@@ -238,16 +237,18 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
      * Event fired when the input is focussed
      */
     handleFocus(_event: FocusEvent) {
-      _event.stopPropagation();
-      this.dispatchEvent(new ZetaFocusEvent().toEvent());
+      return _event;
+      // _event.stopPropagation();
+      // this.dispatchEvent(new ZetaFocusEvent().toEvent());
     }
 
     /**
      * Event fired when the input is blurred
      */
     handleBlur(_event: FocusEvent) {
-      _event.stopPropagation();
-      this.dispatchEvent(new ZetaBlurEvent().toEvent());
+      return _event;
+      // _event.stopPropagation();
+      // this.dispatchEvent(new ZetaBlurEvent().toEvent());
     }
 
     /**
@@ -257,14 +258,15 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
      * or if it is a checkbox-like input, when the checkbox is toggled.
      * or if it is a radio-like input, when the radio is selected (but not unselected).
      */
-    handleChange(_event: Event): void { }
+    handleChange(_event: Event) { return _event; }
 
     /**
      * Event fired when the input value changes
      */
-    handleInput(_event: InputEvent): void {
-      _event.stopPropagation();
-      this.dispatchEvent(new ZetaInputEvent<string, ZetaInputEventDetail<string>>({ value: this.value || "" }).toEvent());
+    handleInput(_event: InputEvent) {
+      return _event;
+      // _event.stopPropagation();
+      // this.dispatchEvent(new ZetaInputEvent<ZetaInputEventDetail>({ value: this.value || "" }).toEvent());
     }
 
     /*
@@ -331,7 +333,7 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
         case "checkbox-dropdown":
         case "radio-dropdown": //TODO: This feels like these should be <select>s, not inputs?
           return html`<input
-            type=${this.type}
+            type=${"text"}
             id=${ifDefined(this.id !== "" ? this.id : undefined)}
             name=${ifDefined(this.name)}
             ?disabled=${this.disabled}

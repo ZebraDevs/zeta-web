@@ -18,9 +18,9 @@ declare class PopupInterface {
  * Mixin to add make component pop up as a dialog.
  *
  * @param superClass - LitElement to add mixin to
- * @event {CustomEvent<ZetaPopupEvent>} ZetaPopupEvent:open - Fired when the popup is opened.
- * @event {CustomEvent<ZetaPopupEvent>} ZetaPopupEvent:close - Fired when the popup is closed.
- * @event {CustomEvent<ZetaPopupEvent>} ZetaPopupEvent:cancel - Fired when the popup is cancelled.
+ * @event {CustomEvent<ZetaPopupEventDetail>} open - Fired when the popup is opened.
+ * @event {Event} close - Fired when the popup is closed.
+ * @event {Event} cancel - Fired when the popup is cancelled.
  * @returns - component with mixin applied.
  */
 export const Popup = <T extends Constructor<LitElement>>(superClass: T) => {
@@ -67,11 +67,11 @@ export const Popup = <T extends Constructor<LitElement>>(superClass: T) => {
     }
 
     _onClose(_e: Event) {
-      this.dispatchEvent(new ZetaPopupEvent("close").toEvent());
+      this.dispatchEvent(new Event("close"));
     }
 
     _onCancel() {
-      this.dispatchEvent(new ZetaPopupEvent("cancel").toEvent());
+      this.dispatchEvent(new Event("cancel"));
     }
 
     onBarrierClicked(e: Event) {

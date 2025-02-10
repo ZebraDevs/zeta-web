@@ -62,14 +62,15 @@ export interface ZetaPageEventDetail {
 }
 /** A CustomEvent factory that creates events when a ranged slider is changed. */
 export class ZetaPageEvent<T extends ZetaPageEventDetail> extends ZetaEvent<T> {
-  name: string = "page-change";
+  name: string = "PageChange";
   constructor(detail: T) {
     super(detail, { bubbles: true, composed: true });
   }
 }
 
+export type ZetaCloseEventDetail = object;
 /** A CustomEvent factory that creates events when a close button is clicked, e.g. on an avatar. */
-export class ZetaCloseEvent extends ZetaEvent<object> {
+export class ZetaCloseEvent extends ZetaEvent<ZetaCloseEventDetail> {
   name: string = "close";
   constructor() {
     super({}, { bubbles: true, composed: true });
@@ -86,49 +87,12 @@ export class ZetaPopupEvent extends ZetaEvent<ZetaPopupEventDetail> {
   }
 }
 
+export type ZetaCancelUploadEventDetail = object; //TODO BK
 /** A CustomEvent factory that creates events when the cancel button on a progess circle is clicked. */
-export class ZetaCancelUploadEvent extends ZetaEvent<object> {
-  name: string = "cancel-upload";
+export class ZetaCancelUploadEvent extends ZetaEvent<ZetaCancelUploadEventDetail> {
+  name: string = "cancelUpload";
   constructor() {
     super({}, { bubbles: true, composed: true });
-  }
-}
-
-export type ZetaInputChangeEventDetail = object; //TODO BK
-/** A CustomEvent factory that creates events for when an input value changes. */
-export class ZetaInputChangeEvent extends ZetaEvent<ZetaInputChangeEventDetail> {
-  name: string = "change";
-  constructor() {
-    super({});
-  }
-}
-
-export type ZetaFocusEventDetail = object; //TODO BK
-/** A CustomEvent factory that creates events for when an interactable element is focused. */
-export class ZetaFocusEvent extends ZetaEvent<ZetaFocusEventDetail> {
-  name: string = "focus";
-  constructor() {
-    super({});
-  }
-}
-
-export type ZetaBlurEventDetail = object; //TODO BK
-/** A CustomEvent factory that creates events for when an interactable element is focused. */
-export class ZetaBlurEvent extends ZetaEvent<ZetaBlurEventDetail> {
-  name: string = "blur";
-  constructor() {
-    super({});
-  }
-}
-
-export type ZetaInputEventDetail<S> = {
-  value: S;
-};
-/** A CustomEvent factory that creates events for when an input value changes. */
-export class ZetaInputEvent<S, T extends ZetaInputEventDetail<S>> extends ZetaEvent<T> {
-  name: string = "input";
-  constructor(detail: T) {
-    super(detail);
   }
 }
 

@@ -3,11 +3,10 @@ import { customElement, property } from "lit/decorators.js";
 import styles from "./filter-chip.styles.js";
 import "../../icon/icon.js";
 import { BaseChip } from "../base-chips/base-chip.js";
-import { ZetaInputChangeEvent } from "../../../events.js";
 
 /** Zeta Filter Chip web component.
  *
- * @event {CustomEvent<ZetaInputChangeEvent>} ZetaInputChangeEvent:change - Fired when the filter chip is selected/deselected
+ * @event {Event} change - Fired when the filter chip is selected/deselected
  * 
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21265-14112
  * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/chips--docs
@@ -28,7 +27,7 @@ export class ZetaFilterChip extends BaseChip {
 
   clickHandler() {
     this.active = !this.active;
-    this.dispatchEvent(new ZetaInputChangeEvent().toEvent());
+    this.dispatchEvent(new Event("change"));
   }
 
   protected override render() {

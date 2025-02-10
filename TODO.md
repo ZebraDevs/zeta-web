@@ -1,19 +1,12 @@
 # BK TODO
 
 1. Fix having to import css in HTML
-2. Hook up react library creation
-3. see if react components work in storybook
-4. ditto, demo.
-5. Events:
-
-- Add linter to catch standard "Event" -> needs to be defined in events.ts
-- Work out how to inherit tsdoc comments for `@event`
-- Lint to make sure `@event`s are documented
-- Event tests:
-  - Event is fired when it is supposed to
-  - No other events are fired
-
-# TODO before first Public PR
+2. React
+3. Document
+4. Add to Storybook
+5. Events
+6. Add tests for all
+7. Add Storybook actions for all
 
 ## Folder Structure
 
@@ -69,11 +62,6 @@
 - Primitives file
 - Tokens file
 - How to automatically extract variables from web components?
-
-## Tests
-
-- Setup Test Framework
-- Test each expected export
 
 ## DevTools
 
