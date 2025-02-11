@@ -24,15 +24,6 @@ export abstract class BaseToggleFormElement extends FormField(Interactive(Contou
     // this.dispatchEvent(new ZetaInputChangeEvent().toEvent());
   }
 
-  override focus() {
-    console.log("focus");
-    this.input.focus();
-  }
-
-  override blur() {
-    this.input.blur();
-  }
-
   key(e: KeyboardEvent, type: "down" | "up") {
     if (type === "up") {
       if (e.key === " ") {

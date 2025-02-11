@@ -1,6 +1,7 @@
 import { fixture, html, unsafeStatic, expect, elementUpdated } from "@open-wc/testing";
 import type { ZetaRadioButton } from "../../components/radio-button/radio-button.js";
 import "../../components/radio-button/radio-button.js";
+import { MouseActions } from "../utils.js";
 
 describe("zeta-radio-button", () => {
   let subject: ZetaRadioButton;
@@ -64,7 +65,7 @@ describe("zeta-radio-button", () => {
 
   describe("Interaction", () => {
     it("changes the checked state when clicked", async () => {
-      (subject.shadowRoot?.querySelector(".container") as HTMLElement)?.click();
+      await MouseActions.click(subject);
       await expect(subject.checked).to.equal(true);
     });
   });

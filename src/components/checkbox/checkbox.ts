@@ -25,15 +25,11 @@ export class ZetaCheckbox extends BaseToggleFormElement {
   constructor() {
     super();
     this.internals.role = "checkbox";
-    this.addEventListener('click', (e) => { console.log('click', e, this.checked); });
   }
 
   override type = "checkbox" as InputType;
   override value = "on";
 
-  click() {
-    if (!this.disabled) this.input?.click(); //TODO is this where the click issue lies
-  }
   static styles = [styles, super.styles];
 }
 

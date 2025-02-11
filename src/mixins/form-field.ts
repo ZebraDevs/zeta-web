@@ -132,7 +132,7 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
     @property({ type: Boolean, reflect: true }) indeterminate: boolean = false;
 
     /** Placeholder text shown when value is empty. */
-    @property({ type: String, reflect: true }) placeholder? = "";
+    @property({ type: String, reflect: true }) placeholder?: string;
 
     /** Placeholder text shown when value is empty. */
     @property({ type: Boolean, reflect: true }) readOnly?: boolean;
