@@ -47,13 +47,12 @@ const meta: Meta<SearchStory> = {
       url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=21286-35997&mode=design&t=DUHsS5bjWB5UW1iG-4"
     },
     status: {
-      type: "needsAttention"
+      type: "ready"
     }
   }
 };
 
 export const Search: StoryObj<SearchStory> = {
-
   render: ({ oninput, onchange, onfocus, onblur, ...args }) => html`<zeta-search @input=${oninput} @change=${onchange} @focus=${onfocus} @blur=${onblur} ${spread(args)}></zeta-search>`
 };
 

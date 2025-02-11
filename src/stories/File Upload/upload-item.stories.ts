@@ -27,6 +27,14 @@ const meta: Meta<UploadItemStory> = {
         type: "select"
       }
     }
+  },
+  parameters: {
+    design: {
+      url: "https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=23753-10089&t=8Ym0ztJUuB4iD83l-4"
+    },
+    status: {
+      type: "ready"
+    }
   }
 };
 

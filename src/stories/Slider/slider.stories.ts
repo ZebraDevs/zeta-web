@@ -3,27 +3,29 @@ import { ZetaSlider } from "../../components/slider/slider.js";
 import { html } from "lit";
 import { spreadGenerator } from "../utils.js";
 import { fn } from '@storybook/test';
+import type { ZetaRangeSliderEvent, ZetaRangeSliderEventDetail, ZetaSliderEvent, ZetaSliderEventDetail } from "../../events.js";
 const spread = spreadGenerator(ZetaSlider);
 
 const meta: Meta<ZetaSlider> = {
   component: "zeta-slider",
   title: "Slider",
-  args: { rounded: true, disabled: false, lowerValue: 10, upperValue: 90, min: 0, max: 100, stepIncrement: 0 },
+  args: { rounded: true, disabled: false, value: 50, lowerValue: 10, upperValue: 90, min: 0, max: 100, stepIncrement: 0, type: "default" },
   argTypes: {
-    type: { table: { disable: true } },
+    type: { control: { type: "inline-radio" }, options: ["range", "default"] },
     value: { table: { disable: true } },
-    lowerValue: { control: { type: "number", min: 0, max: 100 } },
-    upperValue: { control: { type: "number", min: 0, max: 100 } },
+    stepIncrement: { control: { type: "range", min: 0, max: 50 } },
+    lowerValue: { table: { disable: true } },
+    upperValue: { table: { disable: true } },
     min: { control: { type: "number", min: 0, max: 100 } },
     max: { control: { type: "number", min: 0, max: 100 } },
     onchange: fn()
   },
   parameters: {
     design: {
-      url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=875-15530&mode=design&t=DUHsS5bjWB5UW1iG-4"
+      url: "https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=875-11860&m=dev"
     },
     status: {
-      type: "needsAttention"
+      type: "ready"
     }
   }
 };

@@ -7,9 +7,9 @@ import type { ZetaIcon } from "../../components/icon/icon";
 import "../../components/icon/icon";
 
 describe("zeta-navigation-rail-item", () => {
-  // describe("Accessibility Tests", () => {});
+  // describe("Accessibility", () => {});
 
-  describe("Content Tests", () => {
+  describe("Content", () => {
     it("renders the label slot correctly", async () => {
       const label = "Home";
       const element = await fixture(html` <zeta-navigation-rail-item> ${label} </zeta-navigation-rail-item> `);
@@ -34,11 +34,11 @@ describe("zeta-navigation-rail-item", () => {
     });
   });
 
-  // describe("Dimensions Tests", () => {});
+  // describe("Dimensions", () => {});
 
-  // describe("Styling Tests", () => {});
+  // describe("Styling", () => {});
 
-  describe("Interaction Tests", () => {
+  describe("Interaction", () => {
     // TODO: figure out how to test navigation.
     it.skip("goes to the correct href when clicked", async () => {
       const element: ZetaNavigationRailItem = await fixture(html`<zeta-navigation-rail-item href="https://www.google.com"></zeta-navigation-rail-item>`);
@@ -49,7 +49,7 @@ describe("zeta-navigation-rail-item", () => {
     });
   });
 
-  // describe("Golden Tests", () => {});
+  // describe("Golden", () => {});
 
-  // describe("Performance Tests", () => {});
+  // describe("Performance", () => {});
 });

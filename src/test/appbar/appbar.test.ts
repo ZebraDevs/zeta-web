@@ -1,11 +1,11 @@
 import { fixture, html, expect } from "@open-wc/testing";
-import type { ZetaAppbar } from "../../components/appbar/appbar.js";
-import "../../components/appbar/appbar.js";
+import type { ZetaTopAppbar } from "../../components/top-appbar/top-appbar.js";
+import "../../components/top-appbar/top-appbar.js";
 
-describe("zeta-appbar", () => {
+describe("zeta-top-appbar", () => {
   // let subject: ZetaAppbar;
 
-  // const createComponent = (template = `<zeta-appbar></zeta-appbar>`) => {
+  // const createComponent = (template = `<zeta-top-appbar></zeta-top-appbar>`) => {
   //   // prettier-ignore
   //   return fixture<ZetaAppbar>(html`${unsafeStatic(template)}`);
   // };
@@ -14,32 +14,32 @@ describe("zeta-appbar", () => {
   //   subject = await createComponent();
   // });
 
-  // describe("Accessibility Tests", () => {});
+  // describe("Accessibility", () => {});
 
-  describe("Content Tests", () => {
+  describe("Content", () => {
     it("renders the appbar with default values", async () => {
-      const appbar: ZetaAppbar = await fixture(html`<zeta-appbar></zeta-appbar>`);
+      const appbar: ZetaTopAppbar = await fixture(html`<zeta-top-appbar></zeta-top-appbar>`);
       expect(appbar.centered).to.be.false;
       expect(appbar.extended).to.be.false;
     });
 
     it("renders the appbar with centered title", async () => {
-      const appbar: ZetaAppbar = await fixture(html`<zeta-appbar centered></zeta-appbar>`);
+      const appbar: ZetaTopAppbar = await fixture(html`<zeta-top-appbar centered></zeta-top-appbar>`);
       expect(appbar.centered).to.be.true;
       expect(appbar.extended).to.be.false;
     });
 
     it("renders the appbar with extended title", async () => {
-      const appbar: ZetaAppbar = await fixture(html`<zeta-appbar extended></zeta-appbar>`);
+      const appbar: ZetaTopAppbar = await fixture(html`<zeta-top-appbar extended></zeta-top-appbar>`);
       expect(appbar.centered).to.be.false;
       expect(appbar.extended).to.be.true;
     });
 
     it("renders content in the appbars leading slot", async () => {
       const appbar = await fixture(html`
-        <zeta-appbar>
+        <zeta-top-appbar>
           <div slot="leading">Leading content</div>
-        </zeta-appbar>
+        </zeta-top-appbar>
       `);
 
       const slot: HTMLSlotElement | null | undefined = appbar.shadowRoot?.querySelector("#leading-slot");
@@ -48,9 +48,9 @@ describe("zeta-appbar", () => {
 
     it("renders content in the appbars trailing slot", async () => {
       const appbar = await fixture(html`
-        <zeta-appbar>
+        <zeta-top-appbar>
           <div slot="trailing">trailing content</div>
-        </zeta-appbar>
+        </zeta-top-appbar>
       `);
 
       const slot: HTMLSlotElement | null | undefined = appbar.shadowRoot?.querySelector("#trailing-slot");
@@ -58,20 +58,20 @@ describe("zeta-appbar", () => {
     });
 
     it("renders content in the appbar", async () => {
-      const appbar = await fixture(html` <zeta-appbar> <div>Title</div> </zeta-appbar> `);
+      const appbar = await fixture(html` <zeta-top-appbar> <div>Title</div> </zeta-top-appbar> `);
 
       const slot: HTMLSlotElement | null | undefined = appbar.shadowRoot?.querySelector("#content-slot");
       expect(slot?.assignedElements()).to.not.be.empty;
     });
   });
 
-  // describe("Dimensions Tests", () => {});
+  // describe("Dimensions", () => {});
 
-  // describe("Styling Tests", () => {});
+  // describe("Styling", () => {});
 
-  // describe("Interaction Tests", () => {});
+  // describe("Interaction", () => {});
 
-  // describe("Golden Tests", () => {});
+  // describe("Golden", () => {});
 
-  // describe("Performance Tests", () => {});
+  // describe("Performance", () => {});
 });

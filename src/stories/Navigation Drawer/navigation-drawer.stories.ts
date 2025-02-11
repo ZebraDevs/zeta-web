@@ -31,7 +31,7 @@ const meta: Meta<ZetaNavigationDrawer> = {
       url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=1788-53238&mode=design&t=DUHsS5bjWB5UW1iG-4"
     },
     status: {
-      type: "needsAttention"
+      type: "designPending"
     }
   }
 };
@@ -68,9 +68,9 @@ export const ShowNavigationDrawer: StoryObj<ZetaNavigationDrawer> = {
     html`<div>
       <zeta-button
         @click=${() => {
-          const drawer = document.querySelector("#drawer") as ZetaNavigationDrawer;
-          void drawer.show();
-        }}
+        const drawer = document.querySelector("#drawer") as ZetaNavigationDrawer;
+        void drawer.show();
+      }}
       >
         Open drawer
       </zeta-button>

@@ -32,12 +32,12 @@ const meta: Meta<ZetaIcon> = {
 export default meta;
 
 export const Icon: StoryObj = {
-  render: ({ slot, ...args }) => html`
-  <style>
-    :root {
-      ${args["--icon-color"] && `--icon-color: ${args["--icon-color"]}`} ;
-      ${args["--icon-size"] && `--icon-size: ${args["--icon-size"]}`} ;
-    } 
-  </style>
-  <zeta-icon ${spread(args)}>${slot}</zeta-icon>`
+  render: ({ slot, ...args }) =>
+    html` <style>
+        :root {
+          ${args["--icon-color"] && `--icon-color: ${args["--icon-color"]}`} ;
+          ${args["--icon-size"] && `--icon-size: ${args["--icon-size"]}`} ;
+        }
+      </style>
+      <zeta-icon ${spread(args)}>${slot}</zeta-icon>`
 };

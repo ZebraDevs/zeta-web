@@ -6,7 +6,7 @@ import { ifDefined } from "lit/directives/if-defined.js";
 import "../../icon/icon.js";
 
 // TODO(UX-1041): Add inverse
-
+// TODO(UX-1337): Corner radius is not correct on buttons in the middle of a group
 /**
  * Button which is used by button groups.
  *
@@ -56,9 +56,9 @@ export class ZetaButtonGroupItem extends Contourable(Interactive(LitElement)) {
         <label class="text ${this.addGap ? "pad" : ""}">
           <slot
             @slotchange=${() => {
-              this.addGap = this.textContent?.trim() !== "";
-              this.requestUpdate();
-            }}
+        this.addGap = this.textContent?.trim() !== "";
+        this.requestUpdate();
+      }}
           >
           </slot>
         </label>

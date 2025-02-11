@@ -6,8 +6,8 @@ import { ZetaButton } from "../button/button.js";
 import { Contourable, Popup } from "../../mixins/mixins.js";
 import "../icon/icon.js";
 
-/* 
- * TODO: dialog Autofocus. 
+/*
+ * TODO: dialog Autofocus.
  */
 /**
  * A reusable dialog or modal window with a customizable interface and functionality.
@@ -18,7 +18,7 @@ import "../icon/icon.js";
  * @slot {zeta-button} confirm - Button used in footer. Must be of type zeta-button.
  * @slot {zeta-button} cancel - Button used in footer. Must be of type zeta-button.
  * @slot {zeta-button} other - Button used in footer. Must be of type zeta-button.
- * 
+ *
  * @part body - Styles the dialog body
  * @part footer - Styles the dialog footer
  * @part header - Styles the dialog header

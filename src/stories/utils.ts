@@ -11,7 +11,6 @@ const _spread = (_spreadData: SpreadData, properties: PropertyDeclarationMap): D
   const fixedSpreadData = Object.entries(_spreadData).reduce((acc, [key, value]) => {
     const property = properties.get(key) as (PropertyDeclaration & { type?: { name: string } }) | undefined;
     let newKey = key;
-
     if (property?.attribute === undefined || property?.attribute !== false) {
       newKey = `${property?.type && property.type.name == "Boolean" ? "?" : ""}${key}`;
     } else if (property?.attribute === false) {

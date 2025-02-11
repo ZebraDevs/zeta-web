@@ -77,7 +77,7 @@ const meta: Meta<ZetaDropdownMenuButton & { onopen: () => void }> = {
       url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=22391-10146&mode=design&t=DUHsS5bjWB5UW1iG-4"
     },
     status: {
-      type: "needsAttention"
+      type: "ready"
     }
   }
 };

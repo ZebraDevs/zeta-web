@@ -74,7 +74,7 @@ export default css`
 
   /*
    * This isnt working in playwright tests due to this bug
-   * https://github.com/microsoft/playwright/issues/31607
+   * https://github.com/microsoft/playwright/issues/31607 //TODO this looks like it has been merged, lets move this back...
    /
    :host([checked]) {
     & div[part="thumb"] {

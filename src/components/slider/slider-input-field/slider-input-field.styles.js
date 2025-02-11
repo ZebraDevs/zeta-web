@@ -15,8 +15,17 @@ export default css`
     gap: var(--spacing-large);
   }
 
+  .slider-input-container.center {
+    align-items: center;
+  }
+
   label {
     margin-left: var(--spacing-small);
+  }
+
+  label.range-selector-label {
+    margin-left: 0;
+    margin-bottom: var(--spacing-minimum);
   }
 
   .slider-container {
@@ -34,6 +43,11 @@ export default css`
     padding-bottom: var(--spacing-minimum);
   }
 
+  .range-label-container > p {
+    margin: var(--spacing-small) 0;
+    line-height: var(--spacing-2xl);
+  }
+
   /*TODO refactor to shared input styles*/
   input {
     width: 56px;
@@ -41,6 +55,7 @@ export default css`
     border: var(--border-default) var(--border-size-small) solid;
     text-align: center;
     font: var(--body-medium);
+    color: var(--main-subtle);
   }
 
   input::-webkit-outer-spin-button,

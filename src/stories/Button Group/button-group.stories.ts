@@ -37,7 +37,7 @@ const meta: Meta<ZetaButtonGroup> = {
       url: "https://www.figma.com/file/zzzpriTQpJKlW4gB5Fn3bF/Design-System-Sprint-3?type=design&node-id=23116-95148&mode=design&t=C1QjqPlEoal6a5PI-4"
     },
     status: {
-      type: "inProgress"
+      type: "ready"
     }
   }
 };
@@ -61,13 +61,9 @@ export const ButtonGroup: StoryObj<ZetaButtonGroup & { count: number; showDropdo
   render: args => {
     const array = Array(args.count).fill(0);
     const mappedArray = array.map((_, index) => {
-      return html`<zeta-button-group-item
-        .onclick=${args.onclick}
-        ?showDropdown=${args.showDropdown}>
-        Label ${index}
-        ${args.icon && html`<zeta-icon slot="icon">${args.icon}</zeta-icon>`}
-      </zeta-button-group-item>
-      `;
+      return html`<zeta-button-group-item .onclick=${args.onclick} ?showDropdown=${args.showDropdown}>
+        Label ${index} ${args.icon && html`<zeta-icon slot="icon">${args.icon}</zeta-icon>`}
+      </zeta-button-group-item> `;
     });
 
     return html` <zeta-button-group .rounded=${args.rounded} size=${args.size}> ${mappedArray.flat()} </zeta-button-group> `;

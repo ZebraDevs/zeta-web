@@ -23,7 +23,7 @@ const meta: Meta<ZetaRadioButton> = {
       url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=21510-54345&mode=design&t=DUHsS5bjWB5UW1iG-4"
     },
     status: {
-      type: "needsAttention"
+      type: "ready"
     }
   }
 } satisfies Meta<ZetaRadioButton>;
@@ -56,11 +56,11 @@ export const RadioButtonInForm: StoryObj<ZetaRadioButton> = {
       <fieldset>
         <zeta-radio-button name="choice" @change=${args.onchange}>Yes</zeta-radio-button>
         <zeta-radio-button name="choice" value="No" @change=${args.onchange}>No</zeta-radio-button>
-        <label><input type="radio" name="choice" />Maybe</label>
-        <label><input type="radio" name="choice" value="N/A" />Not Applicable</label>
-      </fieldset>
-      <zeta-button type="submit">Submit</zeta-button>
-      <zeta-button type="reset">Reset</zeta-button>
-    </form>
-  `
+      <label> <input type="radio" name="choice" />Maybe</label>
+        <label> <input type="radio" name="choice" value="N/A" />Not Applicable</label>
+          </fieldset>
+          <zeta-button type="submit">Submit</zeta-button>
+            <zeta-button type="reset">Reset</zeta-button>
+              </form>
+                `
 };

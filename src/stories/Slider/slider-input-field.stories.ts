@@ -7,16 +7,26 @@ import { html } from "lit";
 const meta: Meta<ZetaSliderInputField> = {
   component: "zeta-slider-input-field",
   title: "Slider",
-  args: { rounded: true, disabled: false, error: false, label: "Label", value: 50, min: 0, max: 100, name: "" },
+  args: {
+    rounded: true,
+    disabled: false,
+    error: false,
+    label: "Label",
+    initialValue: 50,
+    min: 0,
+    max: 100,
+    stepIncrement: 0
+  },
   argTypes: {
+    name: { table: { disable: true } },
     value: { table: { disable: true } },
-    stepIncrement: { control: { type: "number", min: 0, max: 50 } },
+    stepIncrement: { control: { type: "range", min: 0, max: 50 } },
     min: { control: { type: "number", min: 0, max: 100 } },
     max: { control: { type: "number", min: 0, max: 100 } }
   },
   parameters: {
     design: {
-      url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=875-14677&mode=design&t=DUHsS5bjWB5UW1iG-4"
+      url: "https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=875-11860&m=dev"
     },
     status: {
       type: "needsAttention"
@@ -26,13 +36,5 @@ const meta: Meta<ZetaSliderInputField> = {
 export default meta;
 
 export const SliderInputField: StoryObj = {
-  argTypes: {
-    stepIncrement: { table: { disable: true } }
-  },
-  render: args => html` <zeta-slider-input-field ${spread(args)}> </zeta-slider-input-field>`
-};
-
-export const SteppedSliderInputField: StoryObj = {
-  args: { stepIncrement: 10 },
   render: args => html` <zeta-slider-input-field ${spread(args)}> </zeta-slider-input-field>`
 };

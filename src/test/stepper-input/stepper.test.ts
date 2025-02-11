@@ -3,9 +3,9 @@ import { ZetaStepper } from "../../components/stepper/stepper.js";
 import "../../components/stepper/stepper.js";
 
 describe("zeta-stepper", () => {
-  // describe("Accessibility Tests", () => {});
+  // describe("Accessibility", () => {});
 
-  describe("Content Tests", () => {
+  describe("Content", () => {
     it("creates from document.createElement", function () {
       const el = document.createElement("zeta-stepper");
       assert.equal("ZETA-STEPPER", el.nodeName);
@@ -30,13 +30,13 @@ describe("zeta-stepper", () => {
     });
   });
 
-  // describe("Dimensions Tests", () => {});
+  // describe("Dimensions", () => {});
 
-  // describe("Styling Tests", () => {});
+  // describe("Styling", () => {});
 
-  // describe("Interaction Tests", () => {});
+  // describe("Interaction", () => {});
 
-  // describe("Golden Tests", () => {});
+  // describe("Golden", () => {});
 
-  // describe("Performance Tests", () => {});
+  // describe("Performance", () => {});
 });

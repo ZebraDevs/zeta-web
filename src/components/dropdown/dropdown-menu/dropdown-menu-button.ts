@@ -67,6 +67,7 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
    */
   handleChange(_event: Event): void {
     //The input is disabled so we can ignore these
+    //this.dispatchEvent(new Event(event.type, event)); TODO Is this the test fail source
     return;
   }
 
@@ -88,6 +89,7 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
         } else if (this.type === "radio-dropdown") {
           this.input.value = item.label;
         }
+        //this.input.dispatchEvent(new Event("input")); TODO here too
       }
     });
   }
@@ -118,7 +120,7 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
       document.body.style.overflow = "auto";
       this.icon = "chevron_left";
     }
-    this.dispatchEvent(new ZetaDropdownEvent(this.open).toEvent());
+    this.dispatchEvent(new ZetaDropdownEvent(this.open).toEvent()); //TODO BK this was added on my branch
   }
 
   private handleOutsideClick(e: Event) {

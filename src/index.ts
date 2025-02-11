@@ -1,7 +1,6 @@
 import "./index.css";
 import { ZetaAccordion } from "./components/accordion/accordion.js";
 import { ZetaActionMenuButton } from "./components/action-menu/action-menu-button.js";
-import { ZetaAppbar } from "./components/appbar/appbar.js";
 import { ZetaAssistChip } from "./components/chips/assist-chip/assist-chip.js";
 import { ZetaAvatar } from "./components/avatar/avatar.js";
 import { ZetaAvatarRail } from "./components/avatar-rail/avatar-rail.js";
@@ -45,14 +44,17 @@ import { ZetaNavigationProfile } from "./components/navigation-profile/navigatio
 import { ZetaNavigationRail } from "./components/navigation-rail/navigation-rail.js";
 import { ZetaNavigationRailItem } from "./components/navigation-rail/navigation-rail-item.js";
 import { ZetaNotificationIndicator } from "./components/badges/indicators/indicators.js";
+import { ZetaOption } from "./components/select-input/option.js";
 import { ZetaPagination } from "./components/pagination/pagination.js";
 import { ZetaPriorityPill } from "./components/badges/priority-pill/priority-pill.js";
 import { ZetaProgressBar } from "./components/progress-indicators/progress-bar/progress-bar.js";
 import { ZetaProgressCircle } from "./components/progress-indicators/progress-circle/progress-circle.js";
 import { ZetaRadioButton } from "./components/radio-button/radio-button.js";
+import { ZetaRangeSelector } from "./components/slider/range-selector/range-selector.js";
 import { ZetaSearch } from "./components/search/search.js";
 import { ZetaSegmentedControl } from "./components/segmented-control/segmented-control.js";
 import { ZetaSegmentedItem } from "./components/segmented-control/segmented-item.js";
+import { ZetaSelectInput } from "./components/select-input/select-input.js";
 import { ZetaSlider } from "./components/slider/slider.js";
 import { ZetaSliderInputField } from "./components/slider/slider-input-field/slider-input-field.js";
 import { ZetaSnackbar } from "./components/snackbar/snackbar.js";
@@ -61,18 +63,18 @@ import { ZetaStatusLabel } from "./components/badges/status-label/status-label.j
 import { ZetaStepper } from "./components/stepper/stepper.js";
 import { ZetaStepperInput } from "./components/stepper-input/stepper-input.js";
 import { ZetaSwitch } from "./components/switch/switch.js";
-import { ZetaSystemBanner } from "./components/banner/system-banner.js";
+import { ZetaSystemBanner } from "./components/system-banner/system-banner.js";
 import { ZetaTabBar } from "./components/tab-bar/tab-bar.js";
 import { ZetaTabItem } from "./components/tab-bar/tab-item/tab-item.js";
 import { ZetaTag } from "./components/badges/tag/tag.js";
 import { ZetaTextInput } from "./components/text-input/text-input.js";
 import { ZetaTooltip } from "./components/tooltip/tooltip.js";
+import { ZetaTopAppbar } from "./components/top-appbar/top-appbar.js";
 import { ZetaUploadItem } from "./components/upload-item/upload-item.js";
 import { ZetaWorkcloudIndicator } from "./components/badges/workcloud-indicator/workcloud-indicator.js";
 export {
   ZetaAccordion,
   ZetaActionMenuButton,
-  ZetaAppbar,
   ZetaAssistChip,
   ZetaAvatar,
   ZetaAvatarRail,
@@ -116,14 +118,17 @@ export {
   ZetaNavigationRail,
   ZetaNavigationRailItem,
   ZetaNotificationIndicator,
+  ZetaOption,
   ZetaPagination,
   ZetaPriorityPill,
   ZetaProgressBar,
   ZetaProgressCircle,
   ZetaRadioButton,
+  ZetaRangeSelector,
   ZetaSearch,
   ZetaSegmentedControl,
   ZetaSegmentedItem,
+  ZetaSelectInput,
   ZetaSlider,
   ZetaSliderInputField,
   ZetaSnackbar,
@@ -138,6 +143,7 @@ export {
   ZetaTag,
   ZetaTextInput,
   ZetaTooltip,
+  ZetaTopAppbar,
   ZetaUploadItem,
   ZetaWorkcloudIndicator
 };

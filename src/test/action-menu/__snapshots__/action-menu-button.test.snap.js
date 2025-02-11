@@ -1,8 +1,7 @@
 /* @web/test-runner snapshot v1 */
 export const snapshots = {};
 
-snapshots["zeta-action-menu-button renders the action menu button correctly"] = 
-`<zeta-icon-button
+snapshots["zeta-action-menu-button renders the action menu button correctly"] = `<zeta-icon-button
   flavor="primary"
   id="anchor"
   rounded=""
@@ -24,4 +23,3 @@ snapshots["zeta-action-menu-button renders the action menu button correctly"] =
 </zeta-droppable>
 `;
 /* end snapshot zeta-action-menu-button renders the action menu button correctly */
-

@@ -3,7 +3,7 @@ import { html } from "lit";
 import { ZetaDropdownMenuItem } from "../../components/dropdown/menu-item/dropdown-menu-item.js";
 import { ZetaIconNameList, type ZetaIconName } from "@zebra-fed/zeta-icons";
 
-const meta: Meta<ZetaDropdownMenuItem & {icon: ZetaIconName}> = {
+const meta: Meta<ZetaDropdownMenuItem & { icon: ZetaIconName }> = {
   component: "zeta-dropdown-menu-item",
   title: "Dropdown",
   args: {
@@ -25,13 +25,13 @@ const meta: Meta<ZetaDropdownMenuItem & {icon: ZetaIconName}> = {
     design: {
       url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=22391-10146&mode=design&t=DUHsS5bjWB5UW1iG-4"
     },
-    status: { type: "needsAttention" }
+    status: { type: "ready" }
   }
 };
 
 export default meta;
 
-export const DropdownMenuItem: StoryObj<ZetaDropdownMenuItem & {icon: ZetaIconName}> = {
+export const DropdownMenuItem: StoryObj<ZetaDropdownMenuItem & { icon: ZetaIconName }> = {
   render: args =>
     html`<zeta-dropdown-menu-item .rounded=${args.rounded} .disabled=${args.disabled}>
       <zeta-icon .rounded=${args.rounded} slot="icon">${args.icon}</zeta-icon>

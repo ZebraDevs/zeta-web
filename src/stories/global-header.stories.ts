@@ -53,7 +53,7 @@ export const GlobalHeader: StoryObj = {
       <div slot="trailing" class="divider">&nbsp;</div>
       <zeta-icon-button slot="trailing">apps</zeta-icon-button>
       <zeta-navigation-profile slot="trailing" rounded>
-        <zeta-avatar slot="leading" size="sm"></zeta-avatar>
+        <zeta-avatar slot="leading" size="s"></zeta-avatar>
         My account
       </zeta-navigation-profile>
     </zeta-global-header>`;
@@ -74,7 +74,7 @@ export const WithMenuItems: StoryObj = {
       <zeta-icon-button slot="trailing" flavor="text">star</zeta-icon-button>
       <zeta-icon-button slot="trailing" flavor="text">star</zeta-icon-button>
       <zeta-navigation-profile slot="trailing" rounded>
-        <zeta-avatar slot="leading" size="sm"></zeta-avatar>
+        <zeta-avatar slot="leading" size="s"></zeta-avatar>
         My account
       </zeta-navigation-profile>
     </zeta-global-header>`

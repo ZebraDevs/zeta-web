@@ -20,7 +20,7 @@ const meta: Meta<ZetaCard> = {
       url: "https://www.figma.com/file/zzzpriTQpJKlW4gB5Fn3bF/Design-System-Sprint-3?type=design&node-id=2379-71025&mode=design&t=w4IloFPD61aGcU37-4"
     },
     status: {
-      type: "needsAttention"
+      type: "designPending"
     }
   }
 };

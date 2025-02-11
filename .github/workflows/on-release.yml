@@ -1,4 +1,4 @@
-name: "Release"
+name: CI - On Release
 
 on:
   workflow_dispatch:
@@ -18,6 +18,9 @@ jobs:
               owner: 'zebratechnologies',
               repo: 'zeta',
               workflow_id: 'deploy.yml',
-              ref: 'main',
-              environment: 'stage'
+              ref: 'main', 
             })
+
+  publish-web:
+    uses: ./.github/workflows/publish-web.yml
+    secrets: inherit

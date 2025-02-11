@@ -63,8 +63,7 @@ snapshots["zeta-dropdown-menu-button renders the dropdown menu items correctly"]
 >
 `;
 /* end snapshot zeta-dropdown-menu-button renders the dropdown menu items correctly */
-snapshots["zeta-dropdown-menu-button Golden Tests renders the dropdown menu button correctly"] = 
-`<zeta-button
+snapshots["zeta-dropdown-menu-button Golden Tests renders the dropdown menu button correctly"] = `<zeta-button
   flavor="primary"
   id="anchor"
   rounded=""
@@ -100,4 +99,3 @@ snapshots["zeta-dropdown-menu-button Golden Tests renders the dropdown menu butt
 >
 `;
 /* end snapshot zeta-dropdown-menu-button Golden Tests renders the dropdown menu button correctly */
-

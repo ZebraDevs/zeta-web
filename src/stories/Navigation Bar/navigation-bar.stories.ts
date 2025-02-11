@@ -76,7 +76,7 @@ const meta: Meta<_navBarType> = {
       url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=21186-40498&mode=design&t=DUHsS5bjWB5UW1iG-4"
     },
     status: {
-      type: "needsAttention"
+      type: "ready"
     }
   }
 };
@@ -107,7 +107,9 @@ export const BarIconsOnly: StoryObj<_navBarType> = {
     const navigationBarItems = Array.from({ length: args.numItems }, (_, index) => {
       return html`
         ${index == (args.spacer as number) - 1 ? html` <div class="spacer"></div>` : nothing}
-        <zeta-grid-menu-item .active=${args.selected === index + 1} .notificationValue=${args.notificationValue}><zeta-icon slot="icon">star</zeta-icon></zeta-grid-menu-item>
+        <zeta-grid-menu-item .active=${args.selected === index + 1} .notificationValue=${args.notificationValue}
+          ><zeta-icon slot="icon">star</zeta-icon></zeta-grid-menu-item
+        >
 
         ${index == (args.divider as number) - 1 ? html` <div class="divider"></div>` : nothing}
         ${index == args.numItems - 1 && index + 1 == (args.spacer as number) - 1 ? html` <div class="spacer"></div>` : nothing}

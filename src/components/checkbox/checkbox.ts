@@ -1,9 +1,9 @@
 import { customElement } from "lit/decorators.js";
-import { LitElement } from "lit";
 import { type InputType } from "../../mixins/form-field.js";
 import { BaseToggleFormElement } from "../base-toggle-form-element.js";
 import styles from "./checkbox.styles.js";
 import "../icon/icon.js";
+import { LitElement } from "lit";
 
 /**
  * Checkboxes allow users to select one or more items from a set. Checkboxes can turn an option on or off.
@@ -30,6 +30,10 @@ export class ZetaCheckbox extends BaseToggleFormElement {
 
   override type = "checkbox" as InputType;
   override value = "on";
+
+  click() {
+    if (!this.disabled) this.input?.click(); //TODO is this where the click issue lies
+  }
   static styles = [styles, super.styles];
 }
 

@@ -13,7 +13,6 @@ import "../../icon/icon.js";
  */
 @customElement("zeta-dropdown-menu-item")
 export class ZetaDropdownMenuItem extends Contourable(Interactive(LitElement)) {
-
   key(e: KeyboardEvent, type: "down" | "up") {
     if (type === "up") {
       if (e.key === " ") {

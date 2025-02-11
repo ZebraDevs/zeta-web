@@ -17,7 +17,7 @@ metadata:
     - typescript
     - web-components
   annotations:
-    github.com/project-slug: zebratechnologies/zeta-web
+    github.com/project-slug: ZebraDevs/zeta-web
     github.com/team-slug: zebratechnologies/front-end-development
 #    backstage.io/techdocs-ref: dir:.
 spec:

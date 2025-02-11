@@ -20,7 +20,7 @@ setCustomElementsManifest(customElements);
 
 const preview: Preview = {
   parameters: {
-    actions: { argTypesRegex: "^on.*" },
+    actions: { argTypesRegex: "^on[A-Z].*" },
     controls: {
       matchers: {
         color: /(background|color)$/i,
@@ -57,6 +57,11 @@ const preview: Preview = {
     },
     status: {
       statuses: {
+        designPending: {
+          background: "#FEF0F1",
+          color: "#F36070",
+          description: "Design requires updates",
+        },
         needsAttention: {
           background: "#FEF0F1",
           color: "#F36070",

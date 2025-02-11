@@ -13,7 +13,7 @@ export * from "./slider-input-field/slider-input-field.js";
  * @event {CustomEvent<ZetaSliderEventDetail>} change - Fired whenever value of slider is changed. Contains a single entry in details: `value:number`.
  * @event {CustomEvent<ZetaRangeSliderEventDetail>} change - Fired whenever value of range slider is changed. Contains 2 values in details: `min:number`, `max:number`.
  *
- * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=875-11860&node-type=canvas&m=dev
+ * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=875-11860
  * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/slider--docs
  */
 @customElement("zeta-slider")
@@ -136,12 +136,15 @@ export class ZetaSlider extends Contourable(LitElement) {
     if (this.stepIncrement) this.snapHandle(handle);
 
     if (this.type == "default") {
-      this.dispatchEvent(new ZetaSliderEvent({ value: this.getHandleValue(this.leftHandle) }).toEvent());
+      this.value = this.getHandleValue(this.leftHandle);
+      this.dispatchEvent(new ZetaSliderEvent({ value: this.value }).toEvent());
     } else {
+      this.lowerValue = this.getHandleValue(this.leftHandle);
+      this.upperValue = this.getHandleValue(this.rightHandle);
       this.dispatchEvent(
         new ZetaRangeSliderEvent({
-          min: this.getHandleValue(this.leftHandle),
-          max: this.getHandleValue(this.rightHandle)
+          min: this.lowerValue,
+          max: this.upperValue
         }).toEvent()
       );
     }
@@ -152,10 +155,15 @@ export class ZetaSlider extends Contourable(LitElement) {
     this.updateSelectedArea();
   };
 
-  private mouseDownHandler = (e: Event, handle: HTMLDivElement) => {
+  private mouseDownHandler = (e: Event, handle: HTMLDivElement, offHandle: HTMLDivElement) => {
     if (!this.disabled) {
       e.preventDefault();
       this.setStyles();
+
+      handle.style.zIndex = "7";
+      if (offHandle != undefined) {
+        offHandle.style.zIndex = "6";
+      }
 
       const dragHandler = (e: MouseEvent) => this.dragHandler(e, handle);
 
@@ -185,9 +193,9 @@ export class ZetaSlider extends Contourable(LitElement) {
     if (this.type == "range") {
       if (handle == this.leftHandle) {
         const rightHandleDimensions = this.rightHandle?.getBoundingClientRect();
-        upperLimit = rightHandleDimensions.x - handleDimensions.width * 2.5;
+        upperLimit = rightHandleDimensions.left - handleDimensions.width * 1.5 - this.getBoundingClientRect().x;
       } else if (handle == this.rightHandle) {
-        lowerLimit = this.leftHandle?.getBoundingClientRect().x - handleDimensions.width * 0.5;
+        lowerLimit = this.leftHandle?.getBoundingClientRect().x - this.getBoundingClientRect().x;
       }
     }
 
@@ -295,9 +303,9 @@ export class ZetaSlider extends Contourable(LitElement) {
       <div class="slider">
         <div id="track" class="track contourable-target" @click=${this.trackClickHandler}>${this.getSteps()}</div>
         <div id="selected-area" class="selected-area contourable-target" @click=${this.trackClickHandler}></div>
-        <div id="handle-l" class="handle" @mousedown=${(e: MouseEvent) => this.mouseDownHandler(e, this.leftHandle)}></div>
+        <div id="handle-l" class="handle" @mousedown=${(e: MouseEvent) => this.mouseDownHandler(e, this.leftHandle, this.rightHandle)}></div>
         ${this.type == "range"
-        ? html`<div id="handle-r" class="handle" @mousedown=${(e: MouseEvent) => this.mouseDownHandler(e, this.rightHandle)}></div>`
+        ? html`<div id="handle-r" class="handle" @mousedown=${(e: MouseEvent) => this.mouseDownHandler(e, this.rightHandle, this.leftHandle)}></div>`
         : nothing}
       </div>
     `;

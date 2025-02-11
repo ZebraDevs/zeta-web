@@ -5,10 +5,12 @@ export default css`
     display: flex;
     max-width: 64px;
   }
+  slot {
+    font: var(--label-small);
+  }
 
   :host(:not([disabled])[selected]) > * {
     --icon-color: var(--text-default);
-    color: var(--text-subtle);
     background-color: var(--surface-selected);
   }
 

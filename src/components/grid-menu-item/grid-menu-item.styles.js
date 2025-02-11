@@ -39,7 +39,7 @@ export default css`
     border-radius: var(--radius-full);
   }
 
-  :host ::slotted(zeta-icon) {
+  ::slotted(zeta-icon) {
     --icon-color: var(--main-subtle);
   }
   :host([active]) ::slotted(zeta-icon) {

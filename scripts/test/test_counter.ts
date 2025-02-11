@@ -1,4 +1,5 @@
 import { Project, SyntaxKind, Node, SourceFile } from "ts-morph";
+import testCategories from "../assets/web.test.categories.json";
 
 import * as fs from "fs";
 import * as path from "path";
@@ -8,25 +9,9 @@ import {
   TestCounts,
   TestFiles,
   writeToFile,
-  writeJsonToFile,
   isDescribeExpression,
   isItExpression,
 } from "./test_counter_utils";
-
-/**
- * Resolves the given output path to an absolute path and ensures that the directory exists.
- * If the directory does not exist, it creates the directory recursively.
- *
- * @param outputPath - The path to the output directory.
- * @returns The absolute path to the output directory.
- */
-function getOutputDir(outputPath: string): string {
-  const outputDir = path.resolve(outputPath).replace(/^(\.\.(\/|\\|$))+/, "");
-  if (!fs.existsSync(outputDir)) {
-    fs.mkdirSync(outputDir, { recursive: true });
-  }
-  return outputDir;
-}
 
 /**
  * Recursively retrieves all test file paths from a given directory.
@@ -297,29 +282,31 @@ function countTests(testFiles: TestFiles): TestCounts {
 function generateMDTable(testCounts: TestCounts) {
   var data = [
     `| Component | ${testCategories.join(" | ").sanitizeGroupName()} | Unorganised | Total Tests |`,
-    "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+    `| ${Array(testCategories.length + 3)
+      .fill("---")
+      .join(" | ")} |`,
   ].addComponentandTotalRows(testCounts, testCategories);
 
   return data.join("\n");
 }
 
-/**
- * This is the source of truth for the test categories.
- * If you change the categories here, you must also change them in the test files.
- * You can add or remove categories as needed.
- * Tests that don't belong to one of these test groups well be organised into the "Unorganised" group.
- * The order of the categories here will be reflected in the output.
- * You can have the word 'Tests' in there or not. It wouldn't matter.
- */
-const testCategories: string[] = [
-  "Accessibility",
-  "Content",
-  "Dimensions",
-  "Styling",
-  "Interaction",
-  "Golden",
-  "Performance",
-];
+// /**
+//  * This is the source of truth for the test categories.
+//  * If you change the categories here, you must also change them in the test files.
+//  * You can add or remove categories as needed.
+//  * Tests that don't belong to one of these test groups well be organised into the "Unorganised" group.
+//  * The order of the categories here will be reflected in the output.
+//  * You can have the word 'Tests' in there or not. It wouldn't matter.
+//  */
+// const testCategories: string[] = [
+//   "Accessibility",
+//   "Content",
+//   "Dimensions",
+//   "Styling",
+//   "Interaction",
+//   "Golden",
+//   "Performance",
+// ];
 
 async function main() {
   // get output directory

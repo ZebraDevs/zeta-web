@@ -6,6 +6,7 @@ import "../icon/icon.js";
 import { Contourable } from "../../mixins/contour.js";
 import { Interactive } from "../../mixins/interactive.js";
 
+// TODO(UX-1336): Breadcrumb arrows are not aligned.
 /**
  * The breadcrumb is a secondary navigation patten that helps a user understand the hierarchy among levels and navigate back through them.
  *

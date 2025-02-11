@@ -47,19 +47,18 @@ export abstract class BaseToggleFormElement extends FormField(Interactive(Contou
       <label>
         <div
           class="container interactive-target"
-          tabindex="${this.disabled ? "-1" : this.tabIndex}"
+          tabindex="${this.disabled ? " - 1" : this.tabIndex}"
           @keydown=${(e: KeyboardEvent) => this.key(e, "down")}
-          @keyup=${(e: KeyboardEvent) => this.key(e, "up")}
-        >
+          @keyup=${(e: KeyboardEvent) => this.key(e, "up")}>
           ${this.type === "checkbox"
         ? html`<zeta-icon part="icon" ?rounded=${this.rounded}> ${this.indeterminate ? "remove" : "check_mark"} </zeta-icon>`
-        : html`<div part="icon"></div>`}
+        : html`<div part="icon"></div>`
+      }
         </div>
         <slot></slot>
         ${super.render()}
       </label>
-    `;
+      `;
   }
-
   static styles = [styles, super.styles || []];
 }

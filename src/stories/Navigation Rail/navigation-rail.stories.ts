@@ -10,6 +10,14 @@ const meta: Meta<ZetaNavigationRail> = {
   component: "zeta-navigation-rail",
   args: {
     rounded: true
+  },
+  parameters: {
+    design: {
+      url: "https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-43"
+    },
+    status: {
+      type: "ready"
+    }
   }
 };
 

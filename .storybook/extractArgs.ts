@@ -1,5 +1,7 @@
 /**
  * Adapted from cem-plugin-better-lit-types: https://github.com/Uscreen-video/cem-plugin-better-lit-types.
+ * 
+ * See LICENSE_3RD_PARTY for license information.
  */
 
 import { reduceTypes } from "cem-plugin-better-lit-types/storybook";

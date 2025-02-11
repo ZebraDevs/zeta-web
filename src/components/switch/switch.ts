@@ -64,7 +64,7 @@ export class ZetaSwitch extends BaseToggleFormElement {
       <div
         part="track"
         @click=${(_e: Event) => {
-        _e.stopPropagation();
+        _e.stopPropagation(); //TODO BK: is this the click problem?
         this.input.click();
       }}
         @keydown=${(e: KeyboardEvent) => this.key(e, "down")}

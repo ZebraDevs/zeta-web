@@ -31,7 +31,7 @@ const meta: Meta<ZetaBottomSheet> = {
       url: "https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?m=auto&node-id=229-9"
     },
     status: {
-      type: "needsAttention"
+      type: "designPending"
     }
   }
 };

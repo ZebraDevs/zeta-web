@@ -45,13 +45,9 @@ export default meta;
 
 export const Item: StoryObj<ZetaGridMenuItem & { icon: ZetaIconName }> = {
   render: args => {
-    return html`<zeta-grid-menu-item
-      .rounded=${args.rounded}
-      .active=${args.active}
-      .notificationValue=${args.notificationValue}
-    >
+    return html`<zeta-grid-menu-item .rounded=${args.rounded} .active=${args.active} .notificationValue=${args.notificationValue}>
       <zeta-icon slot="icon">${args.icon}</zeta-icon>
       ${args.slot}
-      </zeta-grid-menu-item>`;
+    </zeta-grid-menu-item>`;
   }
 };

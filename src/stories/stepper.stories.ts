@@ -13,6 +13,14 @@ const meta: Meta<ZetaStepper> = {
     variant: {
       table: { disable: true }
     }
+  },
+  parameters: {
+    design: {
+      url: "https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=3420-67488"
+    },
+    status: {
+      type: "ready"
+    }
   }
 };
 

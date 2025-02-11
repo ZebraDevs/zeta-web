@@ -17,7 +17,10 @@ export type InputType =
   | "search"
   | "text-dropdown"
   | "checkbox-dropdown"
-  | "radio-dropdown"; //Extend this when adding more form controls
+  | "radio-dropdown"
+  | "slider"
+  | "range-selector"
+  | "select"; //Extend this when adding more form controls
 
 //TODO add all properties here
 declare abstract class FormFieldInterface /* extends InteractiveInterface*/ {
@@ -30,6 +33,7 @@ declare abstract class FormFieldInterface /* extends InteractiveInterface*/ {
   indeterminate: boolean;
   input: HTMLInputElement;
   internals: ElementInternals;
+  placeholder: string;
   abstract handleChange(event: Event): void;
   handleInput(event: Event): void;
   handleFocus(event: FocusEvent): void;
@@ -62,7 +66,7 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
       this.internals = this.attachInternals();
     }
     @state() internals: ElementInternals;
-    @query("input") input: HTMLInputElement;
+    @query("input") input!: HTMLInputElement;
     @query("label") label?: HTMLLabelElement;
     @queryAssignedNodes() slottedElements!: Array<HTMLElement>;
 
@@ -188,11 +192,13 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
       // this.setToInitialValues();
 
       if (this.isCheckable) this.addEventListener("click", this.click);
+      // if (this.isCheckable) this.addEventListener("click", this.input.click); //TODO this is probably the source of the click problem
     }
 
     disconnectedCallback(): void {
       super.disconnectedCallback();
       if (this.isCheckable) this.removeEventListener("click", this.click);
+      // if (this.isCheckable) this.removeEventListener("click", this.input.click); //TODO this is probably the source of the click problem
     }
 
     formResetCallback() {
@@ -331,9 +337,9 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
           ></textarea>`;
         case "text-dropdown":
         case "checkbox-dropdown":
-        case "radio-dropdown": //TODO: This feels like these should be <select>s, not inputs?
+        case "radio-dropdown":
           return html`<input
-            type=${"text"}
+            type=${this.type}
             id=${ifDefined(this.id !== "" ? this.id : undefined)}
             name=${ifDefined(this.name)}
             ?disabled=${this.disabled}
@@ -351,6 +357,54 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
             @blur=${this.handleBlur}
             ?hidden=${true}
           /> `;
+        case "slider":
+          return html`<input
+            type="text"
+            id=${ifDefined(this.id !== "" ? this.id : undefined)}
+            .id=${this.id}
+            name=${ifDefined(this.name)}
+            ?disabled=${this.disabled}
+            aria-disabled=${this.disabled ? "true" : "false"}
+            ?required=${this.required}
+            aria-required=${this.required ? "true" : "false"}
+            ?readonly=${this.readOnly}
+            .value=${live(this.value ?? "")}
+            @input=${this._handleInput}
+            @change=${this._handleChange}
+            @focus=${this.handleFocus}
+            @blur=${this.handleBlur}
+          />`;
+        case "range-selector":
+          return html`<input
+            type="text"
+            id=${ifDefined(this.id !== "" ? this.id : undefined)}
+            .id=${this.id}
+            name=${ifDefined(this.name)}
+            ?disabled=${this.disabled}
+            aria-disabled=${this.disabled ? "true" : "false"}
+            ?required=${this.required}
+            aria-required=${this.required ? "true" : "false"}
+            ?readonly=${this.readOnly}
+            .value=${live(this.value ?? "")}
+            @input=${this._handleInput}
+            @change=${this._handleChange}
+            ?hidden=${true}
+          />`;
+        case "select":
+          return html`
+            <select
+              id=${ifDefined(this.id !== "" ? this.id : undefined)}
+              name=${this.name}
+              ?disabled=${this.disabled}
+              aria-disabled=${this.disabled ? "true" : "false"}
+              ?required=${this.required}
+              aria-required=${this.required ? "true" : "false"}
+              .value=${live(this.value ?? "")}
+              @input=${this._handleInput}
+              @change=${this._handleChange}
+              ?hidden=${true}
+            ></select>
+          `;
         default:
           return html`<input
             type=${this.type}

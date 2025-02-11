@@ -37,31 +37,30 @@ const meta: Meta<ZetaInPageBanner> = {
 
 export default meta;
 
-export const Banner: StoryObj<ZetaInPageBanner> = {
-  // argTypes: {
-  //   action: { table: { disable: true } }
-  // }
-  render: ({ slot, ...args }) => html`<zeta-in-page-banner ${spread(args)}>${slot}</zeta-in-page-banner>`
+export const Banner: StoryObj = {
+  argTypes: {
+    action: { table: { disable: true } }
+  }
 };
 
-export const BannerSingleAction: StoryObj<ZetaInPageBanner> = {
-  // argTypes: {
-  //   action: { table: { disable: true } }
-  // },
-  render: ({ slot, ...args }) =>
+export const BannerSingleAction: StoryObj = {
+  argTypes: {
+    action: { table: { disable: true } }
+  },
+  render: args =>
     html`<zeta-in-page-banner ${spread(args)}>
-      ${slot}
+      ${args.slot}
       <zeta-button slot="action">Button</zeta-button>
     </zeta-in-page-banner>`
 };
 
-export const BannerDualAction: StoryObj<ZetaInPageBanner> = {
-  // argTypes: {
-  //   action: { table: { disable: true } }
-  // },
-  render: ({ slot, ...args }) =>
+export const BannerDualAction: StoryObj = {
+  argTypes: {
+    action: { table: { disable: true } }
+  },
+  render: args =>
     html`<zeta-in-page-banner ${spread(args)}>
-      ${slot}
+      ${args.slot}
       <zeta-button slot="action">Button</zeta-button>
       <zeta-button slot="action">Button 2</zeta-button>
     </zeta-in-page-banner>`
@@ -89,8 +88,7 @@ export const BannerWithImage: StoryObj<ZetaInPageBanner & { imageX: number, imag
         step: 50
       }
     },
-    slot: { table: { disable: true } },
-    // action: { table: { disable: true } }
+    slot: { table: { disable: true } }
   },
   render: ({ slot, imageX, imageY, ...args }) =>
     html` <zeta-in-page-banner ${spread(args)}>
@@ -115,14 +113,11 @@ export const BannerWithContent: StoryObj<ZetaInPageBanner & { constrainedWidth: 
       <img src=${"https://placehold.co/250x200/png"} />
 </div>`
   },
-  // argTypes: {
-  //   action: { table: { disable: true } }
-  // },
-  render: ({ slot, constrainedWidth, ...args }) => {
-    const renderedBanner = html` <zeta-in-page-banner title=${args.title} ?rounded=${args.rounded} status=${args.status}>
+  render: ({ title, rounded, status, constrainedWidth, slot }) => {
+    const renderedBanner = html`<zeta-in-page-banner title=${title} ?rounded=${rounded} status=${status}>
       ${unsafeHTML(`${slot}`)}
-      <zeta-button slot="action">Button</zeta-button>
-    </zeta-in-page-banner>`;
+    <zeta-button slot="action">Button</zeta-button>
+  </zeta-in-page-banner>`;
 
     const renderedBannerInContainer = html`<div style="max-width: 500px;">${renderedBanner}</div>`;
 
@@ -162,8 +157,8 @@ export const BannerConstrainedWidth: StoryObj = {
   render: ({ slot, constrainedWidth, imageX, imageY, ...args }) => {
     const renderedBanner = html`<zeta-in-page-banner ${spread(args)}>
       <img src=${"https://placehold.co/" + imageX + "x" + imageY + "/png"} />
-      <zeta-button flavor="positive" slot="action">Button</zeta-button>
-    </zeta-in-page-banner>`;
+    < zeta - button flavor = "positive" slot = "action" > Button </zeta-button>
+      </zeta-in-page-banner>`;
 
     const renderedBannerInContainer = html`<div style="max-width: 500px;">${renderedBanner}</div>`;
 

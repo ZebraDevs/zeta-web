@@ -80,7 +80,7 @@ export const TimeInput: StoryObj<InputStory> = {
   },
   argTypes: {
     hintText: { table: { disable: true } },
-    // placeholder: { table: { disable: true } },
+    placeholder: { table: { disable: true } },
     leadingIcon: { table: { disable: true } },
     trailingIcon: { table: { disable: true } },
     prefix: { table: { disable: true } },
@@ -91,7 +91,7 @@ export const TimeInput: StoryObj<InputStory> = {
       url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=22751-9848&mode=design&t=DUHsS5bjWB5UW1iG-4"
     },
     status: {
-      type: "ready"
+      type: "designPending"
     }
   },
   render: TextInput.render
@@ -104,7 +104,7 @@ export const DateInput: StoryObj<InputStory> = {
   },
   argTypes: {
     hintText: { table: { disable: true } },
-    // placeholder: { table: { disable: true } },
+    placeholder: { table: { disable: true } },
     leadingIcon: { table: { disable: true } },
     trailingIcon: { table: { disable: true } },
     prefix: { table: { disable: true } },
@@ -115,7 +115,7 @@ export const DateInput: StoryObj<InputStory> = {
       url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=22667-52911&mode=design&t=DUHsS5bjWB5UW1iG-4"
     },
     status: {
-      type: "ready"
+      type: "designPending"
     }
   },
   render: TextInput.render
@@ -143,7 +143,7 @@ export const PasswordField: StoryObj<InputStory> = {
   argTypes: {
     leadingIcon: { table: { disable: true } },
     trailingIcon: { table: { disable: true } },
-    // placeholder: { table: { disable: true } },
+    placeholder: { table: { disable: true } },
     prefix: { table: { disable: true } },
     suffix: { table: { disable: true } }
   },
@@ -152,7 +152,7 @@ export const PasswordField: StoryObj<InputStory> = {
       url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=948-13632&mode=design&t=DUHsS5bjWB5UW1iG-4"
     },
     status: {
-      type: "needsAttention"
+      type: "designPending"
     }
   },
   render: TextInput.render

@@ -8,7 +8,16 @@ import "../components/icon/icon.js";
 
 import { ZetaIconNameList, type ZetaIconName } from "@zebra-fed/zeta-icons";
 
-const meta: Meta<Omit<ZetaDialog, "icon"> & { confirm: string; cancel: string; other: string; icon?: ZetaIconName; "--icon-color": String; onOpen: () => void; onClose: () => void; onCancel: () => void }> = {
+const meta: Meta<Omit<ZetaDialog, "icon"> & {
+  confirm: string;
+  cancel: string;
+  other: string;
+  icon?: ZetaIconName;
+  "--icon-color": String;
+  onOpen: () => void;
+  onClose: () => void;
+  onCancel: () => void;
+}> = {
   component: "zeta-dialog",
   title: "Dialog",
   tags: ["autodocs"],
@@ -48,7 +57,7 @@ const meta: Meta<Omit<ZetaDialog, "icon"> & { confirm: string; cancel: string; o
       url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=23144-119557&mode=design&t=DUHsS5bjWB5UW1iG-4"
     },
     status: {
-      type: "needsAttention"
+      type: "ready"
     }
   }
 };
@@ -64,7 +73,17 @@ export const Dialog: StoryObj = {
         }
       </style>
       <div class="box">
-        <zeta-dialog id="dialog1" .rounded=${args.rounded} ?centered=${args.centered} .initialOpen=${true} .title=${args.title} size=${args.size} @open=${args.onOpen} @close=${args.onClose} @cancel=${args.onCancel}>
+        <zeta-dialog
+          id="dialog1"
+          .rounded=${args.rounded}
+          ?centered=${args.centered}
+          .initialOpen=${true}
+          .title=${args.title}
+          size=${args.size}
+          @open=${args.onOpen}
+          @close=${args.onClose}
+          @cancel=${args.onCancel}
+        >
           ${args.slot} ${args.icon ? html`<zeta-icon slot="icon">${args.icon}</zeta-icon>` : nothing}
           ${args.confirm && args.confirm.length > 0 ? html`<zeta-button slot="confirm">${args.confirm}</zeta-button>` : nothing}
           ${args.cancel && args.cancel.length > 0 ? html`<zeta-button slot="cancel">${args.cancel}</zeta-button>` : nothing}
@@ -86,9 +105,25 @@ export const DialogOpen: StoryObj = {
         }
       </style>
       <div class="box">
-        <zeta-button @click=${() => { (document.querySelector('#dialog1') as ZetaDialog)?.showModal() }}><zeta-icon>open</zeta-icon>Open Dialog as Modal</zeta-button>
-        <zeta-button @click=${() => { (document.querySelector('#dialog1') as ZetaDialog)?.show() }}><zeta-icon>open</zeta-icon>Open Dialog</zeta-button>
-        <zeta-dialog id="dialog1" .rounded=${args.rounded} .centered=${args.centered} .title=${args.title} size=${args.size} @open=${args.onOpen} @close=${args.onClose} @cancel=${args.onCancel}>
+        <zeta-button
+          @click=${() => {
+        (document.querySelector("#dialog1") as ZetaDialog)?.showModal();
+      }}>
+        <zeta-icon>open</zeta-icon>Open Dialog as Modal</zeta-button>
+        <zeta-button
+          @click=${() => {
+        (document.querySelector("#dialog1") as ZetaDialog)?.show();
+      }}>
+      <zeta-icon>open</zeta-icon>Open Dialog</zeta-button>
+        <zeta-dialog
+          id="dialog1"
+          .rounded=${args.rounded}
+          .centered=${args.centered}
+          .title=${args.title}
+          size=${args.size}
+          @open=${args.onOpen}
+          @close=${args.onClose}
+          @cancel=${args.onCancel}>
           ${args.slot} ${args.icon ? html`<zeta-icon slot="icon">${args.icon}</zeta-icon>` : nothing}
           ${args.confirm && args.confirm.length > 0 ? html`<zeta-button slot="confirm">${args.confirm}</zeta-button>` : nothing}
           ${args.cancel && args.cancel.length > 0 ? html`<zeta-button slot="cancel">${args.cancel}</zeta-button>` : nothing}

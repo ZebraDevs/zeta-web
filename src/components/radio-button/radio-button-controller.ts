@@ -14,14 +14,14 @@ export class RadioButtonController implements ReactiveController {
   }
   handleChange(): void {
     if (this.host.checked) {
-      this.radios?.forEach((radio) => {
+      this.radios?.forEach(radio => {
         if (radio !== this.host) {
           radio.checked = false;
         }
       });
     }
   }
-  get radios(): NodeListOf<ZetaRadioButton/* | HTMLInputElement*/> | undefined {
+  get radios(): NodeListOf<ZetaRadioButton /* | HTMLInputElement*/> | undefined {
     //TODO test with mixed <input type="radio"> and zeta-radio-buttons, we may need to extend the selector to include inputs
     return this.rootNode?.querySelectorAll(`zeta-radio-button[name="${this.host.name}"]`);
   }

@@ -18,7 +18,7 @@ export * from "./navigation-drawer-sub-item/navigation-drawer-sub-item.js";
  * @slot - The main content of the drawer.
  * @slot header - The drawer header.
  * @slot footer - The drawer footer.
- * 
+ *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=1075-21296&node-type=canvas&m=dev
  * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/navigation-drawer--docs
  */

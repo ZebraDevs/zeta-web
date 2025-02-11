@@ -3,7 +3,7 @@ import { ZetaSwitch } from "../components/switch/switch.js";
 import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
 import { spreadGenerator } from "./utils.js";
 import { html } from "lit";
-import { fn } from '@storybook/test';
+import { fn } from "@storybook/test";
 
 const spread = spreadGenerator(ZetaSwitch);
 
@@ -16,7 +16,7 @@ const meta: Meta<ZetaSwitch> = {
     disabled: false,
     onclick: fn(),
     onchange: fn(),
-    oninput: fn(),
+    oninput: fn()
   },
   argTypes: {
     activeIcon: {
@@ -37,7 +37,7 @@ const meta: Meta<ZetaSwitch> = {
       url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=1153-26923&mode=design&t=DUHsS5bjWB5UW1iG-4"
     },
     status: {
-      type: "needsAttention"
+      type: "ready"
     }
   }
 };

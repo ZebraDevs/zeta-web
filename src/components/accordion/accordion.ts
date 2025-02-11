@@ -4,6 +4,8 @@ import { Contourable, Interactive } from "../../mixins/mixins.js";
 import styles from "./accordion.styles.js";
 import "../icon/icon.js";
 
+// TODO(UX-1334): Accordion closes when clicked inside even if there is a button inside.
+
 /**
  * The accordion is a control element comprising a vertically stacked list of items, such as labels or thumbnails. Each item can be "expanded" or "collapsed" to reveal the content associated with that item. There can be zero expanded items, exactly one, or more than one item expanded at a time, depending on the configuration.
  *

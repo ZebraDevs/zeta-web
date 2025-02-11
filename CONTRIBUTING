@@ -25,6 +25,7 @@ Before a PR can be reviewed, ensure you have done the following, and fixed any i
 - Check formatting: `npm run lint`
 - Run unit-tests: `npm run test`
 
+Once a PR is opened, review is required by the Codeowners. It is also required that all status checks pass before a PR can be merged.
 
 ## Documentation
 
@@ -33,12 +34,12 @@ All parameters, attributes and slots should be documented with brief description
 
 Once code is written, all components should have a story written in Storybook. Single components can use autodocs to create their documentation, but for complex components we may need to create the markdown. We must run `npm run analyze` before writing stories, as this updates [custom-elements.json](./custom-elements.json) which storybook uses.
 
-To create a story, first create a directory under `src/stories` for the component. 
+To create a story, first create a directory under `src/stories` for the component.
 
 In storybook, always add the `title` parameter as this is used in documentation.
 
 For single components, we should add `tags:['autodocs']` to storybook to generate the documentation.
 
 For complex components, we should create a folder within `src/stories` for this component. In this directory, we create all stories needed and add the same `title` to all.
-Then create a `Docs.mdx` file in this folder, alongside all the stories. 
+Then create a `Docs.mdx` file in this folder, alongside all the stories.
 Within this we need to import the stories, and the blocks from storybook - see [Badges](./src/stories/Badges/Docs.mdx) for an example. We can then display the canvas, description and ArgTypes for all the components.

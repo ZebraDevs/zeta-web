@@ -20,7 +20,6 @@ import { FormField } from "../../mixins/form-field.js";
  */
 @customElement("zeta-text-input")
 export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitElement)))) {
-
   static override shadowRootOptions: ShadowRootInit = { delegatesFocus: true, mode: "open" };
 
   static styles = [styles, super.styles ?? []];

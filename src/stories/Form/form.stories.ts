@@ -7,6 +7,9 @@ import "../../components/switch/switch.js";
 import { styleMap } from "lit/directives/style-map.js";
 import "../../components/checkbox/checkbox";
 import "../../components/radio-button/radio-button";
+import "../../components/slider/slider-input-field/slider-input-field.js";
+import "../../components/slider/range-selector/range-selector.js";
+import "../../components/select-input/select-input.js";
 
 const meta: Meta = {
   title: "Form"
@@ -19,21 +22,21 @@ export const Form: StoryObj = {
     <h1>Zeta Form</h1>
     <form
       style=${styleMap({
-        display: "flex",
-        flexDirection: "column",
-        width: "fit-content",
-        maxWidth: "100%",
-        gap: "var(--spacing-large)"
-      })}
+    display: "flex",
+    flexDirection: "column",
+    width: "fit-content",
+    maxWidth: "100%",
+    gap: "var(--spacing-large)"
+  })}
       id="form"
       @submit=${(e: FormEvent) => {
-        e.preventDefault();
-        const data = new FormData(e.target as HTMLFormElement);
-        console.log(Object.fromEntries(data));
-      }}
+      e.preventDefault();
+      const data = new FormData(e.target as HTMLFormElement);
+      console.log(Object.fromEntries(data));
+    }}
       @reset=${(e: Event) => {
-        console.error("Form reset", e);
-      }}
+      console.error("Form reset", e);
+    }}
     >
       <div style=${columnStyle}>
         <h4 style=${subheadingStyle}>Inputs</h4>
@@ -54,6 +57,10 @@ export const Form: StoryObj = {
         </div>
       </div>
 
+      <zeta-slider-input-field name="zeta-slider-input-field"></zeta-slider-input-field>
+
+      <zeta-range-selector rounded name="zeta-range-selector"></zeta-range-selector>
+
       <zeta-switch id="switch" name="my-zeta-switch" checked>Switch</zeta-switch>
       <div style=${rowStyle}>
         <div style=${columnStyle}>
@@ -70,12 +77,21 @@ export const Form: StoryObj = {
         </fieldset>
       </div>
 
+      <zeta-select-input name="zeta-select-input" icon="star" rounded>
+        <zeta-option value="1">Option 1</zeta-option>
+        <zeta-option value="2">Option 2</zeta-option>
+        <zeta-option value="3">Option 3</zeta-option>
+        <zeta-option value="4">Option 4</zeta-option>
+        <zeta-option value="5">Option 5</zeta-option>
+        <zeta-option value="6">Option 6</zeta-option>
+      </zeta-select-input>
+
       <div
         style=${styleMap({
-          display: "flex",
-          justifyContent: "flex-end",
-          gap: "8px"
-        })}
+      display: "flex",
+      justifyContent: "flex-end",
+      gap: "8px"
+    })}
       >
         <zeta-button type="reset" flavor="outline">Reset</zeta-button>
         <zeta-button type="submit">Submit</zeta-button>

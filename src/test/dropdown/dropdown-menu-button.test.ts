@@ -31,14 +31,14 @@ describe("zeta-dropdown-menu-button", () => {
     subject = await createComponent();
   });
 
-  describe("Accessibility Tests", () => {
+  describe("Accessibility", () => {
     // TODO: Colors currently fail accessability
     it.skip("meets accessability requirements", async () => {
       await expect(subject).shadowDom.to.be.accessible();
     });
   });
 
-  describe("Content Tests", () => {
+  describe("Content", () => {
     it("renders the text correctly", async () => {
       const text = "Dropdown Menu";
       await expect(subject.innerText.trim()).to.equal(text);
@@ -68,7 +68,7 @@ describe("zeta-dropdown-menu-button", () => {
     // });
   });
 
-  describe("Dimensions Tests", () => {
+  describe("Dimensions", () => {
     it("has the same width as the zeta droppable", async () => {
       (subject.shadowRoot?.querySelector("zeta-button") as ZetaButton).click();
       await subject.updateComplete;
@@ -93,9 +93,9 @@ describe("zeta-dropdown-menu-button", () => {
     });
   });
 
-  // describe("Styling Tests", () => {});
+  // describe("Styling", () => {});
 
-  describe("Interaction Tests", () => {
+  describe("Interaction", () => {
     it("opens the dropdown menu when clicked", async () => {
       (subject.shadowRoot?.querySelector("zeta-button") as ZetaButton).click();
       await subject.updateComplete;
@@ -207,11 +207,11 @@ describe("zeta-dropdown-menu-button", () => {
     });
   });
 
-  // describe("Golden Tests", () => {
+  // describe("Golden", () => {
   //   it("renders the dropdown menu button correctly", () => {
   //     expect(subject).shadowDom.to.equalSnapshot();
   //   });
   // });
 
-  // describe("Performance Tests", () => {});
+  // describe("Performance", () => {});
 });

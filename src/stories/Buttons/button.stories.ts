@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html, nothing } from "lit";
 import { ZetaButton } from "../../components/button/button.js";
+import "../../components/button/base-button.js";
 import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
-import { fn } from '@storybook/test';
+import { fn } from "@storybook/test";
 import "../../components/button/base-button.js";
 import "../../components/icon/icon.js";
 
@@ -24,7 +25,7 @@ const meta: Meta<ZetaButton> = {
       url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=23126-110945&mode=design&t=lGrwQ4pCwYESXz6b-4"
     },
     status: {
-      type: "needsAttention"
+      type: "ready"
     }
   },
   argTypes: {

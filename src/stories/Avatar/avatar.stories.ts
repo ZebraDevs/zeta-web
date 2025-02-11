@@ -51,7 +51,7 @@ export const AvatarWithInitials: StoryObj<AvatarStory> = {
 
 export const AvatarWithImage: StoryObj<AvatarStory> = {
   args: {
-    slot: "<img src='https://tinyurl.com/ykw9za3h'></img>"
+    slot: "<img src='https://design.zebra.com/img/zeta_web.svg'></img>"
   },
   argTypes: {
     slot: { table: { disable: true } },

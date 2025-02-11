@@ -4,6 +4,7 @@ import { html, LitElement } from "lit";
 import styles from "./grid-menu-item.styles.js";
 import "../badges/indicators/indicators";
 
+// TODO(UX-1335): Grid items are not working in storybook
 /**
  * An item to be used in a grid menu. Current usecases include the navigation bar and bottom sheet.
  *

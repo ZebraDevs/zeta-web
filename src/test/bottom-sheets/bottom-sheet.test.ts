@@ -21,13 +21,13 @@ describe("zeta-bottom-sheet + zeta-list-item", () => {
     subject = await createComponent();
   });
 
-  describe("Accessibility Tests", () => {
+  describe("Accessibility", () => {
     it("it meets accessibility requirements", async () => {
       await expect(subject).shadowDom.to.be.accessible();
     });
   });
 
-  describe("Content Tests", () => {
+  describe("Content", () => {
     it("renders the bottom sheet", () => {
       expect(subject).to.exist;
     });
@@ -49,7 +49,7 @@ describe("zeta-bottom-sheet + zeta-list-item", () => {
     });
   });
 
-  describe("Dimensions Tests", () => {
+  describe("Dimensions", () => {
     it("applies the correct header alignment", async () => {
       const headerAlignment = "center";
       subject.headerAlignment = headerAlignment;
@@ -71,13 +71,13 @@ describe("zeta-bottom-sheet + zeta-list-item", () => {
     });
   });
 
-  // describe("Styling Tests", () => {});
+  // describe("Styling", () => {});
 
-  // describe("Interaction Tests", () => {});
+  // describe("Interaction", () => {});
 
-  // describe("Golden Tests", () => {});
+  // describe("Golden", () => {});
 
-  // describe("Performance Tests", () => {});
+  // describe("Performance", () => {});
 });
 
 describe("zeta-bottom-sheet + zeta-grid-menu-item", () => {
@@ -99,13 +99,13 @@ describe("zeta-bottom-sheet + zeta-grid-menu-item", () => {
     subject = await createComponent();
   });
 
-  describe("Accessibility Tests", () => {
+  describe("Accessibility", () => {
     it("it meets accessibility requirements", async () => {
       await expect(subject).shadowDom.to.be.accessible();
     });
   });
 
-  describe("Content Tests", () => {
+  describe("Content", () => {
     it("renders the bottom sheet", () => {
       expect(subject).to.exist;
     });
@@ -127,7 +127,7 @@ describe("zeta-bottom-sheet + zeta-grid-menu-item", () => {
     });
   });
 
-  describe("Dimensions Tests", () => {
+  describe("Dimensions", () => {
     it("applies the correct header alignment", async () => {
       const headerAlignment = "center";
       subject.headerAlignment = headerAlignment;
@@ -152,13 +152,13 @@ describe("zeta-bottom-sheet + zeta-grid-menu-item", () => {
     });
   });
 
-  // describe("Styling Tests", () => {});
+  // describe("Styling", () => {});
 
-  // describe("Interaction Tests", () => {});
+  // describe("Interaction", () => {});
 
-  // describe("Golden Tests", () => {});
+  // describe("Golden", () => {});
 
-  // describe("Performance Tests", () => {});
+  // describe("Performance", () => {});
 });
 
 describe("zeta-bottom-sheet + generic content", () => {
@@ -200,13 +200,13 @@ describe("zeta-bottom-sheet + generic content", () => {
     subject = await createComponent();
   });
 
-  describe("Accessibility Tests", () => {
+  describe("Accessibility", () => {
     it("it meets accessibility requirements", async () => {
       await expect(subject).shadowDom.to.be.accessible();
     });
   });
 
-  describe("Content Tests", () => {
+  describe("Content", () => {
     it("renders the bottom sheet", () => {
       expect(subject).to.exist;
     });
@@ -228,7 +228,7 @@ describe("zeta-bottom-sheet + generic content", () => {
     });
   });
 
-  describe("Dimensions Tests", () => {
+  describe("Dimensions", () => {
     it("applies the correct header alignment", async () => {
       const headerAlignment = "center";
       subject.headerAlignment = headerAlignment;
@@ -253,11 +253,11 @@ describe("zeta-bottom-sheet + generic content", () => {
     });
   });
 
-  // describe("Styling Tests", () => {});
+  // describe("Styling", () => {});
 
-  // describe("Interaction Tests", () => {});
+  // describe("Interaction", () => {});
 
-  // describe("Golden Tests", () => {});
+  // describe("Golden", () => {});
 
-  // describe("Performance Tests", () => {});
+  // describe("Performance", () => {});
 });

@@ -17,14 +17,14 @@ describe("zeta-dropdown-menu-item", () => {
     <zeta-icon slot="icon">star</zeta-icon>${text}</zeta-dropdown-menu-item>`
   ) => {
     // prettier-ignore
-    return fixture<ZetaDropdownMenuItem> (html`${unsafeStatic(template)}`);
+    return fixture<ZetaDropdownMenuItem>(html`${unsafeStatic(template)}`);
   };
 
   beforeEach(async () => {
     subject = await createComponent();
   });
 
-  describe("Accessibility Tests", () => {
+  describe("Accessibility", () => {
     it("meets accessability requirements", async () => {
       const item: ZetaDropdownMenuItem = await fixture(html`<zeta-dropdown-menu-item><zeta-icon slot="icon">star</zeta-icon>${text}</zeta-dropdown-menu-item>`);
       await elementUpdated(item);
@@ -33,7 +33,7 @@ describe("zeta-dropdown-menu-item", () => {
     });
   });
 
-  describe("Content Tests", () => {
+  describe("Content", () => {
     it("renders the given text", async () => {
       await expect(subject.lastChild?.nodeValue).to.equal(text);
     });
@@ -63,9 +63,9 @@ describe("zeta-dropdown-menu-item", () => {
     });
   });
 
-  // describe("Dimensions Tests", () => {});
+  // describe("Dimensions", () => {});
 
-  describe("Styling Tests", () => {
+  describe("Styling", () => {
     it("sets the correct colors when not disabled", async () => {
       subject.disabled = false;
       await elementUpdated(subject);
@@ -129,7 +129,7 @@ describe("zeta-dropdown-menu-item", () => {
     });
   });
 
-  // describe("Interaction Tests", () => {
+  // describe("Interaction", () => {
   //   it("triggers a click event on keyboard down", () => {
   //     const clickSpy = sinon.spy();
   //     subject.addEventListener("keydown", clickSpy);
@@ -141,7 +141,7 @@ describe("zeta-dropdown-menu-item", () => {
   //   });
   // });
 
-  // describe("Golden Tests", () => {});
+  // describe("Golden", () => {});
 
-  // describe("Performance Tests", () => {});
+  // describe("Performance", () => {});
 });

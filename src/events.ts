@@ -62,7 +62,7 @@ export interface ZetaPageEventDetail {
 }
 /** A CustomEvent factory that creates events when a ranged slider is changed. */
 export class ZetaPageEvent<T extends ZetaPageEventDetail> extends ZetaEvent<T> {
-  name: string = "PageChange";
+  name: string = "pageChange";
   constructor(detail: T) {
     super(detail, { bubbles: true, composed: true });
   }
@@ -102,5 +102,25 @@ export class ZetaDropdownEvent extends ZetaEvent<ZetaDropdownEventDetail> {
   constructor(isOpen: boolean) {
     super({});
     this.name = isOpen ? "open" : "close";
+  }
+}
+
+export type ZetaChangeEventDetail = object;
+/** A CustomEvent factory that creates events for when an input value changes. */
+export class ZetaChangeEvent extends ZetaEvent<ZetaChangeEventDetail> {
+  name: string = "change";
+  constructor() {
+    super({});
+  }
+}
+
+export type ZetaInputEventDetail<S> = {
+  value: S;
+};
+/** A CustomEvent factory that creates events for when an input value changes. */
+export class ZetaInputEvent<S, T extends ZetaInputEventDetail<S>> extends ZetaEvent<T> {
+  name: string = "input";
+  constructor(detail: T) {
+    super(detail);
   }
 }
