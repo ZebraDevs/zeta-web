@@ -36,7 +36,7 @@ export default {
     },
   },
   reporters: [
-    defaultReporter({ reportTestResults: false, reportTestProgress: true }),
+    defaultReporter({ reportTestResults: true, reportTestProgress: true }),
     junitReporter({
       outputPath: "src/test/test-results.xml", // default `'./test-results.xml'`
       reportLogs: true, // default `false`
