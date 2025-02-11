@@ -93,8 +93,9 @@ export class ZetaSliderInputField extends FormField(Contourable(LitElement)) {
     }
   }
 
-  override handleChange(event: Event): void {
-    this.dispatchEvent(new Event(event.type, event));
+  override handleChange(event: Event) {
+    return event;
+    // this.dispatchEvent(new Event(event.type, event)); //TODO this is not working
   }
 
   protected firstUpdated() {

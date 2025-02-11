@@ -1,6 +1,7 @@
 import "./index.css";
 import { ZetaAccordion } from "./components/accordion/accordion.js";
 import { ZetaActionMenuButton } from "./components/action-menu/action-menu-button.js";
+import { ZetaAppbar } from "./components/appbar/appbar.js";
 import { ZetaAssistChip } from "./components/chips/assist-chip/assist-chip.js";
 import { ZetaAvatar } from "./components/avatar/avatar.js";
 import { ZetaAvatarRail } from "./components/avatar-rail/avatar-rail.js";
@@ -75,6 +76,7 @@ import { ZetaWorkcloudIndicator } from "./components/badges/workcloud-indicator/
 export {
   ZetaAccordion,
   ZetaActionMenuButton,
+  ZetaAppbar,
   ZetaAssistChip,
   ZetaAvatar,
   ZetaAvatarRail,

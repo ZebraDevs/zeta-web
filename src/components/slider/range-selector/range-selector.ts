@@ -16,7 +16,7 @@ export type ZetaRangeValues = { min: number; max: number };
  *
  * The "name" is required when in a form.
  *
- * @event {CustomEvent<ZetaRangeSliderEvent>} ZetaRangeSliderEvent:zeta-range-slider-change - Fired whenever value of range slider is changed. Contains 2 values in details: `min:number`, `max:number`.
+ * @event {CustomEvent<ZetaRangeSliderEventDetail>} change - Fired whenever value of range slider is changed. Contains 2 values in details: `min:number`, `max:number`.
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=980-16448&m=dev
  * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/slider--docs
@@ -56,7 +56,7 @@ export class ZetaRangeSelector extends FormField(Contourable(LitElement)) {
   @query(".upper-input") upperInput!: HTMLInputElement;
 
   /**
-   * @listens ZetaRangeSliderEvent:zeta-range-slider-change
+   * @listens ZetaRangeSliderEvent:change
    */
   private sliderChange = (e: ZetaRangeSliderEvent<ZetaRangeSliderEventDetail>) => {
     this.initialValues = { min: e.detail.min, max: e.detail.max };
@@ -66,7 +66,7 @@ export class ZetaRangeSelector extends FormField(Contourable(LitElement)) {
   };
 
   /**
-   * @fires ZetaRangeSliderEvent:zeta-range-slider-change
+   * @fires ZetaRangeSliderEvent:change
    */
   private onValueUpdated(sliderChange: boolean = false) {
     if (this.initialValues.min != undefined && this.initialValues.max != undefined) {
@@ -107,8 +107,9 @@ export class ZetaRangeSelector extends FormField(Contourable(LitElement)) {
     }
   }
 
-  override handleChange(event: Event): void {
-    this.dispatchEvent(new Event(event.type, event));
+  override handleChange(event: Event) {
+    return event;
+    // this.dispatchEvent(new Event(event.type, event)); //TODO something dont work here
   }
 
   protected firstUpdated() {
