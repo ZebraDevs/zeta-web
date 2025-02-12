@@ -124,3 +124,14 @@ export class ZetaInputEvent<S, T extends ZetaInputEventDetail<S>> extends ZetaEv
     super(detail);
   }
 }
+
+export type ZetaOptionClickEventDetail = {
+  value: string;
+};
+/** A CustomEvent factory that creates events for when a option in a select is clicked. */
+export class ZetaOptionClickEvent extends ZetaEvent<ZetaOptionClickEventDetail> {
+  name: string = "zeta-option-click";
+  constructor(detail: { value: string }) {
+    super(detail, { bubbles: true });
+  }
+}

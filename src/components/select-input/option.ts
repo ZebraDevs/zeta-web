@@ -4,6 +4,7 @@ import { Contourable } from "../../mixins/contour.js";
 import { Interactive } from "../../mixins/interactive.js";
 import { Size } from "../../mixins/size.js";
 import styles from "./option.styles.js";
+import { ZetaOptionClickEvent } from "../../events.js";
 
 /** ZetaOption web component.
  *
@@ -24,7 +25,7 @@ export class ZetaOption extends Contourable(Interactive(Size(LitElement))) {
     if (!this.disabled) {
       // uncomment this to enable deselection
       // this.selected = !this.selected;
-      this.dispatchEvent(new CustomEvent("zeta-option-click", { bubbles: true, detail: { value: this.value } }));
+      this.dispatchEvent(new ZetaOptionClickEvent({ value: this.value }).toEvent());
     }
   };
 

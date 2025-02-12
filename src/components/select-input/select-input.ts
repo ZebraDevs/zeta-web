@@ -12,6 +12,7 @@ import type { ZetaOption } from "./option.js";
 import "./option.js";
 import type { ZetaIconName } from "@zebra-fed/zeta-icons";
 import "../icon/icon";
+import type { ZetaOptionClickEventDetail } from "../../events";
 
 /**
  * TODO:
@@ -79,8 +80,7 @@ export class ZetaSelectInput extends FormField(Size(Contourable(Interactive(LitE
 
   protected firstUpdated(_changedProperties: PropertyValues): void {
     this.shadowRoot?.addEventListener("zeta-option-click", (event: Event) => {
-      const customEvent = event as CustomEvent<{ value: string }>;
-      const newValue = customEvent.detail.value;
+      const newValue = ((event as CustomEvent).detail as ZetaOptionClickEventDetail).value;
 
       if (this.value === newValue) {
         // this.setValue("");
