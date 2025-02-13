@@ -68,6 +68,9 @@ export class ZetaSelectInput extends FormField(Size(Contourable(Interactive(LitE
    *  Default is 200px */
   @property({ type: Number }) optionsDialogHeight = 200;
 
+  /** A function that runs when the value changes. */
+  @property() onChange?: (event: Event) => void;
+
   @queryAssignedNodes() optionsNodeList: NodeListOf<HTMLOptionElement>;
 
   @query("slot") slotElement!: HTMLSlotElement;
@@ -89,6 +92,10 @@ export class ZetaSelectInput extends FormField(Size(Contourable(Interactive(LitE
         this.toggleOpen();
       } else {
         this.setValue(newValue);
+
+        if (this.onChange) {
+          this.onChange(event);
+        }
 
         this.optionsNodeList.forEach(option => {
           if (option.value === this.value) {
