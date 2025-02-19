@@ -47,8 +47,8 @@ export class ZetaAvatar extends LitElement {
       <div
         class="close"
         @click=${() => {
-        this.dispatchEvent(new ZetaCloseEvent().toEvent());
-      }}
+          this.dispatchEvent(new ZetaCloseEvent().toEvent());
+        }}
       >
         <zeta-icon>close</zeta-icon>
       </div>

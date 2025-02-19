@@ -9,7 +9,7 @@ import { FormField } from "../../mixins/form-field.js";
 
 /**
  * Text input component with icon, affix, label and hint text
- * 
+ *
  * @event {FocusEvent} focus - Fired when the input field is focused
  * @event {FocusEvent} blur - Fired when the input field is blurred
  * @event {Event} change - Fired when the input value changes and is committed
@@ -136,9 +136,9 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
       : this.type === "password" || this.toggled
         ? html`<zeta-icon
             @click=${() => {
-            this.toggled = !this.toggled;
-            this.type = this.type === "text" ? "password" : "text";
-          }}
+              this.toggled = !this.toggled;
+              this.type = this.type === "text" ? "password" : "text";
+            }}
             class="right"
             .rounded=${this.rounded}
           >

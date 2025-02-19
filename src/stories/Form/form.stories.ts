@@ -22,21 +22,21 @@ export const Form: StoryObj = {
     <h1>Zeta Form</h1>
     <form
       style=${styleMap({
-    display: "flex",
-    flexDirection: "column",
-    width: "fit-content",
-    maxWidth: "100%",
-    gap: "var(--spacing-large)"
-  })}
+        display: "flex",
+        flexDirection: "column",
+        width: "fit-content",
+        maxWidth: "100%",
+        gap: "var(--spacing-large)"
+      })}
       id="form"
       @submit=${(e: FormEvent) => {
-      e.preventDefault();
-      const data = new FormData(e.target as HTMLFormElement);
-      console.log(Object.fromEntries(data));
-    }}
+        e.preventDefault();
+        const data = new FormData(e.target as HTMLFormElement);
+        console.log(Object.fromEntries(data));
+      }}
       @reset=${(e: Event) => {
-      console.error("Form reset", e);
-    }}
+        console.error("Form reset", e);
+      }}
     >
       <div style=${columnStyle}>
         <h4 style=${subheadingStyle}>Inputs</h4>
@@ -88,10 +88,10 @@ export const Form: StoryObj = {
 
       <div
         style=${styleMap({
-      display: "flex",
-      justifyContent: "flex-end",
-      gap: "8px"
-    })}
+          display: "flex",
+          justifyContent: "flex-end",
+          gap: "8px"
+        })}
       >
         <zeta-button type="reset" flavor="outline">Reset</zeta-button>
         <zeta-button type="submit">Submit</zeta-button>

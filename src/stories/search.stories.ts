@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaSearch } from "../components/search/search.js";
 import "../components/search/search.js";
-import { fn } from '@storybook/test';
+import { fn } from "@storybook/test";
 import { html } from "lit";
 import { spreadGenerator } from "./utils.js";
 const spread = spreadGenerator(ZetaSearch);
 
-type SearchStory = ZetaSearch & { oninput: () => void, onchange: () => void, onfocus: () => void, onblur: () => void };
+type SearchStory = ZetaSearch & { oninput: () => void; onchange: () => void; onfocus: () => void; onblur: () => void };
 
 const meta: Meta<SearchStory> = {
   tags: ["autodocs"],
@@ -40,7 +40,7 @@ const meta: Meta<SearchStory> = {
     oninput: { table: { disable: true } },
     onchange: { table: { disable: true } },
     onfocus: { table: { disable: true } },
-    onblur: { table: { disable: true } },
+    onblur: { table: { disable: true } }
   },
   parameters: {
     design: {
@@ -53,7 +53,8 @@ const meta: Meta<SearchStory> = {
 };
 
 export const Search: StoryObj<SearchStory> = {
-  render: ({ oninput, onchange, onfocus, onblur, ...args }) => html`<zeta-search @input=${oninput} @change=${onchange} @focus=${onfocus} @blur=${onblur} ${spread(args)}></zeta-search>`
+  render: ({ oninput, onchange, onfocus, onblur, ...args }) =>
+    html`<zeta-search @input=${oninput} @change=${onchange} @focus=${onfocus} @blur=${onblur} ${spread(args)}></zeta-search>`
 };
 
 export default meta;

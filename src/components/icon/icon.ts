@@ -28,11 +28,12 @@ export class ZetaIcon extends Contourable(LitElement) {
 
   protected render() {
     const size = this.sizeIsNum() ? this.size + "px" : this.size;
-    return html`
-      <style>:host {
-        ${this.size ? `--icon-size: ${size}` : nothing};
-        ${this.color ? `--icon-color: ${this.color}` : nothing};
-      }</style>
+    return html` <style>
+        :host {
+                ${this.size ? `--icon-size: ${size}` : nothing};
+                ${this.color ? `--icon-color: ${this.color}` : nothing};
+              }
+      </style>
       <slot @slotchange=${() => this.requestUpdate()}></slot>`;
   }
   static styles = [styles, super.styles || []];

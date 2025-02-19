@@ -15,7 +15,9 @@ import "../../icon/icon.js";
  */
 @customElement("zeta-icon-button")
 export class ZetaIconButton extends ZetaButton {
-  static get styles() { return [super.styles || [], styles]; }
+  static get styles() {
+    return [super.styles || [], styles];
+  }
   protected override _buttonType: "text" | "icon" = "icon";
 }
 

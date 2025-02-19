@@ -1,5 +1,5 @@
 import type { ZetaIcon } from "../components/icon/icon";
-import { sendMouse, resetMouse, sendKeys/*, type SendKeysPayload*/ } from "@web/test-runner-commands";
+import { sendMouse, resetMouse, sendKeys /*, type SendKeysPayload*/ } from "@web/test-runner-commands";
 
 /**
  * Converts a color hex string to its RGB representation.
@@ -101,7 +101,7 @@ export const getMiddleOfElement = (element: HTMLElement): { x: number; y: number
   };
 };
 
-export const getCoordsOfElement = (element: HTMLElement): { x: number; y: number, width: number, height: number } => {
+export const getCoordsOfElement = (element: HTMLElement): { x: number; y: number; width: number; height: number } => {
   const a: Pick<DOMRect, "x" | "y" | "height" | "width"> = element.getBoundingClientRect();
   return a;
 };

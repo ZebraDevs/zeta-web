@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaSlider } from "../../components/slider/slider.js";
 import { html } from "lit";
 import { spreadGenerator } from "../utils.js";
-import { fn } from '@storybook/test';
+import { fn } from "@storybook/test";
 const spread = spreadGenerator(ZetaSlider);
 
 // TODO: Although this component is the same code, the design is on a different page. Should this be moved?

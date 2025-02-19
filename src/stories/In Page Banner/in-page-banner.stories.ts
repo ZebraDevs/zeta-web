@@ -4,7 +4,7 @@ import { ZetaInPageBanner } from "../../components/in-page-banner/in-page-banner
 import "../../components/button/button.js";
 import { spreadGenerator } from ".././utils.js";
 import { unsafeHTML } from "lit/directives/unsafe-html.js";
-import { fn } from '@storybook/test';
+import { fn } from "@storybook/test";
 const spread = spreadGenerator(ZetaInPageBanner);
 
 const meta: Meta<ZetaInPageBanner> = {
@@ -66,7 +66,7 @@ export const BannerDualAction: StoryObj = {
     </zeta-in-page-banner>`
 };
 
-export const BannerWithImage: StoryObj<ZetaInPageBanner & { imageX: number, imageY: number }> = {
+export const BannerWithImage: StoryObj<ZetaInPageBanner & { imageX: number; imageY: number }> = {
   args: {
     imageX: 450,
     imageY: 330
@@ -116,8 +116,8 @@ export const BannerWithContent: StoryObj<ZetaInPageBanner & { constrainedWidth: 
   render: ({ title, rounded, status, constrainedWidth, slot }) => {
     const renderedBanner = html`<zeta-in-page-banner title=${title} ?rounded=${rounded} status=${status}>
       ${unsafeHTML(`${slot}`)}
-    <zeta-button slot="action">Button</zeta-button>
-  </zeta-in-page-banner>`;
+      <zeta-button slot="action">Button</zeta-button>
+    </zeta-in-page-banner>`;
 
     const renderedBannerInContainer = html`<div style="max-width: 500px;">${renderedBanner}</div>`;
 

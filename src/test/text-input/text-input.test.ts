@@ -190,11 +190,13 @@ describe("zeta-text-input", () => {
     it("should dispatch onChange when field is deselected & value has changed", async () => {
       const el = await setup({});
       const clickButton = () => {
-        void MouseActions.click(el).then(() => KeyboardActions.press("Space")).then(() => MouseActions.clickOutside(el));
+        void MouseActions.click(el)
+          .then(() => KeyboardActions.press("Space"))
+          .then(() => MouseActions.clickOutside(el));
       };
       void setTimeout(clickButton);
 
-      const { data } = await oneEvent<InputEvent>(el, 'input');
+      const { data } = await oneEvent<InputEvent>(el, "input");
       return expect(data).to.equal(" ");
     });
 
@@ -203,9 +205,7 @@ describe("zeta-text-input", () => {
       await MouseActions.click(el);
       await KeyboardActions.press("Space");
     });
-    it("should dispatch onBlur when field is deselected", async () => {
-
-    });
+    it("should dispatch onBlur when field is deselected", async () => {});
   });
 
   // describe("Golden", () => {});

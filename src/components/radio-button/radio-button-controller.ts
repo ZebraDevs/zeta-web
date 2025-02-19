@@ -1,8 +1,8 @@
-import { type ReactiveController } from 'lit';
-import { type ZetaRadioButton } from './radio-button';
+import { type ReactiveController } from "lit";
+import { type ZetaRadioButton } from "./radio-button";
 
 export class RadioButtonController implements ReactiveController {
-  constructor(private readonly host: ZetaRadioButton) { }
+  constructor(private readonly host: ZetaRadioButton) {}
   private rootNode: ParentNode | null = null;
 
   hostConnected(): void {

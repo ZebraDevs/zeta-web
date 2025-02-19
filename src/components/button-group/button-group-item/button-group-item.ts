@@ -56,9 +56,9 @@ export class ZetaButtonGroupItem extends Contourable(Interactive(LitElement)) {
         <label class="text ${this.addGap ? "pad" : ""}">
           <slot
             @slotchange=${() => {
-        this.addGap = this.textContent?.trim() !== "";
-        this.requestUpdate();
-      }}
+              this.addGap = this.textContent?.trim() !== "";
+              this.requestUpdate();
+            }}
           >
           </slot>
         </label>

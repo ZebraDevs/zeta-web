@@ -115,11 +115,11 @@ export class ZetaDialog extends Contourable(Popup(LitElement)) {
             <slot @click=${() => this.hide("cancel")} @slotchange=${this.handleActionButtonChange} name="cancel"></slot>
             <slot
               @click=${(e: Event) => {
-        const btn = e.target as HTMLButtonElement;
-        if (btn.type !== "submit") {
-          this.hide("confirm");
-        }
-      }}
+                const btn = e.target as HTMLButtonElement;
+                if (btn.type !== "submit") {
+                  this.hide("confirm");
+                }
+              }}
               @slotchange=${this.handleActionButtonChange}
               name="confirm"
             ></slot>

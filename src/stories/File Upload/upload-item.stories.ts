@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaUploadItem } from "../../components/upload-item/upload-item";
-import { fn } from '@storybook/test';
+import { fn } from "@storybook/test";
 import "../../components/upload-item/upload-item.js";
 import { html } from "lit";
 import { spreadGenerator } from "../utils";

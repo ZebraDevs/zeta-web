@@ -3,7 +3,7 @@ import { html, nothing } from "lit";
 import { ZetaLoginPage } from "../../components/login-page/login-page.js";
 
 const meta: Meta<ZetaLoginPage> = {
-  title: 'Templates/Login Page',
+  title: "Templates/Login Page",
   component: "zeta-login-page",
   args: {
     url: "https://www.example.com",
@@ -25,6 +25,5 @@ const meta: Meta<ZetaLoginPage> = {
 export default meta;
 
 export const LoginPage: StoryObj<ZetaLoginPage> = {
-  render: ({ slot, ...args }) =>
-    html`<zeta-login-page url=${args.url} name=${args.name}></zeta-login-page>`
+  render: ({ slot, ...args }) => html`<zeta-login-page url=${args.url} name=${args.name}></zeta-login-page>`
 };

@@ -25,16 +25,22 @@ export class ZetaLoginPage extends Contourable(LitElement) {
   //TODO read queryParams for auth success/failure
 
   protected render() {
-    return html`
-    <div class="header"></div>
-    <main>
-      <div class="logo">
-        <div class="zebra">Zebra</div>
-        <div class="product">${this.name}</div>
-      </div>
-      <zeta-button ?rounded=${this.rounded} flavor="primary" @click=${() => { this.login(); }}>Sign In With SSO</zeta-button>
-    </main>
-    <footer><slot name="footer"></slot></footer>`;
+    return html` <div class="header"></div>
+      <main>
+        <div class="logo">
+          <div class="zebra">Zebra</div>
+          <div class="product">${this.name}</div>
+        </div>
+        <zeta-button
+          ?rounded=${this.rounded}
+          flavor="primary"
+          @click=${() => {
+            this.login();
+          }}
+          >Sign In With SSO</zeta-button
+        >
+      </main>
+      <footer><slot name="footer"></slot></footer>`;
   }
 
   static styles = [styles, super.styles || []];

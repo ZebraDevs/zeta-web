@@ -183,7 +183,7 @@ describe("zeta-slider-input-field", () => {
     });
   });
 
-  describe("Golden", () => { });
+  describe("Golden", () => {});
 
-  describe("Performance", () => { });
+  describe("Performance", () => {});
 });
