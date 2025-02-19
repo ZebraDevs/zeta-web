@@ -25,6 +25,9 @@ export class ZetaProgressCircle extends Contourable(LitElement) {
     return this.progressValue;
   }
 
+  /** Displays the indeterminate progress indicator. If set to true, any argument for 'value' will be ignored. */
+  @property({ type: Boolean, reflect: true }) indeterminate?: boolean;
+
   /** The type of the progress circle. */
   @property({ type: String }) type: "default" | "upload" = "default";
 
@@ -46,11 +49,13 @@ export class ZetaProgressCircle extends Contourable(LitElement) {
   private readonly strokeWidth = 3;
 
   private getStrokeDasharray = () => {
+    if (this.indeterminate) return 2 * 3.14 * (this.size / 2.5 - this.strokeWidth);
     // circumference = 2 × π × radius
     return 2 * 3.14 * (this.size / 2 - this.strokeWidth);
   };
 
   private getStrokeDashoffset = () => {
+    if (this.indeterminate) return `${(this.getStrokeDasharray() * this.size) / 100}`;
     // circumference × ((100 - progress)/100)
     return `${(this.getStrokeDasharray() * (100 - this.progress)) / 100}`;
   };
@@ -61,27 +66,27 @@ export class ZetaProgressCircle extends Contourable(LitElement) {
           <div
             class="uploading"
             style=${styleMap({
-        width: `${this.size}px`,
-        height: `${this.size}px`
-      })}
+              width: `${this.size}px`,
+              height: `${this.size}px`
+            })}
           >
             ${this.size > 24
-          ? html`<span
+              ? html`<span
                   class="percentage"
                   style=${styleMap({
-            fontSize: `${this.size / 4}px`
-          })}
+                    fontSize: `${this.size / 4}px`
+                  })}
                 >
                   ${this.progress}%
                 </span>`
-          : nothing}
+              : nothing}
             <div
               @click=${() => {
-          this.dispatchEvent(new ZetaCancelUploadEvent().toEvent());
-        }}
+                this.dispatchEvent(new ZetaCancelUploadEvent().toEvent());
+              }}
               style=${styleMap({
-          padding: `${this.size / 12}px`
-        })}
+                padding: `${this.size / 12}px`
+              })}
               class="cancel"
             >
               <zeta-icon size=${this.size / 2}>close</zeta-icon>
@@ -97,6 +102,11 @@ export class ZetaProgressCircle extends Contourable(LitElement) {
     const cy = this.size / 2;
     const trackColor = this.type == "upload" ? "var(--main-light)" : "transparent";
 
+    if (this.indeterminate)
+      this.animate([{ transform: "rotate(0)" }, { transform: "rotate(360deg)" }], {
+        duration: 1500,
+        iterations: Infinity
+      });
     return html`
       <div class="container">
         <svg width="${this.size}" height="${this.size}" viewBox="0 0 ${this.size} ${this.size}" style="transform:rotate(-90deg)">

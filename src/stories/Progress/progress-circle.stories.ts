@@ -3,7 +3,7 @@ import { ZetaProgressCircle } from "../../components/progress-indicators/progres
 import "../../components/progress-indicators/progress-circle/progress-circle.js";
 import { html } from "lit";
 import { spreadGenerator } from "../utils.js";
-import { fn } from '@storybook/test';
+import { fn } from "@storybook/test";
 const spread = spreadGenerator(ZetaProgressCircle);
 
 type ProgressCircleStory = ZetaProgressCircle & { slot: string; subtitle: string; leading: string; oncancelupload: () => void };
@@ -15,7 +15,8 @@ const meta: Meta<ProgressCircleStory> = {
     size: 64,
     rounded: false,
     type: "default",
-    oncancelupload: fn()
+    oncancelupload: fn(),
+    indeterminate: false
   },
   argTypes: {
     size: {
