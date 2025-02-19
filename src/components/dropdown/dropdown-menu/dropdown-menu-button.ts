@@ -22,7 +22,7 @@ export type ZetaDropdownItem = { label: string; icon?: ZetaIconName; checked?: b
  * @event {CustomEvent<ZetaDropdownEventDetail>} open - Fired when the dropdown is opened.
  * @event {CustomEvent<ZetaDropdownEventDetail>} close - Fired when the dropdown is closed.
  * @event {InputEvent} input - Fired when the dropdown is closed.
- * 
+ *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=22391-10146
  * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/dropdown--docs
  */
@@ -62,7 +62,7 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
 
   @query("zeta-droppable") droppable!: ZetaDroppable;
 
-  /* 
+  /*
    * @internal
    */
   handleChange(_event: Event): void {
@@ -71,7 +71,7 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
     return;
   }
 
-  /* 
+  /*
    * @internal
    */
   handleInput(_event: Event): void {
@@ -113,7 +113,8 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
   @eventOptions({ capture: true })
   private handleClick() {
     this.open = !this.open;
-    if (this.open) { //TODO move this to CSS
+    if (this.open) {
+      //TODO move this to CSS
       document.body.style.overflow = "hidden";
       this.icon = "expand_more";
     } else {
@@ -133,7 +134,7 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
     if (this.type === "radio-dropdown") {
       return this.items.map(item => {
         return html`<zeta-radio-button
-          @change=${() => {
+          @click=${() => {
             this.handleItemClick(item.label);
             if (item.onClick) {
               item.onClick();
@@ -142,6 +143,7 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
           class="droppable-item"
           name=${this.name}
           ?checked=${item.checked}
+          value=${item.label}
           >${item.label}</zeta-radio-button
         >`;
       });
@@ -149,16 +151,17 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
       return this.items.map(item => {
         return html`
           <zeta-checkbox
-            @change=${() => {
-            this.handleItemClick(item.label);
-            if (item.onClick) {
-              item.onClick();
-            }
-          }}
+            @input=${() => {
+              this.handleItemClick(item.label);
+              if (item.onClick) {
+                item.onClick();
+              }
+            }}
             class="droppable-item"
             name=${this.name}
             ?rounded=${this.rounded}
             ?checked=${item.checked}
+            value=${item.label}
             >${item.label}</zeta-checkbox
           >
         `;
@@ -182,12 +185,7 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
   protected render() {
     document.addEventListener("click", this.handleOutsideClick.bind(this));
     return html`
-      <zeta-button
-        id="anchor"
-        @click=${() => this.handleClick()}
-        .size=${this.size}
-        ?rounded=${this.rounded}
-        .flavor=${this.flavor}
+      <zeta-button id="anchor" @click=${() => this.handleClick()} .size=${this.size} ?rounded=${this.rounded} .flavor=${this.flavor}
         ><slot></slot><zeta-icon .rounded=${this.rounded}>${this.icon}</zeta-icon></zeta-button
       >
       <zeta-droppable .anchor=${this.anchor} .direction=${this.direction} .matchParentWidth=${true} ?open=${this.open} ?rounded=${this.rounded}

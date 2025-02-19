@@ -45,11 +45,11 @@ declare abstract class FormFieldInterface /* extends InteractiveInterface*/ {
  *
  * @slot - Slot for a label.
  * @param superClass - LitElement to add mixin to
- * 
+ *
  * @event {FocusEvent>} focus - Fired when the form field is focused
  * @event {BlurEvent} blur - Fired when the form field is blurred
  * @event {InputEvent} input - Fired when the value of the element changes.
- * 
+ *
  * @returns - component with mixin applied.
  */
 export const FormField = <T extends AbstractConstructor<LitElement>>(superClass: T) => {
@@ -264,7 +264,9 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
      * or if it is a checkbox-like input, when the checkbox is toggled.
      * or if it is a radio-like input, when the radio is selected (but not unselected).
      */
-    handleChange(_event: Event) { return _event; }
+    handleChange(_event: Event) {
+      return _event;
+    }
 
     /**
      * Event fired when the input value changes

@@ -160,8 +160,8 @@ describe("zeta-dropdown-menu-button", () => {
       await subject.updateComplete;
 
       const checkboxElements = subject.shadowRoot?.querySelectorAll("zeta-checkbox") as NodeListOf<ZetaCheckbox>;
-      checkboxElements[0].click();
-      checkboxElements[2].click();
+      checkboxElements[0].input.click();
+      checkboxElements[2].input.click();
       await subject.updateComplete;
 
       const form = document.createElement("form");

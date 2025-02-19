@@ -6,10 +6,10 @@ import "./icon/icon";
 
 /**
  * Base Class for Form Elements that toggle (i.e. Checkbox, Radio, Switch)
- * 
+ *
  * @event {InputEvent} input - Fired when the value of the element changes.
  * @event {Event} change - Fired when the value of the element changes and is committed.
- * 
+ *
  * @part icon - The icon of the element.
  */
 export abstract class BaseToggleFormElement extends FormField(Interactive(Contourable(LitElement))) {
@@ -34,22 +34,24 @@ export abstract class BaseToggleFormElement extends FormField(Interactive(Contou
   }
 
   protected render() {
-    return this.internals.role == "switch" ? super.render() : html`
-      <label>
-        <div
-          class="container interactive-target"
-          tabindex="${this.disabled ? " - 1" : this.tabIndex}"
-          @keydown=${(e: KeyboardEvent) => this.key(e, "down")}
-          @keyup=${(e: KeyboardEvent) => this.key(e, "up")}>
-          ${this.type === "checkbox"
-        ? html`<zeta-icon part="icon" ?rounded=${this.rounded}> ${this.indeterminate ? "remove" : "check_mark"} </zeta-icon>`
-        : html`<div part="icon"></div>`
-      }
-        </div>
-        <slot></slot>
-        ${super.render()}
-      </label>
-      `;
+    return this.internals.role == "switch"
+      ? super.render()
+      : html`
+          <label>
+            <div
+              class="container interactive-target"
+              tabindex="${this.disabled ? " - 1" : this.tabIndex}"
+              @keydown=${(e: KeyboardEvent) => this.key(e, "down")}
+              @keyup=${(e: KeyboardEvent) => this.key(e, "up")}
+            >
+              ${this.type === "checkbox"
+                ? html`<zeta-icon part="icon" ?rounded=${this.rounded}> ${this.indeterminate ? "remove" : "check_mark"} </zeta-icon>`
+                : html`<div part="icon"></div>`}
+            </div>
+            <slot></slot>
+            ${super.render()}
+          </label>
+        `;
   }
   static styles = [styles, super.styles || []];
 }

@@ -65,8 +65,12 @@ describe("zeta-radio-button", () => {
 
   describe("Interaction", () => {
     it("changes the checked state when clicked", async () => {
-      await MouseActions.click(subject);
-      await expect(subject.checked).to.equal(true);
+      const interactiveNode = subject.shadowRoot?.querySelector("label");
+      expect(subject.getAttribute("checked")).to.be.null;
+      interactiveNode?.click();
+      await elementUpdated(subject);
+      await expect(subject.getAttribute("checked")).to.be.equal("");
+      expect(subject.checked).to.be.true;
     });
   });
 
@@ -108,7 +112,7 @@ describe("zeta-radio-button label", () => {
 
   describe("Interaction", () => {
     it("checks the radio when label is clicked", async () => {
-      const labelText = subject.shadowRoot?.querySelector("label");
+      const labelText = subject.shadowRoot?.querySelector("slot");
       expect(subject.getAttribute("checked")).to.be.null;
       labelText?.click();
       await elementUpdated(subject);
