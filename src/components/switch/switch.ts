@@ -27,10 +27,10 @@ import "../icon/icon.js";
  * @part thumb - The switch thumb
  * @part icon active - The active icon
  * @part icon inactive - The inactive icon
- * 
+ *
  * @event {Event} change - Fired when the checkbox value changes
  * @event {InputEvent} input - Fired when the checkbox value changes
- * 
+ *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=1153-26923
  * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/switch--docs
  */
@@ -64,20 +64,20 @@ export class ZetaSwitch extends BaseToggleFormElement {
       <div
         part="track"
         @click=${(_e: Event) => {
-        _e.stopPropagation(); //TODO BK: is this the click problem?
-        this.input.click();
-      }}
+          _e.stopPropagation(); //TODO BK: is this the click problem?
+          this.input.click();
+        }}
         @keydown=${(e: KeyboardEvent) => this.key(e, "down")}
         @keyup=${(e: KeyboardEvent) => this.key(e, "up")}
         tabindex="${this.disabled ? "-1" : this.tabIndex}"
       >
         <div part="thumb"></div>
         ${this.activeIcon &&
-      html`
+        html`
           <zeta-icon part="icon active" size=${"var(--switch-icon-size, var(--_switch-thumb-size))"} .rounded=${this.rounded}> ${this.activeIcon} </zeta-icon>
         `}
         ${this.inactiveIcon &&
-      html`
+        html`
           <zeta-icon part="icon inactive" size=${"var(--switch-icon-size, var(--_switch-thumb-size))"} .rounded=${this.rounded}>
             ${this.inactiveIcon}
           </zeta-icon>

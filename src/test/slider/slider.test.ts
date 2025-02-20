@@ -154,7 +154,7 @@ describe("zeta-slider", () => {
     });
   });
 
-  describe("Golden", () => { });
+  describe("Golden", () => {});
 
-  describe("Performance", () => { });
+  describe("Performance", () => {});
 });

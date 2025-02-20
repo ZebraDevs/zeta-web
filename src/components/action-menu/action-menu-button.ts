@@ -78,8 +78,8 @@ export class ZetaActionMenuButton extends Contourable(Flavored(Size(LitElement))
       <zeta-icon-button
         id="anchor"
         @click=${() => {
-        this.handleClick();
-      }}
+          this.handleClick();
+        }}
         .size=${this.size}
         ?rounded=${this.rounded}
         .flavor=${this.flavor}

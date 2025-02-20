@@ -1,15 +1,3 @@
-<details class="repo-header">
-    <summary>Zebra Repository Information</summary>
-    <ul>
-        <li> Zebra Business Unit : DMO - Innovation & Design</li> 
-        <li> Zebra Manager : ncvt73 </li>
-        <li> Zebra Repo Admin: ncvt73 </li>
-        <li> Zebra Jira Project ID: UX </li>
-        <li> Product: Zebra Design System (Zeta) - Web Components Library </li>
-        <li> Topics: none </li>
-    </ul>
-</details>
-
 <h1 class='sbdocs-title'>@zebra-fed/zeta-web</h1>
 
 Zeta Web is a native web component library created by Zebra Technologies written in TypeScript.  
@@ -25,7 +13,7 @@ You can also view the latest release at [Zeta](https://design.zebra.com/) or the
 
 ## How to Use
 
-Zeta Web Components can be directly used in many web frameworks including Angular, React.
+Zeta Web Components can be directly used in many web frameworks including Angular and React (from v19).
 
 1. Install `@zebra-fed/zeta-web`
 
@@ -45,10 +33,7 @@ Zeta Web Components can be directly used in many web frameworks including Angula
    or in HTML,
 
    ```html
-   <link
-     rel="stylesheet"
-     href="./node_modules/@zebra-fed/zeta-web/dist/style.css"
-   />
+   <link rel="stylesheet" href="./node_modules/@zebra-fed/zeta-web/dist/style.css" />
    ```
 
 3. Import the desired Zeta Web Component, or the full package into your app:
@@ -63,19 +48,13 @@ Zeta Web Components can be directly used in many web frameworks including Angula
 
     or in HTML,
 
-    ```html
-    <!-- Individual button component -->
-    <script
-      type="module"
-      src="./node_modules/@zebra-fed/zeta-web/dist/components/button/button.js"
-    ></script>
+   ```html
+   <!-- Individual button component -->
+   <script type="module" src="./node_modules/@zebra-fed/zeta-web/dist/components/button/button.js"></script>
 
-    <!-- or full package-->
-    <script
-      type="module"
-      src="./node_modules/@zebra-fed/zeta-web/dist/index.js"
-    ></script>
-    ```
+   <!-- or full package-->
+   <script type="module" src="./node_modules/@zebra-fed/zeta-web/dist/index.js"></script>
+   ```
 
     To reduce bloat, we recommend only importing the components you will actually use into your project.
 
@@ -90,10 +69,7 @@ Zeta Web Components can be directly used in many web frameworks including Angula
    or in HTML,
 
    ```html
-   <link
-     rel="stylesheet"
-     href="./node_modules/@zebra-fed/zeta-icons/index.css"
-   />
+   <link rel="stylesheet" href="./node_modules/@zebra-fed/zeta-icons/index.css" />
    ```
 
    Full list of icons can be found at [Zeta Icons](https://design.zebra.com/icons/).

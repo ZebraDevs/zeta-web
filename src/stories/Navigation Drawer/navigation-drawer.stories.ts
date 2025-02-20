@@ -68,9 +68,9 @@ export const ShowNavigationDrawer: StoryObj<ZetaNavigationDrawer> = {
     html`<div>
       <zeta-button
         @click=${() => {
-        const drawer = document.querySelector("#drawer") as ZetaNavigationDrawer;
-        void drawer.show();
-      }}
+          const drawer = document.querySelector("#drawer") as ZetaNavigationDrawer;
+          void drawer.show();
+        }}
       >
         Open drawer
       </zeta-button>

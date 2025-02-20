@@ -3,7 +3,7 @@ import { ZetaTextInput } from "../components/text-input/text-input.js";
 import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
 import { html } from "lit";
 import { spreadGenerator } from "./utils.js";
-import { fn } from '@storybook/test';
+import { fn } from "@storybook/test";
 const spread = spreadGenerator(ZetaTextInput);
 
 type InputStory = ZetaTextInput;
@@ -65,7 +65,8 @@ const meta: Meta<InputStory> = {
 
 export const TextInput: StoryObj<InputStory> = {
   name: "Default text input",
-  render: ({ oninput, onchange, onblur, onfocus, ...args }) => html` <zeta-text-input @change=${onchange} @input=${oninput} @blur=${onblur} @focus=${onfocus} ${spread(args)}> </zeta-text-input>`
+  render: ({ oninput, onchange, onblur, onfocus, ...args }) =>
+    html` <zeta-text-input @change=${onchange} @input=${oninput} @blur=${onblur} @focus=${onfocus} ${spread(args)}> </zeta-text-input>`
 };
 
 export const EmptyTextInput: StoryObj<InputStory> = {

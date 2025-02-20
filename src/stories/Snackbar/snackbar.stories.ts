@@ -74,22 +74,22 @@ export const Snackbar: StoryObj<ZetaSnackbar | any> = {
       flavor="primary"
       rounded
       @click=${() => {
-      const snackbar = document.querySelector("zeta-snackbar");
-      const button = document.querySelector("zeta-button");
-      const animateIn = [{ transform: "translateY(0px)" }];
-      const animateOut = [{ transform: "translateY(-100px)" }];
+        const snackbar = document.querySelector("zeta-snackbar");
+        const button = document.querySelector("zeta-button");
+        const animateIn = [{ transform: "translateY(0px)" }];
+        const animateOut = [{ transform: "translateY(-100px)" }];
 
-      if (snackbar && button) {
-        button.disabled = true;
-        snackbar.animate(animateOut, { duration: 0, iterations: 1, fill: "forwards" });
-        snackbar.animate(animateIn, { delay: 500, duration: 1000, iterations: 1, fill: "forwards", easing: "ease-in-out" });
-        snackbar.animate(animateOut, { delay: 3000, duration: 1000, iterations: 1, fill: "forwards", easing: "ease-in-out" });
-        setTimeout(() => {
-          snackbar.animate(animateIn, { duration: 0, iterations: 1, fill: "forwards" });
-          button.disabled = false;
-        }, 5500);
-      }
-    }}
+        if (snackbar && button) {
+          button.disabled = true;
+          snackbar.animate(animateOut, { duration: 0, iterations: 1, fill: "forwards" });
+          snackbar.animate(animateIn, { delay: 500, duration: 1000, iterations: 1, fill: "forwards", easing: "ease-in-out" });
+          snackbar.animate(animateOut, { delay: 3000, duration: 1000, iterations: 1, fill: "forwards", easing: "ease-in-out" });
+          setTimeout(() => {
+            snackbar.animate(animateIn, { duration: 0, iterations: 1, fill: "forwards" });
+            button.disabled = false;
+          }, 5500);
+        }
+      }}
       style="margin: 30px"
       >Demo</zeta-button
     >

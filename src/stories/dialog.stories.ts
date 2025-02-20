@@ -1,23 +1,25 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html, nothing } from "lit";
 import { ZetaDialog } from "../components/dialog/dialog.js";
-import { fn } from '@storybook/test';
+import { fn } from "@storybook/test";
 import "../components/dialog/dialog.js";
 import "../components/button/button.js";
 import "../components/icon/icon.js";
 
 import { ZetaIconNameList, type ZetaIconName } from "@zebra-fed/zeta-icons";
 
-const meta: Meta<Omit<ZetaDialog, "icon"> & {
-  confirm: string;
-  cancel: string;
-  other: string;
-  icon?: ZetaIconName;
-  "--icon-color": String;
-  onOpen: () => void;
-  onClose: () => void;
-  onCancel: () => void;
-}> = {
+const meta: Meta<
+  Omit<ZetaDialog, "icon"> & {
+    confirm: string;
+    cancel: string;
+    other: string;
+    icon?: ZetaIconName;
+    "--icon-color": String;
+    onOpen: () => void;
+    onClose: () => void;
+    onCancel: () => void;
+  }
+> = {
   component: "zeta-dialog",
   title: "Dialog",
   tags: ["autodocs"],
@@ -107,14 +109,18 @@ export const DialogOpen: StoryObj = {
       <div class="box">
         <zeta-button
           @click=${() => {
-        (document.querySelector("#dialog1") as ZetaDialog)?.showModal();
-      }}>
-        <zeta-icon>open</zeta-icon>Open Dialog as Modal</zeta-button>
+            (document.querySelector("#dialog1") as ZetaDialog)?.showModal();
+          }}
+        >
+          <zeta-icon>open</zeta-icon>Open Dialog as Modal</zeta-button
+        >
         <zeta-button
           @click=${() => {
-        (document.querySelector("#dialog1") as ZetaDialog)?.show();
-      }}>
-      <zeta-icon>open</zeta-icon>Open Dialog</zeta-button>
+            (document.querySelector("#dialog1") as ZetaDialog)?.show();
+          }}
+        >
+          <zeta-icon>open</zeta-icon>Open Dialog</zeta-button
+        >
         <zeta-dialog
           id="dialog1"
           .rounded=${args.rounded}
@@ -123,7 +129,8 @@ export const DialogOpen: StoryObj = {
           size=${args.size}
           @open=${args.onOpen}
           @close=${args.onClose}
-          @cancel=${args.onCancel}>
+          @cancel=${args.onCancel}
+        >
           ${args.slot} ${args.icon ? html`<zeta-icon slot="icon">${args.icon}</zeta-icon>` : nothing}
           ${args.confirm && args.confirm.length > 0 ? html`<zeta-button slot="confirm">${args.confirm}</zeta-button>` : nothing}
           ${args.cancel && args.cancel.length > 0 ? html`<zeta-button slot="cancel">${args.cancel}</zeta-button>` : nothing}

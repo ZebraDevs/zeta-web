@@ -9,7 +9,7 @@ import { FormField, type InputType } from "../../mixins/form-field.js";
 
 /**
  * Supports speech recognition search on Chrome.
- * 
+ *
  * @event {FocusEvent} focus - Fired when the search field is focused
  * @event {FocusEvent} blur - Fired when the search field is blurred
  * @event {Event} change - Fired when the search value changes and is committed
@@ -102,7 +102,13 @@ export class ZetaSearch extends FormField(Size(Contourable(Interactive(LitElemen
 
   protected render() {
     return html`
-      <form class="contourable-target" @submit=${(e: Event) => { e.preventDefault(); return e; }}>
+      <form
+        class="contourable-target"
+        @submit=${(e: Event) => {
+          e.preventDefault();
+          return e;
+        }}
+      >
         <zeta-icon id="search-icon" .rounded=${this.rounded}>search</zeta-icon>
         ${super.render()} ${this.renderCancelIcon()} ${this.renderRightIcon()}
       </form>

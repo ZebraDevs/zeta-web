@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import { ZetaDropdownMenuButton } from "../../components/dropdown/dropdown-menu/dropdown-menu-button.js";
-import { fn } from '@storybook/test';
+import { fn } from "@storybook/test";
 
 const items1 = [
   { label: "Item 1", icon: "star" },
@@ -93,14 +93,14 @@ export const DropdownMenuButton: StoryObj<ZetaDropdownMenuButton & { onopen: () 
         <form
           id="form"
           @submit=${(ev: Event) => {
-      ev.preventDefault();
-      console.log("Submit", ev);
-      const data = new FormData(ev.target as HTMLFormElement);
-      console.log(Object.fromEntries(data));
-    }}
+            ev.preventDefault();
+            console.log("Submit", ev);
+            const data = new FormData(ev.target as HTMLFormElement);
+            console.log(Object.fromEntries(data));
+          }}
           @reset=${(e: Event) => {
-      console.error("Form reset", e);
-    }}
+            console.error("Form reset", e);
+          }}
         >
           <zeta-dropdown-menu-button
             name="dropdown-menu1"
@@ -127,14 +127,14 @@ export const DropdownMenuButton: StoryObj<ZetaDropdownMenuButton & { onopen: () 
         <form
           id="form"
           @submit=${(ev: Event) => {
-      ev.preventDefault();
-      console.log("Submit", ev);
-      const data = new FormData(ev.target as HTMLFormElement);
-      console.log(Object.fromEntries(data));
-    }}
+            ev.preventDefault();
+            console.log("Submit", ev);
+            const data = new FormData(ev.target as HTMLFormElement);
+            console.log(Object.fromEntries(data));
+          }}
           @reset=${(e: Event) => {
-      console.error("Form reset", e);
-    }}
+            console.error("Form reset", e);
+          }}
         >
           <zeta-dropdown-menu-button
             name="dropdown-menu2"
@@ -161,14 +161,14 @@ export const DropdownMenuButton: StoryObj<ZetaDropdownMenuButton & { onopen: () 
         <form
           id="form"
           @submit=${(ev: Event) => {
-      ev.preventDefault();
-      console.log("Submit", ev);
-      const data = new FormData(ev.target as HTMLFormElement);
-      console.log(Object.fromEntries(data));
-    }}
+            ev.preventDefault();
+            console.log("Submit", ev);
+            const data = new FormData(ev.target as HTMLFormElement);
+            console.log(Object.fromEntries(data));
+          }}
           @reset=${(e: Event) => {
-      console.error("Form reset", e);
-    }}
+            console.error("Form reset", e);
+          }}
         >
           <zeta-dropdown-menu-button
             name="dropdown-menu3"
