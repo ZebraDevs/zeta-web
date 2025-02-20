@@ -1,7 +1,6 @@
 import { fixture, html, unsafeStatic, expect, elementUpdated, assert } from "@open-wc/testing";
 import { ZetaCheckbox } from "../../components/checkbox/checkbox.js";
 import "../../components/checkbox/checkbox.js";
-import { MouseActions } from "../utils.js";
 
 describe("zeta-checkbox", () => {
   let subject: ZetaCheckbox;

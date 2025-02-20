@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
-import { html, nothing } from "lit";
+import { html } from "lit";
 import { ZetaLoginPage } from "../../components/login-page/login-page.js";
 
 const meta: Meta<ZetaLoginPage> = {
