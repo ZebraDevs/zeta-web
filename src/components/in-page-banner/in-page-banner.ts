@@ -4,7 +4,7 @@ import styles from "./in-page-banner.styles.js";
 import { Contourable } from "../../mixins/mixins.js";
 import "../button/icon-button/icon-button.js";
 import { ZetaCloseEvent } from "../../events.js";
-//TODO events
+
 /**
  * Zeta in page banner component.
  *
@@ -15,7 +15,7 @@ import { ZetaCloseEvent } from "../../events.js";
  *
  * @slot - The main content of the banner.
  * @slot action - The action buttons.
- * 
+ *
  * @event {CustomEvent<ZetaCloseEventDetail>} close - Fired when the close icon is clicked.
  *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21156-27071

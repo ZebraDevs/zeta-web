@@ -135,7 +135,7 @@ describe("zeta-slider-input-field", () => {
   describe("Interaction", () => {
     it("updates the hidden input value when the slider value changes", async () => {
       const slider = subject.shadowRoot?.querySelector("zeta-slider");
-      slider?.dispatchEvent(new CustomEvent("zeta-slider-change", { detail: { value: 75 } }));
+      slider?.dispatchEvent(new CustomEvent("change", { detail: { value: 75 } }));
 
       const input = subject.shadowRoot?.querySelector("input#hidden-slider-input") as HTMLInputElement;
       const inputValue = input?.value;
@@ -173,7 +173,7 @@ describe("zeta-slider-input-field", () => {
       const button = form.querySelector("button") as HTMLButtonElement;
 
       const zetaSlider = slider.shadowRoot?.querySelector("zeta-slider");
-      zetaSlider?.dispatchEvent(new CustomEvent("zeta-slider-change", { detail: { value: 75 } }));
+      zetaSlider?.dispatchEvent(new CustomEvent("change", { detail: { value: 75 } }));
 
       if (button) {
         button.click();
@@ -183,7 +183,7 @@ describe("zeta-slider-input-field", () => {
     });
   });
 
-  describe("Golden", () => { });
+  describe("Golden", () => {});
 
-  describe("Performance", () => { });
+  describe("Performance", () => {});
 });

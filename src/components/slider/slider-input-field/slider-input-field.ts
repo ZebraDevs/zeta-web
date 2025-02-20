@@ -123,7 +123,7 @@ export class ZetaSliderInputField extends FormField(Contourable(LitElement)) {
             value=${ifDefined(this.initialValue)}
             min=${this.min}
             max=${this.max}
-            @zeta-slider-change=${this.sliderChange}
+            @change=${this.sliderChange}
           >
           </zeta-slider>
           <div class="range-label-container">

@@ -51,35 +51,35 @@ Zeta Web Components can be directly used in many web frameworks including Angula
    />
    ```
 
-   3. Import the desired Zeta Web Component, or the full package into your app:
+3. Import the desired Zeta Web Component, or the full package into your app:
 
-   ```js
-   // Individual button component
-   import "@zebra-fed/zeta-web/dist/components/button/button.js";
+    ```js
+    // Individual button component
+    import "@zebra-fed/zeta-web/dist/components/button/button.js";
 
-   // or full package
-   import "@zebra-fed/zeta-web";
-   ```
+    // or full package
+    import "@zebra-fed/zeta-web";
+    ```
 
-   or in HTML,
+    or in HTML,
 
-   ```html
-   <!-- Individual button component -->
-   <script
-     type="module"
-     src="./node_modules/@zebra-fed/zeta-web/dist/components/button/button.js"
-   ></script>
+    ```html
+    <!-- Individual button component -->
+    <script
+      type="module"
+      src="./node_modules/@zebra-fed/zeta-web/dist/components/button/button.js"
+    ></script>
 
-   <!-- or full package-->
-   <script
-     type="module"
-     src="./node_modules/@zebra-fed/zeta-web/dist/index.js"
-   ></script>
-   ```
+    <!-- or full package-->
+    <script
+      type="module"
+      src="./node_modules/@zebra-fed/zeta-web/dist/index.js"
+    ></script>
+    ```
 
-   To reduce bloat, we recommend only importing the components you will actually use into your project.
+    To reduce bloat, we recommend only importing the components you will actually use into your project.
 
-3. If you use any element that uses icons, you will also need to import the index.css from [@zebra-fed/zeta-icons](https://www.npmjs.com/package/@zebra-fed/zeta-icons).
+4. If you use any element that uses icons, you will also need to import the index.css from [@zebra-fed/zeta-icons](https://www.npmjs.com/package/@zebra-fed/zeta-icons).
 
    > 🚧 **Note**: This is a temporary step for now. This will be automatically imported where needed in the future.
 
@@ -98,7 +98,7 @@ Zeta Web Components can be directly used in many web frameworks including Angula
 
    Full list of icons can be found at [Zeta Icons](https://design.zebra.com/icons/).
 
-4. Use the Web Component like any HTML element
+5. Use the Web Component like any HTML element
 
    ```html
    <zeta-button>Hello world!</zeta-button>

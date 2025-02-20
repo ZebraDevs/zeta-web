@@ -1,7 +1,6 @@
 import { fixture, html, unsafeStatic, expect, elementUpdated, assert } from "@open-wc/testing";
 import { ZetaCheckbox } from "../../components/checkbox/checkbox.js";
 import "../../components/checkbox/checkbox.js";
-import { MouseActions } from "../utils.js";
 
 describe("zeta-checkbox", () => {
   let subject: ZetaCheckbox;
@@ -16,7 +15,7 @@ describe("zeta-checkbox", () => {
   });
 
   /** TODO need a full reassess of form control labels */
-  // describe("Accessibility Tests", () => {
+  // describe("Accessibility", () => {
   //   it.skip("meets accessibility requirements", async () => {
   //     const el = await fixture(html`<label for="checky">Label</label><zeta-checkbox name="checky"></zeta-checkbox>`);
   //     await expect(el).to.be.accessible();

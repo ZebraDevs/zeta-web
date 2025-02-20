@@ -375,6 +375,7 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
             @change=${this._handleChange}
             @focus=${this.handleFocus}
             @blur=${this.handleBlur}
+            ?hidden=${true}
           />`;
         case "range-selector":
           return html`<input

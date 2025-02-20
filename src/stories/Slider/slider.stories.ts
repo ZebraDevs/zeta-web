@@ -2,8 +2,8 @@ import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaSlider } from "../../components/slider/slider.js";
 import { html } from "lit";
 import { spreadGenerator } from "../utils.js";
-import { fn } from '@storybook/test';
-import type { ZetaRangeSliderEvent, ZetaRangeSliderEventDetail, ZetaSliderEvent, ZetaSliderEventDetail } from "../../events.js";
+import { fn } from "@storybook/test";
+// import type { ZetaRangeSliderEvent, ZetaRangeSliderEventDetail, ZetaSliderEvent, ZetaSliderEventDetail } from "../../events.js";
 const spread = spreadGenerator(ZetaSlider);
 
 const meta: Meta<ZetaSlider> = {
