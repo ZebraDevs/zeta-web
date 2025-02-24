@@ -54,14 +54,6 @@ export const SwitchDisabled: StoryObj<ZetaSwitch> = {
   args: { disabled: true, activeIcon: "volume_up", inactiveIcon: "volume_off" },
   render: SwitchDefault.render
 };
-// export const SwitchWithLabel: StoryObj<ZetaSwitch> = {
-//   args: {
-//     slot: "Switch label"
-//   },
-//   render: ({ slot, ...args }) => {
-//     return html` <zeta-switch name="labelled-switch" ${spread(args)}>${slot}</zeta-switch> `;
-//   }
-// };
 export const SwitchCustomSize: StoryObj<ZetaSwitch> = {
   args: { activeIcon: "microphone", inactiveIcon: "microphone_off" },
   render: args => {

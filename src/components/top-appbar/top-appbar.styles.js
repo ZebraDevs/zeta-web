@@ -17,7 +17,7 @@ export default css`
     gap: var(--spacing-large);
     background-color: var(--surface-default);
     padding: var(--spacing-xl) var(--spacing-large);
-    font-size: 20px;
+    font: var(--body-large);
   }
 
   .body {

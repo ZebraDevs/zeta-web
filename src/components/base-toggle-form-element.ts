@@ -21,13 +21,11 @@ export abstract class BaseToggleFormElement extends FormField(Interactive(Contou
 
   override handleChange(_event: Event): Event | void {
     return _event;
-    // this.dispatchEvent(new ZetaInputChangeEvent().toEvent());
   }
 
   key(e: KeyboardEvent, type: "down" | "up") {
     if (type === "up") {
       if (e.key === " ") {
-        // console.log("key", typeof e);
         this.input.click();
       }
     }
@@ -40,7 +38,7 @@ export abstract class BaseToggleFormElement extends FormField(Interactive(Contou
           <label>
             <div
               class="container interactive-target"
-              tabindex="${this.disabled ? " - 1" : this.tabIndex}"
+              tabindex="${this.disabled ? -1 : this.tabIndex}"
               @keydown=${(e: KeyboardEvent) => this.key(e, "down")}
               @keyup=${(e: KeyboardEvent) => this.key(e, "up")}
             >

@@ -244,8 +244,6 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
      */
     handleFocus(_event: FocusEvent) {
       return _event;
-      // _event.stopPropagation();
-      // this.dispatchEvent(new ZetaFocusEvent().toEvent());
     }
 
     /**
@@ -253,8 +251,6 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
      */
     handleBlur(_event: FocusEvent) {
       return _event;
-      // _event.stopPropagation();
-      // this.dispatchEvent(new ZetaBlurEvent().toEvent());
     }
 
     /**
@@ -273,8 +269,6 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
      */
     handleInput(_event: InputEvent) {
       return _event;
-      // _event.stopPropagation();
-      // this.dispatchEvent(new ZetaInputEvent<ZetaInputEventDetail>({ value: this.value || "" }).toEvent());
     }
 
     /*
