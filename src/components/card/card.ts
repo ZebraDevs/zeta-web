@@ -11,8 +11,8 @@ export * from "./card-header/card-header.js";
  * Cards are used to display content.
  *
  * @slot - The content of the card.
- * @cssproperty --_border-size the width of the border
- * @cssproperty --_border-color the color of the border
+ * @cssproperty --border-size the width of the border
+ * @cssproperty --border-color the color of the border
  * @cssproperty --border the border of the card
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-10&node-type=canvas&m=dev

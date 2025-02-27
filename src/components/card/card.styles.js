@@ -1,9 +1,9 @@
 import { css } from "lit";
 export default css`
   .card {
-    --_border-size: var(--border-size-small);
-    --_border-color: var(--border-default);
-    --border: var(--_border-size) solid var(--_border-color);
+    --border-size: var(--border-size-small);
+    --border-color: var(--border-default);
+    --border: var(--border-size) solid var(--border-color);
     border: var(--border);
   }
 `;
