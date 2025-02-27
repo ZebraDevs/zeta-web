@@ -66,9 +66,9 @@ export class ZetaActionMenuButton extends Contourable(Flavored(Size(LitElement))
 
   private renderItems() {
     return this.items.map(item => {
-      return html`<zeta-dropdown-menu-item @click=${item.onClick} ?rounded=${this.rounded}
-        ><zeta-icon slot="icon">${item.icon}</zeta-icon>${item.label}</zeta-dropdown-menu-item
-      >`;
+      return html`<zeta-dropdown-menu-item @click=${item.onClick} ?rounded=${this.rounded}>
+        <zeta-icon slot="icon">${item.icon}</zeta-icon>${item.label}
+      </zeta-dropdown-menu-item>`;
     });
   }
 
@@ -85,9 +85,9 @@ export class ZetaActionMenuButton extends Contourable(Flavored(Size(LitElement))
         .flavor=${this.flavor}
         >${this.icon}</zeta-icon-button
       >
-      <zeta-droppable ?open=${this.open} ?rounded=${this.rounded} .alignment=${this.alignment} .direction=${this.direction} .anchor=${this.anchor}
-        >${this.renderItems()}</zeta-droppable
-      >
+      <zeta-droppable ?open=${this.open} ?rounded=${this.rounded} .alignment=${this.alignment} .direction=${this.direction} .anchor=${this.anchor}>
+        ${this.renderItems()}
+      </zeta-droppable>
     `;
   }
 

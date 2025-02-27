@@ -5,13 +5,13 @@ import { Contourable, Interactive } from "../../../mixins/mixins.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 import "../../icon/icon.js";
 
-// TODO(UX-1041): Add inverse
 // TODO(UX-1337): Corner radius is not correct on buttons in the middle of a group
 /**
  * Button which is used by button groups.
  *
  * @slot - Button label content.
  * @slot {zeta-icon} icon - Icon to display on leading side of button. Full list of icons can be found at https://zeta-icons.web.app/
+ * @part button - The button element.
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-45&node-type=canvas&m=dev
  * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/button-group--docs
@@ -34,6 +34,8 @@ export class ZetaButtonGroupItem extends Contourable(Interactive(LitElement)) {
   /** Whether to show the dropdown icon. */
   @property({ type: Boolean, reflect: true }) showDropdown?: boolean = false;
 
+  @property({ type: String, reflect: true }) flavor?: "default" | "inverse" = "default";
+
   @property() override onclick: ((this: GlobalEventHandlers, ev: MouseEvent) => unknown) | null = null;
 
   @query("button") private readonly buttonElement!: HTMLElement | null;
@@ -51,7 +53,7 @@ export class ZetaButtonGroupItem extends Contourable(Interactive(LitElement)) {
 
   protected override render() {
     return html`
-      <button ?disabled=${this.disabled} name=${ifDefined(this.name)}>
+      <button ?disabled=${this.disabled} name=${ifDefined(this.name)} part="button">
         <slot name="icon"></slot>
         <label class="text ${this.addGap ? "pad" : ""}">
           <slot

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaSlider } from "../../components/slider/slider.js";
 import { html } from "lit";
 import { spreadGenerator } from "../utils.js";
-import type { ZetaRangeSliderEvent, ZetaRangeSliderEventDetail, ZetaSliderEvent, ZetaSliderEventDetail } from "../../events.js";
+import { fn } from "@storybook/test";
 const spread = spreadGenerator(ZetaSlider);
 
 const meta: Meta<ZetaSlider> = {
@@ -16,7 +16,8 @@ const meta: Meta<ZetaSlider> = {
     lowerValue: { table: { disable: true } },
     upperValue: { table: { disable: true } },
     min: { control: { type: "number", min: 0, max: 100 } },
-    max: { control: { type: "number", min: 0, max: 100 } }
+    max: { control: { type: "number", min: 0, max: 100 } },
+    onchange: fn()
   },
   parameters: {
     design: {
@@ -31,15 +32,16 @@ const meta: Meta<ZetaSlider> = {
 export default meta;
 
 export const Slider: StoryObj = {
-  render: args =>
-    html`<zeta-slider
-      @zeta-slider-change=${(e: ZetaSliderEvent<ZetaSliderEventDetail>) => {
-        console.log(e.detail.value);
-      }}
-      @zeta-range-slider-change=${(e: ZetaRangeSliderEvent<ZetaRangeSliderEventDetail>) => {
-        console.log(e.detail.min, e.detail.max);
-      }}
-      ${spread(args)}
-    >
-    </zeta-slider>`
+  argTypes: {
+    stepIncrement: { table: { disable: true } }
+  },
+  render: ({ onchange, ...args }) => html`<zeta-slider @change=${onchange} ${spread(args)}> </zeta-slider>`
+};
+
+export const SteppedSlider: StoryObj = {
+  argTypes: {
+    stepIncrement: { control: { type: "number", min: 0, max: 50 } }
+  },
+  args: { stepIncrement: 10 },
+  render: Slider.render
 };

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import { ZetaDropdownMenuButton } from "../../components/dropdown/dropdown-menu/dropdown-menu-button.js";
+import { fn } from "@storybook/test";
 
 const items1 = [
   { label: "Item 1", icon: "star" },
@@ -42,7 +43,7 @@ const staticArgTypes = {
   validationMessage: { table: { disable: true } }
 };
 
-const meta: Meta<ZetaDropdownMenuButton> = {
+const meta: Meta<ZetaDropdownMenuButton & { onopen: () => void }> = {
   component: "zeta-dropdown-menu-button",
   title: "Dropdown",
   args: {
@@ -50,7 +51,12 @@ const meta: Meta<ZetaDropdownMenuButton> = {
     flavor: "primary",
     open: false,
     direction: undefined,
-    slot: "Dropdown Menu"
+    slot: "Dropdown Menu",
+    onclick: fn(),
+    onchange: fn(),
+    oninput: fn(),
+    onopen: fn(),
+    onclose: fn()
   },
   argTypes: {
     flavor: {
@@ -78,7 +84,7 @@ const meta: Meta<ZetaDropdownMenuButton> = {
 
 export default meta;
 
-export const DropdownMenuButton: StoryObj<ZetaDropdownMenuButton> = {
+export const DropdownMenuButton: StoryObj<ZetaDropdownMenuButton & { onopen: () => void }> = {
   argTypes: staticArgTypes,
   render: args => html`
     <div style="display: flex;">
@@ -105,6 +111,11 @@ export const DropdownMenuButton: StoryObj<ZetaDropdownMenuButton> = {
             .items=${items1}
             ?open=${args.open}
             .direction=${args.direction}
+            @click=${args.onclick}
+            @change=${args.onchange}
+            @input=${args.oninput}
+            @open=${args.onopen}
+            @close=${args.onclose}
           >
             ${args.slot}
           </zeta-dropdown-menu-button>
@@ -134,6 +145,11 @@ export const DropdownMenuButton: StoryObj<ZetaDropdownMenuButton> = {
             .items=${items2}
             ?open=${args.open}
             .direction=${args.direction}
+            @click=${args.onclick}
+            @change=${args.onchange}
+            @input=${args.oninput}
+            @open=${args.onopen}
+            @close=${args.onclose}
           >
             ${args.slot}
           </zeta-dropdown-menu-button>
@@ -163,6 +179,11 @@ export const DropdownMenuButton: StoryObj<ZetaDropdownMenuButton> = {
             .items=${items3}
             ?open=${args.open}
             .direction=${args.direction}
+            @click=${args.onclick}
+            @change=${args.onchange}
+            @input=${args.oninput}
+            @open=${args.onopen}
+            @close=${args.onclose}
           >
             ${args.slot}
           </zeta-dropdown-menu-button>

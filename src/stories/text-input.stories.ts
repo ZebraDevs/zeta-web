@@ -3,10 +3,12 @@ import { ZetaTextInput } from "../components/text-input/text-input.js";
 import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
 import { html } from "lit";
 import { spreadGenerator } from "./utils.js";
+import { fn } from "@storybook/test";
 const spread = spreadGenerator(ZetaTextInput);
 
+type InputStory = ZetaTextInput;
 //TODO: These are seperate on Figma, should be split here too?
-const meta: Meta<ZetaTextInput> = {
+const meta: Meta<InputStory> = {
   tags: ["autodocs"],
   title: "Text Input",
   component: "zeta-text-input",
@@ -20,7 +22,11 @@ const meta: Meta<ZetaTextInput> = {
     rounded: true,
     required: false,
     prefix: "",
-    suffix: ""
+    suffix: "",
+    onchange: fn(),
+    oninput: fn(),
+    onfocus: fn(),
+    onblur: fn()
   },
   argTypes: {
     type: {
@@ -57,16 +63,18 @@ const meta: Meta<ZetaTextInput> = {
 };
 // console.log('Text-Input attributes:', ZetaTextInput.elementProperties);
 
-export const TextInput: StoryObj<ZetaTextInput> = {
-  name: "Default text input"
+export const TextInput: StoryObj<InputStory> = {
+  name: "Default text input",
+  render: ({ oninput, onchange, onblur, onfocus, ...args }) =>
+    html` <zeta-text-input @change=${onchange} @input=${oninput} @blur=${onblur} @focus=${onfocus} ${spread(args)}> </zeta-text-input>`
 };
 
-export const EmptyTextInput: StoryObj<ZetaTextInput> = {
+export const EmptyTextInput: StoryObj<InputStory> = {
   name: "Empty",
   render: _args => html` <zeta-text-input> </zeta-text-input> `
 };
 
-export const TimeInput: StoryObj = {
+export const TimeInput: StoryObj<InputStory> = {
   name: "Time input",
   args: {
     type: "time"
@@ -87,10 +95,10 @@ export const TimeInput: StoryObj = {
       type: "designPending"
     }
   },
-  render: args => html` <zeta-text-input ${spread(args)}> </zeta-text-input> `
+  render: TextInput.render
 };
 
-export const DateInput: StoryObj = {
+export const DateInput: StoryObj<InputStory> = {
   name: "Date input",
   args: {
     type: "date"
@@ -111,10 +119,10 @@ export const DateInput: StoryObj = {
       type: "designPending"
     }
   },
-  render: args => html` <zeta-text-input ${spread(args)}> </zeta-text-input> `
+  render: TextInput.render
 };
 
-export const TextArea: StoryObj = {
+export const TextArea: StoryObj<InputStory> = {
   name: "Text area field",
   args: {
     type: "textarea"
@@ -125,10 +133,10 @@ export const TextArea: StoryObj = {
     prefix: { table: { disable: true } },
     suffix: { table: { disable: true } }
   },
-  render: args => html` <zeta-text-input ${spread(args)}> </zeta-text-input> `
+  render: TextInput.render
 };
 
-export const PasswordField: StoryObj = {
+export const PasswordField: StoryObj<InputStory> = {
   name: "Password field",
   args: {
     type: "password"
@@ -148,7 +156,7 @@ export const PasswordField: StoryObj = {
       type: "designPending"
     }
   },
-  render: args => html` <zeta-text-input ${spread(args)}> </zeta-text-input> `
+  render: TextInput.render
 };
 
 export default meta;

@@ -70,8 +70,12 @@ describe("zeta-checkbox", () => {
 
   describe("Interaction", () => {
     it("changes the checked state when clicked", async () => {
-      subject.click();
-      await expect(subject.checked).to.equal(true);
+      const interactiveNode = subject.shadowRoot?.querySelector("label");
+      expect(subject.getAttribute("checked")).to.be.null;
+      interactiveNode?.click();
+      await elementUpdated(subject);
+      await expect(subject.getAttribute("checked")).to.be.equal("");
+      expect(subject.checked).to.be.true;
     });
   });
 
@@ -112,8 +116,8 @@ describe("zeta-checkbox + label", () => {
   // describe("Styling", () => {});
 
   describe("Interaction", () => {
-    it("checks the checkbox when label is clicked", async () => {
-      const labelText = subject.shadowRoot?.querySelector("label");
+    it("checks the checkbox when label text is clicked", async () => {
+      const labelText = subject.shadowRoot?.querySelector("slot");
       expect(subject.getAttribute("checked")).to.be.null;
       labelText?.click();
       await elementUpdated(subject);

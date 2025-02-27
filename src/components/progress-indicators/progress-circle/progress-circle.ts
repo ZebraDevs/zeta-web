@@ -8,7 +8,7 @@ import { styleMap } from "lit/directives/style-map.js";
 
 /** Progress indicators express an unspecified wait time or display the length of a process.
  *
- *  @event {CustomEvent<ZetaCancelUploadEvent>} ZetaCancelUploadEvent:zeta-cancel-upload - Fired when the cancel button is clicked.
+ *  @event {CustomEvent<ZetaCancelUploadEventDetail>} cancelUpload - Fired when the cancel button is clicked.
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-22&node-type=canvas&m=dev
  * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/progress--docs
@@ -24,6 +24,9 @@ export class ZetaProgressCircle extends Contourable(LitElement) {
   @property({ type: Number }) get progress() {
     return this.progressValue;
   }
+
+  /** Displays the indeterminate progress indicator. If set to true, any argument for 'value' will be ignored. */
+  @property({ type: Boolean, reflect: true }) indeterminate?: boolean;
 
   /** The type of the progress circle. */
   @property({ type: String }) type: "default" | "upload" = "default";
@@ -46,11 +49,13 @@ export class ZetaProgressCircle extends Contourable(LitElement) {
   private readonly strokeWidth = 3;
 
   private getStrokeDasharray = () => {
+    if (this.indeterminate) return 2 * 3.14 * (this.size / 2.5 - this.strokeWidth);
     // circumference = 2 × π × radius
     return 2 * 3.14 * (this.size / 2 - this.strokeWidth);
   };
 
   private getStrokeDashoffset = () => {
+    if (this.indeterminate) return `${(this.getStrokeDasharray() * this.size) / 100}`;
     // circumference × ((100 - progress)/100)
     return `${(this.getStrokeDasharray() * (100 - this.progress)) / 100}`;
   };
@@ -97,6 +102,11 @@ export class ZetaProgressCircle extends Contourable(LitElement) {
     const cy = this.size / 2;
     const trackColor = this.type == "upload" ? "var(--main-light)" : "transparent";
 
+    if (this.indeterminate)
+      this.animate([{ transform: "rotate(0)" }, { transform: "rotate(360deg)" }], {
+        duration: 1500,
+        iterations: Infinity
+      });
     return html`
       <div class="container">
         <svg width="${this.size}" height="${this.size}" viewBox="0 0 ${this.size} ${this.size}" style="transform:rotate(-90deg)">

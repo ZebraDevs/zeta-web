@@ -42,16 +42,6 @@ export default css`
     background-color: var(--switch-thumb-color, var(--main-inverse));
   }
 
-  input {
-    visibility: hidden;
-    height: 0;
-    width: 0;
-    position: absolute;
-    margin: 0;
-    top: 50%;
-    left: 50%;
-  }
-
   zeta-icon {
     position: absolute;
     color: var(--switch-icon-color, var(--main-inverse));
@@ -84,7 +74,7 @@ export default css`
 
   /*
    * This isnt working in playwright tests due to this bug
-   * https://github.com/microsoft/playwright/issues/31607
+   * https://github.com/microsoft/playwright/issues/31607 //TODO this looks like it has been merged, lets move this back...
    /
    :host([checked]) {
     & div[part="thumb"] {

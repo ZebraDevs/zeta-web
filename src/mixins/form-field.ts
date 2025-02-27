@@ -5,6 +5,7 @@ import { property, query, queryAssignedNodes, state } from "lit/decorators.js";
 import { type AbstractConstructor } from "./utils.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 import { live } from "lit/directives/live.js";
+
 export type InputType =
   | "checkbox"
   | "text"
@@ -34,6 +35,9 @@ declare abstract class FormFieldInterface /* extends InteractiveInterface*/ {
   internals: ElementInternals;
   placeholder: string;
   abstract handleChange(event: Event): void;
+  handleInput(event: Event): void;
+  handleFocus(event: FocusEvent): void;
+  handleBlur(event: FocusEvent): void;
 }
 
 /**
@@ -41,6 +45,11 @@ declare abstract class FormFieldInterface /* extends InteractiveInterface*/ {
  *
  * @slot - Slot for a label.
  * @param superClass - LitElement to add mixin to
+ *
+ * @event {FocusEvent>} focus - Fired when the form field is focused
+ * @event {BlurEvent} blur - Fired when the form field is blurred
+ * @event {InputEvent} input - Fired when the value of the element changes.
+ *
  * @returns - component with mixin applied.
  */
 export const FormField = <T extends AbstractConstructor<LitElement>>(superClass: T) => {
@@ -105,7 +114,7 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
      */
     @property({ type: String }) value: string | null = null;
 
-    _checked?: boolean;
+    _checked: boolean = false;
     /**
      * The state of the Switch or Checkbox that is submitted when part of a form.
      */
@@ -113,7 +122,7 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
     get checked() {
       return this._checked;
     }
-    set checked(value: boolean | undefined) {
+    set checked(value: boolean) {
       this._checked = value;
       this.internals.setFormValue(value ? (this.value !== null ? this.value : "on") : null);
     }
@@ -180,14 +189,16 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
 
     firstUpdated(_changedProperties: PropertyValues): void {
       super.firstUpdated(_changedProperties);
-      this.setToInitialValues();
+      // this.setToInitialValues();
 
-      if (this.isCheckable) this.addEventListener("click", this.input.click);
+      if (this.isCheckable) this.addEventListener("click", this.click);
+      // if (this.isCheckable) this.addEventListener("click", this.input.click); //TODO this is probably the source of the click problem
     }
 
     disconnectedCallback(): void {
       super.disconnectedCallback();
-      if (this.isCheckable) this.removeEventListener("click", this.input.click);
+      if (this.isCheckable) this.removeEventListener("click", this.click);
+      // if (this.isCheckable) this.removeEventListener("click", this.input.click); //TODO this is probably the source of the click problem
     }
 
     formResetCallback() {
@@ -200,16 +211,22 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
 
     //Might need to override or abstract: setValidity(flags: ValidityStateFlags, message?: string, anchor?: HTMLElement)
 
-    private handleInput(event: Event) {
+    /**
+     * Event fired when the input value changes and is committed:
+     * @param event - The input event.
+     * @param isInput - Whether the event is an input event, false if change event
+     */
+    private _handleInput(event: Event, isInput: boolean = true) {
       const input = event.target as HTMLInputElement;
       this._setValue(input);
+      if (isInput) this.handleInput(event as InputEvent);
     }
 
     private _setValue(input: { checked?: boolean; value: string | null }) {
       const newVal = this.getValue(input.value, input.checked);
 
       if (this.isCheckable) {
-        this.checked = input.checked;
+        this.checked = !!input.checked;
         this.indeterminate = false;
       } else {
         this.value = newVal;
@@ -218,18 +235,41 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
     }
 
     private _handleChange(event: Event) {
-      this.handleInput(event);
+      this._handleInput(event, false);
       this.handleChange(event);
     }
 
     /**
-     * Event fired when the input value changes:
+     * Event fired when the input is focussed
+     */
+    handleFocus(_event: FocusEvent) {
+      return _event;
+    }
+
+    /**
+     * Event fired when the input is blurred
+     */
+    handleBlur(_event: FocusEvent) {
+      return _event;
+    }
+
+    /**
+     * Event fired when the input value changes and is committed:
      * this specifically occurs when th user commits the change explicitly (i,e, date picker, file picker)
      * or if it is a text-like input, when the user loses focus from the input.
      * or if it is a checkbox-like input, when the checkbox is toggled.
      * or if it is a radio-like input, when the radio is selected (but not unselected).
      */
-    handleChange(_event: Event): void {}
+    handleChange(_event: Event) {
+      return _event;
+    }
+
+    /**
+     * Event fired when the input value changes
+     */
+    handleInput(_event: InputEvent) {
+      return _event;
+    }
 
     /*
       max=${'date'|'month'|'week'|'time'|'datetime-local'|'number'|'range'}
@@ -267,8 +307,10 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
             .checked=${live(this.checked !== undefined ? this.checked : false)}
             aria-checked=${this.checked ? "true" : "false"}
             .indeterminate=${live(this.indeterminate)}
-            @input=${this.handleInput}
+            @input=${this._handleInput}
             @change=${this._handleChange}
+            @focus=${this.handleFocus}
+            @blur=${this.handleBlur}
           /> `;
         case "textarea":
           return html`<textarea
@@ -283,8 +325,10 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
             placeholder=${ifDefined(this.placeholder)}
             ?readonly=${this.readOnly}
             spellcheck=${ifDefined(notUrlEmailPassword ? this.spellCheck : undefined)}
-            @input=${this.handleInput}
+            @input=${this._handleInput}
             @change=${this._handleChange}
+            @focus=${this.handleFocus}
+            @blur=${this.handleBlur}
             .value=${live(this.value ?? "")}
           ></textarea>`;
         case "text-dropdown":
@@ -303,8 +347,10 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
             placeholder=${ifDefined(this.placeholder)}
             ?readonly=${this.readOnly}
             .value=${live(this.value ?? "")}
-            @input=${this.handleInput}
+            @input=${this._handleInput}
             @change=${this._handleChange}
+            @focus=${this.handleFocus}
+            @blur=${this.handleBlur}
             ?hidden=${true}
           /> `;
         case "slider":
@@ -319,10 +365,12 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
             aria-required=${this.required ? "true" : "false"}
             ?readonly=${this.readOnly}
             .value=${live(this.value ?? "")}
-            @input=${this.handleInput}
+            @input=${this._handleInput}
             @change=${this._handleChange}
+            @focus=${this.handleFocus}
+            @blur=${this.handleBlur}
+            ?hidden=${true}
           />`;
-        // ?hidden=${true}
         case "range-selector":
           return html`<input
             type="text"
@@ -335,7 +383,7 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
             aria-required=${this.required ? "true" : "false"}
             ?readonly=${this.readOnly}
             .value=${live(this.value ?? "")}
-            @input=${this.handleInput}
+            @input=${this._handleInput}
             @change=${this._handleChange}
             ?hidden=${true}
           />`;
@@ -349,7 +397,7 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
               ?required=${this.required}
               aria-required=${this.required ? "true" : "false"}
               .value=${live(this.value ?? "")}
-              @input=${this.handleInput}
+              @input=${this._handleInput}
               @change=${this._handleChange}
               ?hidden=${true}
             ></select>
@@ -368,8 +416,10 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
             placeholder=${ifDefined(this.placeholder)}
             ?readonly=${this.readOnly}
             .value=${live(this.value ?? "")}
-            @input=${this.handleInput}
+            @input=${this._handleInput}
             @change=${this._handleChange}
+            @focus=${this.handleFocus}
+            @blur=${this.handleBlur}
           /> `;
 
         /*

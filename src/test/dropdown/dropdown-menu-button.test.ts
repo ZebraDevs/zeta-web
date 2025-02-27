@@ -12,7 +12,7 @@ describe("zeta-dropdown-menu-button", () => {
   let subject: ZetaDropdownMenuButton;
 
   const createComponent = (
-    template = ` <zeta-dropdown-menu-button
+    template = `<zeta-dropdown-menu-button
             size="medium"
             name="dropdown-menu"
             rounded=true
@@ -160,8 +160,8 @@ describe("zeta-dropdown-menu-button", () => {
       await subject.updateComplete;
 
       const checkboxElements = subject.shadowRoot?.querySelectorAll("zeta-checkbox") as NodeListOf<ZetaCheckbox>;
-      checkboxElements[0].click();
-      checkboxElements[2].click();
+      checkboxElements[0].input.click();
+      checkboxElements[2].input.click();
       await subject.updateComplete;
 
       const form = document.createElement("form");
@@ -198,8 +198,10 @@ describe("zeta-dropdown-menu-button", () => {
 
       const event = new Event("submit");
       form.dispatchEvent(event);
+      await subject.updateComplete;
 
       const data = new FormData(event.target as HTMLFormElement);
+      console.log("FormData", data);
 
       await expect(Object.fromEntries(data)["dropdown-menu"]).to.equal(selectedItem1.label);
     });

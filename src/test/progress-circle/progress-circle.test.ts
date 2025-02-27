@@ -56,7 +56,7 @@ describe("zeta-progress-circle", () => {
     it("should fire a ZetaCancelUploadEvent on button click", async () => {
       // prettier-ignore
       const el = await fixture<ZetaProgressCircle>(html`<zeta-progress-circle></zeta-progress-circle>`);
-      const eventListener = oneEvent(el, "cancel-upload");
+      const eventListener = oneEvent(el, "cancelUpload");
 
       el.type = "upload";
       await el.updateComplete;

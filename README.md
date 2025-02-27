@@ -13,9 +13,7 @@ You can also view the latest release at [Zeta](https://design.zebra.com/) or the
 
 ## How to Use
 
-Web Components can be directly used in many web frameworks.
-
-> ⚛️ **Note**: Using React? Zeta is not ready just yet. Whilst you wait, you can use [zds_react](https://www.npmjs.com/package/@zebra-fed/zds-react).
+Zeta Web Components can be directly used in many web frameworks including Angular and React (from v19).
 
 1. Install `@zebra-fed/zeta-web`
 
@@ -35,20 +33,20 @@ Web Components can be directly used in many web frameworks.
    or in HTML,
 
    ```html
-   <link rel="stylesheet" href="./node_modules/@zebra-fed/zeta-web/dist/index.css" />
+   <link rel="stylesheet" href="./node_modules/@zebra-fed/zeta-web/dist/style.css" />
    ```
 
 3. Import the desired Zeta Web Component, or the full package into your app:
 
-   ```js
-   // Individual button component
-   import "@zebra-fed/zeta-web/dist/components/button/button.js";
+    ```js
+    // Individual button component
+    import "@zebra-fed/zeta-web/dist/components/button/button.js";
 
-   // or full package
-   import "@zebra-fed/zeta-web";
-   ```
+    // or full package
+    import "@zebra-fed/zeta-web";
+    ```
 
-   or in HTML,
+    or in HTML,
 
    ```html
    <!-- Individual button component -->
@@ -58,7 +56,7 @@ Web Components can be directly used in many web frameworks.
    <script type="module" src="./node_modules/@zebra-fed/zeta-web/dist/index.js"></script>
    ```
 
-   To reduce bloat, we recommend only importing the components you will actually use into your project.
+    To reduce bloat, we recommend only importing the components you will actually use into your project.
 
 4. If you use any element that uses icons, you will also need to import the index.css from [@zebra-fed/zeta-icons](https://www.npmjs.com/package/@zebra-fed/zeta-icons).
 
@@ -82,35 +80,53 @@ Web Components can be directly used in many web frameworks.
    <zeta-button>Hello world!</zeta-button>
    ```
 
+### React
+
+From React 19 web-components work natively. `zeta-web` can be imported into your React project and used directly in JSX.
+
+#### TypeScript and "JSX.IntrinsicElements" errors.
+
+If you find TypeScript complains that `Property 'zeta-*' does not exist on type 'JSX.IntrinsicElements'`, you need to add the declared zeta components into React's JSX.IntrinsicElements namespace. To do this:
+
+```ts
+import { CustomElements } from "@zebra-fed/zeta-web/jsx";
+
+declare module "react" {
+  namespace JSX {
+    interface IntrinsicElements extends CustomElements {}
+  }
+}
+```
+
 ## Developer Experience
 
 To improve the development experience while using the zeta web-components, the following packages can be useful:
 
-1. [`ts-lit-plugin`](https://www.npmjs.com/package/ts-lit-plugin)
+### [`ts-lit-plugin`](https://www.npmjs.com/package/ts-lit-plugin)
 
-   ts-lit-plugin adds type checking and code completion to lit-html. To install, first setup typescript in your project, then run:
+ts-lit-plugin adds type checking and code completion to lit-html. To install, first setup typescript in your project, then run:
 
-   ```bash
-   # NPM
-   npm install ts-lit-plugin -D
+```bash
+# NPM
+npm install ts-lit-plugin -D
 
-   # Yarn
-   yarn add -D ts-lit-plugin
-   ```
+# Yarn
+yarn add -D ts-lit-plugin
+```
 
-   and add the plugin to your tsconfig.json:
+and add the plugin to your tsconfig.json:
 
-   ```json
-   {
-     "compilerOptions": {
-       "plugins": [
-         {
-           "name": "ts-lit-plugin"
-         }
-       ]
-     }
-   }
-   ```
+```json
+{
+  "compilerOptions": {
+    "plugins": [
+      {
+        "name": "ts-lit-plugin"
+      }
+    ]
+  }
+}
+```
 
 ## Licensing
 

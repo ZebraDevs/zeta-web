@@ -65,8 +65,9 @@ export class ZetaStepperInput extends Contourable(LitElement) {
           size=${this.size}
           flavor="outline-subtle"
           @click=${() => (this.value = this.value - 1)}
-          >remove</zeta-icon-button
         >
+          remove
+        </zeta-icon-button>
         <div class="input-container">
           <input
             id=${this.id}
@@ -84,8 +85,9 @@ export class ZetaStepperInput extends Contourable(LitElement) {
           size=${this.size}
           flavor="outline-subtle"
           @click=${() => (this.value = this.value + 1)}
-          >add</zeta-icon-button
         >
+          add
+        </zeta-icon-button>
       </div>
     `;
   }

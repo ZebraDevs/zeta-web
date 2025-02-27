@@ -11,14 +11,18 @@ const _spread = (_spreadData: SpreadData, properties: PropertyDeclarationMap): D
   const fixedSpreadData = Object.entries(_spreadData).reduce((acc, [key, value]) => {
     const property = properties.get(key) as (PropertyDeclaration & { type?: { name: string } }) | undefined;
     let newKey = key;
-    /* Future '@' will set the event */
     if (property?.attribute === undefined || property?.attribute !== false) {
       newKey = `${property?.type && property.type.name == "Boolean" ? "?" : ""}${key}`;
     } else if (property?.attribute === false) {
       newKey = `.${key}`;
     }
+
+    /* '@' will set the event */
+    if (property === undefined && key.startsWith("on")) {
+      newKey = `@${key.slice(2)}`;
+    }
     // Fix for css-variables, which don't have a type
-    if (property?.type == undefined) {
+    else if (property?.type == undefined) {
       return acc;
     }
     acc[newKey] = value;

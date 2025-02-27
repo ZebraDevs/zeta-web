@@ -10,6 +10,11 @@ import { FormField } from "../../mixins/form-field.js";
 /**
  * Text input component with icon, affix, label and hint text
  *
+ * @event {FocusEvent} focus - Fired when the input field is focused
+ * @event {FocusEvent} blur - Fired when the input field is blurred
+ * @event {Event} change - Fired when the input value changes and is committed
+ * @event {InputEvent} input - Fired when the input value changes
+ *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=23116-92946
  * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/text-input--docs
  */
@@ -37,10 +42,10 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
   @property({ type: String }) trailingIcon?: ZetaIconName;
 
   /** Prefix text. */
-  @property({ type: String }) prefix = "";
+  @property({ type: String }) prefix: string = "";
 
   /** Suffix text. */
-  @property({ type: String }) suffix = "";
+  @property({ type: String }) suffix: string = "";
 
   /**
    * Label shown above text field.
@@ -65,6 +70,8 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
   /** Type of field */
   @property({ type: String, reflect: true }) type: "text" | "textarea" | "password" | "time" | "date" = "text";
 
+  private _valueOnLastFocus: string | null = null;
+
   override focus() {
     this.inputEl?.focus();
   }
@@ -74,7 +81,22 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
   }
 
   override handleChange(_event: Event): void {
-    this.dispatchEvent(new Event(_event.type, _event));
+    //Ignore Change Events, we calculate this on blur;
+    return;
+  }
+
+  override handleFocus(_event: FocusEvent): void {
+    super.handleFocus(_event);
+    this._valueOnLastFocus = this.value;
+  }
+
+  override handleBlur(_event: FocusEvent): void {
+    super.handleBlur(_event);
+    //Fire the onChange event if and only if the value has changed
+    if (this._valueOnLastFocus !== this.value) {
+      this.dispatchEvent(new Event("change"));
+      this._valueOnLastFocus = null;
+    }
   }
 
   protected render() {

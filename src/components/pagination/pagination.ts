@@ -7,12 +7,10 @@ import { ZetaPageEvent } from "../../events.js";
 import "../button/icon-button/icon-button.js";
 import "../icon/icon.js";
 
-//TODO(UX-1339): Rounded doesnt work
-
 /**
  * Pagination needs a description.
  *
- *  @event {CustomEvent<ZetaPageEvent>} ZetaPageEvent:zeta-page-change - Fired when page change. Contains a single value in details: `page: number`.
+ *  @event {CustomEvent<ZetaPageEventDetail>} pageChange - Fired when page change. Contains a single value in details: `page: number`.
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-24&node-type=canvas&m=dev
  * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/pagination--docs
@@ -50,7 +48,7 @@ export class ZetaPagination extends Contourable(LitElement) {
   };
 
   /**
-   * @fires ZetaPageEvent:zeta-page-change
+   * @fires ZetaPageEvent:pageChange
    */
   private handlePageChange = (page: number) => {
     this.currentPage = page;

@@ -1,8 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
-import type { ZetaUploadItem } from "../../components/upload-item/upload-item";
+import { ZetaUploadItem } from "../../components/upload-item/upload-item";
+import { fn } from "@storybook/test";
 import "../../components/upload-item/upload-item.js";
+import { html } from "lit";
+import { spreadGenerator } from "../utils";
+const spread = spreadGenerator(ZetaUploadItem);
 
-type UploadItemStory = ZetaUploadItem & { slot: string; subtitle: string; leading: string };
+type UploadItemStory = ZetaUploadItem & { slot: string; subtitle: string; leading: string; oncancelupload: () => void };
 
 const meta: Meta<UploadItemStory> = {
   component: "zeta-upload-item",
@@ -13,7 +17,8 @@ const meta: Meta<UploadItemStory> = {
     slot: "filename.jpg",
     subtitle: "4.6MB of 5.7MB",
     leading: "<zeta-icon>image</zeta-icon>",
-    progress: 75
+    progress: 75,
+    oncancelupload: fn()
   },
   argTypes: {
     flavor: {
@@ -35,7 +40,9 @@ const meta: Meta<UploadItemStory> = {
 
 export default meta;
 
-export const UploadItem: StoryObj<UploadItemStory> = {};
+export const UploadItem: StoryObj<UploadItemStory> = {
+  render: ({ oncancelupload, ...args }) => html`<zeta-upload-item ${spread(args)} @cancel-upload=${oncancelupload}></zeta-upload-item>`
+};
 
 export const Completed: StoryObj<UploadItemStory> = {
   args: {
@@ -47,7 +54,8 @@ export const Completed: StoryObj<UploadItemStory> = {
     progress: { table: { disable: true } },
     flavor: { table: { disable: true } },
     leading: { table: { disable: true } }
-  }
+  },
+  render: UploadItem.render
 };
 
 export const Error: StoryObj<UploadItemStory> = {
@@ -60,5 +68,6 @@ export const Error: StoryObj<UploadItemStory> = {
     progress: { table: { disable: true } },
     flavor: { table: { disable: true } },
     leading: { table: { disable: true } }
-  }
+  },
+  render: UploadItem.render
 };

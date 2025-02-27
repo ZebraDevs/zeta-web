@@ -40,8 +40,7 @@ export default css`
   }
 
   ::slotted(zeta-icon) {
-    --icon-color: red;
-    /* --icon-color: var(--main-subtle); */
+    --icon-color: var(--main-subtle);
   }
   :host([active]) ::slotted(zeta-icon) {
     --icon-color: var(--main-primary);

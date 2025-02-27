@@ -4,6 +4,9 @@ import { Contourable, Interactive, Size } from "../../mixins/mixins.js";
 import { LitElement } from "lit";
 import styles from "./base-button.styles.js";
 
+/**
+ * @event {SubmitEvent} submit - Fired when the button is clicked and has the type submit
+ */
 export class BaseButton extends Size(Contourable(Interactive(LitElement))) {
   static formAssociated = true;
   /** @internal */
@@ -44,7 +47,7 @@ export class BaseButton extends Size(Contourable(Interactive(LitElement))) {
   protected _handleClick(event: Event) {
     if (this.type === "submit") {
       const form = this.internals.form as HTMLFormElement;
-      form?.dispatchEvent(new Event("submit"));
+      form?.dispatchEvent(new SubmitEvent("submit")); //Triggers the form to submit, this doesnt need to be defined in events.ts
     } else if (this.type === "reset") {
       const form = this.internals.form as HTMLFormElement;
       form?.reset();

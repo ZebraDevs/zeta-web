@@ -111,13 +111,15 @@ export const DialogOpen: StoryObj = {
           @click=${() => {
             (document.querySelector("#dialog1") as ZetaDialog)?.showModal();
           }}
-          ><zeta-icon>open</zeta-icon>Open Dialog as Modal</zeta-button
+        >
+          <zeta-icon>open</zeta-icon>Open Dialog as Modal</zeta-button
         >
         <zeta-button
           @click=${() => {
             (document.querySelector("#dialog1") as ZetaDialog)?.show();
           }}
-          ><zeta-icon>open</zeta-icon>Open Dialog</zeta-button
+        >
+          <zeta-icon>open</zeta-icon>Open Dialog</zeta-button
         >
         <zeta-dialog
           id="dialog1"

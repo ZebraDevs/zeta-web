@@ -48,7 +48,7 @@ export const Banner: StoryObj = {
     slot: { table: { disable: true } }
   },
   render: args =>
-    html`<zeta-system-banner align=${ifDefined(args.align)} status=${ifDefined(args.status)} text=${ifDefined(args.text)} .rounded=${args.rounded}>
+    html`<zeta-system-banner .align=${args.align} status=${ifDefined(args.status)} text=${ifDefined(args.text)} .rounded=${args.rounded}>
       ${args.leadingIcon && args.leadingIcon.length > 1 ? html`<zeta-icon slot="leadingIcon">${args.leadingIcon}</zeta-icon>` : nothing}
       ${args.trailingIcon && args.trailingIcon.length > 1 ? html`<zeta-icon slot="trailingIcon">${args.trailingIcon}</zeta-icon>` : nothing}
     </zeta-system-banner>`

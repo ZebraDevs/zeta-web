@@ -1,8 +1,8 @@
-import { expect, assert } from "@open-wc/testing";
+import { expect, assert, oneEvent } from "@open-wc/testing";
 import { setup } from "./setup.js";
 import type { ZetaIcon } from "../../components/icon/icon.js";
 import { ZetaTextInput } from "../../components/text-input/text-input.js";
-import { getSlotText, getCssVarColorValue } from "../utils.js";
+import { getSlotText, getCssVarColorValue, MouseActions, KeyboardActions } from "../utils.js";
 import "../../components/text-input/text-input.js";
 import "../../index.css";
 
@@ -166,6 +166,46 @@ describe("zeta-text-input", () => {
       assert.equal(el.type, "text");
       assert.equal(el.value, "password");
     });
+
+    // TODO extract into common test file
+    it("should dispatch onInput when value changes", async () => {
+      const el = await setup({});
+      const eventListener = oneEvent(el, "input");
+      await MouseActions.click(el);
+      await KeyboardActions.type("Test Value");
+
+      const event = await eventListener;
+      await expect(event.type).to.equal("input");
+    });
+    it("should dispatch onChange when value changes", async () => {
+      const el = await setup({});
+      const eventListener = oneEvent(el, "change");
+      await MouseActions.click(el);
+      await KeyboardActions.type("Test Value");
+      await MouseActions.clickOutside(el);
+
+      const event = await eventListener;
+      await expect(event.type).to.equal("change");
+    });
+    it("should dispatch onChange when field is deselected & value has changed", async () => {
+      const el = await setup({});
+      const clickButton = () => {
+        void MouseActions.click(el)
+          .then(() => KeyboardActions.press("Space"))
+          .then(() => MouseActions.clickOutside(el));
+      };
+      void setTimeout(clickButton);
+
+      const { data } = await oneEvent<InputEvent>(el, "input");
+      return expect(data).to.equal(" ");
+    });
+
+    it("should dispatch onFocus when field is focused", async () => {
+      const el = await setup({});
+      await MouseActions.click(el);
+      await KeyboardActions.press("Space");
+    });
+    it("should dispatch onBlur when field is deselected", async () => {});
   });
 
   // describe("Golden", () => {});

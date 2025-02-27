@@ -17,7 +17,7 @@ describe("zeta-dropdown-menu-item", () => {
     <zeta-icon slot="icon">star</zeta-icon>${text}</zeta-dropdown-menu-item>`
   ) => {
     // prettier-ignore
-    return fixture<ZetaDropdownMenuItem> (html`${unsafeStatic(template)}`);
+    return fixture<ZetaDropdownMenuItem>(html`${unsafeStatic(template)}`);
   };
 
   beforeEach(async () => {

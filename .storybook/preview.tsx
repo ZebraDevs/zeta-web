@@ -3,7 +3,14 @@ import { themes } from "@storybook/theming";
 import { setCustomElementsManifest } from "@storybook/web-components";
 import customElements from "../custom-elements.json";
 import "../src";
-import { Title, Description, Primary, Stories, ArgTypes } from "@storybook/addon-docs";
+import {
+  Title,
+  Description,
+  Primary,
+  Stories,
+  ArgTypes,
+} from "@storybook/addon-docs";
+import { withActions } from "@storybook/addon-actions/decorator";
 import React from "react";
 import extractArgs from "./extractArgs";
 import { createLitRenderer } from "cem-plugin-better-lit-types/storybook";
@@ -25,7 +32,9 @@ const preview: Preview = {
     },
     docs: {
       extractArgTypes: extractArgs(customElements),
-      theme: window.matchMedia("(prefers-color-scheme: dark)").matches ? themes.dark : themes.light,
+      theme: window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? themes.dark
+        : themes.light,
       page: () => {
         return (
           <>
@@ -89,6 +98,7 @@ const preview: Preview = {
       },
     },
   },
+  decorators: [withActions],
 };
 
 export default preview;

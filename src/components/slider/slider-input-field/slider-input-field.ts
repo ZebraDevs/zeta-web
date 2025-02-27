@@ -14,7 +14,7 @@ import { FormField, type InputType } from "../../../mixins/form-field.js";
 /**
  * An input field using a Zeta Slider
  *
- * @event {CustomEvent<ZetaSliderEvent>} ZetaSliderEvent:zeta-slider-change - Fired whenever value of slider is changed. Contains a single entry in detail: `value:number`.
+ * @event {CustomEvent<ZetaSliderEventDetail>} change - Fired whenever value of slider is changed. Contains a single entry in detail: `value:number`.
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=875-11860&m=dev
  * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/slider--docs
@@ -53,7 +53,7 @@ export class ZetaSliderInputField extends FormField(Contourable(LitElement)) {
   @query("input.contourable-target") input!: HTMLInputElement;
 
   /**
-   * @listens ZetaSliderEvent:zeta-slider-change
+   * @listens ZetaSliderEvent:change
    */
   private sliderChange = (e: CustomEvent<ZetaSliderEventDetail>) => {
     this.initialValue = e.detail.value;
@@ -63,7 +63,7 @@ export class ZetaSliderInputField extends FormField(Contourable(LitElement)) {
   };
 
   /**
-   * @fires ZetaSliderEvent:zeta-slider-change
+   * @fires ZetaSliderEvent:change
    */
   private onValueUpdated() {
     if (this.initialValue != undefined) {
@@ -93,8 +93,9 @@ export class ZetaSliderInputField extends FormField(Contourable(LitElement)) {
     }
   }
 
-  override handleChange(event: Event): void {
-    this.dispatchEvent(new Event(event.type, event));
+  override handleChange(event: Event) {
+    return event;
+    // this.dispatchEvent(new Event(event.type, event)); //TODO this is not working
   }
 
   protected firstUpdated() {
@@ -122,7 +123,7 @@ export class ZetaSliderInputField extends FormField(Contourable(LitElement)) {
             value=${ifDefined(this.initialValue)}
             min=${this.min}
             max=${this.max}
-            @zeta-slider-change=${this.sliderChange}
+            @change=${this.sliderChange}
           >
           </zeta-slider>
           <div class="range-label-container">

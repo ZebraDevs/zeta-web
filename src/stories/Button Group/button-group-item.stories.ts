@@ -15,11 +15,18 @@ const meta: Meta<ZetaButtonGroupItem> = {
     size: "medium",
     rounded: true,
     disabled: false,
+    flavor: "default",
     name: "",
     onclick: testFunc,
     showDropdown: false
   },
   argTypes: {
+    flavor: {
+      options: ["default", "inverse"],
+      control: {
+        type: "select"
+      }
+    },
     size: {
       options: ["medium", "large"],
       control: {
@@ -59,7 +66,15 @@ export default meta;
 export const GroupItem: StoryObj = {
   render: args => {
     return html`
-      <zeta-button-group-item size=${args.size} .onclick=${args.onclick} .disabled=${args.disabled} .rounded=${args.rounded} ?showDropdown=${args.showDropdown}>
+      <zeta-button-group-item
+        size=${args.size}
+        @click=${args.onclick}
+        .disabled=${args.disabled}
+        .rounded=${args.rounded}
+        ?showDropdown=${args.showDropdown}
+        flavor=${args.flavor}
+        name=${args.name}
+      >
         ${args.slot} ${args.icon && html`<zeta-icon slot="icon">${args.icon}</zeta-icon>`}
       </zeta-button-group-item>
     `;

@@ -6,6 +6,8 @@ import { BaseChip } from "../base-chips/base-chip.js";
 
 /** Zeta Filter Chip web component.
  *
+ * @event {Event} change - Fired when the filter chip is selected/deselected
+ *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21265-14112
  * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/chips--docs
  */
@@ -23,16 +25,13 @@ export class ZetaFilterChip extends BaseChip {
     }
   }
 
-  clickHanlder() {
-    const event = new CustomEvent("change", {
-      detail: this.active
-    });
+  clickHandler() {
     this.active = !this.active;
-    this.dispatchEvent(event);
+    this.dispatchEvent(new Event("change"));
   }
 
   protected override render() {
-    return html`<button class="container interactive-target" @click=${() => this.clickHanlder()} ?disabled=${this.disabled}>
+    return html`<button class="container interactive-target" @click=${() => this.clickHandler()} ?disabled=${this.disabled}>
       ${this.getIcon()}<slot></slot>
     </button>`;
   }

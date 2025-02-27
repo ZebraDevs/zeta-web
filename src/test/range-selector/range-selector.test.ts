@@ -143,7 +143,7 @@ describe("zeta-range-selector", () => {
   describe("Interaction", () => {
     it("updates the hidden input value when the slider value changes", async () => {
       const slider = subject.shadowRoot?.querySelector("zeta-slider");
-      slider?.dispatchEvent(new CustomEvent("zeta-range-slider-change", { detail: { min: 25, max: 75 } }));
+      slider?.dispatchEvent(new CustomEvent("change", { detail: { min: 25, max: 75 } }));
 
       const input = subject.shadowRoot?.querySelector("input#hidden-range-selector-input") as HTMLInputElement;
       const inputValue = input?.value;

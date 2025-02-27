@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaFilterChip } from "../../components/chips/filter-chip/filter-chip.js";
 import { html } from "lit";
+import { fn } from "@storybook/test";
 
 const meta: Meta<ZetaFilterChip> = {
   component: "zeta-filter-chip",
@@ -9,7 +10,8 @@ const meta: Meta<ZetaFilterChip> = {
     active: false,
     rounded: false,
     slot: "Chip",
-    disabled: false
+    disabled: false,
+    onchange: fn()
   },
   parameters: {
     design: {
@@ -24,8 +26,6 @@ const meta: Meta<ZetaFilterChip> = {
 export default meta;
 
 export const FilterChip: StoryObj<ZetaFilterChip> = {
-  render: ({ slot, ...args }) =>
-    html`<zeta-filter-chip ?disabled=${args.disabled} @change=${(e: CustomEvent) => console.log(e)} ?rounded=${args.rounded} ?active=${args.active}
-      >${slot}</zeta-filter-chip
-    >`
+  render: ({ slot, onchange, ...args }) =>
+    html`<zeta-filter-chip ?disabled=${args.disabled} @change=${onchange} ?rounded=${args.rounded} ?active=${args.active}> ${slot} </zeta-filter-chip>`
 };

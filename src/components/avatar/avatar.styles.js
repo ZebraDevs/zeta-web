@@ -79,7 +79,7 @@ export default css`
   }
 
   ::slotted(zeta-icon) {
-    color: var(--main-inverse);
+    color: var(--icon-color, var(--main-inverse));
   }
 
   .close,

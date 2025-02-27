@@ -2,7 +2,7 @@ import { html } from "lit";
 import { fixture, expect, oneEvent } from "@open-wc/testing";
 import type { ZetaUploadItem } from "../../components/upload-item/upload-item.js";
 import type { ZetaProgressCircle } from "../../components/progress-indicators/progress-indicators.js";
-import { ZetaCloseEvent } from "../../events";
+import { ZetaCancelUploadEvent } from "../../events";
 import "../../components/upload-item/upload-item.js";
 
 describe("zeta-upload-item", () => {
@@ -49,16 +49,16 @@ describe("zeta-upload-item", () => {
   // describe("Styling", () => {});
 
   describe("Interaction", () => {
-    it("fires ZetaCloseEvent:close when close icon is clicked", async () => {
+    it("fires ZetaCancelUploadEventDetail when close icon is clicked", async () => {
       const element: ZetaUploadItem = await fixture(html` <zeta-upload-item flavor="completed"></zeta-upload-item> `);
-      const eventListener = oneEvent(element, "close");
+      const eventListener = oneEvent(element, "cancelUpload");
 
       const btn = element.shadowRoot?.querySelector("#cancel") as HTMLElement;
       btn.click();
       await element.updateComplete;
 
       const event = await eventListener;
-      await expect(event.type).to.equal(new ZetaCloseEvent().name);
+      await expect(event.type).to.equal(new ZetaCancelUploadEvent().name);
     });
   });
 

@@ -1,9 +1,9 @@
-import { html, LitElement } from "lit";
+import { html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./switch.styles.js";
 import { type ZetaIconName } from "@zebra-fed/zeta-icons";
-import { Contourable, Interactive } from "../../mixins/mixins.js";
-import { FormField, type InputType } from "../../mixins/form-field.js";
+import { BaseToggleFormElement } from "../base-toggle-form-element.js";
+import { type InputType } from "../../mixins/form-field.js";
 import "../icon/icon.js";
 //TODO we dont have focus styles for switch
 //TODO Having icons smaller than the thumb is difficult to position
@@ -28,16 +28,14 @@ import "../icon/icon.js";
  * @part icon active - The active icon
  * @part icon inactive - The inactive icon
  *
+ * @event {Event} change - Fired when the checkbox value changes
+ * @event {InputEvent} input - Fired when the checkbox value changes
+ *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=1153-26923
  * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/switch--docs
  */
 @customElement("zeta-switch")
-export class ZetaSwitch extends FormField(Interactive(Contourable(LitElement))) {
-  static override shadowRootOptions: ShadowRootInit = {
-    ...LitElement.shadowRootOptions,
-    mode: "open",
-    delegatesFocus: true
-  };
+export class ZetaSwitch extends BaseToggleFormElement {
   constructor() {
     super();
     this.internals.role = "switch";
@@ -54,16 +52,9 @@ export class ZetaSwitch extends FormField(Interactive(Contourable(LitElement))) 
   @property({ type: String }) inactiveIcon?: ZetaIconName;
 
   override handleChange(event: Event) {
-    this.dispatchEvent(new Event(event.type, event));
+    super.handleChange(event);
+    event.stopPropagation();
     this.internals.ariaChecked = this.input.checked ? "true" : "false";
-  }
-
-  key(e: KeyboardEvent, type: "down" | "up") {
-    if (type === "up") {
-      if (e.key === " ") {
-        this.input.click();
-      }
-    }
   }
 
   static styles = [super.styles || [], styles];
@@ -72,7 +63,10 @@ export class ZetaSwitch extends FormField(Interactive(Contourable(LitElement))) 
     return html`
       <div
         part="track"
-        @click=${(_e: Event) => this.input.click()}
+        @click=${(_e: Event) => {
+          _e.stopPropagation(); //TODO BK: is this the click problem?
+          this.input.click();
+        }}
         @keydown=${(e: KeyboardEvent) => this.key(e, "down")}
         @keyup=${(e: KeyboardEvent) => this.key(e, "up")}
         tabindex="${this.disabled ? "-1" : this.tabIndex}"

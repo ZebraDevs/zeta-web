@@ -10,10 +10,10 @@ export * from "./slider-input-field/slider-input-field.js";
 /**
  * Sliders allow users to make selections from a range of values.
  *
- * @event {CustomEvent<ZetaSliderEvent>} ZetaSliderEvent:zeta-slider-change - Fired whenever value of slider is changed. Contains a single entry in details: `value:number`.
- * @event {CustomEvent<ZetaRangeSliderEvent>} ZetaRangeSliderEvent:zeta-range-slider-change - Fired whenever value of range slider is changed. Contains 2 values in details: `min:number`, `max:number`.
+ * @event {CustomEvent<ZetaSliderEventDetail>} change - Fired whenever value of slider is changed. Contains a single entry in details: `value:number`.
+ * @event {CustomEvent<ZetaRangeSliderEventDetail>} change - Fired whenever value of range slider is changed. Contains 2 values in details: `min:number`, `max:number`.
  *
- * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=875-11860&m=dev
+ * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=875-11860
  * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/slider--docs
  */
 @customElement("zeta-slider")
@@ -23,7 +23,6 @@ export class ZetaSlider extends Contourable(LitElement) {
 
   /** If set, will put steps on the slider at the given increments and the slider will snap to the nearest step. */
   @property({ type: Number }) stepIncrement?: number;
-
   /** The type of the slider. Can either be 'default' or 'range'. */
   @property({ type: String }) type: "default" | "range" = "default";
 
@@ -130,24 +129,24 @@ export class ZetaSlider extends Contourable(LitElement) {
     }
   }
   /**
-   * @fires ZetaSliderEvent:zeta-slider-change when the Slider value changes.
-   * @fires ZetaRangeSliderEvent:zeta-range-slider-change when the Range Slider value changes.
+   * @fires ZetaSliderEvent:change when the Slider value changes.
+   * @fires ZetaRangeSliderEvent:change when the Range Slider value changes.
    */
   private onHandleMoved = (handle: HTMLDivElement) => {
     if (this.stepIncrement) this.snapHandle(handle);
 
     if (this.type == "default") {
-      this.dispatchEvent(new ZetaSliderEvent({ value: this.getHandleValue(this.leftHandle) }).toEvent());
       this.value = this.getHandleValue(this.leftHandle);
+      this.dispatchEvent(new ZetaSliderEvent({ value: this.value }).toEvent());
     } else {
-      this.dispatchEvent(
-        new ZetaRangeSliderEvent({
-          min: this.getHandleValue(this.leftHandle),
-          max: this.getHandleValue(this.rightHandle)
-        }).toEvent()
-      );
       this.lowerValue = this.getHandleValue(this.leftHandle);
       this.upperValue = this.getHandleValue(this.rightHandle);
+      this.dispatchEvent(
+        new ZetaRangeSliderEvent({
+          min: this.lowerValue,
+          max: this.upperValue
+        }).toEvent()
+      );
     }
   };
 

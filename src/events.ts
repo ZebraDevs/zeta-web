@@ -34,7 +34,7 @@ export interface ZetaSliderEventDetail {
 }
 /** A CustomEvent factory that creates events when a standard slider is changed. */
 export class ZetaSliderEvent<T extends ZetaSliderEventDetail> extends ZetaEvent<T> {
-  name: string = "zeta-slider-change";
+  name: string = "change";
   constructor(detail: T) {
     super(detail);
   }
@@ -49,7 +49,7 @@ export interface ZetaRangeSliderEventDetail {
 }
 /** A CustomEvent factory that creates events when a ranged slider is changed. */
 export class ZetaRangeSliderEvent<T extends ZetaRangeSliderEventDetail> extends ZetaEvent<T> {
-  name: string = "zeta-range-slider-change";
+  name: string = "change";
   constructor(detail: T) {
     super(detail);
   }
@@ -62,14 +62,15 @@ export interface ZetaPageEventDetail {
 }
 /** A CustomEvent factory that creates events when a ranged slider is changed. */
 export class ZetaPageEvent<T extends ZetaPageEventDetail> extends ZetaEvent<T> {
-  name: string = "zeta-page-change";
+  name: string = "pageChange";
   constructor(detail: T) {
     super(detail, { bubbles: true, composed: true });
   }
 }
 
+export type ZetaCloseEventDetail = object;
 /** A CustomEvent factory that creates events when a close button is clicked, e.g. on an avatar. */
-export class ZetaCloseEvent extends ZetaEvent<object> {
+export class ZetaCloseEvent extends ZetaEvent<ZetaCloseEventDetail> {
   name: string = "close";
   constructor() {
     super({}, { bubbles: true, composed: true });
@@ -86,11 +87,21 @@ export class ZetaPopupEvent extends ZetaEvent<ZetaPopupEventDetail> {
   }
 }
 
+export type ZetaCancelUploadEventDetail = object; //TODO BK
 /** A CustomEvent factory that creates events when the cancel button on a progess circle is clicked. */
-export class ZetaCancelUploadEvent extends ZetaEvent<object> {
-  name: string = "cancel-upload";
+export class ZetaCancelUploadEvent extends ZetaEvent<ZetaCancelUploadEventDetail> {
+  name: string = "cancelUpload";
   constructor() {
     super({}, { bubbles: true, composed: true });
+  }
+}
+
+export type ZetaDropdownEventDetail = object; //TODO BK
+export class ZetaDropdownEvent extends ZetaEvent<ZetaDropdownEventDetail> {
+  name: string = "open";
+  constructor(isOpen: boolean) {
+    super({});
+    this.name = isOpen ? "open" : "close";
   }
 }
 
@@ -114,11 +125,13 @@ export class ZetaInputEvent<S, T extends ZetaInputEventDetail<S>> extends ZetaEv
   }
 }
 
-// export class ZetaDropdownEvent extends ZetaEvent<ZetaDropdownEventDetail> {
-//   name: string = "dropdown-open";
-//   name: string = "dropdown-close";
-//   constructor(isOpen: boolean) {
-//     super({});
-//     this.name = isOpen ? "zeta-modal-open" : "zeta-modal-close";
-//   }
-// }
+export type ZetaOptionClickEventDetail = {
+  value: string;
+};
+/** A CustomEvent factory that creates events for when a option in a select is clicked. */
+export class ZetaOptionClickEvent extends ZetaEvent<ZetaOptionClickEventDetail> {
+  name: string = "zeta-option-click";
+  constructor(detail: { value: string }) {
+    super(detail, { bubbles: true });
+  }
+}

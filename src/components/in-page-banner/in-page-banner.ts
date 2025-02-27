@@ -3,6 +3,7 @@ import { customElement, property } from "lit/decorators.js";
 import styles from "./in-page-banner.styles.js";
 import { Contourable } from "../../mixins/mixins.js";
 import "../button/icon-button/icon-button.js";
+import { ZetaCloseEvent } from "../../events.js";
 
 /**
  * Zeta in page banner component.
@@ -14,6 +15,8 @@ import "../button/icon-button/icon-button.js";
  *
  * @slot - The main content of the banner.
  * @slot action - The action buttons.
+ *
+ * @event {CustomEvent<ZetaCloseEventDetail>} close - Fired when the close icon is clicked.
  *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21156-27071
  * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/in-page-banner--docs
@@ -30,6 +33,10 @@ export class ZetaInPageBanner extends Contourable(LitElement) {
    */
   @property({ type: String, reflect: true }) status: "default" | "info" | "positive" | "warning" | "negative" = "default";
 
+  close() {
+    this.remove();
+    this.dispatchEvent(new ZetaCloseEvent().toEvent());
+  }
   static styles = [styles, super.styles ?? []];
 
   private getIcon = () => {
@@ -51,7 +58,7 @@ export class ZetaInPageBanner extends Contourable(LitElement) {
       <div class="trailing">
         <div class="header">
           <div class="title">${this.title}</div>
-          <zeta-icon-button flavor="text" size="small" .rounded=${this.rounded} .onclick=${() => this.remove()}>close</zeta-icon-button>
+          <zeta-icon-button flavor="text" size="small" .rounded=${this.rounded} @click=${() => this.close()}>close</zeta-icon-button>
         </div>
         <div class="content">
           <slot></slot>
