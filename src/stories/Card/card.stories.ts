@@ -9,7 +9,7 @@ import "../../components/button/icon-button/icon-button.js";
 import "../../components/button/button.js";
 import "../../components/icon/icon.js";
 
-const meta: Meta<ZetaCard> = {
+const meta: Meta<ZetaCard | any> = {
   component: "zeta-card",
   title: "Cards",
   args: {
@@ -46,9 +46,15 @@ const cardBody = html`<zeta-card-body>
   Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusm od tempor incididunt ut labore et do lore magna aliqua.
 </zeta-card-body>`;
 
-export const CardWithHeader: StoryObj<ZetaCard> = {
-  render: args =>
-    html`<zeta-card .rounded=${args.rounded}>
+export const CardWithHeader: StoryObj = {
+  render: args => html`
+    <style>
+       :root {
+        ${args["--card-border-color"] && `--card-border-color: ${args["--card-border-color"]}`} ;
+        ${args["--card-border-size"] && `--card-border-size: ${args["--card-border-size"]}`} ;
+      }
+    </style>
+    <zeta-card .rounded=${args.rounded}>
       <zeta-card-header headline="Headline" subHeadline="Subhead">
         <zeta-icon-button slot="trailing" flavor="text">more_vertical</zeta-icon-button>
       </zeta-card-header>
@@ -56,12 +62,19 @@ export const CardWithHeader: StoryObj<ZetaCard> = {
       <zeta-card-footer>
         <zeta-button>Button</zeta-button>
       </zeta-card-footer>
-    </zeta-card> `
+    </zeta-card>
+  `
 };
 
-export const CardWithTwoActions: StoryObj<ZetaCard> = {
-  render: args =>
-    html`<zeta-card .rounded=${args.rounded}>
+export const CardWithTwoActions: StoryObj = {
+  render: args => html`
+    <style>
+       :root {
+        ${args["--card-border-color"] && `--card-border-color: ${args["--card-border-color"]}`} ;
+        ${args["--card-border-size"] && `--card-border-size: ${args["--card-border-size"]}`} ;
+      }
+    </style>
+    <zeta-card .rounded=${args.rounded}>
       <zeta-card-header headline="Headline" subHeadline="Subhead">
         <zeta-icon-button slot="trailing" flavor="text">more_vertical</zeta-icon-button>
       </zeta-card-header>
@@ -70,12 +83,19 @@ export const CardWithTwoActions: StoryObj<ZetaCard> = {
         <zeta-button flavor="outline">Button</zeta-button>
         <zeta-button>Button</zeta-button>
       </zeta-card-footer>
-    </zeta-card> `
+    </zeta-card>
+  `
 };
 
-export const CardWithOneActionLeft: StoryObj<ZetaCard> = {
-  render: args =>
-    html`<zeta-card .rounded=${args.rounded}>
+export const CardWithOneActionLeft: StoryObj = {
+  render: args => html`
+    <style>
+       :root {
+        ${args["--card-border-color"] && `--card-border-color: ${args["--card-border-color"]}`} ;
+        ${args["--card-border-size"] && `--card-border-size: ${args["--card-border-size"]}`} ;
+      }
+    </style>
+    <zeta-card .rounded=${args.rounded}>
       <zeta-card-header headline="Headline" subHeadline="Subhead">
         <zeta-icon-button slot="trailing" flavor="text">more_vertical</zeta-icon-button>
       </zeta-card-header>
@@ -83,17 +103,27 @@ export const CardWithOneActionLeft: StoryObj<ZetaCard> = {
       <zeta-card-footer>
         <zeta-button flavor="text">Button</zeta-button>
       </zeta-card-footer>
-    </zeta-card> `
+    </zeta-card>
+  `
 };
 
-export const CardWithTitle: StoryObj<ZetaCard> = {
-  render: args =>
-    html`<zeta-card .rounded=${args.rounded}>
-      ${placeholderImg}
-      <zeta-card-header headline="Headline" subHeadline="Subhead"></zeta-card-header>
-      ${cardBody}
-      <zeta-card-footer>
-        <zeta-button>Button</zeta-button>
-      </zeta-card-footer>
-    </zeta-card> `
+export const CardWithTitle: StoryObj = {
+  render: args => {
+    return html`
+      <style>
+         :root {
+          ${args["--card-border-color"] && `--card-border-color: ${args["--card-border-color"]}`} ;
+          ${args["--card-border-size"] && `--card-border-size: ${args["--card-border-size"]}`} ;
+        }
+      </style>
+      <zeta-card .rounded=${args.rounded}>
+        ${placeholderImg}
+        <zeta-card-header headline="Headline" subHeadline="Subhead"></zeta-card-header>
+        ${cardBody}
+        <zeta-card-footer>
+          <zeta-button>Button</zeta-button>
+        </zeta-card-footer>
+      </zeta-card>
+    `;
+  }
 };
