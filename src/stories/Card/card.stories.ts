@@ -51,7 +51,8 @@ export const CardWithHeader: StoryObj = {
     <style>
        :root {
         ${args["--card-border-color"] && `--card-border-color: ${args["--card-border-color"]}`} ;
-        ${args["--card-border-size"] && `--card-border-size: ${args["--card-border-size"]}`} ;
+        ${args["--card-border-line-width"] && `--card-border-line-width: ${args["--card-border-line-width"]}`} ;
+        ${args["--card-border-line-style"] && `--card-border-line-style: ${args["--card-border-line-style"]}`} ;
       }
     </style>
     <zeta-card .rounded=${args.rounded}>
@@ -71,7 +72,8 @@ export const CardWithTwoActions: StoryObj = {
     <style>
        :root {
         ${args["--card-border-color"] && `--card-border-color: ${args["--card-border-color"]}`} ;
-        ${args["--card-border-size"] && `--card-border-size: ${args["--card-border-size"]}`} ;
+        ${args["--card-border-line-width"] && `--card-border-line-width: ${args["--card-border-line-width"]}`} ;
+        ${args["--card-border-line-style"] && `--card-border-line-style: ${args["--card-border-line-style"]}`} ;
       }
     </style>
     <zeta-card .rounded=${args.rounded}>
@@ -92,7 +94,8 @@ export const CardWithOneActionLeft: StoryObj = {
     <style>
        :root {
         ${args["--card-border-color"] && `--card-border-color: ${args["--card-border-color"]}`} ;
-        ${args["--card-border-size"] && `--card-border-size: ${args["--card-border-size"]}`} ;
+        ${args["--card-border-line-width"] && `--card-border-line-width: ${args["--card-border-line-width"]}`} ;
+        ${args["--card-border-line-style"] && `--card-border-line-style: ${args["--card-border-line-style"]}`} ;
       }
     </style>
     <zeta-card .rounded=${args.rounded}>
@@ -113,7 +116,8 @@ export const CardWithTitle: StoryObj = {
       <style>
          :root {
           ${args["--card-border-color"] && `--card-border-color: ${args["--card-border-color"]}`} ;
-          ${args["--card-border-size"] && `--card-border-size: ${args["--card-border-size"]}`} ;
+        ${args["--card-border-line-width"] && `--card-border-line-width: ${args["--card-border-line-width"]}`} ;
+        ${args["--card-border-line-style"] && `--card-border-line-style: ${args["--card-border-line-style"]}`} ;
         }
       </style>
       <zeta-card .rounded=${args.rounded}>
