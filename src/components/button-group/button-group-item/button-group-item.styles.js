@@ -59,4 +59,20 @@ export default css`
   :host zeta-icon {
     --icon-size: 20px;
   }
+
+  /* TODO finish hover, active etc */
+  :host([flavor="inverse"]) > button {
+    color: var(--main-inverse);
+    --icon-color: var(--main-inverse);
+    background-color: var(--state-inverse-enabled);
+  }
+  :host([flavor="inverse"]) > button:hover {
+    background-color: var(--state-inverse-hover);
+  }
+  :host([flavor="inverse"]) > button:active {
+    background-color: var(--state-inverse-selected);
+  }
+  :host([flavor="inverse"]) > button:focus {
+    background-color: var(--state-inverse-focus);
+  }
 `;
