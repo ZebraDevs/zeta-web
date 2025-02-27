@@ -24,8 +24,9 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
 
   static styles = [styles, super.styles ?? []];
 
-  constructor() {
-    super();
+  connectedCallback(): void {
+    // eslint-disable-next-line wc/guard-super-call
+    super.connectedCallback();
     this.internals.role = "input";
     this.role = "input";
   }
