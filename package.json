@@ -92,7 +92,7 @@
     "cem-plugin-custom-jsdoc-tags": "^1.1.2",
     "custom-element-jsx-integration": "^1.6.0",
     "del": "^8.0.0",
-    "esbuild": "0.24.0",
+    "esbuild": "0.25.0",
     "eslint": "^9.16.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-formatter-unix": "^8.40.0",
