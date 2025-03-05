@@ -2,7 +2,7 @@ This guide outlines the process and expectations for contributors looking to enh
 
 These components are open source, and we warmly welcome contributions from the community. All collaborators are expected to adhere to [Zebra's contributing guidelines](https://github.com/ZebraDevs/About/blob/master/CONTRIBUTING.md) and agree to the [Contributor Covenant Code of Conduct](https://github.com/ZebraDevs/About/blob/master/Code_of_Conduct.md).
 
-Contributions to the Zeta libraries are encouraged; however, new components _must_ be defined in the [Figma designs.](https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components) before proceeding.
+Contributions to the Zeta libraries are encouraged; however, new components _must_ be defined in the [Figma designs](https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components) before proceeding.
 
 ## Component creation and contribution process {#component-creation-web}
 
