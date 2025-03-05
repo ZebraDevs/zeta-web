@@ -1,5 +1,55 @@
 # Changelog
 
+## [0.4.0](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.3.1...zeta-web-v0.4.0) (2025-03-05)
+
+
+### ✨ New Features
+
+* Add bubbles: true, composed: true to base button ([ed4853a](https://github.com/ZebraDevs/zeta-web/commit/ed4853aaf9178be8ccec86799364017cbc8d45d5))
+* added JSX Declaration file generation to CEM ([a81967c](https://github.com/ZebraDevs/zeta-web/commit/a81967cf2dd56b705841425222c8b163dff7a224))
+* card border style  ([#15](https://github.com/ZebraDevs/zeta-web/issues/15)) ([ed4853a](https://github.com/ZebraDevs/zeta-web/commit/ed4853aaf9178be8ccec86799364017cbc8d45d5))
+* created select input component ([08d5970](https://github.com/ZebraDevs/zeta-web/commit/08d5970c9beed814a2574ebb20cd7c857af89956))
+* improved test counter script to read web.test.categories.json ([c4423d5](https://github.com/ZebraDevs/zeta-web/commit/c4423d50840ceeceaa5e8d4b2d033a0fe6b1f388))
+* indeterminate state on progress circle ([a81967c](https://github.com/ZebraDevs/zeta-web/commit/a81967cf2dd56b705841425222c8b163dff7a224))
+* JSX Declaration for React 19 support ([#13](https://github.com/ZebraDevs/zeta-web/issues/13)) ([a81967c](https://github.com/ZebraDevs/zeta-web/commit/a81967cf2dd56b705841425222c8b163dff7a224))
+* Select Input implement custom event for option clicks and handle onChange ([a81967c](https://github.com/ZebraDevs/zeta-web/commit/a81967cf2dd56b705841425222c8b163dff7a224))
+* simplified Event declaration in all components, to help React usage ([a81967c](https://github.com/ZebraDevs/zeta-web/commit/a81967cf2dd56b705841425222c8b163dff7a224))
+* testing structure lint rule ([c4423d5](https://github.com/ZebraDevs/zeta-web/commit/c4423d50840ceeceaa5e8d4b2d033a0fe6b1f388))
+* wc code quality github action ([#7](https://github.com/ZebraDevs/zeta-web/issues/7)) ([8249776](https://github.com/ZebraDevs/zeta-web/commit/8249776699b3c24fc1020feef2ab7f0b8d156b2f))
+
+
+### 🪲 Bug Fixes
+
+* change event in slider input and range selector ([a81967c](https://github.com/ZebraDevs/zeta-web/commit/a81967cf2dd56b705841425222c8b163dff7a224))
+* hidden form field input for slider ([a81967c](https://github.com/ZebraDevs/zeta-web/commit/a81967cf2dd56b705841425222c8b163dff7a224))
+* top app bar font token ([a81967c](https://github.com/ZebraDevs/zeta-web/commit/a81967cf2dd56b705841425222c8b163dff7a224))
+* **UX-1390:** Text input not working in react. ([#14](https://github.com/ZebraDevs/zeta-web/issues/14)) ([e00980f](https://github.com/ZebraDevs/zeta-web/commit/e00980f20b9b5e15710eb0e70eecfd44ccafc1bf))
+
+
+### 📈 Documentation
+
+* Update testing readme ([#16](https://github.com/ZebraDevs/zeta-web/issues/16)) ([68db298](https://github.com/ZebraDevs/zeta-web/commit/68db298c59db02ff03200ed556f05b63a0204331))
+* **UX-1385:** Update contributing ([68db298](https://github.com/ZebraDevs/zeta-web/commit/68db298c59db02ff03200ed556f05b63a0204331))
+
+
+### ⛓️ Dependencies
+
+* Update esbuild due to reported vulnerability ([e00980f](https://github.com/ZebraDevs/zeta-web/commit/e00980f20b9b5e15710eb0e70eecfd44ccafc1bf))
+
+
+### 🧪 Tests
+
+* fixed some tests due to event name changes. ([a81967c](https://github.com/ZebraDevs/zeta-web/commit/a81967cf2dd56b705841425222c8b163dff7a224))
+
+
+### 🧹 Miscellaneous Chores
+
+* clean up checkbox and radio tests ([a81967c](https://github.com/ZebraDevs/zeta-web/commit/a81967cf2dd56b705841425222c8b163dff7a224))
+* comment out unused import in slider stories ([a81967c](https://github.com/ZebraDevs/zeta-web/commit/a81967cf2dd56b705841425222c8b163dff7a224))
+* remove comment from in page banner ([a81967c](https://github.com/ZebraDevs/zeta-web/commit/a81967cf2dd56b705841425222c8b163dff7a224))
+* remove random backticks from testing readme ([a81967c](https://github.com/ZebraDevs/zeta-web/commit/a81967cf2dd56b705841425222c8b163dff7a224))
+* removed React &lt;18 generator code ([a81967c](https://github.com/ZebraDevs/zeta-web/commit/a81967cf2dd56b705841425222c8b163dff7a224))
+
 ## [0.3.1](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.3.0...zeta-web-v0.3.1) (2024-12-04)
 
 ### 📈 Documentation
