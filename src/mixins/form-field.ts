@@ -20,7 +20,8 @@ export type InputType =
   | "radio-dropdown"
   | "slider"
   | "range-selector"
-  | "select"; //Extend this when adding more form controls
+  | "select"
+  | "stepper"; //Extend this when adding more form controls
 
 //TODO add all properties here
 declare abstract class FormFieldInterface /* extends InteractiveInterface*/ {
@@ -401,6 +402,22 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
               @change=${this._handleChange}
               ?hidden=${true}
             ></select>
+          `;
+        case "stepper":
+          return html`
+            <input
+              type="number"
+              id=${ifDefined(this.id !== "" ? this.id : undefined)}
+              name=${this.name}
+              ?disabled=${this.disabled}
+              aria-disabled=${this.disabled ? "true" : "false"}
+              ?required=${this.required}
+              aria-required=${this.required ? "true" : "false"}
+              .value=${live(this.value ?? "")}
+              @input=${this._handleInput}
+              @change=${this._handleChange}
+              ?hidden=${true}
+            />
           `;
         default:
           return html`<input

@@ -10,6 +10,7 @@ import "../../components/radio-button/radio-button";
 import "../../components/slider/slider-input-field/slider-input-field.js";
 import "../../components/slider/range-selector/range-selector.js";
 import "../../components/select-input/select-input.js";
+import "../../components/stepper-input/stepper-input.js";
 
 const meta: Meta = {
   title: "Form"
@@ -85,6 +86,8 @@ export const Form: StoryObj = {
         <zeta-option value="5">Option 5</zeta-option>
         <zeta-option value="6">Option 6</zeta-option>
       </zeta-select-input>
+
+      <zeta-stepper-input name="zeta-stepper-input"></zeta-stepper-input>
 
       <div
         style=${styleMap({

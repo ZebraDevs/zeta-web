@@ -135,3 +135,14 @@ export class ZetaOptionClickEvent extends ZetaEvent<ZetaOptionClickEventDetail> 
     super(detail, { bubbles: true });
   }
 }
+
+export type ZetaStepperChangeEventDetail = {
+  value: string;
+};
+/** A CustomEvent factory that creates events for when an input value changes. */
+export class ZetaStepperChangeEvent extends ZetaEvent<ZetaStepperChangeEventDetail> {
+  name: string = "change";
+  constructor(detail: { value: string }) {
+    super(detail, { bubbles: true, composed: true });
+  }
+}
