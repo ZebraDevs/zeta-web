@@ -1,6 +1,6 @@
 import { customElement, property, query } from "lit/decorators.js";
 import { FormField, type InputType } from "../../mixins/form-field.js";
-import { html, LitElement } from "lit";
+import { html, LitElement, type PropertyValues } from "lit";
 import { live } from "lit/directives/live.js";
 import styles from "./stepper-input.styles.js";
 import { ifDefined } from "lit/directives/if-defined.js";
@@ -35,13 +35,12 @@ export class ZetaStepperInput extends FormField(Contourable(LitElement)) {
 
   @query(".input-container input") inputEl!: HTMLInputElement;
 
-  handleChange(event: Event): void {
+  handleChange(event: Event) {
     this.hiddenInput.dispatchEvent(event);
   }
 
   protected firstUpdated() {
     this.value = this.validateValue(this.value);
-    this.hiddenInput.dispatchEvent(new ZetaStepperChangeEvent({ value: this.value }).toEvent());
   }
 
   private validateValue(value: string): string {
