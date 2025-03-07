@@ -143,6 +143,6 @@ export type ZetaStepperChangeEventDetail = {
 export class ZetaStepperChangeEvent extends ZetaEvent<ZetaStepperChangeEventDetail> {
   name: string = "change";
   constructor(detail: { value: string }) {
-    super(detail, {bubbles: true, composed: true});
+    super(detail, { bubbles: true, composed: true });
   }
 }
