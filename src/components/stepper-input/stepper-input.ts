@@ -1,6 +1,6 @@
 import { customElement, property, query } from "lit/decorators.js";
 import { FormField, type InputType } from "../../mixins/form-field.js";
-import { html, LitElement, type PropertyValues } from "lit";
+import { html, LitElement } from "lit";
 import { live } from "lit/directives/live.js";
 import styles from "./stepper-input.styles.js";
 import { ifDefined } from "lit/directives/if-defined.js";
