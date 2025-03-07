@@ -1,4 +1,5 @@
-import { customElement, property } from "lit/decorators.js";
+import { customElement, property, query } from "lit/decorators.js";
+import { FormField, type InputType } from "../../mixins/form-field.js";
 import { html, LitElement } from "lit";
 import { live } from "lit/directives/live.js";
 import styles from "./stepper-input.styles.js";
@@ -9,7 +10,6 @@ import "../icon/icon.js";
 
 //TODO: Disable buttons when at min or max
 //TODO: disabled prop changes size of box
-//TODO: add FormField mixin
 
 /** ZetaStepperInput web component.
  * A stepper input, also called numeric stepper, is a common UI element that allows users to input a number or value simply by clicking the plus and minus buttons.
@@ -18,53 +18,63 @@ import "../icon/icon.js";
  * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/stepper-input--docs
  */
 @customElement("zeta-stepper-input")
-export class ZetaStepperInput extends Contourable(LitElement) {
+export class ZetaStepperInput extends FormField(Contourable(LitElement)) {
   static styles = [super.styles || [], styles];
 
   @property({ type: Number }) min?: number;
   @property({ type: Number }) max?: number;
   @property({ type: Boolean }) disabled: boolean = false; //TODO: Use interactive, check styles beforehand
   @property({ reflect: true }) size: "medium" | "large" = "medium";
-  @property({ type: Number }) get value() {
-    return this.inputValue;
+
+  type: InputType = "stepper";
+
+  handleChange = (event: Event): void => {
+    console.log("handleChange", (event.target as HTMLInputElement).value);
+    this.value = this.validateValue((event.target as HTMLInputElement).value);
+    this.dispatchEvent(new Event("change", event));
+  };
+
+  @query("input") inputEl!: HTMLSelectElement;
+
+  protected firstUpdated() {
+    this.value = this.validateValue(this.value);
+    this.inputEl.value = this.value;
+    this.internals.setFormValue(this.value);
   }
 
-  set value(value: number) {
+  private validateValue(value: string): string {
     const valueToNumber = Number(value);
     if (isNaN(valueToNumber) || valueToNumber === undefined) {
-      this.inputValue = 0;
+      value = "0";
     } else if (this.max && valueToNumber >= this.max) {
-      this.inputValue = this.max;
+      value = this.max.toString();
     } else if (this.min !== undefined && valueToNumber <= this.min) {
-      this.inputValue = this.min;
+      value = this.min.toString();
     } else {
-      this.inputValue = valueToNumber;
+      value = valueToNumber.toString();
     }
+    return value;
   }
 
   private handleOnChange = (value: number) => {
-    if (this.max && value >= this.max) {
-      this.value = this.max;
-    } else if (this.min && value <= this.min) {
-      this.value = this.min;
-    } else {
-      this.value = value;
-    }
+    this.value = this.validateValue(value.toString());
+    this.internals.setFormValue(this.value);
 
     this.requestUpdate();
   };
 
-  private inputValue = 0;
-
   protected render() {
     return html`
+      ${super.render()}
       <div class="container">
         <zeta-icon-button
           .disabled=${this.disabled}
           .rounded=${this.rounded}
           size=${this.size}
           flavor="outline-subtle"
-          @click=${() => (this.value = this.value - 1)}
+          @click=${() => {
+            this.handleOnChange(Number(this.value) - 1);
+          }}
         >
           remove
         </zeta-icon-button>
@@ -75,7 +85,7 @@ export class ZetaStepperInput extends Contourable(LitElement) {
             max=${ifDefined(this.max?.toString())}
             type="number"
             @change=${(e: Event) => this.handleOnChange(Number((e.currentTarget as HTMLInputElement).value))}
-            .value=${live(this.value.toString())}
+            .value=${live(this.value)}
             .disabled=${this.disabled}
           />
         </div>
@@ -84,7 +94,9 @@ export class ZetaStepperInput extends Contourable(LitElement) {
           .rounded=${this.rounded}
           size=${this.size}
           flavor="outline-subtle"
-          @click=${() => (this.value = this.value + 1)}
+          @click=${() => {
+            this.handleOnChange(Number(this.value) + 1);
+          }}
         >
           add
         </zeta-icon-button>
