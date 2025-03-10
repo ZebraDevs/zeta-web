@@ -23,6 +23,9 @@ import "../icon/icon.js";
  * @part footer - Styles the dialog footer
  * @part header - Styles the dialog header
  *
+ * @cssproperty --dialog-max-width - Max width of the dialog. Defaults to 480px.
+ * @cssproperty --dialog-max-height - Max height of the dialog. Defaults to 80vh.
+ *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-14&node-type=canvas&m=dev
  * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/dialog--docs
  */
