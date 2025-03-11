@@ -121,7 +121,7 @@
     "@lit/localize": "^0.12.2",
     "@storybook/test": "^8.4.4",
     "@web/test-runner-junit-reporter": "^0.7.2",
-    "@zebra-fed/zeta-icons": "^0.9.1",
+    "@zebra-fed/zeta-icons": "^0.9.6",
     "lit": "^3.2.1"
   },
   "overrides": {
