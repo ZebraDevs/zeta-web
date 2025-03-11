@@ -1,4 +1,5 @@
-import { customElement, property } from "lit/decorators.js";
+import { customElement, property, query } from "lit/decorators.js";
+import { FormField, type InputType } from "../../mixins/form-field.js";
 import { html, LitElement } from "lit";
 import { live } from "lit/directives/live.js";
 import styles from "./stepper-input.styles.js";
@@ -6,10 +7,10 @@ import { ifDefined } from "lit/directives/if-defined.js";
 import { Contourable } from "../../mixins/mixins.js";
 import "../button/icon-button/icon-button.js";
 import "../icon/icon.js";
+import { ZetaStepperChangeEvent } from "../../events.js";
 
 //TODO: Disable buttons when at min or max
 //TODO: disabled prop changes size of box
-//TODO: add FormField mixin
 
 /** ZetaStepperInput web component.
  * A stepper input, also called numeric stepper, is a common UI element that allows users to input a number or value simply by clicking the plus and minus buttons.
@@ -18,64 +19,72 @@ import "../icon/icon.js";
  * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/stepper-input--docs
  */
 @customElement("zeta-stepper-input")
-export class ZetaStepperInput extends Contourable(LitElement) {
+export class ZetaStepperInput extends FormField(Contourable(LitElement)) {
   static styles = [super.styles || [], styles];
 
   @property({ type: Number }) min?: number;
   @property({ type: Number }) max?: number;
   @property({ type: Boolean }) disabled: boolean = false; //TODO: Use interactive, check styles beforehand
   @property({ reflect: true }) size: "medium" | "large" = "medium";
-  @property({ type: Number }) get value() {
-    return this.inputValue;
+
+  type: InputType = "stepper";
+
+  id = "hidden-stepper-input";
+
+  @query("input#hidden-stepper-input") hiddenInput!: HTMLInputElement;
+
+  @query(".input-container input") inputEl!: HTMLInputElement;
+
+  handleChange(event: Event) {
+    this.hiddenInput.dispatchEvent(event);
   }
 
-  set value(value: number) {
+  protected firstUpdated() {
+    this.value = this.validateValue(this.value);
+  }
+
+  private validateValue(value: string): string {
     const valueToNumber = Number(value);
     if (isNaN(valueToNumber) || valueToNumber === undefined) {
-      this.inputValue = 0;
+      value = "0";
     } else if (this.max && valueToNumber >= this.max) {
-      this.inputValue = this.max;
+      value = this.max.toString();
     } else if (this.min !== undefined && valueToNumber <= this.min) {
-      this.inputValue = this.min;
+      value = this.min.toString();
     } else {
-      this.inputValue = valueToNumber;
+      value = valueToNumber.toString();
     }
+    this.value = value;
+    this.inputEl.value = value;
+    this.hiddenInput.value = value;
+
+    return value;
   }
-
-  private handleOnChange = (value: number) => {
-    if (this.max && value >= this.max) {
-      this.value = this.max;
-    } else if (this.min && value <= this.min) {
-      this.value = this.min;
-    } else {
-      this.value = value;
-    }
-
-    this.requestUpdate();
-  };
-
-  private inputValue = 0;
 
   protected render() {
     return html`
+      ${super.render()}
       <div class="container">
         <zeta-icon-button
           .disabled=${this.disabled}
           .rounded=${this.rounded}
           size=${this.size}
           flavor="outline-subtle"
-          @click=${() => (this.value = this.value - 1)}
+          @click=${() => {
+            this.handleChange(new ZetaStepperChangeEvent({ value: this.validateValue((Number(this.value) - 1).toString()) }).toEvent());
+          }}
         >
           remove
         </zeta-icon-button>
         <div class="input-container">
           <input
-            id=${this.id}
             min=${ifDefined(this.min?.toString())}
             max=${ifDefined(this.max?.toString())}
             type="number"
-            @change=${(e: Event) => this.handleOnChange(Number((e.currentTarget as HTMLInputElement).value))}
-            .value=${live(this.value.toString())}
+            @change=${(e: Event) => {
+              this.handleChange(new ZetaStepperChangeEvent({ value: this.validateValue((e.currentTarget as HTMLInputElement).value) }).toEvent());
+            }}
+            .value=${live(this.value)}
             .disabled=${this.disabled}
           />
         </div>
@@ -84,7 +93,9 @@ export class ZetaStepperInput extends Contourable(LitElement) {
           .rounded=${this.rounded}
           size=${this.size}
           flavor="outline-subtle"
-          @click=${() => (this.value = this.value + 1)}
+          @click=${() => {
+            this.handleChange(new ZetaStepperChangeEvent({ value: this.validateValue((Number(this.value) + 1).toString()) }).toEvent());
+          }}
         >
           add
         </zeta-icon-button>
