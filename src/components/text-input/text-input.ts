@@ -59,17 +59,17 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
    *
    * if `error`, then `errorText` is shown instead.
    */
-  @property() hintText = "";
+  @property() hintText? = "";
 
   /**
    * Error hint text
    *
    * Shown if `error`, replaces `hintText`.
    */
-  @property() errorText = "";
+  @property() errorText? = "";
 
   /** Type of field */
-  @property({ type: String, reflect: true }) type: "text" | "textarea" | "password" | "time" | "date" = "text";
+  @property({ type: String, reflect: true }) type: "text" | "textarea" | "password" | "time" | "date" | "number" = "text";
 
   private _valueOnLastFocus: string | null = null;
 
@@ -153,11 +153,11 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
   }
 
   private renderPrefix() {
-    return this.prefix && this.type === "text" && !this.toggled ? html`<span class="left affix">${this.prefix}</span>` : nothing;
+    return this.prefix && (this.type === "text" || this.type === "number") && !this.toggled ? html`<span class="left affix">${this.prefix}</span>` : nothing;
   }
 
   private renderSuffix() {
-    return this.suffix && this.type === "text" && !this.toggled ? html`<span class="right affix">${this.suffix}</span>` : nothing;
+    return this.suffix && (this.type === "text" || this.type === "number") && !this.toggled ? html`<span class="right affix">${this.suffix}</span>` : nothing;
   }
 
   private toggled = false;

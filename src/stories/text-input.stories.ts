@@ -30,7 +30,7 @@ const meta: Meta<InputStory> = {
   },
   argTypes: {
     type: {
-      options: ["text", "textarea", "password", "time", "date"],
+      options: ["text", "textarea", "password", "time", "date", "number"],
       control: {
         type: "select"
       }
