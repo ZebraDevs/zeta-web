@@ -14,14 +14,19 @@ export default css`
       background-color: var(--border-hover);
     }
   }
-
+  
   :host([rounded]) > .container {
     border-radius: 2px !important;
+  }
+
+  :host([reverse]) label {
+    flex-direction: row-reverse;  
   }
 
   label {
     cursor: pointer;
     width: auto !important;
     height: 100% !important;
+    display: flex;
   }
 `;
