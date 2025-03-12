@@ -107,7 +107,6 @@ export default css`
     border-radius: inherit;
     display: flex;
     align-items: center;
-    min-width: 328px;
     height: fit-content;
     background-color: var(--surface-default);
     padding: var(--spacing-medium);
@@ -123,6 +122,7 @@ export default css`
     padding: 0;
     margin: 0;
     font: var(--body-medium);
+    width: 100%;
   }
 
   .input-container textarea::placeholder,
