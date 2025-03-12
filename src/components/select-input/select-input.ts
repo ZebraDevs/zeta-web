@@ -189,21 +189,24 @@ export class ZetaSelectInput extends FormField(Size(Contourable(Interactive(LitE
     document.addEventListener("click", this.handleOutsideClick.bind(this));
 
     return html`
-      <div class="hidden-select">${super.render()}</div>
-      ${this.renderLabel()}
-      <div class="input-options">
-        <div
-          class="input contourable-target"
-          tabindex="0"
-          @click=${() => this.toggleOpen()}
-          @keydown=${(e: KeyboardEvent) => this.key(e, "down")}
-          @keyup=${(e: KeyboardEvent) => this.key(e, "up")}
-        >
-          ${this.renderInputContent()}
+    <div class='wrapper'>
+        <div class="hidden-select">${super.render()}</div>
+        ${this.renderLabel()}
+        <div class="input-options">
+          <div
+            class="input contourable-target"
+            tabindex="0"
+            @click=${() => this.toggleOpen()}
+            @keydown=${(e: KeyboardEvent) => this.key(e, "down")}
+            @keyup=${(e: KeyboardEvent) => this.key(e, "up")}
+          >
+            ${this.renderInputContent()}
+          </div>
+          <slot class="options contourable-target" @slotchange=${this.handleSlotChange}></slot>
         </div>
-        <slot class="options contourable-target" @slotchange=${this.handleSlotChange}></slot>
+        ${this.renderHint()}
       </div>
-      ${this.renderHint()}
+    </div>
     `;
   }
 }
