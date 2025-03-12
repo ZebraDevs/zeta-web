@@ -21,6 +21,8 @@ export class ZetaOption extends Contourable(Interactive(Size(LitElement))) {
 
   @property({ type: Boolean }) disabled: boolean = false;
 
+  type = "option" as const;
+
   private _handleClick = () => {
     if (!this.disabled) {
       // uncomment this to enable deselection
