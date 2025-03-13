@@ -1,12 +1,5 @@
 import { css } from "lit";
 export default css`
-  :host {
-    --_select-input-width: var(--select-input-width, 200px);
-  }
-
-  .wrapper {
-    width: var(--_select-input-width);
-  }
   :host([disabled]),
   :host([disabled]) .label,
   :host([disabled]) .label label,
@@ -152,7 +145,6 @@ export default css`
 
   .options {
     display: none;
-    position: absolute;
     background-color: var(--surface-default);
     width: 100%;
     z-index: 1;
@@ -162,7 +154,6 @@ export default css`
     overflow-y: auto;
     margin-top: 2px;
     position: fixed;
-    width: var(--_select-input-width);
   }
 
   :host([rounded]) .options {

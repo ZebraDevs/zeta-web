@@ -116,10 +116,20 @@ export class ZetaSelectInput extends FormField(Size(Contourable(Interactive(LitE
 
   updateSelectedOption = () => (this._selectedOption = Array.from(this.optionsNodeList).find(option => option.selected || option.value === this.value));
 
+  updateOptionsWidth = (): void => {
+    try {
+      const inputField = this.shadowRoot?.querySelector(".input");
+      const inputFieldWidth = inputField ? inputField.clientWidth : 0;
+      const optionsDiv = this.shadowRoot?.querySelector(".options");
+      (optionsDiv as HTMLElement).style.maxHeight = `${this.optionsDialogHeight}px`;
+      (optionsDiv as HTMLElement).style.width = `${inputFieldWidth}px`;
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   handleSlotChange = (e: Event): void => {
     this.updateSelectedOption();
-    const optionsDiv = this.shadowRoot?.querySelector(".options");
-    (optionsDiv as HTMLElement).style.maxHeight = `${this.optionsDialogHeight}px`;
 
     ((e.target as HTMLSlotElement).assignedElements() as ZetaOption[]).forEach(option => {
       switch (this.size) {
@@ -176,6 +186,7 @@ export class ZetaSelectInput extends FormField(Size(Contourable(Interactive(LitE
 
   toggleOpen = (): void => {
     if (!this.disabled) {
+      this.updateOptionsWidth();
       this.open = !this.open;
     }
   };
