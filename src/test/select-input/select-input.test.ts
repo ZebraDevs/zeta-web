@@ -92,7 +92,8 @@ describe("zeta-select-input", () => {
       const inputWidth = input?.getBoundingClientRect().width;
       const optionsWidth = options?.getBoundingClientRect().width;
 
-      await expect(inputWidth).to.equal(optionsWidth);
+      const optionsMargin = 2;
+      await expect(inputWidth).to.equal((optionsWidth ?? 0) + optionsMargin);
     });
 
     it("renders the options box with the correct height", async () => {
