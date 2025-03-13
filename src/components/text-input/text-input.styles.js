@@ -29,10 +29,6 @@ export default css`
   }
 
   zeta-icon {
-    --icon-color: var(--main-default);
-  }
-
-  zeta-icon.subtle {
     --icon-color: var(--main-subtle);
   }
 

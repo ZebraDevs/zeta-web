@@ -127,13 +127,13 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
 
   private renderLeftIcon() {
     return this.leadingIcon && this.type === "text" && !this.toggled
-      ? html`<zeta-icon class="left subtle" .rounded=${this.rounded}>${this.leadingIcon}</zeta-icon> `
+      ? html`<zeta-icon class="left" .rounded=${this.rounded}>${this.leadingIcon}</zeta-icon> `
       : nothing;
   }
 
   private renderRightIcon() {
     return this.trailingIcon && this.type === "text" && !this.toggled
-      ? html`<zeta-icon class="right subtle" .rounded=${this.rounded}>${this.trailingIcon}</zeta-icon>`
+      ? html`<zeta-icon class="right" .rounded=${this.rounded}>${this.trailingIcon}</zeta-icon>`
       : this.type === "password" || this.toggled
         ? html`<zeta-icon
             @click=${() => {
