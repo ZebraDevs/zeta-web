@@ -21,7 +21,8 @@ export type InputType =
   | "slider"
   | "range-selector"
   | "select"
-  | "stepper"; //Extend this when adding more form controls
+  | "stepper"
+  | "number"; //Extend this when adding more form controls
 
 //TODO add all properties here
 declare abstract class FormFieldInterface /* extends InteractiveInterface*/ {

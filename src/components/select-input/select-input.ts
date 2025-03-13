@@ -1,4 +1,4 @@
-import { customElement, property, query, queryAssignedNodes } from "lit/decorators.js";
+import { customElement, property, query, queryAssignedNodes, state } from "lit/decorators.js";
 import { html, LitElement, nothing, type PropertyValues, type TemplateResult } from "lit";
 
 import { FormField, type InputType } from "../../mixins/form-field";
@@ -70,6 +70,8 @@ export class ZetaSelectInput extends FormField(Size(Contourable(Interactive(LitE
 
   @queryAssignedNodes() optionsNodeList: NodeListOf<HTMLOptionElement>;
 
+  @state() private _selectedOption: HTMLOptionElement | undefined = undefined;
+
   @query("slot") slotElement!: HTMLSlotElement;
 
   @query("select") select!: HTMLSelectElement;
@@ -112,9 +114,22 @@ export class ZetaSelectInput extends FormField(Size(Contourable(Interactive(LitE
     this.internals.setFormValue(v);
   }
 
+  updateSelectedOption = () => (this._selectedOption = Array.from(this.optionsNodeList).find(option => option.selected || option.value === this.value));
+
+  updateOptionsWidth = (): void => {
+    try {
+      const inputField = this.shadowRoot?.querySelector(".input");
+      const inputFieldWidth = inputField ? inputField.clientWidth : 0;
+      const optionsDiv = this.shadowRoot?.querySelector(".options");
+      (optionsDiv as HTMLElement).style.maxHeight = `${this.optionsDialogHeight}px`;
+      (optionsDiv as HTMLElement).style.width = `${inputFieldWidth}px`;
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   handleSlotChange = (e: Event): void => {
-    const optionsDiv = this.shadowRoot?.querySelector(".options");
-    (optionsDiv as HTMLElement).style.maxHeight = `${this.optionsDialogHeight}px`;
+    this.updateSelectedOption();
 
     ((e.target as HTMLSlotElement).assignedElements() as ZetaOption[]).forEach(option => {
       switch (this.size) {
@@ -145,11 +160,15 @@ export class ZetaSelectInput extends FormField(Size(Contourable(Interactive(LitE
   }
 
   renderInputContent(): TemplateResult {
-    const selectedOption = Array.from(this.optionsNodeList).find(option => option.selected);
-
     return html`
       ${this.icon ? html`<zeta-icon class="contourable-target">${this.icon}</zeta-icon>` : nothing}
-      ${selectedOption ? selectedOption.innerText : this.placeholder === undefined ? "Select an option" : this.placeholder === "" ? "" : this.placeholder}
+      ${this._selectedOption
+        ? this._selectedOption.innerText
+        : this.placeholder === undefined
+          ? "Select an option"
+          : this.placeholder === ""
+            ? ""
+            : this.placeholder}
       <zeta-icon class="contourable-target expand-more">expand_more</zeta-icon>
     `;
   }
@@ -167,6 +186,7 @@ export class ZetaSelectInput extends FormField(Size(Contourable(Interactive(LitE
 
   toggleOpen = (): void => {
     if (!this.disabled) {
+      this.updateOptionsWidth();
       this.open = !this.open;
     }
   };
@@ -189,21 +209,24 @@ export class ZetaSelectInput extends FormField(Size(Contourable(Interactive(LitE
     document.addEventListener("click", this.handleOutsideClick.bind(this));
 
     return html`
-      <div class="hidden-select">${super.render()}</div>
-      ${this.renderLabel()}
-      <div class="input-options">
-        <div
-          class="input contourable-target"
-          tabindex="0"
-          @click=${() => this.toggleOpen()}
-          @keydown=${(e: KeyboardEvent) => this.key(e, "down")}
-          @keyup=${(e: KeyboardEvent) => this.key(e, "up")}
-        >
-          ${this.renderInputContent()}
+    <div class='wrapper'>
+        <div class="hidden-select">${super.render()}</div>
+        ${this.renderLabel()}
+        <div class="input-options">
+          <div
+            class="input contourable-target"
+            tabindex="0"
+            @click=${() => this.toggleOpen()}
+            @keydown=${(e: KeyboardEvent) => this.key(e, "down")}
+            @keyup=${(e: KeyboardEvent) => this.key(e, "up")}
+          >
+            ${this.renderInputContent()}
+          </div>
+          <slot class="options contourable-target" @slotchange=${this.handleSlotChange}></slot>
         </div>
-        <slot class="options contourable-target" @slotchange=${this.handleSlotChange}></slot>
+        ${this.renderHint()}
       </div>
-      ${this.renderHint()}
+    </div>
     `;
   }
 }

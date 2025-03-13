@@ -1,5 +1,9 @@
 import { css } from "lit";
 export default css`
+  :host {
+    display: inline-block;
+  }
+
   :host([disabled]) *[part="icon"] {
     color: var(--main-disabled);
   }
@@ -19,9 +23,14 @@ export default css`
     border-radius: 2px !important;
   }
 
+  :host([reverse]) label {
+    flex-direction: row-reverse;
+  }
+
   label {
     cursor: pointer;
     width: auto !important;
     height: 100% !important;
+    display: flex;
   }
 `;

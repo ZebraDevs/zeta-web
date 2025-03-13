@@ -1,11 +1,16 @@
 import { css } from "lit";
 export default css`
+  :host {
+    --_dialog-max-width: var(--dialog-max-width, 480px);
+    --_dialog-max-height: var(--dialog-max-height, 80vh);
+  }
+
   dialog {
     flex-direction: column;
     width: fit-content;
     width: 100%;
-    max-width: 480px;
-    max-height: 80vh;
+    max-width: var(--_dialog-max-width);
+    max-height: var(--_dialog-max-height);
     overflow: auto;
 
     border: none;

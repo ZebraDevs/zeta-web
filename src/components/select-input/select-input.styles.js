@@ -100,6 +100,10 @@ export default css`
     outline: solid var(--border-primary) var(--spacing-0-5);
   }
 
+  :host([open]) zeta-icon.expand-more {
+    transform: rotate(180deg);
+  }
+
   :host([isSelected]) .input {
     color: var(--main-default);
     border-color: var(--border-hover);
@@ -141,8 +145,6 @@ export default css`
 
   .options {
     display: none;
-    position: absolute;
-    left: 0;
     background-color: var(--surface-default);
     width: 100%;
     z-index: 1;
@@ -150,6 +152,8 @@ export default css`
       0px 0px 2px 0px rgba(40, 51, 61, 0.04),
       0px 4px 8px 0px rgba(96, 104, 112, 0.16);
     overflow-y: auto;
+    margin-top: 2px;
+    position: fixed;
   }
 
   :host([rounded]) .options {

@@ -1,9 +1,11 @@
-import { customElement } from "lit/decorators.js";
+import { customElement, property } from "lit/decorators.js";
 import { type InputType } from "../../mixins/form-field.js";
 import { BaseToggleFormElement } from "../base-toggle-form-element.js";
 import styles from "./checkbox.styles.js";
 import "../icon/icon.js";
 import { LitElement } from "lit";
+
+// TODO: When should change event fire? Does not seem to fire at all? Unless it needs to be in a form?
 
 /**
  * Checkboxes allow users to select one or more items from a set. Checkboxes can turn an option on or off.
@@ -29,6 +31,11 @@ export class ZetaCheckbox extends BaseToggleFormElement {
 
   override type = "checkbox" as InputType;
   override value = "on";
+
+  /**
+   * Whether the order of the checkbox and its label should be reversed.
+   */
+  @property({ type: Boolean, reflect: true }) reverse: boolean = false;
 
   static styles = [styles, super.styles];
 }

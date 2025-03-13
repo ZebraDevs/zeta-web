@@ -8,7 +8,9 @@ import "../icon/icon.js";
 import { FormField } from "../../mixins/form-field.js";
 
 /**
- * Text input component with icon, affix, label and hint text
+ * Text input component with icon, affix, label and hint text.
+ *
+ * To change the width of the input field, either wrap it in a div with a fixed width, or you can apply display: block to the input field, and then provide a width.
  *
  * @event {FocusEvent} focus - Fired when the input field is focused
  * @event {FocusEvent} blur - Fired when the input field is blurred
@@ -46,7 +48,7 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
   @property({ type: String }) prefix: string = "";
 
   /** Suffix text. */
-  @property({ type: String }) suffix: string = "";
+  @property({ type: String }) suffix?: string;
 
   /**
    * Label shown above text field.
@@ -59,17 +61,17 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
    *
    * if `error`, then `errorText` is shown instead.
    */
-  @property() hintText = "";
+  @property() hintText?: string;
 
   /**
    * Error hint text
    *
    * Shown if `error`, replaces `hintText`.
    */
-  @property() errorText = "";
+  @property() errorText?: string;
 
   /** Type of field */
-  @property({ type: String, reflect: true }) type: "text" | "textarea" | "password" | "time" | "date" = "text";
+  @property({ type: String, reflect: true }) type: "text" | "textarea" | "password" | "time" | "date" | "number" = "text";
 
   private _valueOnLastFocus: string | null = null;
 
@@ -127,13 +129,13 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
 
   private renderLeftIcon() {
     return this.leadingIcon && this.type === "text" && !this.toggled
-      ? html`<zeta-icon class="left subtle" .rounded=${this.rounded}>${this.leadingIcon}</zeta-icon> `
+      ? html`<zeta-icon class="left" .rounded=${this.rounded}>${this.leadingIcon}</zeta-icon> `
       : nothing;
   }
 
   private renderRightIcon() {
     return this.trailingIcon && this.type === "text" && !this.toggled
-      ? html`<zeta-icon class="right subtle" .rounded=${this.rounded}>${this.trailingIcon}</zeta-icon>`
+      ? html`<zeta-icon class="right" .rounded=${this.rounded}>${this.trailingIcon}</zeta-icon>`
       : this.type === "password" || this.toggled
         ? html`<zeta-icon
             @click=${() => {
@@ -153,11 +155,11 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
   }
 
   private renderPrefix() {
-    return this.prefix && this.type === "text" && !this.toggled ? html`<span class="left affix">${this.prefix}</span>` : nothing;
+    return this.prefix && (this.type === "text" || this.type === "number") && !this.toggled ? html`<span class="left affix">${this.prefix}</span>` : nothing;
   }
 
   private renderSuffix() {
-    return this.suffix && this.type === "text" && !this.toggled ? html`<span class="right affix">${this.suffix}</span>` : nothing;
+    return this.suffix && (this.type === "text" || this.type === "number") && !this.toggled ? html`<span class="right affix">${this.suffix}</span>` : nothing;
   }
 
   private toggled = false;
