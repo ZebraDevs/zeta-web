@@ -1,5 +1,9 @@
 import { css } from "lit";
 export default css`
+  :host {
+    display: inline-block;
+  }
+  
   :host([disabled]) *[part="icon"] {
     color: var(--main-disabled);
   }

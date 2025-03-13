@@ -48,7 +48,7 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
   @property({ type: String }) prefix: string = "";
 
   /** Suffix text. */
-  @property({ type: String }) suffix: string = "";
+  @property({ type: String }) suffix?: string;
 
   /**
    * Label shown above text field.
@@ -61,14 +61,14 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
    *
    * if `error`, then `errorText` is shown instead.
    */
-  @property() hintText? = "";
+  @property() hintText?: string;
 
   /**
    * Error hint text
    *
    * Shown if `error`, replaces `hintText`.
    */
-  @property() errorText? = "";
+  @property() errorText?: string;
 
   /** Type of field */
   @property({ type: String, reflect: true }) type: "text" | "textarea" | "password" | "time" | "date" | "number" = "text";

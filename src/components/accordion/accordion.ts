@@ -37,7 +37,7 @@ export class ZetaAccordion extends Contourable(Interactive(LitElement)) {
 
   protected render() {
     return html` <div class="accordion">
-      <div class="title" @click=${(_e: Event) => this.toggleOpen()}>
+      <div class="title interactive-target" @click=${(_e: Event) => this.toggleOpen()}>
         <div>${this.accordionTitle}</div>
         <zeta-icon .rounded=${this.rounded}>${this.open ? "remove" : "add"}</zeta-icon>
       </div>

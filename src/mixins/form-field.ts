@@ -20,9 +20,9 @@ export type InputType =
   | "radio-dropdown"
   | "slider"
   | "range-selector"
+  | "select"
   | "stepper"
-  | "number"
-  | "select"; //Extend this when adding more form controls
+  | "number"; //Extend this when adding more form controls
 
 //TODO add all properties here
 declare abstract class FormFieldInterface /* extends InteractiveInterface*/ {
