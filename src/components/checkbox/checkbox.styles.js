@@ -3,7 +3,7 @@ export default css`
   :host {
     display: inline-block;
   }
-  
+
   :host([disabled]) *[part="icon"] {
     color: var(--main-disabled);
   }
@@ -18,13 +18,13 @@ export default css`
       background-color: var(--border-hover);
     }
   }
-  
+
   :host([rounded]) > .container {
     border-radius: 2px !important;
   }
 
   :host([reverse]) label {
-    flex-direction: row-reverse;  
+    flex-direction: row-reverse;
   }
 
   label {
