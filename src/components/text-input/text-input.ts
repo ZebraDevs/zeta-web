@@ -8,7 +8,9 @@ import "../icon/icon.js";
 import { FormField } from "../../mixins/form-field.js";
 
 /**
- * Text input component with icon, affix, label and hint text
+ * Text input component with icon, affix, label and hint text.
+ *
+ * To change the width of the input field, either wrap it in a div with a fixed width, or you can apply display: block to the input field, and then provide a width.
  *
  * @event {FocusEvent} focus - Fired when the input field is focused
  * @event {FocusEvent} blur - Fired when the input field is blurred

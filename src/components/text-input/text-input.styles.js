@@ -1,12 +1,11 @@
 import { css } from "lit";
 export default css`
+
   :host .container {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-minimum);
-    width: fit-content;
     height: fit-content;
-    align-items: flex-start;
   }
 
   .hint-text {
