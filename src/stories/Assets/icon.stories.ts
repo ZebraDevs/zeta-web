@@ -16,9 +16,7 @@ const meta: Meta<ZetaIcon> = {
     slot: {
       options: ZetaIconNameList,
       control: { type: "select" }
-    },
-    size: { table: { disable: true } },
-    color: { table: { disable: true } }
+    }
   },
   parameters: {
     design: {
