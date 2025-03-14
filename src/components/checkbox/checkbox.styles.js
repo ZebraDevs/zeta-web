@@ -4,9 +4,9 @@ export default css`
     display: inline-block;
   }
 
-  .container{
+  .container {
     min-width: 20px;
-    min-height: 20px; 
+    min-height: 20px;
   }
 
   :host([disabled]) *[part="icon"] {
