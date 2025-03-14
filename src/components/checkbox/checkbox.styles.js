@@ -4,6 +4,11 @@ export default css`
     display: inline-block;
   }
 
+  .container{
+    min-width: 20px;
+    min-height: 20px; 
+  }
+
   :host([disabled]) *[part="icon"] {
     color: var(--main-disabled);
   }
