@@ -1,9 +1,9 @@
-import { css /*unsafeCSS*/ } from "lit";
-// import * as styles from "@zebra-fed/zeta-icons/index.css" assert { type: "css" };
+import { css } from "lit";
+
 export default [
-  // unsafeCSS(styles),
   css`
-    :host {
+    :host,
+    slot {
       display: flex;
       flex-shrink: 0;
       line-height: 1;
