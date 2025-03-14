@@ -72,7 +72,7 @@ describe("zeta-search", () => {
 
     it("should set correct small icon size", async () => {
       // prettier-ignore
-      const el = await fixture<ZetaSearch>(html` <zeta-search size='small'></zeta-search> `);
+      const el = await fixture<ZetaSearch>(html` <zeta-search></zeta-search> `);
       el.size = "small";
       await el.updateComplete;
       const icon = el.shadowRoot?.querySelectorAll("zeta-icon")[0] as ZetaIcon;
