@@ -3,7 +3,7 @@ import { css /*unsafeCSS*/ } from "lit";
 export default [
   // unsafeCSS(styles),
   css`
-    :host {
+    slot {
       display: flex;
       flex-shrink: 0;
       line-height: 1;
