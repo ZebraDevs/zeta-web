@@ -8,7 +8,7 @@ import "../../button/button.js";
 import "../../radio-button/radio-button.js";
 import "../../checkbox/checkbox.js";
 import "../menu-item/dropdown-menu-item.js";
-import "./../droppable";
+import "./../droppable.js";
 import type { ZetaIconName } from "@zebra-fed/zeta-icons";
 import { ZetaDropdownEvent } from "../../../events.js";
 

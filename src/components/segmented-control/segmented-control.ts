@@ -1,8 +1,8 @@
 import { html, LitElement, type PropertyValues } from "lit";
-import { Contourable } from "../../mixins/contour";
+import { Contourable } from "../../mixins/contour.js";
 import { customElement, query, queryAssignedElements, state } from "lit/decorators.js";
 import styles from "./segmented-control.styles.js";
-import { ZetaSegmentedItem } from "./segmented-item";
+import { ZetaSegmentedItem } from "./segmented-item.js";
 import { styleMap } from "lit/directives/style-map.js";
 
 const animationDuration = 300;

@@ -2,7 +2,7 @@ import { html, LitElement } from "lit";
 import { Contourable, Interactive } from "../mixins/mixins.js";
 import styles from "./base-toggle-form-element.styles.js";
 import { FormField } from "../mixins/form-field.js";
-import "./icon/icon";
+import "./icon/icon.js";
 
 /**
  * Base Class for Form Elements that toggle (i.e. Checkbox, Radio, Switch)

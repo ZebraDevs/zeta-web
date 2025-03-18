@@ -1,5 +1,5 @@
 import { property } from "lit/decorators.js";
-import { BaseChip } from "./base-chip";
+import { BaseChip } from "./base-chip.js";
 import styles from "./interactive-chip.styles.js";
 
 export class InterativeChip extends BaseChip {
