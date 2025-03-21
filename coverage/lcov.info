@@ -8463,7 +8463,7 @@ FNDA:3,show
 FNDA:3,_show
 FNDA:2,hide
 FNDA:0,cancel
-FNDA:2,_onClose
+FNDA:1,_onClose
 FNDA:0,_onCancel
 FNDA:0,onBarrierClicked
 FNDA:4,firstUpdated
@@ -8538,8 +8538,8 @@ DA:66,0
 DA:67,0
 DA:68,8
 DA:69,8
-DA:70,2
-DA:71,2
+DA:70,1
+DA:71,1
 DA:72,8
 DA:73,8
 DA:74,0
@@ -8593,7 +8593,7 @@ BRDA:43,5,0,10
 BRDA:48,6,0,10
 BRDA:50,7,0,7
 BRDA:59,8,0,9
-BRDA:69,9,0,9
+BRDA:69,9,0,8
 BRDA:86,10,0,10
 BRDA:96,11,0,10
 BRDA:103,12,0,8
