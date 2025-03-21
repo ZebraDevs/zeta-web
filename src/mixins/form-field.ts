@@ -116,18 +116,9 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
      */
     @property({ type: String }) value: string | null = null;
 
-    _checked: boolean = false;
-    /**
-     * The state of the Switch or Checkbox that is submitted when part of a form.
-     */
-    @property({ type: Boolean, reflect: true })
-    get checked() {
-      return this._checked;
-    }
-    set checked(value: boolean) {
-      this._checked = value;
-      this.internals.setFormValue(value ? (this.value !== null ? this.value : "on") : null);
-    }
+    /** The state of the Switch or Checkbox that is submitted when part of a form. */
+    @property({ type: Boolean, reflect: true }) checked: boolean = this._defaultChecked ?? false;
+
     /**
      * The state of the Switch or Checkbox defined by a mixed or unknown state.
      */
@@ -147,6 +138,17 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
      * This will apply disabled styles.
      */
     @property({ type: Boolean, reflect: true }) disabled: boolean = false;
+
+    willUpdate(changedProperties: PropertyValues<this>) {
+      super.willUpdate(changedProperties);
+      if (changedProperties.has("checked")) {
+        if (this.checked) {
+          this.internals.setFormValue(this.value || "on");
+        } else {
+          this.internals.setFormValue(null);
+        }
+      }
+    }
 
     public checkValidity(): boolean {
       return this.internals.checkValidity();
