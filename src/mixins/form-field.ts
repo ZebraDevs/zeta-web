@@ -143,7 +143,7 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
       super.willUpdate(changedProperties);
       if (changedProperties.has("checked")) {
         if (this.checked) {
-          this.internals.setFormValue(this.value || "on");
+          this.internals.setFormValue(this.value != null || this.value != undefined ? this.value : "on");
         } else {
           this.internals.setFormValue(null);
         }
