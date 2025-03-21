@@ -10,8 +10,7 @@
 
 ### 📈 Documentation
 
-* Fix misssplled figma ([b35b915](https://github.com/ZebraDevs/zeta-web/commit/b35b915fa34ad7af099641ac8d38548ddc043fab))
-
+* Fix misspelled figma ([b35b915](https://github.com/ZebraDevs/zeta-web/commit/b35b915fa34ad7af099641ac8d38548ddc043fab))
 
 ### 🧹 Miscellaneous Chores
 
