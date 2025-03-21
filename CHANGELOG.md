@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.4.1](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.4.0...zeta-web-v0.4.1) (2025-03-21)
+
+
+### 🪲 Bug Fixes
+
+* Radio button checked is bool not string ([#24](https://github.com/ZebraDevs/zeta-web/issues/24)) ([ab73b76](https://github.com/ZebraDevs/zeta-web/commit/ab73b76686b996860a48c68c946bf635831e46c1))
+
+
+### 📈 Documentation
+
+* Fix misssplled figma ([b35b915](https://github.com/ZebraDevs/zeta-web/commit/b35b915fa34ad7af099641ac8d38548ddc043fab))
+
+
+### 🧹 Miscellaneous Chores
+
+* Add .js to imports for packages that require fully qualified imports ([#23](https://github.com/ZebraDevs/zeta-web/issues/23)) ([fb6ee75](https://github.com/ZebraDevs/zeta-web/commit/fb6ee75900d2812bef6081d7611807b215cd742c))
+
 ## [0.4.0](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.3.1...zeta-web-v0.4.0) (2025-03-14)
 
 
