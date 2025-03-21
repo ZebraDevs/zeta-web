@@ -1,17 +1,17 @@
 import { customElement, property, query, queryAssignedNodes, state } from "lit/decorators.js";
 import { html, LitElement, nothing, type PropertyValues, type TemplateResult } from "lit";
 
-import { FormField, type InputType } from "../../mixins/form-field";
-import { Size } from "../../mixins/size";
-import { Contourable } from "../../mixins/contour";
-import { Interactive } from "../../mixins/interactive";
+import { FormField, type InputType } from "../../mixins/form-field.js";
+import { Size } from "../../mixins/size.js";
+import { Contourable } from "../../mixins/contour.js";
+import { Interactive } from "../../mixins/interactive.js";
 
 import styles from "./select-input.styles.js";
 
 import type { ZetaOption } from "./option.js";
 import "./option.js";
 import type { ZetaIconName } from "@zebra-fed/zeta-icons";
-import "../icon/icon";
+import "../icon/icon.js";
 import type { ZetaOptionClickEventDetail } from "../../events";
 
 /**

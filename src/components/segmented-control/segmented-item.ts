@@ -1,5 +1,5 @@
 import { html, LitElement } from "lit";
-import { Contourable } from "../../mixins/contour";
+import { Contourable } from "../../mixins/contour.js";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./segmented.item.styles.js";
 /**

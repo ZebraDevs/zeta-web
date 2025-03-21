@@ -2,8 +2,8 @@ import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./upload-item.styles.js";
 import { Contourable } from "../../mixins/contour.js";
-import "../icon/icon";
-import "../progress-indicators/progress-circle/progress-circle";
+import "../icon/icon.js";
+import "../progress-indicators/progress-circle/progress-circle.js";
 import { ZetaCancelUploadEvent } from "../../events.js";
 
 /** Represents a file being uploaded.

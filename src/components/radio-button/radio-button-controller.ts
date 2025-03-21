@@ -1,5 +1,5 @@
 import { type ReactiveController } from "lit";
-import { type ZetaRadioButton } from "./radio-button";
+import { type ZetaRadioButton } from "./radio-button.js";
 
 export class RadioButtonController implements ReactiveController {
   constructor(private readonly host: ZetaRadioButton) {}

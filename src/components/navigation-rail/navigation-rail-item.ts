@@ -1,9 +1,9 @@
 import { html, LitElement } from "lit";
-import { Contourable } from "../../mixins/contour";
-import { Interactive } from "../../mixins/interactive";
+import { Contourable } from "../../mixins/contour.js";
+import { Interactive } from "../../mixins/interactive.js";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./navigation-rail-item.styles.js";
-import { Navigate } from "../../mixins/navigate";
+import { Navigate } from "../../mixins/navigate.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 
 /**

@@ -2,7 +2,7 @@ import { customElement, property } from "lit/decorators.js";
 import { Contourable } from "../../mixins/mixins.js";
 import { html, LitElement } from "lit";
 import styles from "./grid-menu-item.styles.js";
-import "../badges/indicators/indicators";
+import "../badges/indicators/indicators.js";
 
 // TODO(UX-1335): Grid items are not working in storybook
 /**
