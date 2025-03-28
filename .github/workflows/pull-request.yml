@@ -18,11 +18,18 @@ jobs:
           ref: ${{ github.head_ref }}
 
       - name: Setup node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Setup node
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: "yarn"
-          cache-dependency-path: yarn.lock
 
       - name: Code Quality
         uses: ZebraDevs/web-components-code-quality@v1
@@ -41,12 +48,14 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
 
+      - name: Enable Corepack
+        run: corepack enable
+
       - name: Setup node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: "yarn"
-          cache-dependency-path: yarn.lock
 
       - name: Install dependencies
         run: yarn install --immutable --immutable-cache --check-cache
@@ -78,12 +87,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Enable Corepack
+        run: corepack enable
+
       - name: Setup node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: "yarn"
-          cache-dependency-path: yarn.lock
 
       - name: Install dependencies
         run: yarn install --immutable --immutable-cache --check-cache

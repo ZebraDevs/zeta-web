@@ -13,11 +13,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: "yarn"
-          cache-dependency-path: yarn.lock
 
       - name: Update Zeta Icons
         run: yarn  install @zebra-fed/zeta-icons@latest --save
