@@ -8,10 +8,10 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Storybook",
-      "runtimeExecutable": "npm",
+      "runtimeExecutable": "yarn",
       "cwd": "${workspaceFolder}",
       "runtimeArgs": ["run", "storybook"],
-      "console": "integratedTerminal",
+      "console": "integratedTerminal"
     }
   ]
 }

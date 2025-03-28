@@ -82,7 +82,7 @@ export default tseslint.config(
 
       semi: [1, "always"],
       "spaced-comment": 0,
-    },
+        },
   },
   {
     files: ["src/**/*.test.ts"],
