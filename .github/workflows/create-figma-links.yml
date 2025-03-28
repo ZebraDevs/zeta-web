@@ -10,11 +10,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          registry-url: "https://registry.npmjs.org"
-      - name: Run npm i
-        run: npm ci
+          cache: "yarn"
+          cache-dependency-path: yarn.lock
+
+      - name: Yarn install
+        run: yarn install --immutable --immutable-cache --check-cache
+
       - name: Create custom-elements.json
-        run: npm run analyze
+        run: yarn run analyze
+
       - name: Create documentation links
         uses: ./.github/workflows/link-docs
         with:
