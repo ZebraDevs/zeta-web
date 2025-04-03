@@ -17,7 +17,7 @@ jobs:
           # cache: "yarn" Removed due to https://github.com/actions/setup-node/issues/1027
 
       - name: Install packages
-        run: yarn install --immutable --immutable-cache --check-cache
+        run: yarn install --immutable
       - name: Compile Typescript files
         run: yarn run build
 

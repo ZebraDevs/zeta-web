@@ -33,7 +33,7 @@ jobs:
           # cache: "yarn" Removed due to https://github.com/actions/setup-node/issues/1027
 
       - name: Install dependencies
-        run: yarn install --immutable --immutable-cache --check-cache
+        run: yarn install --immutable
 
       - name: Create custom-elements.json
         run: yarn run analyze

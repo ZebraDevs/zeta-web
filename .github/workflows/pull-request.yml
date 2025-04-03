@@ -22,17 +22,16 @@ jobs:
         with:
           node-version: 20
 
-      - name: Enable Corepack
-        run: corepack enable
-
       - name: Setup node
         uses: actions/setup-node@v4
         with:
           node-version: 20
           # cache: "yarn" Removed due to https://github.com/actions/setup-node/issues/1027
+      - name: Install dependencies
+        run: yarn install --immutable
 
       - name: Code Quality
-        uses: ZebraDevs/web-components-code-quality@v1
+        uses: ZebraDevs/web-components-code-quality@chore/npm
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           test-results-path: "src/test/test-results.xml"
@@ -58,7 +57,7 @@ jobs:
           # cache: "yarn" Removed due to https://github.com/actions/setup-node/issues/1027
 
       - name: Install dependencies
-        run: yarn install --immutable --immutable-cache --check-cache
+        run: yarn install --immutable
 
       - name: Run lit-localize extract
         run: yarn run localize:extract
@@ -97,7 +96,7 @@ jobs:
           # cache: "yarn" Removed due to https://github.com/actions/setup-node/issues/1027
 
       - name: Install dependencies
-        run: yarn install --immutable --immutable-cache --check-cache
+        run: yarn install --immutable
 
       - name: Create custom-elements.json
         run: yarn run analyze
