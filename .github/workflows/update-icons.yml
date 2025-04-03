@@ -16,10 +16,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: "yarn"
+          # cache: "yarn" Removed due to https://github.com/actions/setup-node/issues/1027
 
       - name: Update Zeta Icons
-        run: yarn  install @zebra-fed/zeta-icons@latest --save
+        run: yarn add @zebra-fed/zeta-icons@latest --save
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
