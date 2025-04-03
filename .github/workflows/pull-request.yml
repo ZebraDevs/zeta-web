@@ -31,7 +31,7 @@ jobs:
         run: yarn install --immutable
 
       - name: Code Quality
-        uses: ZebraDevs/web-components-code-quality@chore/npm
+        uses: ZebraDevs/web-components-code-quality@main
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           test-results-path: "src/test/test-results.xml"
