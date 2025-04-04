@@ -11,13 +11,16 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+
       - name: Setup node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 18.x.x
-          cache: "npm"
+          node-version: 20
+          # cache: "yarn" Removed due to https://github.com/actions/setup-node/issues/1027
+
       - name: Update Zeta Icons
-        run: npm install @zebra-fed/zeta-icons@latest --save
+        run: yarn add @zebra-fed/zeta-icons@latest --save
+
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:

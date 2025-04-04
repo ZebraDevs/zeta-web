@@ -10,14 +10,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
+
+      - uses: actions/setup-node@v4
         with:
-          registry-url: "https://registry.npmjs.org"
+          node-version: 20
+          # cache: "yarn" Removed due to https://github.com/actions/setup-node/issues/1027
+
       - name: Install packages
-        run: npm ci
+        run: yarn install --immutable
       - name: Compile Typescript files
-        run: npm run build
+        run: yarn run build
+
       - name: Publish
-        run: npm publish
+        run: yarn npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
