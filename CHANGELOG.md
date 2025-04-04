@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.2](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.4.1...zeta-web-v0.4.2) (2025-04-04)
+
+
+### ⛓️ Dependencies
+
+* Update packages ([#25](https://github.com/ZebraDevs/zeta-web/issues/25)) ([25b1e50](https://github.com/ZebraDevs/zeta-web/commit/25b1e508753895c87aca809dd0e33ec857e9c70f))
+
 ## [0.4.1](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.4.0...zeta-web-v0.4.1) (2025-03-21)
 
 
