@@ -38,15 +38,15 @@ Zeta Web Components can be directly used in many web frameworks including Angula
 
 3. Import the desired Zeta Web Component, or the full package into your app:
 
-    ```js
-    // Individual button component
-    import "@zebra-fed/zeta-web/dist/components/button/button.js";
+   ```js
+   // Individual button component
+   import "@zebra-fed/zeta-web/dist/components/button/button.js";
 
-    // or full package
-    import "@zebra-fed/zeta-web";
-    ```
+   // or full package
+   import "@zebra-fed/zeta-web";
+   ```
 
-    or in HTML,
+   or in HTML,
 
    ```html
    <!-- Individual button component -->
@@ -56,7 +56,7 @@ Zeta Web Components can be directly used in many web frameworks including Angula
    <script type="module" src="./node_modules/@zebra-fed/zeta-web/dist/index.js"></script>
    ```
 
-    To reduce bloat, we recommend only importing the components you will actually use into your project.
+   To reduce bloat, we recommend only importing the components you will actually use into your project.
 
 4. If you use any element that uses icons, you will also need to import the index.css from [@zebra-fed/zeta-icons](https://www.npmjs.com/package/@zebra-fed/zeta-icons).
 
@@ -89,7 +89,7 @@ From React 19 web-components work natively. `zeta-web` can be imported into your
 If you find TypeScript complains that `Property 'zeta-*' does not exist on type 'JSX.IntrinsicElements'`, you need to add the declared zeta components into React's JSX.IntrinsicElements namespace. To do this:
 
 ```ts
-import { CustomElements } from "@zebra-fed/zeta-web/jsx";
+import { CustomElements } from "@zebra-fed/zeta-web/jsx.d.ts";
 
 declare module "react" {
   namespace JSX {
