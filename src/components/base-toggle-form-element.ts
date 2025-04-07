@@ -4,6 +4,23 @@ import styles from "./base-toggle-form-element.styles.js";
 import { FormField } from "../mixins/form-field.js";
 import "./icon/icon.js";
 
+//TODO: How to document oninput event?
+// Notes for onInput:
+// To access the input event, you will need to write something like this:
+
+// ```html
+// <zeta-checkbox oninput={(e) => {
+//   if ((e.target as HTMLInputElement).checked) {
+//     ...
+//   } else {
+//     ...
+//   }
+// }}
+// >
+// </zeta-checkbox>
+// ```
+// The types are not passed through correctly at present, so you will need to cast the target to HTMLInputElement.
+
 /**
  * Base Class for Form Elements that toggle (i.e. Checkbox, Radio, Switch)
  *

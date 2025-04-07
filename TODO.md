@@ -1,30 +1,16 @@
 # BK TODO
 
-1. Fix having to import css in HTML
-2. React
-3. Document
-4. Add to Storybook
-5. Events
-6. Add tests for all
-7. Add Storybook actions for all
+1. Fix having to import css in H
 
 ## Folder Structure
 
-- .gitignore
 - Atomic folders?
 - Framework specific?
 
 ## Actions
 
-- Automatic CHANGELOG
 - Automatic Figma pull?
-- Deploy Storybook
-- Build npm packages:
-  - Web Components
-  - React
-  - Angular
 - Deploy all to Artifactory
-- PR: Detect code test coverage
 - PR: Detect doc coverage
 - Lighthouse
 - Accessibility
@@ -49,21 +35,29 @@
 - Relationship with ZDS
 - Styling setup [Styled vs Tailwind]
 - Theming
-- Tests
 - Strict Guidelines:
   - Theming
   - Storybook
-  - Tests
-- LICENSE
 - ESDoc style
 
 ## Tokens
 
-- Primitives file
-- Tokens file
 - How to automatically extract variables from web components?
 
-## DevTools
+### Luke
 
-- ESLint
-- Prettier
+Why 2 tsconfigs?
+Can we move any top level files lower into src?
+Document each color as per dart
+Determine best practice for colors
+icons autocomplete?
+storybook colors
+design.zebra - Document all colors
+
+- data-theme variable initialized by OS / browser
+  OR
+- prefers-color-scheme with override
+
+Audit JSDoc tags
+Audit css part, css variable usage
+Determine best practice for types in forms. Currently input type number has limited support. Determine if we even should, or just have everything as string; Look at MWC
