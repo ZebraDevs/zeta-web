@@ -56,8 +56,8 @@ export class ZetaButton extends Flavored(BaseButton) {
         part="button"
       >
         ${this._buttonType === "icon"
-        ? html`<zeta-icon .rounded=${this.rounded}><slot></slot></zeta-icon>`
-        : html`${leadingIcon}
+          ? html`<zeta-icon .rounded=${this.rounded}><slot></slot></zeta-icon>`
+          : html`${leadingIcon}
               <slot></slot>
               ${trailingIcon}`}
       </button>
