@@ -18,6 +18,7 @@ export type ButtonFlavor = Exclude<Flavor, "inverse">;
  * @slot - Content shown on button; typically text.
  * @slot {zeta-icon} leadingIcon - Leading icon of button. Full list of icons can be found at {@link https://zeta-icons.web.app/ | Zeta Icons}.
  * @slot {zeta-icon} trailingIcon - Trailing icon of button. Full list of icons can be found at  {@link https://zeta-icons.web.app/ | Zeta Icons}
+ * @part button - The button element
  *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=23126-110945
  * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/buttons--docs
@@ -52,6 +53,7 @@ export class ZetaButton extends Flavored(BaseButton) {
         type=${ifDefined(this.type)}
         aria-label=${ifDefined(ifDefined(this.ariaLabel))}
         @click=${this._handleClick}
+        part="button"
       >
         ${this._buttonType === "icon"
           ? html`<zeta-icon .rounded=${this.rounded}><slot></slot></zeta-icon>`
