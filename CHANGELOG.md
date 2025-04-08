@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.5.0](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.4.1...zeta-web-v0.5.0) (2025-04-08)
+
+
+### ✨ New Features
+
+* added part to button to enable better styling ([#29](https://github.com/ZebraDevs/zeta-web/issues/29)) ([3d0bc18](https://github.com/ZebraDevs/zeta-web/commit/3d0bc18fa008fff2e5633aa4548ce36c41672499))
+
+
+### ⛓️ Dependencies
+
+* Update dependencies ([35e71d1](https://github.com/ZebraDevs/zeta-web/commit/35e71d111fa5bc90ab3be4563d4483c3f95397bf))
+* Update packages ([#25](https://github.com/ZebraDevs/zeta-web/issues/25)) ([25b1e50](https://github.com/ZebraDevs/zeta-web/commit/25b1e508753895c87aca809dd0e33ec857e9c70f))
+
 ## [0.4.1](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.4.0...zeta-web-v0.4.1) (2025-03-21)
 
 
