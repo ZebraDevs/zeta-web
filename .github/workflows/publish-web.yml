@@ -15,13 +15,15 @@ jobs:
         with:
           node-version: 20
           # cache: "yarn" Removed due to https://github.com/actions/setup-node/issues/1027
+      - name: Inject auth token
+        run: |
+          echo npmAuthToken: "${{secrets.NPM_TOKEN}}" >> ./.yarnrc.yml
 
       - name: Install packages
         run: yarn install --immutable
+
       - name: Compile Typescript files
         run: yarn run build
 
       - name: Publish
         run: yarn npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
