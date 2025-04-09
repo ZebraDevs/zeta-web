@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.5.1](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.5.0...zeta-web-v0.5.1) (2025-04-09)
+
+
+### 🪲 Bug Fixes
+
+* stepper input change event ([#31](https://github.com/ZebraDevs/zeta-web/issues/31)) ([b5054f3](https://github.com/ZebraDevs/zeta-web/commit/b5054f3706dfd5886c3d4752e5b6e098074c0c10))
+
+
+### 🧹 Miscellaneous Chores
+
+* Update yarn registry; ([efeedac](https://github.com/ZebraDevs/zeta-web/commit/efeedac1585735e55685e837b9a858d92281333b))
+
 ## [0.5.0](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.4.1...zeta-web-v0.5.0) (2025-04-08)
 
 
