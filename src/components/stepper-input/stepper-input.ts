@@ -36,7 +36,7 @@ export class ZetaStepperInput extends FormField(Contourable(LitElement)) {
   @query(".input-container input") inputEl!: HTMLInputElement;
 
   handleChange(event: Event) {
-    this.hiddenInput.dispatchEvent(event);
+    return event;
   }
 
   protected firstUpdated() {
