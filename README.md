@@ -38,15 +38,15 @@ Zeta Web Components can be directly used in many web frameworks including Angula
 
 3. Import the desired Zeta Web Component, or the full package into your app:
 
-    ```js
-    // Individual button component
-    import "@zebra-fed/zeta-web/dist/components/button/button.js";
+   ```js
+   // Individual button component
+   import "@zebra-fed/zeta-web/dist/components/button/button.js";
 
-    // or full package
-    import "@zebra-fed/zeta-web";
-    ```
+   // or full package
+   import "@zebra-fed/zeta-web";
+   ```
 
-    or in HTML,
+   or in HTML,
 
    ```html
    <!-- Individual button component -->
@@ -56,7 +56,7 @@ Zeta Web Components can be directly used in many web frameworks including Angula
    <script type="module" src="./node_modules/@zebra-fed/zeta-web/dist/index.js"></script>
    ```
 
-    To reduce bloat, we recommend only importing the components you will actually use into your project.
+   To reduce bloat, we recommend only importing the components you will actually use into your project.
 
 4. If you use any element that uses icons, you will also need to import the index.css from [@zebra-fed/zeta-icons](https://www.npmjs.com/package/@zebra-fed/zeta-icons).
 
@@ -127,6 +127,26 @@ and add the plugin to your tsconfig.json:
   }
 }
 ```
+
+### [CSS Variable Autocomplete](https://marketplace.visualstudio.com/items?itemName=vunguyentuan.vscode-css-variables)
+
+This extension makes working with CSS variables easier by showing the values of variables when you hover over them and displaying colors inline in the IDE.
+To use this, install it in VSCode, and add the following into .vscode/settings.json:
+
+```json
+{
+  ...
+  "cssVariables.lookupFiles": [
+    "node_modules/@zebra-fed/zeta-web/primitives.css",
+    "node_modules/@zebra-fed/zeta-web/semantics.css",
+    // Add other css files here
+  ]
+}
+```
+
+This configuration will show light mode / regular contrast tokens on hover.
+
+> **Note:** The primitives.css file and semantics.css files should **not** be used in your app as these only contain a subset of the styles; rather import **index.css**, as this contains all rules.
 
 ## Licensing
 

@@ -6,7 +6,7 @@ import tsdoc from "eslint-plugin-tsdoc";
 import storybook from "eslint-plugin-storybook";
 import litA11Y from "eslint-plugin-lit-a11y";
 import prettier from "eslint-config-prettier";
-import testingStructure from "./scripts/enforce-testing-structure.js";
+import testingStructure from "../scripts/enforce-testing-structure.js";
 
 export default tseslint.config(
   eslint.configs.recommended,
@@ -82,7 +82,7 @@ export default tseslint.config(
 
       semi: [1, "always"],
       "spaced-comment": 0,
-        },
+    },
   },
   {
     files: ["src/**/*.test.ts"],
