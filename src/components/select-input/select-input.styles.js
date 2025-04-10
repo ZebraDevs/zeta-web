@@ -153,7 +153,7 @@ export default css`
       0px 4px 8px 0px rgba(96, 104, 112, 0.16);
     overflow-y: auto;
     margin-top: 2px;
-    position: fixed;
+    position: absolute;
   }
 
   :host([rounded]) .options {
