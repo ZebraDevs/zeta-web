@@ -8458,7 +8458,7 @@ FN:86,firstUpdated
 FN:96,disconnectedCallback
 FN:103,<static_initializer>
 FNF:14
-FNH:9
+FNH:10
 FNDA:8,Popup
 FNDA:6,PopupClass
 FNDA:14,get open
@@ -8467,7 +8467,7 @@ FNDA:3,show
 FNDA:3,_show
 FNDA:2,hide
 FNDA:0,cancel
-FNDA:0,_onClose
+FNDA:2,_onClose
 FNDA:0,_onCancel
 FNDA:0,onBarrierClicked
 FNDA:4,firstUpdated
@@ -8542,8 +8542,8 @@ DA:66,0
 DA:67,0
 DA:68,8
 DA:69,8
-DA:70,0
-DA:71,0
+DA:70,2
+DA:71,2
 DA:72,8
 DA:73,8
 DA:74,0
@@ -8587,7 +8587,7 @@ DA:111,8
 DA:112,8
 DA:113,8
 LF:113
-LH:98
+LH:100
 BRDA:26,0,0,8
 BRDA:27,1,0,12
 BRDA:35,2,0,20
@@ -8597,11 +8597,12 @@ BRDA:43,5,0,10
 BRDA:48,6,0,10
 BRDA:50,7,0,7
 BRDA:59,8,0,9
-BRDA:86,9,0,10
-BRDA:96,10,0,10
-BRDA:103,11,0,8
-BRF:12
-BRH:12
+BRDA:69,9,0,9
+BRDA:86,10,0,10
+BRDA:96,11,0,10
+BRDA:103,12,0,8
+BRF:13
+BRH:13
 end_of_record
 TN:
 SF:src/mixins/size.ts
