@@ -2,10 +2,10 @@
   "$schema": "https://raw.githubusercontent.com/lit/lit/main/packages/localize-tools/config.schema.json",
   "sourceLocale": "en",
   "targetLocales": ["en-GB", "en-US", "fr", "it", "de", "es"],
-  "tsConfig": "./tsconfig.json",
+  "tsConfig": "../tsconfig.json",
   "output": {
     "mode": "runtime",
-    "outputDir": "./src/generated/locales"
+    "outputDir": "./generated/locales"
   },
   "interchange": {
     "format": "xliff",

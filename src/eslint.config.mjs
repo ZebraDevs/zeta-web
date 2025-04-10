@@ -6,7 +6,7 @@ import tsdoc from "eslint-plugin-tsdoc";
 import storybook from "eslint-plugin-storybook";
 import litA11Y from "eslint-plugin-lit-a11y";
 import prettier from "eslint-config-prettier";
-import testingStructure from "./scripts/enforce-testing-structure.js";
+import testingStructure from "../scripts/enforce-testing-structure.js";
 
 export default tseslint.config(
   eslint.configs.recommended,
@@ -16,13 +16,13 @@ export default tseslint.config(
   wc.configs["flat/recommended"],
   lit.configs["flat/recommended"],
   {
-    ignores: ["**/*.stories.*", "**/generated"],
+    ignores: ["**/*.stories.*", "**/generated"]
   },
   {
     files: ["src/**/*.ts"],
     plugins: {
       tsdoc: tsdoc,
-      "lit-a11y": litA11Y,
+      "lit-a11y": litA11Y
     },
 
     languageOptions: {
@@ -31,8 +31,8 @@ export default tseslint.config(
       sourceType: "module",
 
       parserOptions: {
-        project: ["./tsconfig.json"],
-      },
+        project: ["./tsconfig.json"]
+      }
     },
 
     settings: {},
@@ -55,8 +55,8 @@ export default tseslint.config(
         "off",
         2,
         {
-          SwitchCase: 1,
-        },
+          SwitchCase: 1
+        }
       ],
 
       "no-extra-semi": "warn",
@@ -68,26 +68,26 @@ export default tseslint.config(
         {
           prefer: "type-imports",
           disallowTypeAnnotations: true,
-          fixStyle: "separate-type-imports",
-        },
+          fixStyle: "separate-type-imports"
+        }
       ],
 
       "@typescript-eslint/no-unused-vars": [
         "warn",
         {
           argsIgnorePattern: "^_",
-          varsIgnorePattern: "^_",
-        },
+          varsIgnorePattern: "^_"
+        }
       ],
 
       semi: [1, "always"],
-      "spaced-comment": 0,
-        },
+      "spaced-comment": 0
+    }
   },
   {
     files: ["src/**/*.test.ts"],
     plugins: {
-      "testing-structure": testingStructure,
+      "testing-structure": testingStructure
     },
     rules: {
       "testing-structure/enforce-testing-structure": "error",
@@ -95,7 +95,7 @@ export default tseslint.config(
       "@typescript-eslint/no-unused-expressions": 0,
       "@typescript-eslint/no-explicit-any": 0,
       "@typescript-eslint/no-unsafe-assignment": 0,
-      "@typescript-eslint/no-unsafe-member-access": 0,
-    },
+      "@typescript-eslint/no-unsafe-member-access": 0
+    }
   }
 );

@@ -1,5 +1,5 @@
 name: CI - Pull Request
-on: pull_request
+on: pull_request_target
 
 # Pull Request Runs on the same branch will be cancelled
 concurrency:
@@ -7,38 +7,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  code-quality:
-    name: Check the code quality
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          ref: ${{ github.head_ref }}
-
-      - name: Setup node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Setup node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          # cache: "yarn" Removed due to https://github.com/actions/setup-node/issues/1027
-      - name: Install dependencies
-        run: yarn install --immutable
-
-      - name: Code Quality
-        uses: ZebraDevs/web-components-code-quality@main
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          test-results-path: "src/test/test-results.xml"
-
   generate-localizations:
     name: Generate localizations.
-    needs: [code-quality]
     timeout-minutes: 20
     runs-on: ubuntu-latest
     steps:
@@ -77,6 +47,38 @@ jobs:
           git add .
           git commit -m "Generated locales"
           git push
+
+  code-quality:
+    name: Check the code quality
+    needs: [generate-localizations]
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.head_ref }}
+
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          # cache: "yarn" Removed due to https://github.com/actions/setup-node/issues/1027
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Code Quality
+        uses: ZebraDevs/web-components-code-quality@main
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          test-results-path: "src/test/test-results.xml"
+          eslint-config-path: "src/eslint.config.mjs"
+          test-config-path: "src/test/web-test-runner.config.js"
 
   deploy-preview:
     timeout-minutes: 20

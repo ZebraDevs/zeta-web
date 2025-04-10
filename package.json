@@ -16,7 +16,9 @@
     "./components/*": "./dist/components/*",
     "./custom-elements.json": "./custom-elements.json",
     "./index.css": "./dist/index.css",
-    "./jsx.d.ts": "./dist/jsx.d.ts"
+    "./jsx.d.ts": "./dist/jsx.d.ts",
+    "./primitives.css": "./dist/primitives.css",
+    "./semantics.css": "./dist/semantics.css"
   },
   "description": "Zebra Zeta Design System - Web Components",
   "repository": {
@@ -36,14 +38,14 @@
   "scripts": {
     "analyze": "cem analyze",
     "build-storybook:with-output-dir": "yarn run build && storybook build -o ",
-    "build": "yarn prebuild && tsc -P tsconfig.build.json && npx clean-css-cli ./src/index.css -o ./dist/index.css",
+    "build": "yarn prebuild && tsc -P tsconfig.build.json && npx clean-css-cli ./src/index.css -o ./dist/index.css && cp src/generated/tokens/semantics.css ./dist/semantics.css && cp src/generated/tokens/primitives.css ./dist/primitives.css",
     "check": "npm-run-all analyze --parallel lint lint:lit-analyzer test docs",
     "create": "cd scripts && node makeWebComponentTemplate.js",
     "docs": "npx typedoc --logLevel Warn",
     "lint:lit-analyzer": "lit-analyzer --quiet",
-    "lint": "eslint -f unix \"src/**/*.{ts,tsx}\"",
-    "localize:build": "lit-localize build",
-    "localize:extract": "lit-localize extract",
+    "lint": "eslint -f unix \"src/**/*.{ts,tsx}\" --config src/eslint.config.*",
+    "localize:build": "lit-localize build --config src/lit-localize.json",
+    "localize:extract": "lit-localize extract --config src/lit-localize.json",
     "prebuild": "yarn run analyze && node scripts/make-index.js",
     "prepack": "yarn run build",
     "prepare": "yarn run build",
@@ -55,8 +57,8 @@
     "test:count": "tsx scripts/test/test_counter.ts",
     "pretest:package": "yarn pack --pack-destination ./test && cd test && yarn install && cd ..",
     "test:package": "cd test && yarn run dev",
-    "test:watch": "web-test-runner \"src/test/**/*.test.ts\" --node-resolve --watch",
-    "test": "web-test-runner \"src/test/**/*.test.ts\" --node-resolve"
+    "test:watch": "web-test-runner \"src/test/**/*.test.ts\" --node-resolve --watch --config src/test/web-test-runner.config.*",
+    "test": "web-test-runner \"src/test/**/*.test.ts\" --node-resolve --config src/test/web-test-runner.config.*"
   },
   "devDependencies": {
     "@actions/core": "^1.11.1",

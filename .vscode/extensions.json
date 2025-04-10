@@ -1,7 +1,10 @@
 {
   "recommendations": [
-    "arcanis.vscode-zipfs",
     "dbaeumer.vscode-eslint",
-    "esbenp.prettier-vscode"
+    "esbenp.prettier-vscode",
+    "vunguyentuan.vscode-css-variables",
+    "runem.lit-plugin",
+    "unifiedjs.vscode-mdx",
+    "ms-playwright.playwright"
   ]
 }

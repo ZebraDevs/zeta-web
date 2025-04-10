@@ -7,5 +7,6 @@
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "files.associations": {
     "*.json": "jsonc"
-  }
+  },
+  "cssVariables.lookupFiles": ["src/generated/tokens/primitives.css", "src/generated/tokens/semantics.css"]
 }
