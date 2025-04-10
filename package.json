@@ -43,7 +43,7 @@
     "create": "cd scripts && node makeWebComponentTemplate.js",
     "docs": "npx typedoc --logLevel Warn",
     "lint:lit-analyzer": "lit-analyzer --quiet",
-    "lint": "eslint -f unix \"src/**/*.{ts,tsx}\" --config src/eslint.config.mjs",
+    "lint": "eslint -f unix \"src/**/*.{ts,tsx}\" --config src/eslint.config.*",
     "localize:build": "lit-localize build --config src/lit-localize.json",
     "localize:extract": "lit-localize extract --config src/lit-localize.json",
     "prebuild": "yarn run analyze && node scripts/make-index.js",
@@ -57,8 +57,8 @@
     "test:count": "tsx scripts/test/test_counter.ts",
     "pretest:package": "yarn pack --pack-destination ./test && cd test && yarn install && cd ..",
     "test:package": "cd test && yarn run dev",
-    "test:watch": "web-test-runner \"src/test/**/*.test.ts\" --node-resolve --watch --config src/test/web-test-runner.config.js",
-    "test": "web-test-runner \"src/test/**/*.test.ts\" --node-resolve --config src/test/web-test-runner.config.js"
+    "test:watch": "web-test-runner \"src/test/**/*.test.ts\" --node-resolve --watch --config src/test/web-test-runner.config.*",
+    "test": "web-test-runner \"src/test/**/*.test.ts\" --node-resolve --config src/test/web-test-runner.config.*"
   },
   "devDependencies": {
     "@actions/core": "^1.11.1",

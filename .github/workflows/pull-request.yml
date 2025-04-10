@@ -31,10 +31,12 @@ jobs:
         run: yarn install --immutable
 
       - name: Code Quality
-        uses: ZebraDevs/web-components-code-quality@main
+        uses: ZebraDevs/web-components-code-quality@chore/add-config-files
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           test-results-path: "src/test/test-results.xml"
+          eslint-config-path: "src/eslint.config.mjs"
+          test-config-path: "src/test/web-test-runner.config.js"
 
   generate-localizations:
     name: Generate localizations.
