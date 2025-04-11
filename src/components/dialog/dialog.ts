@@ -13,6 +13,15 @@ import "../icon/icon.js";
  * A reusable dialog or modal window with a customizable interface and functionality.
  *
  * A dialog should popup either in response to user action or to get the users attention.
+ *
+ * The dialog can be shown either as a modal or non-modal dialog. Modal is recommended for most uses.
+ * To show the dialog, call `showModal()` or `show()` method:
+ *
+ * ```ts
+ *   (document.querySelector("#dialog1") as ZetaDialog)?.showModal();
+ * ```
+ * When shown as a modal, clicking the background barrier will close the modal by default; this can be changed with the `closeOnBarrierClicked` property.
+ *
  * @slot - Body of dialog; typically text.
  * @slot {zeta-icon} icon - A `zeta-icon` element. Size will be restricted based on dialog type.
  * @slot {zeta-button} confirm - Button used in footer. Must be of type zeta-button.

@@ -12,6 +12,7 @@ declare class PopupInterface {
   show: () => Promise<void>;
   showModal: () => Promise<void>;
   onBarrierClicked: (e: Event) => void;
+  closeOnBarrierClicked: boolean;
 }
 
 /**
@@ -29,6 +30,12 @@ export const Popup = <T extends Constructor<LitElement>>(superClass: T) => {
 
     /** Return value of the dialog. */
     @property({ type: String }) returnValue: string = "";
+
+    /** Whether the modal should close when the background barrier is clicked.
+     *
+     * This is only relevant for modal dialogs, non-modal dialogs do not control their background barrier.
+     */
+    @property({ type: Boolean }) closeOnBarrierClicked: boolean = true;
 
     /** Whether component is open or closed. */
     @property({ type: Boolean, reflect: true, attribute: "open" })
@@ -75,11 +82,16 @@ export const Popup = <T extends Constructor<LitElement>>(superClass: T) => {
     }
 
     onBarrierClicked(e: Event) {
-      if (e.target !== this.dialog) {
-        return;
+      const { left, right, top, bottom } = this.dialog.getBoundingClientRect();
+      if (
+        e.target === this.dialog &&
+        e instanceof MouseEvent &&
+        (e.clientX < left || e.clientX > right || e.clientY < top || e.clientY > bottom) &&
+        this.closeOnBarrierClicked
+      ) {
+        e.preventDefault();
+        void this.cancel();
       }
-      e.preventDefault();
-      void this.cancel();
     }
 
     /** @internal adds all the eventListeners*/

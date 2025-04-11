@@ -35,7 +35,8 @@ const meta: Meta<
     size: "large",
     onOpen: fn(),
     onClose: fn(),
-    onCancel: fn()
+    onCancel: fn(),
+    closeOnBarrierClicked: true
   },
   argTypes: {
     size: {
@@ -109,6 +110,7 @@ export const DialogOpen: StoryObj = {
       <div class="box">
         <zeta-button
           @click=${() => {
+            (document.querySelector("#dialog1") as ZetaDialog)?.hide();
             (document.querySelector("#dialog1") as ZetaDialog)?.showModal();
           }}
         >
@@ -116,6 +118,7 @@ export const DialogOpen: StoryObj = {
         >
         <zeta-button
           @click=${() => {
+            (document.querySelector("#dialog1") as ZetaDialog)?.hide();
             (document.querySelector("#dialog1") as ZetaDialog)?.show();
           }}
         >
@@ -130,6 +133,7 @@ export const DialogOpen: StoryObj = {
           @open=${args.onOpen}
           @close=${args.onClose}
           @cancel=${args.onCancel}
+          .closeOnBarrierClicked=${args.closeOnBarrierClicked}
         >
           ${args.slot} ${args.icon ? html`<zeta-icon slot="icon">${args.icon}</zeta-icon>` : nothing}
           ${args.confirm && args.confirm.length > 0 ? html`<zeta-button slot="confirm">${args.confirm}</zeta-button>` : nothing}
