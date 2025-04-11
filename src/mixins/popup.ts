@@ -82,6 +82,9 @@ export const Popup = <T extends Constructor<LitElement>>(superClass: T) => {
     }
 
     onBarrierClicked(e: Event) {
+      if (!this.dialog) {
+        return; // Exit early if the dialog element is not present
+      }
       const { left, right, top, bottom } = this.dialog.getBoundingClientRect();
       if (
         e.target === this.dialog &&
