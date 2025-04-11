@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.5.3](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.5.2...zeta-web-v0.5.3) (2025-04-11)
+
+
+### 🪲 Bug Fixes
+
+* **UX-1389:** Dialog closes when click on blank area ([#36](https://github.com/ZebraDevs/zeta-web/issues/36)) ([cacdf23](https://github.com/ZebraDevs/zeta-web/commit/cacdf23e3688cb2c3d0a119efb53777ee42bb72c))
+
+
+### 🧪 Tests
+
+* Dialog closeOnBarrierClicked prop ([cacdf23](https://github.com/ZebraDevs/zeta-web/commit/cacdf23e3688cb2c3d0a119efb53777ee42bb72c))
+
 ## [0.5.2](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.5.1...zeta-web-v0.5.2) (2025-04-11)
 
 
