@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.5.2](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.5.1...zeta-web-v0.5.2) (2025-04-11)
+
+
+### 🪲 Bug Fixes
+
+* Select dropdown position ([#32](https://github.com/ZebraDevs/zeta-web/issues/32)) ([4749c63](https://github.com/ZebraDevs/zeta-web/commit/4749c63629d23c248837c6a72d9d1cb7848ec26b))
+
+
+### 📈 Documentation
+
+* Add documentation to css semantics ([#33](https://github.com/ZebraDevs/zeta-web/issues/33)) ([db9b331](https://github.com/ZebraDevs/zeta-web/commit/db9b33142b5ca1fdade43ab2903b076cdf868c25))
+* Update developer experience in Readme ([db9b331](https://github.com/ZebraDevs/zeta-web/commit/db9b33142b5ca1fdade43ab2903b076cdf868c25))
+
+
+### 🧹 Miscellaneous Chores
+
+* **deps:** bump koa from 2.16.0 to 2.16.1 ([#35](https://github.com/ZebraDevs/zeta-web/issues/35)) ([d3b7ac9](https://github.com/ZebraDevs/zeta-web/commit/d3b7ac9e4eed8c181b4e1a7598fc76e3ab67d588))
+* Remove unneeded files and reorganize where some are ([db9b331](https://github.com/ZebraDevs/zeta-web/commit/db9b33142b5ca1fdade43ab2903b076cdf868c25))
+
 ## [0.5.1](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.5.0...zeta-web-v0.5.1) (2025-04-09)
 
 
