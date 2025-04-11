@@ -19,6 +19,9 @@ jobs:
               repo: 'zeta',
               workflow_id: 'deploy.yml',
               ref: 'main', 
+              inputs:{
+                package_to_update: 'zeta-web',
+              }
             })
 
   publish-web:
