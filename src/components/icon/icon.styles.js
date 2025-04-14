@@ -1,5 +1,7 @@
 import { css } from "lit";
 
+import '@zebra-fed/zeta-icons'
+
 export default [
   css`
     :host,
