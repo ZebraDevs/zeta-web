@@ -15,3 +15,9 @@ export class ZetaIcon extends Contourable(LitElement) {
   }
   static styles = [styles, super.styles || []];
 }
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "zeta-icon": ZetaIcon;
+  }
+}
