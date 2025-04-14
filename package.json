@@ -47,7 +47,7 @@
     "localize:build": "lit-localize build --config src/lit-localize.json",
     "localize:extract": "lit-localize extract --config src/lit-localize.json",
     "prebuild": "yarn run analyze && node scripts/make-index.js",
-    "prepack": "yarn run build",
+    "prepack": "yarn run build && node scripts/add-declarations.js",
     "prepare": "yarn run build",
     "prettier": "prettier src --write --ignore-unknown",
     "start": "web-dev-server --node-resolve --open ./demo/ --watch",

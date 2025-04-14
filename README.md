@@ -86,6 +86,8 @@ From React 19 web-components work natively. `zeta-web` can be imported into your
 
 #### TypeScript and "JSX.IntrinsicElements" errors.
 
+As of v0.5.3 this issue should no longer occur.
+
 If you find TypeScript complains that `Property 'zeta-*' does not exist on type 'JSX.IntrinsicElements'`, you need to add the declared zeta components into React's JSX.IntrinsicElements namespace. To do this:
 
 ```ts
