@@ -3107,6 +3107,36 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@wc-toolkit/cem-inheritance@npm:^1.0.4":
+  version: 1.0.4
+  resolution: "@wc-toolkit/cem-inheritance@npm:1.0.4"
+  dependencies:
+    "@wc-toolkit/jsdoc-tags": "npm:^1.1.0"
+  checksum: 10c0/f37ce854f04d37508ea25d4814ca6b4ef1455a9fee6ba64fb35a7bd3ff9c919e40c2316196638feb6d0baad188c9de7731682bd5b46be51a4d403b9239ce8600
+  languageName: node
+  linkType: hard
+
+"@wc-toolkit/jsdoc-tags@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "@wc-toolkit/jsdoc-tags@npm:1.1.0"
+  checksum: 10c0/5cbf93bca0b7846ec348317f8db40a23db2b54d8ee14e06f136cd088eec93ada1493e40cebad2585cc8ab2ddb6544c4bac21c5ee00e2eb7d744e8ca1f2e8c776
+  languageName: node
+  linkType: hard
+
+"@wc-toolkit/module-path-resolver@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@wc-toolkit/module-path-resolver@npm:1.0.0"
+  checksum: 10c0/05673fc7884957e447eaa377556921b22a0f061a2f67b209d5e80f89548d278b30835bdeaf1be2db4eecb60fd91546a90052ed0831ba7aef3ae3efd228fcc367
+  languageName: node
+  linkType: hard
+
+"@wc-toolkit/type-parser@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "@wc-toolkit/type-parser@npm:1.0.3"
+  checksum: 10c0/3a36bb813bc1d9eff39cedc782a3f10856b0088d210a0932ccb174821c880ceb580159c8d7207e6502cfcc8b10a4553408bfaf69f0c391671661c0ebe5cf7e83
+  languageName: node
+  linkType: hard
+
 "@web/browser-logs@npm:^0.4.0":
   version: 0.4.1
   resolution: "@web/browser-logs@npm:0.4.1"
@@ -3382,6 +3412,9 @@ __metadata:
     "@types/react": "npm:^19.1.2"
     "@typescript-eslint/eslint-plugin": "npm:^8.30.1"
     "@typescript-eslint/parser": "npm:^8.30.1"
+    "@wc-toolkit/cem-inheritance": "npm:^1.0.4"
+    "@wc-toolkit/module-path-resolver": "npm:^1.0.0"
+    "@wc-toolkit/type-parser": "npm:^1.0.3"
     "@web/dev-server": "npm:^0.4.6"
     "@web/test-runner": "npm:^0.20.1"
     "@web/test-runner-commands": "npm:^0.9.0"
