@@ -1,4 +1,0 @@
-exclusions:
-  sast:
-    paths:
-      - /Users/lukewalton/workspace/Zeta/zeta-web/src/stories

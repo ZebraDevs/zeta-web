@@ -114,7 +114,7 @@
     "typedoc": "^0.28.2",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.30.1",
-    "vite": "^6.2.6"
+    "vite": "^6.3.0"
   },
   "dependencies": {
     "@fontsource/ibm-plex-sans": "^5.2.5",
@@ -148,5 +148,5 @@
       "last 1 safari version"
     ]
   },
-  "packageManager": "yarn@4.8.1"
+  "packageManager": "yarn@4.9.1"
 }
