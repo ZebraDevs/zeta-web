@@ -4,6 +4,13 @@ import "@zebra-fed/zeta-icons/index.css";
 
 export default [
   css`
+    :host[rounded]{
+      --icon-font: "zeta-icons-round";
+    }
+    :host(:not([rounded])) {
+      --icon-font: "zeta-icons-sharp";
+    }
+
     :host,
     slot {
       display: flex;

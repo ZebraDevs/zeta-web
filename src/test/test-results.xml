@@ -102,13 +102,13 @@
     <testcase name="button should have correct background color for the negative flavor" time="0.001" classname="zeta-icon-button Styling" file="src/test/button/icon-button.test.ts"/>
     <testcase name="button should have correct background color for the outline flavor" time="0.001" classname="zeta-icon-button Styling" file="src/test/button/icon-button.test.ts"/>
     <testcase name="button should have correct background color for the outline-subtle flavor" time="0" classname="zeta-icon-button Styling" file="src/test/button/icon-button.test.ts"/>
-    <testcase name="button should have correct background color for the text flavor" time="0.001" classname="zeta-icon-button Styling" file="src/test/button/icon-button.test.ts"/>
-    <testcase name="should render the button with the correct color when set by CSS Variable" time="0.001" classname="zeta-icon-button Styling" file="src/test/button/icon-button.test.ts"/>
+    <testcase name="button should have correct background color for the text flavor" time="0" classname="zeta-icon-button Styling" file="src/test/button/icon-button.test.ts"/>
+    <testcase name="should render the button with the correct color when set by CSS Variable" time="0" classname="zeta-icon-button Styling" file="src/test/button/icon-button.test.ts"/>
     <testcase name="should render the icon with the correct color when set by CSS Variable" time="0.001" classname="zeta-icon-button Styling" file="src/test/button/icon-button.test.ts"/>
-    <testcase name="should render the icon with the correct color when disabled when set by CSS Variable" time="0" classname="zeta-icon-button Styling" file="src/test/button/icon-button.test.ts"/>
+    <testcase name="should render the icon with the correct color when disabled when set by CSS Variable" time="0.001" classname="zeta-icon-button Styling" file="src/test/button/icon-button.test.ts"/>
     <testcase name="should reset forms" time="0.001" classname="zeta-icon-button AS form reset control Interaction" file="src/test/button/icon-button.test.ts"/>
-    <testcase name="should not reset forms if disabled via JS" time="0.001" classname="zeta-icon-button AS form reset control Interaction" file="src/test/button/icon-button.test.ts"/>
-    <testcase name="should not reset forms if disabled via DOM" time="0" classname="zeta-icon-button AS form reset control Interaction" file="src/test/button/icon-button.test.ts"/>
+    <testcase name="should not reset forms if disabled via JS" time="0" classname="zeta-icon-button AS form reset control Interaction" file="src/test/button/icon-button.test.ts"/>
+    <testcase name="should not reset forms if disabled via DOM" time="0.001" classname="zeta-icon-button AS form reset control Interaction" file="src/test/button/icon-button.test.ts"/>
   </testsuite>
   <testsuite name="Chromium_playwright_/src/test/card/card-header.test.ts" id="0" tests="5" skipped="0" errors="0" failures="0" time="0.079">
     <properties>
@@ -629,8 +629,8 @@
     <testcase name="sets the correct colors for default status" time="0.001" classname="zeta-snackbar Styling" file="src/test/snackbar/snackbar.test.ts"/>
     <testcase name="sets the correct colors for positive status" time="0" classname="zeta-snackbar Styling" file="src/test/snackbar/snackbar.test.ts"/>
     <testcase name="sets the correct colors for info status" time="0.001" classname="zeta-snackbar Styling" file="src/test/snackbar/snackbar.test.ts"/>
-    <testcase name="sets the correct colors for warning status" time="0.001" classname="zeta-snackbar Styling" file="src/test/snackbar/snackbar.test.ts"/>
-    <testcase name="sets the correct colors for negative status" time="0" classname="zeta-snackbar Styling" file="src/test/snackbar/snackbar.test.ts"/>
+    <testcase name="sets the correct colors for warning status" time="0" classname="zeta-snackbar Styling" file="src/test/snackbar/snackbar.test.ts"/>
+    <testcase name="sets the correct colors for negative status" time="0.001" classname="zeta-snackbar Styling" file="src/test/snackbar/snackbar.test.ts"/>
     <testcase name="sets the correct colors for view status" time="0.001" classname="zeta-snackbar Styling" file="src/test/snackbar/snackbar.test.ts"/>
     <testcase name="removes the element from the screen when the close icon is clicked" time="0.04" classname="zeta-snackbar Interaction" file="src/test/snackbar/snackbar.test.ts"/>
     <testcase name="removes the element from the screen when the close icon is enter pressed" time="0.016" classname="zeta-snackbar Interaction" file="src/test/snackbar/snackbar.test.ts"/>
@@ -743,7 +743,7 @@
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
-    <testcase name="creates from document.createElement" time="0.001" classname="zeta-switch Content" file="src/test/switch/switch.test.ts"/>
+    <testcase name="creates from document.createElement" time="0" classname="zeta-switch Content" file="src/test/switch/switch.test.ts"/>
     <testcase name="creates from constructor" time="0" classname="zeta-switch Content" file="src/test/switch/switch.test.ts"/>
     <testcase name="focus on button when switch focused" time="0.001" classname="zeta-switch Content" file="src/test/switch/switch.test.ts"/>
     <testcase name="blur on button when switch blurred" time="0" classname="zeta-switch Content" file="src/test/switch/switch.test.ts"/>

@@ -1,8 +1,8 @@
 <style type="text/css">
-  .sbdocs > h1,
-  .sbdocs > h2,
-  .sbdocs > h3,
-  .sbdocs > h4,
+  .sbdocs>h1,
+  .sbdocs>h2,
+  .sbdocs>h3,
+  .sbdocs>h4,
   .docblock-code-toggle {
     font-weight: 500 !important;
   }
@@ -33,7 +33,7 @@
       margin: 0;
       margin-top: 2rem;
 
-      tr > td:nth-of-type(2) > div:first-of-type > span {
+      tr>td:nth-of-type(2)>div:first-of-type>span {
         font: var(--body-small);
       }
     }
@@ -42,23 +42,23 @@
       overflow-x: auto;
     }
 
-    > div:first-child > *:not(:first-child) {
+    >div:first-child>*:not(:first-child) {
       margin: 1.5rem 24px;
     }
 
-    > p,
-    > div,
-    > div > p {
+    >p,
+    >div,
+    >div>p {
       font: var(--body-medium) !important;
     }
 
-    > p,
-    > div,
-    > h1:not(:first-of-type) {
+    >p,
+    >div,
+    >h1:not(:first-of-type) {
       margin: 1rem 2rem;
     }
 
-    > div:first-child {
+    >div:first-child {
       margin: 0;
     }
 
@@ -99,8 +99,8 @@
       overflow-x: auto;
     }
 
-    p + blockquote,
-    pre + blockquote {
+    p+blockquote,
+    pre+blockquote {
       margin: 2rem;
       border-left-color: var(--color-cool-30);
 
@@ -127,7 +127,7 @@
       gap: 40px;
     }
 
-    h1.sbdocs-title + p {
+    h1.sbdocs-title+p {
       margin-top: 2rem;
     }
 
@@ -153,6 +153,7 @@
     }
 
     .sbdocs-content {
+
       code,
       .docblock-source {
         background: #000;
@@ -177,26 +178,27 @@
       }
     }
   }
+
   @media (max-width: 1020px) {
+
     :root,
     :host {
       --dialog-height: 400px;
     }
   }
+
   .sbdocs.sbdocs-content:last-child:after {
     /* x-release-please-start-version */
     content: "zeta-web v0.5.2";
     /* x-release-please-end */
   }
+
   details.repo-header {
     display: none;
   }
 </style>
 <link rel="stylesheet" href="../src/index.css" />
-<link rel="stylesheet" href="../node_modules/@zebra-fed/zeta-icons/index.css" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link
-  href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500&display=swap"
-  rel="stylesheet"
-/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet" />

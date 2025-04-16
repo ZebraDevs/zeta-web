@@ -58,23 +58,7 @@ Zeta Web Components can be directly used in many web frameworks including Angula
 
    To reduce bloat, we recommend only importing the components you will actually use into your project.
 
-4. If you use any element that uses icons, you will also need to import the index.css from [@zebra-fed/zeta-icons](https://www.npmjs.com/package/@zebra-fed/zeta-icons).
-
-   > 🚧 **Note**: This is a temporary step for now. This will be automatically imported where needed in the future.
-
-   ```js
-   import "@zebra-fed/zeta-icons/index.css";
-   ```
-
-   or in HTML,
-
-   ```html
-   <link rel="stylesheet" href="./node_modules/@zebra-fed/zeta-icons/index.css" />
-   ```
-
-   Full list of icons can be found at [Zeta Icons](https://design.zebra.com/icons/).
-
-5. Use the Web Component like any HTML element
+4. Use the Web Component like any HTML element
 
    ```html
    <zeta-button>Hello world!</zeta-button>
