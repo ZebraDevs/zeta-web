@@ -36,6 +36,8 @@ declare abstract class FormFieldInterface /* extends InteractiveInterface*/ {
   input: HTMLInputElement;
   internals: ElementInternals;
   placeholder: string;
+  min: number;
+  max: number;
   abstract handleChange(event: Event): void;
   handleInput(event: Event): void;
   handleFocus(event: FocusEvent): void;
@@ -127,6 +129,12 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
     /** Placeholder text shown when value is empty. */
     @property({ type: String, reflect: true }) placeholder?: string;
 
+    /** The minimum value for number inputs */
+    @property({ type: Number, reflect: true }) min?: number;
+
+    /** The maximum value for number inputs */
+    @property({ type: Number, reflect: true }) max?: number;
+
     /** Placeholder text shown when value is empty. */
     @property({ type: Boolean, reflect: true }) readOnly?: boolean;
 
@@ -193,7 +201,7 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
 
     firstUpdated(_changedProperties: PropertyValues): void {
       super.firstUpdated(_changedProperties);
-      // this.setToInitialValues();
+      if (this.type === "slider") this.setToInitialValues();
 
       if (this.isCheckable) this.addEventListener("click", this.click);
       // if (this.isCheckable) this.addEventListener("click", this.input.click); //TODO this is probably the source of the click problem
@@ -359,7 +367,7 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
           /> `;
         case "slider":
           return html`<input
-            type="text"
+            type="number"
             id=${ifDefined(this.id !== "" ? this.id : undefined)}
             .id=${this.id}
             name=${ifDefined(this.name)}
@@ -373,7 +381,9 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
             @change=${this._handleChange}
             @focus=${this.handleFocus}
             @blur=${this.handleBlur}
-            ?hidden=${true}
+            class="contourable-target"
+            min=${ifDefined(this.min)}
+            max=${ifDefined(this.max)}
           />`;
         case "range-selector":
           return html`<input

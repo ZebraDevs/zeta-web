@@ -1,13 +1,12 @@
-import { html, LitElement, nothing } from "lit";
+import { html, LitElement, nothing, type PropertyValues } from "lit";
 import { customElement, property, query } from "lit/decorators.js";
 import { Contourable } from "../../../mixins/mixins.js";
 import styles from "./slider-input-field.styles.js";
-import { live } from "lit/directives/live.js";
 import { ifDefined } from "lit/directives/if-defined.js";
-import { type ZetaSliderEventDetail, ZetaSliderEvent } from "../../../events.js";
 import "../../text-input/text-input.js";
 import "../slider.js";
 import { FormField, type InputType } from "../../../mixins/form-field.js";
+import { ZetaSlider } from "../slider.js";
 
 //TODO: min / max dont seem to change values of slider correctly.
 
@@ -21,23 +20,26 @@ import { FormField, type InputType } from "../../../mixins/form-field.js";
  */
 @customElement("zeta-slider-input-field")
 export class ZetaSliderInputField extends FormField(Contourable(LitElement)) {
+  /** @internal */
+  static override shadowRootOptions: ShadowRootInit = {
+    ...LitElement.shadowRootOptions,
+    mode: "open",
+    delegatesFocus: true
+  };
+
   /** The label displayed above the input. */
   @property({ type: String }) label?: string;
-
-  /** The name given to the input field. */
-  @property({ type: String }) name: string;
-
-  /** The value of the input field. */
-  @property({ type: Number, reflect: true }) initialValue: number = 50;
 
   /** Error state. */
   @property({ type: Boolean, reflect: true }) error = false;
 
   /** The minimum value of the slider input field. */
-  @property({ type: Number }) min: number = 0;
+  @property({ type: Number, reflect: true }) min: number = 0;
 
   /** The maximum value of the slider input field. */
-  @property({ type: Number }) max: number = 100;
+  @property({ type: Number, reflect: true }) max: number = 100;
+
+  @property({ type: String }) value: string = "50";
 
   /** If set, will put steps on the slider at the given increments and the slider will snap to the nearest step. */
   @property({ type: Number }) stepIncrement?: number;
@@ -45,85 +47,42 @@ export class ZetaSliderInputField extends FormField(Contourable(LitElement)) {
   /**  Disables the input field. */
   @property({ type: Boolean, reflect: true }) disabled: boolean;
 
-  id = "hidden-slider-input";
-
   type: InputType = "slider";
 
-  @query("input#hidden-slider-input") hiddenInput!: HTMLInputElement;
   @query("input.contourable-target") input!: HTMLInputElement;
 
-  /**
-   * @listens ZetaSliderEvent:change
-   */
-  private sliderChange = (e: CustomEvent<ZetaSliderEventDetail>) => {
-    this.initialValue = e.detail.value;
-    this.updateVisibleInputs(this.initialValue);
-
-    this.onValueUpdated();
-  };
-
-  /**
-   * @fires ZetaSliderEvent:change
-   */
-  private onValueUpdated() {
-    if (this.initialValue != undefined) {
-      this.error = this.initialValue < this.min || this.initialValue > this.max || isNaN(this.initialValue);
-
-      if (!this.error) {
-        this.updateHiddenInput();
-      }
-      this.dispatchEvent(new ZetaSliderEvent({ value: this.initialValue }).toEvent());
-    }
+  update(_changedProperties: PropertyValues) {
+    super.update(_changedProperties);
+    this.internals.setFormValue(this.value);
   }
 
-  private handleInputChange = (e: Event) => {
-    this.initialValue = parseInt((e.target as HTMLInputElement).value);
+  handleChange(event: Event) {
+    const target = event.target as HTMLInputElement | ZetaSlider;
+    const intValue = Number(target.value);
+    this.value = intValue.toString();
+    this.error = intValue < this.min || intValue > this.max || isNaN(intValue);
 
-    this.onValueUpdated();
-  };
-
-  private updateVisibleInputs(value: number) {
-    this.input.value = value.toString();
-  }
-
-  private updateHiddenInput() {
-    if (this.hiddenInput) {
-      this.hiddenInput.value = `${this.initialValue}`;
-      this.hiddenInput.dispatchEvent(new Event("input"));
-    }
-  }
-
-  override handleChange(event: Event) {
-    return event;
-    // this.dispatchEvent(new Event(event.type, event)); //TODO this is not working
-  }
-
-  protected firstUpdated() {
-    this.updateHiddenInput();
+    if (target instanceof ZetaSlider) this.internals.setFormValue(this.value);
   }
 
   private getLabel() {
-    if (this.label) {
-      return html`<label for=${this.id}>${this.label}</label>`;
-    } else {
-      return nothing;
-    }
+    if (this.label) return html`<label for=${this.id}>${this.label}</label>`;
+    else return nothing;
   }
 
   protected override render() {
     return html`
       ${this.getLabel()}
       <div class="slider-input-container">
-        ${super.render()}
         <div class="slider-container">
           <zeta-slider
             stepIncrement=${ifDefined(this.stepIncrement)}
             .rounded=${this.rounded}
             .disabled=${this.disabled}
-            value=${ifDefined(this.initialValue)}
+            value=${isNaN(Number(this.value)) ? this.min : Number(this.value)}
             min=${this.min}
             max=${this.max}
-            @change=${this.sliderChange}
+            @change=${(e: Event) => this.handleChange(e)}
           >
           </zeta-slider>
           <div class="range-label-container">
@@ -131,18 +90,7 @@ export class ZetaSliderInputField extends FormField(Contourable(LitElement)) {
             <p>${this.max}</p>
           </div>
         </div>
-        <input
-          aria-label=${this.label ?? "slider input"}
-          ?disabled=${this.disabled}
-          class="contourable-target"
-          type="number"
-          min=${this.min}
-          max=${this.max}
-          name=${ifDefined(this.name)}
-          step=${ifDefined(this.stepIncrement)}
-          value=${ifDefined(live(this.initialValue))}
-          @input=${this.handleInputChange}
-        />
+        ${super.render()}
       </div>
     `;
   }

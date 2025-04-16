@@ -22,8 +22,6 @@ import { ZetaStepperChangeEvent } from "../../events.js";
 export class ZetaStepperInput extends FormField(Contourable(LitElement)) {
   static styles = [super.styles || [], styles];
 
-  @property({ type: Number }) min?: number;
-  @property({ type: Number }) max?: number;
   @property({ type: Boolean }) disabled: boolean = false; //TODO: Use interactive, check styles beforehand
   @property({ reflect: true }) size: "medium" | "large" = "medium";
 
