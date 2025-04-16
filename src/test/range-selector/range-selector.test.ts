@@ -65,7 +65,7 @@ describe("zeta-range-selector", () => {
       await expect(subject.label).to.equal(undefined);
       await expect(subject.disabled).to.equal(false);
       await expect(subject.error).to.equal(false);
-      await expect(subject.rounded).to.equal(undefined);
+      await expect(subject.rounded).to.equal(true);
       await expect(subject.name).to.equal("");
     });
   });

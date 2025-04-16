@@ -71,7 +71,7 @@ describe("zeta-slider-input-field", () => {
       await expect(subject.label).to.equal("Label");
       await expect(subject.disabled).to.equal(false);
       await expect(subject.error).to.equal(false);
-      await expect(subject.rounded).to.equal(undefined);
+      await expect(subject.rounded).to.equal(true);
       await expect(subject.name).to.equal("");
     });
   });
