@@ -6,7 +6,6 @@ import "../../components/snackbar/snackbar.js";
 import type { ZetaIcon } from "../../components/icon/icon.js";
 import "../../components/icon/icon.js";
 import "../../index.css";
-import "@zebra-fed/zeta-icons/index.css";
 
 describe("zeta-snackbar", () => {
   let subject: ZetaSnackbar;

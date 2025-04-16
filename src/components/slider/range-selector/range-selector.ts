@@ -59,7 +59,6 @@ export class ZetaRangeSelector extends FormField(Contourable(LitElement)) {
    * @listens ZetaRangeSliderEvent:change
    */
   private sliderChange = (e: ZetaRangeSliderEvent<ZetaRangeSliderEventDetail>) => {
-    console.log(e);
     this.initialValues = { min: e.detail.min, max: e.detail.max };
     this.updateVisibleInputs(this.initialValues);
 

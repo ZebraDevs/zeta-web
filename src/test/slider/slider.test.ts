@@ -104,7 +104,7 @@ describe("zeta-slider", () => {
 
     it("sets the correct border radius for the handle", async () => {
       const handle = subject.shadowRoot?.querySelector(".handle");
-      await expect(getComputedStyle(handle as Element).borderRadius).to.equal("0px");
+      await expect(getComputedStyle(handle as Element).borderRadius).to.equal("360px");
 
       subject.rounded = true;
       await subject.updateComplete;
@@ -113,7 +113,7 @@ describe("zeta-slider", () => {
 
     it("sets the correct border radius for the track", async () => {
       const track = subject.shadowRoot?.querySelector(".track");
-      await expect(getComputedStyle(track as Element).borderRadius).to.equal("0px");
+      await expect(getComputedStyle(track as Element).borderRadius).to.equal("4px");
 
       subject.rounded = true;
       await subject.updateComplete;

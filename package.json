@@ -38,7 +38,7 @@
   "scripts": {
     "analyze": "cem analyze",
     "build-storybook:with-output-dir": "yarn run build && storybook build -o ",
-    "build": "yarn prebuild && tsc -P tsconfig.build.json && npx clean-css-cli ./src/index.css -o ./dist/index.css && cp src/generated/tokens/semantics.css ./dist/semantics.css && cp src/generated/tokens/primitives.css ./dist/primitives.css",
+    "build": "yarn prebuild && bash scripts/build.sh",
     "check": "npm-run-all analyze --parallel lint lint:lit-analyzer test docs",
     "create": "cd scripts && node makeWebComponentTemplate.js",
     "docs": "npx typedoc --logLevel Warn",
@@ -84,22 +84,21 @@
     "@storybook/web-components": "^8.6.12",
     "@storybook/web-components-vite": "^8.6.12",
     "@types/jest": "^29.5.14",
-    "@types/node": "^22.14.0",
-    "@types/react": "^19.1.0",
-    "@typescript-eslint/eslint-plugin": "^8.29.0",
-    "@typescript-eslint/parser": "^8.29.0",
-    "@web/dev-server": "^0.4.6",
-    "@web/test-runner": "^0.20.0",
+    "@types/node": "^22.14.1",
+    "@types/react": "^19.1.2",
+    "@typescript-eslint/eslint-plugin": "^8.30.1",
+    "@typescript-eslint/parser": "^8.30.1",
+    "@wc-toolkit/type-parser": "^1.0.3",
+    "@web/test-runner": "^0.20.1",
     "@web/test-runner-commands": "^0.9.0",
     "@web/test-runner-playwright": "^0.11.0",
     "axe-playwright": "^2.1.0",
     "cem-plugin-better-lit-types": "^0.2.1",
     "cem-plugin-custom-jsdoc-tags": "^1.2.0",
-    "command-line-args": "^6.0.1",
     "custom-element-jsx-integration": "^1.6.0",
-    "del": "^8.0.0",
+    "dts-minify": "^0.3.3",
     "eslint": "^9.24.0",
-    "eslint-config-prettier": "^10.1.1",
+    "eslint-config-prettier": "^10.1.2",
     "eslint-formatter-unix": "^8.40.0",
     "eslint-plugin-lit": "^1.15.0",
     "eslint-plugin-lit-a11y": "^4.1.4",
@@ -107,7 +106,6 @@
     "eslint-plugin-tsdoc": "^0.4.0",
     "eslint-plugin-wc": "^2.2.1",
     "lit-analyzer": "^2.0.3",
-    "npm-run-all": "^4.1.5",
     "prettier": "3.5.3",
     "react": "^19.1.0",
     "storybook": "^8.6.12",
@@ -115,8 +113,8 @@
     "ts-morph": "^25.0.1",
     "typedoc": "^0.28.2",
     "typescript": "^5.8.3",
-    "typescript-eslint": "^8.29.0",
-    "vite": "^6.2.5"
+    "typescript-eslint": "^8.30.1",
+    "vite": "^6.2.6"
   },
   "dependencies": {
     "@fontsource/ibm-plex-sans": "^5.2.5",
@@ -124,7 +122,7 @@
     "@storybook/test": "^8.6.12",
     "@web/test-runner-junit-reporter": "^0.8.0",
     "@zebra-fed/zeta-icons": "^0.9.7",
-    "lit": "^3.2.1"
+    "lit": "^3.3.0"
   },
   "overrides": {
     "@storybook/blocks": {

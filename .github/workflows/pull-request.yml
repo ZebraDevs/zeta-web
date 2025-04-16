@@ -35,6 +35,9 @@ jobs:
       - name: Run lit-localize build
         run: yarn run localize:build
 
+      - name: Format code
+        run: npx prettier src --write --ignore-unknown
+
       - name: Check diff
         id: diff
         run: git diff --quiet . || echo "changed=true" >> $GITHUB_OUTPUT

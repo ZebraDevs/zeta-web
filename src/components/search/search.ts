@@ -61,7 +61,6 @@ export class ZetaSearch extends FormField(Size(Contourable(Interactive(LitElemen
   @property({ type: Boolean, reflect: true }) hasIcon = false;
 
   private resetInput = () => {
-    console.log("resetInput");
     this.value = "";
     this.dispatchEvent(new InputEvent("input", { inputType: "deleteContent" }));
   };

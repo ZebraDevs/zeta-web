@@ -3,8 +3,9 @@ import { customElement, property } from "lit/decorators.js";
 import styles from "./switch.styles.js";
 import { type ZetaIconName } from "@zebra-fed/zeta-icons";
 import { BaseToggleFormElement } from "../base-toggle-form-element.js";
-import { type InputType } from "../../mixins/form-field.js";
 import "../icon/icon.js";
+import type { CheckboxType } from "../checkbox/checkbox.js";
+
 //TODO we dont have focus styles for switch
 //TODO Having icons smaller than the thumb is difficult to position
 /**
@@ -40,7 +41,7 @@ export class ZetaSwitch extends BaseToggleFormElement {
     super();
     this.internals.role = "switch";
   }
-  override type = "checkbox" as InputType;
+  override type: CheckboxType = "checkbox";
 
   //TODO aria-checked -> on=true, off|mixed=false?
   //TODO aria-readonly

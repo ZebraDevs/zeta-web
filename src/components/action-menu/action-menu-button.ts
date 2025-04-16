@@ -1,13 +1,12 @@
 import { customElement, property, query } from "lit/decorators.js";
-import styles from "./action-menu-button.styles.js";
-import { html, LitElement } from "lit";
-import { Contourable, Flavored, Size } from "../../mixins/mixins.js";
+import { html } from "lit";
 import type { ZetaDroppable } from "../dropdown/droppable.js";
 import "../button/icon-button/icon-button.js";
 import "../dropdown/menu-item/dropdown-menu-item.js";
 import "../dropdown/droppable.js";
 import type { ZetaIconName } from "@zebra-fed/zeta-icons";
 import type { ZetaDropdownItem } from "../dropdown/dropdown-menu/dropdown-menu-button.js";
+import { ZetaButton } from "../button/button.js";
 
 /** Zeta Action Menu Button places a button that when clicked opens an action menu containing the items passed into it through the items prop.
  *
@@ -15,7 +14,7 @@ import type { ZetaDropdownItem } from "../dropdown/dropdown-menu/dropdown-menu-b
  * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/dropdown--docs
  */
 @customElement("zeta-action-menu-button")
-export class ZetaActionMenuButton extends Contourable(Flavored(Size(LitElement))) {
+export class ZetaActionMenuButton extends ZetaButton {
   /** Controls the state of the dropdown menu. */
   @property({ type: Boolean }) open: boolean = false;
 
@@ -90,8 +89,6 @@ export class ZetaActionMenuButton extends Contourable(Flavored(Size(LitElement))
       </zeta-droppable>
     `;
   }
-
-  static styles = [styles, super.styles || []];
 }
 
 declare global {

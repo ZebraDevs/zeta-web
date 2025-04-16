@@ -2,7 +2,6 @@
 @import url("./generated/tokens/semantics.css");
 @import url("./generated/tokens/semantics-high-contrast.css");
 @import url("./generated/tokens/primitives-dark.css");
-/* @import url("@zebra-fed/zeta-icons/index.css"); */
 
 /* All tokens defined here are used in code but not from figma */
 :root,

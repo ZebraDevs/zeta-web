@@ -13,7 +13,7 @@ const meta: Meta<ZetaIcon> = {
     rounded: true
   },
   argTypes: {
-    slot: {
+    name: {
       options: ZetaIconNameList,
       control: { type: "select" }
     }
@@ -37,5 +37,5 @@ export const Icon: StoryObj = {
           ${args["--icon-size"] && `--icon-size: ${args["--icon-size"]}`} ;
         }
       </style>
-      <zeta-icon ${spread(args)}>${slot}</zeta-icon>`
+      <zeta-icon ${spread(args)}>barcode</zeta-icon>`
 };

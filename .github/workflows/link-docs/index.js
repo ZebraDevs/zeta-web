@@ -1,5 +1,6 @@
 import core from "@actions/core";
 import manifest from "../../../custom-elements.json" assert { type: "json" };
+import { log } from "../../../scripts/utils";
 
 const FILE_KEY = "JesXQFLaPJLc1BdBM4sisI";
 
@@ -18,7 +19,7 @@ const postDevResources = async links => {
     }
   });
 
-  console.log(await response.json());
+  log(await response.json());
   if (response.status != 200) {
     core.setFailed(response.statusText);
   }
@@ -50,7 +51,7 @@ const main = () => {
         });
       }
     } else if (classDec) {
-      console.warn(`${classDec.name} is missing documentation links`);
+      log(`${classDec.name} is missing documentation links`);
     }
   });
   postDevResources(links);

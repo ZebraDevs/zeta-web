@@ -29,7 +29,7 @@ const _spread = (_spreadData: SpreadData, properties: PropertyDeclarationMap): D
     return acc;
   }, {} as SpreadData);
   const returnVal = oldSpread(fixedSpreadData) as SpreadData;
-  console.log("Spread", _spreadData, fixedSpreadData, properties, returnVal);
+
   return returnVal;
 };
 

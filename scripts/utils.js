@@ -88,4 +88,4 @@ export const pascalCaseFromParts = (stringArr) => stringArr.reduce((acc, part) =
  * @param {string} string 
  * @returns {string} the inputted string with a Capitalized first letter
  */
-export const wordToTitleCase = (string) => (string.slice(0,1).toUpperCase() + string.slice(1));
+export const wordToTitleCase = (string) => (string.slice(0, 1).toUpperCase() + string.slice(1));

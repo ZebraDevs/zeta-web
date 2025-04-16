@@ -25,7 +25,8 @@ export type InputType =
   | "number"; //Extend this when adding more form controls
 
 //TODO add all properties here
-declare abstract class FormFieldInterface /* extends InteractiveInterface*/ {
+
+declare abstract class FormFieldInterface {
   abstract type: InputType;
   name: string;
   required: boolean;
