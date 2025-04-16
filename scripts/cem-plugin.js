@@ -1,34 +1,26 @@
 
 import { generateJsxTypes } from "custom-element-jsx-integration";
+import * as fs from "fs"; import * as path from "path";
 
-export const myPlugin = () => {
-    // Write a custom plugin
-    return {
-        // Make sure to always give your plugins a name, this helps when debugging
-        name: 'my-plugin',
-        packageLinkPhase({ customElementsManifest, context }) {
-            console.log('packageLinkPhase');
-            // console.log(customElementsManifest.modules.find((m) => m.path.includes('button/button.ts')).declarations[0].attributes)
-            const myCEM = customElementsManifest;
-
-            myCEM.modules.forEach((module) => {
-                module.declarations?.forEach((declaration) => {
-                    // console.log('DECLARATION', declaration.name);
-                    declaration.attributes?.forEach((attribute) => {
-                        console.log('ATTRIBUTES', attribute.name)
-                        if (attribute.name === 'change-type') {
-                            attribute.name = 'type';
-                            console.log('DOING THIS')
+export const JSXPluginWrapped = () => ({
+    name: 'jsx-plugin-wrapped',
+    packageLinkPhase({ customElementsManifest, context }) {
+        const myCEM = customElementsManifest;
+        myCEM.modules.forEach((module) => {
+            module.declarations?.forEach((declaration) => {
+                ['attributes', 'members'].forEach((key) => {
+                    declaration[key]?.forEach((item) => {
+                        if (item['change-type']) {
+                            item.type = item['change-type'];
                         }
                     });
                 });
             });
-
-
-            generateJsxTypes(myCEM, {
-                outdir: "dist",
-                fileName: "jsx.d.ts",
-                globalEvents: `
+        });
+        generateJsxTypes(myCEM, {
+            outdir: "dist",
+            fileName: "jsx.d.ts",
+            globalEvents: `
 /** Triggered when the element is clicked by the user by mouse or keyboard. */
 onClick?: (event: MouseEvent) => void;
 /** Fired when a key is pressed down. */
@@ -42,8 +34,11 @@ onFocus?: (event: FocusEvent) => void;
 /** Fired when the element loses focus. */
 onBlur?: (event: FocusEvent) => void;
 `,
-            });
-        },
-
-    }
-}
+        });
+        const filePath = path.join("dist", "jsx.d.ts");
+        if (fs.existsSync(filePath)) {
+            const content = fs.readFileSync(filePath, 'utf8');
+            fs.writeFileSync(filePath, 'import { type ZetaIconName } from "@zebra-fed/zeta-icons"' + content, 'utf8');
+        }
+    },
+})
