@@ -4,11 +4,12 @@ import "../../components/slider/slider-input-field/slider-input-field.js";
 import "../../index.css";
 import { getCssVarColorValue } from "../utils.js";
 import type { FormEvent } from "react";
+import type { ZetaSlider } from "../../components/slider/slider.js";
 
 describe("zeta-slider-input-field", () => {
   let subject: ZetaSliderInputField;
 
-  const createComponent = (template = `<zeta-slider-input-field label="Label"></zeta-slider-input-field>`) => {
+  const createComponent = (template = `<zeta-slider-input-field label="Label" id="slider"></zeta-slider-input-field>`) => {
     // prettier-ignore
     return fixture<ZetaSliderInputField>(html`${unsafeStatic(template)}`);
   };
@@ -64,7 +65,7 @@ describe("zeta-slider-input-field", () => {
     });
 
     it("sets the initial values correctly", async () => {
-      await expect(subject.initialValue).to.equal(50);
+      await expect(subject.value).to.equal("50");
       await expect(subject.min).to.equal(0);
       await expect(subject.max).to.equal(100);
       await expect(subject.stepIncrement).to.equal(undefined);
@@ -133,15 +134,6 @@ describe("zeta-slider-input-field", () => {
   });
 
   describe("Interaction", () => {
-    it("updates the hidden input value when the slider value changes", async () => {
-      const slider = subject.shadowRoot?.querySelector("zeta-slider");
-      slider?.dispatchEvent(new CustomEvent("change", { detail: { value: 75 } }));
-
-      const input = subject.shadowRoot?.querySelector("input#hidden-slider-input") as HTMLInputElement;
-      const inputValue = input?.value;
-      await expect(inputValue).to.equal("75");
-    });
-
     it("updates the slider value when the input value changes", async () => {
       const input = subject.shadowRoot?.querySelector("input.contourable-target") as HTMLInputElement;
       if (input) {
@@ -169,12 +161,16 @@ describe("zeta-slider-input-field", () => {
           <zeta-slider-input-field name="test"></zeta-slider-input-field><button type="submit">Submit</button>
         </form>`
       );
-      const slider = form.querySelector("zeta-slider-input-field") as ZetaSliderInputField;
+      const sliderInputField = form.querySelector("zeta-slider-input-field") as ZetaSliderInputField;
       const button = form.querySelector("button") as HTMLButtonElement;
 
-      const zetaSlider = slider.shadowRoot?.querySelector("zeta-slider");
-      zetaSlider?.dispatchEvent(new CustomEvent("change", { detail: { value: 75 } }));
+      const slider = sliderInputField.shadowRoot?.querySelector("zeta-slider") as ZetaSlider;
+      slider.value = 75;
+      slider.dispatchEvent(new CustomEvent("change", { detail: { value: 75 } }));
 
+      await sliderInputField.updateComplete;
+
+      // simulate form submission
       if (button) {
         button.click();
       }

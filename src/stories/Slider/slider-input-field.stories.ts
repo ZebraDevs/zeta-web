@@ -12,14 +12,13 @@ const meta: Meta<ZetaSliderInputField> = {
     disabled: false,
     error: false,
     label: "Label",
-    initialValue: 50,
+    value: "50",
     min: 0,
     max: 100,
     stepIncrement: 0
   },
   argTypes: {
     name: { table: { disable: true } },
-    value: { table: { disable: true } },
     stepIncrement: { control: { type: "range", min: 0, max: 50 } },
     min: { control: { type: "number", min: 0, max: 100 } },
     max: { control: { type: "number", min: 0, max: 100 } }
@@ -36,5 +35,5 @@ const meta: Meta<ZetaSliderInputField> = {
 export default meta;
 
 export const SliderInputField: StoryObj = {
-  render: args => html` <zeta-slider-input-field ${spread(args)}> </zeta-slider-input-field>`
+  render: args => html` <zeta-slider-input-field ${spread(args)}> </zeta-slider-input-field> `
 };
