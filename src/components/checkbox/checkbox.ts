@@ -31,7 +31,7 @@ export class ZetaCheckbox extends BaseToggleFormElement {
     this.internals.role = "checkbox";
   }
 
-  @property({ type: String }) type: CheckboxType = "checkbox";
+  override type: CheckboxType = "checkbox";
 
   override value = "on";
 

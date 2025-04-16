@@ -11,6 +11,7 @@ import "../menu-item/dropdown-menu-item.js";
 import "./../droppable.js";
 import type { ZetaIconName } from "@zebra-fed/zeta-icons";
 import { ZetaDropdownEvent } from "../../../events.js";
+import type { ButtonFlavor } from "../../button/button.js";
 
 export type ZetaDropdownItem = { label: string; icon?: ZetaIconName; checked?: boolean; disabled?: boolean; onClick?: () => void };
 
@@ -40,6 +41,8 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
       checked: false
     }
   ];
+
+  @property({ type: String, reflect: true }) flavor: ButtonFlavor = "primary";
 
   /** The type of dropdown.
    * - "text-dropdown" - A dropdown with a default dropdown buttons.
