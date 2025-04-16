@@ -34,10 +34,12 @@ export class ZetaSliderInputField extends FormField(Contourable(LitElement)) {
   @property({ type: Boolean, reflect: true }) error = false;
 
   /** The minimum value of the slider input field. */
-  @property({ type: Number }) min: number = 0;
+  @property({ type: Number, reflect: true }) min: number = 0;
 
   /** The maximum value of the slider input field. */
-  @property({ type: Number }) max: number = 100;
+  @property({ type: Number, reflect: true }) max: number = 100;
+
+  @property({ type: String }) value: string = "50";
 
   /** If set, will put steps on the slider at the given increments and the slider will snap to the nearest step. */
   @property({ type: Number }) stepIncrement?: number;
@@ -80,7 +82,7 @@ export class ZetaSliderInputField extends FormField(Contourable(LitElement)) {
             value=${parseInt(this.value)}
             min=${this.min}
             max=${this.max}
-            @change=${this.handleChange}
+            @change=${(e: Event) => this.handleChange(e)}
           >
           </zeta-slider>
           <div class="range-label-container">
