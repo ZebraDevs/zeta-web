@@ -38,7 +38,7 @@
   "scripts": {
     "analyze": "cem analyze",
     "build-storybook:with-output-dir": "yarn run build && storybook build -o ",
-    "build": "yarn prebuild && tsc -P tsconfig.build.json && npx clean-css-cli ./src/index.css -o ./dist/index.css && cp src/generated/tokens/semantics.css ./dist/semantics.css && cp src/generated/tokens/primitives.css ./dist/primitives.css && npx tsx scripts/add-declarations.ts",
+    "build": "yarn prebuild && bash scripts/build.sh",
     "check": "npm-run-all analyze --parallel lint lint:lit-analyzer test docs",
     "create": "cd scripts && node makeWebComponentTemplate.js",
     "docs": "npx typedoc --logLevel Warn",

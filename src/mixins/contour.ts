@@ -24,7 +24,7 @@ export const Contourable = <T extends Constructor<LitElement>>(superClass: T) =>
      *
      * Otherwise, this value will be `--radius-none`.
      */
-    @property({ type: Boolean, reflect: true }) rounded?: boolean;
+    @property({ type: Boolean, reflect: true }) rounded?: boolean = true;
 
     static styles = [
       (superClass as unknown as typeof LitElement).styles ?? [],

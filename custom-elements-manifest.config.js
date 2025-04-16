@@ -21,7 +21,7 @@ export default {
       },
     }),
     JSXPluginWrapped(),
-    typeParserPlugin({ propertyName: 'change-type', debug: true }),
+    typeParserPlugin({ propertyName: 'change-type' }),
 
   ],
 };
