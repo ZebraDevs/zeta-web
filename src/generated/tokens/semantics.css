@@ -1,11 +1,11 @@
 :root {
   /* main/default
 
-  Default value is '{color.cool.90}'
+  Default value is 'color/cool/90'
   - Light mode: #1d1e23
-  - Dark mode: #f3f6fa
+  - Dark mode: #f3f6fa  
 
-  Default high contrast (AAA) value is '{color.cool.100}'
+  Default high contrast (AAA) value is 'color/cool/100'
   - Light mode: #0c0d0e
   - Dark mode: #f8fbff
   */
@@ -13,11 +13,11 @@
 
   /* main/subtle
 
-  Default value is '{color.cool.70}'
+  Default value is 'color/cool/70'
   - Light mode: #545963
-  - Dark mode: #bbc1cb
+  - Dark mode: #bbc1cb  
 
-  Default high contrast (AAA) value is '{color.cool.90}'
+  Default high contrast (AAA) value is 'color/cool/90'
   - Light mode: #1d1e23
   - Dark mode: #f3f6fa
   */
@@ -25,11 +25,11 @@
 
   /* main/primary
 
-  Default value is '{color.blue.60}'
+  Default value is 'color/blue/60'
   - Light mode: #0073e6
-  - Dark mode: #599fe5
+  - Dark mode: #599fe5  
 
-  Default high contrast (AAA) value is '{color.blue.80}'
+  Default high contrast (AAA) value is 'color/blue/80'
   - Light mode: #004d99
   - Dark mode: #b7dbff
   */
@@ -37,11 +37,11 @@
 
   /* main/secondary
 
-  Default value is '{color.yellow.60}'
+  Default value is 'color/yellow/60'
   - Light mode: #8d7400
-  - Dark mode: #c2a728
+  - Dark mode: #c2a728  
 
-  Default high contrast (AAA) value is '{color.yellow.80}'
+  Default high contrast (AAA) value is 'color/yellow/80'
   - Light mode: #564908
   - Dark mode: #f3d961
   */
@@ -49,11 +49,11 @@
 
   /* main/positive
 
-  Default value is '{color.green.60}'
+  Default value is 'color/green/60'
   - Light mode: #00864f
-  - Dark mode: #67b796
+  - Dark mode: #67b796  
 
-  Default high contrast (AAA) value is '{color.green.80}'
+  Default high contrast (AAA) value is 'color/green/80'
   - Light mode: #005f38
   - Dark mode: #beefdb
   */
@@ -61,11 +61,11 @@
 
   /* main/warning
 
-  Default value is '{color.orange.60}'
+  Default value is 'color/orange/60'
   - Light mode: #ae6500
-  - Dark mode: #d78d26
+  - Dark mode: #d78d26  
 
-  Default high contrast (AAA) value is '{color.orange.80}'
+  Default high contrast (AAA) value is 'color/orange/80'
   - Light mode: #764502
   - Dark mode: #ffd292
   */
@@ -73,11 +73,11 @@
 
   /* main/negative
 
-  Default value is '{color.red.60}'
+  Default value is 'color/red/60'
   - Light mode: #d70015
-  - Dark mode: #f36170
+  - Dark mode: #f36170  
 
-  Default high contrast (AAA) value is '{color.red.80}'
+  Default high contrast (AAA) value is 'color/red/80'
   - Light mode: #8f000e
   - Dark mode: #ffb3bb
   */
@@ -85,11 +85,11 @@
 
   /* main/info
 
-  Default value is '{color.purple.60}'
+  Default value is 'color/purple/60'
   - Light mode: #7e0cff
-  - Dark mode: #9b71df
+  - Dark mode: #9b71df  
 
-  Default high contrast (AAA) value is '{color.purple.80}'
+  Default high contrast (AAA) value is 'color/purple/80'
   - Light mode: #43008f
   - Dark mode: #dcc1fb
   */
@@ -97,11 +97,11 @@
 
   /* main/disabled
 
-  Default value is '{color.cool.50}'
+  Default value is 'color/cool/50'
   - Light mode: #8d95a3
-  - Dark mode: #7a8190
+  - Dark mode: #7a8190  
 
-  Default high contrast (AAA) value is '{color.cool.60}'
+  Default high contrast (AAA) value is 'color/cool/60'
   - Light mode: #7a8190
   - Dark mode: #8d95a3
   */
@@ -109,11 +109,11 @@
 
   /* main/light
 
-  Default value is '{color.cool.30}'
+  Default value is 'color/cool/30'
   - Light mode: #e0e3e9
-  - Dark mode: #2c2f36
+  - Dark mode: #2c2f36  
 
-  Default high contrast (AAA) value is '{color.pure.0}'
+  Default high contrast (AAA) value is 'color/pure/0'
   - Light mode: #ffffff
   - Dark mode: #151519
   */
@@ -121,71 +121,23 @@
 
   /* main/inverse
 
-  Default value is '{color.cool.20}'
+  Default value is 'color/cool/20'
   - Light mode: #f3f6fa
-  - Dark mode: #1d1e23
+  - Dark mode: #1d1e23  
 
-  Default high contrast (AAA) value is '{color.pure.0}'
+  Default high contrast (AAA) value is 'color/pure/0'
   - Light mode: #ffffff
   - Dark mode: #151519
   */
   --main-inverse: var(--color-cool-20, #f3f6fa);
 
-  /* icon/flavor/positive
-
-  Default value is '{color.green.60}'
-  - Light mode: #00864f
-  - Dark mode: #67b796
-
-  Default high contrast (AAA) value is '{color.green.80}'
-  - Light mode: #005f38
-  - Dark mode: #beefdb
-  */
-  --icon-flavor-positive: var(--color-green-60, #00864f);
-
-  /* icon/flavor/warning
-
-  Default value is '{color.orange.60}'
-  - Light mode: #ae6500
-  - Dark mode: #d78d26
-
-  Default high contrast (AAA) value is '{color.orange.80}'
-  - Light mode: #764502
-  - Dark mode: #ffd292
-  */
-  --icon-flavor-warning: var(--color-orange-60, #ae6500);
-
-  /* icon/flavor/negative
-
-  Default value is '{color.red.60}'
-  - Light mode: #d70015
-  - Dark mode: #f36170
-
-  Default high contrast (AAA) value is '{color.red.80}'
-  - Light mode: #8f000e
-  - Dark mode: #ffb3bb
-  */
-  --icon-flavor-negative: var(--color-red-60, #d70015);
-
-  /* icon/flavor/info
-
-  Default value is '{color.purple.60}'
-  - Light mode: #7e0cff
-  - Dark mode: #9b71df
-
-  Default high contrast (AAA) value is '{color.purple.80}'
-  - Light mode: #43008f
-  - Dark mode: #dcc1fb
-  */
-  --icon-flavor-info: var(--color-purple-60, #7e0cff);
-
   /* border/default
 
-  Default value is '{color.cool.40}'
+  Default value is 'color/cool/40'
   - Light mode: #ced2db
-  - Dark mode: #545963
+  - Dark mode: #545963  
 
-  Default high contrast (AAA) value is '{color.cool.100}'
+  Default high contrast (AAA) value is 'color/cool/100'
   - Light mode: #0c0d0e
   - Dark mode: #f8fbff
   */
@@ -193,11 +145,11 @@
 
   /* border/selected
 
-  Default value is '{color.cool.90}'
+  Default value is 'color/cool/90'
   - Light mode: #1d1e23
-  - Dark mode: #f3f6fa
+  - Dark mode: #f3f6fa  
 
-  Default high contrast (AAA) value is '{color.cool.90}'
+  Default high contrast (AAA) value is 'color/cool/90'
   - Light mode: #1d1e23
   - Dark mode: #f3f6fa
   */
@@ -205,11 +157,11 @@
 
   /* border/hover
 
-  Default value is '{color.cool.90}'
+  Default value is 'color/cool/90'
   - Light mode: #1d1e23
-  - Dark mode: #f3f6fa
+  - Dark mode: #f3f6fa  
 
-  Default high contrast (AAA) value is '{color.cool.90}'
+  Default high contrast (AAA) value is 'color/cool/90'
   - Light mode: #1d1e23
   - Dark mode: #f3f6fa
   */
@@ -217,11 +169,11 @@
 
   /* border/subtle
 
-  Default value is '{color.cool.30}'
+  Default value is 'color/cool/30'
   - Light mode: #e0e3e9
-  - Dark mode: #2c2f36
+  - Dark mode: #2c2f36  
 
-  Default high contrast (AAA) value is '{color.cool.80}'
+  Default high contrast (AAA) value is 'color/cool/80'
   - Light mode: #2c2f36
   - Dark mode: #e0e3e9
   */
@@ -229,11 +181,11 @@
 
   /* border/disabled
 
-  Default value is '{color.cool.20}'
+  Default value is 'color/cool/20'
   - Light mode: #f3f6fa
-  - Dark mode: #1d1e23
+  - Dark mode: #1d1e23  
 
-  Default high contrast (AAA) value is '{color.cool.20}'
+  Default high contrast (AAA) value is 'color/cool/20'
   - Light mode: #f3f6fa
   - Dark mode: #1d1e23
   */
@@ -241,11 +193,11 @@
 
   /* border/pure
 
-  Default value is '{color.pure.0}'
+  Default value is 'color/pure/0'
   - Light mode: #ffffff
-  - Dark mode: #151519
+  - Dark mode: #151519  
 
-  Default high contrast (AAA) value is '{color.pure.0}'
+  Default high contrast (AAA) value is 'color/pure/0'
   - Light mode: #ffffff
   - Dark mode: #151519
   */
@@ -253,11 +205,11 @@
 
   /* border/primary-main
 
-  Default value is '{color.blue.60}'
+  Default value is 'color/blue/60'
   - Light mode: #0073e6
-  - Dark mode: #599fe5
+  - Dark mode: #599fe5  
 
-  Default high contrast (AAA) value is '{color.blue.80}'
+  Default high contrast (AAA) value is 'color/blue/80'
   - Light mode: #004d99
   - Dark mode: #b7dbff
   */
@@ -265,11 +217,11 @@
 
   /* border/primary
 
-  Default value is '{color.blue.50}'
+  Default value is 'color/blue/50'
   - Light mode: #599fe5
-  - Dark mode: #0073e6
+  - Dark mode: #0073e6  
 
-  Default high contrast (AAA) value is '{color.blue.70}'
+  Default high contrast (AAA) value is 'color/blue/70'
   - Light mode: #0061c2
   - Dark mode: #7ebeff
   */
@@ -277,11 +229,11 @@
 
   /* border/secondary
 
-  Default value is '{color.yellow.50}'
+  Default value is 'color/yellow/50'
   - Light mode: #c2a728
-  - Dark mode: #8d7400
+  - Dark mode: #8d7400  
 
-  Default high contrast (AAA) value is '{color.yellow.70}'
+  Default high contrast (AAA) value is 'color/yellow/70'
   - Light mode: #766200
   - Dark mode: #dbb91c
   */
@@ -289,11 +241,11 @@
 
   /* border/positive
 
-  Default value is '{color.green.50}'
+  Default value is 'color/green/50'
   - Light mode: #67b796
-  - Dark mode: #00864f
+  - Dark mode: #00864f  
 
-  Default high contrast (AAA) value is '{color.green.70}'
+  Default high contrast (AAA) value is 'color/green/70'
   - Light mode: #006d3f
   - Dark mode: #84dab6
   */
@@ -301,11 +253,11 @@
 
   /* border/warning
 
-  Default value is '{color.orange.50}'
+  Default value is 'color/orange/50'
   - Light mode: #f5a230
-  - Dark mode: #ae6500
+  - Dark mode: #ae6500  
 
-  Default high contrast (AAA) value is '{color.orange.70}'
+  Default high contrast (AAA) value is 'color/orange/70'
   - Light mode: #965802
   - Dark mode: #ffb348
   */
@@ -313,11 +265,11 @@
 
   /* border/negative
 
-  Default value is '{color.red.50}'
+  Default value is 'color/red/50'
   - Light mode: #f36170
-  - Dark mode: #d70015
+  - Dark mode: #d70015  
 
-  Default high contrast (AAA) value is '{color.red.70}'
+  Default high contrast (AAA) value is 'color/red/70'
   - Light mode: #b50012
   - Dark mode: #f98c97
   */
@@ -325,11 +277,11 @@
 
   /* border/info
 
-  Default value is '{color.purple.50}'
+  Default value is 'color/purple/50'
   - Light mode: #9b71df
-  - Dark mode: #7e0cff
+  - Dark mode: #7e0cff  
 
-  Default high contrast (AAA) value is '{color.purple.70}'
+  Default high contrast (AAA) value is 'color/purple/70'
   - Light mode: #6400d6
   - Dark mode: #cea4ff
   */
@@ -337,11 +289,11 @@
 
   /* surface/default
 
-  Default value is '{color.pure.0}'
+  Default value is 'color/pure/0'
   - Light mode: #ffffff
-  - Dark mode: #151519
+  - Dark mode: #151519  
 
-  Default high contrast (AAA) value is '{color.pure.0}'
+  Default high contrast (AAA) value is 'color/pure/0'
   - Light mode: #ffffff
   - Dark mode: #151519
   */
@@ -349,11 +301,11 @@
 
   /* surface/default-inverse
 
-  Default value is '{color.warm.100}'
+  Default value is 'color/warm/100'
   - Light mode: #151519
-  - Dark mode: #fafafa
+  - Dark mode: #fafafa  
 
-  Default high contrast (AAA) value is '{color.pure.1000}'
+  Default high contrast (AAA) value is 'color/pure/1000'
   - Light mode: #151519
   - Dark mode: #ffffff
   */
@@ -361,11 +313,11 @@
 
   /* surface/hover
 
-  Default value is '{color.cool.20}'
+  Default value is 'color/cool/20'
   - Light mode: #f3f6fa
-  - Dark mode: #1d1e23
+  - Dark mode: #1d1e23  
 
-  Default high contrast (AAA) value is '{color.cool.20}'
+  Default high contrast (AAA) value is 'color/cool/20'
   - Light mode: #f3f6fa
   - Dark mode: #1d1e23
   */
@@ -373,11 +325,11 @@
 
   /* surface/selected
 
-  Default value is '{color.blue.10}'
+  Default value is 'color/blue/10'
   - Light mode: #f1f8ff
-  - Dark mode: #101b25
+  - Dark mode: #101b25  
 
-  Default high contrast (AAA) value is '{color.blue.10}'
+  Default high contrast (AAA) value is 'color/blue/10'
   - Light mode: #f1f8ff
   - Dark mode: #101b25
   */
@@ -385,11 +337,11 @@
 
   /* surface/selected-hover
 
-  Default value is '{color.blue.20}'
+  Default value is 'color/blue/20'
   - Light mode: #e2f1ff
-  - Dark mode: #002c58
+  - Dark mode: #002c58  
 
-  Default high contrast (AAA) value is '{color.blue.20}'
+  Default high contrast (AAA) value is 'color/blue/20'
   - Light mode: #e2f1ff
   - Dark mode: #002c58
   */
@@ -397,11 +349,11 @@
 
   /* surface/disabled
 
-  Default value is '{color.cool.30}'
+  Default value is 'color/cool/30'
   - Light mode: #e0e3e9
-  - Dark mode: #2c2f36
+  - Dark mode: #2c2f36  
 
-  Default high contrast (AAA) value is '{color.cool.30}'
+  Default high contrast (AAA) value is 'color/cool/30'
   - Light mode: #e0e3e9
   - Dark mode: #2c2f36
   */
@@ -409,11 +361,11 @@
 
   /* surface/cool
 
-  Default value is '{color.cool.10}'
+  Default value is 'color/cool/10'
   - Light mode: #f8fbff
-  - Dark mode: #0c0d0e
+  - Dark mode: #0c0d0e  
 
-  Default high contrast (AAA) value is '{color.cool.10}'
+  Default high contrast (AAA) value is 'color/cool/10'
   - Light mode: #f8fbff
   - Dark mode: #0c0d0e
   */
@@ -421,11 +373,11 @@
 
   /* surface/warm
 
-  Default value is '{color.warm.10}'
+  Default value is 'color/warm/10'
   - Light mode: #fafafa
-  - Dark mode: #151519
+  - Dark mode: #151519  
 
-  Default high contrast (AAA) value is '{color.warm.10}'
+  Default high contrast (AAA) value is 'color/warm/10'
   - Light mode: #fafafa
   - Dark mode: #151519
   */
@@ -433,11 +385,11 @@
 
   /* surface/primary
 
-  Default value is '{color.blue.60}'
+  Default value is 'color/blue/60'
   - Light mode: #0073e6
-  - Dark mode: #599fe5
+  - Dark mode: #599fe5  
 
-  Default high contrast (AAA) value is '{color.blue.80}'
+  Default high contrast (AAA) value is 'color/blue/80'
   - Light mode: #004d99
   - Dark mode: #b7dbff
   */
@@ -445,11 +397,11 @@
 
   /* surface/primary-subtle
 
-  Default value is '{color.blue.10}'
+  Default value is 'color/blue/10'
   - Light mode: #f1f8ff
-  - Dark mode: #101b25
+  - Dark mode: #101b25  
 
-  Default high contrast (AAA) value is '{color.blue.10}'
+  Default high contrast (AAA) value is 'color/blue/10'
   - Light mode: #f1f8ff
   - Dark mode: #101b25
   */
@@ -457,11 +409,11 @@
 
   /* surface/secondary
 
-  Default value is '{color.yellow.60}'
+  Default value is 'color/yellow/60'
   - Light mode: #8d7400
-  - Dark mode: #c2a728
+  - Dark mode: #c2a728  
 
-  Default high contrast (AAA) value is '{color.yellow.80}'
+  Default high contrast (AAA) value is 'color/yellow/80'
   - Light mode: #564908
   - Dark mode: #f3d961
   */
@@ -469,11 +421,11 @@
 
   /* surface/avatar/blue
 
-  Default value is '{color.blue.80}'
+  Default value is 'color/blue/80'
   - Light mode: #004d99
-  - Dark mode: #b7dbff
+  - Dark mode: #b7dbff  
 
-  Default high contrast (AAA) value is '{color.blue.80}'
+  Default high contrast (AAA) value is 'color/blue/80'
   - Light mode: #004d99
   - Dark mode: #b7dbff
   */
@@ -481,11 +433,11 @@
 
   /* surface/avatar/green
 
-  Default value is '{color.green.60}'
+  Default value is 'color/green/60'
   - Light mode: #00864f
-  - Dark mode: #67b796
+  - Dark mode: #67b796  
 
-  Default high contrast (AAA) value is '{color.green.60}'
+  Default high contrast (AAA) value is 'color/green/60'
   - Light mode: #00864f
   - Dark mode: #67b796
   */
@@ -493,11 +445,11 @@
 
   /* surface/avatar/orange
 
-  Default value is '{color.orange.50}'
+  Default value is 'color/orange/50'
   - Light mode: #f5a230
-  - Dark mode: #ae6500
+  - Dark mode: #ae6500  
 
-  Default high contrast (AAA) value is '{color.orange.50}'
+  Default high contrast (AAA) value is 'color/orange/50'
   - Light mode: #f5a230
   - Dark mode: #ae6500
   */
@@ -505,11 +457,11 @@
 
   /* surface/avatar/pink
 
-  Default value is '{color.pink.80}'
+  Default value is 'color/pink/80'
   - Light mode: #840054
-  - Dark mode: #ffbee7
+  - Dark mode: #ffbee7  
 
-  Default high contrast (AAA) value is '{color.pink.80}'
+  Default high contrast (AAA) value is 'color/pink/80'
   - Light mode: #840054
   - Dark mode: #ffbee7
   */
@@ -517,11 +469,11 @@
 
   /* surface/avatar/purple
 
-  Default value is '{color.purple.80}'
+  Default value is 'color/purple/80'
   - Light mode: #43008f
-  - Dark mode: #dcc1fb
+  - Dark mode: #dcc1fb  
 
-  Default high contrast (AAA) value is '{color.purple.80}'
+  Default high contrast (AAA) value is 'color/purple/80'
   - Light mode: #43008f
   - Dark mode: #dcc1fb
   */
@@ -529,11 +481,11 @@
 
   /* surface/avatar/teal
 
-  Default value is '{color.teal.80}'
+  Default value is 'color/teal/80'
   - Light mode: #005b5b
-  - Dark mode: #bcfbfb
+  - Dark mode: #bcfbfb  
 
-  Default high contrast (AAA) value is '{color.teal.80}'
+  Default high contrast (AAA) value is 'color/teal/80'
   - Light mode: #005b5b
   - Dark mode: #bcfbfb
   */
@@ -541,11 +493,11 @@
 
   /* surface/avatar/yellow
 
-  Default value is '{color.yellow.50}'
+  Default value is 'color/yellow/50'
   - Light mode: #c2a728
-  - Dark mode: #8d7400
+  - Dark mode: #8d7400  
 
-  Default high contrast (AAA) value is '{color.yellow.50}'
+  Default high contrast (AAA) value is 'color/yellow/50'
   - Light mode: #c2a728
   - Dark mode: #8d7400
   */
@@ -553,11 +505,11 @@
 
   /* surface/secondary-subtle
 
-  Default value is '{color.yellow.10}'
+  Default value is 'color/yellow/10'
   - Light mode: #fff7d4
-  - Dark mode: #181400
+  - Dark mode: #181400  
 
-  Default high contrast (AAA) value is '{color.yellow.10}'
+  Default high contrast (AAA) value is 'color/yellow/10'
   - Light mode: #fff7d4
   - Dark mode: #181400
   */
@@ -565,11 +517,11 @@
 
   /* surface/positive
 
-  Default value is '{color.green.60}'
+  Default value is 'color/green/60'
   - Light mode: #00864f
-  - Dark mode: #67b796
+  - Dark mode: #67b796  
 
-  Default high contrast (AAA) value is '{color.green.80}'
+  Default high contrast (AAA) value is 'color/green/80'
   - Light mode: #005f38
   - Dark mode: #beefdb
   */
@@ -577,11 +529,11 @@
 
   /* surface/positive-subtle
 
-  Default value is '{color.green.10}'
+  Default value is 'color/green/10'
   - Light mode: #ecfff7
-  - Dark mode: #081711
+  - Dark mode: #081711  
 
-  Default high contrast (AAA) value is '{color.green.10}'
+  Default high contrast (AAA) value is 'color/green/10'
   - Light mode: #ecfff7
   - Dark mode: #081711
   */
@@ -589,11 +541,11 @@
 
   /* surface/warning
 
-  Default value is '{color.orange.60}'
+  Default value is 'color/orange/60'
   - Light mode: #ae6500
-  - Dark mode: #d78d26
+  - Dark mode: #d78d26  
 
-  Default high contrast (AAA) value is '{color.orange.80}'
+  Default high contrast (AAA) value is 'color/orange/80'
   - Light mode: #764502
   - Dark mode: #ffd292
   */
@@ -601,11 +553,11 @@
 
   /* surface/warning-subtle
 
-  Default value is '{color.orange.10}'
+  Default value is 'color/orange/10'
   - Light mode: #fef2e2
-  - Dark mode: #1e1100
+  - Dark mode: #1e1100  
 
-  Default high contrast (AAA) value is '{color.orange.10}'
+  Default high contrast (AAA) value is 'color/orange/10'
   - Light mode: #fef2e2
   - Dark mode: #1e1100
   */
@@ -613,11 +565,11 @@
 
   /* surface/negative
 
-  Default value is '{color.red.60}'
+  Default value is 'color/red/60'
   - Light mode: #d70015
-  - Dark mode: #f36170
+  - Dark mode: #f36170  
 
-  Default high contrast (AAA) value is '{color.red.80}'
+  Default high contrast (AAA) value is 'color/red/80'
   - Light mode: #8f000e
   - Dark mode: #ffb3bb
   */
@@ -625,11 +577,11 @@
 
   /* surface/negative-subtle
 
-  Default value is '{color.red.10}'
+  Default value is 'color/red/10'
   - Light mode: #fff0f1
-  - Dark mode: #220f11
+  - Dark mode: #220f11  
 
-  Default high contrast (AAA) value is '{color.red.10}'
+  Default high contrast (AAA) value is 'color/red/10'
   - Light mode: #fff0f1
   - Dark mode: #220f11
   */
@@ -637,11 +589,11 @@
 
   /* surface/info
 
-  Default value is '{color.purple.60}'
+  Default value is 'color/purple/60'
   - Light mode: #7e0cff
-  - Dark mode: #9b71df
+  - Dark mode: #9b71df  
 
-  Default high contrast (AAA) value is '{color.purple.80}'
+  Default high contrast (AAA) value is 'color/purple/80'
   - Light mode: #43008f
   - Dark mode: #dcc1fb
   */
@@ -649,11 +601,11 @@
 
   /* surface/info-subtle
 
-  Default value is '{color.purple.10}'
+  Default value is 'color/purple/10'
   - Light mode: #f7f0ff
-  - Dark mode: #180f22
+  - Dark mode: #180f22  
 
-  Default high contrast (AAA) value is '{color.purple.10}'
+  Default high contrast (AAA) value is 'color/purple/10'
   - Light mode: #f7f0ff
   - Dark mode: #180f22
   */
@@ -661,11 +613,11 @@
 
   /* state/disabled/disabled
 
-  Default value is '{color.cool.30}'
+  Default value is 'color/cool/30'
   - Light mode: #e0e3e9
-  - Dark mode: #2c2f36
+  - Dark mode: #2c2f36  
 
-  Default high contrast (AAA) value is '{color.cool.30}'
+  Default high contrast (AAA) value is 'color/cool/30'
   - Light mode: #e0e3e9
   - Dark mode: #2c2f36
   */
@@ -673,11 +625,11 @@
 
   /* state/default/enabled
 
-  Default value is '{color.pure.0}'
+  Default value is 'color/pure/0'
   - Light mode: #ffffff
-  - Dark mode: #151519
+  - Dark mode: #151519  
 
-  Default high contrast (AAA) value is '{color.pure.0}'
+  Default high contrast (AAA) value is 'color/pure/0'
   - Light mode: #ffffff
   - Dark mode: #151519
   */
@@ -685,11 +637,11 @@
 
   /* state/default/hover
 
-  Default value is '{color.cool.20}'
+  Default value is 'color/cool/20'
   - Light mode: #f3f6fa
-  - Dark mode: #1d1e23
+  - Dark mode: #1d1e23  
 
-  Default high contrast (AAA) value is '{color.cool.20}'
+  Default high contrast (AAA) value is 'color/cool/20'
   - Light mode: #f3f6fa
   - Dark mode: #1d1e23
   */
@@ -697,11 +649,11 @@
 
   /* state/default/selected
 
-  Default value is '{color.blue.10}'
+  Default value is 'color/blue/10'
   - Light mode: #f1f8ff
-  - Dark mode: #101b25
+  - Dark mode: #101b25  
 
-  Default high contrast (AAA) value is '{color.blue.10}'
+  Default high contrast (AAA) value is 'color/blue/10'
   - Light mode: #f1f8ff
   - Dark mode: #101b25
   */
@@ -709,11 +661,11 @@
 
   /* state/default/focus
 
-  Default value is '{color.pure.0}'
+  Default value is 'color/pure/0'
   - Light mode: #ffffff
-  - Dark mode: #151519
+  - Dark mode: #151519  
 
-  Default high contrast (AAA) value is '{color.pure.0}'
+  Default high contrast (AAA) value is 'color/pure/0'
   - Light mode: #ffffff
   - Dark mode: #151519
   */
@@ -721,11 +673,11 @@
 
   /* state/primary/enabled
 
-  Default value is '{color.blue.60}'
+  Default value is 'color/blue/60'
   - Light mode: #0073e6
-  - Dark mode: #599fe5
+  - Dark mode: #599fe5  
 
-  Default high contrast (AAA) value is '{color.blue.80}'
+  Default high contrast (AAA) value is 'color/blue/80'
   - Light mode: #004d99
   - Dark mode: #b7dbff
   */
@@ -733,11 +685,11 @@
 
   /* state/primary/hover
 
-  Default value is '{color.blue.50}'
+  Default value is 'color/blue/50'
   - Light mode: #599fe5
-  - Dark mode: #0073e6
+  - Dark mode: #0073e6  
 
-  Default high contrast (AAA) value is '{color.blue.70}'
+  Default high contrast (AAA) value is 'color/blue/70'
   - Light mode: #0061c2
   - Dark mode: #7ebeff
   */
@@ -745,11 +697,11 @@
 
   /* state/primary/selected
 
-  Default value is '{color.blue.70}'
+  Default value is 'color/blue/70'
   - Light mode: #0061c2
-  - Dark mode: #7ebeff
+  - Dark mode: #7ebeff  
 
-  Default high contrast (AAA) value is '{color.blue.90}'
+  Default high contrast (AAA) value is 'color/blue/90'
   - Light mode: #002c58
   - Dark mode: #e2f1ff
   */
@@ -757,11 +709,11 @@
 
   /* state/primary/focus
 
-  Default value is '{color.blue.60}'
+  Default value is 'color/blue/60'
   - Light mode: #0073e6
-  - Dark mode: #599fe5
+  - Dark mode: #599fe5  
 
-  Default high contrast (AAA) value is '{color.blue.80}'
+  Default high contrast (AAA) value is 'color/blue/80'
   - Light mode: #004d99
   - Dark mode: #b7dbff
   */
@@ -769,11 +721,11 @@
 
   /* state/secondary/enabled
 
-  Default value is '{color.yellow.40}'
+  Default value is 'color/yellow/40'
   - Light mode: #dbb91c
-  - Dark mode: #766200
+  - Dark mode: #766200  
 
-  Default high contrast (AAA) value is '{color.yellow.80}'
+  Default high contrast (AAA) value is 'color/yellow/80'
   - Light mode: #564908
   - Dark mode: #f3d961
   */
@@ -781,11 +733,11 @@
 
   /* state/secondary/hover
 
-  Default value is '{color.yellow.30}'
+  Default value is 'color/yellow/30'
   - Light mode: #f3d961
-  - Dark mode: #564908
+  - Dark mode: #564908  
 
-  Default high contrast (AAA) value is '{color.yellow.70}'
+  Default high contrast (AAA) value is 'color/yellow/70'
   - Light mode: #766200
   - Dark mode: #dbb91c
   */
@@ -793,11 +745,11 @@
 
   /* state/secondary/selected
 
-  Default value is '{color.yellow.50}'
+  Default value is 'color/yellow/50'
   - Light mode: #c2a728
-  - Dark mode: #8d7400
+  - Dark mode: #8d7400  
 
-  Default high contrast (AAA) value is '{color.yellow.90}'
+  Default high contrast (AAA) value is 'color/yellow/90'
   - Light mode: #352b00
   - Dark mode: #ffea89
   */
@@ -805,11 +757,11 @@
 
   /* state/secondary/focus
 
-  Default value is '{color.yellow.40}'
+  Default value is 'color/yellow/40'
   - Light mode: #dbb91c
-  - Dark mode: #766200
+  - Dark mode: #766200  
 
-  Default high contrast (AAA) value is '{color.yellow.80}'
+  Default high contrast (AAA) value is 'color/yellow/80'
   - Light mode: #564908
   - Dark mode: #f3d961
   */
@@ -817,11 +769,11 @@
 
   /* state/negative/enabled
 
-  Default value is '{color.red.60}'
+  Default value is 'color/red/60'
   - Light mode: #d70015
-  - Dark mode: #f36170
+  - Dark mode: #f36170  
 
-  Default high contrast (AAA) value is '{color.red.80}'
+  Default high contrast (AAA) value is 'color/red/80'
   - Light mode: #8f000e
   - Dark mode: #ffb3bb
   */
@@ -829,11 +781,11 @@
 
   /* state/negative/hover
 
-  Default value is '{color.red.50}'
+  Default value is 'color/red/50'
   - Light mode: #f36170
-  - Dark mode: #d70015
+  - Dark mode: #d70015  
 
-  Default high contrast (AAA) value is '{color.red.70}'
+  Default high contrast (AAA) value is 'color/red/70'
   - Light mode: #b50012
   - Dark mode: #f98c97
   */
@@ -841,11 +793,11 @@
 
   /* state/negative/selected
 
-  Default value is '{color.red.70}'
+  Default value is 'color/red/70'
   - Light mode: #b50012
-  - Dark mode: #f98c97
+  - Dark mode: #f98c97  
 
-  Default high contrast (AAA) value is '{color.red.90}'
+  Default high contrast (AAA) value is 'color/red/90'
   - Light mode: #520008
   - Dark mode: #ffe1e4
   */
@@ -853,11 +805,11 @@
 
   /* state/negative/focus
 
-  Default value is '{color.red.60}'
+  Default value is 'color/red/60'
   - Light mode: #d70015
-  - Dark mode: #f36170
+  - Dark mode: #f36170  
 
-  Default high contrast (AAA) value is '{color.red.80}'
+  Default high contrast (AAA) value is 'color/red/80'
   - Light mode: #8f000e
   - Dark mode: #ffb3bb
   */
@@ -865,11 +817,11 @@
 
   /* state/info/enabled
 
-  Default value is '{color.purple.60}'
+  Default value is 'color/purple/60'
   - Light mode: #7e0cff
-  - Dark mode: #9b71df
+  - Dark mode: #9b71df  
 
-  Default high contrast (AAA) value is '{color.purple.80}'
+  Default high contrast (AAA) value is 'color/purple/80'
   - Light mode: #43008f
   - Dark mode: #dcc1fb
   */
@@ -877,11 +829,11 @@
 
   /* state/info/hover
 
-  Default value is '{color.purple.50}'
+  Default value is 'color/purple/50'
   - Light mode: #9b71df
-  - Dark mode: #7e0cff
+  - Dark mode: #7e0cff  
 
-  Default high contrast (AAA) value is '{color.purple.70}'
+  Default high contrast (AAA) value is 'color/purple/70'
   - Light mode: #6400d6
   - Dark mode: #cea4ff
   */
@@ -889,11 +841,11 @@
 
   /* state/info/selected
 
-  Default value is '{color.purple.70}'
+  Default value is 'color/purple/70'
   - Light mode: #6400d6
-  - Dark mode: #cea4ff
+  - Dark mode: #cea4ff  
 
-  Default high contrast (AAA) value is '{color.purple.90}'
+  Default high contrast (AAA) value is 'color/purple/90'
   - Light mode: #260052
   - Dark mode: #efe1ff
   */
@@ -901,59 +853,59 @@
 
   /* state/info/focus
 
-  Default value is '{color.purple.60}'
+  Default value is 'color/purple/60'
   - Light mode: #7e0cff
-  - Dark mode: #9b71df
+  - Dark mode: #9b71df  
 
-  Default high contrast (AAA) value is '{color.purple.80}'
+  Default high contrast (AAA) value is 'color/purple/80'
   - Light mode: #43008f
   - Dark mode: #dcc1fb
   */
   --state-info-focus: var(--color-purple-60, #7e0cff);
 
-  /* state/Inverse/enabled
+  /* state/inverse/enabled
 
-  Default value is '{color.cool.100}'
+  Default value is 'color/cool/100'
   - Light mode: #0c0d0e
-  - Dark mode: #f8fbff
+  - Dark mode: #f8fbff  
 
-  Default high contrast (AAA) value is '{color.pure.1000}'
+  Default high contrast (AAA) value is 'color/pure/1000'
   - Light mode: #151519
   - Dark mode: #ffffff
   */
   --state-Inverse-enabled: var(--color-cool-100, #0c0d0e);
 
-  /* state/Inverse/hover
+  /* state/inverse/hover
 
-  Default value is '{color.cool.90}'
+  Default value is 'color/cool/90'
   - Light mode: #1d1e23
-  - Dark mode: #f3f6fa
+  - Dark mode: #f3f6fa  
 
-  Default high contrast (AAA) value is '{color.cool.90}'
+  Default high contrast (AAA) value is 'color/cool/90'
   - Light mode: #1d1e23
   - Dark mode: #f3f6fa
   */
   --state-Inverse-hover: var(--color-cool-90, #1d1e23);
 
-  /* state/Inverse/selected
+  /* state/inverse/selected
 
-  Default value is '{color.cool.100}'
+  Default value is 'color/cool/100'
   - Light mode: #0c0d0e
-  - Dark mode: #f8fbff
+  - Dark mode: #f8fbff  
 
-  Default high contrast (AAA) value is '{color.pure.1000}'
+  Default high contrast (AAA) value is 'color/pure/1000'
   - Light mode: #151519
   - Dark mode: #ffffff
   */
   --state-Inverse-selected: var(--color-cool-100, #0c0d0e);
 
-  /* state/Inverse/focus
+  /* state/inverse/focus
 
-  Default value is '{color.cool.100}'
+  Default value is 'color/cool/100'
   - Light mode: #0c0d0e
-  - Dark mode: #f8fbff
+  - Dark mode: #f8fbff  
 
-  Default high contrast (AAA) value is '{color.pure.1000}'
+  Default high contrast (AAA) value is 'color/pure/1000'
   - Light mode: #151519
   - Dark mode: #ffffff
   */
@@ -961,11 +913,11 @@
 
   /* state/positive/enabled
 
-  Default value is '{color.green.60}'
+  Default value is 'color/green/60'
   - Light mode: #00864f
-  - Dark mode: #67b796
+  - Dark mode: #67b796  
 
-  Default high contrast (AAA) value is '{color.green.80}'
+  Default high contrast (AAA) value is 'color/green/80'
   - Light mode: #005f38
   - Dark mode: #beefdb
   */
@@ -973,11 +925,11 @@
 
   /* state/positive/hover
 
-  Default value is '{color.green.50}'
+  Default value is 'color/green/50'
   - Light mode: #67b796
-  - Dark mode: #00864f
+  - Dark mode: #00864f  
 
-  Default high contrast (AAA) value is '{color.green.70}'
+  Default high contrast (AAA) value is 'color/green/70'
   - Light mode: #006d3f
   - Dark mode: #84dab6
   */
@@ -985,11 +937,11 @@
 
   /* state/positive/selected
 
-  Default value is '{color.green.70}'
+  Default value is 'color/green/70'
   - Light mode: #006d3f
-  - Dark mode: #84dab6
+  - Dark mode: #84dab6  
 
-  Default high contrast (AAA) value is '{color.green.90}'
+  Default high contrast (AAA) value is 'color/green/90'
   - Light mode: #00331e
   - Dark mode: #d8ffef
   */
@@ -997,157 +949,129 @@
 
   /* state/positive/focus
 
-  Default value is '{color.green.60}'
+  Default value is 'color/green/60'
   - Light mode: #00864f
-  - Dark mode: #67b796
+  - Dark mode: #67b796  
 
-  Default high contrast (AAA) value is '{color.green.80}'
+  Default high contrast (AAA) value is 'color/green/80'
   - Light mode: #005f38
   - Dark mode: #beefdb
   */
   --state-positive-focus: var(--color-green-60, #00864f);
 
-  /* spacing/none
-
-  Default value (AA) is 0px
+  /* spacing/None
+  Default value is 0px
   */
   --spacing-none: var(--spacing-0, 0px);
 
-  /* spacing/minimum
-
-  Default value (AA) is 4px
+  /* spacing/Minimum
+  Default value is 4px
   */
   --spacing-minimum: var(--spacing-1, 4px);
 
-  /* spacing/small
-
-  Default value (AA) is 8px
+  /* spacing/Small
+  Default value is 8px
   */
   --spacing-small: var(--spacing-2, 8px);
 
-  /* spacing/medium
-
-  Default value (AA) is 12px
+  /* spacing/Medium
+  Default value is 12px
   */
   --spacing-medium: var(--spacing-3, 12px);
 
-  /* spacing/large
-
-  Default value (AA) is 16px
+  /* spacing/Large
+  Default value is 16px
   */
   --spacing-large: var(--spacing-4, 16px);
 
-  /* spacing/xl
-
-  Default value (AA) is 20px
+  /* spacing/Xl
+  Default value is 20px
   */
   --spacing-xl: var(--spacing-5, 20px);
 
   /* spacing/2xl
-
-  Default value (AA) is 24px
+  Default value is 24px
   */
   --spacing-2xl: var(--spacing-6, 24px);
 
   /* spacing/3xl
-
-  Default value (AA) is 28px
+  Default value is 28px
   */
   --spacing-3xl: var(--spacing-7, 28px);
 
   /* spacing/4xl
-
-  Default value (AA) is 32px
+  Default value is 32px
   */
   --spacing-4xl: var(--spacing-8, 32px);
 
   /* spacing/5xl
-
-  Default value (AA) is 36px
+  Default value is 36px
   */
   --spacing-5xl: var(--spacing-9, 36px);
 
   /* spacing/6xl
-
-  Default value (AA) is 40px
+  Default value is 40px
   */
   --spacing-6xl: var(--spacing-10, 40px);
 
   /* spacing/7xl
-
-  Default value (AA) is 44px
+  Default value is 44px
   */
   --spacing-7xl: var(--spacing-11, 44px);
 
   /* spacing/8xl
-
-  Default value (AA) is 48px
+  Default value is 48px
   */
   --spacing-8xl: var(--spacing-12, 48px);
 
   /* spacing/9xl
-
-  Default value (AA) is 64px
+  Default value is 64px
   */
   --spacing-9xl: var(--spacing-13, 64px);
 
   /* spacing/10xl
-
-  Default value (AA) is 80px
+  Default value is 80px
   */
   --spacing-10xl: var(--spacing-14, 80px);
 
   /* spacing/11xl
-
-  Default value (AA) is 96px
+  Default value is 96px
   */
   --spacing-11xl: var(--spacing-15, 96px);
 
-  /* radius/none
-
-  Default value (AA) is 0
-  
-  High Contrast (AAA) default value is 0
+  /* radius/None
+  Default value is 0px
+  Default high contrast value (AAA) is 0px
   */
-  --radius-none: 0px;
+  --radius-none: var(--radius-0, 0px);
 
-  /* radius/minimal
-
-  Default value (AA) is 4px
-  
-  High Contrast (AAA) default value is 4px
+  /* radius/Minimal
+  Default value is 4px
+  Default high contrast value (AAA) is 0px
   */
   --radius-minimal: var(--radius-s, 4px);
 
-  /* radius/rounded
-
-  Default value (AA) is 8px
-  
-  High Contrast (AAA) default value is 8px
+  /* radius/Rounded
+  Default value is 8px
+  Default high contrast value (AAA) is 0px
   */
   --radius-rounded: var(--radius-m, 8px);
 
-  /* radius/large
-
-  Default value (AA) is 16px
-  
-  High Contrast (AAA) default value is 16px
+  /* radius/Large
+  Default value is 16px
+  Default high contrast value (AAA) is 0px
   */
   --radius-large: var(--radius-l, 16px);
 
-  /* radius/xl
-
-  Default value (AA) is 24px
-  
-  High Contrast (AAA) default value is 24px
+  /* radius/Xl
+  Default value is 24px
+  Default high contrast value (AAA) is 0px
   */
   --radius-xl: var(--radius-xl, 24px);
 
-  /* radius/full
-
-  Default value (AA) is 360px
-  
-  High Contrast (AAA) default value is 360px
+  /* radius/Full
+  Default value is 360px
+  Default high contrast value (AAA) is 0px
   */
   --radius-full: var(--radius-4xl, 360px);
 }

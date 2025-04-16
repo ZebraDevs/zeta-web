@@ -117,6 +117,7 @@
     --color-pink-100: #fff7fc;
 
     /* RADIUS */
+    --radius-0: 0px;
     --radius-s: 4px;
     --radius-m: 8px;
     --radius-l: 16px;
