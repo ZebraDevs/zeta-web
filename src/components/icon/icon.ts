@@ -18,7 +18,7 @@ export class ZetaIcon extends Contourable(LitElement) {
   @property({ type: String }) name: ZetaIconName;
 
   protected render() {
-    return html`${this.name ?? html`<slot @slotchange=${() => this.requestUpdate()} />`}`;
+    return html`${this.name ?? html`<slot @slotchange=${() => this.requestUpdate()}></slot>`}`;
   }
   static styles = [styles, super.styles || []];
 }
