@@ -35,5 +35,5 @@ const meta: Meta<ZetaSliderInputField> = {
 export default meta;
 
 export const SliderInputField: StoryObj = {
-  render: (args: ZetaSliderInputField) => html` <zeta-slider-input-field ${spread(args)}> </zeta-slider-input-field> `
+  render: args => html` <zeta-slider-input-field ${spread(args)}> </zeta-slider-input-field> `
 };

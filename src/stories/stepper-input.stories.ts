@@ -36,7 +36,7 @@ export const StepperInput: StoryObj<ZetaStepperInput> = {
   <form
    
         id="form"
-        @submit=${e => {
+        @submit=${(e: SubmitEvent) => {
           e.preventDefault();
           const data = new FormData(e.target as HTMLFormElement);
           console.log(Object.fromEntries(data));
