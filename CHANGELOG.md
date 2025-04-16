@@ -1,5 +1,34 @@
 # Changelog
 
+## [0.5.3](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.5.2...zeta-web-v0.5.3) (2025-04-16)
+
+
+### 🪲 Bug Fixes
+
+* slider input form field ([#40](https://github.com/ZebraDevs/zeta-web/issues/40)) ([a618506](https://github.com/ZebraDevs/zeta-web/commit/a61850675fbd4e93916dcb3eeeb1e95f83a9f0f5))
+* **UX-1349:** Add react JSX declarations into built d.ts files ([#38](https://github.com/ZebraDevs/zeta-web/issues/38)) ([b0341c1](https://github.com/ZebraDevs/zeta-web/commit/b0341c14d381b7828ae0c0a88a18cba60ea1faf2))
+* **UX-1389:** Dialog closes when click on blank area ([#36](https://github.com/ZebraDevs/zeta-web/issues/36)) ([cacdf23](https://github.com/ZebraDevs/zeta-web/commit/cacdf23e3688cb2c3d0a119efb53777ee42bb72c))
+
+
+### 📈 Documentation
+
+* Update JSX instructions in readme ([4e0e7ba](https://github.com/ZebraDevs/zeta-web/commit/4e0e7ba64f878d20d9d9ea56a0c1817894bba868))
+
+
+### ⛓️ Dependencies
+
+* **automated:** Update theme tokens ([#39](https://github.com/ZebraDevs/zeta-web/issues/39)) ([bf6c1f1](https://github.com/ZebraDevs/zeta-web/commit/bf6c1f182c76002dbc54c4365a63c9162c4fdd02))
+
+
+### 🧪 Tests
+
+* Dialog closeOnBarrierClicked prop ([cacdf23](https://github.com/ZebraDevs/zeta-web/commit/cacdf23e3688cb2c3d0a119efb53777ee42bb72c))
+
+
+### 🧹 Miscellaneous Chores
+
+* Update rounded prop to default to true to match zeta_flutter ([b0341c1](https://github.com/ZebraDevs/zeta-web/commit/b0341c14d381b7828ae0c0a88a18cba60ea1faf2))
+
 ## [0.5.2](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.5.1...zeta-web-v0.5.2) (2025-04-11)
 
 
