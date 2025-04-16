@@ -79,7 +79,7 @@ export class ZetaSliderInputField extends FormField(Contourable(LitElement)) {
             stepIncrement=${ifDefined(this.stepIncrement)}
             .rounded=${this.rounded}
             .disabled=${this.disabled}
-            value=${parseInt(this.value)}
+            value=${isNaN(Number(this.value)) ? this.min : Number(this.value)}
             min=${this.min}
             max=${this.max}
             @change=${(e: Event) => this.handleChange(e)}
