@@ -1,6 +1,6 @@
 import { css } from "lit";
 
-import '@zebra-fed/zeta-icons/index.css'
+import "@zebra-fed/zeta-icons/index.css";
 
 export default [
   css`
