@@ -55,6 +55,7 @@
 
   --body-large: var(--regular) 1.25rem/1.5rem var(--type-family-regular);
   --body-medium: var(--regular) 1rem/1.5rem var(--type-family-regular);
+  --body-small: var(--regular) 0.875rem/1.125rem var(--type-family-regular);
   --body-x-small: var(--regular) 0.75rem/1rem var(--type-family-regular);
 
   --label-large: var(--medium) 1rem/1.5rem var(--type-family-regular);

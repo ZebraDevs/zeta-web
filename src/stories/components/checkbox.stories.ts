@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
-import { ZetaCheckbox } from "../components/checkbox/checkbox.js";
-import { spreadGenerator } from "./utils.js";
 import { html } from "lit";
 import { fn } from "@storybook/test";
+import { spreadGenerator } from "../utils";
+import { ZetaCheckbox } from "../../components/checkbox/checkbox";
+
 const spread = spreadGenerator(ZetaCheckbox);
 
 const meta: Meta<ZetaCheckbox> = {

@@ -42,6 +42,6 @@
     "useDefineForClassFields": false,
     "verbatimModuleSyntax": true
   },
-  "include": ["src/**/*.ts", "src/stories/theme/typography/type.tsx"],
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["**/generated"]
 }

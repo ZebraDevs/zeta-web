@@ -1,10 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
-import { ZetaListItem } from "../../components/list/list-item/list-item.js";
-import "../../components/avatar/avatar.js";
-import "../../components/icon/icon.js";
-import "../../components/checkbox/checkbox.js";
 import { ifDefined } from "lit/directives/if-defined.js";
+import type { ZetaListItem } from "../../../components/list/list";
 
 const meta: Meta<ZetaListItem> = {
   component: "zeta-list-item",
@@ -41,7 +38,7 @@ export const ListItemWithAction: StoryObj<ZetaListItem> = {
 export const ListItemWithAvatarAndAction: StoryObj<ZetaListItem> = {
   render: args =>
     html`<zeta-list-item headline=${ifDefined(args.headline)}>
-      <zeta-avatar slot="leading" size="sm"></zeta-avatar>
+      <zeta-avatar slot="leading" size="s"></zeta-avatar>
       <zeta-checkbox slot="trailing"></zeta-checkbox>
     </zeta-list-item>`
 };

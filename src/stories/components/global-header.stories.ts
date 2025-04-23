@@ -1,12 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
+import type { ZetaGlobalHeader } from "../../components/global-header/global-header.js";
 import { html } from "lit";
-import { ZetaGlobalHeader } from "../components/global-header/global-header.js";
-import "../components/button/icon-button/icon-button.js";
-import "../components/search/search.js";
-import "../components/navigation-profile/navigation-profile.js";
-import "../components/tab-bar/tab-bar.js";
-import "../components/tab-bar/tab-item/tab-item.js";
-import "../components/avatar/avatar.js";
 
 const meta: Meta<ZetaGlobalHeader> = {
   component: "zeta-global-header",

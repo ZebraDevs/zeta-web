@@ -22,20 +22,18 @@ import type { ZetaIconName } from "@zebra-fed/zeta-icons";
  * ```
  *
  *
- *
- *
  * Custom icons can be created by placing an SVG in the slot:
  *
  * ```html
  * <zeta-icon>
- *   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+ *   <svg>
  *   ...
  *   </svg>
  * </zeta-icon>
  * ```
  *
- * @cssproperty --icon-size the width/height of the icon
- * @cssproperty --icon-color the color of the icon
+ * @cssproperty --icon-size The width/height of the icon
+ * @cssproperty --icon-color The color of the icon
  * @slot {ZetaIconName} - Name of icon to be displayed. Full list of icons can be found at {@link https://design.zebra.com/icons Zeta Icons}. If this value and the name prop are both populated, the name prop will take precedence.
  */
 @customElement("zeta-icon")

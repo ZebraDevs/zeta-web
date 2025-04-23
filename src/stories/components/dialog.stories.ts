@@ -1,10 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html, nothing } from "lit";
-import { ZetaDialog } from "../components/dialog/dialog.js";
+import { ZetaDialog } from "../../components/dialog/dialog.js";
 import { fn } from "@storybook/test";
-import "../components/dialog/dialog.js";
-import "../components/button/button.js";
-import "../components/icon/icon.js";
 
 import { ZetaIconNameList, type ZetaIconName } from "@zebra-fed/zeta-icons";
 

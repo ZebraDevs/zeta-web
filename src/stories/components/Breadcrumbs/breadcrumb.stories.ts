@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import type { ZetaBreadcrumb } from "../../../components/breadcrumbs/breadcrumb.js";
-import "../../../components/breadcrumbs/breadcrumb-item/breadcrumb-item.js";
+
 import { html } from "lit";
-import "../../../components/breadcrumbs/breadcrumb.js";
 
 const meta: Meta<ZetaBreadcrumb> = {
   component: "zeta-breadcrumb",

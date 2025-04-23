@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import { ZetaList } from "../../../components/list/list.js";
-import "../../components/list/list-item/list-item.js";
 
 const meta: Meta<ZetaList> = {
   component: "zeta-list",
