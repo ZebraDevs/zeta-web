@@ -40,8 +40,8 @@
     "strictPropertyInitialization": false,
     "target": "ES2022",
     "useDefineForClassFields": false,
-    "verbatimModuleSyntax": true,
+    "verbatimModuleSyntax": true
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "src/stories/theme/typography/type.tsx"],
   "exclude": ["**/generated"]
 }

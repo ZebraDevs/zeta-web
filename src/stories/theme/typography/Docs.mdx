@@ -1,0 +1,33 @@
+import { Canvas, Meta, Description, ArgTypes, Title, Stories, Story, Source } from "@storybook/blocks";
+import { Typography } from "./type";
+import * as Type from "./typography.stories";
+
+<Meta of={Type} title="Typography" />
+
+<Title />
+The Zeta type scale is built on a single equation. The formula for our scale was created to provide hierarchy for all types of experiences. The formula assumes
+that the smallest size is 12px and increases based on the 4px mini unit, this includes line heights too (based on the baseline grid of 4px).
+
+<Typography props={Type} />
+
+REM typically assumes a 16px base size, so to work out the pixel value, multiply the REM value by 16px. For example, 1.5rem = 1.5 \* 16px = 24px.
+
+## Customization
+
+The fonts are defined as CSS variables in the :root selector. You can customize the fonts by changing the values of these variables.
+
+```css
+:root {
+  --body-small: 300 1rem/1.25rem "Comic Sans MS", sans-serif;
+}
+```
+
+By default, `<p>` elements use `--body-small` for their font, so you can change the font for all `<p>` elements by changing the value of `--body-small`. The same applies to other elements like `<h1>`, `<h2>`, etc.
+
+To change the typeface for all elements, you can use the `--type-family-regular` variable.
+
+```css
+:root {
+  --type-family-regular: "Comic Sans MS", sans-serif;
+}
+```
