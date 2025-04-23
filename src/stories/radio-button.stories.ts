@@ -10,7 +10,7 @@ const spread = spreadGenerator(ZetaRadioButton);
 const meta: Meta<ZetaRadioButton> = {
   component: "zeta-radio-button",
   tags: ["autodocs"],
-  title: "Radio Button",
+  title: "Components/Radio Button",
   args: {
     disabled: false,
     checked: false,

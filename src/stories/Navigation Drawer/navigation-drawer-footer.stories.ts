@@ -8,7 +8,7 @@ import "../../components/avatar/avatar.js";
 import "../../components/icon/icon.js";
 
 const meta: Meta<ZetaNavigationDrawerFooter> = {
-  title: "Navigation Drawer",
+  title: "Components/Navigation Drawer",
   component: "zeta-navigation-drawer-footer",
   args: {
     headline: "Title",

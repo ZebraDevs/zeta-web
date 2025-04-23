@@ -7,7 +7,7 @@ const spread = spreadGenerator(ZetaCheckbox);
 
 const meta: Meta<ZetaCheckbox> = {
   component: "zeta-checkbox",
-  title: "Checkbox",
+  title: "Components/Checkbox",
   tags: ["autodocs"],
   args: {
     rounded: true,

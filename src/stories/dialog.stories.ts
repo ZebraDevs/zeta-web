@@ -21,7 +21,7 @@ const meta: Meta<
   }
 > = {
   component: "zeta-dialog",
-  title: "Dialog",
+  title: "Components/Dialog",
   tags: ["autodocs"],
   args: {
     centered: false,

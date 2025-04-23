@@ -4,7 +4,7 @@ import { ZetaTooltip } from "../components/tooltip/tooltip.js";
 const meta: Meta<ZetaTooltip> = {
   component: "zeta-tooltip",
   tags: ["autodocs"],
-  title: "Tooltip",
+  title: "Components/Tooltip",
   args: {
     label: "Label",
     point: "bottom",

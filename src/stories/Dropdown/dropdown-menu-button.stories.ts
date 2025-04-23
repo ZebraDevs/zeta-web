@@ -45,7 +45,7 @@ const staticArgTypes = {
 
 const meta: Meta<ZetaDropdownMenuButton & { onopen: () => void }> = {
   component: "zeta-dropdown-menu-button",
-  title: "Dropdown",
+  title: "Components/Dropdown",
   args: {
     rounded: true,
     flavor: "primary",

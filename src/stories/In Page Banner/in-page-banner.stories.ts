@@ -9,9 +9,9 @@ const spread = spreadGenerator(ZetaInPageBanner);
 
 const meta: Meta<ZetaInPageBanner> = {
   component: "zeta-in-page-banner",
-  title: "In Page Banner",
+  title: "Components/In Page Banner",
   args: {
-    title: "Banner title",
+    title: "Components/Banner title",
     slot: "Lorem ipsum dolor sit amet, conse ctetur  cididunt ut labore et do lore magna aliqua.",
     rounded: true,
     status: "default",

@@ -4,7 +4,7 @@ import { ZetaCardFooter } from "../../components/card/card-footer/card-footer.js
 import "../../components/button/button.js";
 
 const meta: Meta<ZetaCardFooter> = {
-  title: "Cards",
+  title: "Components/Cards",
   component: "zeta-card-footer",
   parameters: {
     design: {

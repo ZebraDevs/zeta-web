@@ -8,7 +8,7 @@ const spread = spreadGenerator(ZetaSlider);
 // TODO: Although this component is the same code, the design is on a different page. Should this be moved?
 const meta: Meta<ZetaSlider> = {
   component: "zeta-slider",
-  title: "Slider",
+  title: "Components/Slider",
   args: {
     rounded: true,
     disabled: false,

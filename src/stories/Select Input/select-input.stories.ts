@@ -7,7 +7,7 @@ const spread = spreadGenerator(ZetaSelectInput);
 
 const meta: Meta<ZetaSelectInput> = {
   component: "zeta-select-input",
-  title: "Select Input",
+  title: "Components/Select Input",
   tags: ["autodocs"],
   args: {
     disabled: false,

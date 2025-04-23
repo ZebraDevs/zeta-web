@@ -3,7 +3,7 @@ import { ZetaAvatarRail } from "../components/avatar-rail/avatar-rail.js";
 
 const meta: Meta<ZetaAvatarRail & { "show-close": boolean }> = {
   component: "zeta-avatar-rail",
-  title: "Avatar Rail",
+  title: "Components/Avatar Rail",
   tags: ["autodocs"],
   args: {
     "show-close": false,

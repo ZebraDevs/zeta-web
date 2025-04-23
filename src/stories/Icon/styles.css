@@ -1,0 +1,18 @@
+.icon-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  --icon-size: 2rem;
+  height: 10rem;
+  overflow-y: scroll;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px;
+  border: 1px solid var(--border-default);
+  padding: 1rem;
+  margin: 2rem;
+  border-radius: 0.5rem;
+  background: var(--color-cool-10);
+}
+
+.icon-wrapper div {
+  position: relative;
+}

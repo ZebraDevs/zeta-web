@@ -8,7 +8,7 @@ import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
 
 const meta: Meta<ZetaNavigationDrawerItem> = {
   component: "zeta-navigation-drawer-item",
-  title: "Navigation Drawer",
+  title: "Components/Navigation Drawer",
   args: {
     headline: "Navigation Item",
     rounded: true,

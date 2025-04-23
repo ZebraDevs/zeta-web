@@ -5,7 +5,7 @@ import "../../components/dropdown/menu-item/dropdown-menu-item.js";
 
 const meta: Meta<ZetaDroppable> = {
   component: "zeta-droppable",
-  title: "Dropdown",
+  title: "Components/Dropdown",
   args: {
     rounded: true,
     open: true

@@ -21,7 +21,7 @@ const staticArgTypes = {
 
 const meta: Meta<_navBarType> = {
   component: "zeta-navigation-bar",
-  title: "Navigation Bar",
+  title: "Components/Navigation Bar",
   args: {
     numItems: 4,
     divider: 0,

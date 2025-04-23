@@ -11,7 +11,7 @@ import "../../components/button/button.js";
 
 const meta: Meta<ZetaNavigationDrawer> = {
   component: "zeta-navigation-drawer",
-  title: "Navigation Drawer",
+  title: "Components/Navigation Drawer",
   args: {
     anchor: "left",
     showAnimation: true

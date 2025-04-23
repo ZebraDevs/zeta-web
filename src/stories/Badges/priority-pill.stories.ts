@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaPriorityPill } from "../../components/badges/priority-pill/priority-pill.js";
 
 const meta: Meta<ZetaPriorityPill> = {
-  title: "Badges",
+  title: "Components/Badges",
   component: "zeta-priority-pill",
   args: {
     text: "Priority",

@@ -5,7 +5,7 @@ import { ifDefined } from "lit/directives/if-defined.js";
 
 const meta: Meta<ZetaAccordion> = {
   component: "zeta-accordion",
-  title: "Accordion",
+  title: "Components/Accordion",
   tags: ["autodocs"],
   args: {
     accordionTitle: "Title",

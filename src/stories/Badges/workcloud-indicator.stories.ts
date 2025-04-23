@@ -3,7 +3,7 @@ import { html } from "lit";
 import { ZetaWorkcloudIndicator } from "../../components/badges/workcloud-indicator/workcloud-indicator.js";
 
 const meta: Meta<ZetaWorkcloudIndicator> = {
-  title: "Badges",
+  title: "Components/Badges",
   component: "zeta-workcloud-indicator",
   args: {
     priority: "urgent",

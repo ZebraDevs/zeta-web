@@ -6,7 +6,7 @@ import "../../components/tab-bar/tab-item/tab-item.js";
 //TODO: Component seems to be removed from figma.
 const meta: Meta<ZetaTabBar> = {
   component: "zeta-tab-bar",
-  title: "Tab Bar",
+  title: "Components/Tab Bar",
   parameters: {
     design: {
       url: "https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-18"

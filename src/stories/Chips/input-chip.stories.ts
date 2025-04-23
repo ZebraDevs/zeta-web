@@ -4,7 +4,7 @@ import { html } from "lit";
 import "../../components/avatar/avatar.js";
 
 const meta: Meta<ZetaInputChip> = {
-  title: "Chips",
+  title: "Components/Chips",
   component: "zeta-input-chip",
   args: {
     rounded: false,

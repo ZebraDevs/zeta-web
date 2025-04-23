@@ -11,7 +11,7 @@ class _ZetaIndicator extends ZetaIndicator {
 
 const meta: Meta<ZetaIndicator> = {
   component: "zeta-indicator",
-  title: "Badges",
+  title: "Components/Badges",
   args: {
     size: "medium",
     inverse: false,

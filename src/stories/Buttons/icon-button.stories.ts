@@ -6,7 +6,7 @@ import { html } from "lit";
 const spread = spreadGenerator(ZetaIconButton);
 
 const meta: Meta<ZetaIconButton> = {
-  title: "Buttons",
+  title: "Components/Buttons",
   component: "zeta-icon-button",
   args: {
     disabled: false,

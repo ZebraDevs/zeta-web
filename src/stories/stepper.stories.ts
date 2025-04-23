@@ -7,7 +7,7 @@ import { ZetaStepper } from "../components/stepper/stepper.js";
 const meta: Meta<ZetaStepper> = {
   component: "zeta-stepper",
   tags: ["autodocs"],
-  title: "Stepper",
+  title: "Components/Stepper",
   args: { bar: false, rounded: false, activeStep: 0 },
   argTypes: {
     variant: {

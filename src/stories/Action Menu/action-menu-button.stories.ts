@@ -5,7 +5,7 @@ import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
 
 const meta: Meta<ZetaActionMenuButton> = {
   component: "zeta-action-menu-button",
-  title: "Action Menu",
+  title: "Components/Action Menu",
   args: {
     rounded: true,
     open: false,

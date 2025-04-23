@@ -8,7 +8,7 @@ import { ifDefined } from "lit/directives/if-defined.js";
 
 const meta: Meta<ZetaListItem> = {
   component: "zeta-list-item",
-  title: "List",
+  title: "Components/List",
   args: {
     headline: "Headline"
   },

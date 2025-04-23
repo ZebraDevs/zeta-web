@@ -7,7 +7,7 @@ import "../../components/grid-menu-item/grid-menu-item";
 
 const meta: Meta<ZetaBottomSheet> = {
   component: "zeta-bottom-sheet",
-  title: "Bottom Sheet",
+  title: "Components/Bottom Sheet",
   args: {
     headerText: "Title",
     headerAlignment: "start",

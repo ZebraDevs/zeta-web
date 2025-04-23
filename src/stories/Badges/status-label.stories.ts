@@ -3,7 +3,7 @@ import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
 import { ZetaStatusLabel } from "../../components/badges/status-label/status-label.js";
 
 const meta: Meta<ZetaStatusLabel> = {
-  title: "Badges",
+  title: "Components/Badges",
   component: "zeta-status-label",
   args: {
     rounded: true,

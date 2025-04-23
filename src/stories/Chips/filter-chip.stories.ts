@@ -5,7 +5,7 @@ import { fn } from "@storybook/test";
 
 const meta: Meta<ZetaFilterChip> = {
   component: "zeta-filter-chip",
-  title: "Chips",
+  title: "Components/Chips",
   args: {
     active: false,
     rounded: false,

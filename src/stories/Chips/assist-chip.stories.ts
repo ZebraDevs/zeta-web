@@ -5,7 +5,7 @@ import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
 
 const meta: Meta<ZetaAssistChip> = {
   component: "zeta-assist-chip",
-  title: "Chips",
+  title: "Components/Chips",
   args: {
     rounded: true,
     disabled: false,

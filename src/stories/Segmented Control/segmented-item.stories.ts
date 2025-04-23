@@ -6,7 +6,7 @@ import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
 
 const meta: Meta<ZetaSegmentedItem> = {
   component: "zeta-segmented-item",
-  title: "Segmented Control",
+  title: "Components/Segmented Control",
   args: {
     rounded: true,
     active: true

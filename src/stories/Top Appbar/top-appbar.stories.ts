@@ -11,7 +11,7 @@ type AppbarStory = ZetaTopAppbar & { leading: string; trailing: string };
 
 const meta: Meta<ZetaTopAppbar> = {
   component: "zeta-top-appbar",
-  title: "Top Appbar",
+  title: "Components/Top Appbar",
   parameters: {
     design: {
       url: "https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=24183-7801&t=8Ym0ztJUuB4iD83l-4"

@@ -11,7 +11,7 @@ import "../components/avatar/avatar.js";
 const meta: Meta<ZetaGlobalHeader> = {
   component: "zeta-global-header",
   tags: ["autodocs"],
-  title: "Global Header",
+  title: "Components/Global Header",
   args: {
     headline: "Service Name",
     rounded: true,

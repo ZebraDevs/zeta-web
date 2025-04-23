@@ -6,7 +6,7 @@ import { ifDefined } from "lit/directives/if-defined.js";
 const meta: Meta<ZetaStepperInput> = {
   component: "zeta-stepper-input",
   tags: ["autodocs"],
-  title: "Stepper Input",
+  title: "Components/Stepper Input",
   args: {
     min: 0,
     max: 100,

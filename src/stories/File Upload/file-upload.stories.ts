@@ -3,7 +3,7 @@ import { ZetaFileUpload } from "../../components/file-upload/file-upload.js";
 
 const meta: Meta<ZetaFileUpload> = {
   component: "zeta-file-upload",
-  title: "File Upload",
+  title: "Components/File Upload",
   args: {
     rounded: true,
     headline: "Drop files here to upload",

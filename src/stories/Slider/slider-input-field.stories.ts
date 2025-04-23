@@ -6,7 +6,7 @@ import { html } from "lit";
 
 const meta: Meta<ZetaSliderInputField> = {
   component: "zeta-slider-input-field",
-  title: "Slider",
+  title: "Components/Slider",
   args: {
     rounded: true,
     disabled: false,

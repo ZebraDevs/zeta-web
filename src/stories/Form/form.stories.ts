@@ -13,7 +13,7 @@ import "../../components/select-input/select-input.js";
 import "../../components/stepper-input/stepper-input.js";
 
 const meta: Meta = {
-  title: "Form"
+  title: "Components/Form"
 };
 
 export default meta;

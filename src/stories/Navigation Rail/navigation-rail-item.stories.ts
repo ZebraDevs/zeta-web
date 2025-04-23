@@ -9,7 +9,7 @@ type ZetaNavigationRailItemStory = ZetaNavigationRailItem & { icon: ZetaIconName
 
 const meta: Meta<ZetaNavigationRailItemStory> = {
   component: "zeta-navigation-rail-item",
-  title: "Navigation Rail",
+  title: "Components/Navigation Rail",
   args: {
     slot: "Label",
     icon: "star",

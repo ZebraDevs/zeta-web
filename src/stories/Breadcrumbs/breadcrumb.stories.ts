@@ -6,7 +6,7 @@ import "../../components/breadcrumbs/breadcrumb";
 
 const meta: Meta<ZetaBreadcrumb> = {
   component: "zeta-breadcrumb",
-  title: "Breadcrumb",
+  title: "Components/Breadcrumb",
   args: {
     rounded: true
   },

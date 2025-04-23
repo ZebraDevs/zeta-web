@@ -11,7 +11,7 @@ import "../../components/icon/icon.js";
 
 const meta: Meta<ZetaCard | any> = {
   component: "zeta-card",
-  title: "Cards",
+  title: "Components/Cards",
   args: {
     rounded: true
   },

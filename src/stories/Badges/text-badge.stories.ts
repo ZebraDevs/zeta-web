@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaLabel } from "../../components/badges/label/label.js";
 
 const meta: Meta<ZetaLabel> = {
-  title: "Badges",
+  title: "Components/Badges",
   component: "zeta-label",
   args: {
     text: "label",

@@ -7,7 +7,7 @@ import { html } from "lit";
 type AvatarStory = ZetaAvatar & { "show-ring": boolean; "show-close": boolean; status: string };
 
 const meta: Meta<AvatarStory> = {
-  title: "Avatar",
+  title: "Components/Avatar",
   component: "zeta-avatar",
   args: {
     size: "m",

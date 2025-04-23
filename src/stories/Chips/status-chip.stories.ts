@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaStatusChip } from "../../components/chips/status-chip/status-chip.js";
 
 const meta: Meta<ZetaStatusChip> = {
-  title: "Chips",
+  title: "Components/Chips",
   component: "zeta-status-chip",
   args: {
     text: "Input Custom",

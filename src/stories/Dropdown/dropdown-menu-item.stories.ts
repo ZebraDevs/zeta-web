@@ -5,7 +5,7 @@ import { ZetaIconNameList, type ZetaIconName } from "@zebra-fed/zeta-icons";
 
 const meta: Meta<ZetaDropdownMenuItem & { icon: ZetaIconName }> = {
   component: "zeta-dropdown-menu-item",
-  title: "Dropdown",
+  title: "Components/Dropdown",
   args: {
     rounded: true,
     disabled: false,

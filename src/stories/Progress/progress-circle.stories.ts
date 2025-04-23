@@ -9,7 +9,7 @@ const spread = spreadGenerator(ZetaProgressCircle);
 type ProgressCircleStory = ZetaProgressCircle & { slot: string; subtitle: string; leading: string; oncancelupload: () => void };
 const meta: Meta<ProgressCircleStory> = {
   component: "zeta-progress-circle",
-  title: "Progress",
+  title: "Components/Progress",
   args: {
     progress: 75,
     size: 64,

@@ -10,7 +10,7 @@ type SearchStory = ZetaSearch & { oninput: () => void; onchange: () => void; onf
 
 const meta: Meta<SearchStory> = {
   tags: ["autodocs"],
-  title: "Search",
+  title: "Components/Search",
   component: "zeta-search",
   args: {
     value: "Predefined search value",

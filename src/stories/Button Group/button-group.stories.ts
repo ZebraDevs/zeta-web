@@ -9,7 +9,7 @@ const options = { testFunc, undefined };
 
 const meta: Meta<ZetaButtonGroup> = {
   component: "zeta-button-group",
-  title: "Button Group",
+  title: "Components/Button Group",
   args: {
     rounded: true,
     size: "medium"

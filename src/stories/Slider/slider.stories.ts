@@ -7,7 +7,7 @@ const spread = spreadGenerator(ZetaSlider);
 
 const meta: Meta<ZetaSlider> = {
   component: "zeta-slider",
-  title: "Slider",
+  title: "Components/Slider",
   args: { rounded: true, disabled: false, value: 50, lowerValue: 10, upperValue: 90, min: 0, max: 100, stepIncrement: 0, type: "default" },
   argTypes: {
     type: { control: { type: "inline-radio" }, options: ["range", "default"] },

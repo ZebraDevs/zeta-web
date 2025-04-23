@@ -3,7 +3,7 @@ import { ZetaProgressBar } from "../../components/progress-indicators/progress-b
 
 const meta: Meta<ZetaProgressBar> = {
   component: "zeta-progress-bar",
-  title: "Progress",
+  title: "Components/Progress",
   args: {
     rounded: true,
     size: "medium",

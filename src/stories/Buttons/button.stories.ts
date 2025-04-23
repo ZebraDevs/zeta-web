@@ -8,7 +8,7 @@ import "../../components/button/base-button.js";
 import "../../components/icon/icon.js";
 
 const meta: Meta<ZetaButton> = {
-  title: "Buttons",
+  title: "Components/Buttons",
   component: "zeta-button",
   args: {
     disabled: false,

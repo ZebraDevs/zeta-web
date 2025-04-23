@@ -10,7 +10,7 @@ type UploadItemStory = ZetaUploadItem & { slot: string; subtitle: string; leadin
 
 const meta: Meta<UploadItemStory> = {
   component: "zeta-upload-item",
-  title: "File Upload",
+  title: "Components/File Upload",
   args: {
     flavor: "default",
     rounded: true,

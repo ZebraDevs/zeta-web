@@ -6,7 +6,7 @@ import "../../components/segmented-control/segmented-item";
 import "../../components/icon/icon";
 
 const meta: Meta<ZetaSegmentedControl> = {
-  title: "Segmented Control",
+  title: "Components/Segmented Control",
   component: "zeta-segmented-control",
   args: {
     rounded: true

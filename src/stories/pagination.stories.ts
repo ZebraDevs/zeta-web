@@ -9,7 +9,7 @@ type PaginationStory = ZetaPagination & { onpagechange: () => void };
 const meta: Meta<PaginationStory> = {
   component: "zeta-pagination",
   tags: ["autodocs"],
-  title: "Pagination",
+  title: "Components/Pagination",
   args: {
     rounded: false,
     totalPages: 10,

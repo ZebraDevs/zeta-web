@@ -4,7 +4,7 @@ import { ZetaTabItem } from "../../components/tab-bar/tab-item/tab-item.js";
 
 const meta: Meta<ZetaTabItem> = {
   component: "zeta-tab-item",
-  title: "Tab Bar",
+  title: "Components/Tab Bar",
   args: {
     rounded: true,
     disabled: false,

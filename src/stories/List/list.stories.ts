@@ -5,7 +5,7 @@ import "../../components/list/list-item/list-item.js";
 
 const meta: Meta<ZetaList> = {
   component: "zeta-list",
-  title: "List",
+  title: "Components/List",
   args: {
     divide: true
   },

@@ -8,7 +8,7 @@ import "../../components/button/icon-button/icon-button.js";
 
 const meta: Meta<ZetaCardHeader> = {
   component: "zeta-card-header",
-  title: "Cards",
+  title: "Components/Cards",
   args: {
     headline: "Headline",
     subHeadline: "Subhead"

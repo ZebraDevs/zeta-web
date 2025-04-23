@@ -6,7 +6,7 @@ const spread = spreadGenerator(ZetaRangeSelector);
 
 const meta: Meta<ZetaRangeSelector> = {
   component: "zeta-range-selector",
-  title: "Range Selector",
+  title: "Components/Range Selector",
   args: {
     rounded: true,
     disabled: false,

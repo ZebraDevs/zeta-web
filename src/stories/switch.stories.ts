@@ -10,7 +10,7 @@ const spread = spreadGenerator(ZetaSwitch);
 const meta: Meta<ZetaSwitch> = {
   component: "zeta-switch",
   tags: ["autodocs"],
-  title: "Switch",
+  title: "Components/Switch",
   args: {
     rounded: true,
     disabled: false,

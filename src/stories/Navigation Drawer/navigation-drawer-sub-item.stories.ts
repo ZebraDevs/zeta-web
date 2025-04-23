@@ -3,7 +3,7 @@ import { ZetaNavigationDrawerSubItem } from "../../components/navigation-drawer/
 
 const meta: Meta<ZetaNavigationDrawerSubItem> = {
   component: "zeta-navigation-drawer-sub-item",
-  title: "Navigation Drawer",
+  title: "Components/Navigation Drawer",
   args: {
     headline: "Navigation Sub Item",
     rounded: true,

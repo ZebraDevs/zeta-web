@@ -8,7 +8,7 @@ import "../../components/icon/icon.js";
 
 const meta: Meta<ZetaGridMenuItem | { icon?: ZetaIconName }> = {
   component: "zeta-grid-menu-item",
-  title: "Grid Menu Item",
+  title: "Components/Grid Menu Item",
   tags: ["autodocs"],
   args: {
     rounded: true,

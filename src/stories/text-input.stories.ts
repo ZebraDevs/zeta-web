@@ -10,7 +10,7 @@ type InputStory = ZetaTextInput;
 //TODO: These are seperate on Figma, should be split here too?
 const meta: Meta<InputStory> = {
   tags: ["autodocs"],
-  title: "Text Input",
+  title: "Components/Text Input",
   component: "zeta-text-input",
   args: {
     value: "",

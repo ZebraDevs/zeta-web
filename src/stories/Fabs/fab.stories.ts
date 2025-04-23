@@ -20,7 +20,7 @@ const staticArgTypes = {
 
 const meta: Meta<ZetaFab> = {
   component: "zeta-fab",
-  title: "Fabs",
+  title: "Components/Fabs",
   args: {
     disabled: false,
     flavor: "primary",

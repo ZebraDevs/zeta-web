@@ -5,7 +5,7 @@ import "../components/avatar/avatar.js";
 
 const meta: Meta<ZetaNavigationProfile> = {
   component: "zeta-navigation-profile",
-  title: "Navigation Header",
+  title: "Components/Navigation Header",
   args: {
     rounded: true
   },

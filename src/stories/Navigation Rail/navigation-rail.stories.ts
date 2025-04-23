@@ -6,7 +6,7 @@ import "../../components/navigation-rail/navigation-rail-item";
 import "../../components/icon/icon";
 
 const meta: Meta<ZetaNavigationRail> = {
-  title: "Navigation Rail",
+  title: "Components/Navigation Rail",
   component: "zeta-navigation-rail",
   args: {
     rounded: true

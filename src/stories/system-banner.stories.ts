@@ -6,7 +6,7 @@ import { ZetaIconNameList, type ZetaIconName } from "@zebra-fed/zeta-icons";
 import "../components/system-banner/system-banner.js";
 
 const meta: Meta<ZetaSystemBanner | { leadingIcon: ZetaIconName; trailingIcon: ZetaIconName }> = {
-  title: "System Banner",
+  title: "Components/System Banner",
   tags: ["autodocs"],
   parameters: {
     layout: "fullscreen",

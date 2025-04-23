@@ -3,7 +3,7 @@ import { html } from "lit";
 import { ZetaCardBody } from "../../components/card/card-body/card-body.js";
 
 const meta: Meta<ZetaCardBody> = {
-  title: "Cards",
+  title: "Components/Cards",
   component: "zeta-card-body",
   parameters: {
     design: {

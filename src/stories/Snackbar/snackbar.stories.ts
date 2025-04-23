@@ -8,7 +8,7 @@ import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
 
 const meta: Meta<ZetaSnackbar | any> = {
   component: "zeta-Snackbar",
-  title: "Snackbar",
+  title: "Components/Snackbar",
   args: {
     slotIcon: "happy",
     slot: "Message",
