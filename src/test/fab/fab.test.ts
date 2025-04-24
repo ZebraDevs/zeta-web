@@ -74,7 +74,7 @@ describe("zeta-fab", () => {
     });
 
     it("renders a large fab", async () => {
-      const fab: ZetaFab = await fixture(html`<zeta-fab size="large"></zeta-fab>`);
+      const fab: ZetaFab = await fixture(html`<zeta-fab size="large">barcode</zeta-fab>`);
 
       const el = fab.shadowRoot?.querySelector("button");
       const height = getComputedStyle(el!).height;

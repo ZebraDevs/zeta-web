@@ -16,7 +16,7 @@ export default tseslint.config(
   wc.configs["flat/recommended"],
   lit.configs["flat/recommended"],
   {
-    ignores: ["**/*.stories.*", "**/generated"]
+    ignores: ["**/*.stories.*", "**/generated", "**/*.tsx"]
   },
   {
     files: ["src/**/*.ts"],

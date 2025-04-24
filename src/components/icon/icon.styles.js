@@ -32,13 +32,17 @@ export default [
       -moz-osx-font-smoothing: grayscale;
       font-feature-settings: "liga";
       user-select: none;
-      height: var(--icon-size, 24px);
-      width: var(--icon-size, 24px);
       transition: all 0.3s ease-in-out;
       color: var(--icon-color, var(--main-default));
       font-size: var(--icon-size, 24px);
       line-height: var(--icon-size, 1);
       font-family: var(--icon-font, "zeta-icons-round");
+    }
+
+    :host ::slotted(svg) {
+      width: var(--icon-size, 24px);
+      height: var(--icon-size, 24px);
+      fill: var(--icon-color, var(--main-default));
     }
   `
 ];
