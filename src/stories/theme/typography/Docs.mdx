@@ -1,6 +1,6 @@
 import { Canvas, Meta, Description, ArgTypes, Title, Stories, Story, Source } from "@storybook/blocks";
-import { Typography } from "./type";
 import * as Type from "./typography.stories";
+import { TypographyGrid } from "./typography-grid";
 
 <Meta of={Type} title="Typography" />
 
@@ -8,7 +8,7 @@ import * as Type from "./typography.stories";
 The Zeta type scale is built on a single equation. The formula for our scale was created to provide hierarchy for all types of experiences. The formula assumes
 that the smallest size is 12px and increases based on the 4px mini unit, this includes line heights too (based on the baseline grid of 4px).
 
-<Typography props={Type} />
+<TypographyGrid />
 
 REM typically assumes a 16px base size, so to work out the pixel value, multiply the REM value by 16px. For example, 1.5rem = 1.5 \* 16px = 24px.
 

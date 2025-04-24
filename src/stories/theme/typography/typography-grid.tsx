@@ -1,7 +1,8 @@
 import React from "react";
-import { TextStyle, typographyTypes } from "./typography-types";
+import { typographyTypes } from "./typography-types";
+import type { TextStyle } from "./typography-types";
 
-export const Typography: React.FC = () => {
+export const TypographyGrid: React.FC = () => {
   return (
     <div style={{ margin: "4rem 2rem" }}>
       <div
