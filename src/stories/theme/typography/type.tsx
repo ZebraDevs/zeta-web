@@ -12,7 +12,8 @@ export const Typography: React.FC = () => {
           alignItems: "center",
           marginBottom: "2rem",
           fontWeight: "bold"
-        }}>
+        }}
+      >
         <div>Font name</div>
         <div>Weight</div>
         <div>Size</div>
@@ -27,7 +28,8 @@ export const Typography: React.FC = () => {
             alignItems: "center",
             marginBottom: "1.5rem"
           }}
-          key={font.name}>
+          key={font.name}
+        >
           <div style={{ font: font.cssVar }}>
             {font.alternativeName ? `${font.alternativeName} - ` : ""}
             {font.name}

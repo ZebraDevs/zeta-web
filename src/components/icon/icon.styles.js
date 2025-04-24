@@ -39,9 +39,9 @@ export default [
       font-family: var(--icon-font, "zeta-icons-round");
     }
 
-    :host ::slotted(svg){
+    :host ::slotted(svg) {
       width: var(--icon-size, 24px);
-      height: var(--icon-size, 24px); 
+      height: var(--icon-size, 24px);
       fill: var(--icon-color, var(--main-default));
     }
   `
