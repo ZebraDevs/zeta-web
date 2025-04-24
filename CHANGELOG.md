@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.6.0](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.5.3...zeta-web-v0.6.0) (2025-04-24)
+
+
+### ✨ New Features
+
+* **UX-1396:** icon - Add svg support in slot ([#41](https://github.com/ZebraDevs/zeta-web/issues/41)) ([339ad75](https://github.com/ZebraDevs/zeta-web/commit/339ad752dad0f6bd972d6e96a31eab501d15dc67))
+
+
+### 📈 Documentation
+
+* **UX-1431:** Add documentation on adding custom fonts  ([339ad75](https://github.com/ZebraDevs/zeta-web/commit/339ad752dad0f6bd972d6e96a31eab501d15dc67))
+
 ## [0.5.3](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.5.2...zeta-web-v0.5.3) (2025-04-16)
 
 
