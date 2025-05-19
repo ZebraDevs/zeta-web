@@ -70,7 +70,7 @@ export default css`
     }
     color: var(--main-default);
   }
-  
+
   .hint-text {
     display: flex;
     align-items: center;
