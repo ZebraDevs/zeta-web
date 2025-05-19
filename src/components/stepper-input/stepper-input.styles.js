@@ -16,9 +16,22 @@ export default css`
     }
   }
 
+  :host([error]:not([disabled])) .hint-text zeta-icon {
+    --icon-color: var(--main-negative);
+  }
+
+  :host([error]:not([disabled])) .hint-text {
+    color: var(--main-negative);
+  }
+
   .container {
     display: flex;
     gap: var(--spacing-small);
+    margin-bottom: var(--spacing-minimum);
+  }
+
+  .hint-text {
+    --icon-size: 16px;
   }
 
   .input-container {
@@ -56,5 +69,16 @@ export default css`
       color: var(--main-disabled);
     }
     color: var(--main-default);
+  }
+  
+  .hint-text {
+    display: flex;
+    align-items: center;
+    column-gap: var(--spacing-minimum);
+  }
+
+  .hint-text {
+    font: var(--body-x-small);
+    color: var(--main-subtle);
   }
 `;

@@ -1,6 +1,6 @@
 import { customElement, property, query } from "lit/decorators.js";
 import { FormField, type InputType } from "../../mixins/form-field.js";
-import { html, LitElement } from "lit";
+import { html, LitElement, nothing } from "lit";
 import { live } from "lit/directives/live.js";
 import styles from "./stepper-input.styles.js";
 import { ifDefined } from "lit/directives/if-defined.js";
@@ -24,6 +24,23 @@ export class ZetaStepperInput extends FormField(Contourable(LitElement)) {
 
   @property({ type: Boolean }) disabled: boolean = false; //TODO: Use interactive, check styles beforehand
   @property({ reflect: true }) size: "medium" | "large" = "medium";
+
+  /**
+   * Hint text shown below text field.
+   *
+   * if `error`, then `errorText` is shown instead.
+   */
+  @property() hintText?: string;
+
+  /** Whether text field is in error state. */
+  @property({ type: Boolean, reflect: true }) error = false;
+
+  /**
+   * Error hint text
+   *
+   * Shown if `error`, replaces `hintText`.
+   */
+  @property() errorText?: string;
 
   type: InputType = "stepper";
 
@@ -62,41 +79,49 @@ export class ZetaStepperInput extends FormField(Contourable(LitElement)) {
   protected render() {
     return html`
       ${super.render()}
-      <div class="container">
-        <zeta-icon-button
-          .disabled=${this.disabled}
-          .rounded=${this.rounded}
-          size=${this.size}
-          flavor="outline-subtle"
-          @click=${() => {
-            this.handleChange(new ZetaStepperChangeEvent({ value: this.validateValue((Number(this.value) - 1).toString()) }).toEvent());
-          }}
-        >
-          remove
-        </zeta-icon-button>
-        <div class="input-container">
-          <input
-            min=${ifDefined(this.min?.toString())}
-            max=${ifDefined(this.max?.toString())}
-            type="number"
-            @change=${(e: Event) => {
-              this.handleChange(new ZetaStepperChangeEvent({ value: this.validateValue((e.currentTarget as HTMLInputElement).value) }).toEvent());
-            }}
-            .value=${live(this.value)}
+      <div>
+        <div class="container">
+          <zeta-icon-button
             .disabled=${this.disabled}
-          />
+            .rounded=${this.rounded}
+            size=${this.size}
+            flavor="outline-subtle"
+            @click=${() => {
+              this.handleChange(new ZetaStepperChangeEvent({ value: this.validateValue((Number(this.value) - 1).toString()) }).toEvent());
+            }}
+          >
+            remove
+          </zeta-icon-button>
+          <div class="input-container contourable-target">
+            <input
+              min=${ifDefined(this.min?.toString())}
+              max=${ifDefined(this.max?.toString())}
+              type="number"
+              @change=${(e: Event) => {
+                this.handleChange(new ZetaStepperChangeEvent({ value: this.validateValue((e.currentTarget as HTMLInputElement).value) }).toEvent());
+              }}
+              .value=${live(this.value)}
+              .disabled=${this.disabled}
+            />
+          </div>
+          <zeta-icon-button
+            .disabled=${this.disabled}
+            .rounded=${this.rounded}
+            size=${this.size}
+            flavor="outline-subtle"
+            @click=${() => {
+              this.handleChange(new ZetaStepperChangeEvent({ value: this.validateValue((Number(this.value) + 1).toString()) }).toEvent());
+            }}
+          >
+            add
+          </zeta-icon-button>
         </div>
-        <zeta-icon-button
-          .disabled=${this.disabled}
-          .rounded=${this.rounded}
-          size=${this.size}
-          flavor="outline-subtle"
-          @click=${() => {
-            this.handleChange(new ZetaStepperChangeEvent({ value: this.validateValue((Number(this.value) + 1).toString()) }).toEvent());
-          }}
-        >
-          add
-        </zeta-icon-button>
+        ${this.error || this.hintText
+          ? html`<div class="hint-text">
+              <zeta-icon .rounded=${this.rounded}>${this.error ? "error" : "info"}</zeta-icon>
+              <span id="hint-text">${this.error ? this.errorText : this.hintText}</span>
+            </div>`
+          : nothing}
       </div>
     `;
   }
