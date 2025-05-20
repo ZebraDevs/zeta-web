@@ -12,6 +12,7 @@ const meta: Meta<ZetaStepperInput> = {
     max: 100,
     rounded: false,
     disabled: false,
+    error: false,
     size: "medium",
     value: "1"
   },
@@ -52,8 +53,39 @@ export const StepperInput: StoryObj<ZetaStepperInput> = {
         size=${args.size}
         ?rounded=${args.rounded}
         ?disabled=${args.disabled}
+        ?error=${args.error}
       ></zeta-stepper-input>
-      <zeta-button type="submit">Submit</zeta-button>
+      <zeta-button style="margin-top: 15px" type="submit">Submit</zeta-button>
+    </form>
+  `
+};
+
+export const StepperInputWithHint: StoryObj<ZetaStepperInput> = {
+  render: args => html`
+    <form
+      id="form"
+      @submit=${(e: SubmitEvent) => {
+        e.preventDefault();
+        const data = new FormData(e.target as HTMLFormElement);
+        console.log(Object.fromEntries(data));
+      }}
+      @reset=${(e: Event) => {
+        console.error("Form reset", e);
+      }}
+    >
+      <zeta-stepper-input
+        name="stepper-input"
+        min=${ifDefined(args.min)}
+        max=${ifDefined(args.max)}
+        value=${ifDefined(args.value)}
+        size=${args.size}
+        hintText="hint"
+        errorText="error"
+        ?rounded=${args.rounded}
+        ?disabled=${args.disabled}
+        ?error=${args.error}
+      ></zeta-stepper-input>
+      <zeta-button style="margin-top: 15px" type="submit">Submit</zeta-button>
     </form>
   `
 };
