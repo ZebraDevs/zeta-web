@@ -30,10 +30,6 @@ export default css`
     margin-bottom: var(--spacing-minimum);
   }
 
-  .hint-text {
-    --icon-size: 16px;
-  }
-
   .input-container {
     display: flex;
     align-items: center;
@@ -72,12 +68,10 @@ export default css`
   }
 
   .hint-text {
+    --icon-size: 16px;
     display: flex;
     align-items: center;
     column-gap: var(--spacing-minimum);
-  }
-
-  .hint-text {
     font: var(--body-x-small);
     color: var(--main-subtle);
   }
