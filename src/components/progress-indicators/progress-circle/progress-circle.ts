@@ -115,7 +115,7 @@ export class ZetaProgressCircle extends Contourable(LitElement) {
             r=${r}
             cx=${cx}
             cy=${cy}
-            stroke="var(--main-primary)"
+            stroke="var(--progress-circle-color)"
             stroke-linecap=${this.rounded ? "round" : "square"}
             fill="transparent"
             stroke-width="${this.strokeWidth}px"

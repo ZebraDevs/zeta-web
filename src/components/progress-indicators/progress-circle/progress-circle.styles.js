@@ -4,6 +4,7 @@ export default css`
     display: block;
     width: fit-content;
     height: fit-content;
+    --progress-circle-color: var(--main-primary);
   }
   .cancel zeta-icon {
     --icon-size: 20px;
