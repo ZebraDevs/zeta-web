@@ -18,7 +18,7 @@ export class ZetaProgressCircle extends Contourable(LitElement) {
   static styles = [super.styles || [], styles];
 
   /** Size. */
-  @property({ type: Number }) size: 24 | 36 | 40 | 48 | 64 = 64;
+  @property({ type: Number }) size: 20 | 24 | 36 | 40 | 48 | 64 = 64;
 
   /** Progress (0-100). */
   @property({ type: Number }) get progress() {
