@@ -4,7 +4,7 @@ export default css`
     display: flex;
     --thin-size: var(--spacing-small);
     --medium-size: var(--spacing-large);
-    --progress-bar-color: var(--main-primary)
+    --progress-bar-color: var(--main-primary);
   }
 
   .progress-bar {
