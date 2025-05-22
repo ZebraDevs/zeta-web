@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.6.2](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.6.1...zeta-web-v0.6.2) (2025-05-22)
+
+
+### 🪲 Bug Fixes
+
+* Added progress circle color css token ([#47](https://github.com/ZebraDevs/zeta-web/issues/47)) ([e5ca27e](https://github.com/ZebraDevs/zeta-web/commit/e5ca27ebe1a1a2862ce2686a3f09210194926777))
+
+
+### 🧹 Miscellaneous Chores
+
+* Adding Error & hints to stepper ([#45](https://github.com/ZebraDevs/zeta-web/issues/45)) ([a74fb1c](https://github.com/ZebraDevs/zeta-web/commit/a74fb1c2152ff478e060f80266861e30f32ee227))
+
 ## [0.6.1](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.6.0...zeta-web-v0.6.1) (2025-04-30)
 
 
