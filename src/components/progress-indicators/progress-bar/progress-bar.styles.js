@@ -2,9 +2,9 @@ import { css } from "lit";
 export default css`
   :host {
     display: flex;
-
     --thin-size: var(--spacing-small);
     --medium-size: var(--spacing-large);
+    --progress-bar-color: var(--main-primary);
   }
 
   .progress-bar {
@@ -64,7 +64,7 @@ export default css`
   }
 
   .bar {
-    background-color: var(--surface-primary);
+    background-color: var(--progress-bar-color);
     height: 100%;
     border-radius: inherit;
   }

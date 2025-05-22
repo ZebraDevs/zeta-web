@@ -8,7 +8,9 @@ import { styleMap } from "lit/directives/style-map.js";
 
 /** Progress indicators express an unspecified wait time or display the length of a process.
  *
- *  @event {CustomEvent<ZetaCancelUploadEventDetail>} cancelUpload - Fired when the cancel button is clicked.
+ * @event {CustomEvent<ZetaCancelUploadEventDetail>} cancelUpload - Fired when the cancel button is clicked.
+ *
+ * @cssproperty --progress-circle-color The color of the progress circle.
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-22&node-type=canvas&m=dev
  * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/progress--docs
@@ -18,7 +20,7 @@ export class ZetaProgressCircle extends Contourable(LitElement) {
   static styles = [super.styles || [], styles];
 
   /** Size. */
-  @property({ type: Number }) size: 24 | 36 | 40 | 48 | 64 = 64;
+  @property({ type: Number }) size: 20 | 24 | 36 | 40 | 48 | 64 = 64;
 
   /** Progress (0-100). */
   @property({ type: Number }) get progress() {
@@ -115,7 +117,7 @@ export class ZetaProgressCircle extends Contourable(LitElement) {
             r=${r}
             cx=${cx}
             cy=${cy}
-            stroke="var(--main-primary)"
+            stroke="var(--progress-circle-color)"
             stroke-linecap=${this.rounded ? "round" : "square"}
             fill="transparent"
             stroke-width="${this.strokeWidth}px"

@@ -1,5 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaProgressBar } from "../../../components/progress-indicators/progress-bar/progress-bar.js";
+import { html } from "lit";
+import { spreadGenerator } from "../../utils.js";
+
+const spread = spreadGenerator(ZetaProgressBar);
 
 const meta: Meta<ZetaProgressBar> = {
   component: "zeta-progress-bar",
@@ -32,4 +36,16 @@ const meta: Meta<ZetaProgressBar> = {
 
 export default meta;
 
-export const ProgressBar: StoryObj<ZetaProgressBar> = {};
+export const ProgressBar: StoryObj = {
+  render: ({ ...args }) => {
+    return html`
+      ${args["--progress-bar-color"] &&
+      html`<style>
+        zeta-progress-bar {
+          --progress-bar-color: ${args["--progress-bar-color"]};
+        }
+      </style>`}
+      <zeta-progress-bar ${spread(args)}></zeta-progress-bar>
+    `;
+  }
+};
