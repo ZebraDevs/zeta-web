@@ -6,7 +6,13 @@ import { spreadGenerator } from "../../utils.js";
 import { fn } from "@storybook/test";
 const spread = spreadGenerator(ZetaProgressCircle);
 
-type ProgressCircleStory = ZetaProgressCircle & { slot: string; subtitle: string; leading: string; oncancelupload: () => void };
+type ProgressCircleStory = ZetaProgressCircle & {
+  slot: string;
+  subtitle: string;
+  leading: string;
+  oncancelupload: () => void;
+  "--progress-circle-color"?: string;
+};
 const meta: Meta<ProgressCircleStory> = {
   component: "zeta-progress-circle",
   title: "Components/Progress",
@@ -20,7 +26,7 @@ const meta: Meta<ProgressCircleStory> = {
   },
   argTypes: {
     size: {
-      options: [24, 36, 40, 48, 64],
+      options: [20, 24, 36, 40, 48, 64],
       control: {
         type: "inline-radio"
       }
@@ -43,7 +49,17 @@ const meta: Meta<ProgressCircleStory> = {
 };
 
 export const ProgressCircle: StoryObj<ProgressCircleStory> = {
-  render: ({ oncancelupload, ...args }) => html`<zeta-progress-circle @cancel-upload=${oncancelupload} ${spread(args)}></zeta-progress-circle>`
+  render: ({ oncancelupload, ...args }) => {
+    return html`
+      ${args["--progress-circle-color"] &&
+      html`<style>
+        zeta-progress-circle {
+          --progress-circle-color: ${args["--progress-circle-color"]};
+        }
+      </style>`}
+      <zeta-progress-circle @cancel-upload=${oncancelupload} ${spread(args)}></zeta-progress-circle>
+    `;
+  }
 };
 
 export default meta;
