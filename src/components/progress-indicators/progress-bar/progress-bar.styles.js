@@ -64,7 +64,8 @@ export default css`
   }
 
   .bar {
-    background-color: var(--surface-primary);
+    --progress-bar-color: var(--surface-primary);
+    background-color: var(--progress-bar-color);
     height: 100%;
     border-radius: inherit;
   }
