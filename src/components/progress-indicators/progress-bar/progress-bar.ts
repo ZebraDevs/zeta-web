@@ -5,7 +5,7 @@ import { Contourable } from "../../../mixins/mixins.js";
 import { styleMap } from "lit/directives/style-map.js";
 
 /** Progress indicators express an unspecified wait time or display the length of a process.
- * 
+ *
  * @cssproperty --progress-bar-color The color of the progress bar.
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-22&node-type=canvas&m=dev
