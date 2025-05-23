@@ -39,6 +39,8 @@ onBlur?: (event: FocusEvent) => void;
         if (fs.existsSync(filePath)) {
             const content = fs.readFileSync(filePath, 'utf8');
             fs.writeFileSync(filePath, 'import { type ZetaIconName } from "@zebra-fed/zeta-icons"' + content, 'utf8');
+            
+            exec("ts-node .\scripts\extend-with-react-input-props.ts select-input text-input stepper-input")
         }
     },
 })
