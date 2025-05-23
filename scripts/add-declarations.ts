@@ -4,6 +4,18 @@ import { log } from "./utils";
 import { createMinifier } from "dts-minify";
 import * as ts from "typescript";
 
+//TODO: Automatically generate this list
+const formFields = [
+  "zeta-checkbox",
+  "zeta-radio",
+  "zeta-range-selector",
+  "zeta-select-input",
+  "zeta-slider-input-field",
+  "zeta-stepper-input",
+  "zeta-switch",
+  "zeta-text-input",
+];
+
 interface CustomElements {
   comment: string;
   key: string;
@@ -114,6 +126,12 @@ const parseDTSFiles = (files: string[], customElements: CustomElements[]): FileT
       interface IntrinsicElements {
         ${cElements
           .map(({ key, value, comment }) => {
+            const cleanKey = key.replace(/^["']|["']$/g, "");
+            if (formFields.includes(cleanKey)) {
+              const str = `${comment}\n${key}: ${value} & Partial<React.InputHTMLAttributes<${elements[0].value}Props>>;`;
+              findAndReplaceLineInFile("dist/jsx.d.ts", `${key}: ${value};`, str);
+              return str;
+            }
             return `${comment}\n${key}: ${value}`;
           })
           .join("\n")}
@@ -140,6 +158,30 @@ const writeMinifiedFiles = (files: FileToWrite[]) => {
     fs.writeFileSync(file.filePath, minifiedContent, "utf-8");
     log(`Minified and wrote file: ${file.filePath}`);
   });
+};
+
+/**
+ * Finds and replaces a line in a file, ignoring whitespace differences.
+ * @param filePath - The path to the file.
+ * @param findLine - The line to find (ignoring whitespace).
+ * @param replaceLine - The line to replace it with.
+ */
+const findAndReplaceLineInFile = (filePath: string, findLine: string, replaceLine: string) => {
+  const content = fs.readFileSync(filePath, "utf-8");
+  const lines = content.split("\n");
+  let replaced = false;
+  const updatedLines = lines.map((line) => {
+    if (!replaced && findLine.trim() === line.trim()) {
+      replaced = true;
+      return replaceLine;
+    }
+    return line;
+  });
+  if (!replaced) {
+    return;
+  }
+  fs.writeFileSync(filePath, updatedLines.join("\n"), "utf-8");
+  log(`Replaced line in file: ${filePath}`);
 };
 
 const main = async () => {
