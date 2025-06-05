@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.6.3](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.6.2...zeta-web-v0.6.3) (2025-06-04)
+
+
+### ⛓️ Dependencies
+
+* Update zeta-icons library ([#48](https://github.com/ZebraDevs/zeta-web/issues/48)) ([8e99ecc](https://github.com/ZebraDevs/zeta-web/commit/8e99eccec77f57ab8404f15efade689e972f6eef))
+
+
+### 🧹 Miscellaneous Chores
+
+* **deps:** bump tar-fs from 3.0.8 to 3.0.9 ([#49](https://github.com/ZebraDevs/zeta-web/issues/49)) ([5b5b8eb](https://github.com/ZebraDevs/zeta-web/commit/5b5b8ebc6ebc6936f1f53b454599e46b59c64e2c))
+
 ## [0.6.2](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.6.1...zeta-web-v0.6.2) (2025-05-22)
 
 
