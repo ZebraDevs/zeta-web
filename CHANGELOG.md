@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.5](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.6.4...zeta-web-v0.6.5) (2025-06-09)
+
+
+### 🪲 Bug Fixes
+
+* **UX-1436:** Add React input declarations to zeta input fields ([#52](https://github.com/ZebraDevs/zeta-web/issues/52)) ([f735f6c](https://github.com/ZebraDevs/zeta-web/commit/f735f6c88f283399bd87ffff0f862e9e01d87816))
+
 ## [0.6.4](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.6.3...zeta-web-v0.6.4) (2025-06-06)
 
 
