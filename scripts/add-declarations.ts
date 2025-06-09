@@ -7,7 +7,7 @@ import * as ts from "typescript";
 //TODO: Automatically generate this list
 const formFields = [
   "zeta-checkbox",
-  "zeta-radio",
+  "zeta-radio-button",
   "zeta-range-selector",
   "zeta-select-input",
   "zeta-slider-input-field",
@@ -128,7 +128,7 @@ const parseDTSFiles = (files: string[], customElements: CustomElements[]): FileT
           .map(({ key, value, comment }) => {
             const cleanKey = key.replace(/^["']|["']$/g, "");
             if (formFields.includes(cleanKey)) {
-              const str = `${comment}\n${key}: ${value} & Partial<React.InputHTMLAttributes<${elements[0].value}Props>>;`;
+              const str = `${comment}\n${key}:  Partial<Omit<React.InputHTMLAttributes<${elements[0].value}Props>, keyof ${elements[0].value}Props | keyof BaseEvents | keyof BaseProps>>  | ${value}`;
               findAndReplaceLineInFile("dist/jsx.d.ts", `${key}: ${value};`, str);
               return str;
             }
