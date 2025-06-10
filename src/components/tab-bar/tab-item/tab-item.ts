@@ -9,7 +9,7 @@ import { Contourable, Interactive } from "../../../mixins/mixins.js";
  * @slot - The content of the menu item.
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-18&node-type=canvas&m=dev
- * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/tab-bar--docs
+ * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-tab-bar--docs
  */
 @customElement("zeta-tab-item")
 export class ZetaTabItem extends Contourable(Interactive(LitElement)) {

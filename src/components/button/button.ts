@@ -21,7 +21,7 @@ export type ButtonFlavor = Exclude<Flavor, "inverse">;
  * @part button - The button element
  *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=23126-110945
- * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/buttons--docs
+ * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-buttons--docs
  */
 @customElement("zeta-button")
 export class ZetaButton extends Flavored(BaseButton) {

@@ -8,7 +8,7 @@ import type { AvatarSize } from "../avatar/avatar-size.js";
  * @slot {zeta-avatar-rail[]} - The avatars to be displayed in the rail.
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-2&node-type=canvas&m=dev
- * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/avatar-rail--docs
+ * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-avatar-rail--docs
  */
 @customElement("zeta-avatar-rail")
 export class ZetaAvatarRail extends LitElement {

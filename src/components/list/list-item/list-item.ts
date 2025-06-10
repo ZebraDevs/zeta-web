@@ -9,7 +9,7 @@ import styles from "./list-item.styles.js";
  * @slot trailing - Content placed after the headline
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-17&node-type=canvas&m=dev
- * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/list--docs
+ * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-list--docs
  */
 @customElement("zeta-list-item")
 export class ZetaListItem extends LitElement {

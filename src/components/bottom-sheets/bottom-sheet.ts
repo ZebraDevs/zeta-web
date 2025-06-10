@@ -8,7 +8,7 @@ import { ZetaListItem } from "../list/list.js";
  *
  * @slot - Content to be displayed in the bottom sheet. Either `zeta-list-item` or `zeta-grid-menu-item`.
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21541-2225
- * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/bottom-sheet--docs
+ * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-bottom-sheet--docs
  */
 @customElement("zeta-bottom-sheet")
 export class ZetaBottomSheet extends LitElement {

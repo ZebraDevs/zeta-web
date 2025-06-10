@@ -7,7 +7,7 @@ import { Contourable } from "../../mixins/mixins.js";
 /** Zeta Droppable is a container that can be opened and closed and can be attached to an anchor which will determine it's position.
  *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=22391-10146
- * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/dropdown--docs
+ * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-dropdown--docs
  */
 @customElement("zeta-droppable")
 export class ZetaDroppable extends Contourable(LitElement) {

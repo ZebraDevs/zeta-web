@@ -9,7 +9,7 @@ import { styleMap } from "lit/directives/style-map.js";
  * @cssproperty --progress-bar-color The color of the progress bar.
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-22&node-type=canvas&m=dev
- * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/progress--docs
+ * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-progress--docs
  */
 @customElement("zeta-progress-bar")
 export class ZetaProgressBar extends Contourable(LitElement) {

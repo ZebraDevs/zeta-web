@@ -16,7 +16,7 @@ import { ZetaSlider } from "../slider.js";
  * @event {CustomEvent<ZetaSliderEventDetail>} change - Fired whenever value of slider is changed. Contains a single entry in detail: `value:number`.
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=875-11860&m=dev
- * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/slider--docs
+ * @storybook https://design.zebra.com/web/storybook/index.html?path=/docs/components-slider--docs
  */
 @customElement("zeta-slider-input-field")
 export class ZetaSliderInputField extends FormField(Contourable(LitElement)) {

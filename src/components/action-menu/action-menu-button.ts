@@ -11,7 +11,7 @@ import { ZetaButton } from "../button/button.js";
 /** Zeta Action Menu Button places a button that when clicked opens an action menu containing the items passed into it through the items prop.
  *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=22391-10146
- * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/dropdown--docs
+ * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-action-menu--docs
  */
 @customElement("zeta-action-menu-button")
 export class ZetaActionMenuButton extends ZetaButton {

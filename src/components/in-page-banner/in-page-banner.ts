@@ -19,7 +19,7 @@ import { ZetaCloseEvent } from "../../events.js";
  * @event {CustomEvent<ZetaCloseEventDetail>} close - Fired when the close icon is clicked.
  *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21156-27071
- * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/in-page-banner--docs
+ * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-in-page-banner--docs
  */
 @customElement("zeta-in-page-banner")
 export class ZetaInPageBanner extends Contourable(LitElement) {
