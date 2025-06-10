@@ -15,7 +15,7 @@ import { ZetaCancelUploadEvent } from "../../events.js";
  * @event {CustomEvent<ZetaCancelUploadEventDetail>} cancelUpload - Fired when the cancel button inside the progress circle is clicked.
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-42&node-type=canvas&m=dev
- * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/file-upload--docs
+ * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-file-upload--docs
  */
 @customElement("zeta-upload-item")
 export class ZetaUploadItem extends Contourable(LitElement) {

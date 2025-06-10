@@ -13,7 +13,7 @@ export type FabFlavor = Exclude<Flavor, "positive" | "negative" | "outline" | "o
  * @slot - The icon of the button. Entered as a plain string.
  *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21816-4283&m=dev
- * @storybook https://zeta-ds.web.app/?path=/docs/fab--docs
+ * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-fabs--docs
  */
 
 @customElement("zeta-fab")

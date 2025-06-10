@@ -11,7 +11,7 @@ import { ZetaOptionClickEvent } from "../../events.js";
  * @slot - The default slot
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-39&m=dev
- * @storybook https://design.zebra.com/web/storybook/index.html?path=/story/select-input--select-input
+ * @storybook https://design.zebra.com/web/storybook/index.html?path=/docs/components-select-input--docs
  */
 @customElement("zeta-option")
 export class ZetaOption extends Contourable(Interactive(Size(LitElement))) {

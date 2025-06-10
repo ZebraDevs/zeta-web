@@ -26,7 +26,7 @@ import type { ZetaOptionClickEventDetail } from "../../events";
  * Currently no typing or multi-select support.
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-39&m=dev
- * @storybook https://design.zebra.com/web/storybook/index.html?path=/story/select-input--select-input
+ * @storybook https://design.zebra.com/web/storybook/index.html?path=/docs/components-select-input--docs
  */
 @customElement("zeta-select-input")
 export class ZetaSelectInput extends FormField(Size(Contourable(Interactive(LitElement)))) {

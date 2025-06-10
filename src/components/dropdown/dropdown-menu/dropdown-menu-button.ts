@@ -25,7 +25,7 @@ export type ZetaDropdownItem = { label: string; icon?: ZetaIconName; checked?: b
  * @event {InputEvent} input - Fired when the dropdown is closed.
  *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=22391-10146
- * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/dropdown--docs
+ * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-dropdown--docs
  */
 @customElement("zeta-dropdown-menu-button")
 export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(LitElement)))) {

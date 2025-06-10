@@ -14,7 +14,7 @@ import { Contourable } from "../../mixins/mixins.js";
  * @part global-header - Styles the header container
  *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=23144-118110
- * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/global-header--docs
+ * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-global-header--docs
  */
 @customElement("zeta-global-header")
 export class ZetaGlobalHeader extends Contourable(LitElement) {

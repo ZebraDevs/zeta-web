@@ -13,7 +13,7 @@ import { styleMap } from "lit/directives/style-map.js";
  *    * Icon
  *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=21836-37274
- * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/badges--docs
+ * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-badges--docs
  */
 @customElement("zeta-status-label")
 export class ZetaStatusLabel extends Contourable(LitElement) {

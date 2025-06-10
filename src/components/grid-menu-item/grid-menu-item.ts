@@ -12,7 +12,7 @@ import "../badges/indicators/indicators.js";
  * @slot {zeta-icon} icon - Icon to be displayed. Full list of icons can be found at https://zeta-icons.web.app/.
  *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21186-41419
- * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/navigation-bar--docs
+ * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-grid-menu-item--docs
  */
 @customElement("zeta-grid-menu-item")
 export class ZetaGridMenuItem extends Contourable(LitElement) {

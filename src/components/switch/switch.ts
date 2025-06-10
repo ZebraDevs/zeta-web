@@ -33,7 +33,7 @@ import type { CheckboxType } from "../checkbox/checkbox.js";
  * @event {InputEvent} input - Fired when the checkbox value changes
  *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=1153-26923
- * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/switch--docs
+ * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-switch--docs
  */
 @customElement("zeta-switch")
 export class ZetaSwitch extends BaseToggleFormElement {

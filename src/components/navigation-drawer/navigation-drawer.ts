@@ -20,7 +20,7 @@ export * from "./navigation-drawer-sub-item/navigation-drawer-sub-item.js";
  * @slot footer - The drawer footer.
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=1075-21296&node-type=canvas&m=dev
- * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/navigation-drawer--docs
+ * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-navigation-drawer--docs
  */
 @customElement("zeta-navigation-drawer")
 export class ZetaNavigationDrawer extends Popup(LitElement) {
