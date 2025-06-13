@@ -14,7 +14,7 @@ import "../icon/icon.js";
  * @slot - Typically li
  *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=3427-67874
- * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/accordion--docs
+ * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-accordion--docs
  */
 @customElement("zeta-accordion")
 export class ZetaAccordion extends Contourable(Interactive(LitElement)) {

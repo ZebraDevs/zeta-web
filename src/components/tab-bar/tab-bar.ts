@@ -10,7 +10,7 @@ export * from "./tab-item/tab-item.js";
  * @slot - The tab items displayed in the header. Should be a list of zeta-tab-item.
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-18&node-type=canvas&m=dev
- * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/tab-bar--docs
+ * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-tab-bar--docs
  */
 @customElement("zeta-tab-bar")
 export class ZetaTabBar extends LitElement {

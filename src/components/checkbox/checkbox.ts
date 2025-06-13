@@ -16,7 +16,7 @@ export type CheckboxType = Extract<InputType, "checkbox">;
  * @event {InputEvent} input - Fired when the checkbox value changes
  *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21510-54003
- * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/checkbox--docs
+ * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-checkbox--docs
  */
 @customElement("zeta-checkbox")
 export class ZetaCheckbox extends BaseToggleFormElement {

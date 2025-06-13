@@ -14,7 +14,7 @@ export * from "./slider-input-field/slider-input-field.js";
  * @event {CustomEvent<ZetaRangeSliderEventDetail>} change - Fired whenever value of range slider is changed. Contains 2 values in details: `min:number`, `max:number`.
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=875-11860
- * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/slider--docs
+ * @storybook https://design.zebra.com/web/storybook/index.html?path=/docs/components-slider--docs
  */
 @customElement("zeta-slider")
 export class ZetaSlider extends Contourable(LitElement) {

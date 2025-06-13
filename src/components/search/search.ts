@@ -17,7 +17,7 @@ import { FormField, type InputType } from "../../mixins/form-field.js";
  * @event {InputEvent} input - Fired when the search value changes
  *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21286-35997
- * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/search--docs
+ * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-search--docs
  *
  * @slot leading - Leading icon
  */

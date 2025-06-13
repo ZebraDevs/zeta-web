@@ -8,7 +8,7 @@ import "../button/button.js";
  * TODO
  *
  * @figma TODO
- * @storybook TODO
+ * @storybook https://design.zebra.com/web/storybook/?path=/story/templates-login-page--login-page
  */
 @customElement("zeta-login-page")
 export class ZetaLoginPage extends Contourable(LitElement) {

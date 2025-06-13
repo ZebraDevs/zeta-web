@@ -36,7 +36,7 @@ import "../icon/icon.js";
  * @cssproperty --dialog-max-height - Max height of the dialog. Defaults to 80vh.
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-14&node-type=canvas&m=dev
- * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/dialog--docs
+ * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-dialog--docs
  */
 @customElement("zeta-dialog")
 export class ZetaDialog extends Contourable(Popup(LitElement)) {

@@ -8,7 +8,7 @@ import styles from "./segmented.item.styles.js";
  * @slot - The content of the item.
  *
  * @fimga https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=1046-20148&node-type=canvas&m=dev
- * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/segmented-control--docs
+ * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-segmented-control--docs
  */
 @customElement("zeta-segmented-item")
 export class ZetaSegmentedItem extends Contourable(LitElement) {

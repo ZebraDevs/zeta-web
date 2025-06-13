@@ -11,7 +11,7 @@ import "../button/button.js";
  * A file input that supports drag and drop.
  *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=898-10794
- * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/file-upload--docs
+ * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-file-upload--docs
  */
 @customElement("zeta-file-upload")
 export class ZetaFileUpload extends Contourable(LitElement) {

@@ -9,7 +9,7 @@ export * from "./list-item/list-item.js";
  * @slot - The list items. Should be a collection of `zeta-list-item`s.
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-17&node-type=canvas&m=dev
- * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/list--docs
+ * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-list--docs
  */
 @customElement("zeta-list")
 export class ZetaList extends LitElement {

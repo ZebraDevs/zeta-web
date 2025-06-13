@@ -18,7 +18,7 @@ import type { AvatarSize } from "./avatar-size.js";
  * @event {CustomEvent<ZetaCloseEventDetail>} close - Fired when the close icon is clicked.
  *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=20816-388
- * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/avatar--docs
+ * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-avatar--docs
  */
 
 @customElement("zeta-avatar")

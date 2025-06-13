@@ -13,7 +13,7 @@ import "../../components/icon/icon.js";
  * @slot {zeta-icon} trailingIcon - Icon at trailing end of component.
  *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=22195-43965
- * @storybook https://zeta-ds.web.app/web/storybook/?path=/docs/banner--docs
+ * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-system-banner--docs
  */
 @customElement("zeta-system-banner")
 export class ZetaSystemBanner extends Contourable(LitElement) {

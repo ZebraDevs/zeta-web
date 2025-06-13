@@ -11,7 +11,7 @@ import { Interactive } from "../../mixins/interactive.js";
  * The breadcrumb is a secondary navigation patten that helps a user understand the hierarchy among levels and navigate back through them.
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-5&node-type=canvas&m=dev
- * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/breadcrumb--docs
+ * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-breadcrumb--docs
  */
 @customElement("zeta-breadcrumb")
 export class ZetaBreadcrumb extends Contourable(Interactive(LitElement)) {

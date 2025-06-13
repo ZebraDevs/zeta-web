@@ -13,7 +13,7 @@ import { Interactive } from "../../mixins/interactive.js";
  * @slot icon - The icon of the snackbar.
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-13&node-type=canvas&m=dev
- * @storybook https://zeta-ds.web.app/web/storybook/index.html?path=/docs/snackbar--docs
+ * @storybook https://design.zebra.com/web/storybook/index.html?path=/docs/components-snackbar--docs
  */
 @customElement("zeta-snackbar")
 export class ZetaSnackbar extends Interactive(LitElement) {
