@@ -1,6 +1,5 @@
 import { LitElement, css, html } from "lit";
 import { customElement } from "lit/decorators.js";
-import "@zebra-fed/zeta-web/components/progress-indicators/progress-circle/progress-circle.js";
 import "@zebra-fed/zeta-web";
 import { unsafeHTML } from "lit/directives/unsafe-html.js";
 import type { DirectiveResult } from "lit/async-directive.js";
@@ -92,8 +91,8 @@ export class ExampleWrapper extends LitElement {
         overflow: hidden;
       }
 
-      select {
-        height: 32px;
+      zeta-select-input {
+        width: 260px;
       }
     `,
   ];
@@ -125,9 +124,9 @@ export class ExampleWrapper extends LitElement {
 
   render() {
     return html` <div id="app">
-      <select name="Components">
+      <zeta-select-input size="medium" @change=${this.loadQuery}>
         ${(components as string[]).map((component) => {
-          return html`<option
+          return html`<zeta-option
             value="${component}"
             ?selected="${this.getQueryString() === `?${component}`}"
             @click="${() => {
@@ -136,9 +135,10 @@ export class ExampleWrapper extends LitElement {
             }}"
           >
             ${component}
-          </option>`;
+          </zeta-option>`;
         })}
-      </select>
+      </zeta-select-input>
+
       <div class="top">
         <div class="expanded">
           ${this.child ? this.child : html`<zeta-progress-circle indeterminate></zeta-progress-circle>`}
