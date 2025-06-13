@@ -195,8 +195,8 @@ export class ZetaSelectInput extends FormField(Size(Contourable(Interactive(LitE
     }
   }
 
-  private handleOutsideClick(e: Event) {
-    if (this.open && !this.contains(e.target as Node)) {
+  private handleOutsideClick = (e: Event) => {
+    if (this.open && this !== (e.target as Node)) {
       this.open = false;
     }
   }
