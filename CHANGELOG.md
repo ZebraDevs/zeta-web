@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.6.6](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.6.5...zeta-web-v0.6.6) (2025-06-13)
+
+
+### 🧹 Miscellaneous Chores
+
+* Make build work on windows in the best way possible ([#60](https://github.com/ZebraDevs/zeta-web/issues/60)) ([c6075ea](https://github.com/ZebraDevs/zeta-web/commit/c6075ea0108e80a05d0b83c4d13b0c267d5f81d4))
+* Update storybook links ([#57](https://github.com/ZebraDevs/zeta-web/issues/57)) ([1a8c499](https://github.com/ZebraDevs/zeta-web/commit/1a8c49949e1fd295870209858457108174fe9aba))
+
 ## [0.6.5](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.6.4...zeta-web-v0.6.5) (2025-06-09)
 
 
