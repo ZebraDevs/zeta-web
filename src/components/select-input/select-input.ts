@@ -199,7 +199,7 @@ export class ZetaSelectInput extends FormField(Size(Contourable(Interactive(LitE
     if (this.open && this !== (e.target as Node)) {
       this.open = false;
     }
-  }
+  };
   connectedCallback(): void {
     super.connectedCallback();
     document.addEventListener("click", this.handleOutsideClick);
