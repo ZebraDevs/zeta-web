@@ -11,6 +11,6 @@ try {
 
   execSync('npx tsx scripts/add-declarations.ts --silent', { stdio: 'inherit' });
 } catch (err) {
-  console.error('Build failed:', err);
+  console.error('Build failed:', err.message, err);
   process.exit(1);
 }
