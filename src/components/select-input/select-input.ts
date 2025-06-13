@@ -195,15 +195,22 @@ export class ZetaSelectInput extends FormField(Size(Contourable(Interactive(LitE
     }
   }
 
-  private handleOutsideClick(e: Event) {
-    if (this.open && !this.contains(e.target as Node)) {
+  private handleOutsideClick = (e: Event) => {
+    if (this.open && this !== (e.target as Node)) {
       this.open = false;
     }
+  };
+  connectedCallback(): void {
+    super.connectedCallback();
+    document.addEventListener("click", this.handleOutsideClick);
+  }
+
+  disconnectedCallback(): void {
+    super.disconnectedCallback();
+    document.removeEventListener("click", this.handleOutsideClick);
   }
 
   protected override render() {
-    document.addEventListener("click", this.handleOutsideClick.bind(this));
-
     return html`
     <div class='wrapper'>
         <div class="hidden-select">${super.render()}</div>

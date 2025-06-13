@@ -7,6 +7,9 @@
     "assets",
     "LICENSE-3RD-PARTY"
   ],
+  "workspaces": [
+    "example/"
+  ],
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "exports": {
@@ -149,5 +152,5 @@
       "last 1 safari version"
     ]
   },
-  "packageManager": "yarn@4.9.1"
+  "packageManager": "yarn@4.9.2"
 }
