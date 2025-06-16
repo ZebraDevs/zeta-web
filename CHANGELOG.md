@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.6.6](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.6.5...zeta-web-v0.6.6) (2025-06-16)
+
+
+### 📈 Documentation
+
+* **UX-1192:** Add example app ([#59](https://github.com/ZebraDevs/zeta-web/issues/59)) ([3822f26](https://github.com/ZebraDevs/zeta-web/commit/3822f26a8c731e5c61ede4d2733509e2c710301d))
+
+
+### 🧹 Miscellaneous Chores
+
+* Make build work on windows in the best way possible ([#60](https://github.com/ZebraDevs/zeta-web/issues/60)) ([c6075ea](https://github.com/ZebraDevs/zeta-web/commit/c6075ea0108e80a05d0b83c4d13b0c267d5f81d4))
+* Update storybook links ([#57](https://github.com/ZebraDevs/zeta-web/issues/57)) ([1a8c499](https://github.com/ZebraDevs/zeta-web/commit/1a8c49949e1fd295870209858457108174fe9aba))
+
 ## [0.6.5](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.6.4...zeta-web-v0.6.5) (2025-06-09)
 
 
