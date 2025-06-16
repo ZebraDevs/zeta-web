@@ -202,12 +202,18 @@ export class ZetaSelectInput extends FormField(Size(Contourable(Interactive(LitE
   };
 
   connectedCallback(): void {
-    super.connectedCallback();
+    // @ts-expect-error-next-line
+    if (super.connectedCallback) {
+      super.connectedCallback();
+    }
     document.addEventListener("click", this.handleOutsideClick);
   }
 
   disconnectedCallback(): void {
-    super.disconnectedCallback();
+    // @ts-expect-error-next-line
+    if (super.disconnectedCallback) {
+      super.disconnectedCallback();
+    }
     document.removeEventListener("click", this.handleOutsideClick);
   }
 
