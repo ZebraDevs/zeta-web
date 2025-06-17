@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { ZetaFileUpload } from "../../../components/file-upload/file-upload.js";
 
 const meta: Meta<ZetaFileUpload> = {

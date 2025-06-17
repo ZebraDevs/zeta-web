@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { ZetaSearch } from "../../components/search/search.js";
 import "../../components/search/search.js";
-import { fn } from "@storybook/test";
+import { fn } from "storybook/test";
 import { html } from "lit";
 import { spreadGenerator } from "../utils.js";
 const spread = spreadGenerator(ZetaSearch);

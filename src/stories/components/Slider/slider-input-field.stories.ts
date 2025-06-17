@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { ZetaSliderInputField } from "../../../components/slider/slider-input-field/slider-input-field.js";
 import { spreadGenerator } from "../../utils.js";
 const spread = spreadGenerator(ZetaSliderInputField);

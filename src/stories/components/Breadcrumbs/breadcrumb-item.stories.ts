@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import type { ZetaBreadcrumbItem } from "../../../components/breadcrumbs/breadcrumb-item/breadcrumb-item.js";
 import { html } from "lit";
 import "../../../components/breadcrumbs/breadcrumb-item/breadcrumb-item.js";

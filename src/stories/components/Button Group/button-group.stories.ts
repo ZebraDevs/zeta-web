@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { ZetaButtonGroup } from "../../../components/button-group/button-group.js";
 import "../../../components/button-group/button-group-item/button-group-item.js";
 import { html } from "lit";

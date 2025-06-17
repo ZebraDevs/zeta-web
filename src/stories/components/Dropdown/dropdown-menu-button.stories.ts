@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 import { ZetaDropdownMenuButton } from "../../../components/dropdown/dropdown-menu/dropdown-menu-button.js";
-import { fn } from "@storybook/test";
+import { fn } from "storybook/test";
 
 const items1 = [
   { label: "Item 1", icon: "star" },
@@ -60,7 +60,7 @@ const meta: Meta<ZetaDropdownMenuButton & { onopen: () => void }> = {
   },
   argTypes: {
     flavor: {
-      options: ["primary", "secondary", "positive", "negative", "outline", "outline-subtle", "text"],
+      options: ["primary", "positive", "negative", "outline", "outline-subtle", "text"],
       control: {
         type: "select"
       }

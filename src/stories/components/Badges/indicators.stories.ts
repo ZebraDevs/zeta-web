@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { ZetaIndicator } from "../../../components/badges/indicators/indicators.js";
 import "../../../components/badges/indicators/indicators.js";
 import { ZetaIconNameList } from "@zebra-fed/zeta-icons";

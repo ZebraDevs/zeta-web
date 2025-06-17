@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { ZetaAccordion } from "../../components/accordion/accordion.js";
 import { html } from "lit";
 import { ifDefined } from "lit/directives/if-defined.js";

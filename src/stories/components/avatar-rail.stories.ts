@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { ZetaAvatarRail } from "../../components/avatar-rail/avatar-rail.js";
 
 const meta: Meta<ZetaAvatarRail & { "show-close": boolean }> = {

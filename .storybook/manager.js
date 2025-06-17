@@ -1,5 +1,5 @@
 import themes from "./ZetaTheme";
-import { addons } from '@storybook/manager-api';
+import { addons } from 'storybook/manager-api';
 const setDarkMode = (isDarkMode) => {
   addons.setConfig({
     theme: isDarkMode ? themes.dark : themes.light

@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 import { unsafeHTML } from "lit/directives/unsafe-html.js";
-import { fn } from "@storybook/test";
+import { fn } from "storybook/test";
 import { spreadGenerator } from "../../utils.js";
 import { ZetaInPageBanner } from "../../../components/in-page-banner/in-page-banner.js";
 const spread = spreadGenerator(ZetaInPageBanner);

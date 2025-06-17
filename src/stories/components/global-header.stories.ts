@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import type { ZetaGlobalHeader } from "../../components/global-header/global-header.js";
 import { html } from "lit";
 

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html, nothing } from "lit";
 import { ZetaNavigationBar } from "../../../components/navigation-bar/navigation-bar.js";
 import "../../../components/grid-menu-item/grid-menu-item.js";

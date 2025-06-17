@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 import { ZetaNavigationDrawerItem } from "../../../components/navigation-drawer/navigation-drawer-item/navigation-drawer-item.js";
 import { ifDefined } from "lit/directives/if-defined.js";

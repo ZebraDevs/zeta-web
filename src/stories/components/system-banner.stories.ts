@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { ZetaSystemBanner } from "../../components/system-banner/system-banner.js";
 import { html, nothing } from "lit";
 import { ifDefined } from "lit/directives/if-defined.js";

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { ZetaPriorityPill } from "../../../components/badges/priority-pill/priority-pill.js";
 
 const meta: Meta<ZetaPriorityPill> = {

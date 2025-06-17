@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { ZetaLabel } from "../../../components/badges/label/label.js";
 
 const meta: Meta<ZetaLabel> = {

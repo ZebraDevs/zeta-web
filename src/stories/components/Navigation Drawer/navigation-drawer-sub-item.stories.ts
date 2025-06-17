@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { ZetaNavigationDrawerSubItem } from "../../../components/navigation-drawer/navigation-drawer-sub-item/navigation-drawer-sub-item.js";
 
 const meta: Meta<ZetaNavigationDrawerSubItem> = {

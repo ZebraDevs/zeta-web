@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { ZetaTag } from "../../../components/badges/tag/tag.js";
 
 const meta: Meta<ZetaTag> = {

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { ZetaProgressBar } from "../../../components/progress-indicators/progress-bar/progress-bar.js";
 import { html } from "lit";
 import { spreadGenerator } from "../../utils.js";

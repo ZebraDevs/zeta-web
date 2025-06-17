@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import type { ZetaTopAppbar } from "../../../components/top-appbar/top-appbar";
 import "../../../components/top-appbar/top-appbar";
 import { html } from "lit";

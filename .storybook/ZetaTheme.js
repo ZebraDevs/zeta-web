@@ -1,6 +1,6 @@
 // .storybook/YourTheme.js
 
-import { create } from "@storybook/theming";
+import { create } from "storybook/theming";
 import logoDark from "./logo-dark.svg";
 import logoLight from "./logo-light.svg";
 

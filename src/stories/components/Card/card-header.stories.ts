@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 import { ZetaCardHeader } from "../../../components/card/card-header/card-header.js";
 import { spreadGenerator } from "../../utils.js";

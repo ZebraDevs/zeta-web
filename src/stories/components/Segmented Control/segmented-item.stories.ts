@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { ZetaSegmentedItem } from "../../../components/segmented-control/segmented-item.js";
 import "../../../components/icon/icon.js";
 import { html } from "lit";

@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { ZetaPagination } from "../../components/pagination/pagination.js";
 import { html } from "lit";
 import { spreadGenerator } from "../utils.js";
-import { fn } from "@storybook/test";
+import { fn } from "storybook/test";
 const spread = spreadGenerator(ZetaPagination);
 
 type PaginationStory = ZetaPagination & { onpagechange: () => void };

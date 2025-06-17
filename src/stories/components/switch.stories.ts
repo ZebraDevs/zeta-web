@@ -1,9 +1,9 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { ZetaSwitch } from "../../components/switch/switch.js";
 import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
 import { spreadGenerator } from "../utils.js";
 import { html } from "lit";
-import { fn } from "@storybook/test";
+import { fn } from "storybook/test";
 
 const spread = spreadGenerator(ZetaSwitch);
 

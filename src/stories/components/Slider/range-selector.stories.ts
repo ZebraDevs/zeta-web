@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { ZetaRangeSelector } from "../../../components/slider/range-selector/range-selector.js";
 import { html } from "lit";
 import { spreadGenerator } from "../../utils.js";

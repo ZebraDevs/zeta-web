@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 import { ZetaNavigationDrawerHeader } from "../../../components/navigation-drawer/navigation-drawer-header/navigation-drawer-header.js";
 import { spreadGenerator } from "../../utils.js";

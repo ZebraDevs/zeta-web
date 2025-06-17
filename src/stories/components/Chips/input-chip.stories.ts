@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { ZetaInputChip } from "../../../components/chips/input-chip/input-chip.js";
 import { html } from "lit";
 import "../../../components/avatar/avatar.js";

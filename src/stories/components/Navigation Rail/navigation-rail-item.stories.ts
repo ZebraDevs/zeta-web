@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import type { ZetaNavigationRailItem as ZetaNavigationRailItem } from "../../../components/navigation-rail/navigation-rail-item";
 import { ZetaIconNameList, type ZetaIconName } from "@zebra-fed/zeta-icons";
 import "../../../components/navigation-rail/navigation-rail-item.js";

@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { ZetaAvatar } from "../../../components/avatar/avatar.js";
-import { fn } from "@storybook/test";
+import { fn } from "storybook/test";
 import { spread } from "@open-wc/lit-helpers";
 import { html } from "lit";
 

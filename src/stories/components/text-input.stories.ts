@@ -1,9 +1,9 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { ZetaTextInput } from "../../components/text-input/text-input.js";
 import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
 import { html } from "lit";
 import { spreadGenerator } from "../utils.js";
-import { fn } from "@storybook/test";
+import { fn } from "storybook/test";
 const spread = spreadGenerator(ZetaTextInput);
 
 type InputStory = ZetaTextInput;

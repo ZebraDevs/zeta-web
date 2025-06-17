@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { ZetaTooltip } from "../../components/tooltip/tooltip.js";
 
 const meta: Meta<ZetaTooltip> = {

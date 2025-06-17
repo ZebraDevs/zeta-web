@@ -1,9 +1,9 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { ZetaProgressCircle } from "../../../components/progress-indicators/progress-circle/progress-circle.js";
 import "../../../components/progress-indicators/progress-circle/progress-circle.js";
 import { html } from "lit";
 import { spreadGenerator } from "../../utils.js";
-import { fn } from "@storybook/test";
+import { fn } from "storybook/test";
 const spread = spreadGenerator(ZetaProgressCircle);
 
 type ProgressCircleStory = ZetaProgressCircle & {

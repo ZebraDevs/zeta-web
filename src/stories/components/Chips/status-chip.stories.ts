@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { ZetaStatusChip } from "../../../components/chips/status-chip/status-chip.js";
 
 const meta: Meta<ZetaStatusChip> = {

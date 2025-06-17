@@ -1,10 +1,10 @@
-import type { Preview } from "@storybook/web-components";
-import { themes } from "@storybook/theming";
-import { setCustomElementsManifest } from "@storybook/web-components";
+import type { Preview } from "@storybook/web-components-vite";
+import { themes } from "storybook/theming";
+import { setCustomElementsManifest } from "@storybook/web-components-vite";
 import customElements from "../custom-elements.json";
 import "../src";
 import { Title, Description, Primary, Stories, ArgTypes } from "@storybook/addon-docs";
-import { withActions } from "@storybook/addon-actions/decorator";
+import { withActions } from "storybook/actions/decorator";
 import React from "react";
 import extractArgs from "./extractArgs";
 import { createLitRenderer } from "cem-plugin-better-lit-types/storybook";

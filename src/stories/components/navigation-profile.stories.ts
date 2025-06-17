@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 import { ZetaNavigationProfile } from "../../components/navigation-profile/navigation-profile.js";
 import "../../components/avatar/avatar.js";

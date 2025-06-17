@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { ZetaBottomSheet } from "../../../components/bottom-sheets/bottom-sheet";
 import { html } from "lit";
 import "../../../components/list/list-item/list-item";

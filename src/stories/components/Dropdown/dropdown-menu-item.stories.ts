@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 import { ZetaDropdownMenuItem } from "../../../components/dropdown/menu-item/dropdown-menu-item.js";
 import { ZetaIconNameList, type ZetaIconName } from "@zebra-fed/zeta-icons";

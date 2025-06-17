@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 import { ZetaActionMenuButton } from "../../../components/action-menu/action-menu-button.js";
 import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
@@ -47,7 +47,7 @@ const meta: Meta<ZetaActionMenuButton> = {
       control: { type: "inline-radio" }
     },
     flavor: {
-      options: ["primary", "secondary", "positive", "negative", "outline", "outline-subtle", "text"],
+      options: ["primary", "positive", "negative", "outline", "outline-subtle", "text"],
       control: { type: "select" }
     },
     direction: {

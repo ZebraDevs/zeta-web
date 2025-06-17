@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { ZetaFilterChip } from "../../../components/chips/filter-chip/filter-chip.js";
 import { html } from "lit";
-import { fn } from "@storybook/test";
+import { fn } from "storybook/test";
 
 const meta: Meta<ZetaFilterChip> = {
   component: "zeta-filter-chip",

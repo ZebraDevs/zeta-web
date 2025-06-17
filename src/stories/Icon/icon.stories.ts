@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
 import { ZetaIcon } from "../../components/icon/icon.js";
 import { spreadGenerator } from "../utils.js";

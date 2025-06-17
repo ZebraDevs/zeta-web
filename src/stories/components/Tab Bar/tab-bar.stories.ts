@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
 import { ZetaTabBar } from "../../../components/tab-bar/tab-bar.js";
 import "../../../components/tab-bar/tab-item/tab-item.js";

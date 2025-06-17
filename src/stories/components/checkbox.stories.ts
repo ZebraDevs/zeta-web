@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components-vite";
 import { html } from "lit";
-import { fn } from "@storybook/test";
+import { fn } from "storybook/test";
 import { spreadGenerator } from "../utils";
 import { ZetaCheckbox } from "../../components/checkbox/checkbox";
 
