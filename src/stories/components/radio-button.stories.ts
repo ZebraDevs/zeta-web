@@ -17,7 +17,7 @@ const meta: Meta<ZetaRadioButton> = {
     name: "",
     id: "",
     onchange: fn(),
-    oninput: fn(),
+    oninput: fn()
   },
   parameters: {
     design: {
@@ -46,7 +46,7 @@ export const RadioButtonInForm: StoryObj<ZetaRadioButton> = {
   args: {
     name: "myRadioButton"
   },
-  render: ({onchange, oninput, ...args}) => html`
+  render: ({ onchange, oninput, ...args }) => html`
     <form
       @submit=${(ev: Event) => {
         console.log("Submit", ev);

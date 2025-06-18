@@ -14,7 +14,7 @@ import { ZetaStepperChangeEvent } from "../../events.js";
 
 /** ZetaStepperInput web component.
  * A stepper input, also called numeric stepper, is a common UI element that allows users to input a number or value simply by clicking the plus and minus buttons.
- * 
+ *
  * @event {FocusEvent} focus - Fired when the input field is focused
  * @event {FocusEvent} blur - Fired when the input field is blurred
  * @event {Event} change - Fired when the input value changes and is committed

@@ -38,7 +38,7 @@ const meta: Meta<ZetaStepperInput> = {
 };
 
 export const StepperInput: StoryObj<ZetaStepperInput> = {
-  render: ({ oninput, onchange, onblur, onfocus, ...args}) => html`
+  render: ({ oninput, onchange, onblur, onfocus, ...args }) => html`
     <form
       id="form"
       @submit=${(e: SubmitEvent) => {
@@ -59,7 +59,10 @@ export const StepperInput: StoryObj<ZetaStepperInput> = {
         ?rounded=${args.rounded}
         ?disabled=${args.disabled}
         ?error=${args.error}
-        @change=${onchange} @input=${oninput} @blur=${onblur} @focus=${onfocus}
+        @change=${onchange}
+        @input=${oninput}
+        @blur=${onblur}
+        @focus=${onfocus}
       ></zeta-stepper-input>
       <zeta-button style="margin-top: 15px" type="submit">Submit</zeta-button>
     </form>
