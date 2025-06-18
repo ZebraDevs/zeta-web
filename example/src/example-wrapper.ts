@@ -17,7 +17,6 @@ export class ExampleWrapper extends LitElement {
   static styles = [
     css`
       #app {
-        /* height: 360px; */
         background-color: var(--surface-default);
         display: flex;
         flex-direction: column;
