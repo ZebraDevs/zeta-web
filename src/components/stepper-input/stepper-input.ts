@@ -113,8 +113,8 @@ export class ZetaStepperInput extends FormField(Contourable(LitElement)) {
             .rounded=${this.rounded}
             size=${this.size}
             flavor="outline-subtle"
-            @blur=${this.handleBlur}
-            @focus=${this.handleFocus}
+            @blur=${(e: FocusEvent) => this.handleBlur(e)}
+            @focus=${(e: FocusEvent) => this.handleFocus(e)}
             @click=${() => {
               this.value = this.validateValue((Number(this.value) - 1).toString());
             }}
@@ -126,8 +126,8 @@ export class ZetaStepperInput extends FormField(Contourable(LitElement)) {
             .disabled=${this.disabled || (this.max !== undefined && Number(this.value) >= this.max)}
             .rounded=${this.rounded}
             size=${this.size}
-            @blur=${this.handleBlur}
-            @focus=${this.handleFocus}
+            @blur=${(e: FocusEvent) => this.handleBlur(e)}
+            @focus=${(e: FocusEvent) => this.handleFocus(e)}
             flavor="outline-subtle"
             @click=${() => {
               this.value = this.validateValue((Number(this.value) + 1).toString());
