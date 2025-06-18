@@ -25,6 +25,7 @@ export class ZetaRadioButton extends BaseToggleFormElement {
   override handleChange(event: Event): void {
     if (this.checked) super.handleChange(event); //Fires change Event only if checked.
     this.radioButtonController.handleChange();
+    if (this.checked) this.dispatchEvent(new Event("change"));
   }
   static styles = [styles, super.styles];
 }

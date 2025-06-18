@@ -97,7 +97,7 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
     super.handleBlur(_event);
     //Fire the onChange event if and only if the value has changed
     if (this._valueOnLastFocus !== this.value) {
-      this.dispatchEvent(new Event("change"));
+      this.dispatchEvent(new Event("change")); //TODO this might not be right. If it isnt focused and yet gets changed, should this fire onchange?
       this._valueOnLastFocus = null;
     }
   }

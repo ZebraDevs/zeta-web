@@ -1,10 +1,10 @@
-import { customElement, property, query } from "lit/decorators.js";
+import { customElement, property, query, state } from "lit/decorators.js";
 import { FormField, type InputType } from "../../mixins/form-field.js";
 import { html, LitElement, nothing } from "lit";
 import { live } from "lit/directives/live.js";
 import styles from "./stepper-input.styles.js";
 import { ifDefined } from "lit/directives/if-defined.js";
-import { Contourable } from "../../mixins/mixins.js";
+import { Contourable, Interactive } from "../../mixins/mixins.js";
 import "../button/icon-button/icon-button.js";
 import "../icon/icon.js";
 import { ZetaStepperChangeEvent } from "../../events.js";
@@ -14,12 +14,16 @@ import { ZetaStepperChangeEvent } from "../../events.js";
 
 /** ZetaStepperInput web component.
  * A stepper input, also called numeric stepper, is a common UI element that allows users to input a number or value simply by clicking the plus and minus buttons.
- *
+ * 
+ * @event {FocusEvent} focus - Fired when the input field is focused
+ * @event {FocusEvent} blur - Fired when the input field is blurred
+ * @event {Event} change - Fired when the input value changes and is committed
+ * @event {InputEvent} input - Fired when the input value changes
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21529-9963
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-stepper-input--docs
  */
 @customElement("zeta-stepper-input")
-export class ZetaStepperInput extends FormField(Contourable(LitElement)) {
+export class ZetaStepperInput extends FormField(Contourable(Interactive(LitElement))) {
   static styles = [super.styles || [], styles];
 
   @property({ type: Boolean }) disabled: boolean = false; //TODO: Use interactive, check styles beforehand
@@ -51,6 +55,7 @@ export class ZetaStepperInput extends FormField(Contourable(LitElement)) {
   @query(".input-container input") inputEl!: HTMLInputElement;
 
   handleChange(event: Event) {
+    this.dispatchEvent(new Event("change"));
     return event;
   }
 

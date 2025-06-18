@@ -35,6 +35,11 @@ export class ZetaCheckbox extends BaseToggleFormElement {
 
   override value = "on";
 
+  override handleChange(event: Event): void {
+    super.handleChange(event); //Fires change Event only if checked.
+    this.dispatchEvent(new Event("change"));
+  }
+
   /**
    * Whether the order of the checkbox and its label should be reversed.
    */

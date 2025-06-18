@@ -16,7 +16,8 @@ const meta: Meta<ZetaRadioButton> = {
     checked: false,
     name: "",
     id: "",
-    onchange: fn()
+    onchange: fn(),
+    oninput: fn(),
   },
   parameters: {
     design: {
@@ -31,7 +32,7 @@ const meta: Meta<ZetaRadioButton> = {
 export default meta;
 
 export const RadioButton: StoryObj<ZetaRadioButton> = {
-  render: ({ slot, onchange, ...args }) => html`<zeta-radio-button ${spread(args)} @change=${onchange}>${slot}</zeta-radio-button>`
+  render: ({ slot, onchange, ...args }) => html`<zeta-radio-button ${spread(args)} @change=${onchange} @input=${oninput}>${slot}</zeta-radio-button>`
 };
 
 export const RadioButtonWithLabel: StoryObj<ZetaRadioButton> = {
@@ -45,7 +46,7 @@ export const RadioButtonInForm: StoryObj<ZetaRadioButton> = {
   args: {
     name: "myRadioButton"
   },
-  render: args => html`
+  render: ({onchange, oninput, ...args}) => html`
     <form
       @submit=${(ev: Event) => {
         console.log("Submit", ev);
@@ -54,8 +55,8 @@ export const RadioButtonInForm: StoryObj<ZetaRadioButton> = {
       }}
     >
       <fieldset>
-        <zeta-radio-button name="choice" @change=${args.onchange}>Yes</zeta-radio-button>
-        <zeta-radio-button name="choice" value="No" @change=${args.onchange}>No</zeta-radio-button>
+        <zeta-radio-button name="choice" ${spread(args)} @change=${onchange} @input=${oninput}>Yes</zeta-radio-button>
+        <zeta-radio-button name="choice" ${spread(args)} value="No" @change=${onchange} @input=${oninput}>No</zeta-radio-button>
         <label> <input type="radio" name="choice" />Maybe</label>
         <label> <input type="radio" name="choice" value="N/A" />Not Applicable</label>
       </fieldset>
