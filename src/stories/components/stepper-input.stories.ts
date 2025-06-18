@@ -64,7 +64,6 @@ export const StepperInput: StoryObj<ZetaStepperInput> = {
         ?disabled=${args.disabled}
         ?error=${args.error}
       ></zeta-stepper-input>
-      <!-- <zeta-button style="margin-top: 15px" type="submit">Submit</zeta-button> -->
     </form>
   `
 };
