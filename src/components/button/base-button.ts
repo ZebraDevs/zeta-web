@@ -1,13 +1,13 @@
 import { query, state } from "lit/decorators.js";
 import { property } from "lit/decorators.js";
-import { Contourable, Interactive, Size } from "../../mixins/mixins.js";
+import { Interactive, Size } from "../../mixins/mixins.js";
 import { LitElement } from "lit";
 import styles from "./base-button.styles.js";
 
 /**
  * @event {SubmitEvent} submit - Fired when the button is clicked and has the type submit
  */
-export class BaseButton extends Size(Contourable(Interactive(LitElement))) {
+export class BaseButton extends Size(Interactive(LitElement)) {
   static formAssociated = true;
   /** @internal */
   static override shadowRootOptions: ShadowRootInit = {
@@ -30,6 +30,13 @@ export class BaseButton extends Size(Contourable(Interactive(LitElement))) {
 
   /** The value of the name property When submitted as part of a form */
   @property({ type: String }) value?: string;
+
+  /**
+   * The shape of the button.
+   *
+   * @type {"true" | "false" | "full"} - true for default rounded corners (4px), false for square corners (0px), and full for fully rounded corners (50%).
+   */
+  @property({ type: String, reflect: true }) rounded: "true" | "false" | "full" = "false";
 
   override focus() {
     this.buttonElement?.focus();

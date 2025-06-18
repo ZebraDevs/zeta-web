@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="Chromium_playwright_/src/test/action-menu/action-menu-button.test.ts" id="0" tests="6" skipped="0" errors="0" failures="0" time="0.08700000000000001">
+  <testsuite name="Chromium_playwright_/src/test/action-menu/action-menu-button.test.ts" id="0" tests="6" skipped="0" errors="0" failures="0" time="0.051000000000000004">
     <properties>
       <property name="test.fileName" value="src/test/action-menu/action-menu-button.test.ts"/>
       <property name="browser.name" value="Chromium"/>
@@ -74,7 +74,7 @@
     </properties>
     <testcase name="meets accessibility requirements" time="0.088" classname="zeta-button Accessibility" file="src/test/button/button.test.ts"/>
     <testcase name="should render the correct text within the button" time="0" classname="zeta-button Content" file="src/test/button/button.test.ts"/>
-    <testcase name="should reset forms" time="0.002" classname="zeta-button AS form reset control Interaction" file="src/test/button/button.test.ts"/>
+    <testcase name="should reset forms" time="0" classname="zeta-button AS form reset control Interaction" file="src/test/button/button.test.ts"/>
     <testcase name="should not reset forms if disabled via JS" time="0" classname="zeta-button AS form reset control Interaction" file="src/test/button/button.test.ts"/>
     <testcase name="should not reset forms if disabled via DOM" time="0.001" classname="zeta-button AS form reset control Interaction" file="src/test/button/button.test.ts"/>
   </testsuite>
@@ -97,7 +97,6 @@
     <testcase name="should display correct icon color for text flavor" time="0.001" classname="zeta-icon-button Styling" file="src/test/button/icon-button.test.ts"/>
     <testcase name="should display correct icon color for outline-subtle flavor" time="0.001" classname="zeta-icon-button Styling" file="src/test/button/icon-button.test.ts"/>
     <testcase name="button should have correct background color for the primary flavor" time="0.001" classname="zeta-icon-button Styling" file="src/test/button/icon-button.test.ts"/>
-    <testcase name="button should have correct background color for the secondary flavor" time="0.001" classname="zeta-icon-button Styling" file="src/test/button/icon-button.test.ts"/>
     <testcase name="button should have correct background color for the positive flavor" time="0.001" classname="zeta-icon-button Styling" file="src/test/button/icon-button.test.ts"/>
     <testcase name="button should have correct background color for the negative flavor" time="0" classname="zeta-icon-button Styling" file="src/test/button/icon-button.test.ts"/>
     <testcase name="button should have correct background color for the outline flavor" time="0.001" classname="zeta-icon-button Styling" file="src/test/button/icon-button.test.ts"/>
@@ -128,7 +127,7 @@
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
-    <testcase name="sets the name attribute correctly" time="0.001" classname="zeta-checkbox Content" file="src/test/checkbox/checkbox.test.ts"/>
+    <testcase name="sets the name attribute correctly" time="0" classname="zeta-checkbox Content" file="src/test/checkbox/checkbox.test.ts"/>
     <testcase name="sets the id attribute correctly" time="0" classname="zeta-checkbox Content" file="src/test/checkbox/checkbox.test.ts"/>
     <testcase name="creates from document.createElement" time="0" classname="zeta-checkbox Content" file="src/test/checkbox/checkbox.test.ts"/>
     <testcase name="creates from constructor" time="0" classname="zeta-checkbox Content" file="src/test/checkbox/checkbox.test.ts"/>
@@ -149,8 +148,8 @@
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
-    <testcase name="creates from document.createElement" time="0.001" classname="zeta-dialog Content" file="src/test/dialog/dialog.test.ts"/>
-    <testcase name="creates from constructor" time="0.001" classname="zeta-dialog Content" file="src/test/dialog/dialog.test.ts"/>
+    <testcase name="creates from document.createElement" time="0.011" classname="zeta-dialog Content" file="src/test/dialog/dialog.test.ts"/>
+    <testcase name="creates from constructor" time="0" classname="zeta-dialog Content" file="src/test/dialog/dialog.test.ts"/>
     <testcase name="changes open property on open" time="0.007" classname="zeta-dialog Content" file="src/test/dialog/dialog.test.ts"/>
     <testcase name="changes open property on close" time="0.001" classname="zeta-dialog Content" file="src/test/dialog/dialog.test.ts"/>
     <testcase name="calls close method and sets return value" time="0.001" classname="zeta-dialog Content" file="src/test/dialog/dialog.test.ts"/>
@@ -249,7 +248,7 @@
     <testcase name="renders a full rounded fab" time="0" classname="zeta-fab Styling" file="src/test/fab/fab.test.ts"/>
     <testcase name="renders a rounded small fab" time="0.001" classname="zeta-fab Styling" file="src/test/fab/fab.test.ts"/>
     <testcase name="renders a rounded large fab" time="0.001" classname="zeta-fab Styling" file="src/test/fab/fab.test.ts"/>
-    <testcase name="renders a non-rounded fab" time="0.001" classname="zeta-fab Styling" file="src/test/fab/fab.test.ts"/>
+    <testcase name="renders a non-rounded fab" time="0" classname="zeta-fab Styling" file="src/test/fab/fab.test.ts"/>
   </testsuite>
   <testsuite name="Chromium_playwright_/src/test/file-upload/file-upload.test.ts" id="0" tests="1" skipped="0" errors="0" failures="0" time="0.099">
     <properties>
@@ -268,7 +267,7 @@
     <testcase name="renders default flavor correctly" time="0.009" classname="zeta-upload-item Content" file="src/test/file-upload/upload-item.test.ts"/>
     <testcase name="renders completed flavor correctly" time="0" classname="zeta-upload-item Content" file="src/test/file-upload/upload-item.test.ts"/>
     <testcase name="renders error flavor correctly" time="0.001" classname="zeta-upload-item Content" file="src/test/file-upload/upload-item.test.ts"/>
-    <testcase name="updates progress correctly" time="0.001" classname="zeta-upload-item Content" file="src/test/file-upload/upload-item.test.ts"/>
+    <testcase name="updates progress correctly" time="0" classname="zeta-upload-item Content" file="src/test/file-upload/upload-item.test.ts"/>
     <testcase name="fires ZetaCancelUploadEventDetail when close icon is clicked" time="0.001" classname="zeta-upload-item Interaction" file="src/test/file-upload/upload-item.test.ts"/>
   </testsuite>
   <testsuite name="Chromium_playwright_/src/test/global-header/global-header.test.ts" id="0" tests="3" skipped="0" errors="0" failures="0" time="0.059">
@@ -395,7 +394,7 @@
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
-    <testcase name="creates from document.createElement" time="0.001" classname="zeta-pagination Content" file="src/test/pagination/pagination.test.ts"/>
+    <testcase name="creates from document.createElement" time="0" classname="zeta-pagination Content" file="src/test/pagination/pagination.test.ts"/>
     <testcase name="creates from constructor" time="0" classname="zeta-pagination Content" file="src/test/pagination/pagination.test.ts"/>
     <testcase name="should disable left controls" time="0.011" classname="zeta-pagination Content" file="src/test/pagination/pagination.test.ts"/>
     <testcase name="should disable right controls" time="0.003" classname="zeta-pagination Content" file="src/test/pagination/pagination.test.ts"/>
@@ -508,7 +507,7 @@
     <testcase name="should render microphone icon" time="0.003" classname="zeta-search Content" file="src/test/search/search.test.ts"/>
     <testcase name="should not render microphone icon" time="0.002" classname="zeta-search Content" file="src/test/search/search.test.ts"/>
     <testcase name="should set correct default icon size" time="0.001" classname="zeta-search Dimensions" file="src/test/search/search.test.ts"/>
-    <testcase name="should set correct small icon size" time="0.001" classname="zeta-search Dimensions" file="src/test/search/search.test.ts"/>
+    <testcase name="should set correct small icon size" time="0" classname="zeta-search Dimensions" file="src/test/search/search.test.ts"/>
     <testcase name="should set correct large icon size" time="0.001" classname="zeta-search Dimensions" file="src/test/search/search.test.ts"/>
     <testcase name="should set correct disabled icon color" time="0.001" classname="zeta-search Styling" file="src/test/search/search.test.ts"/>
     <testcase name="clears input" time="0.002" classname="zeta-search Interaction" file="src/test/search/search.test.ts"/>
@@ -543,7 +542,7 @@
     <testcase name="renders required" time="0" classname="zeta-select-input Content" file="src/test/select-input/select-input.test.ts"/>
     <testcase name="renders a hint" time="0.001" classname="zeta-select-input Content" file="src/test/select-input/select-input.test.ts"/>
     <testcase name="renders a select input" time="0.001" classname="zeta-select-input Content" file="src/test/select-input/select-input.test.ts"/>
-    <testcase name="renders a hidden options div" time="0.001" classname="zeta-select-input Content" file="src/test/select-input/select-input.test.ts"/>
+    <testcase name="renders a hidden options div" time="0" classname="zeta-select-input Content" file="src/test/select-input/select-input.test.ts"/>
     <testcase name="renders the options box with the same width as the input" time="0.002" classname="zeta-select-input Dimensions" file="src/test/select-input/select-input.test.ts"/>
     <testcase name="renders the options box with the correct height" time="0.001" classname="zeta-select-input Dimensions" file="src/test/select-input/select-input.test.ts"/>
     <testcase name="renders the options box on input click" time="0.002" classname="zeta-select-input Interaction" file="src/test/select-input/select-input.test.ts"/>
@@ -552,7 +551,7 @@
     <testcase name="closes the options box on input click" time="0.001" classname="zeta-select-input Interaction" file="src/test/select-input/select-input.test.ts"/>
     <testcase name="closes the options box on input space key press" time="0" classname="zeta-select-input Interaction" file="src/test/select-input/select-input.test.ts"/>
     <testcase name="sets the selected option on option click" time="0.001" classname="zeta-select-input Interaction" file="src/test/select-input/select-input.test.ts"/>
-    <testcase name="sets the selected option on option space key press" time="0.001" classname="zeta-select-input Interaction" file="src/test/select-input/select-input.test.ts"/>
+    <testcase name="sets the selected option on option space key press" time="0" classname="zeta-select-input Interaction" file="src/test/select-input/select-input.test.ts"/>
     <testcase name="doesn&apos;t deselect the selected option on option click" time="0.001" classname="zeta-select-input Interaction" file="src/test/select-input/select-input.test.ts"/>
     <testcase name="doesn&apos;t deselect the selected option on option space key press" time="0.001" classname="zeta-select-input Interaction" file="src/test/select-input/select-input.test.ts"/>
   </testsuite>
@@ -689,7 +688,7 @@
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
-    <testcase name="creates from document.createElement" time="0.001" classname="zeta-stepper-input Content" file="src/test/stepper-input/stepper-input.test.ts"/>
+    <testcase name="creates from document.createElement" time="0" classname="zeta-stepper-input Content" file="src/test/stepper-input/stepper-input.test.ts"/>
     <testcase name="creates from constructor" time="0" classname="zeta-stepper-input Content" file="src/test/stepper-input/stepper-input.test.ts"/>
     <testcase name="sets value" time="0.008" classname="zeta-stepper-input Content" file="src/test/stepper-input/stepper-input.test.ts"/>
     <testcase name="sets value to max value" time="0.002" classname="zeta-stepper-input Content" file="src/test/stepper-input/stepper-input.test.ts"/>

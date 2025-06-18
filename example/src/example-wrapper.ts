@@ -17,7 +17,7 @@ export class ExampleWrapper extends LitElement {
   static styles = [
     css`
       #app {
-        height: 360px;
+        /* height: 360px; */
         background-color: var(--surface-default);
         display: flex;
         flex-direction: column;
@@ -84,11 +84,14 @@ export class ExampleWrapper extends LitElement {
       }
       .expanded {
         width: 100%;
-        height: 292px;
         display: flex;
         align-items: center;
         justify-content: center;
         overflow: hidden;
+        > div {
+          height: 360px;
+          margin-top: 77px;
+        }
       }
 
       zeta-select-input {

@@ -7,7 +7,7 @@ const meta: Meta<ZetaActionMenuButton> = {
   component: "zeta-action-menu-button",
   title: "Components/Action Menu",
   args: {
-    rounded: true,
+    rounded: "true",
     open: false,
     icon: "more_vertical",
     alignment: "start",
@@ -47,7 +47,7 @@ const meta: Meta<ZetaActionMenuButton> = {
       control: { type: "inline-radio" }
     },
     flavor: {
-      options: ["primary", "secondary", "positive", "negative", "outline", "outline-subtle", "text"],
+      options: ["primary", "positive", "negative", "outline", "outline-subtle", "text"],
       control: { type: "select" }
     },
     direction: {
