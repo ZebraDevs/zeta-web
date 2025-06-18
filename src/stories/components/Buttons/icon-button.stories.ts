@@ -46,7 +46,7 @@ const meta: Meta<ZetaIconButton> = {
       }
     },
     flavor: {
-      options: ["primary", "secondary", "positive", "negative", "outline", "outline-subtle", "text"],
+      options: ["primary", "positive", "negative", "outline", "outline-subtle", "text"],
       control: {
         type: "select"
       }

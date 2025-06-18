@@ -4,23 +4,20 @@ import { getCssVarColorValue, toRGB, getSlotText } from "../utils.js";
 import "../../components/button/icon-button/icon-button.js";
 import "../../index.css";
 
-const flavors = ["primary", "secondary", "positive", "negative", "outline", "outline-subtle", "text"];
+const flavors = ["primary", "positive", "negative", "outline", "outline-subtle", "text"];
 const iconName = "check";
 
 describe("zeta-icon-button", () => {
   describe("Accessibility", () => {
     flavors.map(flavor => {
-      if (flavor !== "secondary") {
-        // TODO: from designs, the secondary flavor does not meet accessability requirements
-        it(`meets accessibility requirements for the ${flavor} flavor`, async () => {
-          const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button>${iconName}</zeta-icon-button>`);
+      it(`meets accessibility requirements for the ${flavor} flavor`, async () => {
+        const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button>${iconName}</zeta-icon-button>`);
 
-          iconButton.setAttribute("flavor", flavor);
-          iconButton.setAttribute("icon-name", iconName);
-          await elementUpdated(iconButton);
-          await expect(iconButton).shadowDom.to.be.accessible();
-        });
-      }
+        iconButton.setAttribute("flavor", flavor);
+        iconButton.setAttribute("icon-name", iconName);
+        await elementUpdated(iconButton);
+        await expect(iconButton).shadowDom.to.be.accessible();
+      });
     });
   });
 

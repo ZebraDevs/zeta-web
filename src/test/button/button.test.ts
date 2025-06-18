@@ -1,8 +1,9 @@
-import { fixture, html, expect, unsafeStatic } from "@open-wc/testing";
+import { fixture, html, expect, unsafeStatic, elementUpdated } from "@open-wc/testing";
 import type { ZetaButton } from "../../components/button/button.js";
 import "../../components/button/button.js";
 
 const buttonText = "Button";
+const flavors = ["primary", "positive", "negative", "outline", "outline-subtle", "text"];
 
 describe("zeta-button", () => {
   let subject: ZetaButton;
@@ -17,8 +18,19 @@ describe("zeta-button", () => {
   });
 
   describe("Accessibility", () => {
+    flavors.map(flavor => {
+      it(`meets accessibility requirements for the ${flavor} flavor`, async () => {
+        const button: ZetaButton = await fixture(html`<zeta-button>Text</zeta-button>`);
+
+        button.setAttribute("flavor", flavor);
+        await elementUpdated(button);
+        await expect(button).shadowDom.to.be.accessible();
+        await expect(button).to.be.accessible();
+      });
+    });
+
     it("meets accessibility requirements", async () => {
-      await expect(subject).shadowDom.to.be.accessible();
+      await expect(subject).to.be.accessible();
     });
   });
 

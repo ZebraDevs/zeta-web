@@ -1,11 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
-import { html, nothing } from "lit";
+import { html } from "lit";
 import { ZetaButton } from "../../../components/button/button.js";
 import "../../../components/button/base-button.js";
 import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
 import { fn } from "@storybook/test";
 import "../../../components/button/base-button.js";
 import "../../../components/icon/icon.js";
+import { spreadGenerator } from "../../utils.js";
+
+const spread = spreadGenerator(ZetaButton);
 
 const meta: Meta<ZetaButton> = {
   title: "Components/Buttons",
@@ -14,8 +17,8 @@ const meta: Meta<ZetaButton> = {
     disabled: false,
     flavor: "primary",
     name: "",
-    rounded: true,
-    slot: "Button Name",
+    rounded: "true",
+    slot: "Button",
     type: undefined,
     value: "",
     onclick: fn()
@@ -35,6 +38,12 @@ const meta: Meta<ZetaButton> = {
         type: "select"
       }
     },
+    rounded: {
+      options: [true, false, "full"],
+      control: {
+        type: "select"
+      }
+    },
     type: {
       options: ["button", "submit", "reset"],
       control: {
@@ -42,16 +51,16 @@ const meta: Meta<ZetaButton> = {
       }
     },
     flavor: {
-      options: ["primary", "secondary", "positive", "negative", "outline", "outline-subtle", "text"],
+      options: ["primary", "positive", "negative", "outline", "outline-subtle", "text"],
       control: {
         type: "select"
       }
     },
-    leading: {
+    leadingIcon: {
       options: [null, ...ZetaIconNameList],
       control: { type: "select" }
     },
-    trailing: {
+    trailingIcon: {
       options: [null, ...ZetaIconNameList],
       control: { type: "select" }
     }
@@ -59,10 +68,6 @@ const meta: Meta<ZetaButton> = {
 };
 export default meta;
 
-export const Button: StoryObj<ZetaButton> = {
-  render: args =>
-    html`<zeta-button size=${args.size} .disabled=${args.disabled} .rounded=${args.rounded} flavor=${args.flavor} @click=${args.onclick}>
-      ${args.leading && args.leading.length > 1 ? html`<zeta-icon slot="leadingIcon">${args.leading}</zeta-icon>` : nothing}${args.slot}
-      ${args.trailing && args.trailing.length > 1 ? html`<zeta-icon slot="trailingIcon">${args.trailing}</zeta-icon>` : nothing}
-    </zeta-button>`
+export const Button: StoryObj = {
+  render: args => html`<zeta-button ${spread(args)}>${args.slot}</zeta-button>`
 };

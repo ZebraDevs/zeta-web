@@ -17,19 +17,30 @@ export default css`
   }
 
   :host([size="large"]) > button {
-    padding: var(--spacing-medium) var(--spacing-2xl);
-    --icon-size: 24px;
+    padding: var(--spacing-medium) var(--spacing-large);
+    --icon-size: 20px;
   }
 
   :host > button,
   :host([size="medium"]) > button {
     padding: var(--spacing-small) var(--spacing-medium);
-    --icon-size: 24px;
+    --icon-size: 20px;
   }
 
   :host([size="small"]) > button {
-    padding: var(--spacing-minimum) var(--spacing-small);
+    padding: var(--spacing-small);
     font: var(--label-small);
-    --icon-size: 20px;
+    --icon-size: 16px; 
+    gap: var(--spacing-minimum);
+  }
+
+   :host([rounded="full"]) > button {
+    border-radius: var(--radius-full);
+  }
+  :host([rounded="true"]) > button {
+    border-radius: var(--radius-minimal);
+  }
+  :host([rounded="false"]) > button {
+    border-radius: var(--radius-none);
   }
 `;
