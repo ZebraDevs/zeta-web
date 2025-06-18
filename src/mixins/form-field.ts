@@ -417,25 +417,9 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
               ?hidden=${true}
             ></select>
           `;
-        case "stepper":
-          return html`
-            <input
-              type="number"
-              id=${ifDefined(this.id !== "" ? this.id : undefined)}
-              name=${this.name}
-              ?disabled=${this.disabled}
-              aria-disabled=${this.disabled ? "true" : "false"}
-              ?required=${this.required}
-              aria-required=${this.required ? "true" : "false"}
-              .value=${live(this.value ?? "")}
-              @input=${this._handleInput}
-              @change=${this._handleChange}
-              ?hidden=${true}
-            />
-          `;
         default:
           return html`<input
-            type=${this.type}
+            type=${this.type === "stepper" ? "number" : this.type}
             id=${ifDefined(this.id !== "" ? this.id : undefined)}
             name=${ifDefined(this.name)}
             ?disabled=${this.disabled}
@@ -451,6 +435,8 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
             @change=${this._handleChange}
             @focus=${this.handleFocus}
             @blur=${this.handleBlur}
+            min=${ifDefined(this.min)}
+            max=${ifDefined(this.max)}
           /> `;
 
         /*

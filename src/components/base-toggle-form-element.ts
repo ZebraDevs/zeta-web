@@ -19,8 +19,13 @@ export abstract class BaseToggleFormElement extends FormField(Interactive(Contou
     delegatesFocus: true
   };
 
+  handleInput(event: Event): void {
+    event.stopPropagation();
+  }
+
   override handleChange(_event: Event): Event | void {
-    return _event;
+    this.dispatchEvent(new Event("change"));
+    return;
   }
 
   key(e: KeyboardEvent, type: "down" | "up") {

@@ -18,6 +18,7 @@ export class RadioButtonController implements ReactiveController {
         if (radio !== this.host) {
           radio.checked = false;
         }
+        radio.dispatchEvent(new InputEvent("input"));
       });
     }
   }

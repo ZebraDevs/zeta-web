@@ -16,7 +16,8 @@ const meta: Meta<ZetaRadioButton> = {
     checked: false,
     name: "",
     id: "",
-    onchange: fn()
+    onchange: fn(),
+    oninput: fn()
   },
   parameters: {
     design: {
@@ -54,8 +55,8 @@ export const RadioButtonInForm: StoryObj<ZetaRadioButton> = {
       }}
     >
       <fieldset>
-        <zeta-radio-button name="choice" @change=${args.onchange}>Yes</zeta-radio-button>
-        <zeta-radio-button name="choice" value="No" @change=${args.onchange}>No</zeta-radio-button>
+        <zeta-radio-button name="choice" @input=${args.oninput} @change=${args.onchange}>Yes</zeta-radio-button>
+        <zeta-radio-button name="choice" value="No" @input=${args.oninput} @change=${args.onchange}>No</zeta-radio-button>
         <label> <input type="radio" name="choice" />Maybe</label>
         <label> <input type="radio" name="choice" value="N/A" />Not Applicable</label>
       </fieldset>

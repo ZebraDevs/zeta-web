@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaStepperInput } from "../../components/stepper-input/stepper-input.js";
 import { html } from "lit";
 import { ifDefined } from "lit/directives/if-defined.js";
+import { fn } from "@storybook/test";
 
 const meta: Meta<ZetaStepperInput> = {
   component: "zeta-stepper-input",
@@ -14,7 +15,11 @@ const meta: Meta<ZetaStepperInput> = {
     disabled: false,
     error: false,
     size: "medium",
-    value: "1"
+    value: "1",
+    onchange: fn(),
+    oninput: fn(),
+    onfocus: fn(),
+    onblur: fn()
   },
   argTypes: {
     size: {
@@ -33,7 +38,7 @@ const meta: Meta<ZetaStepperInput> = {
 };
 
 export const StepperInput: StoryObj<ZetaStepperInput> = {
-  render: args => html`
+  render: ({ oninput, onchange, onblur, onfocus, ...args }) => html`
     <form
       id="form"
       @submit=${(e: SubmitEvent) => {
@@ -47,6 +52,10 @@ export const StepperInput: StoryObj<ZetaStepperInput> = {
     >
       <zeta-stepper-input
         name="stepper-input"
+        @change=${onchange}
+        @input=${oninput}
+        @blur=${onblur}
+        @focus=${onfocus}
         min=${ifDefined(args.min)}
         max=${ifDefined(args.max)}
         value=${ifDefined(args.value)}
@@ -55,7 +64,7 @@ export const StepperInput: StoryObj<ZetaStepperInput> = {
         ?disabled=${args.disabled}
         ?error=${args.error}
       ></zeta-stepper-input>
-      <zeta-button style="margin-top: 15px" type="submit">Submit</zeta-button>
+      <!-- <zeta-button style="margin-top: 15px" type="submit">Submit</zeta-button> -->
     </form>
   `
 };
