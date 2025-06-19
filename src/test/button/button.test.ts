@@ -1,6 +1,8 @@
 import { fixture, html, expect, unsafeStatic, elementUpdated } from "@open-wc/testing";
 import type { ZetaButton } from "../../components/button/button.js";
+// import "../../index.css";
 import "../../components/button/button.js";
+import { contrastTest } from "../accessibility-utils/accessibility-test-runner.js";
 
 const buttonText = "Button";
 const flavors = ["primary", "positive", "negative", "outline", "outline-subtle", "text"];
@@ -20,12 +22,37 @@ describe("zeta-button", () => {
   describe("Accessibility", () => {
     flavors.map(flavor => {
       it(`meets accessibility requirements for the ${flavor} flavor`, async () => {
+        // Force the browser to ignore user preference and always use light mode
+        Object.defineProperty(window, "matchMedia", {
+          writable: true,
+          value: (query: string) =>
+            ({
+              matches: query === "(prefers-color-scheme: light)",
+              media: query,
+              addEventListener: () => {},
+              removeEventListener: () => {}
+            }) as any
+        });
+
         const button: ZetaButton = await fixture(html`<zeta-button>Text</zeta-button>`);
 
         button.setAttribute("flavor", flavor);
         await elementUpdated(button);
         await expect(button).shadowDom.to.be.accessible();
         await expect(button).to.be.accessible();
+
+        // Check color contrast between text and background
+        const buttonEl = button.shadowRoot?.querySelector("button");
+        if (buttonEl) {
+          contrastTest(buttonEl, buttonEl);
+          // const styles = getComputedStyle(buttonEl);
+          // const fg = styles.color;
+          // const bg = styles.backgroundColor;
+          // const contrast = getContrast(fg, bg);
+          // console.log(`Contrast for ${flavor} flavor:`, contrast, fg, bg);
+          // debugger;
+          // expect(contrast).to.be.gte(4.5); // WCAG AA minimum for normal text
+        }
       });
     });
 

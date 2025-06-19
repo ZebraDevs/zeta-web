@@ -1,7 +1,8 @@
 @import url("./generated/tokens/primitives.css");
+@import url("./generated/tokens/primitives-dark.css") (prefers-color-scheme: dark);
+
 @import url("./generated/tokens/semantics.css");
-@import url("./generated/tokens/semantics-high-contrast.css");
-@import url("./generated/tokens/primitives-dark.css");
+@import url("./generated/tokens/semantics-high-contrast.css") (prefers-contrast: more);
 
 /* All tokens defined here are used in code but not from figma */
 :root,
