@@ -25,6 +25,10 @@ import type { ZetaOptionClickEventDetail } from "../../events";
  * ZetaSelectInput web component. Text input with dropdown select.
  * Currently no typing or multi-select support.
  *
+ * @event {Event} change - Fired when the value of the select input changes.
+ * @event {FocusEvent} focus - Fired when the select input receives focus.
+ * @event {FocusEvent} blur - Fired when the select input loses focus.
+ *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-39&m=dev
  * @storybook https://design.zebra.com/web/storybook/index.html?path=/docs/components-select-input--docs
  */
