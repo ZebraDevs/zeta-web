@@ -4,7 +4,6 @@ import { ZetaButton } from "../../../components/button/button.js";
 import "../../../components/button/base-button.js";
 import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
 import { fn } from "@storybook/test";
-import "../../../components/button/base-button.js";
 import "../../../components/icon/icon.js";
 import { spreadGenerator } from "../../utils.js";
 

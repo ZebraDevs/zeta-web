@@ -1,40 +1,77 @@
-import { lightAARunner } from "./light-aa-runner";
-import { lightAAARunner } from "./light-aaa-runner";
-import { darkAARunner } from "./dark-aa-runner";
-import { darkAAARunner } from "./dark-aaa-runner";
 import { getContrast } from "polished";
-import { expect } from "@open-wc/testing";
+import { elementUpdated, expect } from "@open-wc/testing";
 
-const accessibilityTestRunners = [lightAARunner, lightAAARunner, darkAARunner, darkAAARunner];
+interface AccessibilityTests {
+  darkMode: boolean;
+  highContrast: boolean;
+}
 
-export const accessibilityTestRunner = async (testFn: () => Promise<void>) => {
-  accessibilityTestRunners.forEach(async runner => await runner(testFn));
-};
+function rgbToHex(rgb: string): string {
+  const result = rgb.match(/\d+/g);
+  if (!result) return rgb;
+  const [r, g, b] = result.map(Number);
+  return (
+    "#" +
+    [r, g, b]
+      .map(x => x.toString(16).padStart(2, "0"))
+      .join("")
+      .toUpperCase()
+  );
+}
 
+const modes = [false, true];
+const tests: AccessibilityTests[] = modes.flatMap(darkMode => modes.map(highContrast => ({ darkMode, highContrast })));
 /**
  * Tests the color contrast between a foreground and background element.
  * @param foreground - The foreground element (e.g., text).
  * @param background - The background element (e.g., button).
  */
-export const contrastTest = async (foreground: HTMLElement, background: HTMLElement) => {
-  const runners = [lightAARunner, lightAAARunner, darkAARunner, darkAAARunner];
-  for (const runner of runners) {
-    await runner(async () => {
-      const fgStyles = getComputedStyle(foreground);
-      const bgStyles = getComputedStyle(background);
-      const fg = fgStyles.color;
-      const bg = bgStyles.backgroundColor;
-      const contrast = getContrast(fg, bg);
+export const contrastTest = async (testName: string, foreground: HTMLElement, background: HTMLElement) => {
+  const themeMode = "theme-mode";
+  const contrastMode = "contrast-mode";
 
-      if (runner === lightAARunner || runner === darkAARunner) {
-        console.log(`Contrast for ${runner.name}:`, contrast, fg, bg);
-        debugger;
+  for (const test of tests) {
+    if (document.getElementById(themeMode)) {
+      document.getElementById(themeMode)!.remove();
+    }
+    if (document.getElementById(contrastMode)) {
+      document.getElementById(contrastMode)!.remove();
+    }
+    // Apply theme and contrast modes based on the test configuration
+
+    const link = document.createElement("link");
+    link.id = themeMode;
+    link.rel = "stylesheet";
+    link.href = `src/generated/tokens/primitives${test.darkMode ? "-dark" : ""}.css?direct`;
+    document.head.appendChild(link);
+
+    const contrastLink = document.createElement("link");
+    contrastLink.id = contrastMode;
+    contrastLink.rel = "stylesheet";
+    contrastLink.href = `src/generated/tokens/semantics${test.highContrast ? "-high-contrast" : ""}.css?direct`;
+    document.head.appendChild(contrastLink);
+    // // Wait for stylesheets to load and apply
+    await elementUpdated(foreground);
+    await elementUpdated(background);
+
+    const fgStyles = getComputedStyle(foreground);
+    const bgStyles = getComputedStyle(background);
+    const fg = fgStyles.color;
+    const bg = bgStyles.backgroundColor;
+    const contrast = getContrast(fg, bg);
+
+    try {
+      if (test.highContrast) {
+        expect(contrast).to.be.gte(7); // WCAG AAA minimum for normal text
+      } else {
         expect(contrast).to.be.gte(4.5); // WCAG AA minimum for normal text
       }
-      if (runner === lightAAARunner || runner === darkAAARunner) {
-        console.log(`Contrast for ${runner.name}:`, contrast, fg, bg);
-        expect(contrast).to.be.gte(7); // WCAG AAA minimum for normal text
-      }
-    });
+    } catch (error) {
+      console.error(
+        `${testName} Contrast test failed. Foreground: ${rgbToHex(fg)}, background: ${rgbToHex(bg)}. ${test.darkMode ? "Dark" : "Light"} mode, ${test.highContrast ? "High Contrast" : "Normal"} mode.`,
+        error
+      );
+      throw error;
+    }
   }
 };

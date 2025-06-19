@@ -29,6 +29,7 @@ export const Flavored = <T extends Constructor<LitElement>>(superClass: T) => {
      * * outline - primary outline only.
      * * outline-subtle - grey outline only.
      * * text - primary text only.
+     * * inverse - black/white background. Note that this flavor is not supported in all components.
      *
      * @remarks The value `"secondary"` is no longer supported and should not be used.
      */

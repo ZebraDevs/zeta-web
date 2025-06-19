@@ -8,13 +8,21 @@ export default css`
     flex-direction: column;
     align-items: center;
     gap: var(--spacing-minimum);
-    transition: all 0.3s ease-in-out;
+    transition: border-radius 0.3s ease-in-out;
   }
 
   .label {
     font-size: var(--spacing-medium);
     line-height: var(--spacing-large);
     /** TODO: Change to semantic token */
+  }
+
+  :host([rounded="true"][size="large"]) > button {
+    border-radius: var(--radius-large);
+  }
+  
+  :host([rounded="true"][size="small"]) > button {
+    border-radius: var(--radius-rounded);
   }
 
   /** Note: Selector styles the button when not extended. */
@@ -30,7 +38,7 @@ export default css`
   /** SIZING START */
   :host button {
     width: min-content;
-    transition: all 0.3s ease-in-out;
+    transition: border-radius 0.3s ease-in-out;
     display: flex;
     align-items: center;
     border: none;
@@ -91,9 +99,10 @@ export default css`
   }
 
   :host([flavor="secondary"]:not([disabled])) {
+    > :first-child,
     > button {
       background-color: var(--state-secondary-enabled);
-      /** TODO: Change to semantic token */
+      color: var(--main-default);
       zeta-icon {
         --icon-color: var(--main-default);
       }
@@ -101,18 +110,17 @@ export default css`
 
     > button:hover {
       background-color: var(--state-secondary-hover);
-      /** TODO: Change to semantic token */
     }
 
     > button:active {
       background-color: var(--state-secondary-selected);
-      /** TODO: Change to semantic token */
     }
   }
 
   :host([flavor="inverse"]:not([disabled])) {
     > button {
-      background-color: var(--state-inverse-selected);
+      background-color: var(--state-inverse-enabled);
+      color: var(--main-inverse);
       zeta-icon {
         --icon-color: var(--main-inverse);
       }
@@ -120,6 +128,10 @@ export default css`
 
     > button:hover {
       background-color: var(--state-inverse-hover);
+    }
+
+    > button:active {
+      background-color: var(--state-inverse-selected);
     }
   }
 
