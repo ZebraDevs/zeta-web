@@ -49,7 +49,7 @@ describe("zeta-icon-button", () => {
       await elementUpdated(iconButton);
 
       const icon: Element | null | undefined = iconButton.shadowRoot?.querySelector("zeta-icon");
-      await expect(getComputedStyle(icon!).color).to.equal(getCssVarColorValue(icon!, "--main-inverse"));
+      await expect(getComputedStyle(icon!).color).to.equal(getCssVarColorValue(icon!, "--state-default-enabled"));
     });
 
     it("should display correct icon color for negative flavor", async () => {
@@ -59,7 +59,7 @@ describe("zeta-icon-button", () => {
       await elementUpdated(iconButton);
 
       const icon: Element | null | undefined = iconButton.shadowRoot?.querySelector("zeta-icon");
-      await expect(getComputedStyle(icon!).color).to.equal(getCssVarColorValue(icon!, "--main-inverse"));
+      await expect(getComputedStyle(icon!).color).to.equal(getCssVarColorValue(icon!, "--state-default-enabled"));
     });
 
     it("should display correct icon color for text flavor", async () => {

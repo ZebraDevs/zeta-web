@@ -1,0 +1,7 @@
+[data-theme="dark"] {
+  @import "../../";
+}
+
+[data-contrast="more"] {
+  @import "./primitives/more.css";
+}
