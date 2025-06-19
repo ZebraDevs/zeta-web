@@ -82,9 +82,8 @@ describe("zeta-stepper-input", () => {
   // describe("Styling", () => {});
 
   describe("Interaction", () => {
-  
     it("responds correctly to focus event", async () => {
-      const el = await fixture<ZetaStepperInput>(html`<zeta-stepper-input min='0' value='10' max='100'></zeta-stepper-input>`);
+      const el = await fixture<ZetaStepperInput>(html`<zeta-stepper-input min="0" value="10" max="100"></zeta-stepper-input>`);
       const eventListener = oneEvent(el, "focus");
       const input = el.shadowRoot?.querySelector("input");
       assert.exists(input, "input should exist in the shadow DOM");
