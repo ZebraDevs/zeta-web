@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.6.7](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.6.6...zeta-web-v0.6.7) (2025-06-19)
+
+
+### 🪲 Bug Fixes
+
+* Add focus, blur events for stepper-input ([0ea22c5](https://github.com/ZebraDevs/zeta-web/commit/0ea22c57921eccf6fa3535e08089ca0bedd4be2e))
+* Fix change events for radio, checkbox and stepper input ([#64](https://github.com/ZebraDevs/zeta-web/issues/64)) ([0ea22c5](https://github.com/ZebraDevs/zeta-web/commit/0ea22c57921eccf6fa3535e08089ca0bedd4be2e))
+
+
+### ⛓️ Dependencies
+
+* Update zeta-icons library ([#61](https://github.com/ZebraDevs/zeta-web/issues/61)) ([5161a8d](https://github.com/ZebraDevs/zeta-web/commit/5161a8df91c2b5a0ae34d60444648dbd1ce0456a))
+
 ## [0.6.6](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.6.5...zeta-web-v0.6.6) (2025-06-16)
 
 
