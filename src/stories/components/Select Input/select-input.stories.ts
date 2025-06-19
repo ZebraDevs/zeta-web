@@ -3,6 +3,7 @@ import { ZetaSelectInput } from "../../../components/select-input/select-input.j
 import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
 import { html } from "lit";
 import { spreadGenerator } from "../../utils.js";
+import { fn } from "@storybook/test";
 const spread = spreadGenerator(ZetaSelectInput);
 
 const meta: Meta<ZetaSelectInput> = {
@@ -22,7 +23,11 @@ const meta: Meta<ZetaSelectInput> = {
     size: "medium",
     name: "select-input",
     optionsDialogHeight: 200,
-    open: false
+    open: false,
+    onchange: fn(),
+    oninput: fn(),
+    onfocus: fn(),
+    onblur: fn()
   },
   argTypes: {
     slot: { table: { disable: true } },
@@ -60,7 +65,7 @@ export const SelectInput: StoryObj = {
         console.error("Form reset", e);
       }}
     >
-      <zeta-select-input ${spread(args)} @change=${(e: Event) => console.log("change", e)}>
+      <zeta-select-input ${spread(args)}>
         <zeta-option value="1">Option 1</zeta-option>
         <zeta-option value="2">Option 2</zeta-option>
         <zeta-option value="3">Option 3</zeta-option>

@@ -20,7 +20,8 @@ export abstract class BaseToggleFormElement extends FormField(Interactive(Contou
   };
 
   override handleChange(_event: Event): Event | void {
-    return _event;
+    this.dispatchEvent(new Event("change"));
+    return;
   }
 
   key(e: KeyboardEvent, type: "down" | "up") {
