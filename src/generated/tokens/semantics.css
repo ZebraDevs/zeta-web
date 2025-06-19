@@ -873,7 +873,7 @@
   - Light mode: #151519
   - Dark mode: #ffffff
   */
-  --state-Inverse-enabled: var(--color-cool-100, #0c0d0e);
+  --state-inverse-enabled: var(--color-cool-100, #0c0d0e);
 
   /* state/inverse/hover
 
@@ -885,7 +885,7 @@
   - Light mode: #1d1e23
   - Dark mode: #f3f6fa
   */
-  --state-Inverse-hover: var(--color-cool-90, #1d1e23);
+  --state-inverse-hover: var(--color-cool-90, #1d1e23);
 
   /* state/inverse/selected
 
@@ -897,7 +897,7 @@
   - Light mode: #151519
   - Dark mode: #ffffff
   */
-  --state-Inverse-selected: var(--color-cool-100, #0c0d0e);
+  --state-inverse-selected: var(--color-cool-100, #0c0d0e);
 
   /* state/inverse/focus
 
@@ -909,7 +909,7 @@
   - Light mode: #151519
   - Dark mode: #ffffff
   */
-  --state-Inverse-focus: var(--color-cool-100, #0c0d0e);
+  --state-inverse-focus: var(--color-cool-100, #0c0d0e);
 
   /* state/positive/enabled
 

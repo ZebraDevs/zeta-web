@@ -72,10 +72,10 @@
   --state-info-hover: var(--color-purple-70, #6400d6);
   --state-info-selected: var(--color-purple-90, #260052);
   --state-info-focus: var(--color-purple-80, #43008f);
-  --state-Inverse-enabled: var(--color-pure-1000, #151519);
-  --state-Inverse-hover: var(--color-cool-90, #1d1e23);
-  --state-Inverse-selected: var(--color-pure-1000, #151519);
-  --state-Inverse-focus: var(--color-pure-1000, #151519);
+  --state-inverse-enabled: var(--color-pure-1000, #151519);
+  --state-inverse-hover: var(--color-cool-90, #1d1e23);
+  --state-inverse-selected: var(--color-pure-1000, #151519);
+  --state-inverse-focus: var(--color-pure-1000, #151519);
   --state-positive-enabled: var(--color-green-80, #005f38);
   --state-positive-hover: var(--color-green-70, #006d3f);
   --state-positive-selected: var(--color-green-90, #00331e);

@@ -2,21 +2,10 @@ import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import { ZetaFab } from "../../../components/fab/fab.js";
 import "../../../components/icon/icon.js";
-import { ifDefined } from "lit/directives/if-defined.js";
 import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
+import { spreadGenerator } from "../../utils.js";
 
-const staticArgTypes = {
-  disabled: { table: { disable: true } },
-  flavor: { table: { disable: true } },
-  name: { table: { disable: true } },
-  slot: { table: { disable: true } },
-  type: { table: { disable: true } },
-  value: { table: { disable: true } },
-  label: { table: { disable: true } },
-  round: { table: { disable: true } },
-  size: { table: { disable: true } },
-  extended: { table: { disable: true } }
-};
+const spread = spreadGenerator(ZetaFab);
 
 const meta: Meta<ZetaFab> = {
   component: "zeta-fab",
@@ -29,7 +18,7 @@ const meta: Meta<ZetaFab> = {
     type: undefined,
     value: "",
     label: "Label",
-    round: true,
+    rounded: "true",
     size: "small",
     extended: false
   },
@@ -43,7 +32,8 @@ const meta: Meta<ZetaFab> = {
   },
   argTypes: {
     rounded: {
-      table: { disable: true }
+      control: { type: "select" },
+      options: ["true", "false", "full"]
     },
     tabIndex: {
       table: { disable: true }
@@ -71,79 +61,40 @@ const meta: Meta<ZetaFab> = {
       },
       description:
         "The flavor of the button. \n * Primary - blue background. \n * Secondary - yellow background. \n * Inverse - black/white background. \n\n Ignore options below."
-    },
-    round: {
-      options: ["full", true, false],
-      control: {
-        type: "inline-radio"
-      }
     }
   }
 };
 
 export default meta;
 
-export const Fab: StoryObj<ZetaFab> = {
-  render: args =>
-    html`<zeta-fab
-      .extended=${args.extended}
-      label=${args.label}
-      size=${args.size}
-      .disabled=${args.disabled}
-      .round=${args.round}
-      flavor=${args.flavor}
-      name=${ifDefined(args.name)}
-      value=${ifDefined(args.value)}
-      type=${ifDefined(args.type)}
-    >
-      ${args.slot}
-    </zeta-fab> `
+export const Fab: StoryObj = {
+  render: args => html`<zeta-fab ${spread(args)}> ${args.slot} </zeta-fab> `
 };
 
-export const ExtendedFab: StoryObj<ZetaFab> = {
+export const ExtendedFab: StoryObj = {
   args: {
     extended: true
   },
-  argTypes: {
-    size: { table: { disable: true } }
+
+  render: args => html`<zeta-fab ${spread(args)}> ${args.slot} </zeta-fab> `
+};
+
+export const FabSecondary: StoryObj = {
+  args: {
+    flavor: "secondary"
   },
-  render: args =>
-    html`<zeta-fab
-      .extended=${args.extended}
-      label=${args.label}
-      .disabled=${args.disabled}
-      .round=${args.round}
-      flavor=${args.flavor}
-      name=${ifDefined(args.name)}
-      value=${ifDefined(args.value)}
-      type=${ifDefined(args.type)}
-    >
-      ${args.slot}
-    </zeta-fab> `
+  argTypes: {
+    flavor: { table: { disable: true } }
+  },
+  render: args => html`<zeta-fab ${spread(args)}> ${args.slot} </zeta-fab> `
 };
 
-export const FabSecondary: StoryObj<ZetaFab> = {
-  argTypes: staticArgTypes,
-  render: args =>
-    html`<div style="display: flex; justify-content: space-around;flex-wrap: wrap; gap: 30px;">
-      <zeta-fab .extended=${args.extended} label=${args.label} size=${args.size} .disabled=${args.disabled} .round=${args.round} flavor="secondary">
-        ${args.slot}
-      </zeta-fab>
-      <zeta-fab ?extended=${true} label=${args.label} size=${args.size} .disabled=${args.disabled} .round=${args.round} flavor="secondary">
-        ${args.slot}
-      </zeta-fab>
-    </div> `
-};
-
-export const FabInverse: StoryObj<ZetaFab> = {
-  argTypes: staticArgTypes,
-  render: args =>
-    html`<div style="display: flex; justify-content: space-around;flex-wrap: wrap; gap: 30px;">
-      <zeta-fab .extended=${args.extended} label=${args.label} size=${args.size} .disabled=${args.disabled} .round=${args.round} flavor="inverse">
-        ${args.slot}
-      </zeta-fab>
-      <zeta-fab ?extended=${true} label=${args.label} size=${args.size} .disabled=${args.disabled} .round=${args.round} flavor="inverse">
-        ${args.slot}
-      </zeta-fab>
-    </div> `
+export const FabInverse: StoryObj = {
+  args: {
+    flavor: "inverse"
+  },
+  argTypes: {
+    flavor: { table: { disable: true } }
+  },
+  render: args => html` <zeta-fab ${spread(args)}> ${args.slot} </zeta-fab> `
 };
