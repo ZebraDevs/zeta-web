@@ -20,7 +20,7 @@ export default css`
   :host([rounded="true"][size="large"]) > button {
     border-radius: var(--radius-large);
   }
-  
+
   :host([rounded="true"][size="small"]) > button {
     border-radius: var(--radius-rounded);
   }

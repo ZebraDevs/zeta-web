@@ -30,11 +30,11 @@ export default css`
   :host([size="small"]) > button {
     padding: var(--spacing-small);
     font: var(--label-small);
-    --icon-size: 16px; 
+    --icon-size: 16px;
     gap: var(--spacing-minimum);
   }
 
-   :host([rounded="full"]) > button {
+  :host([rounded="full"]) > button {
     border-radius: var(--radius-full);
   }
   :host([rounded="true"]) > button {
