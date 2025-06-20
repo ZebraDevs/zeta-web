@@ -54,6 +54,9 @@ export const contrastTest = async (testName: string, foreground: HTMLElement, ba
     await elementUpdated(foreground);
     await elementUpdated(background);
 
+    // Wait a bit to ensure styles are applied. This seems to be a bit buggy
+    await new Promise(resolve => setTimeout(resolve, 10));
+
     const fgStyles = getComputedStyle(foreground);
     const bgStyles = getComputedStyle(background);
     const fg = fgStyles.color;
