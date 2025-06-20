@@ -1,26 +1,39 @@
-import { fixture, html, expect, elementUpdated } from "@open-wc/testing";
+import { fixture, html, expect, elementUpdated, unsafeStatic } from "@open-wc/testing";
 import type { ZetaIconButton } from "../../components/button/icon-button/icon-button.js";
 import { getCssVarColorValue, toRGB, getSlotText } from "../utils.js";
 import "../../components/button/icon-button/icon-button.js";
 import "../../index.css";
+import { contrastTest } from "../accessibility-utils/accessibility-test-runner.js";
 
-const flavors = ["primary", "secondary", "positive", "negative", "outline", "outline-subtle", "text"];
-const iconName = "check";
+const flavors = ["primary", "positive", "negative", "outline", "outline-subtle", "text"];
+const iconName = "star";
 
 describe("zeta-icon-button", () => {
+  let subject: ZetaIconButton;
+
+  const createComponent = (template = `<zeta-icon-button>${iconName}</zeta-icon-button>`) => {
+    // prettier-ignore
+    return fixture<ZetaIconButton>(html`${unsafeStatic(template)}`);
+  };
+
+  beforeEach(async () => {
+    subject = await createComponent();
+  });
+
   describe("Accessibility", () => {
     flavors.map(flavor => {
-      if (flavor !== "secondary") {
-        // TODO: from designs, the secondary flavor does not meet accessability requirements
-        it(`meets accessibility requirements for the ${flavor} flavor`, async () => {
-          const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button>${iconName}</zeta-icon-button>`);
-
-          iconButton.setAttribute("flavor", flavor);
-          iconButton.setAttribute("icon-name", iconName);
-          await elementUpdated(iconButton);
-          await expect(iconButton).shadowDom.to.be.accessible();
-        });
-      }
+      it(`meets contrast requirements for the ${flavor} flavor`, async () => {
+        await elementUpdated(subject);
+        // Check color contrast between text and background
+        const buttonEl = subject.shadowRoot?.querySelector("button");
+        if (buttonEl) {
+          await contrastTest(`Button ${flavor} `, buttonEl, buttonEl);
+        }
+      });
+      it(`meets aria requirements for the ${flavor} flavor`, async () => {
+        await expect(subject).to.be.accessible();
+        await expect(subject).shadowDom.to.be.accessible();
+      });
     });
   });
 
@@ -52,7 +65,7 @@ describe("zeta-icon-button", () => {
       await elementUpdated(iconButton);
 
       const icon: Element | null | undefined = iconButton.shadowRoot?.querySelector("zeta-icon");
-      await expect(getComputedStyle(icon!).color).to.equal(getCssVarColorValue(icon!, "--main-inverse"));
+      await expect(getComputedStyle(icon!).color).to.equal(getCssVarColorValue(icon!, "--state-default-enabled"));
     });
 
     it("should display correct icon color for negative flavor", async () => {
@@ -62,7 +75,7 @@ describe("zeta-icon-button", () => {
       await elementUpdated(iconButton);
 
       const icon: Element | null | undefined = iconButton.shadowRoot?.querySelector("zeta-icon");
-      await expect(getComputedStyle(icon!).color).to.equal(getCssVarColorValue(icon!, "--main-inverse"));
+      await expect(getComputedStyle(icon!).color).to.equal(getCssVarColorValue(icon!, "--state-default-enabled"));
     });
 
     it("should display correct icon color for text flavor", async () => {

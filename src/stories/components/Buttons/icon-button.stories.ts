@@ -12,7 +12,7 @@ const meta: Meta<ZetaIconButton> = {
     disabled: false,
     flavor: "primary",
     name: "",
-    rounded: true,
+    rounded: "true",
     slot: "star",
     type: undefined,
     value: ""
@@ -46,10 +46,16 @@ const meta: Meta<ZetaIconButton> = {
       }
     },
     flavor: {
-      options: ["primary", "secondary", "positive", "negative", "outline", "outline-subtle", "text"],
+      options: ["primary", "positive", "negative", "outline", "outline-subtle", "text"],
       control: {
         type: "select"
       }
+    },
+    rounded: {
+      control: {
+        type: "select"
+      },
+      options: ["true", "false", "full"]
     }
   }
 };

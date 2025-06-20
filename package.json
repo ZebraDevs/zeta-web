@@ -53,7 +53,7 @@
     "prepack": "yarn run build",
     "prepare": "yarn run build",
     "prettier": "prettier src --write --ignore-unknown",
-    "start": "web-dev-server --node-resolve --open ./demo/ --watch",
+    "start": "cd example && yarn run dev",
     "storybook:build": "yarn run build && storybook build",
     "storybook:test": "test-storybook",
     "storybook": "cem analyze && storybook dev -p 6006",

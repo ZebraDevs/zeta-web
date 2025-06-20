@@ -7,7 +7,7 @@ export default css`
 
   :host([flavor]:not([disabled])) > button > zeta-icon,
   :host([flavor]:not([disabled])) ::slotted(zeta-icon) {
-    --icon-color: var(--icon-button-icon-color, var(--main-inverse));
+    --icon-color: var(--icon-button-icon-color, var(--state-default-enabled));
   }
 
   :host([flavor="outline"]:not([disabled])) > button > zeta-icon,

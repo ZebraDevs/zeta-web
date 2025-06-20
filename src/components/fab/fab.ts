@@ -28,25 +28,7 @@ export class ZetaFab extends Flavored(BaseButton) {
 
   @property({ type: String, reflect: true }) flavor: FabFlavor = "primary";
 
-  _round: boolean | "full" = "full";
-
-  /**
-   * The border radius of the button. Used in place of rounded prop.
-   */
-  @property({ type: String, reflect: true })
-  get round(): boolean | "full" {
-    return this._round;
-  }
-  set round(value: boolean | "full") {
-    const translatedValue: boolean | "full" = `${value}`.toLowerCase() === "true" ? true : `${value}`.toLowerCase() === "full" ? "full" : false;
-    this.rounded = !!translatedValue;
-    this._round = translatedValue;
-  }
-
-  /**
-   * @internal
-   */
-  @property({ type: Boolean, reflect: true }) rounded: boolean = false;
+  @property({ type: String, reflect: true }) rounded: "true" | "false" | "full" = "true";
 
   /**
    * Whether or not the FAB is extended.
@@ -61,7 +43,7 @@ export class ZetaFab extends Flavored(BaseButton) {
   protected render() {
     return html`
       <button ?disabled=${this.disabled} value=${ifDefined(this.value)} name=${ifDefined(this.name)} type=${ifDefined(this.type)}>
-        <zeta-icon .rounded=${this.rounded}><slot></slot></zeta-icon>
+        <zeta-icon .rounded=${this.rounded != "false"}><slot></slot></zeta-icon>
         ${this.extended ? this.getLabel() : nothing}
       </button>
       ${this.extended ? nothing : this.getLabel()}

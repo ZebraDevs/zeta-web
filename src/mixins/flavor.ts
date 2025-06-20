@@ -3,14 +3,14 @@ import type { Constructor } from "./utils.js";
 import { property } from "lit/decorators.js";
 import styles from "./flavor.styles.js";
 
-export type Flavor = "primary" | "secondary" | "positive" | "negative" | "outline" | "outline-subtle" | "text" | "inverse";
+export type Flavor = "primary" | "positive" | "negative" | "outline" | "outline-subtle" | "text" | "inverse";
 
 export declare class FlavoredInterface {
   flavor: Flavor;
 }
 
 /**
- * Mixin to add flavor to component.
+ * A mixin class that adds a `flavor` property to components, allowing them to be styled with predefined visual variants.
  *
  * Adds flavor attribute and associated styles.
  * @cssproperty --flavor-background-color  an override to set the background color of the element.
@@ -24,12 +24,14 @@ export const Flavored = <T extends Constructor<LitElement>>(superClass: T) => {
      *
      * Values:
      * * primary - blue background.
-     * * secondary - yellow background.
      * * positive - green background.
      * * negative - red background.
      * * outline - primary outline only.
      * * outline-subtle - grey outline only.
      * * text - primary text only.
+     * * inverse - black/white background. Note that this flavor is not supported in all components.
+     *
+     * @remarks The value `"secondary"` is no longer supported and should not be used.
      */
     @property({ type: String, reflect: true }) flavor: Flavor = "primary";
 
