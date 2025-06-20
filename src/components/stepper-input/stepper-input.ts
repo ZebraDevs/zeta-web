@@ -50,6 +50,21 @@ export class ZetaStepperInput extends FormField(Contourable(LitElement)) {
     }
   }
 
+  @property({ type: String })
+  override value: string = "";
+
+  // Keep value in sync with input element
+  updated(changedProps: Map<string, unknown>) {
+    super.updated?.(changedProps);
+    if (changedProps.has("value") && this.inputEl) {
+      const newValue = this.validateValue(this.value);
+      if (this.value !== newValue) {
+        this.value = newValue;
+        this.dispatchEvent(new InputEvent("input", { bubbles: true, composed: true }));
+      }
+    }
+  }
+
   @property({ type: Boolean }) disabled: boolean = false; //TODO: Use interactive, check styles beforehand
   @property({ reflect: true }) size: "medium" | "large" = "medium";
 
@@ -100,8 +115,6 @@ export class ZetaStepperInput extends FormField(Contourable(LitElement)) {
     } else {
       value = valueToNumber.toString();
     }
-    this.value = value;
-    this.inputEl.value = value;
     return value;
   }
 
@@ -118,6 +131,7 @@ export class ZetaStepperInput extends FormField(Contourable(LitElement)) {
             @focus=${(e: FocusEvent) => this.handleFocus(e)}
             @click=${() => {
               this.value = this.validateValue((Number(this.value) - 1).toString());
+              this.dispatchEvent(new Event("input", { bubbles: true, composed: true }));
             }}
           >
             remove
@@ -132,6 +146,7 @@ export class ZetaStepperInput extends FormField(Contourable(LitElement)) {
             flavor="outline-subtle"
             @click=${() => {
               this.value = this.validateValue((Number(this.value) + 1).toString());
+              this.dispatchEvent(new Event("input", { bubbles: true, composed: true }));
             }}
           >
             add

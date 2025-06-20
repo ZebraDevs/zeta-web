@@ -44,11 +44,7 @@ describe("zeta-stepper-input", () => {
       assert.equal(input?.value, "0");
     });
 
-    /**
-     * These tests don't work as I've had to remove the setter for value in the component
-     * as it was overriding the value set by form field mixin.
-     */
-    it.skip("doesn't change value via input change", async () => {
+    it("doesn't change value via input change", async () => {
       // prettier-ignore
       const el = await fixture<ZetaStepperInput>(html` <zeta-stepper-input></zeta-stepper-input>`);
       el.value = "test";
@@ -56,8 +52,7 @@ describe("zeta-stepper-input", () => {
       const input = el.shadowRoot?.querySelector("input");
       assert.equal(input!.value, "0");
     });
-
-    it.skip("sets value to min value via input onchange", async () => {
+    it("sets value to min value via input onchange", async () => {
       // prettier-ignore
       const el = await fixture<ZetaStepperInput>(html` <zeta-stepper-input min=${5}></zeta-stepper-input>`);
       el.value = "4";
@@ -65,15 +60,14 @@ describe("zeta-stepper-input", () => {
       const input = el.shadowRoot?.querySelector("input");
       assert.equal(input!.value, "5");
     });
-
-    it.skip("sets value to max value via input onchange", async () => {
+    it("sets value to max value via input onchange", async () => {
       // prettier-ignore
-      const el = await fixture<ZetaStepperInput>(html` <zeta-stepper-input max=${5}></zeta-stepper-input>`);
+      const el = await fixture<ZetaStepperInput>(html`<zeta-stepper-input max=${5}></zeta-stepper-input>`);
       el.value = "6";
-      el?.dispatchEvent(new ZetaStepperChangeEvent({ value: el.value }).toEvent());
+      el?.dispatchEvent(new Event("change"));
       el.requestUpdate();
-      const input = el.shadowRoot?.querySelector("input");
-      assert.equal(input!.value, "5");
+      await new Promise(resolve => setTimeout(resolve, 1));
+      assert.equal(el.value, "5");
     });
   });
 
@@ -83,6 +77,7 @@ describe("zeta-stepper-input", () => {
 
   describe("Interaction", () => {
     it("responds correctly to focus event", async () => {
+      // prettier-ignore
       const el = await fixture<ZetaStepperInput>(html`<zeta-stepper-input min="0" value="10" max="100"></zeta-stepper-input>`);
       const eventListener = oneEvent(el, "focus");
       const input = el.shadowRoot?.querySelector("input");
