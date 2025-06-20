@@ -73,6 +73,7 @@ export class ZetaStepperInput extends FormField(Contourable(LitElement)) {
   type: InputType = "stepper";
 
   handleChange(_event: Event) {
+    this.value = this.validateValue(this.value);
     return;
   }
 
