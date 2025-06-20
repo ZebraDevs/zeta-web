@@ -43,6 +43,7 @@ export class ZetaStepperInput extends FormField(Contourable(LitElement)) {
 
   override handleBlur(_event: FocusEvent): void {
     super.handleBlur(_event);
+    this.value = this.validateValue(this.value);
     //Fire the onChange event if and only if the value has changed
     if (this._valueOnLastFocus !== this.value) {
       this.dispatchEvent(new Event("change"));
@@ -57,10 +58,12 @@ export class ZetaStepperInput extends FormField(Contourable(LitElement)) {
   updated(changedProps: Map<string, unknown>) {
     super.updated?.(changedProps);
     if (changedProps.has("value") && this.inputEl) {
-      const newValue = this.validateValue(this.value);
-      if (this.value !== newValue) {
-        this.value = newValue;
-        this.dispatchEvent(new InputEvent("input", { bubbles: true, composed: true }));
+      const newValue = this.value;
+      if (newValue !== this.inputEl.value) {
+        this.dispatchEvent(new Event("change", { bubbles: true, composed: true }));
+      }
+      if (document.activeElement !== this.inputEl && document.activeElement !== this) {
+        this.value = this.validateValue(newValue);
       }
     }
   }
