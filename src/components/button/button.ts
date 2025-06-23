@@ -56,7 +56,7 @@ export class ZetaButton extends Flavored(BaseButton) {
   @property({ type: String }) leadingIcon: ZetaIconName | null = null;
 
   /**
-   * Leading icon of button. Full list of icons can be found at {@link https://zeta-icons.web.app/ | Zeta Icons}.
+   * Trailing icon of button. Full list of icons can be found at {@link https://zeta-icons.web.app/ | Zeta Icons}.
    */
   @property({ type: String }) trailingIcon: ZetaIconName | null = null;
 

@@ -28,7 +28,7 @@ export class ZetaStepper extends Contourable(LitElement) {
 
   private renderSteps = () => {
     // prettier-ignore
-    const steps = Array.from(this.querySelectorAll("li"));
+    const steps = Array.from(this.querySelectorAll<HTMLLIElement>("li"));
     return html`${steps.map((step, index) => {
       const classes = {
         completed: index < this.activeStep,
