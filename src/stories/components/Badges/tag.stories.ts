@@ -6,13 +6,15 @@ const meta: Meta<ZetaTag> = {
   component: "zeta-tag",
   args: {
     text: "Tag",
-    rounded: false
+    rounded: false,
+    direction: "right"
   },
   argTypes: {
-    point: {
+    direction: {
       options: ["left", "right"],
       control: { type: "inline-radio" }
-    }
+    },
+    slot: { table: { disable: true } }
   },
   parameters: {
     design: {

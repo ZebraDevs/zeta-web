@@ -1,21 +1,19 @@
 import { css } from "lit";
 export default css`
-  :host([point="left"]) > .tag .point {
+  :host([direction="left"]) > .tag .point {
     transform: rotate(180deg);
   }
 
-  :host([point="left"]) > .tag {
+  :host([direction="left"]) > .tag {
     flex-direction: row-reverse;
   }
 
-  :host([point="left"][rounded]) > .tag .text {
-    border-top-right-radius: 2px;
-    border-bottom-right-radius: 2px;
+  :host([direction="left"][rounded]) > .tag .text {
+    border-radius:0px var(--radius-minimal, 4px)  var(--radius-minimal, 4px) 0px;
   }
-
-  :host([point="right"][rounded]) > .tag .text {
-    border-top-left-radius: 2px;
-    border-bottom-left-radius: 2px;
+  
+  :host([direction="right"][rounded]) > .tag .text {
+    border-radius: var(--radius-minimal, 4px) 0px 0px var(--radius-minimal, 4px);
   }
 
   .tag {
@@ -27,11 +25,14 @@ export default css`
 
   .point {
     fill: var(--main-light);
+    margin: 0;
+    margin-right: -0.01px
   }
 
   .text {
     background: var(--main-light);
     padding: var(--spacing-minimum) var(--spacing-small);
-    font: var(--body-small);
+    font: var(--body-medium);
+    height: var(--spacing-2xl);
   }
 `;
