@@ -1,5 +1,31 @@
 # Changelog
 
+## [0.7.0](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.6.7...zeta-web-v0.7.0) (2025-06-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* Button, IconButton, Fab, Search, Snackbar now use `shape` prop with values`sharp` | `rounded` | `full` to match figma
+
+### 🪲 Bug Fixes
+
+* Button, IconButton, Fab, Search, Snackbar now use `shape` prop with values`sharp` | `rounded` | `full` to match figma ([377d9d6](https://github.com/ZebraDevs/zeta-web/commit/377d9d663c98b370300a6f15efd2648d93bfe2f4))
+* Stepper change / input events ([#66](https://github.com/ZebraDevs/zeta-web/issues/66)) ([5dae903](https://github.com/ZebraDevs/zeta-web/commit/5dae90394107836abe09a7b74510a92e42293ce5))
+* Update button / fab border radius, size and color to match figma updates ([377d9d6](https://github.com/ZebraDevs/zeta-web/commit/377d9d663c98b370300a6f15efd2648d93bfe2f4))
+
+
+### 🧪 Tests
+
+* add slightly more thorough accessibility contrast tests ([377d9d6](https://github.com/ZebraDevs/zeta-web/commit/377d9d663c98b370300a6f15efd2648d93bfe2f4))
+
+
+### 🧹 Miscellaneous Chores
+
+* release 0.7.0 ([c6d1af6](https://github.com/ZebraDevs/zeta-web/commit/c6d1af65d797b22b563431b4bb5562f6bc3da441))
+* Update example app ([377d9d6](https://github.com/ZebraDevs/zeta-web/commit/377d9d663c98b370300a6f15efd2648d93bfe2f4))
+* Update stories for Fab / Button ([377d9d6](https://github.com/ZebraDevs/zeta-web/commit/377d9d663c98b370300a6f15efd2648d93bfe2f4))
+* **UX-1444:** Remove secondary button style ([#65](https://github.com/ZebraDevs/zeta-web/issues/65)) ([377d9d6](https://github.com/ZebraDevs/zeta-web/commit/377d9d663c98b370300a6f15efd2648d93bfe2f4))
+
 ## [0.6.7](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.6.6...zeta-web-v0.6.7) (2025-06-19)
 
 
