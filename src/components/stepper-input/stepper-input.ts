@@ -43,10 +43,28 @@ export class ZetaStepperInput extends FormField(Contourable(LitElement)) {
 
   override handleBlur(_event: FocusEvent): void {
     super.handleBlur(_event);
+    this.value = this.validateValue(this.value);
     //Fire the onChange event if and only if the value has changed
     if (this._valueOnLastFocus !== this.value) {
-      this.dispatchEvent(new Event("change"));
+      this.dispatchEvent(new Event("change", { bubbles: true, composed: true }));
       this._valueOnLastFocus = null;
+    }
+  }
+
+  @property({ type: String })
+  override value: string = "";
+
+  // Keep value in sync with input element
+  updated(changedProps: Map<string, unknown>) {
+    super.updated?.(changedProps);
+    if (changedProps.has("value") && this.inputEl) {
+      const newValue = this.value;
+      if (newValue !== this.inputEl.value) {
+        this.dispatchEvent(new Event("change", { bubbles: true, composed: true }));
+      }
+      if (document.activeElement !== this.inputEl && document.activeElement !== this) {
+        this.value = this.validateValue(newValue);
+      }
     }
   }
 
@@ -73,6 +91,7 @@ export class ZetaStepperInput extends FormField(Contourable(LitElement)) {
   type: InputType = "stepper";
 
   handleChange(_event: Event) {
+    this.value = this.validateValue(this.value);
     return;
   }
 
@@ -99,8 +118,6 @@ export class ZetaStepperInput extends FormField(Contourable(LitElement)) {
     } else {
       value = valueToNumber.toString();
     }
-    this.value = value;
-    this.inputEl.value = value;
     return value;
   }
 
@@ -117,6 +134,7 @@ export class ZetaStepperInput extends FormField(Contourable(LitElement)) {
             @focus=${(e: FocusEvent) => this.handleFocus(e)}
             @click=${() => {
               this.value = this.validateValue((Number(this.value) - 1).toString());
+              this.dispatchEvent(new InputEvent("input", { bubbles: true, composed: true }));
             }}
           >
             remove
@@ -131,6 +149,7 @@ export class ZetaStepperInput extends FormField(Contourable(LitElement)) {
             flavor="outline-subtle"
             @click=${() => {
               this.value = this.validateValue((Number(this.value) + 1).toString());
+              this.dispatchEvent(new InputEvent("input", { bubbles: true, composed: true }));
             }}
           >
             add
