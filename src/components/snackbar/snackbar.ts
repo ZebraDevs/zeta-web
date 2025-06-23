@@ -4,6 +4,7 @@ import styles from "./snackbar.styles.js";
 import "../icon/icon.js";
 import "../button/button.js";
 import { Interactive } from "../../mixins/interactive.js";
+import { ContourableThree } from "../../mixins/contourable-three.js";
 
 /**
  * Snackbars provide brief messages about app processes at the bottom of the screen.
@@ -16,29 +17,7 @@ import { Interactive } from "../../mixins/interactive.js";
  * @storybook https://design.zebra.com/web/storybook/index.html?path=/docs/components-snackbar--docs
  */
 @customElement("zeta-snackbar")
-export class ZetaSnackbar extends Interactive(LitElement) {
-  _round: boolean | "full" = "full";
-  /**
-   * The border radius of the snackbar. Used in place of rounded prop.
-   *
-   * `"full"`
-   * @default "full"
-   */
-  @property({ type: String, reflect: true })
-  get round(): boolean | "full" {
-    return this._round;
-  }
-  set round(value: boolean | "full") {
-    const translatedValue: boolean | "full" = `${value}`.toLowerCase() === "true" ? true : `${value}`.toLowerCase() === "full" ? "full" : false;
-    this._rounded = !!translatedValue;
-    this._round = translatedValue;
-  }
-
-  /**
-   * @internal
-   */
-  _rounded: boolean = false;
-
+export class ZetaSnackbar extends ContourableThree(Interactive(LitElement)) {
   /**
    * Status of the component.
    */
@@ -63,19 +42,21 @@ export class ZetaSnackbar extends Interactive(LitElement) {
 
   render() {
     return html`
-      <div>
-        <slot name="icon"></slot>
-        <slot></slot>
-      </div>
-      <div>
-        ${this.actionLabel && this.actionClick ? html` <button id="action" @click=${this.actionClick}>${this.actionLabel}</button> ` : nothing}
-        ${this.hasCloseAction
-          ? html`
-              <button id="closeButton" @click=${() => this.remove()}>
-                <zeta-icon id="closeIcon" .rounded=${this._rounded}>close</zeta-icon>
-              </button>
-            `
-          : nothing}
+      <div class="snackbar-root contourable-target">
+        <div>
+          <slot name="icon"></slot>
+          <slot></slot>
+        </div>
+        <div>
+          ${this.actionLabel && this.actionClick ? html` <button id="action" @click=${this.actionClick}>${this.actionLabel}</button> ` : nothing}
+          ${this.hasCloseAction
+            ? html`
+                <button id="closeButton" @click=${() => this.remove()}>
+                  <zeta-icon id="closeIcon" .rounded=${this.shape !== "sharp"}>close</zeta-icon>
+                </button>
+              `
+            : nothing}
+        </div>
       </div>
     `;
   }

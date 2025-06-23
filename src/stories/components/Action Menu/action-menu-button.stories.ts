@@ -2,12 +2,15 @@ import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import { ZetaActionMenuButton } from "../../../components/action-menu/action-menu-button.js";
 import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
+import { ShapeList } from "../../../mixins/contourable-three.js";
+import { spreadGenerator } from "../../utils.js";
+
+const spread = spreadGenerator(ZetaActionMenuButton);
 
 const meta: Meta<ZetaActionMenuButton> = {
   component: "zeta-action-menu-button",
   title: "Components/Action Menu",
   args: {
-    rounded: "true",
     open: false,
     icon: "more_vertical",
     alignment: "start",
@@ -61,6 +64,10 @@ const meta: Meta<ZetaActionMenuButton> = {
     },
     size: {
       table: { disable: true }
+    },
+    shape: {
+      options: ShapeList,
+      control: { type: "radio" }
     }
   },
   parameters: {
@@ -75,50 +82,20 @@ const meta: Meta<ZetaActionMenuButton> = {
 
 export default meta;
 
-export const ActionMenuButton: StoryObj<ZetaActionMenuButton> = {
+export const ActionMenuButton: StoryObj = {
   render: args => html`
     <div style="display: flex; justify-content: center;">
       <div style="padding: 30px">
         <h4>Small</h4>
-        <zeta-action-menu-button
-          .size=${"small"}
-          ?rounded=${args.rounded}
-          ?open=${args.open}
-          .items=${args.items}
-          .icon=${args.icon}
-          .alignment=${args.alignment}
-          .direction=${args.direction}
-          .flavor=${args.flavor}
-        >
-        </zeta-action-menu-button>
+        <zeta-action-menu-button ${spread(args)} .size=${"small"} .items=${args.items}> </zeta-action-menu-button>
       </div>
       <div style="padding: 30px">
         <h4>Medium</h4>
-        <zeta-action-menu-button
-          .size=${"medium"}
-          ?rounded=${args.rounded}
-          ?open=${args.open}
-          .items=${args.items}
-          .icon=${args.icon}
-          .alignment=${args.alignment}
-          .direction=${args.direction}
-          .flavor=${args.flavor}
-        >
-        </zeta-action-menu-button>
+        <zeta-action-menu-button ${spread(args)} .size=${"medium"} .items=${args.items}> </zeta-action-menu-button>
       </div>
       <div style="padding: 30px">
         <h4>Large</h4>
-        <zeta-action-menu-button
-          .size=${"large"}
-          ?rounded=${args.rounded}
-          ?open=${args.open}
-          .items=${args.items}
-          .icon=${args.icon}
-          .alignment=${args.alignment}
-          .direction=${args.direction}
-          .flavor=${args.flavor}
-        >
-        </zeta-action-menu-button>
+        <zeta-action-menu-button ${spread(args)} .size=${"large"} .items=${args.items}> </zeta-action-menu-button>
       </div>
     </div>
   `

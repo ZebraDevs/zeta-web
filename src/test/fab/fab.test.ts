@@ -104,12 +104,12 @@ describe("zeta-fab", () => {
 
   describe("Styling", () => {
     it("renders a full rounded fab", async () => {
-      const fab: ZetaFab = await fixture(html`<zeta-fab rounded="full">barcode</zeta-fab>`);
+      const fab: ZetaFab = await fixture(html`<zeta-fab shape="full">barcode</zeta-fab>`);
 
       const el = fab.shadowRoot?.querySelector("button");
       const borderRadius = getComputedStyle(el!).borderRadius;
       const expectedBorderRadius = getCssVarValue(el!, "--radius-full");
-      await expect(fab.rounded).to.equal("full");
+      await expect(fab.shape).to.equal("full");
       await expect(borderRadius).to.equal(expectedBorderRadius);
     });
 
@@ -117,11 +117,11 @@ describe("zeta-fab", () => {
       const fab: ZetaFab = await fixture(html`<zeta-fab size="small"></zeta-fab>`);
 
       const el = fab.shadowRoot?.querySelector("button");
-      fab.rounded = "true";
+      fab.shape = "rounded";
       await fab.updateComplete;
       const borderRadius = getComputedStyle(el!).borderRadius;
       const expectedBorderRadius = getCssVarValue(el!, "--radius-rounded");
-      await expect(fab.rounded).to.equal("true");
+      await expect(fab.shape).to.equal("rounded");
       await expect(borderRadius).to.equal(expectedBorderRadius);
     });
 
@@ -129,11 +129,11 @@ describe("zeta-fab", () => {
       const fab: ZetaFab = await fixture(html`<zeta-fab size="large"></zeta-fab>`);
 
       const el = fab.shadowRoot?.querySelector("button");
-      fab.rounded = "true";
+      fab.shape = "rounded";
       await fab.updateComplete;
       const borderRadius = getComputedStyle(el!).borderRadius;
       const expectedBorderRadius = getCssVarValue(el!, "--radius-large");
-      await expect(fab.rounded).to.equal("true");
+      await expect(fab.shape).to.equal("rounded");
       await expect(fab.size).to.equal("large");
       await expect(borderRadius).to.equal(expectedBorderRadius);
     });
@@ -142,17 +142,17 @@ describe("zeta-fab", () => {
       const fab: ZetaFab = await fixture(html`<zeta-fab size="large"></zeta-fab>`);
 
       const el = fab.shadowRoot?.querySelector("button");
-      fab.rounded = "false";
+      fab.shape = "sharp";
       await fab.updateComplete;
       const borderRadius = getComputedStyle(el!).borderRadius;
       const expectedBorderRadius = getCssVarValue(el!, "--radius-none");
-      await expect(fab.rounded).to.equal("false");
+      await expect(fab.shape).to.equal("sharp");
       await expect(borderRadius).to.equal(expectedBorderRadius);
     });
 
     it("renders small and large rounded fabs with difererent border radii", async () => {
-      const smallFab: ZetaFab = await fixture(html`<zeta-fab size="small" rounded="true"></zeta-fab>`);
-      const largeFab: ZetaFab = await fixture(html`<zeta-fab size="large" rounded="true"></zeta-fab>`);
+      const smallFab: ZetaFab = await fixture(html`<zeta-fab size="small" shape="rounded"></zeta-fab>`);
+      const largeFab: ZetaFab = await fixture(html`<zeta-fab size="large" shape="rounded"></zeta-fab>`);
 
       const smallEl = smallFab.shadowRoot?.querySelector("button");
       const largeEl = largeFab.shadowRoot?.querySelector("button");
@@ -163,8 +163,8 @@ describe("zeta-fab", () => {
       const expectedSmallBorderRadius = getCssVarValue(smallEl!, "--radius-rounded");
       const expectedLargeBorderRadius = getCssVarValue(largeEl!, "--radius-large");
 
-      await expect(smallFab.rounded).to.equal("true");
-      await expect(largeFab.rounded).to.equal("true");
+      await expect(smallFab.shape).to.equal("rounded");
+      await expect(largeFab.shape).to.equal("rounded");
       await expect(smallBorderRadius).to.equal(expectedSmallBorderRadius);
       await expect(largeBorderRadius).to.equal(expectedLargeBorderRadius);
     });

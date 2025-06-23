@@ -33,14 +33,4 @@ export default css`
     --icon-size: 16px;
     gap: var(--spacing-minimum);
   }
-
-  :host([rounded="full"]) > button {
-    border-radius: var(--radius-full);
-  }
-  :host([rounded="true"]) > button {
-    border-radius: var(--radius-minimal);
-  }
-  :host([rounded="false"]) > button {
-    border-radius: var(--radius-none);
-  }
 `;

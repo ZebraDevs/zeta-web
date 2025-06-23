@@ -1,18 +1,21 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import "../../../components/icon/icon.js";
-import type { ZetaSnackbar } from "../../../components/snackbar/snackbar.js";
+import { ZetaSnackbar } from "../../../components/snackbar/snackbar.js";
 import "../../../components/snackbar/snackbar.js";
 import "../../../components/button/icon-button/icon-button.js";
 import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
+import { ShapeList } from "../../../mixins/contourable-three.js";
+import { spreadGenerator } from "../../utils.js";
 
-const meta: Meta<ZetaSnackbar | any> = {
+const spread = spreadGenerator(ZetaSnackbar);
+
+const meta: Meta<ZetaSnackbar & { slotIcon: string }> = {
   component: "zeta-Snackbar",
   title: "Components/Snackbar",
   args: {
     slotIcon: "happy",
     slot: "Message",
-    round: "full",
     hasCloseAction: true,
     actionLabel: "Action",
     status: "default",
@@ -33,8 +36,8 @@ const meta: Meta<ZetaSnackbar | any> = {
         type: "select"
       }
     },
-    round: {
-      options: ["full", true, false],
+    shape: {
+      options: ShapeList,
       control: {
         type: "inline-radio"
       }
@@ -44,9 +47,6 @@ const meta: Meta<ZetaSnackbar | any> = {
       control: {
         type: "inline-radio"
       }
-    },
-    rounded: {
-      table: { disable: true }
     },
     actionClick: {
       table: { disable: true }
@@ -59,13 +59,7 @@ export default meta;
 // canvas code block does not show props in snippit.
 export const Snackbar: StoryObj<ZetaSnackbar | any> = {
   render: args => html`
-    <zeta-snackbar
-      .actionClick=${() => console.log("Action Clicked")}
-      actionLabel=${args.actionLabel}
-      ?hasCloseAction=${args.hasCloseAction}
-      status=${args.status}
-      round=${args.round}
-    >
+    <zeta-snackbar ${spread(args)} .actionClick=${() => console.log("Action Clicked")}>
       <zeta-icon slot="icon">${args.slotIcon}</zeta-icon>
       ${args.slot}
     </zeta-snackbar>

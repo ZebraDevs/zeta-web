@@ -61,8 +61,8 @@ export class ZetaButton extends Flavored(BaseButton) {
   @property({ type: String }) trailingIcon: ZetaIconName | null = null;
 
   protected render() {
-    const leading = this.leadingIcon ? html`<zeta-icon name="${this.leadingIcon}" .rounded=${this.rounded != "false"}></zeta-icon>` : nothing;
-    const trailing = this.trailingIcon ? html`<zeta-icon name="${this.trailingIcon}" .rounded=${this.rounded != "false"}></zeta-icon>` : nothing;
+    const leading = this.leadingIcon ? html`<zeta-icon name="${this.leadingIcon}" .rounded=${this.shape != "sharp"}></zeta-icon>` : nothing;
+    const trailing = this.trailingIcon ? html`<zeta-icon name="${this.trailingIcon}" .rounded=${this.shape != "sharp"}></zeta-icon>` : nothing;
 
     return html`
       <button
@@ -73,9 +73,10 @@ export class ZetaButton extends Flavored(BaseButton) {
         aria-label=${ifDefined(ifDefined(this.ariaLabel))}
         @click=${this._handleClick}
         part="button"
+        class="contourable-target"
       >
         ${this._buttonType === "icon"
-          ? html`<zeta-icon .rounded=${this.rounded != "false"}><slot></slot></zeta-icon>`
+          ? html`<zeta-icon .rounded=${this.shape != "sharp"}><slot></slot></zeta-icon>`
           : html`${leading}
               <slot></slot>
               ${trailing}`}

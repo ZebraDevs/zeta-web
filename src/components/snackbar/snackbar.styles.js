@@ -1,15 +1,14 @@
 import { css } from "lit";
 
 export default css`
-  :host {
+  .snackbar-root {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     padding: var(--spacing-medium) var(--spacing-large);
   }
 
-  :host div {
+  .snackbar-root div {
     display: flex;
     align-items: center;
     gap: var(--spacing-large);
@@ -30,19 +29,7 @@ export default css`
     font: var(--label-large);
   }
 
-  :host([round="false"]) {
-    border-radius: var(--radius-none);
-  }
-
-  :host([round="true"]) {
-    border-radius: var(--radius-minimal);
-  }
-
-  :host([round="full"]) {
-    border-radius: var(--radius-full);
-  }
-
-  :host([status="default"]) {
+  :host([status="default"]) .snackbar-root {
     background-color: var(--surface-default-inverse);
     color: var(--main-inverse);
   }
@@ -52,7 +39,7 @@ export default css`
     --icon-color: var(--main-inverse);
   }
 
-  :host([status="positive"]) {
+  :host([status="positive"]) .snackbar-root {
     background-color: var(--surface-positive-subtle);
     color: var(--main-default);
   }
@@ -61,11 +48,11 @@ export default css`
     --icon-color: var(--main-positive);
   }
 
-  :host([status="positive"]) #action {
+  :host([status="positive"]) .snackbar-root #action {
     color: var(--main-default);
   }
 
-  :host([status="info"]) {
+  :host([status="info"]) .snackbar-root {
     background-color: var(--surface-info-subtle);
     color: var(--main-default);
   }
@@ -74,11 +61,11 @@ export default css`
     --icon-color: var(--main-info);
   }
 
-  :host([status="info"]) #action {
+  :host([status="info"]) .snackbar-root #action {
     color: var(--main-default);
   }
 
-  :host([status="warning"]) {
+  :host([status="warning"]) .snackbar-root {
     background-color: var(--surface-warning-subtle);
     color: var(--main-default);
   }
@@ -87,11 +74,11 @@ export default css`
     --icon-color: var(--main-warning);
   }
 
-  :host([status="warning"]) #action {
+  :host([status="warning"]) .snackbar-root #action {
     color: var(--main-default);
   }
 
-  :host([status="negative"]) {
+  :host([status="negative"]) .snackbar-root {
     background-color: var(--surface-negative-subtle);
     color: var(--main-default);
   }
@@ -100,11 +87,11 @@ export default css`
     --icon-color: var(--main-negative);
   }
 
-  :host([status="negative"]) #action {
+  :host([status="negative"]) .snackbar-root #action {
     color: var(--main-default);
   }
 
-  :host([status="view"]) {
+  :host([status="view"]) .snackbar-root {
     background-color: var(--surface-primary-subtle);
     color: var(--main-default);
   }
@@ -113,7 +100,7 @@ export default css`
     --icon-color: var(--main-primary);
   }
 
-  :host([status="view"]) #action {
+  :host([status="view"]) .snackbar-root #action {
     color: var(--main-default);
   }
 `;

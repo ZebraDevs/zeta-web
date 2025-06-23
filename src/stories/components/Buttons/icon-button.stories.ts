@@ -3,6 +3,7 @@ import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
 import { ZetaIconButton } from "../../../components/button/icon-button/icon-button.js";
 import { spreadGenerator } from "../../utils.js";
 import { html } from "lit";
+import { ShapeList } from "../../../mixins/contourable-three.js";
 const spread = spreadGenerator(ZetaIconButton);
 
 const meta: Meta<ZetaIconButton> = {
@@ -12,7 +13,7 @@ const meta: Meta<ZetaIconButton> = {
     disabled: false,
     flavor: "primary",
     name: "",
-    rounded: "true",
+    shape: "rounded",
     slot: "star",
     type: undefined,
     value: ""
@@ -51,11 +52,9 @@ const meta: Meta<ZetaIconButton> = {
         type: "select"
       }
     },
-    rounded: {
-      control: {
-        type: "select"
-      },
-      options: ["true", "false", "full"]
+    shape: {
+      control: { type: "inline-radio" },
+      options: ShapeList
     }
   }
 };

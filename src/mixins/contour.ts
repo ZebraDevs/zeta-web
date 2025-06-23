@@ -8,7 +8,7 @@ declare class ContourableInterface {
 }
 
 /**
- * Mixin to add Contourable to component.
+ * Mixin to add Contourable to component, with rounded and sharp shapes as a boolean.
  *
  * Adds rounded attribute, and associated styles.
  *

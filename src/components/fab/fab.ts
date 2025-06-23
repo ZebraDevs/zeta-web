@@ -28,11 +28,6 @@ export class ZetaFab extends Flavored(BaseButton) {
 
   @property({ type: String, reflect: true }) flavor: FabFlavor = "primary";
 
-  @property({ type: String, reflect: true }) rounded: "true" | "false" | "full" = "true";
-
-  /**
-   * Whether or not the FAB is extended.
-   */
   @property({ type: Boolean, reflect: true }) extended: boolean = false;
 
   @property({ type: String, reflect: true }) size: "small" | "large" = "small";
@@ -43,7 +38,7 @@ export class ZetaFab extends Flavored(BaseButton) {
   protected render() {
     return html`
       <button ?disabled=${this.disabled} value=${ifDefined(this.value)} name=${ifDefined(this.name)} type=${ifDefined(this.type)}>
-        <zeta-icon .rounded=${this.rounded != "false"}><slot></slot></zeta-icon>
+        <zeta-icon .rounded=${this.shape != "sharp"}><slot></slot></zeta-icon>
         ${this.extended ? this.getLabel() : nothing}
       </button>
       ${this.extended ? nothing : this.getLabel()}
