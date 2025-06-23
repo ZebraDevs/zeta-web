@@ -72,7 +72,6 @@ describe("zeta-stepper-input", () => {
 
       el?.dispatchEvent(new ZetaStepperChangeEvent({ value: el.value }).toEvent());
       await el.updateComplete;
-      await el.updateComplete;
 
       const input = el.shadowRoot?.querySelector("input");
       assert.equal(input!.value, "5");
@@ -82,7 +81,7 @@ describe("zeta-stepper-input", () => {
       const el = await fixture<ZetaStepperInput>(html` <zeta-stepper-input min=${-10}></zeta-stepper-input>`);
       el.value = "-4";
       el?.dispatchEvent(new ZetaStepperChangeEvent({ value: el.value }).toEvent());
-      el.requestUpdate();
+      await el.updateComplete;
       assert.equal(el.value, "-4");
     });
   });
