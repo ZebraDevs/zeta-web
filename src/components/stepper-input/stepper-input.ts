@@ -149,7 +149,7 @@ export class ZetaStepperInput extends FormField(Contourable(LitElement)) {
             flavor="outline-subtle"
             @click=${() => {
               this.value = this.validateValue((Number(this.value) + 1).toString());
-              this.dispatchEvent(new Event("input", { bubbles: true, composed: true }));
+              this.dispatchEvent(new InputEvent("input", { bubbles: true, composed: true }));
             }}
           >
             add
