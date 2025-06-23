@@ -70,14 +70,14 @@ describe("zeta-snackbar", () => {
       subject.shape = "rounded";
       const root = subject.shadowRoot!.querySelector(".snackbar-root") as HTMLDivElement;
       await subject.updateComplete;
-      expect(subject.shape).to.equal("rounded");
+      await expect(subject.shape).to.equal("rounded");
       await expect(getComputedStyle(root).borderRadius).to.equal(getCssVarValue(subject, "--radius-minimal"));
     });
 
     it("sets false border radius correctly", async () => {
       subject.shape = "sharp";
       await subject.updateComplete;
-      expect(subject.shape).to.equal("sharp");
+      await expect(subject.shape).to.equal("sharp");
       const root = subject.shadowRoot!.querySelector(".snackbar-root") as HTMLDivElement;
       await expect(getComputedStyle(root).borderRadius).to.equal(getCssVarValue(subject, "--radius-none"));
     });

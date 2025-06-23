@@ -4,6 +4,7 @@ import { ZetaFab } from "../../../components/fab/fab.js";
 import "../../../components/icon/icon.js";
 import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
 import { spreadGenerator } from "../../utils.js";
+import { ShapeList } from "../../../mixins/contourable-three.js";
 
 const spread = spreadGenerator(ZetaFab);
 
@@ -18,7 +19,6 @@ const meta: Meta<ZetaFab> = {
     type: undefined,
     value: "",
     label: "Label",
-    rounded: "true",
     size: "small",
     extended: false
   },
@@ -31,9 +31,9 @@ const meta: Meta<ZetaFab> = {
     }
   },
   argTypes: {
-    rounded: {
-      control: { type: "select" },
-      options: ["true", "false", "full"]
+    shape: {
+      control: { type: "inline-radio" },
+      options: ShapeList
     },
     tabIndex: {
       table: { disable: true }
