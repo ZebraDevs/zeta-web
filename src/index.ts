@@ -71,7 +71,6 @@ import { ZetaTextInput } from "./components/text-input/text-input.js";
 import { ZetaTooltip } from "./components/tooltip/tooltip.js";
 import { ZetaTopAppbar } from "./components/top-appbar/top-appbar.js";
 import { ZetaUploadItem } from "./components/upload-item/upload-item.js";
-import { ZetaWorkcloudIndicator } from "./components/badges/workcloud-indicator/workcloud-indicator.js";
 export {
   ZetaAccordion,
   ZetaActionMenuButton,
@@ -144,6 +143,5 @@ export {
   ZetaTextInput,
   ZetaTooltip,
   ZetaTopAppbar,
-  ZetaUploadItem,
-  ZetaWorkcloudIndicator
+  ZetaUploadItem
 };
