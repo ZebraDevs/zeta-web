@@ -4,6 +4,7 @@ import "../../components/search/search.js";
 import { fn } from "@storybook/test";
 import { html } from "lit";
 import { spreadGenerator } from "../utils.js";
+import { ShapeList } from "../../mixins/contourable-three.js";
 const spread = spreadGenerator(ZetaSearch);
 
 type SearchStory = ZetaSearch & { oninput: () => void; onchange: () => void; onfocus: () => void; onblur: () => void };
@@ -16,7 +17,6 @@ const meta: Meta<SearchStory> = {
     value: "Predefined search value",
     disabled: false,
     size: "medium",
-    round: "false",
     // formAction: "https://google.com/search", // BK to @mikecoomber, I removed this to get the story working after search was changed to a FormField.
     hasIcon: true,
     oninput: fn(),
@@ -31,8 +31,8 @@ const meta: Meta<SearchStory> = {
         type: "inline-radio"
       }
     },
-    round: {
-      options: ["false", "true", "full"],
+    shape: {
+      options: ShapeList,
       control: {
         type: "inline-radio"
       }

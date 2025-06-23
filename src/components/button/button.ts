@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/unbound-method */
 import { html, nothing } from "lit";
-import { customElement, property, queryAssignedElements } from "lit/decorators.js";
+import { customElement, property } from "lit/decorators.js";
 import { BaseButton } from "./base-button.js";
 import { ifDefined } from "lit/directives/if-defined.js";
-import { styleMap } from "lit/directives/style-map.js";
 import "../icon/icon.js";
 import { Flavored, type Flavor } from "../../mixins/flavor.js";
 import styles from "./button.styles.js";
+import type { ZetaIconName } from "@zebra-fed/zeta-icons";
 
 //TODO text overflow broken
 
@@ -16,8 +16,6 @@ export type ButtonFlavor = Exclude<Flavor, "inverse">;
  * Buttons facilitate user interaction.
  *
  * @slot - Content shown on button; typically text.
- * @slot {zeta-icon} leadingIcon - Leading icon of button. Full list of icons can be found at {@link https://zeta-icons.web.app/ | Zeta Icons}.
- * @slot {zeta-icon} trailingIcon - Trailing icon of button. Full list of icons can be found at  {@link https://zeta-icons.web.app/ | Zeta Icons}
  * @part button - The button element
  *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=23126-110945
@@ -32,19 +30,40 @@ export class ZetaButton extends Flavored(BaseButton) {
     return [super.styles ?? [], styles];
   }
 
-  @queryAssignedElements({ slot: "leadingIcon", flatten: true }) leading?: Array<Node>;
-  @queryAssignedElements({ slot: "trailingIcon", flatten: true }) trailing?: Array<Node>;
-
+  /**
+   * The flavor of the component determines the visual style of the component.
+   *
+   * @type {ButtonFlavor}
+   *
+   * @defaultValue "primary"
+   *
+   * @remarks
+   * Supported values for `flavor`:
+   * - `"primary"` - Blue background.
+   * - `"positive"` - Green background.
+   * - `"negative"` - Red background.
+   * - `"outline"` - Primary outline only.
+   * - `"outline-subtle"` - Grey outline only.
+   * - `"text"` - Primary text only.
+   *
+   * @remarks The value `"secondary"` is no longer supported and should not be used.
+   */
   @property({ type: String, reflect: true }) flavor: ButtonFlavor = "primary";
 
+  /**
+   * Leading icon of button. Full list of icons can be found at {@link https://zeta-icons.web.app/ | Zeta Icons}.
+   */
+  @property({ type: String }) leadingIcon: ZetaIconName | null = null;
+
+  /**
+   * Trailing icon of button. Full list of icons can be found at {@link https://zeta-icons.web.app/ | Zeta Icons}.
+   */
+  @property({ type: String }) trailingIcon: ZetaIconName | null = null;
+
   protected render() {
-    const hide = styleMap({ display: "none" });
-    const leadingIcon = html`<span style="${this.leading && this.leading.length > 0 ? nothing : hide}">
-      <slot name="leadingIcon" @slotchange=${() => this.requestUpdate()}></slot>
-    </span>`;
-    const trailingIcon = html`<span style="${this.trailing && this.trailing.length > 0 ? nothing : hide}">
-      <slot name="trailingIcon" @slotchange=${() => this.requestUpdate()}></slot>
-    </span>`;
+    const leading = this.leadingIcon ? html`<zeta-icon name="${this.leadingIcon}" .rounded=${this.shape != "sharp"}></zeta-icon>` : nothing;
+    const trailing = this.trailingIcon ? html`<zeta-icon name="${this.trailingIcon}" .rounded=${this.shape != "sharp"}></zeta-icon>` : nothing;
+
     return html`
       <button
         ?disabled=${this.disabled}
@@ -54,12 +73,13 @@ export class ZetaButton extends Flavored(BaseButton) {
         aria-label=${ifDefined(ifDefined(this.ariaLabel))}
         @click=${this._handleClick}
         part="button"
+        class="contourable-target"
       >
         ${this._buttonType === "icon"
-          ? html`<zeta-icon .rounded=${this.rounded}><slot></slot></zeta-icon>`
-          : html`${leadingIcon}
+          ? html`<zeta-icon .rounded=${this.shape != "sharp"}><slot></slot></zeta-icon>`
+          : html`${leading}
               <slot></slot>
-              ${trailingIcon}`}
+              ${trailing}`}
       </button>
     `;
   }

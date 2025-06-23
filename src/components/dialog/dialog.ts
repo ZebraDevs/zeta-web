@@ -95,17 +95,17 @@ export class ZetaDialog extends Contourable(Popup(LitElement)) {
     let count = 0;
     if (this.confirmBtn[0] && this.confirmBtn[0] instanceof ZetaButton) {
       this.confirmBtn[0].flavor = "primary";
-      this.confirmBtn[0].rounded = this.rounded;
+      this.confirmBtn[0].shape = this.rounded ? "rounded" : "sharp";
       count++;
     }
     if (this.cancelBtn[0] && this.cancelBtn[0] instanceof ZetaButton) {
       this.cancelBtn[0].flavor = "outline-subtle";
-      this.cancelBtn[0].rounded = this.rounded;
+      this.cancelBtn[0].shape = this.rounded ? "rounded" : "sharp";
       count++;
     }
     if (this.otherBtn[0] && this.otherBtn[0] instanceof ZetaButton) {
       this.otherBtn[0].flavor = "text";
-      this.otherBtn[0].rounded = this.rounded;
+      this.otherBtn[0].shape = this.rounded ? "rounded" : "sharp";
       count++;
     }
     return count;

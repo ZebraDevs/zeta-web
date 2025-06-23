@@ -2,7 +2,7 @@ import { css } from "lit";
 export default css`
   :host([flavor="primary"]:not([disabled])) > :first-child {
     background-color: var(--flavor-background-color, var(--state-primary-enabled));
-    color: var(--main-inverse);
+    color: var(--state-default-enabled);
 
     &:hover {
       background-color: var(--state-primary-hover);
@@ -13,7 +13,7 @@ export default css`
   }
   :host([flavor="secondary"]:not([disabled])) > :first-child {
     background-color: var(--flavor-background-color, var(--state-secondary-enabled));
-    color: var(--main-inverse);
+    color: var(--state-default-enabled);
     &:hover {
       background-color: var(--state-secondary-hover);
     }
@@ -23,7 +23,7 @@ export default css`
   }
   :host([flavor="positive"]:not([disabled])) > :first-child {
     background-color: var(--flavor-background-color, var(--state-positive-enabled));
-    color: var(--main-inverse);
+    color: var(--state-default-enabled);
     &:hover {
       background-color: var(--state-positive-hover);
     }
@@ -33,7 +33,7 @@ export default css`
   }
   :host([flavor="negative"]:not([disabled])) > :first-child {
     background-color: var(--flavor-background-color, var(--state-negative-enabled));
-    color: var(--main-inverse);
+    color: var(--state-default-enabled);
     &:hover {
       background-color: var(--state-negative-hover);
     }

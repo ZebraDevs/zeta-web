@@ -1,13 +1,14 @@
 import { query, state } from "lit/decorators.js";
 import { property } from "lit/decorators.js";
-import { Contourable, Interactive, Size } from "../../mixins/mixins.js";
+import { Interactive, Size } from "../../mixins/mixins.js";
 import { LitElement } from "lit";
 import styles from "./base-button.styles.js";
+import { ContourableThree } from "../../mixins/contourable-three.js";
 
 /**
  * @event {SubmitEvent} submit - Fired when the button is clicked and has the type submit
  */
-export class BaseButton extends Size(Contourable(Interactive(LitElement))) {
+export class BaseButton extends ContourableThree(Size(Interactive(LitElement))) {
   static formAssociated = true;
   /** @internal */
   static override shadowRootOptions: ShadowRootInit = {

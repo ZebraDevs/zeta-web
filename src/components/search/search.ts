@@ -1,9 +1,10 @@
 import { customElement, property, query } from "lit/decorators.js";
 import { html, LitElement, nothing } from "lit";
 import styles from "./search.styles.js";
-import { Contourable, Interactive, Size } from "../../mixins/mixins.js";
+import { Interactive, Size } from "../../mixins/mixins.js";
 import "../icon/icon.js";
 import { FormField, type InputType } from "../../mixins/form-field.js";
+import { ContourableThree } from "../../mixins/contourable-three.js";
 
 //TODO onsubmit
 
@@ -22,7 +23,7 @@ import { FormField, type InputType } from "../../mixins/form-field.js";
  * @slot leading - Leading icon
  */
 @customElement("zeta-search")
-export class ZetaSearch extends FormField(Size(Contourable(Interactive(LitElement)))) {
+export class ZetaSearch extends FormField(Size(ContourableThree(Interactive(LitElement)))) {
   type: InputType = "search";
 
   static override shadowRootOptions: ShadowRootInit = {
@@ -33,16 +34,6 @@ export class ZetaSearch extends FormField(Size(Contourable(Interactive(LitElemen
 
   @query("input") private readonly inputEl!: HTMLElement | null;
   _round: false | true | "full" = false;
-
-  @property({ type: String, reflect: true })
-  get round(): boolean | string {
-    return this._round;
-  }
-  set round(value: boolean | string) {
-    const translatedValue: boolean | "full" = `${value}`.toLowerCase() === "true" ? true : `${value}`.toLowerCase() === "full" ? "full" : false;
-    this.rounded = !!translatedValue;
-    this._round = translatedValue;
-  }
 
   override handleChange(_event: Event) {
     return _event;
@@ -89,14 +80,14 @@ export class ZetaSearch extends FormField(Size(Contourable(Interactive(LitElemen
   private renderRightIcon = () => {
     if (("SpeechRecognition" in window || "webkitSpeechRecognition" in window) && this.hasIcon) {
       return html` ${this.value ? html`<div class="divider"></div>` : nothing}
-        <zeta-icon @click=${() => this.handleSpeechRecognition()} .rounded=${this.rounded} class="right">microphone</zeta-icon>`;
+        <zeta-icon @click=${() => this.handleSpeechRecognition()} .rounded=${this.shape != "sharp"} class="right">microphone</zeta-icon>`;
     } else {
       return nothing;
     }
   };
 
   private renderCancelIcon = () => {
-    return this.value ? html`<zeta-icon @click=${this.resetInput} .rounded=${this.rounded}>cancel</zeta-icon>` : nothing;
+    return this.value ? html`<zeta-icon @click=${this.resetInput} .rounded=${this.shape != "sharp"}>cancel</zeta-icon>` : nothing;
   };
 
   protected render() {
@@ -108,7 +99,7 @@ export class ZetaSearch extends FormField(Size(Contourable(Interactive(LitElemen
           return e;
         }}
       >
-        <zeta-icon id="search-icon" .rounded=${this.rounded}>search</zeta-icon>
+        <zeta-icon id="search-icon" .rounded=${this.shape != "sharp"}>search</zeta-icon>
         ${super.render()} ${this.renderCancelIcon()} ${this.renderRightIcon()}
       </form>
     `;

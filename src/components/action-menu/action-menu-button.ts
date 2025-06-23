@@ -65,7 +65,7 @@ export class ZetaActionMenuButton extends ZetaButton {
 
   private renderItems() {
     return this.items.map(item => {
-      return html`<zeta-dropdown-menu-item @click=${item.onClick} ?rounded=${this.rounded}>
+      return html`<zeta-dropdown-menu-item @click=${item.onClick} ?rounded=${this.shape != "sharp"}>
         <zeta-icon slot="icon">${item.icon}</zeta-icon>${item.label}
       </zeta-dropdown-menu-item>`;
     });
@@ -80,11 +80,11 @@ export class ZetaActionMenuButton extends ZetaButton {
           this.handleClick();
         }}
         .size=${this.size}
-        ?rounded=${this.rounded}
+        shape=${this.shape}
         .flavor=${this.flavor}
         >${this.icon}</zeta-icon-button
       >
-      <zeta-droppable ?open=${this.open} ?rounded=${this.rounded} .alignment=${this.alignment} .direction=${this.direction} .anchor=${this.anchor}>
+      <zeta-droppable ?open=${this.open} ?rounded=${this.shape != "sharp"} .alignment=${this.alignment} .direction=${this.direction} .anchor=${this.anchor}>
         ${this.renderItems()}
       </zeta-droppable>
     `;
