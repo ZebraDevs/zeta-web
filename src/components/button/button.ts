@@ -12,8 +12,7 @@ import type { ZetaIconName } from "@zebra-fed/zeta-icons";
 
 export type ButtonFlavor = Exclude<Flavor, "inverse">;
 
-/**
- * Buttons facilitate user interaction.
+/** Buttons facilitate user interaction.
  *
  * @slot - Content shown on button; typically text.
  * @part button - The button element
@@ -51,12 +50,12 @@ export class ZetaButton extends Flavored(BaseButton) {
   @property({ type: String, reflect: true }) flavor: ButtonFlavor = "primary";
 
   /**
-   * Leading icon of button. Full list of icons can be found at {@link https://zeta-icons.web.app/ | Zeta Icons}.
+   * Leading icon of button. Full list of icons can be found at {@link https://design.zebra.com/icons | Zeta Icons}.
    */
   @property({ type: String }) leadingIcon: ZetaIconName | null = null;
 
   /**
-   * Trailing icon of button. Full list of icons can be found at {@link https://zeta-icons.web.app/ | Zeta Icons}.
+   * Trailing icon of button. Full list of icons can be found at {@link https://design.zebra.com/icons | Zeta Icons}.
    */
   @property({ type: String }) trailingIcon: ZetaIconName | null = null;
 
