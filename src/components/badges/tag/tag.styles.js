@@ -9,9 +9,9 @@ export default css`
   }
 
   :host([direction="left"][rounded]) > .tag .text {
-    border-radius:0px var(--radius-minimal, 4px)  var(--radius-minimal, 4px) 0px;
+    border-radius: 0px var(--radius-minimal, 4px) var(--radius-minimal, 4px) 0px;
   }
-  
+
   :host([direction="right"][rounded]) > .tag .text {
     border-radius: var(--radius-minimal, 4px) 0px 0px var(--radius-minimal, 4px);
   }
@@ -26,7 +26,7 @@ export default css`
   .point {
     fill: var(--main-light);
     margin: 0;
-    margin-right: -0.01px
+    margin-right: -0.01px;
   }
 
   .text {

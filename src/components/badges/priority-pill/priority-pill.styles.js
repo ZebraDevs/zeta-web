@@ -53,14 +53,14 @@ export default css`
     --priority-pill-index-background-color: var(--main-positive);
     --priority-pill-background-color: var(--surface-positive-subtle);
   }
-  :host([size="small"]) { 
-    .number{
+  :host([size="small"]) {
+    .number {
       font: var(--medium) 10px/14px var(--type-family-regular);
       width: var(--spacing-xl);
       height: var(--spacing-xl);
     }
 
-    .text{
+    .text {
       font: var(--regular) 10px/13px var(--type-family-regular);
     }
   }

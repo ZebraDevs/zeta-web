@@ -23,18 +23,18 @@ describe("zeta-tag", () => {
   describe("Content", () => {
     it("sets the default properties correctly", async () => {
       await expect(subject.direction).to.equal("right");
-      await expect(subject.text).to.equal("");
+      await expect(subject.text).to.equal(undefined);
     });
 
-    it("manages point attribute correctly", async () => {
+    it("manages direction attribute correctly", async () => {
       let pointValue = "left";
 
-      subject.setAttribute("point", pointValue);
+      subject.setAttribute("direction", pointValue);
       await expect(subject.direction).to.equal(pointValue);
 
       pointValue = "right";
 
-      subject.setAttribute("point", pointValue);
+      subject.setAttribute("direction", pointValue);
       await expect(subject.direction).to.equal(pointValue);
     });
 

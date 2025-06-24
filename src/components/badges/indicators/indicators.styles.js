@@ -41,7 +41,7 @@ export default css`
 
   :host([type="notification"]) .container.larger {
     height: calc(var(--spacing-large) + var(--border-size-small));
-     width: var(--spacing-3xl);
+    width: var(--spacing-3xl);
     padding: var(--spacing-none);
   }
 
@@ -70,7 +70,7 @@ export default css`
     }
   }
 
-  :host([type='icon']) .container.large {
+  :host([type="icon"]) .container.large {
     width: var(--spacing-xl);
     height: var(--spacing-xl);
 
@@ -89,13 +89,13 @@ export default css`
     --icon-color: var(--main-inverse);
   }
 
-  :host([type='notification']) .container.medium span,
-  :host([type='notification']) .container.large span {
+  :host([type="notification"]) .container.medium span,
+  :host([type="notification"]) .container.large span {
     line-height: var(--spacing-medium);
     height: var(--spacing-medium);
     padding-bottom: var(--border-size-medium);
   }
-  :host([type='notification']) .container.large span {
+  :host([type="notification"]) .container.large span {
     margin-bottom: calc(var(--spacing-none) - var(--border-size-small));
     padding-bottom: var(--spacing-none);
   }

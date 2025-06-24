@@ -1,8 +1,8 @@
 import { css } from "lit";
 export default css`
-:host{
-  width: fit-content;
-}
+  :host {
+    width: fit-content;
+  }
   :host([status="info"]) .container {
     background: var(--main-info);
   }
@@ -38,8 +38,8 @@ export default css`
     white-space: nowrap;
     width: fit-content;
 
-  min-width: var(--spacing-small);
-  min-height: var(--spacing-large);
+    min-width: var(--spacing-small);
+    min-height: var(--spacing-large);
     .text {
       padding: var(--spacing-none) var(--spacing-minimum);
       font: var(--label-small);
