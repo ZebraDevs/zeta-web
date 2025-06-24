@@ -7,6 +7,11 @@ import "../../icon/icon.js";
 
 /** Indicators are used to show the status of a user or any messages/notifications they might have.
  *
+ * @slot - Value to be displayed inside the indicator.
+ *         If the `type` is set to `notification`, this should be the number or text shown inside the indicator.
+ *         If the `type` is set to `icon`, this should be an icon or any other content you want to display.
+ *         There is first class support for the `zeta-icon` component, which can be used to display icons inside the indicator.
+ *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=22000-10045&mode=design&t=6mhOcUUr3tgxxFdd-0
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=22000-10072&mode=design&t=6mhOcUUr3tgxxFdd-0
  *
@@ -15,37 +20,48 @@ import "../../icon/icon.js";
 @customElement("zeta-indicator")
 export class ZetaIndicator extends Size(Contourable(LitElement)) {
   /**
-   *  Whether indicator is to be on an inverse background.
-   *
-   * Adds an inverse color border to the indicator.
-   */
-  @property({ type: Boolean, reflect: true }) inverse: boolean = false;
-
-  /**
    * Icon to be shown on icon type indicator.
    *
-   * Full list of icons can be found at {@link https://zeta-icons.web.app/ Zeta Icons}.
+   * Full list of icons can be found at {@link https://design.zebra.com/icons Zeta Icons}.
    */
-  @property({ type: String }) icon: ZetaIconName = "star";
+  @property({ type: String }) icon?: ZetaIconName;
 
   /** Whether to render as a notification or icon indicator. */
-  @property({ type: String }) type: "icon" | "notification" = "notification";
+  @property({ type: String, reflect: true }) type: "icon" | "notification" = "notification";
 
-  @property({ type: String, reflect: true }) value: string | true | false = false;
+  /**
+   * Value to be displayed inside the indicator. If the value is a number, its value will be ued to determine the size of the indicator.
+   * The value should not be negative.
+   * If the value is above 99, it will be displayed as "99+".
+   */
+  @property({ type: String, reflect: true }) text?: string;
 
   static styles = [super.styles ?? [], styles];
 
-  private getBody(value: string | boolean) {
-    if (this.type == "icon") {
-      return html`<zeta-icon .rounded=${this.rounded}>${this.icon}</zeta-icon> `;
-    } else {
-      return html`${value}`;
+  private getBody(value?: string) {
+    if (this.type == "icon" && this.icon) {
+      return html`<zeta-icon .name=${this.icon} .rounded=${this.rounded}></zeta-icon> `;
+    } else if (this.type === "notification" && value) {
+      return html`<span>${value}</span>`;
     }
+    return html`<slot></slot>`;
   }
 
   protected override render() {
-    const value = this.value === true || !this.value ? "" : this.value;
-    return html` <div class="container ${this.type} ${value.length ? "expand" : ""}">${this.size !== "small" ? this.getBody(value) : ""}</div> `;
+    let sizeType: "small" | "medium" | "large" | "larger" = this.size;
+
+    let value = this.text;
+
+    if (this.size != "small" && this.type === "notification" && this.text && !isNaN(Number(this.text))) {
+      const num = Math.abs(Number(this.text));
+      if (num > 99) {
+        value = "99+";
+        sizeType = "larger";
+      } else if (num > 9) {
+        sizeType = "large";
+      }
+    }
+    return html`<div class="container   ${sizeType}">${this.size !== "small" ? this.getBody(value) : ""}</div> `;
   }
 }
 
