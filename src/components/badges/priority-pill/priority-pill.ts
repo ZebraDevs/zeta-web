@@ -3,8 +3,7 @@ import { customElement, property } from "lit/decorators.js";
 import styles from "./priority-pill.styles.js";
 import { Contourable } from "../../../mixins/mixins.js";
 
-/**
- * This badge is used to indicate the order of importance.
+/** This badge is used to indicate the order of importance.
  *
  * @slot - Main text of the priority pill.
  *

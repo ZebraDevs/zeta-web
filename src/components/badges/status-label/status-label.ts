@@ -4,8 +4,7 @@ import styles from "./status-label.styles.js";
 import { type ZetaIconName } from "@zebra-fed/zeta-icons";
 import { Contourable } from "../../../mixins/mixins.js";
 import "../../icon/icon.js";
-/**
- * To help some information, labels, or errors stand out, we present them with badges. They can look like buttons, but users can’t select them. They just guide users to things they should pay attention to.
+/** To help some information, labels, or errors stand out, we present them with badges. They can look like buttons, but users can’t select them. They just guide users to things they should pay attention to.
  *
  * @slot - Text displayed on label.
  *
