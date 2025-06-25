@@ -6,5 +6,5 @@
  */
 export const makeIntegerWidth = (element: HTMLElement) => {
   element.style.width = "";
-  element.style.width = Number.parseInt(window.getComputedStyle(element).width) + "px";
+  element.style.width = Number.parseInt(window.getComputedStyle(element).width) + 1 + "px";
 };

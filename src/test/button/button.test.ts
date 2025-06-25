@@ -19,20 +19,24 @@ describe("zeta-button", () => {
   });
 
   describe("Accessibility", () => {
-    flavors.map(flavor => {
-      it(`meets contrast requirements for the ${flavor} flavor`, async () => {
-        subject.setAttribute("flavor", flavor);
-        await elementUpdated(subject);
+    ["small", "medium", "large"].forEach(size => {
+      flavors.forEach(flavor => {
+        it(`meets contrast requirements for the ${flavor} flavor, ${size}`, async () => {
+          subject.setAttribute("flavor", flavor);
+          subject.setAttribute("size", size);
 
-        // Check color contrast between text and background
-        const buttonEl = subject.shadowRoot?.querySelector("button");
-        if (buttonEl) {
-          await contrastTest(`Button ${flavor} `, buttonEl, buttonEl);
-        }
-      });
-      it("meets aria requirements", async () => {
-        await expect(subject).to.be.accessible();
-        await expect(subject).shadowDom.to.be.accessible();
+          await elementUpdated(subject);
+
+          // Check color contrast between text and background
+          const buttonEl = subject.shadowRoot?.querySelector("button");
+          if (buttonEl) {
+            await contrastTest(`Button ${flavor} ${size}`, buttonEl, buttonEl);
+          }
+        });
+        it("meets aria requirements", async () => {
+          await expect(subject).to.be.accessible();
+          await expect(subject).shadowDom.to.be.accessible();
+        });
       });
     });
   });

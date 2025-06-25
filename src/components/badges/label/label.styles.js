@@ -2,6 +2,7 @@ import { css } from "lit";
 export default css`
   :host {
     width: fit-content;
+    display: inline-block;
   }
   :host([status="info"]) .container {
     background: var(--main-info);
@@ -28,7 +29,7 @@ export default css`
   }
 
   :host(:not([status="neutral"])) .container .text {
-    color: var(--main-inverse);
+    color: var(--state-default-enabled);
   }
 
   .container {

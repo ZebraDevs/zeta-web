@@ -12,7 +12,7 @@ export default css`
       justify-content: center;
       align-items: center;
       font: var(--label-indicator);
-      color: var(--main-inverse);
+    color: var(--state-default-enabled);
       aspect-ratio: 1 / 1;
       border: var(--border-size-medium) solid var(--main-inverse);
     }
@@ -42,6 +42,7 @@ export default css`
   :host([type="notification"]) .container.larger {
     height: calc(var(--spacing-large) + var(--border-size-small));
     width: var(--spacing-3xl);
+    border: var(--border-size-small) solid var(--border-pure);
     padding: var(--spacing-none);
   }
 
@@ -86,7 +87,9 @@ export default css`
 
   ::slotted(zeta-icon),
   :host zeta-icon {
-    --icon-color: var(--main-inverse);
+    --icon-color: var(--state-default-enabled);
+    color: var(--state-default-enabled);
+    
   }
 
   :host([type="notification"]) .container.medium span,

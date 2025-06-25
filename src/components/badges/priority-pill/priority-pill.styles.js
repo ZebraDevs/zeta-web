@@ -1,14 +1,17 @@
 import { css } from "lit";
 export default css`
   :host {
-    --priority-pill-index-text-color: var(--main-inverse);
+    --priority-pill-index-text-color: var(--state-default-enabled);
     --priority-pill-text-color: var(--main-default);
+    width: fit-content;
+    height: var(--spacing-3xl);
+    display: inline-block;
   }
 
   .container {
     display: flex;
     display: inline-flex;
-    align-items: center;
+    align-items: center; 
     background: var(--priority-pill-background-color, var(--surface-primary-subtle));
     white-space: nowrap;
     line-height: var(--spacing-xl);
@@ -24,7 +27,7 @@ export default css`
       align-items: center;
       text-align: center;
       background: var(--priority-pill-index-background-color, var(--main-primary));
-      color: var(--priority-pill-index-text-color, var(--main-inverse));
+      color: var(--priority-pill-index-text-color, var(--state-default-enabled));
     }
 
     > .text {
@@ -54,6 +57,8 @@ export default css`
     --priority-pill-background-color: var(--surface-positive-subtle);
   }
   :host([size="small"]) {
+    height: var(--spacing-xl);
+
     .number {
       font: var(--medium) 10px/14px var(--type-family-regular);
       width: var(--spacing-xl);

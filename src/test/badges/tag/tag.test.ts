@@ -1,6 +1,10 @@
 import { fixture, html, elementUpdated, expect, unsafeStatic } from "@open-wc/testing";
-import type { ZetaTag } from "../../components/badges/tag/tag.js";
-import "../../components/badges/tag/tag.js";
+import type { ZetaTag } from "../../../components/badges/tag/tag.js";
+import "../../../components/badges/tag/tag.js";
+import "../../../css/styles.css";
+import "../../../generated/tokens/primitives.css";
+import "../../../generated/tokens/semantics.css";
+import { contrastTest } from "../../accessibility-utils/accessibility-test-runner.js";
 
 describe("zeta-tag", () => {
   let subject: ZetaTag;
@@ -16,7 +20,11 @@ describe("zeta-tag", () => {
 
   describe("Accessibility", () => {
     it("it meets accessibility requirements", async () => {
-      await expect(subject).shadowDom.to.be.accessible();
+      subject.setAttribute("label", "Label");
+      await elementUpdated(subject);
+      const element = subject.shadowRoot?.querySelector(".text");
+      expect(element, "Element should exist").to.exist;
+      await contrastTest("Tag", element!, element!);
     });
   });
 
@@ -55,7 +63,29 @@ describe("zeta-tag", () => {
     });
   });
 
-  // describe("Dimensions", () => {});
+  describe("Dimensions", () => {
+    it("sets the default dimensions correctly", async () => {
+      subject.setAttribute("direction", "left");
+      subject.setAttribute("label", "Tag");
+      await elementUpdated(subject);
+      const leftRenderedTotalWidth = Math.ceil(subject.getBoundingClientRect().width);
+      const leftRenderedTotalHeight = subject.getBoundingClientRect().height;
+
+      await expect(leftRenderedTotalWidth).to.equal(54);
+      await expect(leftRenderedTotalHeight).to.equal(32);
+
+      subject.setAttribute("direction", "right");
+      await elementUpdated(subject);
+      const rightRenderedTotalWidth = Math.ceil(subject.getBoundingClientRect().width);
+      const rightRenderedTotalHeight = subject.getBoundingClientRect().height;
+
+      await expect(rightRenderedTotalWidth).to.equal(54);
+      await expect(rightRenderedTotalHeight).to.equal(32);
+
+      await expect(rightRenderedTotalWidth).to.equal(leftRenderedTotalWidth);
+      await expect(rightRenderedTotalHeight).to.equal(leftRenderedTotalHeight);
+    });
+  });
 
   // describe("Styling", () => {});
 
