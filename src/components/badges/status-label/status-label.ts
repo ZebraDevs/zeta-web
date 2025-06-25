@@ -24,7 +24,7 @@ export class ZetaStatusLabel extends Contourable(LitElement) {
    *
    * If provided, it will override the slot.
    * */
-  @property({ type: String }) text?: string;
+  @property({ type: String }) label?: string;
 
   /** Icon leading the component. @see {ZetaIconName}.
    *
@@ -51,7 +51,7 @@ export class ZetaStatusLabel extends Contourable(LitElement) {
     return html`
       <div class="container">
         ${(this.icon && this.showIcon) || !this.icon ? html`<div class="icon-container">${icon}</div>` : nothing}
-        <div class="text">${this.text ? this.text : html`<slot></slot>`}</div>
+        <div class="text">${this.label ? this.label : html`<slot></slot>`}</div>
       </div>
     `;
   }

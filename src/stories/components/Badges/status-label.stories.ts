@@ -9,7 +9,7 @@ const meta: Meta<ZetaStatusLabel> = {
     rounded: true,
     status: "neutral",
     icon: undefined,
-    text: "Label",
+    label: "Label",
     showIcon: true
   },
   argTypes: {

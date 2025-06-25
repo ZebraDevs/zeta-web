@@ -5,7 +5,7 @@ const meta: Meta<ZetaTag> = {
   title: "Components/Badges",
   component: "zeta-tag",
   args: {
-    text: "Tag",
+    label: "Tag",
     rounded: false,
     direction: "right"
   },

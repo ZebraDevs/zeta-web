@@ -23,7 +23,7 @@ describe("zeta-tag", () => {
   describe("Content", () => {
     it("sets the default properties correctly", async () => {
       await expect(subject.direction).to.equal("right");
-      await expect(subject.text).to.equal(undefined);
+      await expect(subject.label).to.equal(undefined);
     });
 
     it("manages direction attribute correctly", async () => {
@@ -38,15 +38,15 @@ describe("zeta-tag", () => {
       await expect(subject.direction).to.equal(pointValue);
     });
 
-    it("manages text attribute correctly", async () => {
+    it("manages label attribute correctly", async () => {
       const textValue = "Testing service";
-      subject.setAttribute("text", textValue);
-      await expect(subject.text).to.equal(textValue);
+      subject.setAttribute("label", textValue);
+      await expect(subject.label).to.equal(textValue);
     });
 
     it("renders the passed text into a span", async () => {
       const textValue = "Testing service";
-      subject.setAttribute("text", textValue);
+      subject.setAttribute("label", textValue);
       await elementUpdated(subject);
 
       const spanEl = subject.shadowRoot ? (subject.shadowRoot.querySelector("span") as HTMLSpanElement) : (subject.querySelector("span") as HTMLSpanElement);

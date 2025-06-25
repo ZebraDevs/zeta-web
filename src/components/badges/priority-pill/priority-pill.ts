@@ -20,7 +20,7 @@ export class ZetaPriorityPill extends Contourable(LitElement) {
   /** Text of Priority.
    *
    * Can also be slotted. */
-  @property({ type: String }) text?: string;
+  @property({ type: String }) label?: string;
 
   /** Character shown at start of component. Will be truncated to a single character if longer.
    *
@@ -54,15 +54,15 @@ export class ZetaPriorityPill extends Contourable(LitElement) {
     if (this.status) {
       return { urgent: "U", high: "1", medium: "2", low: "3" }[this.status];
     }
-    if (this.text) {
-      return this.text[0];
+    if (this.label) {
+      return this.label[0];
     }
     return "";
   };
 
   getText = () => {
-    if (this.text) {
-      return this.text;
+    if (this.label) {
+      return this.label;
     }
     if (this.status) {
       return { urgent: "Urgent", high: "High", medium: "Medium", low: "Low" }[this.status];

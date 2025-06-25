@@ -19,7 +19,7 @@ export class ZetaTag extends Contourable(LitElement) {
    *
    * Currently, it is best to use this property instead of the slot, as the slot does not provide an aria label.
    */
-  @property({ type: String }) text?: string;
+  @property({ type: String }) label?: string;
 
   /** Direction of the tag point.  */
   @property({ type: String, reflect: true }) direction: "right" | "left" = "right";
@@ -34,8 +34,8 @@ export class ZetaTag extends Contourable(LitElement) {
     </svg>`;
 
     return html`
-      <div class="tag" role="note" aria-label=${ifDefined(this.text)}>
-        <span class="text">${this.text ?? html`<slot></slot>`}</span>
+      <div class="tag" role="note" aria-label=${ifDefined(this.label)}>
+        <span class="text">${this.label ?? html`<slot></slot>`}</span>
         ${point}
       </div>
     `;
