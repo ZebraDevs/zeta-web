@@ -31,7 +31,7 @@ export default css`
     }
 
     > .text {
-      padding: var(--spacing-minimum) var(--spacing-small);
+      padding: calc(var(--spacing-minimum) - var(--border-size-small)) var(--spacing-small);
     }
   }
 
@@ -58,6 +58,9 @@ export default css`
   }
   :host([size="small"]) {
     height: var(--spacing-xl);
+    > .container {
+      display: flex;
+    }
 
     .number {
       font: var(--medium) 10px/14px var(--type-family-regular);
