@@ -18,8 +18,8 @@ export default css`
 
   :host([size="large"]) > button {
     padding: var(--spacing-medium) var(--spacing-large);
-   --icon-size: var(--spacing-xl);
-     zeta-icon {
+    --icon-size: var(--spacing-xl);
+    zeta-icon {
       width: var(--spacing-xl);
       height: var(--spacing-xl);
     }
@@ -29,7 +29,7 @@ export default css`
   :host([size="medium"]) > button {
     padding: var(--spacing-small) var(--spacing-medium);
     --icon-size: var(--spacing-xl);
-     zeta-icon {
+    zeta-icon {
       width: var(--spacing-xl);
       height: var(--spacing-xl);
     }

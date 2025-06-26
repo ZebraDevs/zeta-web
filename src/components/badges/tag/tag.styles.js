@@ -1,11 +1,10 @@
 import { css } from "lit";
 export default css`
-
-:host{
-  display: inline-block;
-  width: fit-content;
-  height: fit-content;
-}
+  :host {
+    display: inline-block;
+    width: fit-content;
+    height: fit-content;
+  }
   :host([direction="left"]) > .tag .point {
     transform: rotate(180deg);
   }

@@ -12,7 +12,7 @@ export default css`
       justify-content: center;
       align-items: center;
       font: var(--label-indicator);
-    color: var(--state-default-enabled);
+      color: var(--state-default-enabled);
       aspect-ratio: 1 / 1;
       border: var(--border-size-medium) solid var(--main-inverse);
     }
@@ -89,7 +89,6 @@ export default css`
   :host zeta-icon {
     --icon-color: var(--state-default-enabled);
     color: var(--state-default-enabled);
-    
   }
 
   :host([type="notification"]) .container.medium span,

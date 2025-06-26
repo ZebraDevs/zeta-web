@@ -52,24 +52,21 @@ export default css`
     padding: var(--spacing-xl);
     --icon-size: var(--spacing-5xl);
     width: calc(var(--spacing-xl) * 2 + 36px);
-      zeta-icon{
-   width: var(--icon-size);
+    zeta-icon {
+      width: var(--icon-size);
       height: var(--icon-size);
-  }
+    }
   }
 
-  
   :host([size="small"]) > button {
     padding: var(--spacing-medium);
     --icon-size: var(--spacing-2xl);
     width: calc(var(--spacing-medium) * 2 + 24px);
-     zeta-icon{
-   width: var(--icon-size);
+    zeta-icon {
+      width: var(--icon-size);
       height: var(--icon-size);
+    }
   }
-    
-  }
- 
 
   :host([extended]) > button {
     padding: var(--spacing-small) var(--spacing-medium);
@@ -90,7 +87,6 @@ export default css`
     border-radius: var(--radius-rounded);
   }
   :host([shape="rounded"][size="large"]:not([extended])) > button {
-
     border-radius: var(--radius-large);
   }
 

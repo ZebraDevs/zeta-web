@@ -200,7 +200,11 @@ export class ZetaSelectInput extends FormField(Size(Contourable(Interactive(LitE
   }
 
   private handleOutsideClick = (e: Event) => {
-    if (this.open && this !== (e.target as Node)) {
+    const { left, right, top, bottom } = this.getBoundingClientRect();
+    const { clientX: x, clientY: y } = e as MouseEvent;
+    const inside = x >= left && x <= right && y >= top && y <= bottom;
+
+    if (!inside && this.open && this !== e.target) {
       this.open = false;
     }
   };

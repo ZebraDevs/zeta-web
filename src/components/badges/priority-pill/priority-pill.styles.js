@@ -11,7 +11,7 @@ export default css`
   .container {
     display: flex;
     display: inline-flex;
-    align-items: center; 
+    align-items: center;
     background: var(--priority-pill-background-color, var(--surface-primary-subtle));
     white-space: nowrap;
     line-height: var(--spacing-xl);
