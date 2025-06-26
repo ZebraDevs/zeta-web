@@ -1,7 +1,6 @@
 import type { LitElement } from "lit";
 import { property } from "lit/decorators.js";
 import { type Constructor } from "./utils.js";
-import styles from "./interactive.styles.js";
 
 declare class SizeInterface {
   size: "small" | "medium" | "large";
@@ -16,11 +15,11 @@ declare class SizeInterface {
  * @returns - component with mixin applied.
  */
 export const Size = <T extends Constructor<LitElement>>(superClass: T) => {
-  class InteractiveClass extends superClass {
+  class SizeClass extends superClass {
     /** Size of component */
     @property({ type: String, reflect: true }) size: "small" | "medium" | "large" = "medium";
 
-    static styles = [(superClass as unknown as typeof LitElement).styles ?? [], styles];
+    static styles = [(superClass as unknown as typeof LitElement).styles ?? []];
   }
-  return InteractiveClass as Constructor<SizeInterface & LitElement> & T;
+  return SizeClass as Constructor<SizeInterface & LitElement> & T;
 };

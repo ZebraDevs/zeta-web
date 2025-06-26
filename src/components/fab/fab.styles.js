@@ -17,11 +17,11 @@ export default css`
     /** TODO: Change to semantic token */
   }
 
-  :host([rounded="true"][size="large"]) > button {
+  :host([shape="rounded"][size="large"]) > button {
     border-radius: var(--radius-large);
   }
 
-  :host([rounded="true"][size="small"]) > button {
+  :host([shape="rounded"][size="small"]) > button {
     border-radius: var(--radius-rounded);
   }
 
@@ -50,15 +50,22 @@ export default css`
 
   :host([size="large"]) > button {
     padding: var(--spacing-xl);
-    --icon-size: 36px;
+    --icon-size: var(--spacing-5xl);
     width: calc(var(--spacing-xl) * 2 + 36px);
+    zeta-icon {
+      width: var(--icon-size);
+      height: var(--icon-size);
+    }
   }
 
-  :host([size="medium"]) > button,
   :host([size="small"]) > button {
     padding: var(--spacing-medium);
-    --icon-size: 24px;
+    --icon-size: var(--spacing-2xl);
     width: calc(var(--spacing-medium) * 2 + 24px);
+    zeta-icon {
+      width: var(--icon-size);
+      height: var(--icon-size);
+    }
   }
 
   :host([extended]) > button {
@@ -75,18 +82,16 @@ export default css`
     border-radius: var(--radius-none);
   }
 
-  :host([round="true"][size="small"]) > button,
-  :host([round="true"][size="medium"]) > button,
-  :host([round="true"][extended]) > button {
+  :host([shape="rounded"][size="small"]) > button,
+  :host([shape="rounded"][extended]) > button {
     border-radius: var(--radius-rounded);
   }
-
-  :host([round="true"][size="large"]:not([extended])) > button {
+  :host([shape="rounded"][size="large"]:not([extended])) > button {
     border-radius: var(--radius-large);
   }
 
-  :host([round="full"]) > button,
-  :host([round="full"][size]) > button {
+  :host([shape="full"]) > button,
+  :host([shape="full"][size]) > button {
     border-radius: var(--radius-full);
   }
   /** BORDER RADIUS END */

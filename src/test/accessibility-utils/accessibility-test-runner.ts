@@ -26,7 +26,7 @@ const tests: AccessibilityTests[] = modes.flatMap(darkMode => modes.map(highCont
  * @param foreground - The foreground element (e.g., text).
  * @param background - The background element (e.g., button).
  */
-export const contrastTest = async (testName: string, foreground: HTMLElement, background: HTMLElement) => {
+export const contrastTest = async (testName: string, foreground: HTMLElement | Element, background: HTMLElement | Element) => {
   const themeMode = "theme-mode";
   const contrastMode = "contrast-mode";
 
@@ -62,6 +62,8 @@ export const contrastTest = async (testName: string, foreground: HTMLElement, ba
     const fg = fgStyles.color;
     const bg = bgStyles.backgroundColor;
     const contrast = getContrast(fg, bg);
+    await elementUpdated(foreground);
+    await elementUpdated(background);
 
     try {
       if (test.highContrast) {

@@ -1,6 +1,10 @@
 import { fixture, html, expect, unsafeStatic, elementUpdated } from "@open-wc/testing";
 import type { ZetaButton } from "../../components/button/button.js";
 import "../../components/button/button.js";
+import "../../css/styles.css";
+import "../../generated/tokens/primitives.css";
+import "../../generated/tokens/semantics.css";
+import "@zebra-fed/zeta-icons/index.css";
 import { contrastTest } from "../accessibility-utils/accessibility-test-runner.js";
 
 const buttonText = "Button";
@@ -19,20 +23,24 @@ describe("zeta-button", () => {
   });
 
   describe("Accessibility", () => {
-    flavors.map(flavor => {
-      it(`meets contrast requirements for the ${flavor} flavor`, async () => {
-        subject.setAttribute("flavor", flavor);
-        await elementUpdated(subject);
+    ["small", "medium", "large"].forEach(size => {
+      flavors.forEach(flavor => {
+        it(`meets contrast requirements for the ${flavor} flavor, ${size}`, async () => {
+          subject.setAttribute("flavor", flavor);
+          subject.setAttribute("size", size);
 
-        // Check color contrast between text and background
-        const buttonEl = subject.shadowRoot?.querySelector("button");
-        if (buttonEl) {
-          await contrastTest(`Button ${flavor} `, buttonEl, buttonEl);
-        }
-      });
-      it("meets aria requirements", async () => {
-        await expect(subject).to.be.accessible();
-        await expect(subject).shadowDom.to.be.accessible();
+          await elementUpdated(subject);
+
+          // Check color contrast between text and background
+          const buttonEl = subject.shadowRoot?.querySelector("button");
+          if (buttonEl) {
+            await contrastTest(`Button ${flavor} ${size}`, buttonEl, buttonEl);
+          }
+        });
+        it("meets aria requirements", async () => {
+          await expect(subject).to.be.accessible();
+          await expect(subject).shadowDom.to.be.accessible();
+        });
       });
     });
   });
@@ -43,7 +51,59 @@ describe("zeta-button", () => {
     });
   });
 
-  // describe("Dimensions", () => {});
+  describe("Dimensions", () => {
+    it("renders small button with correct dimensions", async () => {
+      subject.setAttribute("size", "small");
+      await elementUpdated(subject);
+
+      const buttonNoIcons = subject.getBoundingClientRect();
+
+      await expect(buttonNoIcons.height).to.equal(32);
+      expect(Math.ceil(buttonNoIcons.width)).to.be.within(51, 57); // Should be 54, but allow tolerance for font rendering differences
+
+      subject.setAttribute("leadingIcon", "star");
+      subject.setAttribute("trailingIcon", "star");
+      await elementUpdated(subject);
+      const buttonWithIcons = subject.getBoundingClientRect();
+
+      await expect(buttonWithIcons.height).to.equal(32);
+      expect(Math.ceil(buttonWithIcons.width)).to.be.within(91, 97); // Should be 94, but allow tolerance for font rendering differences
+    });
+    it("renders medium button with correct dimensions", async () => {
+      subject.setAttribute("size", "medium");
+      await elementUpdated(subject);
+
+      const buttonNoIcons = subject.getBoundingClientRect();
+
+      await expect(buttonNoIcons.height).to.equal(40);
+      expect(Math.ceil(buttonNoIcons.width)).to.be.within(71, 77); // Should be 74, but allow tolerance for font rendering differences
+
+      subject.setAttribute("leadingIcon", "star");
+      subject.setAttribute("trailingIcon", "star");
+      await elementUpdated(subject);
+      const buttonWithIcons = subject.getBoundingClientRect();
+
+      await expect(buttonWithIcons.height).to.equal(40);
+      expect(Math.ceil(buttonWithIcons.width)).to.be.within(127, 133); // Should be 130, but allow tolerance for font rendering differences
+    });
+    it("renders large button with correct dimensions", async () => {
+      subject.setAttribute("size", "large");
+      await elementUpdated(subject);
+
+      const buttonNoIcons = subject.getBoundingClientRect();
+
+      await expect(buttonNoIcons.height).to.equal(48);
+      expect(Math.ceil(buttonNoIcons.width)).to.be.within(79, 85); // Should be 82, but allow tolerance for font rendering differences
+
+      subject.setAttribute("leadingIcon", "star");
+      subject.setAttribute("trailingIcon", "star");
+      await elementUpdated(subject);
+      const buttonWithIcons = subject.getBoundingClientRect();
+
+      await expect(buttonWithIcons.height).to.equal(48);
+      expect(Math.ceil(buttonWithIcons.width)).to.be.within(135, 141); // Should be 138, but allow tolerance for font rendering differences
+    });
+  });
 
   // describe("Styling", () => {});
 

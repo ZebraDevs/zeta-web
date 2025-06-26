@@ -5,8 +5,9 @@ const meta: Meta<ZetaLabel> = {
   title: "Components/Badges",
   component: "zeta-label",
   args: {
-    text: "label",
-    rounded: true
+    label: "Label",
+    rounded: true,
+    status: "neutral"
   },
   argTypes: {
     status: {
@@ -14,7 +15,8 @@ const meta: Meta<ZetaLabel> = {
       control: {
         type: "select"
       }
-    }
+    },
+    slot: { table: { disable: true } }
   },
   parameters: {
     design: {
@@ -28,4 +30,4 @@ const meta: Meta<ZetaLabel> = {
 
 export default meta;
 
-export const TextBadge: StoryObj<ZetaLabel> = {};
+export const Label: StoryObj<ZetaLabel> = {};

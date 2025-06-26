@@ -5,14 +5,16 @@ const meta: Meta<ZetaTag> = {
   title: "Components/Badges",
   component: "zeta-tag",
   args: {
-    text: "Tag",
-    rounded: false
+    label: "Tag",
+    rounded: false,
+    direction: "right"
   },
   argTypes: {
-    point: {
+    direction: {
       options: ["left", "right"],
       control: { type: "inline-radio" }
-    }
+    },
+    slot: { table: { disable: true } }
   },
   parameters: {
     design: {

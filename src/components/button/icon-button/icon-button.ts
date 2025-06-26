@@ -3,13 +3,12 @@ import styles from "./icon-button.styles.js";
 import { ZetaButton } from "../button.js";
 import "../../icon/icon.js";
 // TODO slot icon name instead of passing it through a property
-/** ZetaIconButton web component.
+/**  A button containing a Zeta Icon.
  *
- * A button containing a Zeta Icon.
  * @cssproperty --icon-button-color the color of the button.
  * @cssproperty --icon-button-icon-color the color of the icon.
  * @cssproperty --icon-button-icon-color-disabled the color of the icon when the button is disabled.
- * @slot {ZetaIconName} - The name of the icon. Full list of icons can be found at {@link https://zeta-icons.web.app/ Zeta Icons}.
+ * @slot {ZetaIconName} - The name of the icon. Full list of icons can be found at {@link https://design.zebra.com/icons Zeta Icons}.
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=23126-110314
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-buttons--docs
  */

@@ -1,7 +1,7 @@
 import { Canvas, Meta, Description, ArgTypes, Title } from "@storybook/blocks";
 import * as StatusLabel from "./status-label.stories";
 import * as PriorityPill from "./priority-pill.stories";
-import * as TextBadge from "./text-badge.stories";
+import * as Label from "./label.stories";
 import * as Indicator from "./indicators.stories";
 import * as Tag from "./tag.stories";
 
@@ -24,13 +24,14 @@ import * as Tag from "./tag.stories";
 # Label / Text Badge
 
 <Description of="zeta-label" />
-<Canvas of={TextBadge.TextBadge} />
+<Canvas of={Label.Label} />
 <ArgTypes of="zeta-label" />
 
 # Indicators / Badges
 
 <Description of="zeta-indicator" />
-<Canvas of={Indicator.Indicator} />
+<Canvas of={Indicator.IconIndicator} />
+<Canvas of={Indicator.NotificationIndicator} />
 <ArgTypes of="zeta-indicator" />
 
 # Tags

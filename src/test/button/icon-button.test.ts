@@ -45,7 +45,38 @@ describe("zeta-icon-button", () => {
     });
   });
 
-  // describe("Dimensions", () => {});
+  describe("Dimensions", () => {
+    it("renders small button with correct dimensions", async () => {
+      subject.setAttribute("icon", "star");
+      subject.setAttribute("size", "small");
+      await elementUpdated(subject);
+
+      const iconButton = subject.getBoundingClientRect();
+
+      await expect(iconButton.height).to.equal(28);
+      await expect(iconButton.width).to.equal(28);
+    });
+    it("renders medium button with correct dimensions", async () => {
+      subject.setAttribute("icon", "star");
+      subject.setAttribute("size", "medium");
+      await elementUpdated(subject);
+
+      const iconButton = subject.getBoundingClientRect();
+
+      await expect(iconButton.height).to.equal(40);
+      await expect(iconButton.width).to.equal(40);
+    });
+    it("renders large button with correct dimensions", async () => {
+      subject.setAttribute("icon", "star");
+      subject.setAttribute("size", "large");
+      await elementUpdated(subject);
+
+      const iconButton = subject.getBoundingClientRect();
+
+      await expect(iconButton.height).to.equal(48);
+      await expect(iconButton.width).to.equal(48);
+    });
+  });
 
   describe("Styling", () => {
     it("should display correct icon color when disabled", async () => {

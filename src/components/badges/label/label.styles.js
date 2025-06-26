@@ -1,19 +1,23 @@
 import { css } from "lit";
 export default css`
+  :host {
+    width: fit-content;
+    display: inline-block;
+  }
   :host([status="info"]) .container {
-    background: var(--surface-info);
+    background: var(--main-info);
   }
 
   :host([status="positive"]) .container {
-    background: var(--surface-positive);
+    background: var(--main-positive);
   }
 
   :host([status="warning"]) .container {
-    background: var(--surface-warning);
+    background: var(--main-warning);
   }
 
   :host([status="negative"]) .container {
-    background: var(--surface-negative);
+    background: var(--main-negative);
   }
 
   .container,
@@ -25,7 +29,7 @@ export default css`
   }
 
   :host(:not([status="neutral"])) .container .text {
-    color: var(--main-inverse);
+    color: var(--state-default-enabled);
   }
 
   .container {
@@ -35,8 +39,10 @@ export default css`
     white-space: nowrap;
     width: fit-content;
 
+    min-width: var(--spacing-small);
+    min-height: var(--spacing-large);
     .text {
-      padding: 2px var(--spacing-minimum);
+      padding: var(--spacing-none) var(--spacing-minimum);
       font: var(--label-small);
     }
   }

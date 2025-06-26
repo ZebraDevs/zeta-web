@@ -9,7 +9,7 @@ import "../badges/indicators/indicators.js";
  * An item to be used in a grid menu. Current usecases include the navigation bar and bottom sheet.
  *
  * @slot - Label to be displayed.
- * @slot {zeta-icon} icon - Icon to be displayed. Full list of icons can be found at https://zeta-icons.web.app/.
+ * @slot {zeta-icon} icon - Icon to be displayed. Full list of icons can be found at https://design.zebra.com/icons.
  *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21186-41419
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-grid-menu-item--docs
