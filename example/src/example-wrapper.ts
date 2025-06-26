@@ -87,7 +87,6 @@ export class ExampleWrapper extends LitElement {
         overflow: hidden;
         > div {
           height: 360px;
-          margin-top: 77px;
           width: 100%;
         }
       }

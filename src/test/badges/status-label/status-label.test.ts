@@ -41,7 +41,7 @@ describe("zeta-status-label", () => {
       const renderedTotalWidth = Math.ceil(subject.getBoundingClientRect().width);
       const renderedTotalHeight = subject.getBoundingClientRect().height;
 
-      await expect(renderedTotalWidth).to.equal(71);
+      expect(renderedTotalWidth).to.be.within(70, 72); // Value should be 71, but use a range to account for browser / font rendering differences
       await expect(renderedTotalHeight).to.equal(28);
     });
     it("sets the default dimensions with icon correctly", async () => {
@@ -53,7 +53,7 @@ describe("zeta-status-label", () => {
       const renderedTotalWidth = Math.ceil(subject.getBoundingClientRect().width);
       const renderedTotalHeight = subject.getBoundingClientRect().height;
 
-      await expect(renderedTotalWidth).to.equal(83);
+      expect(renderedTotalWidth).to.be.within(82, 85); // Value should be 83, but use a range to account for browser / font rendering differences
       await expect(renderedTotalHeight).to.equal(28);
     });
   });
