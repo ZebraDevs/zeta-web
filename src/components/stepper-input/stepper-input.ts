@@ -121,38 +121,40 @@ export class ZetaStepperInput extends FormField(Contourable(LitElement)) {
     return value;
   }
 
+  // Check needed as safari does not focus the input element when clicking on the buttons
+  private _isSafari = (): boolean => /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+  private onButtonClick(increment: boolean): void {
+    if (this._isSafari()) this.focus();
+    const currentValue = Number(this.value);
+    this.value = this.validateValue((currentValue + (increment ? 1 : -1)).toString());
+    this.dispatchEvent(new InputEvent("input", { bubbles: true, composed: true }));
+  }
+
   protected render() {
     return html`
       <div>
         <div class="container">
           <zeta-icon-button
             .disabled=${this.disabled || (this.min !== undefined && Number(this.value) <= this.min)}
-            .rounded=${this.rounded}
+            shape=${this.rounded ? "rounded" : "sharp"}
             size=${this.size}
             flavor="outline-subtle"
             @blur=${(e: FocusEvent) => this.handleBlur(e)}
             @focus=${(e: FocusEvent) => this.handleFocus(e)}
-            @click=${() => {
-              this.focus();
-              this.value = this.validateValue((Number(this.value) - 1).toString());
-              this.dispatchEvent(new InputEvent("input", { bubbles: true, composed: true }));
-            }}
+            @click=${() => this.onButtonClick(false)}
           >
             remove
           </zeta-icon-button>
           <div class="input-container contourable-target">${super.render()}</div>
           <zeta-icon-button
             .disabled=${this.disabled || (this.max !== undefined && Number(this.value) >= this.max)}
-            .rounded=${this.rounded}
+            shape=${this.rounded ? "rounded" : "sharp"}
             size=${this.size}
             @blur=${(e: FocusEvent) => this.handleBlur(e)}
             @focus=${(e: FocusEvent) => this.handleFocus(e)}
             flavor="outline-subtle"
-            @click=${() => {
-              this.focus();
-              this.value = this.validateValue((Number(this.value) + 1).toString());
-              this.dispatchEvent(new InputEvent("input", { bubbles: true, composed: true }));
-            }}
+            @click=${() => this.onButtonClick(true)}
           >
             add
           </zeta-icon-button>
