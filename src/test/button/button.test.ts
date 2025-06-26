@@ -1,6 +1,10 @@
 import { fixture, html, expect, unsafeStatic, elementUpdated } from "@open-wc/testing";
 import type { ZetaButton } from "../../components/button/button.js";
 import "../../components/button/button.js";
+import "../../css/styles.css";
+import "../../generated/tokens/primitives.css";
+import "../../generated/tokens/semantics.css";
+import "@zebra-fed/zeta-icons/index.css";
 import { contrastTest } from "../accessibility-utils/accessibility-test-runner.js";
 
 const buttonText = "Button";
@@ -47,7 +51,62 @@ describe("zeta-button", () => {
     });
   });
 
-  // describe("Dimensions", () => {});
+  describe("Dimensions", () => {
+    it("renders small button with correct dimensions", async () => {
+      subject.setAttribute("label", "Button");
+      subject.setAttribute("size", "small");
+      await elementUpdated(subject);
+
+      const buttonNoIcons = subject.getBoundingClientRect();
+
+      await expect(buttonNoIcons.height).to.equal(32);
+      await expect(Math.ceil(buttonNoIcons.width)).to.equal(54);
+
+      subject.setAttribute("leadingIcon", "star");
+      subject.setAttribute("trailingIcon", "star");
+      await elementUpdated(subject);
+      const buttonWithIcons = subject.getBoundingClientRect();
+
+      await expect(buttonWithIcons.height).to.equal(32);
+      await expect(Math.ceil(buttonWithIcons.width)).to.equal(94);
+    });
+    it("renders medium button with correct dimensions", async () => {
+      subject.setAttribute("label", "Button");
+      subject.setAttribute("size", "medium");
+      await elementUpdated(subject);
+
+      const buttonNoIcons = subject.getBoundingClientRect();
+
+      await expect(buttonNoIcons.height).to.equal(40);
+      await expect(Math.ceil(buttonNoIcons.width)).to.equal(74);
+
+      subject.setAttribute("leadingIcon", "star");
+      subject.setAttribute("trailingIcon", "star");
+      await elementUpdated(subject);
+      const buttonWithIcons = subject.getBoundingClientRect();
+
+      await expect(buttonWithIcons.height).to.equal(40);
+      await expect(Math.ceil(buttonWithIcons.width)).to.equal(130);
+    });
+    it("renders large button with correct dimensions", async () => {
+      subject.setAttribute("label", "Button");
+      subject.setAttribute("size", "large");
+      await elementUpdated(subject);
+
+      const buttonNoIcons = subject.getBoundingClientRect();
+
+      await expect(buttonNoIcons.height).to.equal(48);
+      await expect(Math.ceil(buttonNoIcons.width)).to.equal(82);
+
+      subject.setAttribute("leadingIcon", "star");
+      subject.setAttribute("trailingIcon", "star");
+      await elementUpdated(subject);
+      const buttonWithIcons = subject.getBoundingClientRect();
+
+      await expect(buttonWithIcons.height).to.equal(48);
+      await expect(Math.ceil(buttonWithIcons.width)).to.equal(138);
+    });
+  });
 
   // describe("Styling", () => {});
 

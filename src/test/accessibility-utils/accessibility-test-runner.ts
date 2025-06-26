@@ -76,7 +76,6 @@ export const contrastTest = async (testName: string, foreground: HTMLElement | E
         `${testName} Contrast test failed. Foreground: ${rgbToHex(fg)}, background: ${rgbToHex(bg)}. ${test.darkMode ? "Dark" : "Light"} mode, ${test.highContrast ? "High Contrast" : "Normal"} mode.`,
         error
       );
-      debugger;
       throw error;
     }
   }

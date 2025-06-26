@@ -18,19 +18,31 @@ export default css`
 
   :host([size="large"]) > button {
     padding: var(--spacing-medium) var(--spacing-large);
-    --icon-size: 20px;
+   --icon-size: var(--spacing-xl);
+     zeta-icon {
+      width: var(--spacing-xl);
+      height: var(--spacing-xl);
+    }
   }
 
   :host > button,
   :host([size="medium"]) > button {
     padding: var(--spacing-small) var(--spacing-medium);
-    --icon-size: 20px;
+    --icon-size: var(--spacing-xl);
+     zeta-icon {
+      width: var(--spacing-xl);
+      height: var(--spacing-xl);
+    }
   }
 
   :host([size="small"]) > button {
     padding: var(--spacing-small);
     font: var(--label-small);
-    --icon-size: 16px;
+    --icon-size: var(---spacing-large);
     gap: var(--spacing-minimum);
+    zeta-icon {
+      width: var(--spacing-large);
+      height: var(--spacing-large);
+    }
   }
 `;

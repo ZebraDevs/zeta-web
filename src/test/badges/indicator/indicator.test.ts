@@ -58,8 +58,8 @@ describe("zeta-indicator", () => {
       const renderedTotalWidth = subject.getBoundingClientRect().width;
       const renderedTotalHeight = subject.getBoundingClientRect().height;
 
-      expect(renderedTotalWidth).to.equal(12);
-      expect(renderedTotalHeight).to.equal(12);
+      await expect(renderedTotalWidth).to.equal(12);
+      await expect(renderedTotalHeight).to.equal(12);
     });
     it("icon, sets the medium dimensions correctly", async () => {
       subject.setAttribute("size", "medium");
@@ -70,8 +70,8 @@ describe("zeta-indicator", () => {
       const renderedTotalWidth = subject.getBoundingClientRect().width;
       const renderedTotalHeight = subject.getBoundingClientRect().height;
 
-      expect(renderedTotalWidth).to.equal(16);
-      expect(renderedTotalHeight).to.equal(16);
+      await expect(renderedTotalWidth).to.equal(16);
+      await expect(renderedTotalHeight).to.equal(16);
     });
     it("icon, sets the large dimensions correctly", async () => {
       subject.setAttribute("size", "large");
@@ -82,8 +82,8 @@ describe("zeta-indicator", () => {
       const renderedTotalWidth = subject.getBoundingClientRect().width;
       const renderedTotalHeight = subject.getBoundingClientRect().height;
 
-      expect(renderedTotalWidth).to.equal(24);
-      expect(renderedTotalHeight).to.equal(24);
+      await expect(renderedTotalWidth).to.equal(24);
+      await expect(renderedTotalHeight).to.equal(24);
     });
 
     it("notification, sets the small dimensions correctly", async () => {
@@ -95,8 +95,8 @@ describe("zeta-indicator", () => {
       const renderedTotalWidth = subject.getBoundingClientRect().width;
       const renderedTotalHeight = subject.getBoundingClientRect().height;
 
-      expect(renderedTotalWidth).to.equal(12);
-      expect(renderedTotalHeight).to.equal(12);
+      await expect(renderedTotalWidth).to.equal(12);
+      await expect(renderedTotalHeight).to.equal(12);
     });
     it("notification, sets the medium dimensions correctly", async () => {
       subject.setAttribute("size", "medium");
@@ -107,8 +107,8 @@ describe("zeta-indicator", () => {
       const renderedTotalWidth = subject.getBoundingClientRect().width;
       const renderedTotalHeight = subject.getBoundingClientRect().height;
 
-      expect(renderedTotalWidth).to.equal(16);
-      expect(renderedTotalHeight).to.equal(16);
+      await expect(renderedTotalWidth).to.equal(16);
+      await expect(renderedTotalHeight).to.equal(16);
     });
     it("notification, sets the large dimensions correctly", async () => {
       subject.setAttribute("size", "large");
@@ -119,8 +119,8 @@ describe("zeta-indicator", () => {
       const renderedTotalWidth = subject.getBoundingClientRect().width;
       const renderedTotalHeight = subject.getBoundingClientRect().height;
 
-      expect(renderedTotalWidth).to.equal(23);
-      expect(renderedTotalHeight).to.equal(16);
+      await expect(renderedTotalWidth).to.equal(23);
+      await expect(renderedTotalHeight).to.equal(16);
     });
     it("notification, sets the xlarge dimensions correctly", async () => {
       subject.setAttribute("size", "large");
@@ -131,8 +131,8 @@ describe("zeta-indicator", () => {
       const renderedTotalWidth = subject.getBoundingClientRect().width;
       const renderedTotalHeight = subject.getBoundingClientRect().height;
 
-      expect(renderedTotalWidth).to.equal(30);
-      expect(renderedTotalHeight).to.equal(19);
+      await expect(renderedTotalWidth).to.equal(30);
+      await expect(renderedTotalHeight).to.equal(19);
     });
   });
   describe("Styling", () => {
@@ -144,8 +144,8 @@ describe("zeta-indicator", () => {
       const renderedTotalWidth = subject.getBoundingClientRect().width;
       const renderedTotalHeight = subject.getBoundingClientRect().height;
 
-      expect(renderedTotalWidth).to.equal(16);
-      expect(renderedTotalHeight).to.equal(16);
+      await expect(renderedTotalWidth).to.equal(16);
+      await expect(renderedTotalHeight).to.equal(16);
     });
     it("notification, applies the correct style based on 2 digit", async () => {
       subject.setAttribute("type", "notification");
@@ -155,8 +155,8 @@ describe("zeta-indicator", () => {
       const renderedTotalWidth = subject.getBoundingClientRect().width;
       const renderedTotalHeight = subject.getBoundingClientRect().height;
 
-      expect(renderedTotalWidth).to.equal(23);
-      expect(renderedTotalHeight).to.equal(16);
+      await expect(renderedTotalWidth).to.equal(23);
+      await expect(renderedTotalHeight).to.equal(16);
     });
 
     it("notification, applies the correct style based on 3 digit", async () => {
@@ -167,12 +167,12 @@ describe("zeta-indicator", () => {
       const renderedTotalWidth = subject.getBoundingClientRect().width;
       const renderedTotalHeight = subject.getBoundingClientRect().height;
 
-      expect(renderedTotalWidth).to.equal(30);
-      expect(renderedTotalHeight).to.equal(19);
+      await expect(renderedTotalWidth).to.equal(30);
+      await expect(renderedTotalHeight).to.equal(19);
 
       const span = subject.shadowRoot?.querySelector("span");
-      expect(span?.textContent).to.not.equal("555");
-      expect(span?.textContent).to.equal("99+");
+      await expect(span?.textContent).to.not.equal("555");
+      await expect(span?.textContent).to.equal("99+");
     });
   });
   // describe("Interaction", () => {});
