@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.1](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.7.0...zeta-web-v0.7.1) (2025-06-26)
+
+
+### 🪲 Bug Fixes
+
+* Stepper add focus override on button click ([#71](https://github.com/ZebraDevs/zeta-web/issues/71)) ([2d1341c](https://github.com/ZebraDevs/zeta-web/commit/2d1341cf012f800bac5a6b53e070fbe017f1cd22))
+
 ## [0.7.0](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.6.7...zeta-web-v0.7.0) (2025-06-23)
 
 
