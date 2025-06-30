@@ -131,54 +131,6 @@
   */
   --main-inverse: var(--color-cool-20, #f3f6fa);
 
-  /* icon/flavor/positive
-
-  Default value is 'color/green/60'
-  - Light mode: #00864f
-  - Dark mode: #67b796  
-
-  Default high contrast (AAA) value is 'color/green/80'
-  - Light mode: #005f38
-  - Dark mode: #beefdb
-  */
-  --icon-flavor-positive: var(--color-green-60, #00864f);
-
-  /* icon/flavor/warning
-
-  Default value is 'color/orange/60'
-  - Light mode: #ae6500
-  - Dark mode: #d78d26  
-
-  Default high contrast (AAA) value is 'color/orange/80'
-  - Light mode: #764502
-  - Dark mode: #ffd292
-  */
-  --icon-flavor-warning: var(--color-orange-60, #ae6500);
-
-  /* icon/flavor/negative
-
-  Default value is 'color/red/60'
-  - Light mode: #d70015
-  - Dark mode: #f36170  
-
-  Default high contrast (AAA) value is 'color/red/80'
-  - Light mode: #8f000e
-  - Dark mode: #ffb3bb
-  */
-  --icon-flavor-negative: var(--color-red-60, #d70015);
-
-  /* icon/flavor/info
-
-  Default value is 'color/purple/60'
-  - Light mode: #7e0cff
-  - Dark mode: #9b71df  
-
-  Default high contrast (AAA) value is 'color/purple/80'
-  - Light mode: #43008f
-  - Dark mode: #dcc1fb
-  */
-  --icon-flavor-info: var(--color-purple-60, #7e0cff);
-
   /* border/default
 
   Default value is 'color/cool/40'
@@ -837,7 +789,7 @@
   - Light mode: #151519
   - Dark mode: #ffffff
   */
-  --state-Inverse-enabled: var(--color-cool-100, #0c0d0e);
+  --state-inverse-enabled: var(--color-cool-100, #0c0d0e);
 
   /* state/inverse/hover
 
@@ -849,7 +801,7 @@
   - Light mode: #1d1e23
   - Dark mode: #f3f6fa
   */
-  --state-Inverse-hover: var(--color-cool-90, #1d1e23);
+  --state-inverse-hover: var(--color-cool-90, #1d1e23);
 
   /* state/inverse/selected
 
@@ -861,7 +813,7 @@
   - Light mode: #151519
   - Dark mode: #ffffff
   */
-  --state-Inverse-selected: var(--color-cool-100, #0c0d0e);
+  --state-inverse-selected: var(--color-cool-100, #0c0d0e);
 
   /* state/inverse/focus
 
@@ -873,7 +825,7 @@
   - Light mode: #151519
   - Dark mode: #ffffff
   */
-  --state-Inverse-focus: var(--color-cool-100, #0c0d0e);
+  --state-inverse-focus: var(--color-cool-100, #0c0d0e);
 
   /* state/positive/enabled
 

@@ -10,10 +10,6 @@
   --main-disabled: var(--color-cool-60, #7a8190);
   --main-light: var(--color-pure-0, #ffffff);
   --main-inverse: var(--color-pure-0, #ffffff);
-  --icon-flavor-positive: var(--color-green-80, #005f38);
-  --icon-flavor-warning: var(--color-orange-80, #764502);
-  --icon-flavor-negative: var(--color-red-80, #8f000e);
-  --icon-flavor-info: var(--color-purple-80, #43008f);
   --border-default: var(--color-cool-100, #0c0d0e);
   --border-selected: var(--color-cool-90, #1d1e23);
   --border-hover: var(--color-cool-90, #1d1e23);
@@ -68,10 +64,10 @@
   --state-info-hover: var(--color-purple-70, #6400d6);
   --state-info-selected: var(--color-purple-90, #260052);
   --state-info-focus: var(--color-purple-80, #43008f);
-  --state-Inverse-enabled: var(--color-pure-1000, #151519);
-  --state-Inverse-hover: var(--color-cool-90, #1d1e23);
-  --state-Inverse-selected: var(--color-pure-1000, #151519);
-  --state-Inverse-focus: var(--color-pure-1000, #151519);
+  --state-inverse-enabled: var(--color-pure-1000, #151519);
+  --state-inverse-hover: var(--color-cool-90, #1d1e23);
+  --state-inverse-selected: var(--color-pure-1000, #151519);
+  --state-inverse-focus: var(--color-pure-1000, #151519);
   --state-positive-enabled: var(--color-green-80, #005f38);
   --state-positive-hover: var(--color-green-70, #006d3f);
   --state-positive-selected: var(--color-green-90, #00331e);
