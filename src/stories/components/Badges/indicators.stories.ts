@@ -5,10 +5,7 @@ import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
 import { html } from "lit";
 import { spreadGenerator } from "../../utils.js";
 
-class _ZetaIndicator extends ZetaIndicator {
-  value!: string;
-}
-const spread = spreadGenerator(_ZetaIndicator);
+const spread = spreadGenerator(ZetaIndicator);
 
 const meta: Meta<ZetaIndicator> = {
   component: "zeta-indicator",
@@ -51,11 +48,11 @@ export const IconIndicator: StoryObj = {
 };
 
 export const NotificationIndicator: StoryObj = {
-  args: { text: "1" },
+  args: { value: 1 },
   argTypes: {
     icon: { table: { disable: true } },
     type: { table: { disable: true } },
-    text: { control: { type: "text" } }
+    value: { control: { type: "number" } }
   },
   render: args => html`<zeta-notification-indicator ${spread(args)}> </zeta-notification-indicator>`
 };

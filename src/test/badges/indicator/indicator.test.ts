@@ -22,7 +22,7 @@ describe("zeta-indicator", () => {
           if (type === "icon") {
             subject.setAttribute("icon", "star");
           } else {
-            subject.setAttribute("text", "5");
+            subject.setAttribute("value", "5");
           }
           await elementUpdated(subject);
 
@@ -45,7 +45,7 @@ describe("zeta-indicator", () => {
       await expect(subject.type).to.equal("notification");
       await expect(subject.size).to.equal("medium");
       await expect(subject.icon).to.equal(undefined);
-      await expect(subject.text).to.equal(undefined);
+      await expect(subject.value).to.equal(undefined);
     });
   });
   describe("Dimensions", () => {
@@ -100,7 +100,7 @@ describe("zeta-indicator", () => {
     });
     it("notification, sets the medium dimensions correctly", async () => {
       subject.setAttribute("size", "medium");
-      subject.setAttribute("type", "notification");
+      subject.setAttribute("value", "notification");
 
       await elementUpdated(subject);
 
@@ -113,33 +113,21 @@ describe("zeta-indicator", () => {
     it("notification, sets the large dimensions correctly", async () => {
       subject.setAttribute("size", "large");
       subject.setAttribute("type", "notification");
-
+      subject.setAttribute("value", "500");
       await elementUpdated(subject);
 
       const renderedTotalWidth = subject.getBoundingClientRect().width;
       const renderedTotalHeight = subject.getBoundingClientRect().height;
 
-      await expect(renderedTotalWidth).to.equal(23);
+      await expect(renderedTotalWidth).to.equal(28);
       await expect(renderedTotalHeight).to.equal(16);
-    });
-    it("notification, sets the xlarge dimensions correctly", async () => {
-      subject.setAttribute("size", "large");
-      subject.setAttribute("type", "notification");
-      subject.setAttribute("text", "500");
-      await elementUpdated(subject);
-
-      const renderedTotalWidth = subject.getBoundingClientRect().width;
-      const renderedTotalHeight = subject.getBoundingClientRect().height;
-
-      await expect(renderedTotalWidth).to.equal(30);
-      await expect(renderedTotalHeight).to.equal(19);
     });
   });
   describe("Styling", () => {
     it("notification, applies the correct style based on 1 digit", async () => {
       subject.setAttribute("type", "notification");
       subject.setAttribute("size", "medium");
-      subject.setAttribute("text", "5");
+      subject.setAttribute("value", "5");
       await elementUpdated(subject);
       const renderedTotalWidth = subject.getBoundingClientRect().width;
       const renderedTotalHeight = subject.getBoundingClientRect().height;
@@ -147,28 +135,29 @@ describe("zeta-indicator", () => {
       await expect(renderedTotalWidth).to.equal(16);
       await expect(renderedTotalHeight).to.equal(16);
     });
+
     it("notification, applies the correct style based on 2 digit", async () => {
       subject.setAttribute("type", "notification");
       subject.setAttribute("size", "medium");
-      subject.setAttribute("text", "55");
+      subject.setAttribute("value", "55");
       await elementUpdated(subject);
       const renderedTotalWidth = subject.getBoundingClientRect().width;
       const renderedTotalHeight = subject.getBoundingClientRect().height;
 
-      await expect(renderedTotalWidth).to.equal(23);
+      await expect(renderedTotalWidth).to.equal(28);
       await expect(renderedTotalHeight).to.equal(16);
     });
 
     it("notification, applies the correct style based on 3 digit", async () => {
       subject.setAttribute("type", "notification");
       subject.setAttribute("size", "medium");
-      subject.setAttribute("text", "555");
+      subject.setAttribute("value", "555");
       await elementUpdated(subject);
       const renderedTotalWidth = subject.getBoundingClientRect().width;
       const renderedTotalHeight = subject.getBoundingClientRect().height;
 
-      await expect(renderedTotalWidth).to.equal(30);
-      await expect(renderedTotalHeight).to.equal(19);
+      await expect(renderedTotalWidth).to.equal(28);
+      await expect(renderedTotalHeight).to.equal(16);
 
       const span = subject.shadowRoot?.querySelector("span");
       await expect(span?.textContent).to.not.equal("555");

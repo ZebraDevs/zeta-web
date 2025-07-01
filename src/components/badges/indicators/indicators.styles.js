@@ -28,22 +28,14 @@ export default css`
   }
 
   :host([type="notification"]) .container.large {
-    padding: var(--spacing-none) calc(var(--spacing-minimum) - var(--border-size-small));
-    width: calc(var(--spacing-large) - var(--border-size-small));
     height: calc(var(--spacing-large) - var(--border-size-medium));
-    border: var(--border-size-small) solid var(--border-pure);
-    border-radius: calc(var(--radius-rounded) - var(--border-size-medium));
-
-    span {
-      padding-bottom: var(--spacing-0);
-    }
-  }
-
-  :host([type="notification"]) .container.larger {
-    height: calc(var(--spacing-large) + var(--border-size-small));
-    width: var(--spacing-3xl);
+    width: calc(var(--spacing-3xl) - var(--border-size-medium));
     border: var(--border-size-small) solid var(--border-pure);
     padding: var(--spacing-none);
+    border-radius: var(--radius-minimal);
+    span {
+      height: calc(var(--spacing-medium) + var(--border-size-small));
+    }
   }
 
   :host .container.small {
@@ -91,14 +83,7 @@ export default css`
     color: var(--state-default-enabled);
   }
 
-  :host([type="notification"]) .container.medium span,
-  :host([type="notification"]) .container.large span {
-    line-height: var(--spacing-medium);
-    height: var(--spacing-medium);
-    padding-bottom: var(--border-size-medium);
-  }
-  :host([type="notification"]) .container.large span {
-    margin-bottom: calc(var(--spacing-none) - var(--border-size-small));
-    padding-bottom: var(--spacing-none);
+  :host([type="notification"]) .container.medium span {
+    padding-bottom: var(--border-size-small);
   }
 `;

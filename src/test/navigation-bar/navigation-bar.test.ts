@@ -71,9 +71,9 @@ describe("zeta-navigation-bar", () => {
       const badges = subject.querySelectorAll("zeta-notification-indicator");
       await Promise.all(
         Array.from(badges).map(async badge => {
-          badge.setAttribute("text", newBadgeValue);
+          badge.setAttribute("value", newBadgeValue);
           await badge.updateComplete;
-          await expect(badge.text).to.equal(newBadgeValue);
+          await expect(badge.value?.toString()).to.equal(newBadgeValue);
         })
       );
     });
