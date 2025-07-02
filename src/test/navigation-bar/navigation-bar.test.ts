@@ -73,7 +73,7 @@ describe("zeta-navigation-bar", () => {
         Array.from(badges).map(async badge => {
           badge.setAttribute("value", newBadgeValue);
           await badge.updateComplete;
-          await expect(badge.value).to.equal(newBadgeValue);
+          await expect(badge.value?.toString()).to.equal(newBadgeValue);
         })
       );
     });

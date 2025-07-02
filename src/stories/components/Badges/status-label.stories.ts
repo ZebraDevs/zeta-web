@@ -9,7 +9,8 @@ const meta: Meta<ZetaStatusLabel> = {
     rounded: true,
     status: "neutral",
     icon: undefined,
-    text: "Label"
+    label: "Label",
+    showIcon: true
   },
   argTypes: {
     status: {
@@ -23,7 +24,8 @@ const meta: Meta<ZetaStatusLabel> = {
       control: {
         type: "select"
       }
-    }
+    },
+    slot: { table: { disable: true } }
   },
   parameters: {
     design: {

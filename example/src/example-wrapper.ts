@@ -3,8 +3,6 @@ import { customElement } from "lit/decorators.js";
 import "@zebra-fed/zeta-web";
 import { unsafeHTML } from "lit/directives/unsafe-html.js";
 import type { DirectiveResult } from "lit/async-directive.js";
-import * as WebComponents from "./webcomponents.svg?raw";
-import { unsafeSVG } from "lit/directives/unsafe-svg.js";
 import componentsData from "./components.json" assert { type: "json" };
 const components = Array.isArray(componentsData) ? componentsData : Object.values(componentsData);
 
@@ -89,7 +87,7 @@ export class ExampleWrapper extends LitElement {
         overflow: hidden;
         > div {
           height: 360px;
-          margin-top: 77px;
+          width: 100%;
         }
       }
 
@@ -144,13 +142,6 @@ export class ExampleWrapper extends LitElement {
       <div class="top">
         <div class="expanded">
           ${this.child ? this.child : html`<zeta-progress-circle indeterminate></zeta-progress-circle>`}
-        </div>
-        <div id="bottom-bar">
-          <div>zeta-web v<span id="version"></span></div>
-          <div id="web-components">
-            ${unsafeSVG(WebComponents.default)}
-            <div>Web Components</div>
-          </div>
         </div>
       </div>
     </div>`;
