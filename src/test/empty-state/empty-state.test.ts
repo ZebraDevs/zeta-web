@@ -15,7 +15,16 @@ describe("zeta-empty-state", () => {
     subject = await createComponent();
   });
 
-  describe("Accessibility", () => {});
+  describe("Accessibility", () => {
+    subject.setAttribute("heading", "No Data Available");
+    subject.setAttribute("description", "There is no data to display at this time.");
+    subject.setHTMLUnsafe(`<zeta-illustration name="serverDisconnect" slot='illustration'></zeta-illustration>`);
+    it("meets contrast requirements", async () => {});
+    it("meets aria requirements", async () => {
+      await expect(subject).to.be.accessible();
+      await expect(subject).shadowDom.to.be.accessible();
+    });
+  });
 
   // describe("Content", () => {});
 

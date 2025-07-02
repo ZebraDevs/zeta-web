@@ -61,7 +61,13 @@ export type ZetaIllustrationNames =
 export class ZetaIllustration extends LitElement {
   static override styles = styles;
 
+  /** The name of the illustration. */
   @property({ type: String }) name: ZetaIllustrationNames;
+
+  /** (Optional) alt text for the icons. Defaults to the illustration name. */
+  @property({ type: String }) alt?: string;
+
+  @property({ type: String, reflect: true }) basePath: string = "node_modules/@zebra-fed/zeta-web";
 
   getIllustrationPath = (name: ZetaIllustrationNames): string => {
     const zdna = ["addDevice", "emptyBox", "helpChat", "welcomeNav"];
@@ -69,11 +75,12 @@ export class ZetaIllustration extends LitElement {
     if (zdna.includes(name)) {
       folder = "zdna";
     }
-    return "node_modules/@zebra-fed/zeta-web/assets/illustrations/" + folder + "/" + name + ".svg";
+    console.log(this.basePath);
+    return this.basePath + "/assets/illustrations/" + folder + "/" + name + ".svg";
   };
 
   protected override render() {
-    return html`<img src="${this.getIllustrationPath(this.name)}" alt="${this.name}" style="width: 100%; height: 100%;" />`;
+    return html`<img src="${this.getIllustrationPath(this.name)}" alt="${this.alt ?? this.name}" style="width: 100%; height: 100%;" />`;
   }
 }
 

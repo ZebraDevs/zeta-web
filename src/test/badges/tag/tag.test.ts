@@ -19,12 +19,16 @@ describe("zeta-tag", () => {
   });
 
   describe("Accessibility", () => {
-    it("it meets accessibility requirements", async () => {
+    it("it meets contrast requirements", async () => {
       subject.setAttribute("label", "Label");
       await elementUpdated(subject);
       const element = subject.shadowRoot?.querySelector(".text");
       expect(element, "Element should exist").to.exist;
       await contrastTest("Tag", element!, element!);
+    });
+    it("meets aria requirements", async () => {
+      await expect(subject).to.be.accessible();
+      await expect(subject).shadowDom.to.be.accessible();
     });
   });
 

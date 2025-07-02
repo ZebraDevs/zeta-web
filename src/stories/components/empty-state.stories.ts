@@ -23,7 +23,7 @@ const meta: Meta<ZetaEmptyState | any> = {
   },
   argTypes: {
     illustration: {
-      options: ZetaIllustrationNamesList,
+      options: [undefined, ...ZetaIllustrationNamesList],
       control: { type: "select" }
     },
     primaryAction: {
@@ -47,7 +47,7 @@ export const EmptyState: StoryObj = {
   argTypes: {},
   render: args => html`
     <zeta-empty-state ${spread(args)}>
-      <zeta-illustration slot="illustration" name=${args.illustration}> </zeta-illustration>
+      ${args.illustration ? html`<zeta-illustration slot="illustration" name=${args.illustration} basePath=""> </zeta-illustration>` : ""}
       ${args.primaryAction ? html`<zeta-button slot="primaryAction" flavor="primary">${args.primaryAction}</zeta-button>` : ""}
       ${args.secondaryAction ? html`<zeta-button slot="secondaryAction" flavor="outline-subtle">${args.secondaryAction}</zeta-button>` : ""}
     </zeta-empty-state>

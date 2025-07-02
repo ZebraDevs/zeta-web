@@ -27,6 +27,10 @@ describe("zeta-label", () => {
           await contrastTest(`Label ${status}`, fg, bg);
         }
       });
+      it("meets aria requirements", async () => {
+        await expect(subject).to.be.accessible();
+        await expect(subject).shadowDom.to.be.accessible();
+      });
     });
   });
 
