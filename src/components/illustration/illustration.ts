@@ -28,6 +28,8 @@ export const ZetaIllustrationNamesList = [
   "welcome"
 ];
 
+//TODO: This is duplicated from the list above due to issues with how custom elements manifest extracts types.
+// Once a solution is found, this should be changed to: typeof ZetaIllustrationNamesList[number]
 export type ZetaIllustrationNames =
   | "addDevice"
   | "emptyBox"

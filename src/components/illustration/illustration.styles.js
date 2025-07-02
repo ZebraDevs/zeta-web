@@ -6,10 +6,7 @@ export default css`
   }
 
   .zeta-illustration {
-    display: contents;
-  }
-
-  .zeta-illustration svg {
+    display: contents; 
     width: 100%;
     height: 100%;
   }
