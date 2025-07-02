@@ -1,13 +1,21 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
-import type { ZetaEmptyState } from "../../components/empty-state/empty-state";
+import { ZetaEmptyState } from "../../components/empty-state/empty-state";
 import "../../../src/components/empty-state/empty-state";
+import { html } from "lit";
+import "../../components/illustration/illustration";
+import { spreadGenerator } from "../utils";
 
-const meta: Meta<ZetaEmptyState> = {
+const spread = spreadGenerator(ZetaEmptyState);
+
+const meta: Meta<ZetaEmptyState | any> = {
   component: "zeta-empty-state",
   tags: ["autodocs"],
   title: "Components/Empty State",
   args: {
-    rounded: true
+    rounded: true,
+    title: "Title",
+    description: "This is a placeholder description. It explains what this view is for and what to do next."
+    // illustration: html`<zeta-illustration name="serverDisconnected"> </zeta-illustration>`
   },
   argTypes: {},
   parameters: {
@@ -21,6 +29,10 @@ const meta: Meta<ZetaEmptyState> = {
 };
 export default meta;
 export const EmptyState: StoryObj = {
-  argTypes: {}
-  //   render: args => html``
+  argTypes: {},
+  render: args => html`
+    <zeta-empty-state ${spread(args)}>
+      <zeta-illustration slot="illustration" name="serverDisconnect"> </zeta-illustration>
+    </zeta-empty-state>
+  `
 };

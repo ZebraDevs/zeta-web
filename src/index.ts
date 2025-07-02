@@ -27,6 +27,7 @@ import { ZetaGridMenuItem } from "./components/grid-menu-item/grid-menu-item.js"
 import { ZetaIcon } from "./components/icon/icon.js";
 import { ZetaIconButton } from "./components/button/icon-button/icon-button.js";
 import { ZetaIconIndicator } from "./components/badges/indicators/indicators.js";
+import { ZetaIllustration } from "./components/illustration/illustration.js";
 import { ZetaIndicator } from "./components/badges/indicators/indicators.js";
 import { ZetaInPageBanner } from "./components/in-page-banner/in-page-banner.js";
 import { ZetaInputChip } from "./components/chips/input-chip/input-chip.js";
@@ -100,6 +101,7 @@ export {
   ZetaIcon,
   ZetaIconButton,
   ZetaIconIndicator,
+  ZetaIllustration,
   ZetaIndicator,
   ZetaInPageBanner,
   ZetaInputChip,
@@ -145,3 +147,6 @@ export {
   ZetaTopAppbar,
   ZetaUploadItem
 };
+
+// Export types
+export type { ZetaIllustrationNames } from "./components/illustration/illustration.js";

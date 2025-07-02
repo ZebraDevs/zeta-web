@@ -25,6 +25,7 @@
   "FileUpload/UploadItem",
   "FileUpload/UploadSelection",
   "GlobalHeader",
+  "Illustration",
   "InPageBanner",
   "ListItem",
   "NavigationBar",
