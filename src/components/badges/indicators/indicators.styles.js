@@ -28,9 +28,10 @@ export default css`
   }
 
   :host([type="notification"]) .container.large {
-    height: calc(var(--spacing-large) - var(--border-size-medium));
-    width: calc(var(--spacing-3xl) - var(--border-size-medium));
+    height: var(--spacing-large);
+    width: var(--spacing-3xl);
     border: var(--border-size-small) solid var(--border-pure);
+    box-sizing: border-box;
     padding: var(--spacing-none);
     border-radius: var(--radius-minimal);
     span {

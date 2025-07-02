@@ -139,19 +139,29 @@ describe("zeta-indicator", () => {
     it("notification, applies the correct style based on 2 digit", async () => {
       subject.setAttribute("type", "notification");
       subject.setAttribute("size", "medium");
-      subject.setAttribute("value", "55");
+      subject.setAttribute("value", "10");
       await elementUpdated(subject);
-      const renderedTotalWidth = subject.getBoundingClientRect().width;
-      const renderedTotalHeight = subject.getBoundingClientRect().height;
+      const renderedTotalWidth10 = subject.getBoundingClientRect().width;
+      const renderedTotalHeight10 = subject.getBoundingClientRect().height;
 
-      await expect(renderedTotalWidth).to.equal(28);
-      await expect(renderedTotalHeight).to.equal(16);
-    });
-
-    it("notification, applies the correct style based on 3 digit", async () => {
       subject.setAttribute("type", "notification");
       subject.setAttribute("size", "medium");
-      subject.setAttribute("value", "555");
+      subject.setAttribute("value", "99");
+      await elementUpdated(subject);
+      const renderedTotalWidth99 = subject.getBoundingClientRect().width;
+      const renderedTotalHeight99 = subject.getBoundingClientRect().height;
+
+      await expect(renderedTotalWidth10).to.equal(28);
+      await expect(renderedTotalHeight10).to.equal(16);
+
+      await expect(renderedTotalWidth99).to.equal(28);
+      await expect(renderedTotalHeight99).to.equal(16);
+    });
+
+    it("notification, applies the correct style based on 3+ digit", async () => {
+      subject.setAttribute("type", "notification");
+      subject.setAttribute("size", "medium");
+      subject.setAttribute("value", "100");
       await elementUpdated(subject);
       const renderedTotalWidth = subject.getBoundingClientRect().width;
       const renderedTotalHeight = subject.getBoundingClientRect().height;
@@ -160,7 +170,7 @@ describe("zeta-indicator", () => {
       await expect(renderedTotalHeight).to.equal(16);
 
       const span = subject.shadowRoot?.querySelector("span");
-      await expect(span?.textContent).to.not.equal("555");
+      await expect(span?.textContent).to.not.equal("100");
       await expect(span?.textContent).to.equal("99+");
     });
   });

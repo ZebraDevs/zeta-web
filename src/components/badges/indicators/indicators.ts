@@ -60,11 +60,10 @@ export class ZetaIndicator extends Size(Contourable(LitElement)) {
       if (num > 99) {
         value = "99+";
       }
-      if (num > 10) {
+      if (num > 9) {
         enforcedSize = "large";
       }
     }
-    // TODO: Fix tests. Ensure size matches figma
     return html`<div class="container ${enforcedSize}">${this.size !== "small" ? this.getBody(value) : ""}</div> `;
   }
 }
