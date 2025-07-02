@@ -69,7 +69,7 @@ export class ZetaIllustration extends LitElement {
     if (zdna.includes(name)) {
       folder = "zdna";
     }
-    return "/assets/illustrations/" + folder + "/" + name + ".svg";
+    return "node_modules/@zebra-fed/zeta-web/assets/illustrations/" + folder + "/" + name + ".svg";
   };
 
   protected override render() {

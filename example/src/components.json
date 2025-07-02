@@ -21,6 +21,7 @@
   "DateInput",
   "Dialog",
   "DropdownMenu",
+  "EmptyState",
   "FAB",
   "FileUpload/UploadItem",
   "FileUpload/UploadSelection",
