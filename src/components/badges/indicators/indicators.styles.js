@@ -15,6 +15,7 @@ export default css`
       color: var(--state-default-enabled);
       aspect-ratio: 1 / 1;
       border: var(--border-size-medium) solid var(--main-inverse);
+      overflow: hidden;
     }
   }
 
@@ -28,12 +29,16 @@ export default css`
   }
 
   :host([type="notification"]) .container.large {
-    height: var(--spacing-large);
-    width: var(--spacing-3xl);
-    border: var(--border-size-small) solid var(--border-pure);
+    height: calc(var(--spacing-large) - var(--border-size-medium));
+    width: calc(var(--spacing-3xl) - var(--border-size-medium));
+    border: none;
+    box-shadow: 0 0 0 var(--border-size-small) var(--border-pure);
+    margin: var(--border-size-small);
+    box-sizing: border-box;
     box-sizing: border-box;
     padding: var(--spacing-none);
     border-radius: var(--radius-minimal);
+
     span {
       height: calc(var(--spacing-medium) + var(--border-size-small));
     }
