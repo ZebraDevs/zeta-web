@@ -64,6 +64,8 @@
   --h4: var(--title-large);
   --h5: var(--title-medium);
   --h6: var(--title-small);
+
+  letter-spacing: 0;
 }
 
 h1 {

@@ -1,5 +1,6 @@
-import { LitElement, html, css } from "lit";
+import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
+import styles from "./illustration.styles.js";
 
 export const ZetaIllustrationNamesList = [
   "addDevice",
@@ -27,6 +28,8 @@ export const ZetaIllustrationNamesList = [
   "welcome"
 ];
 
+//TODO: This is duplicated from the list above due to issues with how custom elements manifest extracts types.
+// Once a solution is found, this should be changed to: typeof ZetaIllustrationNamesList[number]
 export type ZetaIllustrationNames =
   | "addDevice"
   | "emptyBox"
@@ -56,20 +59,7 @@ export type ZetaIllustrationNames =
  */
 @customElement("zeta-illustration")
 export class ZetaIllustration extends LitElement {
-  static styles = css`
-    :host {
-      display: inline-block;
-    }
-
-    .zeta-illustration {
-      display: contents;
-    }
-
-    .zeta-illustration svg {
-      width: 100%;
-      height: 100%;
-    }
-  `;
+  static override styles = styles;
 
   @property({ type: String }) name: ZetaIllustrationNames;
 
@@ -83,9 +73,7 @@ export class ZetaIllustration extends LitElement {
   };
 
   protected override render() {
-    const svgPath = this.getIllustrationPath(this.name);
-
-    return html`<img src="${svgPath}" alt="${this.name}" style="width: 100%; height: 100%;" />`;
+    return html`<img src="${this.getIllustrationPath(this.name)}" alt="${this.name}" style="width: 100%; height: 100%;" />`;
   }
 }
 

@@ -23,15 +23,13 @@ export class ZetaEmptyState extends Contourable(LitElement) {
   protected override render() {
     return html`
       <div class="container">
-        <div class="illustration">
-          <slot name="illustration"></slot>
-        </div>
+        <slot name="illustration"></slot>
         <div class="content">
           <h4 class="title">${this.title}</h4>
           <p class="description">${this.description}</p>
           <div class="actions">
-            <slot name="primaryAction"></slot>
             <slot name="secondaryAction"></slot>
+            <slot name="primaryAction"></slot>
           </div>
         </div>
       </div>
