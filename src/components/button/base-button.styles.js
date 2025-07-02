@@ -38,7 +38,7 @@ export default css`
   :host([size="small"]) > button {
     padding: var(--spacing-small);
     font: var(--label-small);
-    --icon-size: var(---spacing-large);
+    --icon-size: var(--spacing-large);
     gap: var(--spacing-minimum);
     zeta-icon {
       width: var(--spacing-large);

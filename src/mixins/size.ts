@@ -20,8 +20,6 @@ export const Size = <T extends Constructor<LitElement>>(superClass: T) => {
   class SizeClass extends superClass {
     /** Size of component */
     @property({ type: String, reflect: true }) size: SizeType = "medium";
-
-    static styles = [(superClass as unknown as typeof LitElement).styles ?? []];
   }
   return SizeClass as Constructor<SizeInterface & LitElement> & T;
 };
