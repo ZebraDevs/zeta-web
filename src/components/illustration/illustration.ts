@@ -67,6 +67,7 @@ export class ZetaIllustration extends LitElement {
   /** (Optional) alt text for the icons. Defaults to the illustration name. */
   @property({ type: String }) alt?: string;
 
+  /** The base path of zeta-web components. */
   @property({ type: String, reflect: true }) basePath: string = "node_modules/@zebra-fed/zeta-web";
 
   getIllustrationPath = (name: ZetaIllustrationNames): string => {

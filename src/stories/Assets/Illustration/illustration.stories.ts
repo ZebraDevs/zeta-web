@@ -17,12 +17,6 @@ const meta: Meta<ZetaIllustration> = {
     name: {
       options: ZetaIllustrationNamesList,
       control: { type: "select" }
-    },
-    basePath: {
-      table: { disable: true }
-    },
-    alt: {
-      table: { disable: true }
     }
   },
   parameters: {
@@ -37,5 +31,13 @@ const meta: Meta<ZetaIllustration> = {
 export default meta;
 
 export const Illustrations: StoryObj = {
+  argTypes: {
+    basePath: {
+      table: { disable: true }
+    },
+    alt: {
+      table: { disable: true }
+    }
+  },
   render: args => html` <zeta-illustration ${spread(args)} style="width: 50%; height: 50%; display: inline-block"></zeta-illustration> `
 };
