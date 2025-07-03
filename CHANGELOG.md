@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.8.0](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.7.1...zeta-web-v0.8.0) (2025-07-03)
+
+
+### ✨ New Features
+
+* **UX-1455:** Empty State  ([#76](https://github.com/ZebraDevs/zeta-web/issues/76)) ([673054f](https://github.com/ZebraDevs/zeta-web/commit/673054f291e848579ad7075955102e3ff4deb3d3))
+* **UX-1466:** Add illustrations ([#75](https://github.com/ZebraDevs/zeta-web/issues/75)) ([8c06c10](https://github.com/ZebraDevs/zeta-web/commit/8c06c10b59291261050dc45cabb86a0c6ff120bb))
+
+
+### 🪲 Bug Fixes
+
+* Update text themes with line height 0 ([673054f](https://github.com/ZebraDevs/zeta-web/commit/673054f291e848579ad7075955102e3ff4deb3d3))
+* **UX-1460:** Update badges to match designs ([#68](https://github.com/ZebraDevs/zeta-web/issues/68)) ([0d4c3b1](https://github.com/ZebraDevs/zeta-web/commit/0d4c3b125a384a4731a98d04f88ac320cf91e81b))
+
+
+### ⛓️ Dependencies
+
+* **automated:** Update theme tokens ([#72](https://github.com/ZebraDevs/zeta-web/issues/72)) ([bd4bba5](https://github.com/ZebraDevs/zeta-web/commit/bd4bba5640cd83a9f333b64317187f275b98996a))
+* Update zeta-icons library ([#73](https://github.com/ZebraDevs/zeta-web/issues/73)) ([dd525c4](https://github.com/ZebraDevs/zeta-web/commit/dd525c4ec627f633d20c5f3c0725f0ad513d7eed))
+
 ## [0.7.1](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.7.0...zeta-web-v0.7.1) (2025-06-26)
 
 
