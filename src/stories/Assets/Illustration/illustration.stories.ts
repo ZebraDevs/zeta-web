@@ -2,12 +2,17 @@ import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import "../../../components/illustration/illustration";
 import { ZetaIllustration, ZetaIllustrationNamesList } from "../../../components/illustration/illustration.js";
+import { spreadGenerator } from "../../utils";
 
+const spread = spreadGenerator(ZetaIllustration);
 const meta: Meta<ZetaIllustration> = {
   component: "zeta-illustration",
   title: "Assets/Illustration",
   tags: ["autodocs"],
-
+  args: {
+    basePath: "",
+    name: "welcome"
+  },
   argTypes: {
     name: {
       options: ZetaIllustrationNamesList,
@@ -25,11 +30,14 @@ const meta: Meta<ZetaIllustration> = {
 };
 export default meta;
 
-type Story = StoryObj<ZetaIllustration>;
-
-export const Illustrations: Story = {
-  args: {
-    name: "welcome"
+export const Illustrations: StoryObj = {
+  argTypes: {
+    basePath: {
+      table: { disable: true }
+    },
+    alt: {
+      table: { disable: true }
+    }
   },
-  render: args => html`<zeta-illustration name="${args.name}" style="width: 50%; height: 50%; display: inline-block"></zeta-illustration>`
+  render: args => html` <zeta-illustration ${spread(args)} style="width: 50%; height: 50%; display: inline-block"></zeta-illustration> `
 };

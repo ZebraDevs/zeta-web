@@ -34,6 +34,10 @@ describe("zeta-priority-pill", () => {
           await contrastTest(`Priority pill index ${status} / ${size}`, index!, index!);
           await contrastTest(`Priority pill label ${status} / ${size}`, label!, container!);
         });
+        it("meets aria requirements", async () => {
+          await expect(subject).to.be.accessible();
+          await expect(subject).shadowDom.to.be.accessible();
+        });
       });
     });
   });

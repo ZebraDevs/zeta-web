@@ -19,6 +19,7 @@ import { ZetaDialog } from "./components/dialog/dialog.js";
 import { ZetaDropdownMenuButton } from "./components/dropdown/dropdown-menu/dropdown-menu-button.js";
 import { ZetaDropdownMenuItem } from "./components/dropdown/menu-item/dropdown-menu-item.js";
 import { ZetaDroppable } from "./components/dropdown/droppable.js";
+import { ZetaEmptyState } from "./components/empty-state/empty-state.js";
 import { ZetaFab } from "./components/fab/fab.js";
 import { ZetaFileUpload } from "./components/file-upload/file-upload.js";
 import { ZetaFilterChip } from "./components/chips/filter-chip/filter-chip.js";
@@ -27,6 +28,7 @@ import { ZetaGridMenuItem } from "./components/grid-menu-item/grid-menu-item.js"
 import { ZetaIcon } from "./components/icon/icon.js";
 import { ZetaIconButton } from "./components/button/icon-button/icon-button.js";
 import { ZetaIconIndicator } from "./components/badges/indicators/indicators.js";
+import { ZetaIllustration } from "./components/illustration/illustration.js";
 import { ZetaIndicator } from "./components/badges/indicators/indicators.js";
 import { ZetaInPageBanner } from "./components/in-page-banner/in-page-banner.js";
 import { ZetaInputChip } from "./components/chips/input-chip/input-chip.js";
@@ -92,6 +94,7 @@ export {
   ZetaDropdownMenuButton,
   ZetaDropdownMenuItem,
   ZetaDroppable,
+  ZetaEmptyState,
   ZetaFab,
   ZetaFileUpload,
   ZetaFilterChip,
@@ -100,6 +103,7 @@ export {
   ZetaIcon,
   ZetaIconButton,
   ZetaIconIndicator,
+  ZetaIllustration,
   ZetaIndicator,
   ZetaInPageBanner,
   ZetaInputChip,
