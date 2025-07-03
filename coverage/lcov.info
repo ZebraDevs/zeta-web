@@ -3594,7 +3594,7 @@ end_of_record
 TN:
 SF:src/components/illustration/illustration.ts
 FN:61,ZetaIllustration
-FN:72,ZetaIllustration.getIllustrationPath
+FN:73,ZetaIllustration.getIllustrationPath
 FN:82,render
 FNF:3
 FNH:3
@@ -3676,9 +3676,9 @@ DA:72,7
 DA:73,7
 DA:74,7
 DA:75,7
-DA:76,0
+DA:76,7
 DA:77,0
-DA:78,7
+DA:78,0
 DA:79,7
 DA:80,7
 DA:81,4
@@ -3695,8 +3695,8 @@ DA:91,4
 LF:91
 LH:89
 BRDA:61,0,0,7
-BRDA:72,1,0,7
-BRDA:75,2,0,0
+BRDA:73,1,0,7
+BRDA:76,2,0,0
 BRDA:82,3,0,7
 BRF:4
 BRH:3
