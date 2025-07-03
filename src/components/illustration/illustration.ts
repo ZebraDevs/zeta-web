@@ -75,7 +75,6 @@ export class ZetaIllustration extends LitElement {
     if (zdna.includes(name)) {
       folder = "zdna";
     }
-    console.log(this.basePath);
     return this.basePath + "/assets/illustrations/" + folder + "/" + name + ".svg";
   };
 
