@@ -45,7 +45,9 @@ export const Container: StoryObj = {
 export const ContainerCollapsible: StoryObj = {
   args: {
     collapsible: true,
-    expanded: false
+    expanded: false,
+    ai: true,
+    required: true
   },
   argTypes: {
     collapsible: { table: { disable: true } },

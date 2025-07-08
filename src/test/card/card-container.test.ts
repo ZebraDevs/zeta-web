@@ -150,14 +150,17 @@ describe("zeta-card-container", () => {
     it("adds AI border when ai is true", async () => {
       subject.setAttribute("title", "Title");
       subject.setAttribute("description", "Description");
-      subject.setAttribute("ai", "true");
-
       await subject.updateComplete;
 
-      const container = subject.shadowRoot?.querySelector(".card");
-      expect(container).to.exist;
-      const beforeStyle = getComputedStyle(container as Element, "::before");
-      expect(beforeStyle.background).to.match(/linear-gradient/);
+      const border = subject.shadowRoot?.querySelector(".border");
+      expect(border).to.exist;
+      const beforeAIStyle = getComputedStyle(border as Element);
+      expect(beforeAIStyle.background).to.not.contain("linear-gradient");
+
+      subject.setAttribute("ai", "true");
+      await subject.updateComplete;
+      const afterAIStyle = getComputedStyle(border as Element);
+      expect(afterAIStyle.background).to.contain("linear-gradient");
     });
 
     it("shows the expand icon pointing right when collapsed", async () => {

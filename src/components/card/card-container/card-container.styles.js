@@ -1,7 +1,11 @@
 import { css } from "lit";
 
-//TODO(LUKE): Transition - animation not working on body
 export default css`
+  :host {
+    transition:
+      height 0.2s ease-in-out,
+      max-height 0.2s ease-in-out;
+  }
   .card-header {
     display: flex;
     padding-left: calc(var(--spacing-2xl) - var(--border-size-medium));
@@ -9,7 +13,7 @@ export default css`
     padding-right: calc(var(--spacing-2xl) - var(--border-size-medium));
     padding-bottom: calc(var(--spacing-2xl) - var(--border-size-medium));
     width: calc(100% - var(--spacing-7xl));
-    border-radius: var(--spacing-medium);
+    border-radius: calc(var(--spacing-medium) - var(--border-size-small));
     transition: background 0.2s ease-in-out;
 
     zeta-icon {
@@ -22,15 +26,12 @@ export default css`
     .card-header {
       padding-bottom: var(--spacing-large);
     }
+  } 
+  :host(:not([collapsible])) .card:not(.slot-populated) .card-content {
+    margin: 0;
   }
 
-  :host(:not([collapsible])[expanded]) .card:not(.slot-populated) {
-    .card-content {
-      margin: 0;
-    }
-  }
-
-  :host([collapsible]):hover {
+  :host([collapsible]) .card-header:hover {
     background-color: var(--surface-hover);
   }
 
@@ -63,12 +64,8 @@ export default css`
     color: var(--main-subtle);
   }
 
-  :host([collapsible]) .card {
+  :host([collapsible]) .card-header {
     cursor: pointer;
-
-    .card-content {
-      cursor: auto;
-    }
   }
 
   :host([collapsible][expanded]) .card-header {
@@ -96,26 +93,19 @@ export default css`
     position: relative;
     box-sizing: border-box;
     background-clip: padding-box;
-    border: solid var(--border-size-medium) transparent;
-    border-radius: var(--spacing-medium);
+    border-radius: calc(var(--spacing-medium) - var(--border-size-small));
     flex-direction: column;
     align-items: flex-start;
     transition: all 0.4s ease-in-out;
     background-color: var(--surface-default);
   }
 
-  :host([ai]) .card {
-    &:before {
-      content: "";
-      position: absolute;
-      top: var(--spacing-none);
-      right: var(--spacing-none);
-      bottom: var(--spacing-none);
-      left: var(--spacing-none);
-      z-index: -1;
-      margin: calc(-1 * var(--border-size-medium));
-      border-radius: inherit;
-      background: linear-gradient(to right, #1f6aff, #ff40fc 77%);
-    }
+  .border {
+    border-radius: var(--spacing-medium);
+    padding: var(--border-size-medium);
+  }
+
+  :host([ai]) .border {
+    background: linear-gradient(to right, #1f6aff, #ff40fc 77%);
   }
 `;

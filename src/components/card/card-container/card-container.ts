@@ -41,29 +41,33 @@ export class ZetaCardContainer extends Contourable(LitElement) {
   @state() private hasSlotContent = false;
 
   protected override render() {
-    return html`<div class="card ${this.hasSlotContent ? "slot-populated" : ""}">
-      <div class="card-header" @click=${() => (this.expanded = !this.expanded)}>
-        ${this.collapsible ? html`<zeta-icon name="expand_more"></zeta-icon>` : nothing}
-        <div class="header-content">
-          <div class="title-container">
-            <h4 class="card-title">${this.title}</h4>
-            ${this.required ? html`<span class="required">&nbsp;*</span>` : nothing}
+    return html`
+      <div class="border">
+        <div class="card ${this.hasSlotContent ? "slot-populated" : ""}">
+          <div class="card-header" @click=${this.collapsible ? () => (this.expanded = !this.expanded) : null}>
+            ${this.collapsible ? html`<zeta-icon name="expand_more"></zeta-icon>` : nothing}
+            <div class="header-content">
+              <div class="title-container">
+                <h4 class="card-title">${this.title}</h4>
+                ${this.required ? html`<span class="required">&nbsp;*</span>` : nothing}
+              </div>
+              <h5 class="card-description">${this.description}</h5>
+            </div>
           </div>
-          <h5 class="card-description">${this.description}</h5>
+          <div class="card-content">
+            <slot
+              @slotchange=${(e: Event) => {
+                const slot = e.target as HTMLSlotElement;
+                const assignedNodes = slot.assignedNodes({ flatten: true });
+                this.hasSlotContent = assignedNodes.some(
+                  node => node.nodeType === Node.ELEMENT_NODE || (node.nodeType === Node.TEXT_NODE && node.textContent?.trim())
+                );
+              }}
+            ></slot>
+          </div>
         </div>
       </div>
-      <div class="card-content">
-        <slot
-          @slotchange=${(e: Event) => {
-            const slot = e.target as HTMLSlotElement;
-            const assignedNodes = slot.assignedNodes({ flatten: true });
-            this.hasSlotContent = assignedNodes.some(
-              node => node.nodeType === Node.ELEMENT_NODE || (node.nodeType === Node.TEXT_NODE && node.textContent?.trim())
-            );
-          }}
-        ></slot>
-      </div>
-    </div> `;
+    `;
   }
 
   static styles = [super.styles ?? [], styles];
