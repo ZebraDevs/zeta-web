@@ -8,7 +8,7 @@ const spread = spreadGenerator(ZetaCardContainer);
 
 const meta: Meta<ZetaCardContainer> = {
   title: "Components/Cards",
-  component: "zeta-card-body",
+  component: "zeta-card-container",
   args: {
     title: "Title",
     description: "Description",

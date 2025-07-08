@@ -15,17 +15,15 @@ export default css`
     width: calc(100% - var(--spacing-7xl));
     border-radius: calc(var(--spacing-medium) - var(--border-size-small));
     transition: background 0.2s ease-in-out;
-
-    zeta-icon {
-      width: var(--spacing-2xl);
-      height: var(--spacing-2xl);
-    }
   }
 
-  :host(:not([collapsible])) .card.slot-populated {
-    .card-header {
-      padding-bottom: var(--spacing-large);
-    }
+  .card-header zeta-icon {
+    width: var(--spacing-2xl);
+    height: var(--spacing-2xl);
+  }
+
+  :host(:not([collapsible])) .card.slot-populated .card-header {
+    padding-bottom: var(--spacing-large);
   } 
   :host(:not([collapsible])) .card:not(.slot-populated) .card-content {
     margin: 0;

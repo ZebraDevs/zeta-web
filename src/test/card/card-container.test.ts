@@ -19,7 +19,7 @@ describe("zeta-card-container", () => {
       }
       
     </style>
-    <zeta-card-container ><div style='color: var(--main-default) width: 480px; height: 240px'>Placeholder</div></zeta-card-container>
+    <zeta-card-container ><div style='color: var(--main-default); width: 480px; height: 240px'>Placeholder</div></zeta-card-container>
     
     </div>`
   ) => {
