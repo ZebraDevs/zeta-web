@@ -2,7 +2,7 @@ import { html, LitElement, nothing } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 import styles from "./card-container.styles.js";
 import { Contourable } from "../../../mixins/contour.js";
-import "../../button/icon-button/icon-button";
+import "../../icon/icon.js";
 
 /** A card component with a header and optional content that can be collapsible.
  *
@@ -22,28 +22,26 @@ export class ZetaCardContainer extends Contourable(LitElement) {
   /** Whether the card is collapsible.
    *
    * Slotted content *must* be provided for the collapsible functionality to work. */
-  @property({ type: Boolean }) collapsible = false;
+  @property({ type: Boolean, reflect: true }) collapsible = false;
 
   /** Whether the card is expanded or collapsed.
    *
    * If `collapsible` is true, this property controls the initial state of the card. */
-  @property({ type: Boolean, reflect: true }) expanded = true;
+  @property({ type: Boolean, reflect: true }) expanded = false;
 
   /** Whether the card is required, indicated by a red asterisk (*) in the header.*/
   @property({ type: Boolean }) required = false;
 
+  /** Whether the card is an AI card, which may have different styling or behavior.
+   *
+   * This is primarily used for AI-related components. */
+  @property({ type: Boolean }) ai = false;
+
   /** Internal state to track if slot has content */
   @state() private hasSlotContent = false;
 
-  /** Check if the default slot has content */
-  private handleSlotChange(e: Event) {
-    const slot = e.target as HTMLSlotElement;
-    const assignedNodes = slot.assignedNodes({ flatten: true });
-    this.hasSlotContent = assignedNodes.some(node => node.nodeType === Node.ELEMENT_NODE || (node.nodeType === Node.TEXT_NODE && node.textContent?.trim()));
-  }
-
   protected override render() {
-    return html`<div class="card">
+    return html`<div class="card ${this.hasSlotContent ? "slot-populated" : ""}">
       <div class="card-header" @click=${() => (this.expanded = !this.expanded)}>
         ${this.collapsible ? html`<zeta-icon name="expand_more"></zeta-icon>` : nothing}
         <div class="header-content">
@@ -54,8 +52,16 @@ export class ZetaCardContainer extends Contourable(LitElement) {
           <h5 class="card-description">${this.description}</h5>
         </div>
       </div>
-      <div class="card-content" ?hidden=${!this.hasSlotContent}>
-        <slot @slotchange=${this.handleSlotChange}></slot>
+      <div class="card-content">
+        <slot
+          @slotchange=${(e: Event) => {
+            const slot = e.target as HTMLSlotElement;
+            const assignedNodes = slot.assignedNodes({ flatten: true });
+            this.hasSlotContent = assignedNodes.some(
+              node => node.nodeType === Node.ELEMENT_NODE || (node.nodeType === Node.TEXT_NODE && node.textContent?.trim())
+            );
+          }}
+        ></slot>
       </div>
     </div> `;
   }

@@ -1,5 +1,6 @@
 import { css } from "lit";
 
+//TODO(LUKE): Transition - animation not working on body
 export default css`
   .card-header {
     display: flex;
@@ -17,8 +18,20 @@ export default css`
     }
   }
 
-  .card-header:hover {
-    background: var(--surface-hover);
+  :host(:not([collapsible])) .card.slot-populated {
+    .card-header {
+      padding-bottom: var(--spacing-large);
+    }
+  }
+
+  :host(:not([collapsible])[expanded]) .card:not(.slot-populated) {
+    .card-content {
+      margin: 0;
+    }
+  }
+
+  :host([collapsible]):hover {
+    background-color: var(--surface-hover);
   }
 
   :host(:not([expanded])) .card-header zeta-icon {
@@ -41,6 +54,7 @@ export default css`
   .card-header .title-container h4 {
     font: var(--h4);
     margin: var(--spacing-none);
+    color: var(--main-default);
   }
 
   .card-header h5 {
@@ -81,14 +95,16 @@ export default css`
     align-items: center;
     position: relative;
     box-sizing: border-box;
-    background: var(--surface-default);
     background-clip: padding-box;
     border: solid var(--border-size-medium) transparent;
     border-radius: var(--spacing-medium);
     flex-direction: column;
     align-items: flex-start;
     transition: all 0.4s ease-in-out;
+    background-color: var(--surface-default);
+  }
 
+  :host([ai]) .card {
     &:before {
       content: "";
       position: absolute;

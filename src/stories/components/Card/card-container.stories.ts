@@ -14,7 +14,8 @@ const meta: Meta<ZetaCardContainer> = {
     description: "Description",
     collapsible: false,
     expanded: true,
-    required: false
+    required: false,
+    ai: false
   },
   argTypes: {
     slot: { table: { disable: true } }

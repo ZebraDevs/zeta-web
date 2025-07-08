@@ -167,3 +167,26 @@ export class KeyboardActions {
     return await sendKeys({ type: keys });
   };
 }
+
+/**
+ * Disables transitions and animations within a shadow DOM
+ * This is essential for testing web components with shadow DOM
+ */
+export const disableShadowDOMTransitions = (element: Element): HTMLStyleElement | null => {
+  if (!element.shadowRoot) {
+    console.warn("Element does not have a shadow root");
+    return null;
+  }
+
+  const style = document.createElement("style");
+  style.textContent = `
+    *, *::before, *::after {
+      transition: none !important;
+      animation: none !important;
+      animation-duration: 0s !important;
+      animation-delay: 0s !important;
+    }
+  `;
+  element.shadowRoot.appendChild(style);
+  return style;
+};
