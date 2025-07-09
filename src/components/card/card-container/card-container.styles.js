@@ -1,11 +1,6 @@
 import { css } from "lit";
 
 export default css`
-  :host {
-    transition:
-      height 0.2s ease-in-out,
-      max-height 0.2s ease-in-out;
-  }
   .card-header {
     display: flex;
     padding-left: calc(var(--spacing-2xl) - var(--border-size-medium));
@@ -14,7 +9,7 @@ export default css`
     padding-bottom: calc(var(--spacing-2xl) - var(--border-size-medium));
     width: calc(100% - var(--spacing-7xl));
     border-radius: calc(var(--spacing-medium) - var(--border-size-small));
-    transition: background 0.2s ease-in-out;
+    transition: background 0.1s ease-in-out;
   }
 
   .card-header zeta-icon {
@@ -24,7 +19,8 @@ export default css`
 
   :host(:not([collapsible])) .card.slot-populated .card-header {
     padding-bottom: var(--spacing-large);
-  } 
+  }
+
   :host(:not([collapsible])) .card:not(.slot-populated) .card-content {
     margin: 0;
   }
@@ -69,20 +65,27 @@ export default css`
   :host([collapsible][expanded]) .card-header {
     padding-bottom: var(--spacing-large);
   }
-  :host([collapsible]:not([expanded])) .card-content {
-    max-height: var(--spacing-none);
-    overflow: hidden;
-    margin-top: var(--spacing-none);
-    margin-bottom: var(--spacing-none);
-  }
 
   .card-content {
     width: calc(100% - var(--spacing-7xl));
     position: relative;
-    transition: all 0.2s ease-in-out;
     margin-left: calc(var(--spacing-2xl) - var(--border-size-medium));
-    margin-bottom: calc(var(--spacing-2xl) - var(--border-size-medium));
     margin-right: calc(var(--spacing-2xl) - var(--border-size-medium));
+    display: grid;
+    grid-template-rows: 0fr;
+    transition:
+      grid-template-rows 0.3s ease-in-out,
+      margin-bottom 0.3s ease-in-out;
+  }
+
+  .card-content-wrapper {
+    overflow: hidden;
+  }
+
+  :host([collapsible][expanded]) .card-content,
+  :host(:not([collapsible])) .card-content {
+    grid-template-rows: 1fr;
+    margin-bottom: calc(var(--spacing-2xl) - var(--border-size-medium));
   }
 
   .card {
