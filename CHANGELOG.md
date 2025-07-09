@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.9.0](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.8.0...zeta-web-v0.9.0) (2025-07-09)
+
+
+### ✨ New Features
+
+* **UX-1467:** Add Card Container Component ([#78](https://github.com/ZebraDevs/zeta-web/issues/78)) ([79f3ee5](https://github.com/ZebraDevs/zeta-web/commit/79f3ee5ede983c94726ef6d6919ab6d75227ae39))
+
+
+### ⛓️ Dependencies
+
+* Update dependencies ([f2d0663](https://github.com/ZebraDevs/zeta-web/commit/f2d0663fe2a372a6b0236dd4ff964ced34905653))
+
+
+### 🧪 Tests
+
+* Add tests for Card Component ([79f3ee5](https://github.com/ZebraDevs/zeta-web/commit/79f3ee5ede983c94726ef6d6919ab6d75227ae39))
+
 ## [0.8.0](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.7.1...zeta-web-v0.8.0) (2025-07-03)
 
 
