@@ -12,6 +12,7 @@ import { ZetaButtonGroup } from "./components/button-group/button-group.js";
 import { ZetaButtonGroupItem } from "./components/button-group/button-group-item/button-group-item.js";
 import { ZetaCard } from "./components/card/card.js";
 import { ZetaCardBody } from "./components/card/card-body/card-body.js";
+import { ZetaCardContainer } from "./components/card/card-container/card-container.js";
 import { ZetaCardFooter } from "./components/card/card-footer/card-footer.js";
 import { ZetaCardHeader } from "./components/card/card-header/card-header.js";
 import { ZetaCheckbox } from "./components/checkbox/checkbox.js";
@@ -87,6 +88,7 @@ export {
   ZetaButtonGroupItem,
   ZetaCard,
   ZetaCardBody,
+  ZetaCardContainer,
   ZetaCardFooter,
   ZetaCardHeader,
   ZetaCheckbox,
