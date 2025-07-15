@@ -1,10 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaAccordion } from "../../components/accordion/accordion.js";
 import { html } from "lit";
-import { spreadGenerator } from "../utils.js";
 import "../../components/accordion/accordion-item/accordion-item";
-
-const spread = spreadGenerator(ZetaAccordion);
 
 type AccordionStoryArgs = ZetaAccordion & { selectable: boolean; navigation: boolean };
 const meta: Meta<AccordionStoryArgs> = {
@@ -14,7 +11,13 @@ const meta: Meta<AccordionStoryArgs> = {
   args: {
     selectable: true,
     navigation: false,
-    inCard: true
+    inCard: true,
+    expandMultiple: false,
+    selectMultiple: false,
+    rounded: true
+  },
+  argTypes: {
+    slot: { table: { disable: true } }
   },
   parameters: {
     design: {
@@ -30,14 +33,14 @@ export default meta;
 
 export const Accordion: StoryObj<AccordionStoryArgs> = {
   render: args =>
-    html`<zeta-accordion .inCard=${args.inCard}>
-      <zeta-accordion-item title="Accordion Item 1" .isSelectable=${args.selectable && !args.navigation} .isNavigation=${args.navigation}>
+    html`<zeta-accordion .inCard=${args.inCard} .expandMultiple=${args.expandMultiple} .selectMultiple=${args.selectMultiple} .rounded=${args.rounded}>
+      <zeta-accordion-item title="Accordion Item 1" .selectable=${args.selectable && !args.navigation} .navigation=${args.navigation}>
         ${!args.navigation && html`<div>content!</div>`}
       </zeta-accordion-item>
-      <zeta-accordion-item title="Accordion Item 1" .isSelectable=${args.selectable && !args.navigation} .isNavigation=${args.navigation}>
+      <zeta-accordion-item title="Accordion Item 1" .selectable=${args.selectable && !args.navigation} .navigation=${args.navigation}>
         ${!args.navigation && html`<div>content!</div>`}
       </zeta-accordion-item>
-      <zeta-accordion-item title="Accordion Item 1" .isSelectable=${args.selectable && !args.navigation} .isNavigation=${args.navigation}>
+      <zeta-accordion-item title="Accordion Item 1" .selectable=${args.selectable && !args.navigation} .navigation=${args.navigation}>
         ${!args.navigation && html`<div>content!</div>`}
       </zeta-accordion-item>
     </zeta-accordion>`

@@ -4,6 +4,7 @@ export default css`
     display: block;
     position: relative;
     width: 100%;
+    overflow: hidden;
   }
   :host([inCard]) {
     border: var(--border-size-small) solid var(--border-subtle);
@@ -16,13 +17,11 @@ export default css`
     border-radius: var(--radius-rounded);
   }
 
- 
-
   :host([inCard]) ::slotted(zeta-accordion-item:not(:first-child))::before {
-   content: '';
-   height: var(--border-size-small); 
-   background: var(--border-subtle);
-   position: absolute;
-   width: 100%;
+    content: "";
+    height: var(--border-size-small);
+    background: var(--border-subtle);
+    position: absolute;
+    width: 100%;
   }
 `;

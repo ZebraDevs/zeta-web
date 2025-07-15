@@ -1,11 +1,8 @@
 import { html, LitElement, nothing } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import { Contourable, Interactive } from "../../../mixins/mixins.js";
+import { Contourable } from "../../../mixins/mixins.js";
 import styles from "./accordion-item.styles.js";
 import "../../icon/icon";
-
-//   /// Callback triggered when the accordion item is tapped.
-//   final VoidCallback? onTap;
 
 /**
  * The accordion is a control element comprising a vertically stacked list of items, such as labels or thumbnails. Each item can be "expanded" or "collapsed" to reveal the content associated with that item. There can be zero expanded items, exactly one, or more than one item expanded at a time, depending on the configuration.
@@ -13,30 +10,36 @@ import "../../icon/icon";
  * @slot - content displayed when the accordion item is expanded.
  * @slot header - content displayed in the header of the accordion item.
  *
+ * @part item-header - The header of the accordion item.
+ *
+ * @fires item-expanded - Dispatched when the accordion item is expanded or collapsed.
+ * @fires item-selected - Dispatched when the accordion item is selected or deselected.
+ *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=3427-67874
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-accordion--docs
  */
 @customElement("zeta-accordion-item")
-export class ZetaAccordionItem extends Contourable(Interactive(LitElement)) {
+export class ZetaAccordionItem extends Contourable(LitElement) {
   /**  Title of the accordion item. */
   @property({ type: String, reflect: true }) title: string;
 
   /** Whether the accordion item is initially open. */
-  @property({ type: Boolean, reflect: true }) isExpanded = false;
+  @property({ type: Boolean, reflect: true }) expanded = false;
 
   /** Whether the accordion item is initially selected. */
-  @property({ type: Boolean, reflect: true }) isSelected = false;
+  @property({ type: Boolean, reflect: true }) selected = false;
 
   /** Whether the item is selectable */
-  @property({ type: Boolean, reflect: true }) isSelectable = false;
+  @property({ type: Boolean, reflect: true }) selectable = false;
 
   /** Whether the accordion item is a navigation item. */
-  @property({ type: Boolean, reflect: true }) isNavigation = false;
+  @property({ type: Boolean, reflect: true }) navigation = false;
 
   protected hasDefaultSlot = false;
 
   protected firstUpdated() {
     const slot = this.shadowRoot?.querySelector("slot:not([name])") as HTMLSlotElement | null;
+
     if (slot) {
       const updateHasDefaultSlot = () => {
         this.hasDefaultSlot = slot.assignedElements({ flatten: true }).length > 0;
@@ -48,8 +51,23 @@ export class ZetaAccordionItem extends Contourable(Interactive(LitElement)) {
   }
 
   toggle() {
-    this.isExpanded = !this.isExpanded;
+    this.expanded = !this.expanded;
     this.requestUpdate();
+
+    // Dispatch event to parent accordion
+    if (this.expanded) {
+      this.dispatchEvent(new CustomEvent("item-expanded", { bubbles: true, detail: { item: this } }));
+    }
+  }
+
+  private toggleSelection() {
+    this.selected = !this.selected;
+    this.requestUpdate();
+
+    // Dispatch event to parent accordion
+    if (this.selected) {
+      this.dispatchEvent(new CustomEvent("item-selected", { bubbles: true, detail: { item: this } }));
+    }
   }
 
   protected render() {
@@ -57,23 +75,17 @@ export class ZetaAccordionItem extends Contourable(Interactive(LitElement)) {
     let leftTap: (() => void) | null = null;
     let rightTap: (() => void) | null = null;
 
-    if (this.isSelectable && this.hasDefaultSlot) {
+    if (this.selectable && this.hasDefaultSlot) {
       // Split behavior: left for expansion, right for selection
       wholeTileTap = null;
       leftTap = () => this.toggle();
-      rightTap = () => {
-        this.isSelected = !this.isSelected;
-        this.requestUpdate();
-      };
-    } else if (this.isSelectable) {
+      rightTap = () => this.toggleSelection();
+    } else if (this.selectable) {
       // Selectable without child: whole tile toggles selection
-      wholeTileTap = () => {
-        this.isSelected = !this.isSelected;
-        this.requestUpdate();
-      };
+      wholeTileTap = () => this.toggleSelection();
       leftTap = null;
       rightTap = null;
-    } else if (this.isNavigation) {
+    } else if (this.navigation) {
       // Navigation: whole tile triggers navigation
       wholeTileTap = () => {
         // handleNavigation logic here
@@ -88,21 +100,22 @@ export class ZetaAccordionItem extends Contourable(Interactive(LitElement)) {
     }
 
     return html`<div>
-      <div class="accordion-item-header interactive-target" @click=${() => wholeTileTap && wholeTileTap()}>
+      <div class="accordion-item-header" part="item-header" @click=${() => wholeTileTap && wholeTileTap()}>
         <div class="row">
-          ${this.isSelectable && this.hasDefaultSlot
-            ? html`<div class="chevron-wrapper"><zeta-icon class="chevron" @click=${() => leftTap && leftTap()}>chevron_right</zeta-icon></div>`
+          ${this.selectable && this.hasDefaultSlot
+            ? html`<div class="chevron-wrapper" @click=${() => leftTap && leftTap()}><zeta-icon class="chevron">chevron_right</zeta-icon></div>`
             : nothing}
           <div @click=${() => rightTap && rightTap()} class="title-wrapper">
             <h4 class="title">${this.title}</h4>
-            ${this.isSelectable && this.isSelected ? html`<zeta-icon class="check">check_mark</zeta-icon>` : nothing}
-            ${this.isNavigation ? html`<zeta-icon class="navigation">chevron_right</zeta-icon>` : nothing}
+            ${this.selectable && this.selected ? html`<zeta-icon class="check trailing">check_mark</zeta-icon>` : nothing}
+            ${this.navigation ? html`<zeta-icon class="navigation trailing">chevron_right</zeta-icon>` : nothing}
+            ${this.hasDefaultSlot && !this.navigation && !this.selectable ? html`<zeta-icon class="expand trailing">expand_more</zeta-icon>` : nothing}
           </div>
         </div>
 
         <slot name="header"></slot>
       </div>
-      <div class="body">
+      <div class="body" part="item-content">
         <slot></slot>
       </div>
     </div>`;

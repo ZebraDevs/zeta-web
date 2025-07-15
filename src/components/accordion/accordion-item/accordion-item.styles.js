@@ -1,8 +1,14 @@
 import { css } from "lit";
 export default css`
+  :host {
+    cursor: pointer;
+    background-color: var(--surface-default);
+  }
+
   h4 {
     font: var(--h4);
     margin: var(--spacing-large) var(--spacing-none);
+    color: var(--main-default);
   }
 
   .row {
@@ -24,6 +30,7 @@ export default css`
 
   .chevron-wrapper:hover {
     background-color: var(--surface-selected-hover);
+    border-radius: var(--radius-rounded);
   }
 
   zeta-icon.chevron {
@@ -33,14 +40,13 @@ export default css`
 
   zeta-icon.check {
     --icon-color: var(--main-primary);
-    margin-right: var(--spacing-large);
   }
 
-  :host([isExpanded]) .body {
+  :host([expanded]) .body {
     max-height: 100px;
   }
 
-  :host([isExpanded]) zeta-icon.chevron {
+  :host([expanded]) zeta-icon.chevron {
     rotate: 90deg;
   }
 
@@ -62,11 +68,26 @@ export default css`
     width: 100%;
   }
 
-  :host(:not(isSelectable)) .title-wrapper {
+  :host(:not([selectable])) .title-wrapper {
     margin-left: var(--spacing-large);
   }
 
-  zeta-icon.navigation {
+  zeta-icon.trailing {
     margin-right: var(--spacing-large);
+  }
+
+  :host([expanded]) zeta-icon.expand {
+    rotate: 180deg;
+  }
+
+  :host([expanded]) .body {
+    padding: var(--spacing-large);
+  }
+  .body {
+    padding: var(--spacing-none) var(--spacing-large);
+  }
+
+  :host([navigation]) .body {
+    display: none;
   }
 `;
