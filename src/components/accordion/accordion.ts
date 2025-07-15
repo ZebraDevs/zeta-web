@@ -2,48 +2,30 @@ import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { Contourable, Interactive } from "../../mixins/mixins.js";
 import styles from "./accordion.styles.js";
-import "../icon/icon.js";
-
-// TODO(UX-1334): Accordion closes when clicked inside even if there is a button inside.
 
 /**
  * The accordion is a control element comprising a vertically stacked list of items, such as labels or thumbnails. Each item can be "expanded" or "collapsed" to reveal the content associated with that item. There can be zero expanded items, exactly one, or more than one item expanded at a time, depending on the configuration.
  *
- * The contents within the tag will be the child of the open accordion. Typically, this would be list items. Custom styles are applied to ```<li>``` elements to match Zeta styles.
- *
- * @slot - Typically li
+ * @slot - children should be `zeta-accordion-item` elements.
  *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=3427-67874
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-accordion--docs
  */
 @customElement("zeta-accordion")
 export class ZetaAccordion extends Contourable(Interactive(LitElement)) {
-  /** The title of the accordion. */
-  @property({ type: String }) accordionTitle?: string;
+  /** Determines if the ZetaAccordion should be in a card container. */
+  @property({ type: Boolean, reflect: true }) inCard = false;
 
-  /**
-   * Creates a border around the accordion.
-   */
-  @property({ type: Boolean, reflect: true }) contained: boolean = false;
+  /** Determines if multiple items can be open at the same time.
+  When `false`, only one accordion item can be open at a time. */
+  @property({ type: Boolean, reflect: true }) openMultiple = false;
 
-  /**
-   * Whether the accordion is open.
-   */
-  @property({ type: Boolean, reflect: true }) open = false;
-
-  private toggleOpen() {
-    if (!this.disabled) this.open = !this.open;
-  }
+  /** Determines if multiple accordion items can be selected. */
+  @property({ type: Boolean, reflect: true }) selectMultiple = false;
 
   protected render() {
-    return html` <div class="accordion">
-      <div class="title interactive-target" @click=${(_e: Event) => this.toggleOpen()}>
-        <div>${this.accordionTitle}</div>
-        <zeta-icon .rounded=${this.rounded}>${this.open ? "remove" : "add"}</zeta-icon>
-      </div>
-      <div class="body">
-        <slot></slot>
-      </div>
+    return html` <div class="accordion contourable-target">
+      <slot> </slot>
     </div>`;
   }
 

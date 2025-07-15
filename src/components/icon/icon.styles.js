@@ -37,6 +37,8 @@ export default [
       font-size: var(--icon-size, 24px);
       line-height: var(--icon-size, 1);
       font-family: var(--icon-font, "zeta-icons-round");
+      width: var(--icon-size, 24px);
+      height: var(--icon-size, 24px);
     }
 
     :host ::slotted(svg) {
