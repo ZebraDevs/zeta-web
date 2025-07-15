@@ -8,5 +8,13 @@
   "files.associations": {
     "*.json": "jsonc"
   },
-  "cssVariables.lookupFiles": ["src/generated/tokens/primitives.css", "src/generated/tokens/semantics.css"]
+  "cssVariables.lookupFiles": ["src/generated/tokens/primitives.css", "src/generated/tokens/semantics.css"],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
