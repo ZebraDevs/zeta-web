@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
-import { ZetaAccordion } from "../../components/accordion/accordion.js";
+import { ZetaAccordion } from "../../../components/accordion/accordion.js";
 import { html } from "lit";
-import "../../components/accordion/accordion-item/accordion-item";
-import "../../components/button/button";
+import "../../../components/accordion/accordion-item/accordion-item.js";
+import "../../../components/button/button.js";
 
 type AccordionStoryArgs = ZetaAccordion & { selectable: boolean; navigation: boolean };
 const meta: Meta<AccordionStoryArgs> = {
