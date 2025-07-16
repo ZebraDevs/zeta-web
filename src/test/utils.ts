@@ -188,5 +188,6 @@ export const disableShadowDOMTransitions = (element: Element): HTMLStyleElement 
     }
   `;
   element.shadowRoot.appendChild(style);
+  element.appendChild(style);
   return style;
 };

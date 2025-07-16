@@ -1,5 +1,9 @@
 import { css } from "lit";
 export default css`
+  .body-content {
+    transition: padding 250ms ease-out;
+  }
+
   :host {
     cursor: pointer;
     background-color: var(--surface-default);
@@ -42,21 +46,26 @@ export default css`
     --icon-color: var(--main-primary);
   }
 
-  :host([expanded]) .body {
-    max-height: 100px;
-  }
-
   :host([expanded]) zeta-icon.chevron {
     rotate: 90deg;
   }
 
   .body {
-    overflow: hidden;
-    transition: all 300ms ease-in-out;
-    max-height: 0;
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 250ms ease-out;
   }
 
-  .accordion-item-header:hover {
+  .body:not([hidden]) {
+    grid-template-rows: 1fr;
+  }
+
+  .body-content {
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  .accordion-item-header .row:hover {
     background-color: var(--surface-hover);
   }
 
@@ -80,14 +89,21 @@ export default css`
     rotate: 180deg;
   }
 
-  :host([expanded]) .body {
-    padding: var(--spacing-large);
-  }
   .body {
     padding: var(--spacing-none) var(--spacing-large);
   }
 
+  .body:not([hidden]) .body-content {
+    padding-top: var(--spacing-large);
+    padding-bottom: var(--spacing-large);
+  }
+
   :host([navigation]) .body {
     display: none;
+  }
+
+  ::slotted([slot="header"]) {
+    margin: var(--spacing-large);
+    margin-top: var(--spacing-0);
   }
 `;

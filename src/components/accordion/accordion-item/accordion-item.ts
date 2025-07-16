@@ -11,6 +11,8 @@ import "../../icon/icon";
  * @slot header - content displayed in the header of the accordion item.
  *
  * @part item-header - The header of the accordion item.
+ * @part item-content - The content area of the accordion item.
+ * @part header-content - The content area of the accordion item header.
  *
  * @fires item-expanded - Dispatched when the accordion item is expanded or collapsed.
  * @fires item-selected - Dispatched when the accordion item is selected or deselected.
@@ -21,13 +23,13 @@ import "../../icon/icon";
 @customElement("zeta-accordion-item")
 export class ZetaAccordionItem extends Contourable(LitElement) {
   /**  Title of the accordion item. */
-  @property({ type: String, reflect: true }) title: string;
+  @property({ type: String }) title: string;
 
   /** Whether the accordion item is initially open. */
   @property({ type: Boolean, reflect: true }) expanded = false;
 
   /** Whether the accordion item is initially selected. */
-  @property({ type: Boolean, reflect: true }) selected = false;
+  @property({ type: Boolean }) selected = false;
 
   /** Whether the item is selectable */
   @property({ type: Boolean, reflect: true }) selectable = false;
@@ -100,8 +102,8 @@ export class ZetaAccordionItem extends Contourable(LitElement) {
     }
 
     return html`<div>
-      <div class="accordion-item-header" part="item-header" @click=${() => wholeTileTap && wholeTileTap()}>
-        <div class="row">
+      <div class="accordion-item-header" part="item-header">
+        <div class="row" @click=${() => wholeTileTap && wholeTileTap()}>
           ${this.selectable && this.hasDefaultSlot
             ? html`<div class="chevron-wrapper" @click=${() => leftTap && leftTap()}><zeta-icon class="chevron">chevron_right</zeta-icon></div>`
             : nothing}
@@ -112,11 +114,14 @@ export class ZetaAccordionItem extends Contourable(LitElement) {
             ${this.hasDefaultSlot && !this.navigation && !this.selectable ? html`<zeta-icon class="expand trailing">expand_more</zeta-icon>` : nothing}
           </div>
         </div>
-
-        <slot name="header"></slot>
+        <div class="header-slot" part="header-content">
+          <slot name="header"></slot>
+        </div>
       </div>
-      <div class="body" part="item-content">
-        <slot></slot>
+      <div class="body" part="item-content" .hidden=${!this.expanded}>
+        <div class="body-content">
+          <slot></slot>
+        </div>
       </div>
     </div>`;
   }

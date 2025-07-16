@@ -3,8 +3,9 @@ export default css`
   :host {
     display: block;
     position: relative;
-    width: 100%;
     overflow: hidden;
+    background-color: var(--surface-default);
+    box-sizing: border-box;
   }
   :host([inCard]) {
     border: var(--border-size-small) solid var(--border-subtle);
