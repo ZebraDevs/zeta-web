@@ -44,10 +44,10 @@ export const Accordion: StoryObj<AccordionStoryArgs> = {
           <zeta-button flavor="outline-subtle">Action 3</zeta-button>
         </div>`}
       </zeta-accordion-item>
-      <zeta-accordion-item title="Accordion Item 1" .selectable=${args.selectable && !args.navigation} .navigation=${args.navigation}>
+      <zeta-accordion-item title="Accordion Item 2" .selectable=${args.selectable && !args.navigation} .navigation=${args.navigation}>
         ${!args.navigation && html`<div>content!</div>`}
       </zeta-accordion-item>
-      <zeta-accordion-item title="Accordion Item 1" .selectable=${args.selectable && !args.navigation} .navigation=${args.navigation}>
+      <zeta-accordion-item title="Accordion Item 3" .selectable=${args.selectable && !args.navigation} .navigation=${args.navigation}>
         ${!args.navigation && html`<div>content!</div>`}
       </zeta-accordion-item>
     </zeta-accordion>`

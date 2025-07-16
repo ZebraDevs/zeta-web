@@ -102,7 +102,6 @@ describe("zeta-accordion", () => {
       await accordion.updateComplete;
       const rect = accordion.getBoundingClientRect();
       await expect(rect.width).to.equal(328);
-      debugger;
       expect(rect.height).to.be.closeTo(448, 2);
     });
     it("Accordion with 8 items in card has expected dimensions", async () => {
