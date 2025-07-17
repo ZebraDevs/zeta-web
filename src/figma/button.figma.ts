@@ -38,5 +38,5 @@ figma.connect("https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-
     shape: figma.enum("Shape", { "Full Rounded": "full", Rounded: "rounded", Sharp: "sharp" }),
     disabled: figma.enum("Status", { Disabled: true })
   },
-  example: props => html`<zeta-icon-button flavor=${props.flavor} size=${props.size} shape=${props.shape} disabled=${props.disabled}> </zeta-icon-button>`
+  example: props => html`<zeta-icon-button flavor=${props.flavor} size=${props.size} shape=${props.shape} disabled=${props.disabled}></zeta-icon-button>`
 });

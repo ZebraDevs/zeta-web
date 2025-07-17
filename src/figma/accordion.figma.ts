@@ -6,5 +6,5 @@ figma.connect("https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-
     rounded: figma.enum("Style", { Rounded: true }),
     inCard: figma.boolean("In Card")
   },
-  example: props => html`<zeta-accordion rounded=${props.rounded} inCard=${props.inCard}> </zeta-accordion>`
+  example: props => html`<zeta-accordion rounded=${props.rounded} inCard=${props.inCard}></zeta-accordion>`
 });

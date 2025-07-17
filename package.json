@@ -45,7 +45,7 @@
     "check": "npm-run-all analyze --parallel lint lint:lit-analyzer test docs",
     "create": "cd scripts && node makeWebComponentTemplate.js",
     "docs": "npx typedoc --logLevel Warn",
-    "lint:lit-analyzer": "lit-analyzer --quiet",
+    "lint:lit-analyzer": "lit-analyzer src/components/**/* src/stories/**/* src/mixins/**/* src/test/**/* src/utils/**/* --quiet",
     "lint": "eslint -f unix \"src/**/*.{ts,tsx}\" --config src/eslint.config.*",
     "localize:build": "lit-localize build --config src/lit-localize.json",
     "localize:extract": "lit-localize extract --config src/lit-localize.json",

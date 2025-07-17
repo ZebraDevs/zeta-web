@@ -26,6 +26,7 @@
       {
         "name": "ts-lit-plugin",
         "strict": true,
+        "exclude": ["src/figma/**/*"],
         "rules": {
           "no-incompatible-type-binding": "warning"
         }

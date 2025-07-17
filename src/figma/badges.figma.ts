@@ -22,7 +22,7 @@ figma.connect("https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-
   example: props => html`<zeta-status-label status=${props.status} showIcon=${props.showIcon} rounded=${props.rounded}>${props.slot}</zeta-status-label>`
 });
 
-// Label``
+// Label
 figma.connect("https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21926-2099&m", {
   props: {
     status: figma.enum("Status", {
