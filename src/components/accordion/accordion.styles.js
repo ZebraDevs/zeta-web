@@ -1,31 +1,30 @@
 import { css } from "lit";
 export default css`
-  :not([open]) .body {
-    display: none;
-  }
-  :host([open]) .body {
+  :host {
     display: block;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--surface-default);
+    box-sizing: border-box;
   }
-  :host([contained]) .accordion {
-    border: var(--border-size-small) solid var(--border-default);
+  :host([inCard]) {
+    border: var(--border-size-small) solid var(--border-subtle);
   }
-  :host([disabled]) .accordion {
-    border-color: var(--border-disabled);
-    color: var(--main-disabled);
+  :host(:not([inCard])) {
+    border: var(--border-size-small) solid transparent;
   }
-  .title {
-    font: var(--title-medium);
-    padding: var(--spacing-large);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+
+  :host([rounded]) {
+    border-radius: var(--radius-rounded);
   }
-  .body {
-    padding: var(--spacing-small) 0;
-  }
-  .body ::slotted(li) {
-    padding: var(--spacing-small) var(--spacing-large);
-    list-style-type: none;
-    font: var(--body-medium);
+
+  :host([inCard]) ::slotted(zeta-accordion-item:not(:first-child))::before {
+    content: "";
+    height: var(--border-size-small);
+    background: var(--border-subtle);
+    position: absolute;
+    width: 100%;
+    left: 0;
+    right: 0;
   }
 `;

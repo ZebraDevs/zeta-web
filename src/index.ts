@@ -1,5 +1,6 @@
 import "./index.css";
 import { ZetaAccordion } from "./components/accordion/accordion.js";
+import { ZetaAccordionItem } from "./components/accordion/accordion-item/accordion-item.js";
 import { ZetaActionMenuButton } from "./components/action-menu/action-menu-button.js";
 import { ZetaAssistChip } from "./components/chips/assist-chip/assist-chip.js";
 import { ZetaAvatar } from "./components/avatar/avatar.js";
@@ -76,6 +77,7 @@ import { ZetaTopAppbar } from "./components/top-appbar/top-appbar.js";
 import { ZetaUploadItem } from "./components/upload-item/upload-item.js";
 export {
   ZetaAccordion,
+  ZetaAccordionItem,
   ZetaActionMenuButton,
   ZetaAssistChip,
   ZetaAvatar,
