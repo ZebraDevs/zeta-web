@@ -1,4 +1,4 @@
-import { html, LitElement } from "lit";
+import { html, LitElement, type PropertyValues } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { Contourable } from "../../mixins/mixins.js";
 import styles from "./accordion.styles.js";
@@ -24,9 +24,18 @@ export class ZetaAccordion extends Contourable(LitElement) {
   /** Determines if multiple accordion items can be selected. */
   @property({ type: Boolean, reflect: true }) selectMultiple = false;
 
-  protected firstUpdated() {
+  protected firstUpdated(_changedProperties: PropertyValues) {
+    super.firstUpdated(_changedProperties);
     this.addEventListener("item-expanded", this.handleItemExpanded as EventListener);
     this.addEventListener("item-selected", this.handleItemSelected as EventListener);
+  }
+
+  public disconnectedCallback(): void {
+    this.removeEventListener("item-expanded", this.handleItemExpanded as EventListener);
+    this.removeEventListener("item-selected", this.handleItemSelected as EventListener);
+
+    // @ts-expect-error-next-line
+    if (super.disconnectedCallback) super.disconnectedCallback();
   }
 
   private handleItemExpanded = (event: Event) => {
@@ -65,7 +74,7 @@ export class ZetaAccordion extends Contourable(LitElement) {
   }
 
   protected render() {
-    return html` <div class="accordion contourable-target">
+    return html`<div class="accordion contourable-target">
       <slot> </slot>
     </div>`;
   }

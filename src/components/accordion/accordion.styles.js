@@ -24,5 +24,7 @@ export default css`
     background: var(--border-subtle);
     position: absolute;
     width: 100%;
+    left: 0;
+    right: 0;
   }
 `;
