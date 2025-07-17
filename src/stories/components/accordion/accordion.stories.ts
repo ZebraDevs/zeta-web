@@ -35,7 +35,12 @@ export default meta;
 export const Accordion: StoryObj<AccordionStoryArgs> = {
   render: args =>
     html`<zeta-accordion .inCard=${args.inCard} .expandMultiple=${args.expandMultiple} .selectMultiple=${args.selectMultiple} .rounded=${args.rounded}>
-      <zeta-accordion-item title="Accordion Item 1" .selectable=${args.selectable && !args.navigation} .navigation=${args.navigation}>
+      <zeta-accordion-item
+        title="Accordion Item 1"
+        .selectable=${args.selectable && !args.navigation}
+        .navigation="${args.navigation}"
+        .rounded=${args.rounded}
+      >
         ${!args.navigation && html`<div>content!</div>`}
         ${!args.navigation &&
         html`<div slot="header" style="display: flex; gap: var(--spacing-medium);">
@@ -44,10 +49,10 @@ export const Accordion: StoryObj<AccordionStoryArgs> = {
           <zeta-button flavor="outline-subtle">Action 3</zeta-button>
         </div>`}
       </zeta-accordion-item>
-      <zeta-accordion-item title="Accordion Item 2" .selectable=${args.selectable && !args.navigation} .navigation=${args.navigation}>
+      <zeta-accordion-item title="Accordion Item 2" .selectable=${args.selectable && !args.navigation} .navigation=${args.navigation} .rounded=${args.rounded}>
         ${!args.navigation && html`<div>content!</div>`}
       </zeta-accordion-item>
-      <zeta-accordion-item title="Accordion Item 3" .selectable=${args.selectable && !args.navigation} .navigation=${args.navigation}>
+      <zeta-accordion-item title="Accordion Item 3" .selectable=${args.selectable && !args.navigation} .navigation=${args.navigation} .rounded=${args.rounded}>
         ${!args.navigation && html`<div>content!</div>`}
       </zeta-accordion-item>
     </zeta-accordion>`

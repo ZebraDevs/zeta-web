@@ -34,7 +34,6 @@ export default css`
 
   .chevron-wrapper:hover {
     background-color: var(--surface-selected-hover);
-    border-radius: var(--radius-rounded);
   }
 
   zeta-icon.chevron {
