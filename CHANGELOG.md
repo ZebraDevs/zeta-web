@@ -1,5 +1,38 @@
 # Changelog
 
+## [0.9.0](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.8.0...zeta-web-v0.9.0) (2025-07-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **UX-1446:** Update accordion to latest design. (New API, breaking changes) ([#79](https://github.com/ZebraDevs/zeta-web/issues/79))
+
+### Release-As
+
+* 0.9.0 ([4a1794c](https://github.com/ZebraDevs/zeta-web/commit/4a1794c12b4d30dac4b0ede65d2ba73a86056c15))
+
+
+### ✨ New Features
+
+* **UX-1446:** Update accordion to latest design. (New API, breaking changes) ([#79](https://github.com/ZebraDevs/zeta-web/issues/79)) ([7e7564d](https://github.com/ZebraDevs/zeta-web/commit/7e7564d36373b7baf06b89831198be3776d97de3))
+* **UX-1467:** Add Card Container Component ([#78](https://github.com/ZebraDevs/zeta-web/issues/78)) ([79f3ee5](https://github.com/ZebraDevs/zeta-web/commit/79f3ee5ede983c94726ef6d6919ab6d75227ae39))
+
+
+### 📈 Documentation
+
+* Add Figma code connect  ([#80](https://github.com/ZebraDevs/zeta-web/issues/80)) ([c1e72b6](https://github.com/ZebraDevs/zeta-web/commit/c1e72b62a99eb3a8fcd8cf33e2854e1f90350e3a))
+
+
+### ⛓️ Dependencies
+
+* Update dependencies ([f2d0663](https://github.com/ZebraDevs/zeta-web/commit/f2d0663fe2a372a6b0236dd4ff964ced34905653))
+
+
+### 🧪 Tests
+
+* Add tests for Card Component ([79f3ee5](https://github.com/ZebraDevs/zeta-web/commit/79f3ee5ede983c94726ef6d6919ab6d75227ae39))
+* Update tests for new accordion component ([7e7564d](https://github.com/ZebraDevs/zeta-web/commit/7e7564d36373b7baf06b89831198be3776d97de3))
+
 ## [0.8.0](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.7.1...zeta-web-v0.8.0) (2025-07-03)
 
 
