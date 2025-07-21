@@ -53,20 +53,19 @@ export const contrastTest = async (testName: string, foreground: HTMLElement | E
     }
     // Apply theme and contrast modes based on the test configuration
 
-    const link = document.createElement("link");
-    link.id = themeMode;
-    link.rel = "stylesheet";
-    link.href = `src/generated/tokens/primitives${test.darkMode ? "-dark" : ""}.css?direct&cacheBust=${Date.now()}`;
-    document.head.appendChild(link);
+    const primitives = document.createElement("link");
+    primitives.id = themeMode;
+    primitives.rel = "stylesheet";
+    primitives.href = `src/generated/tokens/primitives${test.darkMode ? "-dark" : ""}.css?direct&cacheBust=${Date.now()}`;
+    document.head.appendChild(primitives);
 
-    const contrastLink = document.createElement("link");
-    contrastLink.id = contrastMode;
-    contrastLink.rel = "stylesheet";
-    contrastLink.href = `src/generated/tokens/semantics${test.highContrast ? "-high-contrast" : ""}.css?direct&cacheBust=${Date.now()}`;
-    document.head.appendChild(contrastLink);
+    const semantics = document.createElement("link");
+    semantics.id = contrastMode;
+    semantics.rel = "stylesheet";
+    semantics.href = `src/generated/tokens/semantics${test.highContrast ? "-high-contrast" : ""}.css?direct&cacheBust=${Date.now()}`;
+    document.head.appendChild(semantics);
 
-    await Promise.all([waitForStylesheet(link), waitForStylesheet(contrastLink)]); // Load stylesheets in parallel
-    document.body.offsetHeight; // Forces reflow
+    await Promise.all([waitForStylesheet(primitives), waitForStylesheet(semantics)]); // Load stylesheets in parallel
 
     await elementUpdated(foreground);
     await elementUpdated(background);
