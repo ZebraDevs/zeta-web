@@ -35,7 +35,7 @@ export class ZetaCardContainer extends Contourable(LitElement) {
   /** Whether the card is an AI card, which may have different styling or behavior.
    *
    * This is primarily used for AI-related components. */
-  @property({ type: Boolean }) ai = false;
+  @property({ type: Boolean, reflect: true }) ai = false;
 
   /** Internal state to track if slot has content */
   @state() private hasSlotContent = false;
