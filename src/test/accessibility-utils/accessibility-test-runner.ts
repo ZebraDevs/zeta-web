@@ -30,6 +30,20 @@ export const contrastTest = async (testName: string, foreground: HTMLElement | E
   const themeMode = "theme-mode";
   const contrastMode = "contrast-mode";
 
+  const waitForStylesheet = (link: HTMLLinkElement) => {
+    return new Promise<void>((resolve, reject) => {
+      const timeout = setTimeout(() => reject(new Error(`Stylesheet load timeout: ${link.href}`)), 1000); // 1 seconds timeout
+      link.onload = () => {
+        clearTimeout(timeout);
+        resolve();
+      };
+      link.onerror = () => {
+        clearTimeout(timeout);
+        reject(new Error(`Failed to load stylesheet: ${link.href}`));
+      };
+    });
+  };
+
   for (const test of tests) {
     if (document.getElementById(themeMode)) {
       document.getElementById(themeMode)!.remove();
@@ -42,20 +56,20 @@ export const contrastTest = async (testName: string, foreground: HTMLElement | E
     const link = document.createElement("link");
     link.id = themeMode;
     link.rel = "stylesheet";
-    link.href = `src/generated/tokens/primitives${test.darkMode ? "-dark" : ""}.css?direct`;
+    link.href = `src/generated/tokens/primitives${test.darkMode ? "-dark" : ""}.css?direct&cacheBust=${Date.now()}`;
     document.head.appendChild(link);
 
     const contrastLink = document.createElement("link");
     contrastLink.id = contrastMode;
     contrastLink.rel = "stylesheet";
-    contrastLink.href = `src/generated/tokens/semantics${test.highContrast ? "-high-contrast" : ""}.css?direct`;
+    contrastLink.href = `src/generated/tokens/semantics${test.highContrast ? "-high-contrast" : ""}.css?direct&cacheBust=${Date.now()}`;
     document.head.appendChild(contrastLink);
-    // // Wait for stylesheets to load and apply
+
+    await Promise.all([waitForStylesheet(link), waitForStylesheet(contrastLink)]); // Load stylesheets in parallel
+    document.body.offsetHeight; // Forces reflow
+
     await elementUpdated(foreground);
     await elementUpdated(background);
-
-    // Wait a bit to ensure styles are applied. This seems to be a bit buggy
-    await new Promise(resolve => setTimeout(resolve, 10));
 
     const fgStyles = getComputedStyle(foreground);
     const bgStyles = getComputedStyle(background);
