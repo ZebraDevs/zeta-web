@@ -22,7 +22,8 @@ export type InputType =
   | "range-selector"
   | "select"
   | "stepper"
-  | "number"; //Extend this when adding more form controls
+  | "number"
+  | "integer"; //Extend this when adding more form controls
 
 //TODO add all properties here
 
@@ -231,8 +232,37 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
      */
     private _handleInput(event: Event, isInput: boolean = true) {
       const input = event.target as HTMLInputElement;
+      if (this.type === "integer") {
+        this._handleInteger(event as InputEvent);
+      }
       this._setValue(input);
       if (isInput) this.handleInput(event as InputEvent);
+    }
+
+    private _handleInteger(event: InputEvent) {
+      const input = event.target as HTMLInputElement;
+      const cursorPosition = input.selectionStart;
+
+      // Remove any decimal points, scientific notation (e/E), and non-integer characters
+      const filteredValue = input.value.replace(/(?!^)-|[^\d-]/g, "");
+
+      if (input.value !== filteredValue) {
+        input.value = filteredValue;
+        this.value = filteredValue;
+
+        // Restore cursor position, adjusting for removed characters
+        const inputValueLength = event.data?.length;
+        const cursorPositionBeforeInput = (cursorPosition || 0) - (inputValueLength || 0);
+        const filteredInputValue = event.data?.replace(/(?!^)-|[^\d-]/g, "");
+
+        let newCursorPosition = 0;
+        if (inputValueLength === 1) {
+          newCursorPosition = Math.max(0, (cursorPosition || 0) - 1);
+        } else {
+          newCursorPosition = cursorPositionBeforeInput + (filteredInputValue?.length || 0);
+        }
+        input.setSelectionRange(newCursorPosition, newCursorPosition);
+      }
     }
 
     private _setValue(input: { checked?: boolean; value: string | null }) {
