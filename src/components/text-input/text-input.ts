@@ -71,7 +71,7 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
   @property() errorText?: string;
 
   /** Type of field */
-  @property({ type: String, reflect: true }) type: "text" | "textarea" | "password" | "time" | "date" | "number" = "text";
+  @property({ type: String, reflect: true }) type: "text" | "textarea" | "password" | "time" | "date" | "number" | "integer" = "text";
 
   private _valueOnLastFocus: string | null = null;
 
@@ -102,6 +102,44 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
     }
   }
 
+  /* INTEGER MODE */
+  increment() {
+    if (this.type === "integer") {
+      this.value = ((parseFloat(this.value) || 0) + 1).toString();
+      this.dispatchEvent(new Event("change"));
+    }
+  }
+
+  decrement() {
+    if (this.type === "integer") {
+      this.value = ((parseFloat(this.value) || 0) - 1).toString();
+      this.dispatchEvent(new Event("change"));
+    }
+  }
+
+  private _incId: number | null = null;
+  private _decId: number | null = null;
+
+  private _startHold(isIncrement: boolean) {
+    this._stopHold(isIncrement);
+    const fn = isIncrement ? () => this.increment() : () => this.decrement();
+    const id = window.setTimeout(() => {
+      const intervalId = window.setInterval(fn, 50);
+      isIncrement ? (this._incId = intervalId) : (this._decId = intervalId);
+    }, 300);
+    isIncrement ? (this._incId = id) : (this._decId = id);
+  }
+
+  private _stopHold(isIncrement: boolean) {
+    const id = isIncrement ? this._incId : this._decId;
+    if (id !== null) {
+      clearTimeout(id);
+      clearInterval(id);
+      isIncrement ? (this._incId = null) : (this._decId = null);
+    }
+  }
+  /* INTEGER MODE */
+  
   protected render() {
     if (this.label) {
       return html`<label class="container"> ${this.label} ${this.renderInput()} </label>`;
@@ -151,7 +189,32 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
           ? html`<zeta-icon @click=${() => this.inputEl.showPicker()} class="right" .rounded=${this.rounded}
               >${this.type === "time" ? "clock_outline" : "calendar_3_day"}</zeta-icon
             >`
-          : nothing;
+          : this.type === "integer"
+            ? html`<div class="arrows-container right">
+                <div
+                  class="arrow up"
+                  @click=${() => this.increment()}
+                  @mousedown=${() => this._startHold(true)}
+                  @mouseup=${() => this._stopHold(true)}
+                  @mouseleave=${() => this._stopHold(true)}
+                >
+                  <svg width="7" height="5" viewBox="0 0 7 5" fill="none" aria-hidden="true">
+                    <polygon points="3.5,0 7,5 0,5" />
+                  </svg>
+                </div>
+                <div
+                  class="arrow down"
+                  @click=${() => this.decrement()}
+                  @mousedown=${() => this._startHold(false)}
+                  @mouseup=${() => this._stopHold(false)}
+                  @mouseleave=${() => this._stopHold(false)}
+                >
+                  <svg width="7" height="5" viewBox="0 0 7 5" fill="none" aria-hidden="true" style="transform: rotate(180deg);">
+                    <polygon points="3.5,0 7,5 0,5" />
+                  </svg>
+                </div>
+              </div>`
+            : nothing;
   }
 
   private renderPrefix() {

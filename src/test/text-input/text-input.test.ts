@@ -196,6 +196,7 @@ describe("zeta-text-input", () => {
       };
       void setTimeout(clickButton);
 
+      // prettier-ignore
       const { data } = await oneEvent<InputEvent>(el, "input");
       return expect(data).to.equal(" ");
     });
@@ -206,6 +207,85 @@ describe("zeta-text-input", () => {
       await KeyboardActions.press("Space");
     });
     it("should dispatch onBlur when field is deselected", async () => {});
+  });
+
+  describe("type === 'integer'", () => {
+    it("should filter decimal points from input when type is integer", async () => {
+      const el = await setup({ type: "integer" });
+
+      // Simulate typing "123.45"
+      await MouseActions.click(el);
+      await KeyboardActions.type("123.45");
+      await MouseActions.clickOutside(el);
+
+      expect(el.value).to.equal("12345");
+    });
+
+    it("should allow negative integers when type is integer", async () => {
+      const el = await setup({ type: "integer" });
+
+      // Simulate typing "-123"
+      await MouseActions.click(el);
+      await KeyboardActions.type("-123");
+      await MouseActions.clickOutside(el);
+
+      expect(el.value).to.equal("-123");
+    });
+
+    it("should filter out non-numeric characters except minus when type is integer", async () => {
+      const el = await setup({ type: "integer" });
+
+      // Simulate typing "1a2b3.45c"
+      await MouseActions.click(el);
+      await KeyboardActions.type("1a2b3.45c");
+      await MouseActions.clickOutside(el);
+
+      expect(el.value).to.equal("12345");
+    });
+
+    it("should filter out scientific notation 'e' when type is integer", async () => {
+      const el = await setup({ type: "integer" });
+
+      // Simulate typing "123e4" (scientific notation)
+      await MouseActions.click(el);
+      await KeyboardActions.type("123e4");
+      await MouseActions.clickOutside(el);
+
+      expect(el.value).to.equal("1234");
+    });
+
+    it("should filter out scientific notation 'E' when type is integer", async () => {
+      const el = await setup({ type: "integer" });
+
+      // Simulate typing "123E4" (scientific notation with capital E)
+      await MouseActions.click(el);
+      await KeyboardActions.type("123E4");
+      await MouseActions.clickOutside(el);
+
+      expect(el.value).to.equal("1234");
+    });
+
+    it("should not affect input when type is not integer", async () => {
+      const el = await setup({});
+
+      // Simulate typing "123.45"
+      await MouseActions.click(el);
+      await KeyboardActions.type("123.45");
+      await MouseActions.clickOutside(el);
+
+      expect(el.value).to.equal("123.45");
+    });
+
+    it("should not affect input when type is not number", async () => {
+      const el = await setup({ type: "text" });
+
+      // Simulate typing "123.45"
+      await MouseActions.click(el);
+      await KeyboardActions.type("123.45");
+      await MouseActions.clickOutside(el);
+
+      expect(el.value).to.equal("123.45");
+    });
   });
 
   // describe("Golden", () => {});

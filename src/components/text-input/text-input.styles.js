@@ -183,4 +183,41 @@ export default css`
     resize: none;
     width: 100%;
   }
+
+  /* INTEGER MODE */
+  :host([type="integer"]) .container:not(:hover) .arrows-container {
+    display: none;
+  }
+
+  :host([type="integer"]) .input-container .arrows-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: stretch;
+    width: 16px;
+    height: 24px;
+    background-color: var(--main-inverse);
+  }
+
+  :host([type="integer"]) .input-container .arrows-container .arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50%;
+    cursor: pointer;
+    transition: transform 0.1s ease-in-out;
+  }
+
+  :host([type="integer"]) .input-container .arrows-container .arrow svg {
+    fill: var(--main-subtle);
+  }
+
+  :host([type="integer"]) .input-container .arrows-container .arrow:hover svg {
+    fill: var(--main-default);
+  }
+
+  :host([type="integer"]) .input-container .arrows-container .arrow:active {
+    transform: scale(0.75);
+  }
 `;
