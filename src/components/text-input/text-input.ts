@@ -139,7 +139,7 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
     }
   }
   /* INTEGER MODE */
-  
+
   protected render() {
     if (this.label) {
       return html`<label class="container"> ${this.label} ${this.renderInput()} </label>`;
