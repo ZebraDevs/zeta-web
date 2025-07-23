@@ -76,13 +76,13 @@ jobs:
         run: yarn install --immutable
 
       - name: Code Quality
-        uses: ZebraDevs/web-components-code-quality@deps-udpate
+        uses: ZebraDevs/web-components-code-quality@main
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           test-results-path: "src/test/test-results.xml"
           eslint-config-path: "src/eslint.config.mjs"
           test-config-path: "src/test/web-test-runner.config.js"
-          lit-analyzer-cmd: "lit-analyzer src/components/**/* src/stories/**/* src/mixins/**/* src/test/**/* src/utils/**/* --quiet --format markdown"
+          lit-analyzer-cmd: "npx lit-analyzer src/components/**/* src/stories/**/* src/mixins/**/* src/test/**/* src/utils/**/* --quiet --format markdown"
 
   deploy-preview:
     timeout-minutes: 20
