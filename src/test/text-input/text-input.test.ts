@@ -206,10 +206,13 @@ describe("zeta-text-input", () => {
       await MouseActions.click(el);
       await KeyboardActions.press("Space");
     });
-    it("should dispatch onBlur when field is deselected", async () => {});
-  });
+    it("should dispatch onBlur when field is deselected", async () => {
+      const el = await setup({});
+      await MouseActions.click(el);
+      await KeyboardActions.press("Space");
+    });
 
-  describe("type === 'integer'", () => {
+    /// Integer specific tests
     it("should filter decimal points from input when type is integer", async () => {
       const el = await setup({ type: "integer" });
 
@@ -218,7 +221,7 @@ describe("zeta-text-input", () => {
       await KeyboardActions.type("123.45");
       await MouseActions.clickOutside(el);
 
-      expect(el.value).to.equal("12345");
+      await expect(el.value).to.equal("12345");
     });
 
     it("should allow negative integers when type is integer", async () => {
@@ -229,7 +232,7 @@ describe("zeta-text-input", () => {
       await KeyboardActions.type("-123");
       await MouseActions.clickOutside(el);
 
-      expect(el.value).to.equal("-123");
+      await expect(el.value).to.equal("-123");
     });
 
     it("should filter out non-numeric characters except minus when type is integer", async () => {
@@ -240,7 +243,7 @@ describe("zeta-text-input", () => {
       await KeyboardActions.type("1a2b3.45c");
       await MouseActions.clickOutside(el);
 
-      expect(el.value).to.equal("12345");
+      await expect(el.value).to.equal("12345");
     });
 
     it("should filter out scientific notation 'e' when type is integer", async () => {
@@ -251,7 +254,7 @@ describe("zeta-text-input", () => {
       await KeyboardActions.type("123e4");
       await MouseActions.clickOutside(el);
 
-      expect(el.value).to.equal("1234");
+      await expect(el.value).to.equal("1234");
     });
 
     it("should filter out scientific notation 'E' when type is integer", async () => {
@@ -262,7 +265,7 @@ describe("zeta-text-input", () => {
       await KeyboardActions.type("123E4");
       await MouseActions.clickOutside(el);
 
-      expect(el.value).to.equal("1234");
+      await expect(el.value).to.equal("1234");
     });
 
     it("should not affect input when type is not integer", async () => {
@@ -273,7 +276,7 @@ describe("zeta-text-input", () => {
       await KeyboardActions.type("123.45");
       await MouseActions.clickOutside(el);
 
-      expect(el.value).to.equal("123.45");
+      await expect(el.value).to.equal("123.45");
     });
 
     it("should not affect input when type is not number", async () => {
@@ -284,7 +287,7 @@ describe("zeta-text-input", () => {
       await KeyboardActions.type("123.45");
       await MouseActions.clickOutside(el);
 
-      expect(el.value).to.equal("123.45");
+      await expect(el.value).to.equal("123.45");
     });
   });
 

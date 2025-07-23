@@ -125,9 +125,17 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
     const fn = isIncrement ? () => this.increment() : () => this.decrement();
     const id = window.setTimeout(() => {
       const intervalId = window.setInterval(fn, 50);
-      isIncrement ? (this._incId = intervalId) : (this._decId = intervalId);
+      if (isIncrement) {
+        this._incId = intervalId;
+      } else {
+        this._decId = intervalId;
+      }
     }, 300);
-    isIncrement ? (this._incId = id) : (this._decId = id);
+    if (isIncrement) {
+      this._incId = id;
+    } else {
+      this._decId = id;
+    }
   }
 
   private _stopHold(isIncrement: boolean) {
@@ -135,7 +143,11 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
     if (id !== null) {
       clearTimeout(id);
       clearInterval(id);
-      isIncrement ? (this._incId = null) : (this._decId = null);
+      if (isIncrement) {
+        this._incId = null;
+      } else {
+        this._decId = null;
+      }
     }
   }
   /* INTEGER MODE */

@@ -232,7 +232,9 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
      */
     private _handleInput(event: Event, isInput: boolean = true) {
       const input = event.target as HTMLInputElement;
-      this.type === "integer" && this._handleInteger(event as InputEvent);
+      if (this.type === "integer") {
+        this._handleInteger(event as InputEvent);
+      }
       this._setValue(input);
       if (isInput) this.handleInput(event as InputEvent);
     }
@@ -254,9 +256,11 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
         const filteredInputValue = event.data?.replace(/(?!^)-|[^\d-]/g, "");
 
         let newCursorPosition = 0;
-        inputValueLength === 1
-          ? (newCursorPosition = Math.max(0, (cursorPosition || 0) - 1))
-          : (newCursorPosition = cursorPositionBeforeInput + (filteredInputValue?.length || 0));
+        if (inputValueLength === 1) {
+          newCursorPosition = Math.max(0, (cursorPosition || 0) - 1);
+        } else {
+          newCursorPosition = cursorPositionBeforeInput + (filteredInputValue?.length || 0);
+        }
         input.setSelectionRange(newCursorPosition, newCursorPosition);
       }
     }
