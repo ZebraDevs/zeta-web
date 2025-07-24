@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.10.0](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.9.0...zeta-web-v0.10.0) (2025-07-24)
+
+
+### ✨ New Features
+
+* **text-input:** add support for integer only type input ([#83](https://github.com/ZebraDevs/zeta-web/issues/83)) ([0884cf8](https://github.com/ZebraDevs/zeta-web/commit/0884cf8c3b1993fed8ff982343bea6b46448ebc7))
+
+
+### 🪲 Bug Fixes
+
+* reflect AI prop ([cd70134](https://github.com/ZebraDevs/zeta-web/commit/cd701344b0a8c9784754e71f7eec1ef55145a0f9))
+
+
+### ⛓️ Dependencies
+
+* Update zeta-icons library ([#85](https://github.com/ZebraDevs/zeta-web/issues/85)) ([d23d45e](https://github.com/ZebraDevs/zeta-web/commit/d23d45eeae955d7bbfc1bf1109a8f38c3180a826))
+
+
+### 🧹 Miscellaneous Chores
+
+* **deps:** bump form-data from 4.0.2 to 4.0.4 ([#84](https://github.com/ZebraDevs/zeta-web/issues/84)) ([b0f222b](https://github.com/ZebraDevs/zeta-web/commit/b0f222b34cbab38bbff2669531a7dfd24cf07b8b))
+
 ## [0.9.0](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.8.0...zeta-web-v0.9.0) (2025-07-18)
 
 
