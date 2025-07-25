@@ -261,7 +261,9 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
         const newCursor = dataLen === 1 ? Math.max(0, cursor - 1) : cursorBefore + filteredDataLen;
         input.setSelectionRange(newCursor, newCursor);
       }
+    }
 
+    private _handleIntegerMinMax(input: HTMLInputElement) {
       // Clamp to min/max if needed
       if (this.min !== undefined && Number(input.value) < this.min) {
         input.value = String(this.min);
@@ -287,6 +289,7 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
 
     private _handleChange(event: Event) {
       this._handleInput(event, false);
+      if (this.type === "integer") this._handleIntegerMinMax(event.target as HTMLInputElement);
       this.handleChange(event);
     }
 

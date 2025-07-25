@@ -289,6 +289,46 @@ describe("zeta-text-input", () => {
 
       await expect(el.value).to.equal("123.45");
     });
+
+    it("should not go below min when type is integer and min is set", async () => {
+      const el = await setup({ type: "integer", min: 50 });
+
+      await MouseActions.click(el);
+      await KeyboardActions.type("30");
+      await MouseActions.clickOutside(el);
+
+      await expect(el.value).to.equal("50");
+    });
+
+    it("should not go above max when type is integer and max is set", async () => {
+      const el = await setup({ type: "integer", max: 50 });
+
+      await MouseActions.click(el);
+      await KeyboardActions.type("80");
+      await MouseActions.clickOutside(el);
+
+      await expect(el.value).to.equal("50");
+    });
+
+    it("should not go below min and should filter dots and non-numeric characters when type is integer and min is set", async () => {
+      const el = await setup({ type: "integer", min: 50 });
+
+      await MouseActions.click(el);
+      await KeyboardActions.type("5.e5");
+      await MouseActions.clickOutside(el);
+
+      await expect(el.value).to.equal("55");
+    });
+
+    it("should not go above max and should filter dots and non-numeric characters when type is integer and max is set", async () => {
+      const el = await setup({ type: "integer", max: 50 });
+
+      await MouseActions.click(el);
+      await KeyboardActions.type("7e1.5");
+      await MouseActions.clickOutside(el);
+
+      await expect(el.value).to.equal("50");
+    });
   });
 
   // describe("Golden", () => {});

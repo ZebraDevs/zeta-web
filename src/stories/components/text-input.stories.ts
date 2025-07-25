@@ -67,7 +67,7 @@ export const TextInput: StoryObj<InputStory> = {
   name: "Default text input",
   render: ({ oninput, onchange, onblur, onfocus, ...args }) =>
     html`<div style="width: 200px; height: 400px;">
-      <zeta-text-input @change=${onchange} @input=${oninput} @blur=${onblur} @focus=${onfocus} ${spread(args)}> </zeta-text-input>
+      <zeta-text-input type="integer" min="50" max="200" @change=${onchange} @input=${oninput} @blur=${onblur} @focus=${onfocus} ${spread(args)}> </zeta-text-input>
     </div>`
 };
 
