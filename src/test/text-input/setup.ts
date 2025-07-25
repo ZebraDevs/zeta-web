@@ -37,7 +37,7 @@ export async function setup({
   name = undefined,
   value = undefined,
   min = undefined,
-  max = undefined,
+  max = undefined
 }: Props) {
   return await fixture<ZetaTextInput>(
     html`<zeta-text-input
