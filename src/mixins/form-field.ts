@@ -241,27 +241,37 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
 
     private _handleInteger(event: InputEvent) {
       const input = event.target as HTMLInputElement;
-      const cursorPosition = input.selectionStart;
+      const cursor = input.selectionStart ?? 0;
 
-      // Remove any decimal points, scientific notation (e/E), and non-integer characters
-      const filteredValue = input.value.replace(/(?!^)-|[^\d-]/g, "");
+      // Remove leading minus if min >= 0
+      if (this.min !== undefined && this.min >= 0) {
+        input.value = input.value.replace(/^-/, "");
+      }
+      // Remove non-integer characters except leading minus
+      const filtered = input.value.replace(/(?!^)-|[^\d-]/g, "");
 
-      if (input.value !== filteredValue) {
-        input.value = filteredValue;
-        this.value = filteredValue;
+      if (input.value !== filtered) {
+        input.value = filtered;
+        this.value = filtered;
 
-        // Restore cursor position, adjusting for removed characters
-        const inputValueLength = event.data?.length;
-        const cursorPositionBeforeInput = (cursorPosition || 0) - (inputValueLength || 0);
-        const filteredInputValue = event.data?.replace(/(?!^)-|[^\d-]/g, "");
+        // Adjust cursor position
+        const dataLen = event.data?.length ?? 0;
+        const cursorBefore = cursor - dataLen;
+        const filteredDataLen = event.data?.replace(/(?!^)-|[^\d-]/g, "").length ?? 0;
+        const newCursor = dataLen === 1 ? Math.max(0, cursor - 1) : cursorBefore + filteredDataLen;
+        input.setSelectionRange(newCursor, newCursor);
+      }
+    }
 
-        let newCursorPosition = 0;
-        if (inputValueLength === 1) {
-          newCursorPosition = Math.max(0, (cursorPosition || 0) - 1);
-        } else {
-          newCursorPosition = cursorPositionBeforeInput + (filteredInputValue?.length || 0);
-        }
-        input.setSelectionRange(newCursorPosition, newCursorPosition);
+    private _handleIntegerMinMax(input: HTMLInputElement) {
+      // Clamp to min/max if needed
+      if (this.min !== undefined && Number(input.value) < this.min) {
+        input.value = String(this.min);
+        this.value = String(this.min);
+      }
+      if (this.max !== undefined && Number(input.value) > this.max) {
+        input.value = String(this.max);
+        this.value = String(this.max);
       }
     }
 
@@ -279,6 +289,7 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
 
     private _handleChange(event: Event) {
       this._handleInput(event, false);
+      if (this.type === "integer") this._handleIntegerMinMax(event.target as HTMLInputElement);
       this.handleChange(event);
     }
 
