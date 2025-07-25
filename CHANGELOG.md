@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.1](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.10.0...zeta-web-v0.10.1) (2025-07-25)
+
+
+### 🪲 Bug Fixes
+
+* **form-field:** enhance integer input handling with min and max ([#86](https://github.com/ZebraDevs/zeta-web/issues/86)) ([ce90465](https://github.com/ZebraDevs/zeta-web/commit/ce90465400aeeff1e9b903c770e10e24f7321197))
+
 ## [0.10.0](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.9.0...zeta-web-v0.10.0) (2025-07-24)
 
 
