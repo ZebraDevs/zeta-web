@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.10.2](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.10.1...zeta-web-v0.10.2) (2025-07-30)
+
+
+### 🪲 Bug Fixes
+
+* **text-input:** prevent increment and decrement beyond min and max values ([#88](https://github.com/ZebraDevs/zeta-web/issues/88)) ([df96b25](https://github.com/ZebraDevs/zeta-web/commit/df96b250b4b523602a08964f8db695d724dcc4b9))
+
+
+### 🧹 Miscellaneous Chores
+
+* **deps:** bump koa from 2.16.1 to 2.16.2 ([#90](https://github.com/ZebraDevs/zeta-web/issues/90)) ([05e6029](https://github.com/ZebraDevs/zeta-web/commit/05e60293c73f305cf7404e1bb1be1cd1087e185c))
+
 ## [0.10.1](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.10.0...zeta-web-v0.10.1) (2025-07-25)
 
 
