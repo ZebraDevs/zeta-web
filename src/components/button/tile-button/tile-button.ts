@@ -56,7 +56,7 @@ export class ZetaTileButton extends Flavored(BaseButton) {
   /**
    * Main icon of button. Full list of icons can be found at {@link https://design.zebra.com/icons | Zeta Icons}.
    */
-  @property({ type: String }) icon: ZetaIconName = "star";
+  @property({ type: String }) icon?: ZetaIconName;
 
   protected render() {
     return html`
@@ -70,7 +70,7 @@ export class ZetaTileButton extends Flavored(BaseButton) {
         part="button"
         class="contourable-target"
       >
-        <zeta-icon name="${this.icon}" .rounded=${this.shape != "sharp"}></zeta-icon>
+        <zeta-icon name="${this.icon || "star"}" .rounded=${this.shape != "sharp"}></zeta-icon>
         <slot></slot>
       </button>
     `;
