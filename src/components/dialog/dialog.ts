@@ -4,8 +4,11 @@ import { LitElement, html } from "lit";
 import styles from "./dialog.styles.js";
 import { ZetaButton } from "../button/button.js";
 import { Contourable, Popup } from "../../mixins/mixins.js";
-import "../icon/icon.js";
+import type { ZetaIconName } from "@zebra-fed/zeta-icons";
 
+//Extract only icons compatible with dialog box
+export type DialogIcons = Extract<ZetaIconName, "block" | "info" | "verified" | "warning" | "error">;
+export const DialogIconList: DialogIcons[] = ["block", "info", "verified", "warning", "error"];
 /*
  * TODO: dialog Autofocus.
  */
@@ -76,9 +79,12 @@ export class ZetaDialog extends Contourable(Popup(LitElement)) {
   /** Whether the modal is initially open. */
   @property({ type: Boolean }) initialOpen: boolean = false;
 
-  @property({ type: String, reflect: true }) size: "small" | "large" = "small";
+  //There is only one supported value for the dialog size: "large".
+  @property({ type: String, reflect: true }) size: "large";
 
-  @queryAssignedElements({ slot: "icon", flatten: true }) icon!: NodeList;
+  @property({ type: String, reflect: true }) flavor: null | "info" | "success" | "warning" | "error" = null;
+
+  @queryAssignedElements({ slot: "icon", flatten: true }) icon!: DialogIcons;
 
   /** Action button 1 (Confirm). */
   @queryAssignedElements({ slot: "confirm", flatten: true }) confirmBtn!: NodeList;
@@ -119,6 +125,7 @@ export class ZetaDialog extends Contourable(Popup(LitElement)) {
         <header part="header">
           <slot name="icon"></slot>
           <h1>${this._title}</h1>
+          <zeta-icon @click=${() => this.hide("other")} @slotchange=${this.handleActionButtonChange} name="close"></zeta-icon>
         </header>
         <div part="body"><slot></slot></div>
         <footer data-element-count=${count} part="footer">

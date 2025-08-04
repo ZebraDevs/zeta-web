@@ -1,25 +1,29 @@
 import { css } from "lit";
 export default css`
   :host {
-    --_dialog-max-width: var(--dialog-max-width, 480px);
+    --_dialog-width: var(--dialog-width, 480px);
     --_dialog-max-height: var(--dialog-max-height, 80vh);
+    --_dialog-font-size: var(--dialog-font-size, 1.25rem);
+    --_dialog-line-height: var(--dialog-line-height, 1.5rem);
   }
 
   dialog {
     flex-direction: column;
-    width: fit-content;
-    width: 100%;
-    max-width: var(--_dialog-max-width);
+    /* width: fit-content; */
+    width: var(--_dialog-width);
+    min-width: var(--_dialog-width);
+    max-width: var(--_dialog-width);
     max-height: var(--_dialog-max-height);
     overflow: auto;
 
     border: none;
     border-radius: inherit;
-    padding: 0 var(--spacing-large);
+    padding: var(---spacing-none);
 
     background-color: var(--surface-default);
     color: var(--main-default);
-    box-shadow: var(--elevation-6);
+    border: 1px solid var(--border-default, #ced2db);
+    /* box-shadow: var(--elevation-6); */
   }
 
   dialog[open] {
@@ -28,10 +32,10 @@ export default css`
 
   header {
     display: flex;
-    flex-direction: var(--_dialog-header-direction, column);
-    padding: var(--spacing-2xl) var(--spacing-2xl) var(--spacing-medium);
-    row-gap: var(--spacing-small);
-    column-gap: var(--spacing-large);
+    padding: var(--spacing-2xl) var(--spacing-2xl) var(--spacing-none) var(--spacing-2xl);
+    gap: var(--spacing-small, 8px);
+    align-items: center;
+    align-self: stretch;
   }
 
   :host([centered]) header {
@@ -41,10 +45,10 @@ export default css`
   footer {
     display: flex;
     flex-shrink: 0;
-    padding: var(--spacing-large) var(--spacing-2xl) var(--spacing-2xl) var(--spacing-2xl);
+    padding: var(--spacing-2xl);
     gap: var(--spacing-large);
-    justify-content: flex-end;
-    margin-top: var(--spacing-2xl);
+    justify-content: space-between;
+    /* margin-top: var(--spacing-2xl); */
     overflow: auto;
 
     ::slotted(:not(zeta-button)) {
@@ -57,7 +61,7 @@ export default css`
 
     .actions {
       display: flex;
-      gap: var(--spacing-large);
+      gap: var(--spacing-small);
       width: 100%;
     }
   }
@@ -68,14 +72,20 @@ export default css`
   }*/
 
   h1 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    flex: 1 0 0;
     font: var(--headline-small);
+    font-size: var(--_dialog-font-size);
+    line-height: var(--_dialog-line-height);
     margin: 0;
     padding: 0;
   }
 
   div[part="body"] {
     display: flex;
-    margin: var(--spacing-small) var(--spacing-2xl);
+    padding: var(--spacing-2xl);
     flex: 1;
     min-height: 1.125rem;
     overflow: auto;
@@ -117,6 +127,25 @@ export default css`
   }
 
   zeta-icon {
-    --icon-size: 32px;
+    --icon-size: 24px;
+  }
+  ::slotted(zeta-icon[name="block"]) {
+    --icon-color: var(--main-default);
+  }
+  ::slotted(zeta-icon[name="info"]) {
+    --icon-color: var(--main-info);
+  }
+  ::slotted(zeta-icon[name="verified"]) {
+    --icon-color: var(--main-positive);
+  }
+  ::slotted(zeta-icon[name="warning"]) {
+    --icon-color: var(--main-warning);
+  }
+  ::slotted(zeta-icon[name="error"]) {
+    --icon-color: var(--main-negative);
+  }
+
+  zeta-icon[name="close"] {
+    cursor: pointer;
   }
 `;

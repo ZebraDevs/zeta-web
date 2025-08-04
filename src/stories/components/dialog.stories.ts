@@ -3,14 +3,14 @@ import { html, nothing } from "lit";
 import { ZetaDialog } from "../../components/dialog/dialog.js";
 import { fn } from "@storybook/test";
 
-import { ZetaIconNameList, type ZetaIconName } from "@zebra-fed/zeta-icons";
+import { DialogIconList, type DialogIcons } from "../../components/dialog/dialog.js";
 
 const meta: Meta<
   Omit<ZetaDialog, "icon"> & {
     confirm: string;
     cancel: string;
     other: string;
-    icon?: ZetaIconName;
+    icon?: DialogIcons;
     "--icon-color": String;
     onOpen: () => void;
     onClose: () => void;
@@ -23,12 +23,12 @@ const meta: Meta<
   args: {
     centered: false,
     rounded: false,
-    title: "Title",
+    title: "Dialog Title",
     slot: "Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusm od tempor incididunt ut labore et do lore magna aliquaa met, conse ctetur adipisc.",
-    confirm: "Confirm",
-    cancel: "Cancel",
-    other: "Learn more",
-    icon: "star",
+    confirm: "Button",
+    cancel: "Button",
+    other: "Button",
+    icon: "block",
     size: "large",
     onOpen: fn(),
     onClose: fn(),
@@ -47,7 +47,7 @@ const meta: Meta<
       table: { disable: true }
     },
     icon: {
-      options: [null, ...ZetaIconNameList],
+      options: [...DialogIconList],
       control: { type: "select" }
     },
     "--icon-color": { control: "color" }
@@ -79,7 +79,7 @@ export const Dialog: StoryObj = {
           ?centered=${args.centered}
           .initialOpen=${true}
           .title=${args.title}
-          size=${args.size}
+          size="large"
           @open=${args.onOpen}
           @close=${args.onClose}
           @cancel=${args.onCancel}
@@ -126,7 +126,7 @@ export const DialogOpen: StoryObj = {
           .rounded=${args.rounded}
           .centered=${args.centered}
           .title=${args.title}
-          size=${args.size}
+          size="large"
           @open=${args.onOpen}
           @close=${args.onClose}
           @cancel=${args.onCancel}
