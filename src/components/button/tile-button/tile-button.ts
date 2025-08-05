@@ -34,13 +34,6 @@ export class ZetaTileButton extends Flavored(BaseButton) {
     return [super.styles ?? [], styles];
   }
 
-  //Handles click events on the button.
-  private handleClick() {
-    return (e: MouseEvent) => {
-      this._handleClick(e);
-    };
-  }
-
   //There is only one supported value for the tile button: "outline-subtle".
   @property({ type: String, reflect: true }) flavor: TileButtonFlavor = "outline-subtle";
 
@@ -64,6 +57,13 @@ export class ZetaTileButton extends Flavored(BaseButton) {
    * Main icon of button. Full list of icons can be found at {@link https://design.zebra.com/icons | Zeta Icons}.
    */
   @property({ type: String }) icon?: ZetaIconName;
+
+  //Handles click events on the button.
+  private handleClick() {
+    return (e: MouseEvent) => {
+      this._handleClick(e);
+    };
+  }
 
   protected render() {
     return html`
