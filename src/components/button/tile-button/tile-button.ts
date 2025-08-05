@@ -34,6 +34,13 @@ export class ZetaTileButton extends Flavored(BaseButton) {
     return [super.styles ?? [], styles];
   }
 
+  //Handles click events on the button.
+  private handleClick() {
+    return (e: MouseEvent) => {
+      this._handleClick(e);
+    };
+  }
+
   //There is only one supported value for the tile button: "outline-subtle".
   @property({ type: String, reflect: true }) flavor: TileButtonFlavor = "outline-subtle";
 
@@ -66,7 +73,7 @@ export class ZetaTileButton extends Flavored(BaseButton) {
         name=${ifDefined(this.name)}
         type=${ifDefined(this.type)}
         aria-label=${ifDefined(ifDefined(this.ariaLabel))}
-        @click=${this._handleClick}
+        @click=${this.handleClick()}
         part="button"
         class="contourable-target"
       >
