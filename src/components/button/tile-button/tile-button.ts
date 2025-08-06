@@ -78,7 +78,7 @@ export class ZetaTileButton extends Flavored(BaseButton) {
         class="contourable-target"
       >
         <zeta-icon name="${this.icon || "star"}" .rounded=${this.shape != "sharp"}></zeta-icon>
-        <slot></slot>
+        <span class="button-text"><slot></slot></span>
       </button>
     `;
   }
