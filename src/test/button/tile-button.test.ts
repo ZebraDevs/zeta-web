@@ -61,6 +61,16 @@ describe("zeta-tile-button", () => {
       await elementUpdated(subject);
       await expect(subject.slot).to.equal("");
     });
+
+    it("truncates the label when text is longer than button width", async () => {
+      subject.textContent = "12345678910111213";
+      await elementUpdated(subject);
+      const srTextSpan = subject.shadowRoot?.querySelector(".button-text");
+      expect(srTextSpan).to.exist;
+      expect((srTextSpan as HTMLElement).offsetWidth).to.be.lessThan((srTextSpan as HTMLElement).scrollWidth);
+      expect(getComputedStyle(srTextSpan as HTMLElement).textOverflow).to.equal("ellipsis");
+      expect(getComputedStyle(srTextSpan as HTMLElement).overflow).to.equal("hidden");
+    });
   });
 
   describe("Dimensions", () => {
@@ -72,12 +82,12 @@ describe("zeta-tile-button", () => {
       await expect(getComputedStyle(srButton!).width).to.equal("80px");
     });
 
-    it("if characters in title exceed 80px, width will be more than 80px", async () => {
+    it("button stays the same size if text is longer than button width", async () => {
       subject.textContent = "12345678910111213";
       await elementUpdated(subject);
       const srButton = subject.shadowRoot?.querySelector("button");
       expect(srButton).to.exist;
-      await expect(getComputedStyle(srButton!).width).to.not.equal("80px");
+      await expect(getComputedStyle(srButton!).width).to.equal("80px");
     });
 
     it("height should == 80px regardless of title.length", async () => {
