@@ -5,6 +5,8 @@ import styles from "./dialog.styles.js";
 import { ZetaButton } from "../button/button.js";
 import { Contourable, Popup } from "../../mixins/mixins.js";
 
+export type DialogFlavor = "default" | "info" | "success" | "warning" | "error";
+
 /*
  * TODO: dialog Autofocus.
  */
@@ -106,10 +108,10 @@ export class ZetaDialog extends Contourable(Popup(LitElement)) {
    * - `warning`: Shows yellow warning icon.
    * - `error`: Shows red error icon.
    *
-   * @type {"default" | "info" | "success" | "warning" | "error"}
+   * @type {DialogFlavor}
    * @defaultValue 'default'
    */
-  @property({ type: String, reflect: true }) flavor: "default" | "info" | "success" | "warning" | "error" = "default";
+  @property({ type: String, reflect: true }) flavor: DialogFlavor = "default";
 
   /**
    * Colour of the confirm button.
