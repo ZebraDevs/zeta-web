@@ -68,8 +68,8 @@ describe("zeta-tile-button", () => {
       const srTextSpan = subject.shadowRoot?.querySelector(".button-text");
       expect(srTextSpan).to.exist;
       expect((srTextSpan as HTMLElement).offsetWidth).to.be.lessThan((srTextSpan as HTMLElement).scrollWidth);
-      expect(getComputedStyle(srTextSpan as HTMLElement).textOverflow).to.equal("ellipsis");
-      expect(getComputedStyle(srTextSpan as HTMLElement).overflow).to.equal("hidden");
+      await expect(getComputedStyle(srTextSpan as HTMLElement).textOverflow).to.equal("ellipsis");
+      await expect(getComputedStyle(srTextSpan as HTMLElement).overflow).to.equal("hidden");
     });
   });
 
