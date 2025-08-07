@@ -274,55 +274,55 @@
     <testcase name="renders the checkbox label correctly" time="0" classname="zeta-checkbox + label Content" file="src\test\checkbox\checkbox.test.ts"/>
     <testcase name="checks the checkbox when label text is clicked" time="0.001" classname="zeta-checkbox + label Interaction" file="src\test\checkbox\checkbox.test.ts"/>
   </testsuite>
-  <testsuite name="Chromium_playwright_\src\test\dialog\dialog.test.ts" id="16" tests="43" skipped="0" errors="0" failures="0" time="1.8269999999999988">
+  <testsuite name="Chromium_playwright_\src\test\dialog\dialog.test.ts" id="17" tests="43" skipped="0" errors="0" failures="0" time="1.825999999999999">
     <properties>
       <property name="test.fileName" value="src\test\dialog\dialog.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
-    <testcase name="meets contrast requirements for the default flavor" time="0.266" classname="zeta-dialog Accessibility" file="src\test\dialog\dialog.test.ts"/>
-    <testcase name="meets aria requirements for the default flavor" time="0.076" classname="zeta-dialog Accessibility" file="src\test\dialog\dialog.test.ts"/>
-    <testcase name="meets contrast requirements for the info flavor" time="0.259" classname="zeta-dialog Accessibility" file="src\test\dialog\dialog.test.ts"/>
-    <testcase name="meets aria requirements for the info flavor" time="0.037" classname="zeta-dialog Accessibility" file="src\test\dialog\dialog.test.ts"/>
-    <testcase name="meets contrast requirements for the success flavor" time="0.267" classname="zeta-dialog Accessibility" file="src\test\dialog\dialog.test.ts"/>
-    <testcase name="meets aria requirements for the success flavor" time="0.031" classname="zeta-dialog Accessibility" file="src\test\dialog\dialog.test.ts"/>
-    <testcase name="meets contrast requirements for the warning flavor" time="0.272" classname="zeta-dialog Accessibility" file="src\test\dialog\dialog.test.ts"/>
-    <testcase name="meets aria requirements for the warning flavor" time="0.032" classname="zeta-dialog Accessibility" file="src\test\dialog\dialog.test.ts"/>
-    <testcase name="meets contrast requirements for the error flavor" time="0.272" classname="zeta-dialog Accessibility" file="src\test\dialog\dialog.test.ts"/>
-    <testcase name="meets aria requirements for the error flavor" time="0.026" classname="zeta-dialog Accessibility" file="src\test\dialog\dialog.test.ts"/>
+    <testcase name="meets contrast requirements for the default flavor" time="0.274" classname="zeta-dialog Accessibility" file="src\test\dialog\dialog.test.ts"/>
+    <testcase name="meets aria requirements for the default flavor" time="0.084" classname="zeta-dialog Accessibility" file="src\test\dialog\dialog.test.ts"/>
+    <testcase name="meets contrast requirements for the info flavor" time="0.272" classname="zeta-dialog Accessibility" file="src\test\dialog\dialog.test.ts"/>
+    <testcase name="meets aria requirements for the info flavor" time="0.038" classname="zeta-dialog Accessibility" file="src\test\dialog\dialog.test.ts"/>
+    <testcase name="meets contrast requirements for the success flavor" time="0.265" classname="zeta-dialog Accessibility" file="src\test\dialog\dialog.test.ts"/>
+    <testcase name="meets aria requirements for the success flavor" time="0.032" classname="zeta-dialog Accessibility" file="src\test\dialog\dialog.test.ts"/>
+    <testcase name="meets contrast requirements for the warning flavor" time="0.273" classname="zeta-dialog Accessibility" file="src\test\dialog\dialog.test.ts"/>
+    <testcase name="meets aria requirements for the warning flavor" time="0.028" classname="zeta-dialog Accessibility" file="src\test\dialog\dialog.test.ts"/>
+    <testcase name="meets contrast requirements for the error flavor" time="0.26" classname="zeta-dialog Accessibility" file="src\test\dialog\dialog.test.ts"/>
+    <testcase name="meets aria requirements for the error flavor" time="0.028" classname="zeta-dialog Accessibility" file="src\test\dialog\dialog.test.ts"/>
     <testcase name="creates from document.createElement" time="0" classname="zeta-dialog Content" file="src\test\dialog\dialog.test.ts"/>
     <testcase name="creates from constructor" time="0" classname="zeta-dialog Content" file="src\test\dialog\dialog.test.ts"/>
-    <testcase name="changes open property on open" time="0.004" classname="zeta-dialog Content" file="src\test\dialog\dialog.test.ts"/>
-    <testcase name="changes open property on close" time="0.002" classname="zeta-dialog Content" file="src\test\dialog\dialog.test.ts"/>
+    <testcase name="changes open property on open" time="0.001" classname="zeta-dialog Content" file="src\test\dialog\dialog.test.ts"/>
+    <testcase name="changes open property on close" time="0.001" classname="zeta-dialog Content" file="src\test\dialog\dialog.test.ts"/>
     <testcase name="calls close method and sets return value" time="0.001" classname="zeta-dialog Content" file="src\test\dialog\dialog.test.ts"/>
     <testcase name="closes when clicking on the barrier if closeOnBarrierClick is true" time="0.002" classname="zeta-dialog Content" file="src\test\dialog\dialog.test.ts"/>
-    <testcase name="does not close when clicking on the barrier if closeOnBarrierClick is false" time="0.001" classname="zeta-dialog Content" file="src\test\dialog\dialog.test.ts"/>
+    <testcase name="does not close when clicking on the barrier if closeOnBarrierClick is false" time="0.002" classname="zeta-dialog Content" file="src\test\dialog\dialog.test.ts"/>
     <testcase name="renders an icon" time="0" classname="zeta-dialog Content" file="src\test\dialog\dialog.test.ts"/>
-    <testcase name="renders the correct icon for each flavor" time="0.002" classname="zeta-dialog Content" file="src\test\dialog\dialog.test.ts"/>
+    <testcase name="renders the correct icon for each flavor" time="0.004" classname="zeta-dialog Content" file="src\test\dialog\dialog.test.ts"/>
     <testcase name="renders the title in the header slot" time="0.001" classname="zeta-dialog Content" file="src\test\dialog\dialog.test.ts"/>
     <testcase name="renders the confirm button in the &apos;confirm&apos; slot" time="0" classname="zeta-dialog Content" file="src\test\dialog\dialog.test.ts"/>
     <testcase name="renders the cancel button in the &apos;cancel&apos; slot" time="0" classname="zeta-dialog Content" file="src\test\dialog\dialog.test.ts"/>
-    <testcase name="renders the other button in the &apos;other&apos; slot" time="0.001" classname="zeta-dialog Content" file="src\test\dialog\dialog.test.ts"/>
+    <testcase name="renders the other button in the &apos;other&apos; slot" time="0" classname="zeta-dialog Content" file="src\test\dialog\dialog.test.ts"/>
     <testcase name="truncates the label when text is longer than button width" time="0.002" classname="zeta-dialog Content" file="src\test\dialog\dialog.test.ts"/>
-    <testcase name="renders the correct width" time="0.001" classname="zeta-dialog Dimensions" file="src\test\dialog\dialog.test.ts"/>
+    <testcase name="renders the correct width" time="0" classname="zeta-dialog Dimensions" file="src\test\dialog\dialog.test.ts"/>
     <testcase name="renders the correct height" time="0" classname="zeta-dialog Dimensions" file="src\test\dialog\dialog.test.ts"/>
     <testcase name="stays the same width when the title is very long" time="0.001" classname="zeta-dialog Dimensions" file="src\test\dialog\dialog.test.ts"/>
-    <testcase name="stays the same width when the content is very long" time="0.002" classname="zeta-dialog Dimensions" file="src\test\dialog\dialog.test.ts"/>
+    <testcase name="stays the same width when the content is very long" time="0.001" classname="zeta-dialog Dimensions" file="src\test\dialog\dialog.test.ts"/>
     <testcase name="adjusts height to fit content when the content is very long" time="0.001" classname="zeta-dialog Dimensions" file="src\test\dialog\dialog.test.ts"/>
-    <testcase name="has the --surface-default background colour" time="0.001" classname="zeta-dialog Styling" file="src\test\dialog\dialog.test.ts"/>
+    <testcase name="has the --surface-default background colour" time="0" classname="zeta-dialog Styling" file="src\test\dialog\dialog.test.ts"/>
     <testcase name="has the --main-default font colour" time="0.001" classname="zeta-dialog Styling" file="src\test\dialog\dialog.test.ts"/>
-    <testcase name="has the border-default border colour" time="0" classname="zeta-dialog Styling" file="src\test\dialog\dialog.test.ts"/>
+    <testcase name="has the border-default border colour" time="0.001" classname="zeta-dialog Styling" file="src\test\dialog\dialog.test.ts"/>
     <testcase name="has the correct icon colour for each flavor" time="0.004" classname="zeta-dialog Styling" file="src\test\dialog\dialog.test.ts"/>
-    <testcase name="has the correct confirm button background colour when confirmButtonFlavor is changed" time="0.002" classname="zeta-dialog Styling" file="src\test\dialog\dialog.test.ts"/>
-    <testcase name="has primary button flavour by default" time="0.001" classname="zeta-dialog Styling" file="src\test\dialog\dialog.test.ts"/>
-    <testcase name="has the correct background colour when confirm button is hovered for each flavor" time="0.052" classname="zeta-dialog Styling" file="src\test\dialog\dialog.test.ts"/>
-    <testcase name="has the correct background colour when the cancel button is hovered" time="0.013" classname="zeta-dialog Styling" file="src\test\dialog\dialog.test.ts"/>
+    <testcase name="has the correct confirm button background colour when confirmButtonFlavor is changed" time="0.001" classname="zeta-dialog Styling" file="src\test\dialog\dialog.test.ts"/>
+    <testcase name="has primary button flavour by default" time="0" classname="zeta-dialog Styling" file="src\test\dialog\dialog.test.ts"/>
+    <testcase name="has the correct background colour when confirm button is hovered for each flavor" time="0.038" classname="zeta-dialog Styling" file="src\test\dialog\dialog.test.ts"/>
+    <testcase name="has the correct background colour when the cancel button is hovered" time="0.015" classname="zeta-dialog Styling" file="src\test\dialog\dialog.test.ts"/>
     <testcase name="closes the dialog when the close button is clicked" time="0.047" classname="zeta-dialog Interaction" file="src\test\dialog\dialog.test.ts"/>
     <testcase name="opens the dialog when show() is called" time="0.001" classname="zeta-dialog Interaction" file="src\test\dialog\dialog.test.ts"/>
     <testcase name="closes the dialog when hide() is called" time="0" classname="zeta-dialog Interaction" file="src\test\dialog\dialog.test.ts"/>
     <testcase name="calls the onClick handler when the confirm button is clicked" time="0.048" classname="zeta-dialog Interaction" file="src\test\dialog\dialog.test.ts"/>
-    <testcase name="calls the onClick handler when the cancel button is clicked" time="0.049" classname="zeta-dialog Interaction" file="src\test\dialog\dialog.test.ts"/>
-    <testcase name="calls the onClick handler when the other button is clicked" time="0.049" classname="zeta-dialog Interaction" file="src\test\dialog\dialog.test.ts"/>
+    <testcase name="calls the onClick handler when the cancel button is clicked" time="0.048" classname="zeta-dialog Interaction" file="src\test\dialog\dialog.test.ts"/>
+    <testcase name="calls the onClick handler when the other button is clicked" time="0.051" classname="zeta-dialog Interaction" file="src\test\dialog\dialog.test.ts"/>
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\dropdown\dropdown-menu-button.test.ts" id="0" tests="10" skipped="1" errors="0" failures="0" time="0.022000000000000002">
     <properties>

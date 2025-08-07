@@ -136,25 +136,25 @@ describe("zeta-dialog", () => {
       }
     });
 
-    it("renders the title in the header slot", async () => {
+    it("renders the title in the header slot", () => {
       const headerH1 = subject.shadowRoot?.querySelector("header h1");
       expect(headerH1).to.exist;
       expect(headerH1?.textContent).to.include("Dialog title");
     });
 
-    it("renders the confirm button in the 'confirm' slot", async () => {
+    it("renders the confirm button in the 'confirm' slot", () => {
       const confirmButton = subject.querySelector('zeta-button[slot="confirm"]');
       expect(confirmButton).to.exist;
       expect(confirmButton?.textContent).to.include("Button");
     });
 
-    it("renders the cancel button in the 'cancel' slot", async () => {
+    it("renders the cancel button in the 'cancel' slot", () => {
       const cancelButton = subject.querySelector('zeta-button[slot="cancel"]');
       expect(cancelButton).to.exist;
       expect(cancelButton?.textContent).to.include("Button");
     });
 
-    it("renders the other button in the 'other' slot", async () => {
+    it("renders the other button in the 'other' slot", () => {
       const otherButton = subject.querySelector('zeta-button[slot="other"]');
       expect(otherButton).to.exist;
       expect(otherButton?.textContent).to.include("Button");
@@ -328,16 +328,16 @@ describe("zeta-dialog", () => {
     it("opens the dialog when show() is called", async () => {
       const dialog = subject.shadowRoot?.querySelector("dialog");
       expect(dialog).to.exist;
-      subject.show();
+      await subject.show();
       await elementUpdated(subject);
-      await expect(dialog!.open).to.be.true;
+      expect(dialog!.open).to.be.true;
     });
     it("closes the dialog when hide() is called", async () => {
       const dialog = subject.shadowRoot?.querySelector("dialog");
       expect(dialog).to.exist;
-      subject.hide();
+      await subject.hide();
       await elementUpdated(subject);
-      await expect(dialog!.open).to.be.false;
+      expect(dialog!.open).to.be.false;
     });
     it("calls the onClick handler when the confirm button is clicked", async () => {
       const confirmButton = subject.querySelector('zeta-button[slot="confirm"]');
