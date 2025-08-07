@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.0](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.10.2...zeta-web-v0.11.0) (2025-08-07)
+
+
+### ✨ New Features
+
+* **UX-1482:** TileButton ([#91](https://github.com/ZebraDevs/zeta-web/issues/91)) ([38374c3](https://github.com/ZebraDevs/zeta-web/commit/38374c3e90035da768f9958ee43d2cb07c142de9))
+
 ## [0.10.2](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.10.1...zeta-web-v0.10.2) (2025-07-30)
 
 
