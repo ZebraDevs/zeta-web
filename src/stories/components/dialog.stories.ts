@@ -3,14 +3,13 @@ import { html, nothing } from "lit";
 import { ZetaDialog } from "../../components/dialog/dialog.js";
 import { fn } from "@storybook/test";
 
-import { ZetaIconNameList, type ZetaIconName } from "@zebra-fed/zeta-icons";
-
 const meta: Meta<
   Omit<ZetaDialog, "icon"> & {
     confirm: string;
     cancel: string;
     other: string;
-    icon?: ZetaIconName;
+    flavor: "info" | "success" | "warning" | "error" | "default";
+    confirmButtonFlavor: "primary" | "positive" | "negative";
     "--icon-color": String;
     onOpen: () => void;
     onClose: () => void;
@@ -21,33 +20,33 @@ const meta: Meta<
   title: "Components/Dialog",
   tags: ["autodocs"],
   args: {
-    centered: false,
+    // centered: false,
     rounded: false,
-    title: "Title",
+    title: "Dialog Title",
     slot: "Lorem ipsum dolor sit amet, conse ctetur adipiscing elit, sed do eiusm od tempor incididunt ut labore et do lore magna aliquaa met, conse ctetur adipisc.",
-    confirm: "Confirm",
-    cancel: "Cancel",
-    other: "Learn more",
-    icon: "star",
-    size: "large",
+    confirm: "Button",
+    cancel: "Button",
+    other: "Button",
+    flavor: "default",
+    confirmButtonFlavor: "primary",
     onOpen: fn(),
     onClose: fn(),
     onCancel: fn(),
     closeOnBarrierClicked: true
   },
   argTypes: {
-    size: {
-      options: ["small", "large"],
-      control: { type: "radio" }
-    },
     initialOpen: {
       table: { disable: true }
     },
     open: {
       table: { disable: true }
     },
-    icon: {
-      options: [null, ...ZetaIconNameList],
+    flavor: {
+      options: ["default", "info", "success", "warning", "error"],
+      control: { type: "select" }
+    },
+    confirmButtonFlavor: {
+      options: ["primary", "positive", "negative"],
       control: { type: "select" }
     },
     "--icon-color": { control: "color" }
@@ -76,15 +75,15 @@ export const Dialog: StoryObj = {
         <zeta-dialog
           id="dialog1"
           .rounded=${args.rounded}
-          ?centered=${args.centered}
           .initialOpen=${true}
           .title=${args.title}
-          size=${args.size}
+          .flavor=${args.flavor}
+          .confirmButtonFlavor=${args.confirmButtonFlavor}
           @open=${args.onOpen}
           @close=${args.onClose}
           @cancel=${args.onCancel}
         >
-          ${args.slot} ${args.icon ? html`<zeta-icon slot="icon">${args.icon}</zeta-icon>` : nothing}
+          ${args.slot} ${html`<zeta-icon slot="icon">${args.icon || "block"}</zeta-icon>`}
           ${args.confirm && args.confirm.length > 0 ? html`<zeta-button slot="confirm">${args.confirm}</zeta-button>` : nothing}
           ${args.cancel && args.cancel.length > 0 ? html`<zeta-button slot="cancel">${args.cancel}</zeta-button>` : nothing}
           ${args.other && args.other.length > 0 ? html`<zeta-button slot="other">${args.other}</zeta-button>` : nothing}
@@ -124,15 +123,15 @@ export const DialogOpen: StoryObj = {
         <zeta-dialog
           id="dialog1"
           .rounded=${args.rounded}
-          .centered=${args.centered}
           .title=${args.title}
-          size=${args.size}
+          .flavor=${args.flavor}
+          .confirmButtonFlavor=${args.confirmButtonFlavor}
           @open=${args.onOpen}
           @close=${args.onClose}
           @cancel=${args.onCancel}
           .closeOnBarrierClicked=${args.closeOnBarrierClicked}
         >
-          ${args.slot} ${args.icon ? html`<zeta-icon slot="icon">${args.icon}</zeta-icon>` : nothing}
+          ${args.slot} ${html`<zeta-icon slot="icon">${args.icon || "block"}</zeta-icon>`}
           ${args.confirm && args.confirm.length > 0 ? html`<zeta-button slot="confirm">${args.confirm}</zeta-button>` : nothing}
           ${args.cancel && args.cancel.length > 0 ? html`<zeta-button slot="cancel">${args.cancel}</zeta-button>` : nothing}
           ${args.other && args.other.length > 0 ? html`<zeta-button slot="other">${args.other}</zeta-button>` : nothing}
