@@ -46,6 +46,13 @@ export default css`
     align-items: center;
     align-self: stretch;
   }
+  header h1 {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+    display: block;
+  }
 
   :host([centered]) header {
     align-items: center;
