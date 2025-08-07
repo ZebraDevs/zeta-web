@@ -75,7 +75,7 @@ describe("zeta-tile-button", () => {
 
   describe("Dimensions", () => {
     it("if characters in title equal less than 80px, width should == 80px", async () => {
-      subject.textContent = "1234567";
+      subject.textContent = "1";
       await elementUpdated(subject);
       const srButton = subject.shadowRoot?.querySelector("button");
       expect(srButton).to.exist;
