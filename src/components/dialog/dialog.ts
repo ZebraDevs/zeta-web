@@ -24,9 +24,6 @@ export type DialogFlavor = "default" | "info" | "success" | "warning" | "error";
  * When shown as a modal, clicking the background barrier will close the modal by default; this can be changed with the `closeOnBarrierClicked` property.
  *
  * @slot - Body of dialog; typically text.
- * @slot {zeta-icon} icon - A `zeta-icon` element. Size will be restricted based on dialog type. Icon type and colour will be
- * restricted based on dialog flavour.
- * @slot {zeta-icon} icon - A `zeta-icon` element. The close icon in the header.
  * @slot {zeta-button} confirm - Button used in footer. Must be of type zeta-button.
  * @slot {zeta-button} cancel - Button used in footer. Must be of type zeta-button.
  * @slot {zeta-button} other - Button used in footer. Must be of type zeta-button.
@@ -91,8 +88,11 @@ export class ZetaDialog extends Contourable(Popup(LitElement)) {
     this._title = value;
   }
 
-  /** Whether header text should be centered. */
-  // @property({ type: Boolean, reflect: true }) centered: boolean = false;
+  /**
+   * @deprecated Whether header text should be centered.
+   * Feature is deprecated.
+   */
+  @property({ type: Boolean, reflect: true }) centered: boolean = false;
 
   /** Whether the modal is initially open. */
   @property({ type: Boolean }) initialOpen: boolean = false;
