@@ -15,7 +15,7 @@ import { ZetaOptionClickEvent } from "../../events.js";
  */
 @customElement("zeta-option")
 export class ZetaOption extends Contourable(Interactive(Size(LitElement))) {
-  @property({ type: String }) value: string = "";
+  @property({ type: String }) value: string | null = "";
 
   @property({ type: Boolean, reflect: true }) selected: boolean = false;
 
@@ -27,7 +27,7 @@ export class ZetaOption extends Contourable(Interactive(Size(LitElement))) {
     if (!this.disabled) {
       // uncomment this to enable deselection
       // this.selected = !this.selected;
-      this.dispatchEvent(new ZetaOptionClickEvent({ value: this.value }).toEvent());
+      this.dispatchEvent(new ZetaOptionClickEvent({ value: this.value === null ? "null" : this.value}).toEvent());
     }
   };
 

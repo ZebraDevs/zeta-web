@@ -145,7 +145,7 @@ export class ZetaSelectInput extends FormField(Size(Contourable(Interactive(LitE
       }
       if (option.selected && !this.value) {
         if (!this.disabled) this.isSelected = true;
-        this.setValue(option.value);
+        this.setValue(option.value === null ? "null" : option.value);
       }
     });
   };
