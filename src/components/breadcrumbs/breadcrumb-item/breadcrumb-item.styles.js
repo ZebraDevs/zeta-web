@@ -9,7 +9,6 @@ export default css`
     flex-wrap: nowrap;
     align-items: center;
     color: var(--main-subtle);
-    gap: var(--spacing-small);
   }
 
   a:hover ::slotted([slot="icon"]) {
@@ -30,6 +29,11 @@ export default css`
 
   ::slotted([slot="icon"]) {
     --icon-color: var(--main-subtle);
-    margin: var(--spacing-none) var(--spacing-minimum);
+    margin-right: var(--spacing-small);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
   }
 `;
