@@ -1,31 +1,33 @@
 import { css } from "lit";
 export default css`
-  :host([rounded]) ::slotted(zeta-breadcrumb-item:not(:first-child)):before,
-  :host([rounded]) zeta-breadcrumb-item:not(:first-child):before,
-  :host([rounded]) .more-menu:before {
+  :host([rounded]) ::slotted(zeta-breadcrumb-item:not(:first-child))::before,
+  :host([rounded]) zeta-breadcrumb-item:not(:first-child)::before,
+  :host([rounded]) .more-menu::before {
     font-family: "zeta-icons-round";
   }
 
-  :host ::slotted(zeta-breadcrumb-item:not(:first-child)):before,
-  :host zeta-breadcrumb-item:not(:first-child):before,
-  .more-menu:before {
+  :host ::slotted(zeta-breadcrumb-item:not(:first-child))::before,
+  :host zeta-breadcrumb-item:not(:first-child)::before,
+  .more-menu::before {
     font-family: "zeta-icons-sharp";
   }
 
-  ::slotted(zeta-breadcrumb-item:not(:first-child)):before,
-  .container zeta-breadcrumb-item:not(:first-child):before,
-  .more-menu:before {
+  ::slotted(zeta-breadcrumb-item:not(:first-child))::before,
+  .container zeta-breadcrumb-item:not(:first-child)::before,
+  .more-menu::before {
     content: "chevron_right";
     font-size: var(--spacing-large);
     color: var(--main-subtle);
-    margin-right: var(--spacing-small);
+    margin: 0 var(--spacing-small) 0 var(--spacing-small);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   :host,
   .container {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--spacing-small);
   }
 
   .more-menu {
