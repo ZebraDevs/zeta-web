@@ -12,7 +12,7 @@ import type { ZetaOption } from "./option.js";
 import "./option.js";
 import type { ZetaIconName } from "@zebra-fed/zeta-icons";
 import "../icon/icon.js";
-import type { ZetaOptionClickEventDetail } from "../../events";
+import type { ZetaOptionClickEventDetail } from "../../events.js";
 
 /**
  * TODO:
