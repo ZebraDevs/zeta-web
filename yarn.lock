@@ -3569,10 +3569,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zebra-fed/zeta-icons@npm:^0.11.5":
-  version: 0.11.5
-  resolution: "@zebra-fed/zeta-icons@npm:0.11.5"
-  checksum: 10c0/0c7aed804eaf975139f2064b8643cddaa7a5334c395709a91179dc009267f15f8c1d1269d6e046ed9883995f26211c5e52e3e3bda060aecd8a8120d56d9a2b90
+"@zebra-fed/zeta-icons@npm:^0.11.6":
+  version: 0.11.6
+  resolution: "@zebra-fed/zeta-icons@npm:0.11.6"
+  checksum: 10c0/8666583d354c48906cc7038df80c53b75314464558c3a20b7178b296cb9a989f5ca74205e9490587762bfae81235c0541aa6407a080213e68e86e3a2c861fadf
   languageName: node
   linkType: hard
 
@@ -3615,7 +3615,7 @@ __metadata:
     "@web/test-runner-commands": "npm:^0.9.0"
     "@web/test-runner-junit-reporter": "npm:^0.8.0"
     "@web/test-runner-playwright": "npm:^0.11.1"
-    "@zebra-fed/zeta-icons": "npm:^0.11.5"
+    "@zebra-fed/zeta-icons": "npm:^0.11.6"
     axe-playwright: "npm:^2.1.0"
     cem-plugin-better-lit-types: "npm:^0.2.1"
     cem-plugin-custom-jsdoc-tags: "npm:^1.2.0"
