@@ -18,7 +18,6 @@ export default css`
 
   dialog {
     flex-direction: column;
-    /* width: fit-content; */
     width: var(--_dialog-width);
     min-width: var(--_dialog-width);
     max-width: var(--_dialog-width);
@@ -32,7 +31,6 @@ export default css`
     background-color: var(--surface-default);
     color: var(--main-default);
     border: 1px solid var(--border-default, #ced2db);
-    /* box-shadow: var(--elevation-6); */
   }
 
   dialog[open] {
@@ -64,7 +62,6 @@ export default css`
     padding: var(--spacing-2xl);
     gap: var(--spacing-large);
     justify-content: space-between;
-    /* margin-top: var(--spacing-2xl); */
     overflow: auto;
 
     ::slotted(:not(zeta-button)) {
@@ -126,7 +123,7 @@ export default css`
     }
   }
   zeta-icon {
-    --icon-size: 24px;
+    --icon-size: var(--spacing-2xl);
   }
   zeta-icon[name="close"] {
     cursor: pointer;
