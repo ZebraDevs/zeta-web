@@ -48,7 +48,7 @@ We have a number of mixins that can be used to mix in extra functionality
 - ContourableThree - adds rounded (sharp | rounded | full) prop, and styles either the parent or any nodes with class `.contourable-target`
 - Flavored - adds flavor prop and respected styles.
 - FormField - adds form field logic
-- Interactive - adds styles for interactive component, applied either to the parent or any nodes witt class `.interactive-target`.
+- Interactive - adds styles for interactive component, applied either to the parent or any nodes with class `.interactive-target`.
 - Navigate - adds href to a given attribute
 - Popup - makes component popup like a dialog
 - Size - adds Size property
