@@ -87,7 +87,7 @@ Only export the main component from the component file (for example, ZetaX). Avo
 
 ### Create the \*book file {#create-the-book-file-web}
 
-We use storybook for web and should typically include a single story. This stroy should demonstrate every variant of the component. If this is not feasible, you may create multiple stories.
+We use storybook for web and should typically include a single story. This story should demonstrate every variant of the component. If this is not feasible, you may create multiple stories.
 
 `src/stories/components/x/x.stories.ts`
 
