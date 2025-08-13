@@ -2,7 +2,7 @@ import { html, LitElement, nothing } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { Contourable } from "../../../mixins/mixins.js";
 import styles from "./accordion-item.styles.js";
-import "../../icon/icon";
+import "../../icon/icon.js";
 
 /**
  * The accordion is a control element comprising a vertically stacked list of items, such as labels or thumbnails. Each item can be "expanded" or "collapsed" to reveal the content associated with that item. There can be zero expanded items, exactly one, or more than one item expanded at a time, depending on the configuration.
