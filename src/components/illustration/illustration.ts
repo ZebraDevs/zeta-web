@@ -76,12 +76,15 @@ export class ZetaIllustration extends LitElement {
   @property({ type: String }) src?: string;
 
   getIllustrationPath = (): string => {
+    if (!this.name) {
+      return "";
+    }
     const zdna = ["addDevice", "emptyBox", "helpChat", "welcomeNav"];
     let folder = "workcloud";
     if (zdna.includes(this.name ?? "")) {
       folder = "zdna";
     }
-    return this.basePath + "/assets/illustrations/" + folder + "/" + name + ".svg";
+    return this.basePath + "/assets/illustrations/" + folder + "/" + this.name + ".svg";
   };
 
   protected override render() {
