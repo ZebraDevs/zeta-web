@@ -5,9 +5,9 @@ import { Contourable } from "../../mixins/contour.js";
 
 /** Empty states are used to convey there is no data is available for display. Types include No results, First use, No Data, User Cleared
  *
- * @slot primaryAction - Primary Action Button. Should be of type {ZetaButton}.
- * @slot secondaryAction - Secondary Action Button. Should be of type {ZetaButton}.
- * @slot illustration - Illustration to be displayed in the empty state. Should be of type {ZetaIllustration}.
+ * @slot primaryAction - Primary Action Button. Should be a `zeta-button`.
+ * @slot secondaryAction - Secondary Action Button. Should be a `zeta-button`.
+ * @slot illustration - Illustration to be displayed in the empty state. Should be a `zeta-illustration`.
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=38470-1055
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-empty-state--docs
