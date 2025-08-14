@@ -2,8 +2,7 @@ import { customElement, property } from "lit/decorators.js";
 import { LitElement, html } from "lit";
 import styles from "./list-item.styles.js";
 
-/**
- * List items are used in lists.
+/** An item in a list comprised of a single row, typically containing some text as well as leading or trailing widgets.
  *
  * @slot leading - Content placed before the headline
  * @slot trailing - Content placed after the headline

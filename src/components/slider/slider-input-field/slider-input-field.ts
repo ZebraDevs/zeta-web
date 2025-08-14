@@ -10,8 +10,7 @@ import { ZetaSlider } from "../slider.js";
 
 //TODO: min / max dont seem to change values of slider correctly.
 
-/**
- * An input field using a Zeta Slider
+/** A text input and slider field for entering numerical values.
  *
  * @event {CustomEvent<ZetaSliderEventDetail>} change - Fired whenever value of slider is changed. Contains a single entry in detail: `value:number`.
  *

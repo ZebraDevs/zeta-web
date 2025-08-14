@@ -9,8 +9,7 @@ import "../icon/icon.js";
 //TODO: Disable buttons when at min or max
 //TODO: disabled prop changes size of box
 
-/** ZetaStepperInput web component.
- * A stepper input, also called numeric stepper, is a common UI element that allows users to input a number or value simply by clicking the plus and minus buttons.
+/** A stepper input, also called numeric stepper, is a common UI element that allows users to input a number or value simply by clicking the plus and minus buttons.
  *
  * @event {Event} change - Fired when the value of the stepper input changes.
  * @event {FocusEvent} focus - Fired when the stepper input receives focus.

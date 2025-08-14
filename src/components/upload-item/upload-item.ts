@@ -6,7 +6,7 @@ import "../icon/icon.js";
 import "../progress-indicators/progress-circle/progress-circle.js";
 import { ZetaCancelUploadEvent } from "../../events.js";
 
-/** Represents a file being uploaded.
+/** A list tile showing the upload progress of an item.
  *
  * @slot - The title of the file being uploaded.
  * @slot subtitle - Any extra information about the upload.

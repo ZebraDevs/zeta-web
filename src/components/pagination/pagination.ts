@@ -7,8 +7,7 @@ import { ZetaPageEvent } from "../../events.js";
 import "../button/icon-button/icon-button.js";
 import "../icon/icon.js";
 
-/**
- * Pagination needs a description.
+/** Buttons or a dropdown for navigating between pages.
  *
  *  @event {CustomEvent<ZetaPageEventDetail>} pageChange - Fired when page change. Contains a single value in details: `page: number`.
  *

@@ -7,8 +7,7 @@ import { ZetaRangeSliderEvent, ZetaSliderEvent } from "../../events.js";
 
 export * from "./slider-input-field/slider-input-field.js";
 
-/**
- * Sliders allow users to make selections from a range of values.
+/** Sliders allow users to make selections from a range of values.
  *
  * @event {CustomEvent<ZetaSliderEventDetail>} change - Fired whenever value of slider is changed. Contains a single entry in details: `value:number`.
  * @event {CustomEvent<ZetaRangeSliderEventDetail>} change - Fired whenever value of range slider is changed. Contains 2 values in details: `min:number`, `max:number`.

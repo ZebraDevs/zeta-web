@@ -5,8 +5,7 @@ import styles from "./stepper.styles.js";
 import { classMap } from "lit/directives/class-map.js";
 import { Contourable } from "../../mixins/mixins.js";
 
-/**
- * Steppers convey progress through numbered steps.
+/** Steppers convey progress through numbered steps.
  *
  * For the steps, pass `li` elements with `data-title` and `data-label` attributes as children
  *

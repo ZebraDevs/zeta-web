@@ -7,7 +7,8 @@ import { Contourable, Interactive, Size } from "../../mixins/mixins.js";
 import "../icon/icon.js";
 import { FormField } from "../../mixins/form-field.js";
 
-/**
+/** A text input field for entering text.
+ *
  * Text input component with icon, affix, label and hint text.
  *
  * To change the width of the input field, either wrap it in a div with a fixed width, or you can apply display: block to the input field, and then provide a width.

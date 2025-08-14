@@ -7,8 +7,7 @@ export * from "./card-body/card-body.js";
 export * from "./card-footer/card-footer.js";
 export * from "./card-header/card-header.js";
 
-/**
- * Cards are used to display content.
+/** Cards are surfaces that display content and actions on a single topic. They help group related information and make it easier to scan, compare, and take action.
  *
  * @slot - The content of the card.
  * @cssproperty --card-border-line-width  The line width of the border

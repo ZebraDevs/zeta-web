@@ -3,7 +3,7 @@ import { customElement, property } from "lit/decorators.js";
 import styles from "./label.styles.js";
 import { Contourable } from "../../../mixins/mixins.js";
 
-/** To help some information, labels, or errors stand out, we present them with badges. They can look like buttons, but users can’t select them. They just guide users to things they should pay attention to.
+/** Text badges notify users of line items that need attention.
  *
  * @slot  - Text displayed on the label. If not provided, the `label` property will be used.
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=21926-2099

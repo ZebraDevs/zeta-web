@@ -3,7 +3,8 @@ import styles from "./icon-button.styles.js";
 import { ZetaButton } from "../button.js";
 import "../../icon/icon.js";
 // TODO slot icon name instead of passing it through a property
-/**  A button containing a Zeta Icon.
+
+/**  Icon buttons are used to trigger actions with an icon.
  *
  * @cssproperty --icon-button-color the color of the button.
  * @cssproperty --icon-button-icon-color the color of the icon.

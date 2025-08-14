@@ -2,8 +2,7 @@ import { html, LitElement, nothing } from "lit";
 import styles from "./top-appbar.styles.js";
 import { customElement, property } from "lit/decorators.js";
 
-/**
- * Top Appbars provide content and actions related to the current screen.
+/** Top app bars provide content and actions related to the current screen.
  *
  * @slot - The content of the appbar.
  * @slot leading - The content to be placed at the start of the appbar.

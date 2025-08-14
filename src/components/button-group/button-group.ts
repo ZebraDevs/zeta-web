@@ -5,7 +5,8 @@ import { Contourable } from "../../mixins/mixins.js";
 
 export * from "./button-group-item/button-group-item.js";
 
-/**
+/** Button groups are used to group related buttons together. They can be used to create a toolbar or a set of related actions.
+ *
  * Takes in Zeta Button Group Items as children and groups them by applying styling to them.
  *
  * Does not render any other types of children.

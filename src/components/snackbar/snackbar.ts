@@ -6,8 +6,8 @@ import "../button/button.js";
 import { Interactive } from "../../mixins/interactive.js";
 import { ContourableThree } from "../../mixins/contourable-three.js";
 
-/**
- * Snackbars provide brief messages about app processes at the bottom of the screen.
+/** Snackbars provide brief messages about app processes at the bottom of the screen.
+ *
  * Contextual snackbars provide brief messages in relation to an action that has been taken by the user.
  *
  * @slot - The text of the snackbar.

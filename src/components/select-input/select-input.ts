@@ -21,8 +21,8 @@ import type { ZetaOptionClickEventDetail } from "../../events.js";
  * Arrow keys to navigate options
  */
 
-/**
- * ZetaSelectInput web component. Text input with dropdown select.
+/** A text input field for selecting from a list of options.
+ *
  * Currently no typing or multi-select support.
  *
  * @event {Event} change - Fired when the value of the select input changes.
