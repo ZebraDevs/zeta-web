@@ -3,7 +3,8 @@ import { customElement, property } from "lit/decorators.js";
 import styles from "./tab-item.styles.js";
 import { Contourable, Interactive } from "../../../mixins/mixins.js";
 
-/**
+/** Tabs are used to show different views or sections of content within the same context.
+ *
  * A tab item to be used in a zeta-tab-bar
  *
  * @slot - The content of the menu item.

@@ -4,7 +4,7 @@ import styles from "./filter-chip.styles.js";
 import "../../icon/icon.js";
 import { BaseChip } from "../base-chips/base-chip.js";
 
-/** Zeta Filter Chip web component.
+/** Chips that are used to filter content, that are clickable, selectable and draggable. They have a default and active state.
  *
  * @event {Event} change - Fired when the filter chip is selected/deselected
  *

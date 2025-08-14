@@ -11,7 +11,8 @@ import { FormField, type InputType } from "../../../mixins/form-field.js";
 
 export type ZetaRangeValues = { min: number; max: number };
 
-/**
+/** Used for selecting values in a numerical range.
+ *
  * A ranged input field using a Zeta Slider
  *
  * The "name" is required when in a form.

@@ -10,7 +10,8 @@ export type DialogFlavor = "default" | "info" | "success" | "warning" | "error";
 /*
  * TODO: dialog Autofocus.
  */
-/**
+/** A popup dialog used to convey a message to the user.
+ *
  * A reusable dialog or modal window with a customizable interface and functionality.
  *
  * A dialog should popup either in response to user action or to get the users attention.

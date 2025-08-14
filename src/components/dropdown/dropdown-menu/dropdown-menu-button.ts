@@ -17,7 +17,10 @@ export type ZetaDropdownItem = { label: string; icon?: ZetaIconName; checked?: b
 
 //TODO check to see if this works with keyboard input
 //     include check to see if input event is fired too
-/** Zeta Dropdown Menu Button places a button that when clicked opens a dropdown menu containing the items passed into it through the items prop.
+
+/** Dropdown menus allow users to select an option from a list that appears when the menu is clicked or tapped.
+ *
+ * Zeta Dropdown Menu Button places a button that when clicked opens a dropdown menu containing the items passed into it through the items prop.
  *
  * @slot - The slotted text will be displayed on the dropdown menu button.
  * @event {CustomEvent<ZetaDropdownEventDetail>} open - Fired when the dropdown is opened.

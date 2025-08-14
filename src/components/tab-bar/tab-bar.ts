@@ -4,7 +4,8 @@ import styles from "./tab-bar.styles.js";
 
 export * from "./tab-item/tab-item.js";
 
-/**
+/** Tabs are used to show different views or sections of content within the same context.
+ *
  * A bar used to display a collection of zeta-tab-items.
  * @cssproperty --tab-bar-background-color The background color of the tab-bar.
  * @slot - The tab items displayed in the header. Should be a list of zeta-tab-item.

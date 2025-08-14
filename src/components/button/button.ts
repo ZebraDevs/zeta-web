@@ -12,7 +12,7 @@ import type { ZetaIconName } from "@zebra-fed/zeta-icons";
 
 export type ButtonFlavor = Exclude<Flavor, "inverse">;
 
-/** Buttons facilitate user interaction.
+/** Buttons are used to trigger actions.
  *
  * @slot - Content shown on button; typically text.
  * @part button - The button element

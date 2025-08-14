@@ -8,7 +8,7 @@ import { BaseButton } from "../button/base-button.js";
 
 export type FabFlavor = Exclude<Flavor, "positive" | "negative" | "outline" | "outline-subtle" | "text">;
 
-/** Floating action buttons are used for a promoted action.
+/** Floating Action Buttons are used to trigger the primary action on a screen. They are circular buttons that float above the content.
  *
  * @slot - The icon of the button. Entered as a plain string.
  *

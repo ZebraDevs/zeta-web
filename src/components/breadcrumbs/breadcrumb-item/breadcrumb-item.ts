@@ -6,7 +6,7 @@ import { Navigate } from "../../../mixins/mixins.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 
 /**
- * The breadcrumb is a secondary navigation patten that helps a user understand the hierarchy among levels and navigate back through them.
+ * The breadcrumb is a secondary navigation pattern that helps a user understand the hierarchy among levels and navigate back through them.
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-5&node-type=canvas&m=dev
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-breadcrumb--docs

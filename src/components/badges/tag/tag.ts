@@ -5,8 +5,7 @@ import { Contourable } from "../../../mixins/mixins.js";
 import { makeIntegerWidth } from "../../../utils/utils.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 
-/** Tags are used to draw attention to a specific area or information.
- * The arrow shape helps direct the users attention to the desired place.
+/** Tags are used to draw attention to a specific area or information. The arrow shape helps direct the users attention to the desired place.
  *
  * @slot - The text to display in the tag.
  *

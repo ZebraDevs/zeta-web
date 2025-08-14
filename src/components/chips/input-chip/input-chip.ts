@@ -4,7 +4,7 @@ import styles from "./input-chip.styles.js";
 import "../../icon/icon.js";
 import { BaseChip } from "../base-chips/base-chip.js";
 
-/** Zeta Input Chip web component.
+/** A chip used to show input data, typically used to associate some content or action with a user.
  *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21265-2159
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-chips--docs
