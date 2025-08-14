@@ -9,7 +9,7 @@ import { ContourableThree } from "../../mixins/contourable-three.js";
 //TODO onsubmit
 
 /** A text input field for entering search queries.
- * 
+ *
  * Supports speech recognition search on Chrome.
  *
  * @event {FocusEvent} focus - Fired when the search field is focused
