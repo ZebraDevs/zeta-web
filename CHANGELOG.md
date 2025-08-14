@@ -1,5 +1,32 @@
 # Changelog
 
+## [0.11.0](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.10.2...zeta-web-v0.11.0) (2025-08-14)
+
+
+### ✨ New Features
+
+* **UX-1482:** TileButton ([#91](https://github.com/ZebraDevs/zeta-web/issues/91)) ([38374c3](https://github.com/ZebraDevs/zeta-web/commit/38374c3e90035da768f9958ee43d2cb07c142de9))
+
+
+### 🪲 Bug Fixes
+
+* Accordion did not import icon.js, may cause import issue ([#98](https://github.com/ZebraDevs/zeta-web/issues/98)) ([9819ddd](https://github.com/ZebraDevs/zeta-web/commit/9819ddd440a5547b1dcf51c16299a643f2010d4e))
+* Allow illustration src override ([c0b372a](https://github.com/ZebraDevs/zeta-web/commit/c0b372a8e0ab1d6934e3b4cd5798d03655fff638))
+* change documentation syntax in empty state ([#100](https://github.com/ZebraDevs/zeta-web/issues/100)) ([c0b372a](https://github.com/ZebraDevs/zeta-web/commit/c0b372a8e0ab1d6934e3b4cd5798d03655fff638))
+* **UX-1336:** Center chevrons and icons ([#96](https://github.com/ZebraDevs/zeta-web/issues/96)) ([407a3d3](https://github.com/ZebraDevs/zeta-web/commit/407a3d345473783ba5720ca41b4794f101b936f7))
+* **UX-1459:** Update dialog to match new Figma designs ([#93](https://github.com/ZebraDevs/zeta-web/issues/93)) ([156b6b3](https://github.com/ZebraDevs/zeta-web/commit/156b6b38d51083be33b4b4e2e4a6c04d25b41191))
+
+
+### 📈 Documentation
+
+* **UX-1487:** Add component readme ([#101](https://github.com/ZebraDevs/zeta-web/issues/101)) ([37f9e88](https://github.com/ZebraDevs/zeta-web/commit/37f9e882523a8cf1be3921a8adb37e26df056a26))
+
+
+### ⛓️ Dependencies
+
+* Update zeta-icons library ([#97](https://github.com/ZebraDevs/zeta-web/issues/97)) ([94f0aa5](https://github.com/ZebraDevs/zeta-web/commit/94f0aa5411039de43440b670a89c9f4cbe559e61))
+* Update zeta-icons library ([#99](https://github.com/ZebraDevs/zeta-web/issues/99)) ([a77099a](https://github.com/ZebraDevs/zeta-web/commit/a77099a3a67b46e41b5773e5b8a5bb913239cc9b))
+
 ## [0.10.2](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.10.1...zeta-web-v0.10.2) (2025-07-30)
 
 
