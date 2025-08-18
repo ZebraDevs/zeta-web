@@ -7,8 +7,7 @@ import { Contourable } from "../../mixins/mixins.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 import "../button/button.js";
 
-/**
- * A file input that supports drag and drop.
+/** A dialog that allows users to upload files.
  *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=898-10794
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-file-upload--docs

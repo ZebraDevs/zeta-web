@@ -3,7 +3,7 @@ import { customElement, property } from "lit/decorators.js";
 import styles from "./empty-state.styles.js";
 import { Contourable } from "../../mixins/contour.js";
 
-/** Empty states are used to convey there is no data is available for display. Types include No results, First use, No Data, User Cleared
+/** Empty states are used to convey there is no data is available for display. Types include No results, First use, No Data, User Cleared.
  *
  * @slot primaryAction - Primary Action Button. Should be a `zeta-button`.
  * @slot secondaryAction - Secondary Action Button. Should be a `zeta-button`.

@@ -5,10 +5,7 @@ import { Contourable } from "../../mixins/mixins.js";
 import "../button/icon-button/icon-button.js";
 import { ZetaCloseEvent } from "../../events.js";
 
-/**
- * Zeta in page banner component.
- *
- * In page banners display an important, succinct message, and may provide actions for users to address. Banners should be displayed at the top of the screen,below a top app bar. Only one banner should be shown at a time.
+/** In page banners display an important, succinct message, and may provide actions for users to address. Banners should be displayed at the top of the screen,below a top app bar. Only one banner should be shown at a time.
  *
  * This component represents a banner that can be displayed within a page.
  * It can have a title, body text, and various status options.

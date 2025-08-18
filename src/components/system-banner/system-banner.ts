@@ -4,9 +4,7 @@ import styles from "./system-banner.styles.js";
 import { Contourable } from "../../mixins/mixins.js";
 import "../../components/icon/icon.js";
 
-/**
- * A banner displays an important, succinct message, and provides action for users to address.
- * It draws the attention to the message by displaying it at the top in various colors.
+/** A banner displays an important, succinct message, and provides action for users to address. It draws the attention to the message by displaying it at the top in various colors.
  *
  * @slot - Text displayed on label.
  * @slot {zeta-icon} leadingIcon - Icon at leading side of text.

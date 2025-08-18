@@ -5,8 +5,7 @@ import { BaseToggleFormElement } from "../base-toggle-form-element.js";
 import styles from "./radio-button.styles.js";
 import { RadioButtonController } from "./radio-button-controller.js";
 
-/**
- * Radio buttons allow users to select one item from a set. Radio buttons can turn an option on or off.
+/** Radio buttons are used for mutually exclusive choices, not for multiple choices. Only one radio button can be selected at a time. When a user chooses a new item, the previous choice is automatically deselected.
  *
  * @event {Event} change - Fired when the radio button becomes checked (but not when unchecked)
  * @event {InputEvent} input - Fired when the radio button value changes

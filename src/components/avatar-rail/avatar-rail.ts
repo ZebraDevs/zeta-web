@@ -3,7 +3,7 @@ import styles from "./avatar-rail.styles.js";
 import { customElement, property } from "lit/decorators.js";
 import type { AvatarSize } from "../avatar/avatar-size.js";
 
-/** Avatar rail is a container for multiple avatars.
+/** A rail containing 0 or more Avatars that can be scrolled horizontally.
  *
  * @slot {zeta-avatar-rail[]} - The avatars to be displayed in the rail.
  *

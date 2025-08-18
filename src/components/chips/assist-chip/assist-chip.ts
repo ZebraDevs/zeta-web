@@ -4,7 +4,7 @@ import { html, nothing } from "lit";
 import type { ZetaIconName } from "@zebra-fed/zeta-icons";
 import { BaseChip } from "../base-chips/base-chip.js";
 
-/** Zeta assist Chip web component.
+/** Chips that are clickable, selectable and draggable.
  *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21265-14215
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-chips--docs
