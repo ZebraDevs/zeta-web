@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.1](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.11.0...zeta-web-v0.11.1) (2025-08-18)
+
+
+### 📈 Documentation
+
+* **UX-1487:** Update documentation for consistency ([#102](https://github.com/ZebraDevs/zeta-web/issues/102)) ([afdb316](https://github.com/ZebraDevs/zeta-web/commit/afdb316c5f88f0bb621edbdbe05824a605f4caf0))
+
 ## [0.11.0](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.10.2...zeta-web-v0.11.0) (2025-08-14)
 
 
