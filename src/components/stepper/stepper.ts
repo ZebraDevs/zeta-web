@@ -4,6 +4,7 @@ import { html, LitElement, nothing } from "lit";
 import styles from "./stepper.styles.js";
 import { classMap } from "lit/directives/class-map.js";
 import { Contourable } from "../../mixins/mixins.js";
+import "../icon/icon";
 
 /** Steppers convey progress through numbered steps.
  *
@@ -16,11 +17,17 @@ import { Contourable } from "../../mixins/mixins.js";
  */
 @customElement("zeta-stepper")
 export class ZetaStepper extends Contourable(LitElement) {
-  /** Stepper direction.  */
+  /** Stepper direction. Defaults to horizontal. */
   @property({ reflect: true }) variant: "vertical" | "horizontal" = "horizontal";
 
   /** Current active step. */
   @property({ type: Number }) activeStep = 0;
+
+  /** Set to true when page filling is in progress and uncompleted. */
+  @property({ type: Boolean }) partial = false;
+
+  /** Choose to show progress bar or not on horizontal orientation. */
+  @property({ type: Boolean }) progressBar = false;
 
   /** Show bar separator. */
   @property({ type: Boolean }) bar = true;
@@ -31,7 +38,8 @@ export class ZetaStepper extends Contourable(LitElement) {
     return html`${steps.map((step, index) => {
       const classes = {
         completed: index < this.activeStep,
-        active: this.activeStep === index
+        active: this.activeStep === index,
+        partial: this.partial && this.activeStep !== index
       };
 
       const barClass = {
@@ -44,12 +52,14 @@ export class ZetaStepper extends Contourable(LitElement) {
         <li class="step-container">
           <div class="step ${classMap(classes)}">
             <span>
-              <span class="step-number">${index + 1}</span>
+              <span class="step-number">
+                ${classes.completed ? html`<zeta-icon name="check_mark"></zeta-icon>` : index + 1}
+                ${classes.completed ? html`<zeta-icon name="edit"></zeta-icon>` : nothing}
+              </span>
               <span class="bar ${classMap(barClass)}"></span>
             </span>
             <div class="step-content">
-              ${step.childNodes[0]} ${step.dataset.label ? html`<span class="step-label">${step.dataset.label}</span>` : nothing}
-              <span class="step-title">${step.dataset.title}</span>
+              <span class="step-title">Label</span>
             </div>
           </div>
         </li>

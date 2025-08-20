@@ -1,5 +1,12 @@
 import { css } from "lit";
 export default css`
+  :host {
+    --step-width: 232px;
+    --step-height: 92px;
+    --step-container-margin: 7px;
+    --step-completed-icon-border: #fafbfc;
+  }
+
   .steps {
     list-style-type: none;
     margin: 0;
@@ -22,6 +29,7 @@ export default css`
     }
   }
 
+  /*Bar between steps styling*/
   .bar {
     display: flex;
     height: var(--spacing-4xl);
@@ -58,6 +66,7 @@ export default css`
     }
   }
 
+  /*Step styling*/
   .step {
     display: flex;
     flex-direction: column;
@@ -71,26 +80,29 @@ export default css`
     }
 
     &:not(.active):not(.completed) {
-      color: var(--main-disabled);
+      color: var(--main-default);
     }
 
     &.active {
-      .step-label {
-        color: var(--surface-primary);
-      }
-
       .step-number {
         background-color: var(--surface-primary);
+        border: 1px solid var(--main-primary);
+        color: var(--state-default-focus);
+      }
+    }
+
+    &.partial {
+      .step-number {
+        background-color: var(--surface-positive-subtle);
+        border: 3px dashed var(--main-positive);
       }
     }
 
     &.completed {
-      .step-label {
-        color: var(--surface-positive);
-      }
-
       .step-number {
         background-color: var(--surface-positive);
+        border: 1px solid var(--main-positive);
+        --icon-color: var(--state-default-focus);
       }
     }
   }
@@ -104,21 +116,19 @@ export default css`
       margin-top: var(--spacing-small);
       font: var(--body-medium);
     }
-
-    .step-label {
-      display: none;
-    }
   }
 
   .step-number {
-    width: var(--spacing-4xl);
-    height: var(--spacing-4xl);
+    box-sizing: border-box;
+    width: var(--spacing-6xl);
+    height: var(--spacing-6xl);
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--main-disabled);
-    color: var(--surface-default);
-    font: var(--label-large);
+    background-color: var(--surface-default);
+    color: var(--main-default);
+    border: 1px solid var(--main-light);
+    font: var(--headline-small);
   }
 
   :host([rounded]) {
@@ -131,6 +141,7 @@ export default css`
     }
   }
 
+  /* Vertical orientation styles */
   :host([variant="vertical"]) {
     span {
       display: flex;
@@ -143,26 +154,20 @@ export default css`
 
     .step-container {
       flex-direction: column;
-      margin-bottom: var(--spacing-xl);
+      margin-bottom: var(--step-container-margin);
     }
 
     .step {
-      flex-direction: row;
-      text-align: left;
+      text-align: center;
       padding: 0;
+      width: var(--step-width);
+      height: var(--step-height);
+      gap: var(--spacing-3);
+      flex-shrink: 0;
     }
 
     .bar {
-      height: var(--spacing-4xl);
-      width: var(--spacing-4xl);
-      margin-top: var(--spacing-minimum);
-      margin-left: 0;
-
-      &:after {
-        content: "";
-        width: var(--spacing-minimum);
-        height: 100%;
-      }
+      display: none;
     }
 
     .step-title {
@@ -170,17 +175,27 @@ export default css`
       font: var(--title-large);
     }
 
-    .step-label {
-      display: flex;
-      font: var(--body-medium);
+    .step-number {
+      align-self: baseline;
     }
 
-    .step-number {
-      width: var(--spacing-4xl);
-      height: var(--spacing-4xl);
-      font: var(--label-medium);
-      margin-right: var(--spacing-2xl);
-      align-self: baseline;
+    .step-content {
+      align-self: center;
+    }
+
+    .step.completed .step-number zeta-icon[name="edit"] {
+      position: relative;
+      --icon-color: var(--main-subtle);
+      left: 15px;
+      top: 2px;
+      z-index: 2;
+      -webkit-text-stroke: 6px var(--step-completed-icon-border);
+      paint-order: stroke fill;
+    }
+
+    .step.completed .step-number zeta-icon[name="check_mark"] {
+      position: relative;
+      top: 12px;
     }
   }
 `;
