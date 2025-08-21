@@ -3,7 +3,6 @@ import { customElement, property } from "lit/decorators.js";
 import { html, LitElement, nothing } from "lit";
 import styles from "./stepper.styles.js";
 import { classMap } from "lit/directives/class-map.js";
-import { Contourable } from "../../mixins/mixins.js";
 import "../icon/icon";
 
 /** Steppers convey progress through numbered steps.
@@ -16,7 +15,7 @@ import "../icon/icon";
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-stepper--docs
  */
 @customElement("zeta-stepper")
-export class ZetaStepper extends Contourable(LitElement) {
+export class ZetaStepper extends LitElement {
   /** Stepper direction. Defaults to horizontal. */
   @property({ reflect: true }) variant: "vertical" | "horizontal" = "horizontal";
 
@@ -29,9 +28,6 @@ export class ZetaStepper extends Contourable(LitElement) {
   /** Choose to show progress bar or not on horizontal orientation. */
   @property({ type: Boolean }) progressBar = false;
 
-  /** Show bar separator. */
-  @property({ type: Boolean }) bar = true;
-
   private renderSteps = () => {
     // prettier-ignore
     const steps = Array.from(this.querySelectorAll<HTMLLIElement>("li"));
@@ -42,12 +38,6 @@ export class ZetaStepper extends Contourable(LitElement) {
         partial: this.partial && this.activeStep !== index
       };
 
-      const barClass = {
-        show: this.bar,
-        completed: index < this.activeStep && this.bar,
-        active: this.activeStep === index && this.bar
-      };
-
       return html`
         <li class="step-container">
           <div class="step ${classMap(classes)}">
@@ -56,7 +46,7 @@ export class ZetaStepper extends Contourable(LitElement) {
                 ${classes.completed ? html`<zeta-icon name="check_mark"></zeta-icon>` : index + 1}
                 ${classes.completed ? html`<zeta-icon name="edit"></zeta-icon>` : nothing}
               </span>
-              <span class="bar ${classMap(barClass)}"></span>
+              <span class="bar "></span>
             </span>
             <div class="step-content">
               <span class="step-title">Label</span>

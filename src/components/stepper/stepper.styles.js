@@ -47,12 +47,6 @@ export default css`
       background-color: var(--main-disabled);
     }
 
-    &:not(.show) {
-      &::after {
-        display: none !important;
-      }
-    }
-
     &.active {
       &:after {
         background-color: var(--surface-primary);
@@ -129,6 +123,7 @@ export default css`
     color: var(--main-default);
     border: 1px solid var(--main-light);
     font: var(--headline-small);
+    border-radius: 50%;
   }
 
   :host([rounded]) {
@@ -183,19 +178,20 @@ export default css`
       align-self: center;
     }
 
+    .step.completed .step-number zeta-icon[name="check_mark"] {
+      position: relative;
+      top: 12px;
+      --icon-border-width: 0px;
+    }
+
     .step.completed .step-number zeta-icon[name="edit"] {
       position: relative;
       --icon-color: var(--main-subtle);
       left: 15px;
       top: 2px;
       z-index: 2;
-      -webkit-text-stroke: 6px var(--step-completed-icon-border);
-      paint-order: stroke fill;
-    }
-
-    .step.completed .step-number zeta-icon[name="check_mark"] {
-      position: relative;
-      top: 12px;
+      --icon-border-width: 6px;
+      --icon-border-color: var(--step-completed-icon-border);
     }
   }
 `;
