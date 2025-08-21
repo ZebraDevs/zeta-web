@@ -57,7 +57,7 @@ export class ZetaStepper extends LitElement {
               <span class="bar"></span>
             </span>
             <div class="step-content">
-              <span class="step-title">${step.dataset.title}</span>
+              <span class="step-title">${step.dataset.label}</span>
             </div>
           </div>
         </li>

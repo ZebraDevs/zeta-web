@@ -49,9 +49,9 @@ export const Vertical: StoryObj = {
   render: args => {
     return html`
       <zeta-stepper ${spread(args)} variant="vertical">
-        <li data-title="Label" data-label="Label 1"></li>
-        <li data-title="Label" data-label="Label 2"></li>
-        <li data-title="Label" data-label="Label 3"></li>
+        <li data-title="Label 1" data-label="Label"></li>
+        <li data-title="Label 2" data-label="Label"></li>
+        <li data-title="Label 3" data-label="Label"></li>
       </zeta-stepper>
     `;
   },
