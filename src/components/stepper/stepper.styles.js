@@ -184,20 +184,18 @@ export default css`
     }
 
     .step-number {
-      /* width: var(--spacing-4xl);
-      height: var(--spacing-4xl);
-      font: var(--label-medium);
-      margin-right: var(--spacing-2xl); */
       align-self: baseline;
+      --icon-border-width: 0px;
     }
 
-    .step.completed .step-number zeta-icon[name="check_mark"] {
+    .step.editing .step-number zeta-icon[name="check_mark"],
+    .step.editing .step-number .number {
       position: relative;
       top: 12px;
       --icon-border-width: 0px;
     }
 
-    .step.completed .step-number zeta-icon[name="edit"] {
+    .step.editing .step-number zeta-icon[name="edit"] {
       position: relative;
       --icon-color: var(--main-subtle);
       left: 15px;

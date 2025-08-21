@@ -8,7 +8,7 @@ const meta: Meta<ZetaStepper> = {
   component: "zeta-stepper",
   tags: ["autodocs"],
   title: "Components/Stepper",
-  args: { activeStep: 0, partial: false, progressBar: false },
+  args: { activeStep: 0, partial: false, progressBar: false, editing: false },
   argTypes: {
     variant: {
       table: { disable: true }

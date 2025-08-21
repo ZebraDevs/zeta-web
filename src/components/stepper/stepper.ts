@@ -30,6 +30,9 @@ export class ZetaStepper extends LitElement {
   /** Set to true when page filling is in progress and uncompleted. */
   @property({ type: Boolean }) partial = false;
 
+  /**Set to true when page is being edited. Shows pen icon on step. */
+  @property({ type: Boolean }) editing = false;
+
   /** Choose to show progress bar or not on horizontal orientation. */
   @property({ type: Boolean }) progressBar = false;
 
@@ -40,7 +43,8 @@ export class ZetaStepper extends LitElement {
       const classes = {
         completed: index < this.activeStep,
         active: this.activeStep === index,
-        partial: this.partial && this.activeStep !== index
+        partial: this.partial && this.activeStep !== index,
+        editing: this.editing
       };
 
       return html`
@@ -48,8 +52,8 @@ export class ZetaStepper extends LitElement {
           <div class="step ${classMap(classes)}">
             <span>
               <span class="step-number">
-                ${classes.completed ? html`<zeta-icon name="check_mark"></zeta-icon>` : index + 1}
-                ${classes.completed ? html`<zeta-icon name="edit"></zeta-icon>` : nothing}
+                ${classes.completed ? html`<zeta-icon name="check_mark"></zeta-icon>` : html`<span class="number">${index + 1}</span>`}
+                ${classes.editing ? html`<zeta-icon name="edit"></zeta-icon>` : nothing}
               </span>
               <span class="bar"></span>
             </span>
