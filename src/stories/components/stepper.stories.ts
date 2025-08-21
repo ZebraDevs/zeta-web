@@ -8,7 +8,7 @@ const meta: Meta<ZetaStepper> = {
   component: "zeta-stepper",
   tags: ["autodocs"],
   title: "Components/Stepper",
-  args: { activeStep: 0, partial: false, progressBar: false, editing: false },
+  args: { activeStep: 0, partial: false, progressBar: false, editing: false, slot: "Label" },
   argTypes: {
     variant: {
       table: { disable: true }
@@ -49,9 +49,9 @@ export const Vertical: StoryObj = {
   render: args => {
     return html`
       <zeta-stepper ${spread(args)} variant="vertical">
-        <li data-title="title 1" data-label="label 1"></li>
-        <li data-title="title 2" data-label="label 2"></li>
-        <li data-title="title 3" data-label="label 3"></li>
+        <li data-title="Label" data-label="Label 1"></li>
+        <li data-title="Label" data-label="Label 2"></li>
+        <li data-title="Label" data-label="Label 3"></li>
       </zeta-stepper>
     `;
   },

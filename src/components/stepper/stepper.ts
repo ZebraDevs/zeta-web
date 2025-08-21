@@ -8,7 +8,6 @@ import "../icon/icon";
 //TODO:
 // - Make step items
 // - Make flavours for items for active, completed, etc
-// - Make pen icon a prop
 
 /** Steppers convey progress through numbered steps.
  *
@@ -58,7 +57,7 @@ export class ZetaStepper extends LitElement {
               <span class="bar"></span>
             </span>
             <div class="step-content">
-              <span class="step-title">Label</span>
+              <span class="step-title">${step.dataset.title}</span>
             </div>
           </div>
         </li>
