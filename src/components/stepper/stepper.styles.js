@@ -44,7 +44,7 @@ export default css`
       width: 100%;
       height: var(--spacing-0-5);
       border-radius: inherit;
-      background-color: var(--main-disabled);
+      background-color: var(--border-subtle);
     }
 
     &.active {
@@ -141,6 +141,7 @@ export default css`
     span {
       display: flex;
       flex-direction: column;
+      align-items: center;
     }
 
     .steps {
@@ -149,33 +150,45 @@ export default css`
 
     .step-container {
       flex-direction: column;
-      margin-bottom: var(--step-container-margin);
     }
 
     .step {
-      text-align: center;
+      flex-direction: row;
+      text-align: left;
       padding: 0;
-      width: var(--step-width);
-      height: var(--step-height);
       gap: var(--spacing-3);
-      flex-shrink: 0;
     }
 
     .bar {
-      display: none;
+      height: var(--spacing-4xl);
+      width: var(--spacing-4xl);
+      margin-top: var(--spacing-small);
+      margin: var(--spacing-small) 0 var(--spacing-small) 0;
+      margin-left: 0;
+
+      &:after {
+        content: "";
+        width: 3px;
+        height: 100%;
+      }
     }
 
     .step-title {
-      margin-top: var(--spacing-minimum);
+      margin-top: var(--spacing-small);
       font: var(--title-large);
     }
 
-    .step-number {
-      align-self: baseline;
+    .step-label {
+      display: flex;
+      font: var(--body-medium);
     }
 
-    .step-content {
-      align-self: center;
+    .step-number {
+      /* width: var(--spacing-4xl);
+      height: var(--spacing-4xl);
+      font: var(--label-medium);
+      margin-right: var(--spacing-2xl); */
+      align-self: baseline;
     }
 
     .step.completed .step-number zeta-icon[name="check_mark"] {
