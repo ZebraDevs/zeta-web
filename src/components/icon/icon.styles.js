@@ -35,6 +35,9 @@ export default [
       font-family: var(--icon-font, "zeta-icons-round");
       width: var(--icon-size, var(--spacing-2xl));
       height: var(--icon-size, var(--spacing-2xl));
+      -webkit-text-stroke-width: var(--icon-border-width, 2px);
+      -webkit-text-stroke-color: var(--icon-border-color, var(--border-pure));
+      paint-order: stroke fill;
     }
 
     :host ::slotted(svg) {
