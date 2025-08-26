@@ -1,31 +1,42 @@
 import { customElement, property } from "lit/decorators.js";
-
 import { html, LitElement, nothing } from "lit";
 import styles from "./stepper-item.styles.js";
 import { classMap } from "lit/directives/class-map.js";
 import "../icon/icon";
 
-//TODO:
-// - Make flavours for items for active, completed, etc
-
 //Make a type for flavor
-export type StepperItemFlavor = "completed" | "partial" | "success" | "active" | "default";
+export type StepperItemFlavor = "partial" | "success" | "active" | "default";
 
-/** The step items that the stepper uses to convey progress through numbered steps.
+/**
+ * The step items that the stepper uses to convey progress through numbered steps.
+ * Steps are automatically incremented starting from 1.
  *
- * For the steps, pass `li` elements with `data-title` and `data-label` attributes as children
+ * @slot - Title of the label for each step.
  *
- * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21529-11408
- * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21529-11531
- *
+ * @figma https://www.figma.com/design/1PXgz5r06wlObIrucWsOqx/Stepper?node-id=40231-1812&m=dev
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-stepper--docs
  */
 @customElement("zeta-stepper-item")
 export class ZetaStepperItem extends LitElement {
-  /** Set flavor for the step item. */
+  /**
+   * The flavor of the component determines the visual style of the component.
+   *
+   * @type {StepperItemFlavor}
+   *
+   * @defaultValue "default"
+   *
+   * @remarks
+   * Supported values for `flavor`:
+   * - `"partial"` - Light green background with dark green dashed border and black text.
+   * - `"success"` - Green background with white checkmark icon instead of number.
+   * - `"active"` - Blue background with white text.
+   * - `"default"` - White background with black text.
+   */
   @property({ type: String, reflect: true }) flavor: StepperItemFlavor = "default";
 
-  /**Set to true when page is being edited. Shows pen icon on step. */
+  /**
+   * Set to true when page is being edited. Shows pen icon on step. Defaults to false.
+   */
   @property({ type: Boolean }) editing = false;
 
   protected render() {

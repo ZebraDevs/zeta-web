@@ -1,21 +1,17 @@
 import { customElement, property } from "lit/decorators.js";
-
 import { html, LitElement } from "lit";
 import styles from "./stepper.styles.js";
 import "../icon/icon";
 import "./stepper-item";
 
-//TODO:
-// - Make flavours for items for active, completed, etc
-// - Make Stepper item flavor able to be set in storybook
-
-/** Stepper container which holds the individual step items.
+/**
+ * ZetaStepper is a container component for displaying a sequence of steps in a process.
  *
- * For the steps, pass `li` elements with `data-title` and `data-label` attributes as children
+ * To define individual steps, pass zeta-stepper-item elements as children of this component.
  *
- * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21529-11408
- * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21529-11531
+ * @slot - Pass as many zeta-stepper-items as needed.
  *
+ * @figma https://www.figma.com/design/1PXgz5r06wlObIrucWsOqx/Stepper?node-id=40231-1812&m=dev
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-stepper--docs
  */
 @customElement("zeta-stepper")
