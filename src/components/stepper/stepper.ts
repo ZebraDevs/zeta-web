@@ -1,15 +1,15 @@
 import { customElement, property } from "lit/decorators.js";
 
-import { html, LitElement, nothing } from "lit";
+import { html, LitElement } from "lit";
 import styles from "./stepper.styles.js";
-import { classMap } from "lit/directives/class-map.js";
 import "../icon/icon";
+import "./stepper-item";
 
 //TODO:
-// - Make step items
 // - Make flavours for items for active, completed, etc
+// - Make Stepper item flavor able to be set in storybook
 
-/** Steppers convey progress through numbered steps.
+/** Stepper container which holds the individual step items.
  *
  * For the steps, pass `li` elements with `data-title` and `data-label` attributes as children
  *
@@ -23,52 +23,10 @@ export class ZetaStepper extends LitElement {
   /** Stepper direction. Defaults to horizontal. */
   @property({ reflect: true }) variant: "vertical" | "horizontal" = "horizontal";
 
-  /** Current active step. */
-  @property({ type: Number }) activeStep = 0;
-
-  /** Set to true when page filling is in progress and uncompleted. */
-  @property({ type: Boolean }) partial = false;
-
-  /**Set to true when page is being edited. Shows pen icon on step. */
-  @property({ type: Boolean }) editing = false;
-
-  /** Choose to show progress bar or not on horizontal orientation. */
-  @property({ type: Boolean }) progressBar = false;
-
-  private renderSteps = () => {
-    // prettier-ignore
-    const steps = Array.from(this.querySelectorAll<HTMLLIElement>("li"));
-    return html`${steps.map((step, index) => {
-      const classes = {
-        completed: index < this.activeStep,
-        active: this.activeStep === index,
-        partial: this.partial && this.activeStep !== index,
-        editing: this.editing
-      };
-
-      return html`
-        <li class="step-container">
-          <div class="step ${classMap(classes)}">
-            <span>
-              <span class="step-number">
-                ${classes.completed ? html`<zeta-icon name="check_mark"></zeta-icon>` : html`<span class="number">${index + 1}</span>`}
-                ${classes.editing ? html`<zeta-icon name="edit"></zeta-icon>` : nothing}
-              </span>
-              <span class="bar"></span>
-            </span>
-            <div class="step-content">
-              <span class="step-title">${step.dataset.label}</span>
-            </div>
-          </div>
-        </li>
-      `;
-    })}`;
-  };
-
   protected render() {
     return html`
       <ul class="steps">
-        ${this.renderSteps()}
+        <slot></slot>
       </ul>
     `;
   }
