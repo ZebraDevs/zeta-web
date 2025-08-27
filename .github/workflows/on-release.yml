@@ -1,7 +1,6 @@
 name: CI - On Release
 
 on:
-  workflow_dispatch:
   release:
     types: [released]
 
@@ -25,5 +24,24 @@ jobs:
             })
 
   publish-web:
-    uses: ./.github/workflows/publish-web.yml
-    secrets: inherit
+    environment: npmjs.com
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          # cache: "yarn" Removed due to https://github.com/actions/setup-node/issues/1027
+      - name: Inject auth token
+        run: |
+          echo npmAuthToken: "${{secrets.NPM_TOKEN}}" >> ./.yarnrc.yml
+
+      - name: Install packages
+        run: yarn install --immutable
+
+      - name: Compile Typescript files
+        run: yarn run build
+
+      - name: Publish
+        run: yarn npm publish
