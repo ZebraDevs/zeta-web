@@ -98,7 +98,7 @@
     <testcase name="displays the header text correctly" time="0" classname="zeta-bottom-sheet + generic content Content" file="src/test/bottom-sheets/bottom-sheet.test.ts"/>
     <testcase name="updates when isExpanded changes" time="0" classname="zeta-bottom-sheet + generic content Content" file="src/test/bottom-sheets/bottom-sheet.test.ts"/>
     <testcase name="applies the correct header alignment" time="0.001" classname="zeta-bottom-sheet + generic content Dimensions" file="src/test/bottom-sheets/bottom-sheet.test.ts"/>
-    <testcase name="applies the correct css display for generic content" time="0" classname="zeta-bottom-sheet + generic content Dimensions" file="src/test/bottom-sheets/bottom-sheet.test.ts"/>
+    <testcase name="applies the correct css display for generic content" time="0.001" classname="zeta-bottom-sheet + generic content Dimensions" file="src/test/bottom-sheets/bottom-sheet.test.ts"/>
   </testsuite>
   <testsuite name="Chromium_playwright_/src/test/breadcrumbs/breadcrumb.test.ts" id="0" tests="4" skipped="1" errors="0" failures="0" time="0.097">
     <properties>
@@ -303,20 +303,20 @@
     <testcase name="changes open property on open" time="0.002" classname="zeta-dialog Content" file="src/test/dialog/dialog.test.ts"/>
     <testcase name="changes open property on close" time="0.001" classname="zeta-dialog Content" file="src/test/dialog/dialog.test.ts"/>
     <testcase name="calls close method and sets return value" time="0.001" classname="zeta-dialog Content" file="src/test/dialog/dialog.test.ts"/>
-    <testcase name="closes when clicking on the barrier if closeOnBarrierClick is true" time="0.003" classname="zeta-dialog Content" file="src/test/dialog/dialog.test.ts"/>
+    <testcase name="closes when clicking on the barrier if closeOnBarrierClick is true" time="0.002" classname="zeta-dialog Content" file="src/test/dialog/dialog.test.ts"/>
     <testcase name="does not close when clicking on the barrier if closeOnBarrierClick is false" time="0.001" classname="zeta-dialog Content" file="src/test/dialog/dialog.test.ts"/>
     <testcase name="renders an icon" time="0" classname="zeta-dialog Content" file="src/test/dialog/dialog.test.ts"/>
     <testcase name="renders the correct icon for each flavor" time="0.005" classname="zeta-dialog Content" file="src/test/dialog/dialog.test.ts"/>
     <testcase name="renders the title in the header slot" time="0.001" classname="zeta-dialog Content" file="src/test/dialog/dialog.test.ts"/>
     <testcase name="renders the confirm button in the &apos;confirm&apos; slot" time="0" classname="zeta-dialog Content" file="src/test/dialog/dialog.test.ts"/>
     <testcase name="renders the cancel button in the &apos;cancel&apos; slot" time="0" classname="zeta-dialog Content" file="src/test/dialog/dialog.test.ts"/>
-    <testcase name="renders the other button in the &apos;other&apos; slot" time="0" classname="zeta-dialog Content" file="src/test/dialog/dialog.test.ts"/>
-    <testcase name="truncates the label when text is longer than button width" time="0.001" classname="zeta-dialog Content" file="src/test/dialog/dialog.test.ts"/>
+    <testcase name="renders the other button in the &apos;other&apos; slot" time="0.001" classname="zeta-dialog Content" file="src/test/dialog/dialog.test.ts"/>
+    <testcase name="truncates the label when text is longer than button width" time="0" classname="zeta-dialog Content" file="src/test/dialog/dialog.test.ts"/>
     <testcase name="renders the correct width" time="0.001" classname="zeta-dialog Dimensions" file="src/test/dialog/dialog.test.ts"/>
     <testcase name="renders the correct height" time="0" classname="zeta-dialog Dimensions" file="src/test/dialog/dialog.test.ts"/>
-    <testcase name="stays the same width when the title is very long" time="0.001" classname="zeta-dialog Dimensions" file="src/test/dialog/dialog.test.ts"/>
+    <testcase name="stays the same width when the title is very long" time="0" classname="zeta-dialog Dimensions" file="src/test/dialog/dialog.test.ts"/>
     <testcase name="stays the same width when the content is very long" time="0.001" classname="zeta-dialog Dimensions" file="src/test/dialog/dialog.test.ts"/>
-    <testcase name="adjusts height to fit content when the content is very long" time="0.001" classname="zeta-dialog Dimensions" file="src/test/dialog/dialog.test.ts"/>
+    <testcase name="adjusts height to fit content when the content is very long" time="0" classname="zeta-dialog Dimensions" file="src/test/dialog/dialog.test.ts"/>
     <testcase name="has the --surface-default background colour" time="0" classname="zeta-dialog Styling" file="src/test/dialog/dialog.test.ts"/>
     <testcase name="has the --main-default font colour" time="0" classname="zeta-dialog Styling" file="src/test/dialog/dialog.test.ts"/>
     <testcase name="has the border-default border colour" time="0.001" classname="zeta-dialog Styling" file="src/test/dialog/dialog.test.ts"/>
@@ -346,7 +346,7 @@
     <testcase name="aligns the zeta droppable to the bottom of the dropdown menu button" time="0.001" classname="zeta-dropdown-menu-button Dimensions" file="src/test/dropdown/dropdown-menu-button.test.ts"/>
     <testcase name="opens the dropdown menu when clicked" time="0.002" classname="zeta-dropdown-menu-button Interaction" file="src/test/dropdown/dropdown-menu-button.test.ts"/>
     <testcase name="closes the dropdown menu when clicked outside" time="0.001" classname="zeta-dropdown-menu-button Interaction" file="src/test/dropdown/dropdown-menu-button.test.ts"/>
-    <testcase name="closes the dropdown menu when clicked inside" time="0.001" classname="zeta-dropdown-menu-button Interaction" file="src/test/dropdown/dropdown-menu-button.test.ts"/>
+    <testcase name="closes the dropdown menu when clicked inside" time="0.002" classname="zeta-dropdown-menu-button Interaction" file="src/test/dropdown/dropdown-menu-button.test.ts"/>
     <testcase name="returns the selected item when a wrapping form is submitted" time="0.002" classname="zeta-dropdown-menu-button Interaction" file="src/test/dropdown/dropdown-menu-button.test.ts"/>
     <testcase name="returns the selected checkboxes when a wrapping form is submitted" time="0.005" classname="zeta-dropdown-menu-button Interaction" file="src/test/dropdown/dropdown-menu-button.test.ts"/>
     <testcase name="returns the selected radio button when a wrapping form is submitted" time="0.005" classname="zeta-dropdown-menu-button Interaction" file="src/test/dropdown/dropdown-menu-button.test.ts"/>
@@ -462,7 +462,7 @@
     <testcase name="renders completed flavor correctly" time="0.002" classname="zeta-upload-item Content" file="src/test/file-upload/upload-item.test.ts"/>
     <testcase name="renders error flavor correctly" time="0" classname="zeta-upload-item Content" file="src/test/file-upload/upload-item.test.ts"/>
     <testcase name="updates progress correctly" time="0.001" classname="zeta-upload-item Content" file="src/test/file-upload/upload-item.test.ts"/>
-    <testcase name="fires ZetaCancelUploadEventDetail when close icon is clicked" time="0.006" classname="zeta-upload-item Interaction" file="src/test/file-upload/upload-item.test.ts"/>
+    <testcase name="fires ZetaCancelUploadEventDetail when close icon is clicked" time="0.002" classname="zeta-upload-item Interaction" file="src/test/file-upload/upload-item.test.ts"/>
     <system-out><![CDATA[Multiple versions of Lit loaded. Loading multiple versions is not recommended. See https://lit.dev/msg/multiple-versions for more information.]]></system-out>
     <system-out><![CDATA[Multiple versions of Lit loaded. Loading multiple versions is not recommended. See https://lit.dev/msg/multiple-versions for more information.]]></system-out>
     <system-out><![CDATA[Multiple versions of Lit loaded. Loading multiple versions is not recommended. See https://lit.dev/msg/multiple-versions for more information.]]></system-out>
@@ -490,7 +490,7 @@
     <testcase name="renders the given label" time="0" classname="zeta-grid-menu-item Content" file="src/test/grid-menu-item/grid-menu-item.test.ts"/>
     <testcase name="renders the given badge" time="0.002" classname="zeta-grid-menu-item Content" file="src/test/grid-menu-item/grid-menu-item.test.ts"/>
   </testsuite>
-  <testsuite name="Chromium_playwright_/src/test/in-page-banner/in-page-banner.test.ts" id="0" tests="3" skipped="0" errors="0" failures="0" time="0.115">
+  <testsuite name="Chromium_playwright_/src/test/in-page-banner/in-page-banner.test.ts" id="0" tests="3" skipped="0" errors="0" failures="0" time="0.101">
     <properties>
       <property name="test.fileName" value="src/test/in-page-banner/in-page-banner.test.ts"/>
       <property name="browser.name" value="Chromium"/>
@@ -636,7 +636,7 @@
     <testcase name="should render uploading components" time="0.002" classname="zeta-progress-circle Content" file="src/test/progress-circle/progress-circle.test.ts"/>
     <testcase name="should fire a ZetaCancelUploadEvent on button click" time="0.001" classname="zeta-progress-circle Interaction" file="src/test/progress-circle/progress-circle.test.ts"/>
   </testsuite>
-  <testsuite name="Chromium_playwright_/src/test/radio-button/radio-button.test.ts" id="0" tests="9" skipped="3" errors="0" failures="0" time="0.004">
+  <testsuite name="Chromium_playwright_/src/test/radio-button/radio-button.test.ts" id="0" tests="9" skipped="3" errors="0" failures="0" time="0.003">
     <properties>
       <property name="test.fileName" value="src/test/radio-button/radio-button.test.ts"/>
       <property name="browser.name" value="Chromium"/>
@@ -651,12 +651,12 @@
     <testcase name="is accessible by adding aria-label" time="0" classname="zeta-radio-button Accessibility" file="src/test/radio-button/radio-button.test.ts">
       <skipped/>
     </testcase>
-    <testcase name="sets the name attribute correctly" time="0.001" classname="zeta-radio-button Content" file="src/test/radio-button/radio-button.test.ts"/>
+    <testcase name="sets the name attribute correctly" time="0.002" classname="zeta-radio-button Content" file="src/test/radio-button/radio-button.test.ts"/>
     <testcase name="sets the id attribute correctly" time="0.001" classname="zeta-radio-button Content" file="src/test/radio-button/radio-button.test.ts"/>
     <testcase name="renders the radio button as unchecked by default" time="0" classname="zeta-radio-button Content" file="src/test/radio-button/radio-button.test.ts"/>
-    <testcase name="changes the checked state when clicked" time="0.001" classname="zeta-radio-button Interaction" file="src/test/radio-button/radio-button.test.ts"/>
+    <testcase name="changes the checked state when clicked" time="0" classname="zeta-radio-button Interaction" file="src/test/radio-button/radio-button.test.ts"/>
     <testcase name="renders the radio label correctly" time="0" classname="zeta-radio-button label Content" file="src/test/radio-button/radio-button.test.ts"/>
-    <testcase name="checks the radio when label is clicked" time="0.001" classname="zeta-radio-button label Interaction" file="src/test/radio-button/radio-button.test.ts"/>
+    <testcase name="checks the radio when label is clicked" time="0" classname="zeta-radio-button label Interaction" file="src/test/radio-button/radio-button.test.ts"/>
   </testsuite>
   <testsuite name="Chromium_playwright_/src/test/range-selector/range-selector.test.ts" id="0" tests="14" skipped="0" errors="0" failures="0" time="0.10500000000000001">
     <properties>
@@ -709,7 +709,7 @@
     <testcase name="should set correct small icon size" time="0.001" classname="zeta-search Dimensions" file="src/test/search/search.test.ts"/>
     <testcase name="should set correct large icon size" time="0.001" classname="zeta-search Dimensions" file="src/test/search/search.test.ts"/>
     <testcase name="should set correct disabled icon color" time="0.001" classname="zeta-search Styling" file="src/test/search/search.test.ts"/>
-    <testcase name="clears input" time="0.001" classname="zeta-search Interaction" file="src/test/search/search.test.ts"/>
+    <testcase name="clears input" time="0.002" classname="zeta-search Interaction" file="src/test/search/search.test.ts"/>
     <testcase name="should call input onchange" time="0.001" classname="zeta-search Interaction" file="src/test/search/search.test.ts"/>
     <testcase name="should not be activatable" time="0" classname="zeta-search Interaction" file="src/test/search/search.test.ts">
       <skipped/>
@@ -724,7 +724,7 @@
     <testcase name="renders the segmented control with the correct number of items" time="0.012" classname="zeta-segmented-control Content" file="src/test/segmented-control/segmented-control.test.ts"/>
     <testcase name="sets the first item as active by default" time="0.002" classname="zeta-segmented-control Content" file="src/test/segmented-control/segmented-control.test.ts"/>
     <testcase name="hides any slotted elements that aren&apos;t zeta-segmented-item" time="0.001" classname="zeta-segmented-control Content" file="src/test/segmented-control/segmented-control.test.ts"/>
-    <testcase name="updates the active item when a different item is clicked" time="0.002" classname="zeta-segmented-control Interaction" file="src/test/segmented-control/segmented-control.test.ts"/>
+    <testcase name="updates the active item when a different item is clicked" time="0.001" classname="zeta-segmented-control Interaction" file="src/test/segmented-control/segmented-control.test.ts"/>
     <system-out><![CDATA[Element zeta-segmented-control scheduled an update (generally because a property was set) after an update completed, causing a new update to be scheduled. This is inefficient and should be avoided unless the next update can only be scheduled as a side effect of the previous update. See https://lit.dev/msg/change-in-update for more information.]]></system-out>
     <system-out><![CDATA[Element zeta-segmented-control scheduled an update (generally because a property was set) after an update completed, causing a new update to be scheduled. This is inefficient and should be avoided unless the next update can only be scheduled as a side effect of the previous update. See https://lit.dev/msg/change-in-update for more information.]]></system-out>
     <system-out><![CDATA[Element zeta-segmented-control scheduled an update (generally because a property was set) after an update completed, causing a new update to be scheduled. This is inefficient and should be avoided unless the next update can only be scheduled as a side effect of the previous update. See https://lit.dev/msg/change-in-update for more information.]]></system-out>
@@ -739,7 +739,7 @@
     <testcase name="meets accessibility requirements" time="0.124" classname="zeta-select-input Accessibility" file="src/test/select-input/select-input.test.ts"/>
     <testcase name="renders a label" time="0" classname="zeta-select-input Content" file="src/test/select-input/select-input.test.ts"/>
     <testcase name="renders required" time="0" classname="zeta-select-input Content" file="src/test/select-input/select-input.test.ts"/>
-    <testcase name="renders a hint" time="0" classname="zeta-select-input Content" file="src/test/select-input/select-input.test.ts"/>
+    <testcase name="renders a hint" time="0.001" classname="zeta-select-input Content" file="src/test/select-input/select-input.test.ts"/>
     <testcase name="renders a select input" time="0.001" classname="zeta-select-input Content" file="src/test/select-input/select-input.test.ts"/>
     <testcase name="renders a hidden options div" time="0.001" classname="zeta-select-input Content" file="src/test/select-input/select-input.test.ts"/>
     <testcase name="renders the options box with the same width as the input" time="0.003" classname="zeta-select-input Dimensions" file="src/test/select-input/select-input.test.ts"/>
@@ -768,8 +768,8 @@
     <testcase name="sets the track height correctly" time="0" classname="zeta-slider Dimensions" file="src/test/slider/slider.test.ts"/>
     <testcase name="sets the handle width and height correctly" time="0" classname="zeta-slider Dimensions" file="src/test/slider/slider.test.ts"/>
     <testcase name="sets the correct margin on the slider" time="0" classname="zeta-slider Dimensions" file="src/test/slider/slider.test.ts"/>
-    <testcase name="sets the correct background color for the track" time="0" classname="zeta-slider Styling" file="src/test/slider/slider.test.ts"/>
-    <testcase name="sets the correct color for the selected area" time="0" classname="zeta-slider Styling" file="src/test/slider/slider.test.ts"/>
+    <testcase name="sets the correct background color for the track" time="0.001" classname="zeta-slider Styling" file="src/test/slider/slider.test.ts"/>
+    <testcase name="sets the correct color for the selected area" time="0.001" classname="zeta-slider Styling" file="src/test/slider/slider.test.ts"/>
     <testcase name="sets the correct background color for the handle" time="0" classname="zeta-slider Styling" file="src/test/slider/slider.test.ts"/>
     <testcase name="sets the correct color for the selected area and handle when pressed down" time="0.001" classname="zeta-slider Styling" file="src/test/slider/slider.test.ts"/>
     <testcase name="sets the correct border radius for the handle" time="0" classname="zeta-slider Styling" file="src/test/slider/slider.test.ts"/>
@@ -796,7 +796,7 @@
     <testcase name="updates the slider value when the input value changes" time="0.001" classname="zeta-slider-input-field Interaction" file="src/test/slider-input-field/slider-input-field.test.ts"/>
     <testcase name="returns the correct data when in a form" time="0.017" classname="zeta-slider-input-field Interaction" file="src/test/slider-input-field/slider-input-field.test.ts"/>
   </testsuite>
-  <testsuite name="Chromium_playwright_/src/test/snackbar/snackbar.test.ts" id="0" tests="19" skipped="1" errors="0" failures="0" time="0.324">
+  <testsuite name="Chromium_playwright_/src/test/snackbar/snackbar.test.ts" id="0" tests="19" skipped="1" errors="0" failures="0" time="0.341">
     <properties>
       <property name="test.fileName" value="src/test/snackbar/snackbar.test.ts"/>
       <property name="browser.name" value="Chromium"/>
@@ -980,8 +980,8 @@
       <skipped/>
     </testcase>
     <testcase name="creates from constructor" time="0.001" classname="zeta-text-input Content" file="src/test/text-input/text-input.test.ts"/>
-    <testcase name="focus on input when field focused" time="0.008" classname="zeta-text-input Content" file="src/test/text-input/text-input.test.ts"/>
-    <testcase name="should not focus on input when field disabled" time="0.001" classname="zeta-text-input Content" file="src/test/text-input/text-input.test.ts"/>
+    <testcase name="focus on input when field focused" time="0.009" classname="zeta-text-input Content" file="src/test/text-input/text-input.test.ts"/>
+    <testcase name="should not focus on input when field disabled" time="0.002" classname="zeta-text-input Content" file="src/test/text-input/text-input.test.ts"/>
     <testcase name="blur on input when field blurred" time="0.001" classname="zeta-text-input Content" file="src/test/text-input/text-input.test.ts"/>
     <testcase name="should render icon" time="0.002" classname="zeta-text-input Content" file="src/test/text-input/text-input.test.ts"/>
     <testcase name="should render icon on the right" time="0.001" classname="zeta-text-input Content" file="src/test/text-input/text-input.test.ts"/>
@@ -1133,7 +1133,7 @@
     <testcase name="it meets contrast requirements" time="0.259" classname="zeta-tag Accessibility" file="src/test/badges/tag/tag.test.ts"/>
     <testcase name="meets aria requirements" time="0.061" classname="zeta-tag Accessibility" file="src/test/badges/tag/tag.test.ts"/>
     <testcase name="sets the default properties correctly" time="0" classname="zeta-tag Content" file="src/test/badges/tag/tag.test.ts"/>
-    <testcase name="manages direction attribute correctly" time="0.001" classname="zeta-tag Content" file="src/test/badges/tag/tag.test.ts"/>
+    <testcase name="manages direction attribute correctly" time="0" classname="zeta-tag Content" file="src/test/badges/tag/tag.test.ts"/>
     <testcase name="manages label attribute correctly" time="0.001" classname="zeta-tag Content" file="src/test/badges/tag/tag.test.ts"/>
     <testcase name="renders the passed text into a span" time="0" classname="zeta-tag Content" file="src/test/badges/tag/tag.test.ts"/>
     <testcase name="sets the default dimensions correctly" time="0.001" classname="zeta-tag Dimensions" file="src/test/badges/tag/tag.test.ts"/>
