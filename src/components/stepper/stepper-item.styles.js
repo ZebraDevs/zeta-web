@@ -1,64 +1,15 @@
 import { css } from "lit";
 export default css`
   :host {
-    --step-width: 232px;
-    --step-height: 92px;
     --step-container-margin: 7px;
-    --step-completed-icon-border: #fafbfc;
+    --step-success-icon-border: #fafbfc;
+    position: relative;
+    display: flex;
+    align-items: center;
   }
 
-  /*Counter Logic*/
-  .step-container {
-    counter-increment: step;
-    position: relative;
-  }
   .step-number::before {
     content: counter(step);
-  }
-
-  li {
-    display: flex;
-  }
-
-  .step-container:last-of-type {
-    margin-bottom: 0px;
-    .bar {
-      &:after {
-        width: 0 !important;
-        display: none;
-      }
-    }
-  }
-
-  /*Bar between steps styling*/
-  .bar {
-    display: flex;
-    height: var(--spacing-4xl);
-    width: var(--spacing-11xl);
-    align-items: center;
-    justify-content: center;
-    margin-left: var(--spacing-large);
-
-    &:after {
-      content: "";
-      display: flex;
-      width: 100%;
-      height: var(--spacing-0-5);
-      border-radius: inherit;
-      background-color: var(--border-subtle);
-    }
-    /* 
-    &.active {
-      &:after {
-        background-color: var(--surface-primary);
-      }
-    }
-
-    &.completed {
-      &:after {
-        background-color: var(--surface-positive);
-      }
-    } */
   }
 
   /*Step styling*/
@@ -69,14 +20,7 @@ export default css`
     align-items: center;
     text-align: center;
     padding: 0 var(--spacing-large);
-
-    span {
-      display: flex;
-    }
-
-    &:not(.active):not(.completed) {
-      color: var(--main-default);
-    }
+    counter-increment: step;
 
     &.active {
       .step-number {
@@ -93,24 +37,25 @@ export default css`
       }
     }
 
-    &.completed {
+    &.success {
       .step-number {
         background-color: var(--surface-positive);
-        border: 1px solid var(--main-positive);
         --icon-color: var(--state-default-focus);
       }
+      /*Get rid of number on success*/
+      .step-number::before {
+        content: "";
+      }
+    }
+
+    &.default {
+      color: var(--main-default);
     }
   }
 
-  .step-content {
-    display: flex;
-    flex-direction: column;
-    align-self: baseline;
-
-    .step-title {
-      margin-top: var(--spacing-small);
-      font: var(--body-medium);
-    }
+  .step-title {
+    margin-top: var(--spacing-xl);
+    font: var(--title-large);
   }
 
   .step-number {
@@ -127,78 +72,37 @@ export default css`
     border-radius: 50%;
   }
 
-  :host([rounded]) {
-    .step-number {
-      border-radius: var(--radius-full);
-    }
-
-    .bar {
-      border-radius: var(--radius-minimal);
-    }
+  /*Edit Icon - Pen & Value Styling*/
+  .step.editing .step-number zeta-icon[name="edit"] {
+    position: relative;
+    --icon-color: var(--main-subtle);
+    left: 7px;
+    top: 12px;
+    z-index: 2;
+    --icon-border-width: 6px;
+    --icon-border-color: var(--step-success-icon-border);
+  }
+  .step.editing .step-number zeta-icon[name="check_mark"] + zeta-icon[name="edit"] {
+    left: 3px;
+  }
+  .step.editing .step-number::before,
+  .step.editing .step-number zeta-icon[name="check_mark"] {
+    position: relative;
+    left: 12px;
   }
 
-  :host([variant="vertical"]) {
-    span {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+  /*Vertical orientation - Styling*/
+  :host([variant="vertical"]) .step {
+    flex-direction: row;
+    text-align: left;
+    padding: 0;
+    gap: var(--spacing-4);
+    position: relative;
+    align-items: center;
+    justify-content: center;
+  }
 
-    .step-container {
-      flex-direction: column;
-    }
-
-    .step {
-      flex-direction: row;
-      text-align: left;
-      padding: 0;
-      gap: var(--spacing-3);
-    }
-
-    .bar {
-      height: var(--spacing-4xl);
-      width: var(--spacing-4xl);
-      margin-top: var(--spacing-small);
-      margin: var(--spacing-small) 0 var(--spacing-small) 0;
-      margin-left: 0;
-
-      &:after {
-        content: "";
-        width: 3px;
-        height: 100%;
-      }
-    }
-
-    .step-title {
-      margin-top: var(--spacing-small);
-      font: var(--title-large);
-    }
-
-    .step-label {
-      display: flex;
-      font: var(--body-medium);
-    }
-
-    .step-number {
-      align-self: baseline;
-      --icon-border-width: 0px;
-    }
-
-    .step.editing .step-number zeta-icon[name="check_mark"],
-    .step.editing .step-number .number {
-      position: relative;
-      top: 12px;
-      --icon-border-width: 0px;
-    }
-
-    .step.editing .step-number zeta-icon[name="edit"] {
-      position: relative;
-      --icon-color: var(--main-subtle);
-      left: 15px;
-      top: 2px;
-      z-index: 2;
-      --icon-border-width: 6px;
-      --icon-border-color: var(--step-completed-icon-border);
-    }
+  :host([variant="vertical"]) .step-title {
+    margin-top: 0;
   }
 `;

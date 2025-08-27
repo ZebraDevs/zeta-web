@@ -32,21 +32,21 @@ const meta: Meta<Args> = {
       table: { disable: true }
     },
     flavor1: {
-      options: ["completed", "partial", "success", "active", "default"],
+      options: ["partial", "success", "active", "default"],
       control: { type: "select" }
     },
     title1: {
       control: { type: "text" }
     },
     flavor2: {
-      options: ["completed", "partial", "success", "active", "default"],
+      options: ["partial", "success", "active", "default"],
       control: { type: "select" }
     },
     title2: {
       control: { type: "text" }
     },
     flavor3: {
-      options: ["completed", "partial", "success", "active", "default"],
+      options: ["partial", "success", "active", "default"],
       control: { type: "select" }
     },
     title3: {

@@ -36,7 +36,7 @@ export default [
       width: var(--icon-size, var(--spacing-2xl));
       height: var(--icon-size, var(--spacing-2xl));
       -webkit-text-stroke-width: var(--icon-border-width, 2px);
-      -webkit-text-stroke-color: var(--icon-border-color, var(--border-pure));
+      -webkit-text-stroke-color: var(--icon-border-color, transparent);
       paint-order: stroke fill;
     }
 

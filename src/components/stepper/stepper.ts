@@ -21,7 +21,7 @@ export class ZetaStepper extends LitElement {
 
   protected render() {
     return html`
-      <ul class="steps">
+      <ul class="stepper-container">
         <slot></slot>
       </ul>
     `;

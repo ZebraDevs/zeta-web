@@ -39,6 +39,13 @@ export class ZetaStepperItem extends LitElement {
    */
   @property({ type: Boolean }) editing = false;
 
+  /**
+   * Obtain the orientation of the stepper parent.
+   */
+  private obtainOrientation() {
+    return this.closest("zeta-stepper")?.getAttribute("variant") ?? "horizontal";
+  }
+
   protected render() {
     const classes = {
       active: this.flavor === "active",
@@ -49,21 +56,22 @@ export class ZetaStepperItem extends LitElement {
     };
 
     return html`
-      <li class="step-container">
-        <div class="step ${classMap(classes)}">
-          <span>
-            <span class="step-number">
-              ${this.flavor === "success" ? html`<zeta-icon name="check_mark"></zeta-icon>` : html`<span class="number"></span>`}
-              ${this.editing ? html`<zeta-icon name="edit"></zeta-icon>` : nothing}
-            </span>
-            <span class="bar"></span>
-          </span>
-          <div class="step-content">
-            <span class="step-title"><slot></slot></span>
-          </div>
-        </div>
+      <li class="step ${classMap(classes)}">
+        <span class="step-number">
+          ${this.flavor === "success" ? html`<zeta-icon name="check_mark"></zeta-icon>` : html`<span class="number"></span>`}
+          ${this.editing ? html`<zeta-icon name="edit"></zeta-icon>` : nothing}
+        </span>
+        <span class="step-title"><slot></slot></span>
       </li>
     `;
+  }
+
+  /* Apply orientation attribute directly to zeta-stepper-item.
+   * Used for styling purposes.
+   */
+  updated() {
+    const orientation = this.obtainOrientation();
+    this.setAttribute("variant", orientation);
   }
 
   static styles = [super.styles ?? [], styles];
@@ -73,4 +81,7 @@ declare global {
   interface HTMLElementTagNameMap {
     "zeta-stepper-item": ZetaStepperItem;
   }
+}
+function internalProperty(): (target: ZetaStepperItem, propertyKey: "variant") => void {
+  throw new Error("Function not implemented.");
 }
