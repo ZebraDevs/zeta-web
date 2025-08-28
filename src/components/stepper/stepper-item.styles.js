@@ -19,7 +19,7 @@ export default css`
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 0 var(--spacing-large);
+    padding: 0 var(--spacing-minimum);
     counter-increment: step;
 
     &.active {

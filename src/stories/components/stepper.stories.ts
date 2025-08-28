@@ -4,6 +4,7 @@ import { spreadGenerator } from "../utils.js";
 const spread = spreadGenerator(ZetaStepper);
 import { ZetaStepper } from "../../components/stepper/stepper.js";
 import type { StepperItemFlavor } from "../../components/stepper/stepper-item.js";
+import { fn } from "@storybook/test";
 
 type Args = ZetaStepper & {
   flavor1: StepperItemFlavor;
@@ -13,23 +14,37 @@ type Args = ZetaStepper & {
   flavor3: StepperItemFlavor;
   title3: string;
   editing: boolean;
+  progress: number;
+  overflowed: boolean;
 };
 const meta: Meta<Args> = {
   component: "zeta-stepper",
   tags: ["autodocs"],
   title: "Components/Stepper",
   args: {
+    progress: 0,
+    overflowed: false,
     editing: false,
     flavor1: "default",
     title1: "Label",
     flavor2: "default",
     title2: "Label",
     flavor3: "default",
-    title3: "Label"
+    title3: "Label",
+    onclick: fn()
   },
   argTypes: {
     variant: {
       table: { disable: true }
+    },
+    progress: {
+      control: { type: "number", min: 0, max: 100, step: 1 }
+    },
+    overflowed: {
+      control: { type: "boolean" }
+    },
+    editing: {
+      control: { type: "boolean" }
     },
     flavor1: {
       options: ["partial", "success", "active", "default"],
@@ -51,9 +66,6 @@ const meta: Meta<Args> = {
     },
     title3: {
       control: { type: "text" }
-    },
-    editing: {
-      control: { type: "boolean" }
     }
   },
   parameters: {

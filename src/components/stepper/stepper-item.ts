@@ -82,6 +82,3 @@ declare global {
     "zeta-stepper-item": ZetaStepperItem;
   }
 }
-function internalProperty(): (target: ZetaStepperItem, propertyKey: "variant") => void {
-  throw new Error("Function not implemented.");
-}
