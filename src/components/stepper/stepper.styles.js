@@ -63,8 +63,12 @@ export default css`
 
   /* Vertical orientation styles */
   :host([variant="vertical"]) {
+    width: fit-content;
+    height: fit-content;
+
     ::slotted(zeta-stepper-item) {
       flex-direction: column;
+      display: block;
     }
 
     zeta-progress-bar,
@@ -80,9 +84,7 @@ export default css`
     ::slotted(:not(zeta-stepper-item:last-child))::after {
       height: var(--spacing-4xl);
       width: 3px;
-      margin-top: var(--spacing-small);
-      margin: var(--spacing-small) 0 var(--spacing-small) 0;
-      margin-right: 66px;
+      margin: var(--spacing-small) 0 var(--spacing-small) 18px;
     }
   }
 `;

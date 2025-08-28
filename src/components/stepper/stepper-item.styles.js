@@ -92,6 +92,10 @@ export default css`
   }
 
   /*Vertical orientation - Styling*/
+  :host([variant="vertical"]) {
+    width: fit-content;
+  }
+
   :host([variant="vertical"]) .step {
     flex-direction: row;
     text-align: left;
