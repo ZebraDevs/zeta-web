@@ -5,7 +5,7 @@ export default css`
     --step-success-icon-border: #fafbfc;
     position: relative;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
   }
 
   .step-number::before {
@@ -21,6 +21,10 @@ export default css`
     text-align: center;
     padding: 0 var(--spacing-minimum);
     counter-increment: step;
+    /*Prevents movement of other elements as text increases*/
+    width: 48px;
+    /* max-height: 84px; */
+    gap: var(--spacing-xl);
 
     &.active {
       .step-number {
@@ -54,8 +58,14 @@ export default css`
   }
 
   .step-title {
-    margin-top: var(--spacing-xl);
+    /* margin-top: var(--spacing-xl); */
     font: var(--title-large);
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    /*Clamp text box max width to 230px*/
+    width: 230px;
+    word-break: break-all;
   }
 
   .step-number {
@@ -70,6 +80,7 @@ export default css`
     border: 1px solid var(--main-light);
     font: var(--headline-small);
     border-radius: 50%;
+    flex-shrink: 0;
   }
 
   /*Edit Icon - Pen & Value Styling*/
@@ -94,6 +105,7 @@ export default css`
   /*Vertical orientation - Styling*/
   :host([variant="vertical"]) {
     width: fit-content;
+    align-items: center;
   }
 
   :host([variant="vertical"]) .step {
@@ -104,9 +116,11 @@ export default css`
     position: relative;
     align-items: center;
     justify-content: center;
+    width: fit-content;
   }
 
   :host([variant="vertical"]) .step-title {
     margin-top: 0;
+    -webkit-line-clamp: 1;
   }
 `;

@@ -23,7 +23,7 @@ export default css`
     padding: 0;
     display: flex;
     width: fit-content;
-    height: 116px;
+    height: 92px;
   }
 
   /* Bar pseudo-element */
@@ -36,7 +36,7 @@ export default css`
     background-color: var(--border-subtle);
     align-items: center;
     justify-content: center;
-    margin-bottom: var(--spacing-7xl);
+    margin-top: var(--spacing-large);
   }
 
   /* Stepper progress bar */
