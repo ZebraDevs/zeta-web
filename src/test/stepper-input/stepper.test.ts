@@ -1,5 +1,5 @@
 import { fixture, html, expect, unsafeStatic, elementUpdated } from "@open-wc/testing";
-import { ZetaStepper } from "../../components/stepper/stepper.js";
+import type { ZetaStepper } from "../../components/stepper/stepper.js";
 import type { StepperItemFlavor } from "../../components/stepper/stepper-item.js";
 import "../../components/stepper/stepper.js";
 import "../../components/stepper/stepper-item.styles.js";
@@ -38,12 +38,12 @@ describe("zeta-stepper", () => {
     it(`renders stepper items as list items in the unordered list`, async () => {
       const stepperItems = Array.from(subject.querySelectorAll("zeta-stepper-item"));
       await expect(stepperItems.length).to.equal(3);
-      stepperItems?.forEach(async item => {
+      for (const item of stepperItems) {
         expect(item).to.exist;
         const li = item.shadowRoot?.querySelector("li");
         expect(li).to.exist;
         await expect(li?.tagName).to.equal("LI");
-      });
+      }
     });
   });
 
@@ -59,22 +59,22 @@ describe("zeta-stepper", () => {
     it("renders a counter step in each stepper item when flavor is default", async () => {
       const stepperItems = Array.from(subject.querySelectorAll("zeta-stepper-item") ?? []);
       await expect(stepperItems.length).to.equal(3);
-      stepperItems.forEach(async item => {
+      for (const item of stepperItems) {
         const stepNumber = item.shadowRoot?.querySelector(".step-number");
         expect(stepNumber).to.exist;
         const stepNumberPseudoElement = window.getComputedStyle(stepNumber as HTMLElement, "::before");
         await expect(stepNumberPseudoElement.content).to.equal("counter(step)");
-      });
+      }
     });
     it("renders a check mark icon when flavor is set to success", async () => {
       const successFlavorStepper = await createFlavoredStepperItems(subject, "success");
       const stepperItems = Array.from(successFlavorStepper.querySelectorAll("zeta-stepper-item") ?? []);
       await expect(stepperItems.length).to.equal(3);
-      stepperItems.forEach(item => {
+      for (const item of stepperItems) {
         expect(item).to.exist;
         const checkMarkIcon = item.shadowRoot?.querySelector('zeta-icon[name="check_mark"]');
         expect(checkMarkIcon).to.exist;
-      });
+      }
     });
   });
 
@@ -82,7 +82,7 @@ describe("zeta-stepper", () => {
     it("renders stepper number items as 40x40 circles", async () => {
       const stepperItems = Array.from(subject.querySelectorAll("zeta-stepper-item"));
       await expect(stepperItems.length).to.equal(3);
-      stepperItems.forEach(async item => {
+      for (const item of stepperItems) {
         const stepNumber = item.shadowRoot?.querySelector(".step-number");
         expect(stepNumber).to.exist;
         const itemWidth = window.getComputedStyle(stepNumber as HTMLElement).width;
@@ -91,7 +91,7 @@ describe("zeta-stepper", () => {
         await expect(itemHeight).to.equal("40px");
         const borderRadius = window.getComputedStyle(stepNumber as HTMLElement).borderRadius;
         await expect(borderRadius).to.equal("50%");
-      });
+      }
     });
     it("stepper container remains the same size when stepper label text is very long", async () => {
       const stepperContainer = subject.shadowRoot?.querySelector(".stepper-container");
@@ -116,7 +116,7 @@ describe("zeta-stepper", () => {
     it("bar pseudo-element between steps should be 200x3", async () => {
       const stepperItems = Array.from(subject.querySelectorAll("zeta-stepper-item") ?? []);
       await expect(stepperItems.length).to.equal(3);
-      stepperItems.forEach(async (item, index) => {
+      for (const [index, item] of stepperItems.entries()) {
         expect(item).to.exist;
         //Do not check last stepper item - it does not have a bar
         if (index != 2) {
@@ -125,7 +125,7 @@ describe("zeta-stepper", () => {
           await expect(barWidth).to.equal("200px");
           await expect(barHeight).to.equal("3px");
         }
-      });
+      }
     });
   });
 
@@ -133,45 +133,45 @@ describe("zeta-stepper", () => {
     it("renders stepper number items with correct default background color", async () => {
       const stepperItems = Array.from(subject.querySelectorAll("zeta-stepper-item"));
       await expect(stepperItems.length).to.equal(3);
-      stepperItems.forEach(async item => {
+      for (const item of stepperItems) {
         const stepNumber = item.shadowRoot?.querySelector(".step-number");
         expect(stepNumber).to.exist;
         const backgroundColor = window.getComputedStyle(stepNumber as HTMLElement).backgroundColor;
         await expect(backgroundColor).to.equal("rgb(255, 255, 255)"); // default background color
-      });
+      }
     });
     it("renders stepper number items with correct background colour when flavor is partial", async () => {
       const partialFlavorStepper = await createFlavoredStepperItems(subject, "partial");
       const stepperItems = Array.from(partialFlavorStepper.querySelectorAll("zeta-stepper-item"));
       await expect(stepperItems.length).to.equal(3);
-      stepperItems.forEach(async item => {
+      for (const item of stepperItems) {
         const stepNumber = item.shadowRoot?.querySelector(".step-number");
         expect(stepNumber).to.exist;
         const backgroundColor = window.getComputedStyle(stepNumber as HTMLElement).backgroundColor;
         await expect(backgroundColor).to.equal("rgb(236, 255, 247)"); // partial flavor background color
-      });
+      }
     });
     it("renders stepper number items with correct background colour when flavor is success", async () => {
       const successFlavorStepper = await createFlavoredStepperItems(subject, "success");
       const stepperItems = Array.from(successFlavorStepper.querySelectorAll("zeta-stepper-item"));
       await expect(stepperItems.length).to.equal(3);
-      stepperItems.forEach(async item => {
+      for (const item of stepperItems) {
         const stepNumber = item.shadowRoot?.querySelector(".step-number");
         expect(stepNumber).to.exist;
         const backgroundColor = window.getComputedStyle(stepNumber as HTMLElement).backgroundColor;
         await expect(backgroundColor).to.equal("rgb(0, 134, 79)"); // success flavor background color
-      });
+      }
     });
     it("renders stepper number items with correct background colour when flavor is active", async () => {
       const activeFlavorStepper = await createFlavoredStepperItems(subject, "active");
       const stepperItems = Array.from(activeFlavorStepper.querySelectorAll("zeta-stepper-item"));
       await expect(stepperItems.length).to.equal(3);
-      stepperItems.forEach(async item => {
+      for (const item of stepperItems) {
         const stepNumber = item.shadowRoot?.querySelector(".step-number");
         expect(stepNumber).to.exist;
         const backgroundColor = window.getComputedStyle(stepNumber as HTMLElement).backgroundColor;
         await expect(backgroundColor).to.equal("rgb(0, 115, 230)"); // active flavor background color
-      });
+      }
     });
     it("when progress is set to 100, progress bar and progress indicator should be same width", async () => {
       const progressStepper = await createFlavoredStepperItems(subject, "default", 100);
