@@ -892,22 +892,22 @@
     <system-out><![CDATA[Element zeta-stepper-input scheduled an update (generally because a property was set) after an update completed, causing a new update to be scheduled. This is inefficient and should be avoided unless the next update can only be scheduled as a side effect of the previous update. See https://lit.dev/msg/change-in-update for more information.]]></system-out>
     <system-out><![CDATA[Element zeta-stepper-input scheduled an update (generally because a property was set) after an update completed, causing a new update to be scheduled. This is inefficient and should be avoided unless the next update can only be scheduled as a side effect of the previous update. See https://lit.dev/msg/change-in-update for more information.]]></system-out>
   </testsuite>
-  <testsuite name="Chromium_playwright_\src\test\stepper-input\stepper.test.ts" id="111" tests="14" skipped="0" errors="0" failures="0" time="0.027999999999999997">
+  <testsuite name="Chromium_playwright_\src\test\stepper-input\stepper.test.ts" id="114" tests="14" skipped="0" errors="0" failures="0" time="0.024999999999999998">
     <properties>
       <property name="test.fileName" value="src\test\stepper-input\stepper.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
     <testcase name="renders stepper items as list items in the unordered list" time="0.001" classname="zeta-stepper Accessibility" file="src\test\stepper-input\stepper.test.ts"/>
-    <testcase name="renders the correct number of steps" time="0" classname="zeta-stepper Content" file="src\test\stepper-input\stepper.test.ts"/>
-    <testcase name="renders the correct step labels" time="0.001" classname="zeta-stepper Content" file="src\test\stepper-input\stepper.test.ts"/>
-    <testcase name="renders a counter step in each stepper item when flavor is default" time="0" classname="zeta-stepper Content" file="src\test\stepper-input\stepper.test.ts"/>
+    <testcase name="renders the correct number of steps" time="0.001" classname="zeta-stepper Content" file="src\test\stepper-input\stepper.test.ts"/>
+    <testcase name="renders the correct step labels" time="0" classname="zeta-stepper Content" file="src\test\stepper-input\stepper.test.ts"/>
+    <testcase name="renders a counter step in each stepper item when flavor is default" time="0.001" classname="zeta-stepper Content" file="src\test\stepper-input\stepper.test.ts"/>
     <testcase name="renders a check mark icon when flavor is set to success" time="0.002" classname="zeta-stepper Content" file="src\test\stepper-input\stepper.test.ts"/>
-    <testcase name="renders stepper number items as 40x40 circles" time="0.002" classname="zeta-stepper Dimensions" file="src\test\stepper-input\stepper.test.ts"/>
+    <testcase name="renders stepper number items as 40x40 circles" time="0.001" classname="zeta-stepper Dimensions" file="src\test\stepper-input\stepper.test.ts"/>
     <testcase name="stepper container remains the same size when stepper label text is very long" time="0.003" classname="zeta-stepper Dimensions" file="src\test\stepper-input\stepper.test.ts"/>
-    <testcase name="bar pseudo-element between steps should be 200x3" time="0.002" classname="zeta-stepper Dimensions" file="src\test\stepper-input\stepper.test.ts"/>
+    <testcase name="bar pseudo-element between steps should be 200x3" time="0" classname="zeta-stepper Dimensions" file="src\test\stepper-input\stepper.test.ts"/>
     <testcase name="renders stepper number items with correct default background color" time="0.001" classname="zeta-stepper Styling" file="src\test\stepper-input\stepper.test.ts"/>
-    <testcase name="renders stepper number items with correct background colour when flavor is partial" time="0.004" classname="zeta-stepper Styling" file="src\test\stepper-input\stepper.test.ts"/>
+    <testcase name="renders stepper number items with correct background colour when flavor is partial" time="0.003" classname="zeta-stepper Styling" file="src\test\stepper-input\stepper.test.ts"/>
     <testcase name="renders stepper number items with correct background colour when flavor is success" time="0.003" classname="zeta-stepper Styling" file="src\test\stepper-input\stepper.test.ts"/>
     <testcase name="renders stepper number items with correct background colour when flavor is active" time="0.003" classname="zeta-stepper Styling" file="src\test\stepper-input\stepper.test.ts"/>
     <testcase name="when progress is set to 100, progress bar and progress indicator should be same width" time="0.003" classname="zeta-stepper Styling" file="src\test\stepper-input\stepper.test.ts"/>
