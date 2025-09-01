@@ -1,8 +1,8 @@
 import { css } from "lit";
 export default css`
   :host {
-    --step-container-margin: 7px;
-    --step-success-icon-border: #fafbfc;
+    --step-title-width: 230px;
+    --step-edit-icon-left: 7px;
     position: relative;
     display: flex;
     align-items: flex-start;
@@ -22,8 +22,7 @@ export default css`
     padding: 0 var(--spacing-minimum);
     counter-increment: step;
     /*Prevents movement of other elements as text increases*/
-    width: 48px;
-    /* max-height: 84px; */
+    width: var(--spacing-8xl);
     gap: var(--spacing-xl);
 
     &.active {
@@ -58,13 +57,12 @@ export default css`
   }
 
   .step-title {
-    /* margin-top: var(--spacing-xl); */
     font: var(--title-large);
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    /*Clamp text box max width to 230px*/
-    width: 230px;
+    /*Clamp text box max width*/
+    width: var(--step-title-width);
     word-break: break-all;
   }
 
@@ -87,9 +85,8 @@ export default css`
   .step.editing .step-number zeta-icon[name="edit"] {
     position: relative;
     --icon-color: var(--main-subtle);
-    left: 7px;
-    top: 12px;
-    z-index: 2;
+    left: var(--step-edit-icon-left);
+    top: var(--spacing-medium);
     --icon-border-width: 6px;
     --icon-border-color: var(--step-success-icon-border);
   }
@@ -99,7 +96,7 @@ export default css`
   .step.editing .step-number::before,
   .step.editing .step-number zeta-icon[name="check_mark"] {
     position: relative;
-    left: 12px;
+    left: var(--spacing-medium);
   }
 
   /*Vertical orientation - Styling*/

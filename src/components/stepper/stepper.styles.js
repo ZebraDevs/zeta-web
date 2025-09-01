@@ -2,6 +2,12 @@ import { css } from "lit";
 export default css`
   /* Horizontal orientation - Styling */
   :host {
+    --stepper-container-height: 92px;
+    --stepper-bar-width: 200px;
+    --stepper-bar-height: 3px;
+    --stepper-bar-vertical-width: 3px;
+    --stepper-overflow-button-width: 50px;
+    --stepper-overflow-button-margin: 60px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,15 +29,15 @@ export default css`
     padding: 0;
     display: flex;
     width: fit-content;
-    height: 92px;
+    height: var(--stepper-container-height);
   }
 
   /* Bar pseudo-element */
   ::slotted(:not(zeta-stepper-item:last-child))::after {
     content: "";
     display: flex;
-    width: 200px;
-    height: 3px;
+    width: var(--stepper-bar-width);
+    height: var(--stepper-bar-height);
     border-radius: inherit;
     background-color: var(--border-subtle);
     align-items: center;
@@ -43,10 +49,10 @@ export default css`
   zeta-progress-bar {
     display: flex;
     width: 100%;
-    height: 8px;
+    height: var(--spacing-small);
     background-color: var(--border-subtle);
     border-radius: var(--radius-minimal);
-    margin-top: 16px;
+    margin-top: var(--spacing-large);
   }
   zeta-button::part(button) {
     box-shadow: 0 0 0 2px var(--border-subtle);
@@ -57,8 +63,8 @@ export default css`
     display: flex;
     justify-content: right;
     height: 100%;
-    width: 57px;
-    margin-left: 60px;
+    width: var(--stepper-overflow-button-width);
+    margin-left: var(--stepper-overflow-button-margin);
   }
 
   /* Vertical orientation styles */
@@ -83,7 +89,7 @@ export default css`
     /* Bar pseudo-element */
     ::slotted(:not(zeta-stepper-item:last-child))::after {
       height: var(--spacing-4xl);
-      width: 3px;
+      width: var(--stepper-bar-vertical-width);
       margin: var(--spacing-small) 0 var(--spacing-small) 18px;
     }
   }
