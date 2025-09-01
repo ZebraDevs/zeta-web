@@ -3,6 +3,7 @@ export default css`
   :host {
     --step-title-width: 230px;
     --step-edit-icon-left: 7px;
+    --step-success-icon-border: rgb(250, 251, 252);
     position: relative;
     display: flex;
     align-items: flex-start;
