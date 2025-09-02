@@ -2,7 +2,7 @@
 <testsuites>
   <testsuite name="Chromium_playwright_\src\test\accordion\accordion.test.ts" id="0" tests="20" skipped="0" errors="0" failures="0" time="0.63">
     <properties>
-      <property name="test.fileName" value="src\test\accordion\accordion.test.ts"/>
+      <property name="test.fileName" value="src/test/accordion/accordion.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -49,7 +49,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\action-menu\action-menu-button.test.ts" id="0" tests="6" skipped="0" errors="0" failures="0" time="0.10500000000000001">
     <properties>
-      <property name="test.fileName" value="src\test\action-menu\action-menu-button.test.ts"/>
+      <property name="test.fileName" value="src/test/action-menu/action-menu-button.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -62,7 +62,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\avatar\avatar.test.ts" id="0" tests="8" skipped="0" errors="0" failures="0" time="0.012">
     <properties>
-      <property name="test.fileName" value="src\test\avatar\avatar.test.ts"/>
+      <property name="test.fileName" value="src/test/avatar/avatar.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -77,7 +77,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\bottom-sheets\bottom-sheet.test.ts" id="0" tests="18" skipped="0" errors="0" failures="0" time="0.16899999999999998">
     <properties>
-      <property name="test.fileName" value="src\test\bottom-sheets\bottom-sheet.test.ts"/>
+      <property name="test.fileName" value="src/test/bottom-sheets/bottom-sheet.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -102,7 +102,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\breadcrumbs\breadcrumb.test.ts" id="0" tests="4" skipped="1" errors="0" failures="0" time="0.119">
     <properties>
-      <property name="test.fileName" value="src\test\breadcrumbs\breadcrumb.test.ts"/>
+      <property name="test.fileName" value="src/test/breadcrumbs/breadcrumb.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -115,7 +115,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\button\button.test.ts" id="0" tests="43" skipped="0" errors="0" failures="0" time="7.723000000000001">
     <properties>
-      <property name="test.fileName" value="src\test\button\button.test.ts"/>
+      <property name="test.fileName" value="src/test/button/button.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -165,7 +165,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\button\icon-button.test.ts" id="0" tests="33" skipped="0" errors="0" failures="0" time="2.556999999999998">
     <properties>
-      <property name="test.fileName" value="src\test\button\icon-button.test.ts"/>
+      <property name="test.fileName" value="src/test/button/icon-button.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -205,7 +205,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\button\tile-button.test.ts" id="0" tests="20" skipped="0" errors="0" failures="0" time="0.693">
     <properties>
-      <property name="test.fileName" value="src\test\button\tile-button.test.ts"/>
+      <property name="test.fileName" value="src/test/button/tile-button.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -232,7 +232,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\card\card-container.test.ts" id="0" tests="12" skipped="0" errors="0" failures="0" time="0.897">
     <properties>
-      <property name="test.fileName" value="src\test\card\card-container.test.ts"/>
+      <property name="test.fileName" value="src/test/card/card-container.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -251,7 +251,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\card\card-header.test.ts" id="0" tests="5" skipped="0" errors="0" failures="0" time="0.08">
     <properties>
-      <property name="test.fileName" value="src\test\card\card-header.test.ts"/>
+      <property name="test.fileName" value="src/test/card/card-header.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -263,7 +263,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\checkbox\checkbox.test.ts" id="0" tests="7" skipped="0" errors="0" failures="0" time="0.003">
     <properties>
-      <property name="test.fileName" value="src\test\checkbox\checkbox.test.ts"/>
+      <property name="test.fileName" value="src/test/checkbox/checkbox.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -277,7 +277,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\dialog\dialog.test.ts" id="0" tests="43" skipped="0" errors="0" failures="0" time="3.016999999999998">
     <properties>
-      <property name="test.fileName" value="src\test\dialog\dialog.test.ts"/>
+      <property name="test.fileName" value="src/test/dialog/dialog.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -327,11 +327,11 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\dropdown\dropdown-menu-button.test.ts" id="0" tests="10" skipped="1" errors="0" failures="0" time="0.025">
     <properties>
-      <property name="test.fileName" value="src\test\dropdown\dropdown-menu-button.test.ts"/>
+      <property name="test.fileName" value="src/test/dropdown/dropdown-menu-button.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
-    <testcase name="meets accessability requirements" time="0" classname="zeta-dropdown-menu-button Accessibility" file="src\test\dropdown\dropdown-menu-button.test.ts">
+    <testcase name="meets accessability requirements" time="0" classname="zeta-dropdown-menu-button Accessibility" file="src/test/dropdown/dropdown-menu-button.test.ts">
       <skipped/>
     </testcase>
     <testcase name="renders the text correctly" time="0.001" classname="zeta-dropdown-menu-button Content" file="src\test\dropdown\dropdown-menu-button.test.ts"/>
@@ -366,7 +366,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\dropdown\dropdown-menu-item.test.ts" id="0" tests="11" skipped="2" errors="0" failures="0" time="0.07100000000000001">
     <properties>
-      <property name="test.fileName" value="src\test\dropdown\dropdown-menu-item.test.ts"/>
+      <property name="test.fileName" value="src/test/dropdown/dropdown-menu-item.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -380,7 +380,7 @@
     <testcase name="sets the correct icon color when not disabled" time="0" classname="zeta-dropdown-menu-item Styling" file="src\test\dropdown\dropdown-menu-item.test.ts">
       <skipped/>
     </testcase>
-    <testcase name="sets the correct icon color when disabled" time="0" classname="zeta-dropdown-menu-item Styling" file="src\test\dropdown\dropdown-menu-item.test.ts">
+    <testcase name="sets the correct icon color when disabled" time="0" classname="zeta-dropdown-menu-item Styling" file="src/test/dropdown/dropdown-menu-item.test.ts">
       <skipped/>
     </testcase>
     <testcase name="sets the correct border radius when rounded is true" time="0.001" classname="zeta-dropdown-menu-item Styling" file="src\test\dropdown\dropdown-menu-item.test.ts"/>
@@ -388,7 +388,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\dropdown\droppable.test.ts" id="0" tests="7" skipped="0" errors="0" failures="0" time="0.049">
     <properties>
-      <property name="test.fileName" value="src\test\dropdown\droppable.test.ts"/>
+      <property name="test.fileName" value="src/test/dropdown/droppable.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -402,7 +402,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\empty-state\empty-state.test.ts" id="0" tests="7" skipped="0" errors="0" failures="0" time="0.9039999999999999">
     <properties>
-      <property name="test.fileName" value="src\test\empty-state\empty-state.test.ts"/>
+      <property name="test.fileName" value="src/test/empty-state/empty-state.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -416,7 +416,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\fab\fab.test.ts" id="0" tests="16" skipped="0" errors="0" failures="0" time="0.872">
     <properties>
-      <property name="test.fileName" value="src\test\fab\fab.test.ts"/>
+      <property name="test.fileName" value="src/test/fab/fab.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -439,7 +439,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\file-upload\file-upload.test.ts" id="0" tests="1" skipped="0" errors="0" failures="0" time="0.07">
     <properties>
-      <property name="test.fileName" value="src\test\file-upload\file-upload.test.ts"/>
+      <property name="test.fileName" value="src/test/file-upload/file-upload.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -447,7 +447,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\file-upload\upload-item.test.ts" id="0" tests="5" skipped="0" errors="0" failures="0" time="0.030000000000000006">
     <properties>
-      <property name="test.fileName" value="src\test\file-upload\upload-item.test.ts"/>
+      <property name="test.fileName" value="src/test/file-upload/upload-item.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -459,7 +459,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\global-header\global-header.test.ts" id="0" tests="3" skipped="0" errors="0" failures="0" time="0.049999999999999996">
     <properties>
-      <property name="test.fileName" value="src\test\global-header\global-header.test.ts"/>
+      <property name="test.fileName" value="src/test/global-header/global-header.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -469,7 +469,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\grid-menu-item\grid-menu-item.test.ts" id="0" tests="4" skipped="0" errors="0" failures="0" time="0.084">
     <properties>
-      <property name="test.fileName" value="src\test\grid-menu-item\grid-menu-item.test.ts"/>
+      <property name="test.fileName" value="src/test/grid-menu-item/grid-menu-item.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -480,7 +480,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\in-page-banner\in-page-banner.test.ts" id="0" tests="3" skipped="0" errors="0" failures="0" time="0.112">
     <properties>
-      <property name="test.fileName" value="src\test\in-page-banner\in-page-banner.test.ts"/>
+      <property name="test.fileName" value="src/test/in-page-banner/in-page-banner.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -490,7 +490,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\navigation-bar\navigation-bar.test.ts" id="0" tests="6" skipped="1" errors="0" failures="0" time="0.077">
     <properties>
-      <property name="test.fileName" value="src\test\navigation-bar\navigation-bar.test.ts"/>
+      <property name="test.fileName" value="src/test/navigation-bar/navigation-bar.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -505,7 +505,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\navigation-drawer\navigation-drawer.test.ts" id="0" tests="1" skipped="0" errors="0" failures="0" time="0.051">
     <properties>
-      <property name="test.fileName" value="src\test\navigation-drawer\navigation-drawer.test.ts"/>
+      <property name="test.fileName" value="src/test/navigation-drawer/navigation-drawer.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -513,7 +513,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\navigation-drawer-footer\navigation-drawer-footer.test.ts" id="0" tests="1" skipped="0" errors="0" failures="0" time="0.062">
     <properties>
-      <property name="test.fileName" value="src\test\navigation-drawer-footer\navigation-drawer-footer.test.ts"/>
+      <property name="test.fileName" value="src/test/navigation-drawer-footer/navigation-drawer-footer.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -521,7 +521,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\navigation-drawer-item\navigation-drawer-item.test.ts" id="0" tests="1" skipped="0" errors="0" failures="0" time="0.061">
     <properties>
-      <property name="test.fileName" value="src\test\navigation-drawer-item\navigation-drawer-item.test.ts"/>
+      <property name="test.fileName" value="src/test/navigation-drawer-item/navigation-drawer-item.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -529,7 +529,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\navigation-drawer-sub-item\navigation-drawer-sub-item.test.ts" id="0" tests="1" skipped="0" errors="0" failures="0" time="0.066">
     <properties>
-      <property name="test.fileName" value="src\test\navigation-drawer-sub-item\navigation-drawer-sub-item.test.ts"/>
+      <property name="test.fileName" value="src/test/navigation-drawer-sub-item/navigation-drawer-sub-item.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -537,7 +537,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\navigation-header\navigation-header.test.ts" id="0" tests="1" skipped="0" errors="0" failures="0" time="0.057">
     <properties>
-      <property name="test.fileName" value="src\test\navigation-header\navigation-header.test.ts"/>
+      <property name="test.fileName" value="src/test/navigation-header/navigation-header.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -545,7 +545,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\navigation-profile\navigation-profile.test.ts" id="0" tests="1" skipped="0" errors="0" failures="0" time="0.041">
     <properties>
-      <property name="test.fileName" value="src\test\navigation-profile\navigation-profile.test.ts"/>
+      <property name="test.fileName" value="src/test/navigation-profile/navigation-profile.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -553,7 +553,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\navigation-rail\navigation-rail-item.test.ts" id="0" tests="4" skipped="1" errors="0" failures="0" time="0.006">
     <properties>
-      <property name="test.fileName" value="src\test\navigation-rail\navigation-rail-item.test.ts"/>
+      <property name="test.fileName" value="src/test/navigation-rail/navigation-rail-item.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -566,7 +566,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\navigation-rail\navigation-rail.test.ts" id="0" tests="2" skipped="0" errors="0" failures="0" time="0.009000000000000001">
     <properties>
-      <property name="test.fileName" value="src\test\navigation-rail\navigation-rail.test.ts"/>
+      <property name="test.fileName" value="src/test/navigation-rail/navigation-rail.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -575,7 +575,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\pagination\pagination.test.ts" id="0" tests="10" skipped="0" errors="0" failures="0" time="0.035">
     <properties>
-      <property name="test.fileName" value="src\test\pagination\pagination.test.ts"/>
+      <property name="test.fileName" value="src/test/pagination/pagination.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -592,7 +592,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\progress-bar\progress-bar.test.ts" id="0" tests="1" skipped="0" errors="0" failures="0" time="0.057">
     <properties>
-      <property name="test.fileName" value="src\test\progress-bar\progress-bar.test.ts"/>
+      <property name="test.fileName" value="src/test/progress-bar/progress-bar.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -600,7 +600,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\progress-circle\progress-circle.test.ts" id="0" tests="7" skipped="0" errors="0" failures="0" time="0.009000000000000001">
     <properties>
-      <property name="test.fileName" value="src\test\progress-circle\progress-circle.test.ts"/>
+      <property name="test.fileName" value="src/test/progress-circle/progress-circle.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -614,17 +614,17 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\radio-button\radio-button.test.ts" id="0" tests="9" skipped="3" errors="0" failures="0" time="0.002">
     <properties>
-      <property name="test.fileName" value="src\test\radio-button\radio-button.test.ts"/>
+      <property name="test.fileName" value="src/test/radio-button/radio-button.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
-    <testcase name="meets accessibility requirements" time="0" classname="zeta-radio-button Accessibility" file="src\test\radio-button\radio-button.test.ts">
+    <testcase name="meets accessibility requirements" time="0" classname="zeta-radio-button Accessibility" file="src/test/radio-button/radio-button.test.ts">
       <skipped/>
     </testcase>
-    <testcase name="doesn&apos;t meet accessibility requirement without a label" time="0" classname="zeta-radio-button Accessibility" file="src\test\radio-button\radio-button.test.ts">
+    <testcase name="doesn&apos;t meet accessibility requirement without a label" time="0" classname="zeta-radio-button Accessibility" file="src/test/radio-button/radio-button.test.ts">
       <skipped/>
     </testcase>
-    <testcase name="is accessible by adding aria-label" time="0" classname="zeta-radio-button Accessibility" file="src\test\radio-button\radio-button.test.ts">
+    <testcase name="is accessible by adding aria-label" time="0" classname="zeta-radio-button Accessibility" file="src/test/radio-button/radio-button.test.ts">
       <skipped/>
     </testcase>
     <testcase name="sets the name attribute correctly" time="0" classname="zeta-radio-button Content" file="src\test\radio-button\radio-button.test.ts"/>
@@ -636,7 +636,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\range-selector\range-selector.test.ts" id="0" tests="14" skipped="0" errors="0" failures="0" time="0.08">
     <properties>
-      <property name="test.fileName" value="src\test\range-selector\range-selector.test.ts"/>
+      <property name="test.fileName" value="src/test/range-selector/range-selector.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -671,7 +671,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\search\search.test.ts" id="0" tests="13" skipped="1" errors="0" failures="0" time="0.027000000000000003">
     <properties>
-      <property name="test.fileName" value="src\test\search\search.test.ts"/>
+      <property name="test.fileName" value="src/test/search/search.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -693,7 +693,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\segmented-control\segmented-control.test.ts" id="0" tests="4" skipped="0" errors="0" failures="0" time="0.012">
     <properties>
-      <property name="test.fileName" value="src\test\segmented-control\segmented-control.test.ts"/>
+      <property name="test.fileName" value="src/test/segmented-control/segmented-control.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -708,7 +708,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\select-input\select-input.test.ts" id="0" tests="17" skipped="0" errors="0" failures="0" time="0.11700000000000002">
     <properties>
-      <property name="test.fileName" value="src\test\select-input\select-input.test.ts"/>
+      <property name="test.fileName" value="src/test/select-input/select-input.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -732,7 +732,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\slider\slider.test.ts" id="0" tests="16" skipped="0" errors="0" failures="0" time="0.07600000000000001">
     <properties>
-      <property name="test.fileName" value="src\test\slider\slider.test.ts"/>
+      <property name="test.fileName" value="src/test/slider/slider.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -755,7 +755,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\slider-input-field\slider-input-field.test.ts" id="0" tests="12" skipped="0" errors="0" failures="0" time="0.07400000000000001">
     <properties>
-      <property name="test.fileName" value="src\test\slider-input-field\slider-input-field.test.ts"/>
+      <property name="test.fileName" value="src/test/slider-input-field/slider-input-field.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -774,11 +774,11 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\snackbar\snackbar.test.ts" id="0" tests="19" skipped="1" errors="0" failures="0" time="0.547">
     <properties>
-      <property name="test.fileName" value="src\test\snackbar\snackbar.test.ts"/>
+      <property name="test.fileName" value="src/test/snackbar/snackbar.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
-    <testcase name="meets accessibility requirements" time="0" classname="zeta-snackbar Accessibility" file="src\test\snackbar\snackbar.test.ts">
+    <testcase name="meets accessibility requirements" time="0" classname="zeta-snackbar Accessibility" file="src/test/snackbar/snackbar.test.ts">
       <skipped/>
     </testcase>
     <testcase name="displays the correct text in the slot" time="0" classname="zeta-snackbar Content" file="src\test\snackbar\snackbar.test.ts"/>
@@ -859,7 +859,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\stepper-input\stepper-input.test.ts" id="0" tests="14" skipped="0" errors="0" failures="0" time="0.099">
     <properties>
-      <property name="test.fileName" value="src\test\stepper-input\stepper-input.test.ts"/>
+      <property name="test.fileName" value="src/test/stepper-input/stepper-input.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -894,7 +894,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\stepper-input\stepper.test.ts" id="19" tests="26" skipped="0" errors="0" failures="0" time="0.023000000000000007">
     <properties>
-      <property name="test.fileName" value="src\test\stepper-input\stepper.test.ts"/>
+      <property name="test.fileName" value="src/test/stepper-input/stepper.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -927,7 +927,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\switch\switch.test.ts" id="0" tests="15" skipped="0" errors="0" failures="0" time="0.233">
     <properties>
-      <property name="test.fileName" value="src\test\switch\switch.test.ts"/>
+      <property name="test.fileName" value="src/test/switch/switch.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -949,11 +949,11 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\text-input\text-input.test.ts" id="0" tests="38" skipped="1" errors="0" failures="0" time="2.708">
     <properties>
-      <property name="test.fileName" value="src\test\text-input\text-input.test.ts"/>
+      <property name="test.fileName" value="src/test/text-input/text-input.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
-    <testcase name="creates from document.createElement" time="0" classname="zeta-text-input Content" file="src\test\text-input\text-input.test.ts">
+    <testcase name="creates from document.createElement" time="0" classname="zeta-text-input Content" file="src/test/text-input/text-input.test.ts">
       <skipped/>
     </testcase>
     <testcase name="creates from constructor" time="0.001" classname="zeta-text-input Content" file="src\test\text-input\text-input.test.ts"/>
@@ -994,9 +994,9 @@
     <testcase name="should not go below min and should filter dots and non-numeric characters when type is integer and min is set" time="0.087" classname="zeta-text-input Interaction" file="src\test\text-input\text-input.test.ts"/>
     <testcase name="should not go above max and should filter dots and non-numeric characters when type is integer and max is set" time="0.081" classname="zeta-text-input Interaction" file="src\test\text-input\text-input.test.ts"/>
   </testsuite>
-  <testsuite name="Chromium_playwright_\src\test\top-appbar\top-appbar.test.ts" id="0" tests="6" skipped="0" errors="0" failures="0" time="0.004">
+  <testsuite name="Chromium_playwright_/src/test/top-appbar/top-appbar.test.ts" id="0" tests="6" skipped="0" errors="0" failures="0" time="0.014000000000000002">
     <properties>
-      <property name="test.fileName" value="src\test\top-appbar\top-appbar.test.ts"/>
+      <property name="test.fileName" value="src/test/top-appbar/top-appbar.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -1009,7 +1009,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\badges\indicator\indicator.test.ts" id="0" tests="18" skipped="0" errors="0" failures="0" time="1.6299999999999988">
     <properties>
-      <property name="test.fileName" value="src\test\badges\indicator\indicator.test.ts"/>
+      <property name="test.fileName" value="src/test/badges/indicator/indicator.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -1034,7 +1034,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\badges\label\label.test.ts" id="0" tests="11" skipped="0" errors="0" failures="0" time="1.925">
     <properties>
-      <property name="test.fileName" value="src\test\badges\label\label.test.ts"/>
+      <property name="test.fileName" value="src/test/badges/label/label.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -1052,7 +1052,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\badges\priority-pill\priority-pill.test.ts" id="0" tests="25" skipped="0" errors="0" failures="0" time="4.911000000000001">
     <properties>
-      <property name="test.fileName" value="src\test\badges\priority-pill\priority-pill.test.ts"/>
+      <property name="test.fileName" value="src/test/badges/priority-pill/priority-pill.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -1084,7 +1084,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\badges\status-label\status-label.test.ts" id="0" tests="12" skipped="0" errors="0" failures="0" time="1.8069999999999995">
     <properties>
-      <property name="test.fileName" value="src\test\badges\status-label\status-label.test.ts"/>
+      <property name="test.fileName" value="src/test/badges/status-label/status-label.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -1103,7 +1103,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\badges\tag\tag.test.ts" id="0" tests="7" skipped="0" errors="0" failures="0" time="0.456">
     <properties>
-      <property name="test.fileName" value="src\test\badges\tag\tag.test.ts"/>
+      <property name="test.fileName" value="src/test/badges/tag/tag.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -1117,7 +1117,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\chips\assist-chip\assist-chip.test.ts" id="0" tests="3" skipped="0" errors="0" failures="0" time="0.051">
     <properties>
-      <property name="test.fileName" value="src\test\chips\assist-chip\assist-chip.test.ts"/>
+      <property name="test.fileName" value="src/test/chips/assist-chip/assist-chip.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -1127,7 +1127,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\chips\filter-chip\filter-chip.test.ts" id="0" tests="3" skipped="0" errors="0" failures="0" time="0.045">
     <properties>
-      <property name="test.fileName" value="src\test\chips\filter-chip\filter-chip.test.ts"/>
+      <property name="test.fileName" value="src/test/chips/filter-chip/filter-chip.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
@@ -1137,7 +1137,7 @@
   </testsuite>
   <testsuite name="Chromium_playwright_\src\test\chips\input-chip\input-chip.test.ts" id="0" tests="2" skipped="0" errors="0" failures="0" time="0.039">
     <properties>
-      <property name="test.fileName" value="src\test\chips\input-chip\input-chip.test.ts"/>
+      <property name="test.fileName" value="src/test/chips/input-chip/input-chip.test.ts"/>
       <property name="browser.name" value="Chromium"/>
       <property name="browser.launcher" value="playwright"/>
     </properties>
