@@ -1,7 +1,6 @@
 import { customElement, property } from "lit/decorators.js";
 import { html, LitElement, nothing } from "lit";
 import styles from "./stepper-item.styles.js";
-//import { classMap } from "lit/directives/class-map.js";
 import "../icon/icon";
 
 //Make a type for flavor
@@ -18,6 +17,10 @@ export type StepperItemFlavor = "partial" | "success" | "active" | "default";
  */
 @customElement("zeta-stepper-item")
 export class ZetaStepperItem extends LitElement {
+  constructor() {
+    super();
+    this.role = "listitem";
+  }
   /**
    * The flavor of the component determines the visual style of the component.
    *
@@ -46,24 +49,15 @@ export class ZetaStepperItem extends LitElement {
     return this.closest("zeta-stepper")?.getAttribute("variant") ?? "horizontal";
   }
 
-  // protected render() {
-  //   const classes = {
-  //     active: this.flavor === "active",
-  //     partial: this.flavor === "partial",
-  //     success: this.flavor === "success",
-  //     default: this.flavor === "default",
-  //     editing: this.editing
-  //   };
-
   protected render() {
     return html`
-      <li class="step">
+      <div class="step">
         <span class="step-number">
           ${this.flavor === "success" ? html`<zeta-icon name="check_mark"></zeta-icon>` : html`<span class="number"></span>`}
           ${this.editing ? html`<zeta-icon name="edit"></zeta-icon>` : nothing}
         </span>
         <span class="step-title"><slot></slot></span>
-      </li>
+      </div>
     `;
   }
 

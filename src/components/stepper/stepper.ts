@@ -39,12 +39,14 @@ export class ZetaStepper extends LitElement {
 
   protected render() {
     return html`
-      <ul class="stepper-container">
-        <slot></slot>
+      <div class="stepper-container">
+        <div class="stepper-container" role="list">
+          <slot></slot>
+        </div>
         ${this.showOverflowButton
           ? html`<zeta-button flavor="outline-subtle" class="stepper-item-overflow-button"><zeta-icon>chevron_right</zeta-icon></zeta-button>`
           : ""}
-      </ul>
+      </div>
       ${this.progressBar ? html`<zeta-progress-bar value=${this.progress}></zeta-progress-bar>` : nothing}
     `;
   }

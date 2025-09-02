@@ -1,6 +1,6 @@
 import { fixture, html, expect, unsafeStatic, elementUpdated } from "@open-wc/testing";
 import type { ZetaStepper } from "../../components/stepper/stepper.js";
-import { ZetaStepperItem, type StepperItemFlavor } from "../../components/stepper/stepper-item.js";
+import { type StepperItemFlavor } from "../../components/stepper/stepper-item.js";
 import "../../components/stepper/stepper.js";
 import "../../components/stepper/stepper-item.styles.js";
 import "../../components/stepper/stepper.styles.js";
@@ -69,28 +69,15 @@ describe("zeta-stepper", () => {
         }
       });
       it(`Stepper meets aria requirements for the ${flavor} flavor`, async () => {
-        //TODO:
-        //subject = await createFlavoredStepperItems(subject, flavor as StepperItemFlavor);
-        //await expect(subject).to.be.accessible();
-        //await expect(subject).shadowDom.to.be.accessible();
+        subject = await createFlavoredStepper(subject, flavor as StepperItemFlavor);
+        await expect(subject).to.be.accessible();
+        await expect(subject).shadowDom.to.be.accessible();
       });
       it(`Each stepper item meets aria requirements for the ${flavor} flavor`, async () => {
-        //const stepperItem = await createFlavoredStepperItem(flavor as StepperItemFlavor);
-        //await expect(stepperItem).to.be.accessible();
-        //await expect(stepperItem).shadowDom.to.be.accessible();
+        const stepperItem = await createFlavoredStepperItem(flavor as StepperItemFlavor);
+        await expect(stepperItem).to.be.accessible();
+        await expect(stepperItem).shadowDom.to.be.accessible();
       });
-    });
-
-    it(`renders stepper items as list items in the unordered list`, async () => {
-      const stepperItems = Array.from(subject.querySelectorAll("zeta-stepper-item"));
-      await expect(stepperItems.length).to.equal(3);
-
-      for (const item of stepperItems) {
-        expect(item).to.exist;
-        const li = item.shadowRoot?.querySelector("li");
-        expect(li).to.exist;
-        await expect(li?.tagName).to.equal("LI");
-      }
     });
   });
 

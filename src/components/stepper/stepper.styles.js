@@ -24,6 +24,11 @@ export default css`
   }
 
   .stepper-container {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .stepper-container {
     list-style-type: none;
     margin: 0;
     padding: 0;
