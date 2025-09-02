@@ -3,6 +3,19 @@ import { customElement, property } from "lit/decorators.js";
 import styles from "./global-header.styles.js";
 import "../icon/icon.js";
 import { Contourable } from "../../mixins/mixins.js";
+import "../button/icon-button/icon-button";
+import "../search/search";
+import "../avatar/avatar";
+
+/**Requirements:
+ * - 0-6 action items
+ * - If there are action items, a grey bar appears separating the user icon and action items
+ * - 0-6 menu items
+ * - App switcher can be displayed or not displayed (before user icons)
+ * - Platform name, menu items, action items, username and app switcher are all props that can be adjusted
+ * - Elements need to be able to be rounded. Icon button doesnt have rounded prop
+ * - Make menu buttons/action buttons either normal text buttons/icon buttons or drop down buttons
+ */
 
 /**
  * A header with support for displaying a zeta-navigation-menu
@@ -18,27 +31,69 @@ import { Contourable } from "../../mixins/mixins.js";
  */
 @customElement("zeta-global-header")
 export class ZetaGlobalHeader extends Contourable(LitElement) {
-  /** The headline text on the header. Can also be slotted. */
-  @property({ type: String }) headline?: string;
+  /** The platform name text on the header. */
+  @property({ type: String }) platformName: string;
 
-  /** The position of the navigation. */
-  @property({ type: String }) menuPosition: "inline" | "below" = "inline";
+  /**
+   * Number of menu items to show on the header.
+   * Can be any number between 0 - 6.
+   */
+  @property({ type: Number }) menuItems: 0 | 1 | 2 | 3 | 4 | 5 | 6 = 0;
+
+  /**
+   * Number of action items to show on the header.
+   * Can be any number between 0 - 6.
+   */
+  @property({ type: Number }) actionItems: 0 | 1 | 2 | 3 | 4 | 5 | 6 = 0;
+
+  /** The name to show in the header, next to the user icon. */
+  @property({ type: String }) name: string = "null";
+
+  /** The initials to display within the user icon. */
+  @property({ type: String }) initials: string = "RK";
+
+  /**
+   * Shows the app switcher icon or not.
+   * Make true if you'd like the app switcher to be shown.
+   */
+  @property({ type: Boolean }) appSwitcher: boolean = false;
+
+  /**
+   * Shows the search bar or not.
+   * Make true to show the search bar.
+   */
+  @property({ type: Boolean }) searchbar: boolean = false;
+
+  /**
+   * Applies rounded corners to all elements on the header.
+   * Set to true to round all elements.
+   */
+  @property({ type: Boolean }) rounded: boolean = false;
 
   protected override render() {
     return html`
-      <div class="global-header" part="global-header">
-        <div class="leading">
-          <div class="slotted-content">
-            <slot name="leading"></slot>
-            <div class="header">${this.headline}<slot></slot></div>
+      <div>
+        <div>
+          <div>
+            <div>
+              <zeta-icon-button flavor="text">hamburger_menu</zeta-icon-button>
+              <img src="../assets/zebra-logo.svg" alt="Zebra Technologies Logo" width="80px" height="32px" />
+              <div>${this.platformName}</div>
+            </div>
+            <div>${this.menuItems > 0 ? Array.from({ length: this.menuItems }, () => html`<zeta-button flavor="text">Nav Item</zeta-button>`) : nothing}</div>
           </div>
-          ${this.menuPosition == "inline" ? html`<slot name="navigation-menu"></slot>` : nothing}
+          ${this.searchbar ? html`<zeta-search value="Search"></zeta-search>` : nothing}
         </div>
-        <div class="slotted-content">
-          <slot name="trailing"></slot>
+        <div class="user-profile">
+          <div>
+            ${this.actionItems > 0 ? Array.from({ length: this.actionItems }, () => html`<zeta-icon-button flavor="text">star</zeta-icon-button>`) : nothing}
+          </div>
+          ${this.name != "null" ? html`<div>${this.name}</div>` : nothing}
+          <zeta-avatar .showClose=${false}>${this.initials}</zeta-avatar>
+          <zeta-icon-button flavor="text">expand_more</zeta-icon-button>
         </div>
+        ${this.appSwitcher ? html`<zeta-icon-button flavor="text">apps</zeta-icon-button>` : nothing}
       </div>
-      ${this.menuPosition == "below" ? html`<div class="navigation-menu"><slot name="navigation-menu"></slot></div>` : nothing}
     `;
   }
 

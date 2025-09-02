@@ -1,23 +1,23 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
-import type { ZetaGlobalHeader } from "../../components/global-header/global-header.js";
+import { ZetaGlobalHeader } from "../../components/global-header/global-header.js";
 import { html } from "lit";
+import "../../components/global-header/global-header";
+import { spreadGenerator } from "../utils.js";
+const spread = spreadGenerator(ZetaGlobalHeader);
 
 const meta: Meta<ZetaGlobalHeader> = {
   component: "zeta-global-header",
   tags: ["autodocs"],
   title: "Components/Global Header",
   args: {
-    headline: "Service Name",
-    rounded: true,
-    menuPosition: "inline"
-  },
-  argTypes: {
-    menuPosition: {
-      options: ["inline", "below"],
-      control: {
-        type: "select"
-      }
-    }
+    platformName: "Platform Name",
+    menuItems: 0,
+    actionItems: 0,
+    name: "Name",
+    initials: "RK",
+    appSwitcher: false,
+    searchbar: false,
+    rounded: false
   },
   parameters: {
     design: {
@@ -39,18 +39,7 @@ export const GlobalHeader: StoryObj = {
     }
   },
   render: args => {
-    return html`<zeta-global-header headline=${args.headline}>
-      <zeta-icon-button slot="leading">hamburger_menu</zeta-icon-button>
-      <zeta-search slot="trailing" size="large" round="full"></zeta-search>
-      <zeta-icon-button slot="trailing">alert</zeta-icon-button>
-      <zeta-icon-button slot="trailing">star</zeta-icon-button>
-      <div slot="trailing" class="divider">&nbsp;</div>
-      <zeta-icon-button slot="trailing">apps</zeta-icon-button>
-      <zeta-navigation-profile slot="trailing" rounded>
-        <zeta-avatar slot="leading" size="s"></zeta-avatar>
-        My account
-      </zeta-navigation-profile>
-    </zeta-global-header>`;
+    return html`<zeta-global-header ${spread(args)}> </zeta-global-header>`;
   }
 };
 
