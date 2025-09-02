@@ -1,5 +1,5 @@
 import { customElement, property } from "lit/decorators.js";
-import { html, LitElement } from "lit";
+import { html, LitElement, nothing } from "lit";
 import styles from "./stepper.styles.js";
 import "../icon/icon";
 import "./stepper-item";
@@ -22,25 +22,30 @@ export class ZetaStepper extends LitElement {
   @property({ reflect: true }) variant: "vertical" | "horizontal" = "horizontal";
 
   /**
-   * The current progress of the stepper, represented as a percentage (0-100).
+   * The current progress of the stepper, represented as a floating point number (0.0-1.0).
+   * This number is used by the progress bar.
    */
   @property({ type: Number }) progress: number = 0;
 
   /**
-   * Whether the amount of stepper items has exceeded its container.
-   * Shows a button to overflow the items.
+   * Set to true when not all stepper items can be displayed on screen at once.
+   * Displays a button that allows users to view additional stepper items.
+   * User can set their own functionality to the button.
    */
-  @property({ type: Boolean }) overflowed: boolean = false;
+  @property({ type: Boolean }) showOverflowButton: boolean = false;
+
+  /** Set to true for the progress bar to be shown. */
+  @property({ type: Boolean }) progressBar: boolean = false;
 
   protected render() {
     return html`
       <ul class="stepper-container">
         <slot></slot>
-        ${this.overflowed
+        ${this.showOverflowButton
           ? html`<zeta-button flavor="outline-subtle" class="stepper-item-overflow-button"><zeta-icon>chevron_right</zeta-icon></zeta-button>`
           : ""}
       </ul>
-      <zeta-progress-bar value=${this.progress}></zeta-progress-bar>
+      ${this.progressBar ? html`<zeta-progress-bar value=${this.progress}></zeta-progress-bar>` : nothing}
     `;
   }
 

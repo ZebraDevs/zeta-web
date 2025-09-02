@@ -15,7 +15,8 @@ type Args = ZetaStepper & {
   title3: string;
   editing: boolean;
   progress: number;
-  overflowed: boolean;
+  showOverflowButton: boolean;
+  progressBar: boolean;
 };
 const meta: Meta<Args> = {
   component: "zeta-stepper",
@@ -23,8 +24,9 @@ const meta: Meta<Args> = {
   title: "Components/Stepper",
   args: {
     progress: 0,
-    overflowed: false,
+    showOverflowButton: false,
     editing: false,
+    progressBar: false,
     flavor1: "default",
     title1: "Label",
     flavor2: "default",
@@ -37,10 +39,11 @@ const meta: Meta<Args> = {
     variant: {
       table: { disable: true }
     },
+    slot: { table: { disable: true } },
     progress: {
-      control: { type: "number", min: 0, max: 100, step: 1 }
+      control: { type: "number", min: 0.0, max: 1.0, step: 0.01 }
     },
-    overflowed: {
+    showOverflowButton: {
       control: { type: "boolean" }
     },
     editing: {

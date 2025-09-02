@@ -1,7 +1,7 @@
 import { customElement, property } from "lit/decorators.js";
 import { html, LitElement, nothing } from "lit";
 import styles from "./stepper-item.styles.js";
-import { classMap } from "lit/directives/class-map.js";
+//import { classMap } from "lit/directives/class-map.js";
 import "../icon/icon";
 
 //Make a type for flavor
@@ -37,7 +37,7 @@ export class ZetaStepperItem extends LitElement {
   /**
    * Set to true when page is being edited. Shows pen icon on step. Defaults to false.
    */
-  @property({ type: Boolean }) editing = false;
+  @property({ type: Boolean, reflect: true }) editing = false;
 
   /**
    * Obtain the orientation of the stepper parent.
@@ -46,17 +46,18 @@ export class ZetaStepperItem extends LitElement {
     return this.closest("zeta-stepper")?.getAttribute("variant") ?? "horizontal";
   }
 
-  protected render() {
-    const classes = {
-      active: this.flavor === "active",
-      partial: this.flavor === "partial",
-      success: this.flavor === "success",
-      default: this.flavor === "default",
-      editing: this.editing
-    };
+  // protected render() {
+  //   const classes = {
+  //     active: this.flavor === "active",
+  //     partial: this.flavor === "partial",
+  //     success: this.flavor === "success",
+  //     default: this.flavor === "default",
+  //     editing: this.editing
+  //   };
 
+  protected render() {
     return html`
-      <li class="step ${classMap(classes)}">
+      <li class="step">
         <span class="step-number">
           ${this.flavor === "success" ? html`<zeta-icon name="check_mark"></zeta-icon>` : html`<span class="number"></span>`}
           ${this.editing ? html`<zeta-icon name="edit"></zeta-icon>` : nothing}
