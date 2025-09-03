@@ -62,10 +62,12 @@ function parseTestFiles(paths: string[]): TestFiles {
 
     // format the extracted statements into a nested record object
     const formattedRecord: Record<string, any> =
-      formatExtractedStatements(extractedStatements);
+       formatExtractedStatements(extractedStatements);
 
-    // add the formatted tree to the map at the file name
-    parsedTestFiles[path.split("\\").pop()!] = formattedRecord;
+    const dirs = path.split(/[\\/]/); 
+    const componentName = dirs.length > 1 ? dirs[dirs.length - 2] : path.split(".")[0];
+
+    parsedTestFiles[componentName] = formattedRecord;
   }
   return parsedTestFiles;
 }
@@ -178,7 +180,7 @@ function formatExtractedStatements(tree: ASTStructure[]): Record<string, any> {
         }
         node.children?.forEach((child) =>
           addToResult(child, `${parentKey}.${describeText}`)
-        );
+      );
       } else {
         // else the describe statement is at the root level
         result[describeText] = {};
@@ -311,8 +313,8 @@ function generateMDTable(testCounts: TestCounts) {
 async function main() {
   // get output directory
   const outputDir = path
-    .resolve("scripts/test/output")
-    .replace(/^(\.\.(\/|\\|$))+/, "");
+  .resolve("scripts/test/output")
+  .replace(/^(\.\.(\/|\\|$))+/, "");
   if (!fs.existsSync(outputDir)) {
     fs.mkdirSync(outputDir, { recursive: true });
   }
