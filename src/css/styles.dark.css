@@ -1,4 +1,11 @@
 /* All tokens defined here are used in code but not from figma */
-:root {
+
+:root [data-theme="dark"] {
   --surface-overlay: rgba(0, 0, 0, 0.7);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --surface-overlay: rgba(0, 0, 0, 0.7);
+  }
 }
