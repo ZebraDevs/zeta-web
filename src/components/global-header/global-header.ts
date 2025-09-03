@@ -72,29 +72,29 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
 
   protected override render() {
     return html`
-      <div id="global-header-main-container">
-        <div id="header-left-container">
-          <div id="navigation-info-container">
-            <div id="global-header-info">
+      <div id="header-main">
+        <div id="header-left">
+          <div>
+            <div id="header-info">
               <zeta-icon-button id="hamburger-menu" flavor="text">hamburger_menu</zeta-icon-button>
               <img id="logo" src="../assets/zebra-logo.svg" alt="Zebra Technologies Logo" width="80px" height="32px" />
               <div>${this.platformName}</div>
             </div>
-            <div id="menu-items">
+            <div id="menu-items" class=${this.menuItems > 0 ? "has-items" : ""}>
               ${this.menuItems > 0 ? Array.from({ length: this.menuItems }, () => html`<zeta-button flavor="text">Nav Item</zeta-button>`) : nothing}
             </div>
           </div>
         </div>
-        <div id="user-profile">
+        <div id="header-right">
           ${this.searchbar ? html`<zeta-search></zeta-search>` : nothing}
-          <div id="action-items">
+          <div id="action-items" class=${this.actionItems > 0 ? "has-items" : ""}>
             ${this.actionItems > 0 ? Array.from({ length: this.actionItems }, () => html`<zeta-icon-button flavor="text">star</zeta-icon-button>`) : nothing}
           </div>
-          <div>
-            <div id="name">${this.name}</div>
+          <zeta-button flavor="text" trailingIcon="expand_more">
+            <span id="name">${this.name}</span>
             <zeta-avatar .showClose=${false}>${this.initials}</zeta-avatar>
-            <zeta-icon-button flavor="text">expand_more</zeta-icon-button>
-          </div>
+            <!-- <zeta-icon-button flavor="text">expand_more</zeta-icon-button> -->
+          </zeta-button>
           ${this.appSwitcher ? html`<zeta-icon-button flavor="text">apps</zeta-icon-button>` : nothing}
         </div>
       </div>

@@ -6,12 +6,26 @@ export default css`
     align-items: center;
   }
 
-  #global-header-main-container {
+  #header-main {
     justify-content: space-between;
   }
 
-  #user-profile {
+  #header-right {
     gap: var(--spacing-large);
+  }
+
+  /*Optional nav items*/
+  #menu-items {
+    padding-left: var(--spacing-small);
+  }
+  #menu-items.has-items {
+    border-left: 1px solid var(--border-default);
+  }
+  #action-items {
+    padding-right: var(--spacing-small);
+  }
+  #action-items.has-items {
+    border-right: 1px solid var(--border-default);
   }
 
   /*zeta-icon-button and zeta-button styling*/
@@ -27,11 +41,11 @@ export default css`
     --flavor-background-color: --surface-default;
   }
 
-  /*Spacing between elements in global-header-info*/
+  /*Spacing between elements in header-info*/
   #logo {
     margin: 0 var(--spacing-large) 0 var(--spacing-small);
   }
-  #global-header-info {
+  #header-info {
     margin-right: var(--spacing-large);
   }
 `;
