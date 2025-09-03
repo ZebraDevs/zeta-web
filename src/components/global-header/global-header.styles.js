@@ -48,4 +48,31 @@ export default css`
   #header-info {
     margin-right: var(--spacing-large);
   }
+
+  #name {
+    color: var(--main-default);
+  }
+
+  /*Style avatar icon*/
+  #avatar {
+    background-color: var(--avatar-purple);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    color: var(--main-inverse);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+  }
+
+  .expand-icon {
+    --icon-color: var(--main-default);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    #logo {
+      filter: invert(1);
+    }
+  }
 `;

@@ -7,14 +7,9 @@ import "../button/icon-button/icon-button";
 import "../search/search";
 import "../avatar/avatar";
 
-/**Requirements:
- * - 0-6 action items
- * - If there are action items, a grey bar appears separating the user icon and action items
- * - 0-6 menu items
- * - App switcher can be displayed or not displayed (before user icons)
- * - Platform name, menu items, action items, username and app switcher are all props that can be adjusted
+/**TODO:
  * - Elements need to be able to be rounded. Icon button doesnt have rounded prop
- * - Make menu buttons/action buttons either normal text buttons/icon buttons or drop down buttons
+ * - Make menu buttons/action buttons either normal text buttons/icon buttons or drop down menu buttons
  */
 
 /**
@@ -90,10 +85,10 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
           <div id="action-items" class=${this.actionItems > 0 ? "has-items" : ""}>
             ${this.actionItems > 0 ? Array.from({ length: this.actionItems }, () => html`<zeta-icon-button flavor="text">star</zeta-icon-button>`) : nothing}
           </div>
-          <zeta-button flavor="text" trailingIcon="expand_more">
+          <zeta-button flavor="text">
             <span id="name">${this.name}</span>
-            <zeta-avatar .showClose=${false}>${this.initials}</zeta-avatar>
-            <!-- <zeta-icon-button flavor="text">expand_more</zeta-icon-button> -->
+            <div id="avatar">${this.initials}</div>
+            <zeta-icon class="expand-icon">expand_more</zeta-icon>
           </zeta-button>
           ${this.appSwitcher ? html`<zeta-icon-button flavor="text">apps</zeta-icon-button>` : nothing}
         </div>
