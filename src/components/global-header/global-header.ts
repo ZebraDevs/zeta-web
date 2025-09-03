@@ -24,6 +24,9 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
   /** The position of the navigation. */
   @property({ type: String }) menuPosition: "inline" | "below" = "inline";
 
+  // @property({ type: String, attribute: "data-theme", reflect: true }) theme = "dark";
+  @property({ type: String, attribute: "data-contrast", reflect: true }) contrast = "more";
+
   protected override render() {
     return html`
       <div class="global-header" part="global-header">
