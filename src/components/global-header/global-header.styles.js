@@ -1,47 +1,37 @@
 import { css } from "lit";
 export default css`
-  :host {
-    display: block;
-    min-width: min-content;
+  :host * {
     display: flex;
-    flex-direction: column;
-    background-color: var(--surface-default);
-    --tab-bar-background: var(--surface-default);
-    color: var(--main-default);
-  }
-
-  ::slotted(zeta-icon-button) {
-    --icon-button-icon-color: var(--main-default);
-    --icon-button-icon-color-disabled: var(--main-disabled);
-    --icon-button-color: var(--surface-default);
-  }
-
-  .slotted-content,
-  .leading,
-  .global-header {
-    display: flex;
+    flex-direction: row;
     align-items: center;
   }
 
-  .global-header {
-    gap: var(--spacing-2xl);
+  #global-header-main-container {
     justify-content: space-between;
-    padding: var(--spacing-small) var(--spacing-2xl);
   }
 
-  .slotted-content {
-    gap: var(--spacing-small);
+  #user-profile {
+    gap: var(--spacing-large);
   }
 
-  .leading {
-    gap: var(--spacing-2xl);
+  /*zeta-icon-button and zeta-button styling*/
+  zeta-icon-button::part(icon) {
+    --icon-color: var(--main-default);
+  }
+  zeta-icon-button::part(button),
+  zeta-button::part(button) {
+    color: var(--main-subtle);
+  }
+  zeta-icon-button:not([disabled]):not(:hover):not(:active)::part(button),
+  zeta-button:not([disabled]):not(:hover):not(:active)::part(button) {
+    --flavor-background-color: --surface-default;
   }
 
-  .header {
-    font: var(--title-large);
+  /*Spacing between elements in global-header-info*/
+  #logo {
+    margin: 0 var(--spacing-large) 0 var(--spacing-small);
   }
-
-  .navigation-menu {
-    padding: 0 var(--spacing-small);
+  #global-header-info {
+    margin-right: var(--spacing-large);
   }
 `;

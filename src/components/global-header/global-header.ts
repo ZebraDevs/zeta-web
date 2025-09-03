@@ -47,7 +47,7 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
   @property({ type: Number }) actionItems: 0 | 1 | 2 | 3 | 4 | 5 | 6 = 0;
 
   /** The name to show in the header, next to the user icon. */
-  @property({ type: String }) name: string = "null";
+  @property({ type: String }) name: string = "Name";
 
   /** The initials to display within the user icon. */
   @property({ type: String }) initials: string = "RK";
@@ -72,27 +72,31 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
 
   protected override render() {
     return html`
-      <div>
-        <div>
-          <div>
-            <div>
-              <zeta-icon-button flavor="text">hamburger_menu</zeta-icon-button>
-              <img src="../assets/zebra-logo.svg" alt="Zebra Technologies Logo" width="80px" height="32px" />
+      <div id="global-header-main-container">
+        <div id="header-left-container">
+          <div id="navigation-info-container">
+            <div id="global-header-info">
+              <zeta-icon-button id="hamburger-menu" flavor="text">hamburger_menu</zeta-icon-button>
+              <img id="logo" src="../assets/zebra-logo.svg" alt="Zebra Technologies Logo" width="80px" height="32px" />
               <div>${this.platformName}</div>
             </div>
-            <div>${this.menuItems > 0 ? Array.from({ length: this.menuItems }, () => html`<zeta-button flavor="text">Nav Item</zeta-button>`) : nothing}</div>
+            <div id="menu-items">
+              ${this.menuItems > 0 ? Array.from({ length: this.menuItems }, () => html`<zeta-button flavor="text">Nav Item</zeta-button>`) : nothing}
+            </div>
           </div>
-          ${this.searchbar ? html`<zeta-search value="Search"></zeta-search>` : nothing}
         </div>
-        <div class="user-profile">
-          <div>
+        <div id="user-profile">
+          ${this.searchbar ? html`<zeta-search></zeta-search>` : nothing}
+          <div id="action-items">
             ${this.actionItems > 0 ? Array.from({ length: this.actionItems }, () => html`<zeta-icon-button flavor="text">star</zeta-icon-button>`) : nothing}
           </div>
-          ${this.name != "null" ? html`<div>${this.name}</div>` : nothing}
-          <zeta-avatar .showClose=${false}>${this.initials}</zeta-avatar>
-          <zeta-icon-button flavor="text">expand_more</zeta-icon-button>
+          <div>
+            <div id="name">${this.name}</div>
+            <zeta-avatar .showClose=${false}>${this.initials}</zeta-avatar>
+            <zeta-icon-button flavor="text">expand_more</zeta-icon-button>
+          </div>
+          ${this.appSwitcher ? html`<zeta-icon-button flavor="text">apps</zeta-icon-button>` : nothing}
         </div>
-        ${this.appSwitcher ? html`<zeta-icon-button flavor="text">apps</zeta-icon-button>` : nothing}
       </div>
     `;
   }

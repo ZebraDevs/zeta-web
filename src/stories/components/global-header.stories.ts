@@ -11,13 +11,23 @@ const meta: Meta<ZetaGlobalHeader> = {
   title: "Components/Global Header",
   args: {
     platformName: "Platform Name",
-    menuItems: 0,
-    actionItems: 0,
+    menuItems: 6,
+    actionItems: 6,
     name: "Name",
     initials: "RK",
-    appSwitcher: false,
-    searchbar: false,
+    appSwitcher: true,
+    searchbar: true,
     rounded: false
+  },
+  argTypes: {
+    platformName: { control: "text" },
+    menuItems: { control: { type: "number", min: 0, max: 6, step: 1 } },
+    actionItems: { control: { type: "number", min: 0, max: 6, step: 1 } },
+    name: { control: "text" },
+    initials: { control: "text" },
+    appSwitcher: { control: "boolean" },
+    searchbar: { control: "boolean" },
+    rounded: { control: "boolean" }
   },
   parameters: {
     design: {
