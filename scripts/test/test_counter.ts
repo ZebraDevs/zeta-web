@@ -1,6 +1,6 @@
 import { Project, SyntaxKind, Node, SourceFile } from "ts-morph";
 import testCategories from "../assets/web.test.categories.json";
-
+import packagejson from '../../package.json';
 import * as fs from "fs";
 import * as path from "path";
 
@@ -328,8 +328,22 @@ async function main() {
   // count tests in each test group function
   const testCounts: TestCounts = countTests(testFiles);
 
-  // generate markdown table from test counts
-  const markdownTable = generateMDTable(testCounts);
+  
+  const lastUpdated = (new Date).toISOString().split('T')[0];
+
+  const pkgJsonPath = path.resolve("package.json");
+  let zetaVersion = "unknown";
+  try {
+    if(packagejson.version){
+      zetaVersion = packagejson.version;
+    }
+  } catch (e) {
+    // ignore
+  }
+
+  // prepend last updated and version info to the markdown output
+  const header = `**Last updated:** ${lastUpdated}  |  **Zeta Web version:** ${zetaVersion}`;
+  const markdownTable = [header, '', generateMDTable(testCounts)].join("\n");
 
   // write test groups to json file
   // writeJsonToFile(outputDir + "/test_groups.json", testFiles);

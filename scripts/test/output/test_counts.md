@@ -1,3 +1,5 @@
+**Last updated:** 2025-09-03 | **Zeta Web version:** 0.11.0
+
 | Component                  | Accessibility | Content | Dimensions | Styling | Interaction | Golden | Performance | Unorganised | Total Tests |
 | -------------------------- | ------------- | ------- | ---------- | ------- | ----------- | ------ | ----------- | ----------- | ----------- |
 | Accordion                  | 2             | 3       | 4          | 3       | 8           | 0      | 0           | 0           | 20          |
