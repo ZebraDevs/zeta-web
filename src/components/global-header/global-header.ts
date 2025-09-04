@@ -10,6 +10,7 @@ import "../avatar/avatar";
 /**TODO:
  * - Elements need to be able to be rounded. Icon button doesnt have rounded prop
  * - Make menu buttons/action buttons either normal text buttons/icon buttons or drop down menu buttons
+ * - Change documentation
  */
 
 /**
@@ -48,13 +49,13 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
   @property({ type: String }) initials: string = "RK";
 
   /**
-   * Shows the app switcher icon or not.
-   * Make true if you'd like the app switcher to be shown.
+   * Shows the app switcher icon.
+   * Make true to show the app switcher icon.
    */
   @property({ type: Boolean }) appSwitcher: boolean = false;
 
   /**
-   * Shows the search bar or not.
+   * Shows the search bar.
    * Make true to show the search bar.
    */
   @property({ type: Boolean }) searchbar: boolean = false;
@@ -73,7 +74,7 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
             <div id="header-info">
               <zeta-icon-button id="hamburger-menu" flavor="text">hamburger_menu</zeta-icon-button>
               <img id="logo" src="../assets/zebra-logo.svg" alt="Zebra Technologies Logo" width="80px" height="32px" />
-              <div>${this.platformName}</div>
+              <div class="platform-name">${this.platformName}</div>
             </div>
             <div id="menu-items" class=${this.menuItems > 0 ? "has-items" : ""}>
               ${this.menuItems > 0 ? Array.from({ length: this.menuItems }, () => html`<zeta-button flavor="text">Nav Item</zeta-button>`) : nothing}

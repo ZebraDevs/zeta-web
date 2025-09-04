@@ -14,12 +14,25 @@ export default css`
     gap: var(--spacing-large);
   }
 
+  #name {
+    color: var(--main-default);
+    font: var(--title-small);
+    font-size: 12px;
+  }
+
+  #platform-name {
+    font: var(--label-large);
+  }
+
   /*Optional nav items*/
   #menu-items {
     padding-left: var(--spacing-small);
   }
   #menu-items.has-items {
     border-left: 1px solid var(--border-default);
+  }
+  #menu-items zeta-button::part(button) {
+    font: var(--label-medium);
   }
   #action-items {
     padding-right: var(--spacing-small);
@@ -47,10 +60,6 @@ export default css`
   }
   #header-info {
     margin-right: var(--spacing-large);
-  }
-
-  #name {
-    color: var(--main-default);
   }
 
   /*Style avatar icon*/
