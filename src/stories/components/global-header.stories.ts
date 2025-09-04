@@ -2,8 +2,6 @@ import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaGlobalHeader } from "../../components/global-header/global-header.js";
 import { html } from "lit";
 import "../../components/global-header/global-header";
-import { spreadGenerator } from "../utils.js";
-const spread = spreadGenerator(ZetaGlobalHeader);
 
 const meta: Meta<ZetaGlobalHeader> = {
   component: "zeta-global-header",
@@ -11,22 +9,39 @@ const meta: Meta<ZetaGlobalHeader> = {
   title: "Components/Global Header",
   args: {
     platformName: "Platform Name",
-    menuItems: 6,
-    actionItems: 6,
+    menuItems: [
+      { label: "Nav Item", isDropDown: true },
+      { label: "Nav Item" },
+      { label: "Nav Item" },
+      { label: "Nav Item" },
+      { label: "Nav Item" },
+      { label: "Nav Item" }
+    ],
+    //prettier-ignore
+    actionItems: [
+      { icon: "star", isDropDown: true },
+      { icon: "star" },
+      { icon: "star" },
+      { icon: "star" },
+      { icon: "star" },
+      { icon: "star" }
+    ],
     name: "Name",
     initials: "RK",
     appSwitcher: true,
     searchbar: true,
+    isDropDown: true,
     rounded: false
   },
   argTypes: {
     platformName: { control: "text" },
-    menuItems: { control: { type: "number", min: 0, max: 6, step: 1 } },
-    actionItems: { control: { type: "number", min: 0, max: 6, step: 1 } },
+    menuItems: { control: "object" },
+    actionItems: { control: "object" },
     name: { control: "text" },
     initials: { control: "text" },
     appSwitcher: { control: "boolean" },
     searchbar: { control: "boolean" },
+    isDropDown: { control: "boolean" },
     rounded: { control: "boolean" }
   },
   parameters: {
@@ -49,7 +64,17 @@ export const GlobalHeader: StoryObj = {
     }
   },
   render: args => {
-    return html`<zeta-global-header ${spread(args)}> </zeta-global-header>`;
+    return html`<zeta-global-header
+      .platformName=${args.platformName}
+      .menuItems=${args.menuItems}
+      .actionItems=${args.actionItems}
+      .name=${args.name}
+      .initials=${args.initials}
+      .appSwitcher=${args.appSwitcher}
+      .searchbar=${args.searchbar}
+      .isDropDown=${args.isDropDown}
+      .rounded=${args.rounded}
+    ></zeta-global-header>`;
   }
 };
 

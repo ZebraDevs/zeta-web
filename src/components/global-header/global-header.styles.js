@@ -34,6 +34,9 @@ export default css`
   #menu-items zeta-button::part(button) {
     font: var(--label-medium);
   }
+  #menu-items zeta-icon {
+    --icon-color: var(--main-subtle);
+  }
   #action-items {
     padding-right: var(--spacing-small);
   }
@@ -83,5 +86,14 @@ export default css`
     #logo {
       filter: invert(1);
     }
+  }
+
+  /*Dropdown menu specific styling*/
+  .drop-down-menu {
+    display: flex;
+    flex-direction: column;
+    box-shadow: none;
+    width: 180px;
+    align-items: flex-start;
   }
 `;
