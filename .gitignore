@@ -238,3 +238,6 @@ node_modules
 /playwright/.cache/
 
 .cycode
+src/test/test-results.xml
+scripts/test/output/test_counts.md
+coverage/

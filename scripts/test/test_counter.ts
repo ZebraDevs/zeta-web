@@ -1,6 +1,6 @@
 import { Project, SyntaxKind, Node, SourceFile } from "ts-morph";
 import testCategories from "../assets/web.test.categories.json";
-
+import packagejson from "../../package.json";
 import * as fs from "fs";
 import * as path from "path";
 
@@ -56,16 +56,15 @@ function parseTestFiles(paths: string[]): TestFiles {
     const astTree: ASTStructure = nodeToASTStructure(sourceFile);
 
     // extract describe and it statements from the AST structure
-    const extractedStatements: ASTStructure[] = extractStatements(
-      astTree.children![0]
-    );
+    const extractedStatements: ASTStructure[] = extractStatements(astTree.children![0]);
 
     // format the extracted statements into a nested record object
-    const formattedRecord: Record<string, any> =
-      formatExtractedStatements(extractedStatements);
+    const formattedRecord: Record<string, any> = formatExtractedStatements(extractedStatements);
 
-    // add the formatted tree to the map at the file name
-    parsedTestFiles[path.split("\\").pop()!] = formattedRecord;
+    const dirs = path.split(/[\\/]/);
+    const componentName = dirs.length > 1 ? dirs[dirs.length - 2] : path.split(".")[0];
+
+    parsedTestFiles[componentName] = formattedRecord;
   }
   return parsedTestFiles;
 }
@@ -176,9 +175,7 @@ function formatExtractedStatements(tree: ASTStructure[]): Record<string, any> {
         if (!result[parentKey.split(".").shift()!]) {
           result[parentKey][describeText] = {};
         }
-        node.children?.forEach((child) =>
-          addToResult(child, `${parentKey}.${describeText}`)
-        );
+        node.children?.forEach((child) => addToResult(child, `${parentKey}.${describeText}`));
       } else {
         // else the describe statement is at the root level
         result[describeText] = {};
@@ -221,9 +218,7 @@ function countTests(testFiles: TestFiles): TestCounts {
     const fileTestCounts: Map<string, number> = new Map();
 
     // loop through each component
-    for (const [componentName, testGroups] of Object.entries(
-      file as Map<String, Map<String, String[]>>
-    )) {
+    for (const [componentName, testGroups] of Object.entries(file as Map<String, Map<String, String[]>>)) {
       const testGroupsArray = testGroups as Array<string>;
 
       // if the component has tests that aren't in a test group
@@ -310,9 +305,7 @@ function generateMDTable(testCounts: TestCounts) {
 
 async function main() {
   // get output directory
-  const outputDir = path
-    .resolve("scripts/test/output")
-    .replace(/^(\.\.(\/|\\|$))+/, "");
+  const outputDir = path.resolve("scripts/test/output").replace(/^(\.\.(\/|\\|$))+/, "");
   if (!fs.existsSync(outputDir)) {
     fs.mkdirSync(outputDir, { recursive: true });
   }
@@ -326,14 +319,13 @@ async function main() {
   // count tests in each test group function
   const testCounts: TestCounts = countTests(testFiles);
 
-  // generate markdown table from test counts
-  const markdownTable = generateMDTable(testCounts);
+  const lastUpdated = new Date().toISOString().split("T")[0];
 
-  // write test groups to json file
-  // writeJsonToFile(outputDir + "/test_groups.json", testFiles);
+  const zetaVersion = packagejson?.version ?? "";
 
-  // write test count to json file
-  // writeJsonToFile(outputDir + "/test_counts.json", testCounts);
+  // prepend last updated and version info to the markdown output
+  const header = `**Last updated:** ${lastUpdated}  |  **Zeta Web version:** ${zetaVersion}`;
+  const markdownTable = [header, "", generateMDTable(testCounts)].join("\n");
 
   // write test count table to markdown file
   await writeToFile(outputDir + "/test_counts.md", markdownTable);
