@@ -1,0 +1,141 @@
+[data-contrast="more"] {
+  --main-default: var(--color-cool-100, #0c0d0e);
+  --main-subtle: var(--color-cool-90, #1d1e23);
+  --main-primary: var(--color-blue-80, #004d99);
+  --main-secondary: var(--color-yellow-80, #564908);
+  --main-positive: var(--color-green-80, #005f38);
+  --main-warning: var(--color-orange-80, #764502);
+  --main-negative: var(--color-red-80, #8f000e);
+  --main-info: var(--color-purple-80, #43008f);
+  --main-disabled: var(--color-cool-60, #7a8190);
+  --main-light: var(--color-pure-0, #ffffff);
+  --main-inverse: var(--color-pure-0, #ffffff);
+  --border-default: var(--color-cool-100, #0c0d0e);
+  --border-selected: var(--color-cool-90, #1d1e23);
+  --border-hover: var(--color-cool-90, #1d1e23);
+  --border-subtle: var(--color-cool-80, #2c2f36);
+  --border-disabled: var(--color-cool-20, #f3f6fa);
+  --border-pure: var(--color-pure-0, #ffffff);
+  --border-primary-main: var(--color-blue-80, #004d99);
+  --border-primary: var(--color-blue-70, #0061c2);
+  --border-secondary: var(--color-yellow-70, #766200);
+  --border-positive: var(--color-green-70, #006d3f);
+  --border-warning: var(--color-orange-70, #965802);
+  --border-negative: var(--color-red-70, #b50012);
+  --border-info: var(--color-purple-70, #6400d6);
+  --surface-default: var(--color-pure-0, #ffffff);
+  --surface-default-inverse: var(--color-pure-1000, #151519);
+  --surface-hover: var(--color-cool-20, #f3f6fa);
+  --surface-selected: var(--color-blue-10, #f1f8ff);
+  --surface-selected-hover: var(--color-blue-20, #e2f1ff);
+  --surface-disabled: var(--color-cool-30, #e0e3e9);
+  --surface-cool: var(--color-cool-10, #f8fbff);
+  --surface-warm: var(--color-warm-10, #fafafa);
+  --surface-primary: var(--color-blue-80, #004d99);
+  --surface-primary-subtle: var(--color-blue-10, #f1f8ff);
+  --surface-secondary: var(--color-yellow-80, #564908);
+  --surface-secondary-subtle: var(--color-yellow-10, #fff7d4);
+  --surface-positive: var(--color-green-80, #005f38);
+  --surface-positive-subtle: var(--color-green-10, #ecfff7);
+  --surface-warning: var(--color-orange-80, #764502);
+  --surface-warning-subtle: var(--color-orange-10, #fef2e2);
+  --surface-negative: var(--color-red-80, #8f000e);
+  --surface-negative-subtle: var(--color-red-10, #fff0f1);
+  --surface-info: var(--color-purple-80, #43008f);
+  --surface-info-subtle: var(--color-purple-10, #f7f0ff);
+  --state-disabled-disabled: var(--color-cool-30, #e0e3e9);
+  --state-default-enabled: var(--color-pure-0, #ffffff);
+  --state-default-hover: var(--color-cool-20, #f3f6fa);
+  --state-default-selected: var(--color-blue-10, #f1f8ff);
+  --state-default-focus: var(--color-pure-0, #ffffff);
+  --state-primary-enabled: var(--color-blue-80, #004d99);
+  --state-primary-hover: var(--color-blue-70, #0061c2);
+  --state-primary-selected: var(--color-blue-90, #002c58);
+  --state-primary-focus: var(--color-blue-80, #004d99);
+  --state-negative-enabled: var(--color-red-80, #8f000e);
+  --state-negative-hover: var(--color-red-70, #b50012);
+  --state-negative-selected: var(--color-red-90, #520008);
+  --state-negative-focus: var(--color-red-80, #8f000e);
+  --state-secondary-enabled: var(--color-yellow-80, #564908);
+  --state-secondary-hover: var(--color-yellow-70, #766200);
+  --state-secondary-selected: var(--color-yellow-90, #352b00);
+  --state-secondary-focus: var(--color-yellow-80, #564908);
+  --state-info-enabled: var(--color-purple-80, #43008f);
+  --state-info-hover: var(--color-purple-70, #6400d6);
+  --state-info-selected: var(--color-purple-90, #260052);
+  --state-info-focus: var(--color-purple-80, #43008f);
+  --state-inverse-enabled: var(--color-pure-1000, #151519);
+  --state-inverse-hover: var(--color-cool-90, #1d1e23);
+  --state-inverse-selected: var(--color-pure-1000, #151519);
+  --state-inverse-focus: var(--color-pure-1000, #151519);
+  --state-positive-enabled: var(--color-green-80, #005f38);
+  --state-positive-hover: var(--color-green-70, #006d3f);
+  --state-positive-selected: var(--color-green-90, #00331e);
+  --state-positive-focus: var(--color-green-80, #005f38);
+  --chart-1-primary: var(--color-blue-90, #002c58);
+  --chart-1-secondary: var(--color-blue-70, #0061c2);
+  --chart-2-primary: var(--color-green-90, #00331e);
+  --chart-2-secondary: var(--color-green-70, #006d3f);
+  --chart-3-primary: var(--color-orange-90, #402600);
+  --chart-3-secondary: var(--color-orange-70, #965802);
+  --chart-4-primary: var(--color-red-90, #520008);
+  --chart-4-secondary: var(--color-red-70, #b50012);
+  --chart-5-primary: var(--color-purple-90, #260052);
+  --chart-5-secondary: var(--color-purple-70, #6400d6);
+  --chart-6-primary: var(--color-teal-90, #003535);
+  --chart-6-secondary: var(--color-teal-70, #017474);
+  --chart-7-primary: var(--color-pink-90, #640040);
+  --chart-7-secondary: var(--color-pink-70, #ab006d);
+  --chart-8-primary: var(--color-cool-90, #1d1e23);
+  --chart-8-secondary: var(--color-cool-70, #545963);
+  --avatar-blue: var(--color-blue-80, #004d99);
+  --avatar-green: var(--color-green-60, #00864f);
+  --avatar-orange: var(--color-orange-50, #d78d26);
+  --avatar-pink: var(--color-pink-80, #840054);
+  --avatar-purple: var(--color-purple-80, #43008f);
+  --avatar-teal: var(--color-teal-80, #005b5b);
+  --avatar-yellow: var(--color-yellow-50, #c2a728);
+  --spacing-none: var(--spacing-0, 0px);
+
+  --spacing-minimum: var(--spacing-1, 4px);
+
+  --spacing-small: var(--spacing-2, 8px);
+
+  --spacing-medium: var(--spacing-3, 12px);
+
+  --spacing-large: var(--spacing-4, 16px);
+
+  --spacing-xl: var(--spacing-5, 20px);
+
+  --spacing-2xl: var(--spacing-6, 24px);
+
+  --spacing-3xl: var(--spacing-7, 28px);
+
+  --spacing-4xl: var(--spacing-8, 32px);
+
+  --spacing-5xl: var(--spacing-9, 36px);
+
+  --spacing-6xl: var(--spacing-10, 40px);
+
+  --spacing-7xl: var(--spacing-11, 44px);
+
+  --spacing-8xl: var(--spacing-12, 48px);
+
+  --spacing-9xl: var(--spacing-13, 64px);
+
+  --spacing-10xl: var(--spacing-14, 80px);
+
+  --spacing-11xl: var(--spacing-15, 96px);
+
+  --radius-none: var(--radius-0, 0px);
+
+  --radius-minimal: var(--radius-0, 0px);
+
+  --radius-rounded: var(--radius-0, 0px);
+
+  --radius-large: var(--radius-0, 0px);
+
+  --radius-xl: var(--radius-0, 0px);
+
+  --radius-full: var(--radius-0, 0px);
+}

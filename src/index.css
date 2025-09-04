@@ -1,8 +1,18 @@
+/* First check for user-specified color-scheme */
 @import url("./generated/tokens/primitives.css");
-@import url("./generated/tokens/primitives-dark.css") (prefers-color-scheme: dark);
+@import url("./generated/tokens/primitives-dark.css");
 
+/* Then check for data-theme override */
+@import url("./generated/tokens/primitives-data-theme.css");
+@import url("./generated/tokens/primitives-dark-data-theme.css");
+
+/* First check for user-specified contrast */
 @import url("./generated/tokens/semantics.css");
-@import url("./generated/tokens/semantics-high-contrast.css") (prefers-contrast: more);
+@import url("./generated/tokens/semantics-high-contrast.css");
+
+/* Then check for data-contrast override */
+@import url("./generated/tokens/semantics-data-contrast.css");
+@import url("./generated/tokens/semantics-high-contrast-data-contrast.css");
 
 @import url("./css/styles.css");
-@import url("./css/styles.dark.css") (prefers-color-scheme: dark);
+@import url("./css/styles.dark.css");
