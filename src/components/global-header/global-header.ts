@@ -10,22 +10,34 @@ import "../dropdown/dropdown-menu/dropdown-menu-button";
 
 /**TODO:
  * - Elements need to be able to be rounded. Icon button doesnt have rounded prop
- * - Make menu buttons/action buttons either normal text buttons/icon buttons or drop down menu buttons
  * - Change documentation
- * - Allow users to change text in buttons
+ * - Ensure disabled works
+ * - Ensure buttons return functions when clicked
  */
 
 /**
- * A header with support for displaying a zeta-navigation-menu
+ * A header component which can contain branding, navigation, search, and user profile actions.
  *
- * @slot - The main content of the header.
- * @slot leading - The leading content on the header.
- * @slot navigation-menu - The navigation menu. The position is based on the 'menuPosition' property.
- * @slot trailing - The trailing content on the header.
- * @part global-header - Styles the header container
+ * @property {string} platformName - The platform name text on the header.
+ * @property {Array<{ label: string; isDropDown?: boolean; openDropDown?: boolean; dropDownMenuOptions?: Array<{ label: string; action?: () => void }> }>} menuItems - Array of menu items to show on the header. Menu items can either be normal buttons or dropdown buttons. Note: Only a maximum of 6 items will be rendered.
+ * @property {Array<{ icon?: string; isDropDown?: boolean; openDropDown?: boolean; dropDownMenuOptions?: Array<{ label: string; action?: () => void }> }>} actionItems - Array of action items to show on the header. Action items can either be normal buttons or dropdown buttons. Note: Only a maximum of 6 items will be rendered.
+ * @property {string} name - The name to show in the header, next to the user icon.
+ * @property {string} initials - The initials to display within the user icon.
+ * @property {boolean} appSwitcher - Shows the app switcher icon. Make true to show the app switcher icon.
  *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=23144-118110
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-global-header--docs
+ *
+ * @example <zeta-global-header
+ *  platformName="Platform Name"
+ *  .menuItems=${[{ label: 'Home'}, { label: 'Services', isDropDown: true, dropDownMenuOptions: [{ label: 'Menu Item', action: () => console.log('Menu Item clicked') }] }]}
+ *  .actionItems=${[{ icon: 'star'}, { icon: 'settings', isDropDown: true, dropDownMenuOptions: [{ label: 'Menu Item', action: () => console.log('Menu Item clicked') }] }]}
+ *  name="Name"
+ *  initials="RK"
+ *  appSwitcher
+ *  searchbar
+ *  rounded
+ * ></zeta-global-header>
  */
 @customElement("zeta-global-header")
 export class ZetaGlobalHeader extends Contourable(LitElement) {
@@ -33,26 +45,36 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
   @property({ type: String }) platformName: string;
 
   /**
-   * Array of menu items to show on the header.
-   * Each item in the array is an object with a label and an optional isDropDown property.
-   * If isDropDown is true, the item will be rendered as a dropdown button.
-   * If false or undefined, it will be rendered as a text button.
-   * The label property is the text to display on the button.
-   * Note: Only a maximum of 6 items will be rendered.
-   * Example: .menuItems=${[{ label: 'Home'}, { label: 'Services', isDropDown: true }]}
+   * Array of menu items to show on the header. Menu items can either be normal buttons or dropdown buttons. Note: Only a maximum of 6 items will be rendered.
+   * @property {string} label - The text to display on the button.
+   * @property {boolean} isDropDown - If true, the item will be rendered as a dropdown button. If false or undefined, it will be rendered as a text button.
+   * @property {boolean} openDropDown - Controls the open state of the dropdown. This is handled internally when the button is clicked. Only applicable if isDropDown is true.
+   * @property {Array<{ label: string; action?: () => void }>} dropDownMenuOptions - An array of menu options to display in the dropdown. Each option is an object with a label and an optional action function to be called when the option is clicked. Only applicable if isDropDown is true.
+   * @example .menuItems=${[{ label: 'Home'}, { label: 'Services', isDropDown: true, dropDownMenuOptions: [{ label: 'Menu Item', action: () => console.log('Menu Item clicked') }] }]}
    */
-  @property({ type: Array }) menuItems: Array<{ label: string; isDropDown?: boolean; openDropDown?: boolean }> = [];
+  @property({ type: Array }) menuItems: Array<{
+    label: string;
+    isDropDown?: boolean;
+    openDropDown?: boolean;
+    dropDownMenuOptions?: Array<{ label: string; action?: () => void }>;
+  }> = [];
 
   /**
-   * Array of action items to show on the header.
-   * Each item in the array is an object with an optional icon and isDropDown property.
-   * If isDropDown is true, the item will be rendered as a dropdown button.
-   * If false or undefined, it will be rendered as an icon button.
-   * Choose from zeta icon names for the icon property.
+   * Array of action items to show on the header. Action items can either be normal buttons or dropdown buttons.
    * Note: Only a maximum of 6 items will be rendered.
-   * Example: .actionItems=${[{ icon: 'star'}, { icon: 'settings', isDropDown: true }]}
+   *
+   * @property {string} icon - The name of the icon to display on the button. This should correspond to a valid icon name in the Zeta Icons library.
+   * @property {boolean} isDropDown - If true, the item will be rendered as a dropdown button. If false or undefined, it will be rendered as an icon button.
+   * @property {boolean} openDropDown - Controls the open state of the dropdown. This is handled internally when the button is clicked. Only applicable if isDropDown is true.
+   * @property {Array<{ label: string; action?: () => void }>} dropDownMenuOptions - An array of menu options to display in the dropdown. Each option is an object with a label and an optional action function to be called when the option is clicked. Only applicable if isDropDown is true.
+   * @example .actionItems=${[{ icon: 'star'}, { icon: 'settings', isDropDown: true, dropDownMenuOptions: [{ label: 'Menu Item', action: () => console.log('Menu Item clicked') }] }]}
    */
-  @property({ type: Array }) actionItems: Array<{ icon?: string; isDropDown?: boolean; openDropDown?: boolean }> = [];
+  @property({ type: Array }) actionItems: Array<{
+    icon?: string;
+    isDropDown?: boolean;
+    openDropDown?: boolean;
+    dropDownMenuOptions?: Array<{ label: string; action?: () => void }>;
+  }> = [];
 
   /** The name to show in the header, next to the user icon. */
   @property({ type: String }) name: string = "Name";
@@ -106,7 +128,9 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
    * @param items Array of menu items to render.
    * @returns HTML template for the menu buttons.
    */
-  private renderMenuButtons(items: Array<{ label: string; isDropDown?: boolean; openDropDown?: boolean }>) {
+  private renderMenuButtons(
+    items: Array<{ label: string; isDropDown?: boolean; openDropDown?: boolean; dropDownMenuOptions?: Array<{ label: string; action?: () => void }> }>
+  ) {
     //Ensures items is defined - Set as empty array if undefined
     items = items ?? [];
     //Checks if array has items
@@ -130,9 +154,9 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
                       .open=${item.openDropDown ?? false}
                     >
                       <!-- Dropdown menu content goes here -->
-                      <zeta-dropdown-menu-item> Menu Item </zeta-dropdown-menu-item>
-                      <zeta-dropdown-menu-item> Menu Item </zeta-dropdown-menu-item>
-                      <zeta-dropdown-menu-item> Menu Item </zeta-dropdown-menu-item>
+                      ${item.dropDownMenuOptions?.map(
+                        option => html` <zeta-dropdown-menu-item @click=${option.action}>${option.label}</zeta-dropdown-menu-item> `
+                      )}
                     </zeta-droppable>`
                 : html`<zeta-button flavor="text">${item.label}</zeta-button>`
             )
@@ -150,7 +174,9 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
    * @param items Array of action items to render.
    * @returns HTML template for the action buttons.
    */
-  private renderActionButtons(items: Array<{ icon?: string; isDropDown?: boolean; openDropDown?: boolean }>) {
+  private renderActionButtons(
+    items: Array<{ icon?: string; isDropDown?: boolean; openDropDown?: boolean; dropDownMenuOptions?: Array<{ label: string; action?: () => void }> }>
+  ) {
     items = items ?? [];
     const hasItems = items.length > 0;
     const limitedItems = items.slice(0, 6);
@@ -168,9 +194,9 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
                       .open=${item.openDropDown ?? false}
                     >
                       <!-- Dropdown menu content goes here -->
-                      <zeta-dropdown-menu-item> Menu Item </zeta-dropdown-menu-item>
-                      <zeta-dropdown-menu-item> Menu Item </zeta-dropdown-menu-item>
-                      <zeta-dropdown-menu-item> Menu Item </zeta-dropdown-menu-item>
+                      ${item.dropDownMenuOptions?.map(
+                        option => html` <zeta-dropdown-menu-item @click=${option.action}>${option.label}</zeta-dropdown-menu-item> `
+                      )}
                     </zeta-droppable>`
                 : html`<zeta-icon-button flavor="text">${item.icon}</zeta-icon-button>`
             )

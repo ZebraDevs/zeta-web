@@ -10,7 +10,7 @@ const meta: Meta<ZetaGlobalHeader> = {
   args: {
     platformName: "Platform Name",
     menuItems: [
-      { label: "Nav Item", isDropDown: true },
+      { label: "Nav Item", isDropDown: true, dropDownMenuOptions: [{ label: "Menu Item" }, { label: "Menu Item" }, { label: "Menu Item" }] },
       { label: "Nav Item" },
       { label: "Nav Item" },
       { label: "Nav Item" },
@@ -19,7 +19,7 @@ const meta: Meta<ZetaGlobalHeader> = {
     ],
     //prettier-ignore
     actionItems: [
-      { icon: "star", isDropDown: true },
+      { icon: "star", isDropDown: true, dropDownMenuOptions: [{ label: "Menu Item" }, { label: "Menu Item" }, { label: "Menu Item" }] },
       { icon: "star" },
       { icon: "star" },
       { icon: "star" },
@@ -30,7 +30,6 @@ const meta: Meta<ZetaGlobalHeader> = {
     initials: "RK",
     appSwitcher: true,
     searchbar: true,
-    isDropDown: true,
     rounded: false
   },
   argTypes: {
@@ -41,7 +40,6 @@ const meta: Meta<ZetaGlobalHeader> = {
     initials: { control: "text" },
     appSwitcher: { control: "boolean" },
     searchbar: { control: "boolean" },
-    isDropDown: { control: "boolean" },
     rounded: { control: "boolean" }
   },
   parameters: {
@@ -72,7 +70,6 @@ export const GlobalHeader: StoryObj = {
       .initials=${args.initials}
       .appSwitcher=${args.appSwitcher}
       .searchbar=${args.searchbar}
-      .isDropDown=${args.isDropDown}
       .rounded=${args.rounded}
     ></zeta-global-header>`;
   }
