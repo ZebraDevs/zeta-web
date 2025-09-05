@@ -45,8 +45,9 @@ export default css`
   :host([flavor="outline-subtle"]:not([disabled])) > :first-child,
   :host([flavor="text"]:not([disabled])) > :first-child,
   :host([flavor="basic"]:not([disabled])) > :first-child,
-  :host([flavor="basic-negative"]:not([disabled])) > :first-child {
-    background-color: var(--flavor-background-color, var(--state-default-enabled));
+  :host([flavor="basic-negative"]:not([disabled])) > :first-child,
+  :host([flavor="subtle"]:not([disabled])) > :first-child {
+    background-color: var(--flavor-background-color, var(--surface-default));
     &:hover {
       background-color: var(--surface-hover);
     }
@@ -64,6 +65,9 @@ export default css`
   }
   :host([flavor="text"]:not([disabled])) > :first-child {
     color: var(--main-primary);
+  }
+  :host([flavor="subtle"]:not([disabled])) > :first-child {
+    color: var(--main-subtle);
   }
 
   :host([disabled]) > * {

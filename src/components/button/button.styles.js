@@ -21,4 +21,9 @@ export default css`
   :host([flavor="outline-subtle"]:not([disabled])) ::slotted(zeta-icon) {
     --icon-color: var(--icon-button-icon-color, var(--main-default));
   }
+
+  :host([flavor="subtle"]:not([disabled])) > button > zeta-icon,
+  :host([flavor="subtle"]:not([disabled])) ::slotted(zeta-icon) {
+    --icon-color: var(--icon-button-icon-color, var(--main-subtle));
+  }
 `;

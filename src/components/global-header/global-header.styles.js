@@ -1,47 +1,94 @@
 import { css } from "lit";
 export default css`
-  :host {
-    display: block;
-    min-width: min-content;
+  :host * {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
     background-color: var(--surface-default);
-    --tab-bar-background: var(--surface-default);
+  }
+
+  #header-main {
+    justify-content: space-between;
+    padding: var(--spacing-small) var(--spacing-large);
+  }
+
+  #header-right {
+    gap: var(--spacing-large);
+  }
+
+  #platform-name {
+    font: var(--label-large);
+  }
+
+  /*User info container - Holds name, avatar and icon*/
+  #name {
     color: var(--main-default);
+    font: var(--title-small);
+    font-size: 12px;
+    background-color: inherit;
+  }
+  #user-info-icon {
+    background-color: inherit;
   }
 
-  ::slotted(zeta-icon-button) {
-    --icon-button-icon-color: var(--main-default);
-    --icon-button-icon-color-disabled: var(--main-disabled);
-    --icon-button-color: var(--surface-default);
+  /*Optional nav items*/
+  ::slotted([slot="menu-items"]) {
+    padding-left: var(--spacing-small);
+  }
+  ::slotted([slot="menu-items"]) zeta-button::part(button) {
+    font: var(--label-medium);
+  }
+  ::slotted([slot="menu-items"]) zeta-icon {
+    --icon-color: var(--main-subtle);
+  }
+  ::slotted([slot="action-items"]) {
+    padding-right: var(--spacing-small);
+  }
+  #menu-items.has-items {
+    border-left: 1px solid var(--border-default);
+  }
+  #action-items.has-items {
+    border-right: 1px solid var(--border-default);
   }
 
-  .slotted-content,
-  .leading,
-  .global-header {
+  /*zeta-icon-button and zeta-button styling*/
+  zeta-icon-button::part(icon) {
+    --icon-color: var(--main-default);
+  }
+  ::slotted([slot="action-items"]) {
+    --icon-color: var(--main-default);
+  }
+  zeta-icon-button::part(button),
+  zeta-button::part(button) {
+    color: var(--main-subtle);
+  }
+
+  /*Spacing between elements in header-info*/
+  #logo {
+    margin: 0 var(--spacing-large) 0 var(--spacing-small);
+  }
+  #header-info {
+    margin-right: var(--spacing-large);
+  }
+
+  /*Style avatar icon*/
+  #avatar {
+    background-color: var(--avatar-purple);
+    border-radius: 50%;
+    width: var(--spacing-2xl);
+    height: var(--spacing-2xl);
+    color: var(--main-inverse);
     display: flex;
     align-items: center;
+    justify-content: center;
+    font-size: 11px;
   }
 
-  .global-header {
-    gap: var(--spacing-2xl);
-    justify-content: space-between;
-    padding: var(--spacing-small) var(--spacing-2xl);
-  }
-
-  .slotted-content {
-    gap: var(--spacing-small);
-  }
-
-  .leading {
-    gap: var(--spacing-2xl);
-  }
-
-  .header {
-    font: var(--title-large);
-  }
-
-  .navigation-menu {
-    padding: 0 var(--spacing-small);
+  /*Invert logo in dark mode*/
+  @media (prefers-color-scheme: dark) {
+    #logo {
+      filter: invert(1);
+      background-color: transparent;
+    }
   }
 `;
