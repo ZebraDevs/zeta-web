@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaGlobalHeader } from "../../components/global-header/global-header.js";
 import { html } from "lit";
 import "../../components/global-header/global-header";
+import "../../components/action-menu/action-menu-button";
 
 const meta: Meta<ZetaGlobalHeader> = {
   component: "zeta-global-header",
@@ -9,23 +10,6 @@ const meta: Meta<ZetaGlobalHeader> = {
   title: "Components/Global Header",
   args: {
     platformName: "Platform Name",
-    menuItems: [
-      { label: "Nav Item", isDropDown: true, dropDownMenuOptions: [{ label: "Menu Item" }, { label: "Menu Item" }, { label: "Menu Item" }] },
-      { label: "Nav Item" },
-      { label: "Nav Item" },
-      { label: "Nav Item" },
-      { label: "Nav Item" },
-      { label: "Nav Item" }
-    ],
-    //prettier-ignore
-    actionItems: [
-      { icon: "star", isDropDown: true, dropDownMenuOptions: [{ label: "Menu Item" }, { label: "Menu Item" }, { label: "Menu Item" }] },
-      { icon: "star" },
-      { icon: "star" },
-      { icon: "star" },
-      { icon: "star" },
-      { icon: "star" }
-    ],
     name: "Name",
     initials: "RK",
     appSwitcher: true,
@@ -34,8 +18,6 @@ const meta: Meta<ZetaGlobalHeader> = {
   },
   argTypes: {
     platformName: { control: "text" },
-    menuItems: { control: "object" },
-    actionItems: { control: "object" },
     name: { control: "text" },
     initials: { control: "text" },
     appSwitcher: { control: "boolean" },
@@ -64,14 +46,19 @@ export const GlobalHeader: StoryObj = {
   render: args => {
     return html`<zeta-global-header
       .platformName=${args.platformName}
-      .menuItems=${args.menuItems}
-      .actionItems=${args.actionItems}
       .name=${args.name}
       .initials=${args.initials}
       .appSwitcher=${args.appSwitcher}
       .searchbar=${args.searchbar}
       .rounded=${args.rounded}
-    ></zeta-global-header>`;
+    >
+      <!-- Menu items -->
+      <zeta-button slot="menu-items" flavor="text">Nav Item</zeta-button>
+      <zeta-dropdown-menu-button slot="menu-items" flavor="text" .items=${[{ label: "Menu Item" }]}>Nav Item</zeta-dropdown-menu-button>
+      <!-- Action items -->
+      <zeta-icon-button slot="action-items" flavor="text">star</zeta-icon-button>
+      <zeta-action-menu-button slot="action-items" icon="more_horizontal" flavor="text" .items=${[{ label: "Menu Item" }]}></zeta-action-menu-button>
+    </zeta-global-header>`;
   }
 };
 

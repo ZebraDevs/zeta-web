@@ -25,22 +25,22 @@ export default css`
   }
 
   /*Optional nav items*/
-  #menu-items {
+  ::slotted([slot="menu-items"]) {
     padding-left: var(--spacing-small);
   }
-  #menu-items.has-items {
+  ::slotted([slot="menu-items"].has-items) {
     border-left: 1px solid var(--border-default);
   }
-  #menu-items zeta-button::part(button) {
+  ::slotted([slot="menu-items"]) zeta-button::part(button) {
     font: var(--label-medium);
   }
-  #menu-items zeta-icon {
+  ::slotted([slot="menu-items"]) zeta-icon {
     --icon-color: var(--main-subtle);
   }
-  #action-items {
+  ::slotted([slot="action-items"]) {
     padding-right: var(--spacing-small);
   }
-  #action-items.has-items {
+  ::slotted([slot="action-items"].has-items) {
     border-right: 1px solid var(--border-default);
   }
 
