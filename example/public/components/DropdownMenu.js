@@ -1,0 +1,5 @@
+export default `<div>
+    <zeta-dropdown-menu-button type="dropdown-checkbox" rounded=true size="medium" flavor="primary">
+        Dropdown Menu
+    </zeta-dropdown-menu-button>
+</div>`;

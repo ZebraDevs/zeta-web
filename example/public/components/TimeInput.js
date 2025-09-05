@@ -1,0 +1,10 @@
+export default `<div class="container column full">
+    <zeta-text-input hinttext="Hint" type="time" size="small" error errortext="Oops! Error hint text" leadingIcon="star"
+        trailingIcon="star">
+    </zeta-text-input>
+    <zeta-text-input size="medium" type="time" placeholder="Placeholder Medium" label="Label">
+    </zeta-text-input>
+    <zeta-text-input type="time" size="large" error errortext="Error hint text" value="15:29"></zeta-text-input>
+    <zeta-text-input type="time" size="small" label="Disabled Time Input" disabled value="15:29"></zeta-text-input>
+    </zeta-text-input>
+</div>`;

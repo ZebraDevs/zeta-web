@@ -1,0 +1,81 @@
+export default `<style>
+    .column {
+        display: flex;
+        flex-direction: column;
+        gap: 8px
+    }
+
+    .column.scroll .row {
+        padding: 2px !important;
+        gap: 24px !important
+    }
+</style>
+
+<div class="column scroll">
+    <!-- Round -->
+    <div class="row">
+        <zeta-button shape="rounded" size="small" flavor="primary">Button</zeta-button>
+        <zeta-button shape="rounded" size="small" flavor="positive">Button</zeta-button>
+        <zeta-button shape="rounded" size="small" flavor="negative">Button</zeta-button>
+        <zeta-button shape="rounded" size="small" flavor="outline">Button</zeta-button>
+        <zeta-button shape="rounded" size="small" flavor="outline-subtle">Button</zeta-button>
+        <zeta-button shape="rounded" size="small" flavor="text">Button</zeta-button>
+    </div>
+    <div class="row">
+        <zeta-button shape="rounded" size="medium" flavor="primary">Button</zeta-button>
+        <zeta-button shape="rounded" size="medium" flavor="positive">Button</zeta-button>
+        <zeta-button shape="rounded" size="medium" flavor="negative">Button</zeta-button>
+        <zeta-button shape="rounded" size="medium" flavor="outline">Button</zeta-button>
+        <zeta-button shape="rounded" size="medium" flavor="outline-subtle">Button</zeta-button>
+        <zeta-button shape="rounded" size="medium" flavor="text">Button</zeta-button>
+    </div>
+    <div class="row">
+        <zeta-button shape="rounded" size="large" flavor="primary">Button</zeta-button>
+        <zeta-button shape="rounded" size="large" flavor="positive">Button</zeta-button>
+        <zeta-button shape="rounded" size="large" flavor="negative">Button</zeta-button>
+        <zeta-button shape="rounded" size="large" flavor="outline">Button</zeta-button>
+        <zeta-button shape="rounded" size="large" flavor="outline-subtle">Button</zeta-button>
+        <zeta-button shape="rounded" size="large" flavor="text">Button</zeta-button>
+    </div>
+    <div class="row">
+        <zeta-button shape="rounded" size="large" disabled flavor="primary">Button</zeta-button>
+        <zeta-button shape="rounded" size="large" disabled flavor="positive">Button</zeta-button>
+        <zeta-button shape="rounded" size="large" disabled flavor="negative">Button</zeta-button>
+        <zeta-button shape="rounded" size="large" disabled flavor="outline">Button</zeta-button>
+        <zeta-button shape="rounded" size="large" disabled flavor="outline-subtle">Button</zeta-button>
+        <zeta-button shape="rounded" size="large" disabled flavor="text">Button</zeta-button>
+    </div>
+    <!-- Fully rounded -->
+    <div class="row">
+        <zeta-button shape="full" size="small" flavor="primary">Button</zeta-button>
+        <zeta-button shape="full" size="small" flavor="positive">Button</zeta-button>
+        <zeta-button shape="full" size="small" flavor="negative">Button</zeta-button>
+        <zeta-button shape="full" size="small" flavor="outline">Button</zeta-button>
+        <zeta-button shape="full" size="small" flavor="outline-subtle">Button</zeta-button>
+        <zeta-button shape="full" size="small" flavor="text">Button</zeta-button>
+    </div>
+    <div class="row">
+        <zeta-button shape="full" size="medium" flavor="primary">Button</zeta-button>
+        <zeta-button shape="full" size="medium" flavor="positive">Button</zeta-button>
+        <zeta-button shape="full" size="medium" flavor="negative">Button</zeta-button>
+        <zeta-button shape="full" size="medium" flavor="outline">Button</zeta-button>
+        <zeta-button shape="full" size="medium" flavor="outline-subtle">Button</zeta-button>
+        <zeta-button shape="full" size="medium" flavor="text">Button</zeta-button>
+    </div>
+    <div class="row">
+        <zeta-button shape="full" size="large" flavor="primary">Button</zeta-button>
+        <zeta-button shape="full" size="large" flavor="positive">Button</zeta-button>
+        <zeta-button shape="full" size="large" flavor="negative">Button</zeta-button>
+        <zeta-button shape="full" size="large" flavor="outline">Button</zeta-button>
+        <zeta-button shape="full" size="large" flavor="outline-subtle">Button</zeta-button>
+        <zeta-button shape="full" size="large" flavor="text">Button</zeta-button>
+    </div>
+    <div class="row">
+        <zeta-button shape="full" size="large" disabled flavor="primary">Button</zeta-button>
+        <zeta-button shape="full" size="large" disabled flavor="positive">Button</zeta-button>
+        <zeta-button shape="full" size="large" disabled flavor="negative">Button</zeta-button>
+        <zeta-button shape="full" size="large" disabled flavor="outline">Button</zeta-button>
+        <zeta-button shape="full" size="large" disabled flavor="outline-subtle">Button</zeta-button>
+        <zeta-button shape="full" size="large" disabled flavor="text">Button</zeta-button>
+    </div>
+</div>`;

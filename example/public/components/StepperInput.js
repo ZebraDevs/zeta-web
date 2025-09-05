@@ -1,0 +1,19 @@
+export default `<style>
+    .column {
+        align-items: center;
+    }
+</style>
+
+<div class="row">
+    <div class="column">
+        <zeta-stepper-input min="0" max="10" value="5"></zeta-stepper-input>
+        <zeta-stepper-input min="0" max="10" value="5" size="large"></zeta-stepper-input>
+
+    </div>
+    <div class="column">
+        <zeta-stepper-input disabled></zeta-stepper-input>
+        <zeta-stepper-input size="large" disabled></zeta-stepper-input>
+
+    </div>
+
+</div>`;

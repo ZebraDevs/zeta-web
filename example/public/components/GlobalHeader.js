@@ -1,0 +1,17 @@
+export default `<zeta-global-header headline="Title">
+    <zeta-icon-button slot="leading" flavor="text">apps</zeta-icon-button>
+    <zeta-tab-bar slot="navigation-menu">
+        <zeta-tab-item active="">Button</zeta-tab-item>
+        <zeta-tab-item>Button</zeta-tab-item>
+        <zeta-tab-item>Button</zeta-tab-item>
+        <zeta-tab-item>Button</zeta-tab-item>
+    </zeta-tab-bar>
+    <zeta-search slot="trailing" size="large" round="full"></zeta-search>
+
+    <zeta-icon-button slot="trailing" flavor="text">alert</zeta-icon-button>
+    <zeta-icon-button slot="trailing" flavor="text">help</zeta-icon-button>
+    <zeta-navigation-profile slot="trailing" rounded="">
+        <zeta-avatar slot="leading" size="s"></zeta-avatar>
+        My account
+    </zeta-navigation-profile>
+</zeta-global-header>`;

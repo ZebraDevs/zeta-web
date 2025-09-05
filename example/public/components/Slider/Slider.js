@@ -1,0 +1,9 @@
+export default `<style>
+    .container {
+        gap: 32px;
+    }
+</style>
+<div class="column container full ">
+    <zeta-slider></zeta-slider>
+    <zeta-slider stepIncrement="10"> </zeta-slider>
+</div>`;

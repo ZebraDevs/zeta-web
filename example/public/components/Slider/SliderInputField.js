@@ -1,0 +1,7 @@
+export default `<div class="column container full ">
+    <zeta-slider-input-field label="Label"> </zeta-slider-input-field>
+    <zeta-slider-input-field label="10 Step" value="50" min="0" max="100" stepincrement="10"> </zeta-slider-input-field>
+    <zeta-slider-input-field disabled label="Disabled" stepincrement="10">
+    </zeta-slider-input-field>
+
+</div>`;

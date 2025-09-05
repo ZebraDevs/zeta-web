@@ -12,6 +12,7 @@
   "ButtonGroup",
   "Buttons/Button",
   "Buttons/IconButton",
+  "Buttons/TileButton",
   "Card/CardContainer",
   "Checkbox",
   "Chips/AssistChip",
