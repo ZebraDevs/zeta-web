@@ -16,6 +16,11 @@ export default css`
     gap: var(--spacing-large);
   }
 
+  #platform-name {
+    font: var(--label-large);
+  }
+
+  /*User info container - Holds name, avatar and icon*/
   #name {
     color: var(--main-default);
     font: var(--title-small);
@@ -24,10 +29,6 @@ export default css`
   }
   #user-info-icon {
     background-color: inherit;
-  }
-
-  #platform-name {
-    font: var(--label-large);
   }
 
   /*Optional nav items*/
@@ -74,8 +75,8 @@ export default css`
   #avatar {
     background-color: var(--avatar-purple);
     border-radius: 50%;
-    width: 24px;
-    height: 24px;
+    width: var(--spacing-2xl);
+    height: var(--spacing-2xl);
     color: var(--main-inverse);
     display: flex;
     align-items: center;

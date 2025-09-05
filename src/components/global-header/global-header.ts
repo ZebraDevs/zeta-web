@@ -16,12 +16,12 @@ import "../dropdown/dropdown-menu/dropdown-menu-button";
  * A header component which can contain branding, navigation, search, and user profile actions.
  * It is recommended to enter a maximum of 6 menu items and 6 action items.
  *
- * @property {string} platformName - The platform name text on the header.
- * @property {string} name - The name to show in the header, next to the user icon.
- * @property {string} initials - The initials to display within the user icon.
- * @property {boolean} appSwitcher - Shows the app switcher icon. Make true to show the app switcher icon.
- * @property {boolean} searchbar - Shows the search bar. Make true to show the search bar.
- * @property {boolean} rounded - Applies rounded corners to all elements on the header. Set to true to round all elements.
+ * @property {String} platformName - The platform name text on the header.
+ * @property {String} name - The name to show in the header, next to the user icon.
+ * @property {String} initials - The initials to display within the user icon.
+ * @property {Boolean} appSwitcher - Shows the app switcher icon. Make true to show the app switcher icon.
+ * @property {Boolean} searchbar - Shows the search bar. Make true to show the search bar.
+ * @property {Boolean} rounded - Applies rounded corners to all elements on the header. Set to true to round all elements.
  * @slot menu-items - Slot for menu items on the left side of the header. Expects elements of type zeta-button or zeta-dropdown-menu-button.
  * @slot action-items - Slot for action items on the right side of the header. Expects elements of type zeta-icon-button or zeta-action-menu-button.
  *
@@ -82,12 +82,12 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
   @queryAssignedElements({ slot: "action-items" }) actionItems!: Array<Node>;
 
   /**
-   * Tracks whether there are any menu items present.
+   * Tracks whether there are any menu items present. Used for styling purposes.
    */
   private hasMenuItems: Boolean = true;
 
   /**
-   * Tracks whether there are any action items present.
+   * Tracks whether there are any action items present. Used for styling purposes.
    */
   private hasActionItems: Boolean = true;
 
@@ -98,12 +98,8 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
    */
   private itemCheck(items: Array<Node>, type: "menu" | "action") {
     items = items ?? [];
-    if (type === "menu") {
-      items.length > 0 ? (this.hasMenuItems = true) : (this.hasMenuItems = false);
-    }
-    if (type === "action") {
-      items.length > 0 ? (this.hasActionItems = true) : (this.hasActionItems = false);
-    }
+    if (type === "menu") this.hasMenuItems = items.length > 0;
+    if (type === "action") this.hasActionItems = items.length > 0;
   }
 
   /**
@@ -121,17 +117,14 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
       <div id="header-main">
         <!--Left container - Holds header info and menu items-->
         <div id="header-left">
-          <!--Could be unnecessary div-->
-          <div>
-            <!--Header info container - Holds logo, platform name, and menu items-->
-            <div id="header-info">
-              <zeta-icon-button shape=${this.rounded ? "rounded" : "sharp"} flavor="subtle">hamburger_menu</zeta-icon-button>
-              <img id="logo" src="../assets/zebra-logo.svg" alt="Zebra Technologies Logo" width="80px" height="32px" />
-              <div class="platform-name">${this.platformName}</div>
-            </div>
-            <!--Menu items container - Holds menu items-->
-            <div id="menu-items" class=${this.hasMenuItems ? "has-items" : ""}><slot name="menu-items"></slot></div>
+          <!--Header info container - Holds logo, platform name, and menu items-->
+          <div id="header-info">
+            <zeta-icon-button shape=${this.rounded ? "rounded" : "sharp"} flavor="subtle">hamburger_menu</zeta-icon-button>
+            <img id="logo" src="../assets/zebra-logo.svg" alt="Zebra Technologies Logo" width="80px" height="32px" />
+            <div class="platform-name">${this.platformName}</div>
           </div>
+          <!--Menu items container - Holds menu items-->
+          <div id="menu-items" class=${this.hasMenuItems ? "has-items" : ""}><slot name="menu-items"></slot></div>
         </div>
         <!--Right container - Holds search bar, action items, user info and app switcher-->
         <div id="header-right">
