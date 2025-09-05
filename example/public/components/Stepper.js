@@ -1,0 +1,12 @@
+export default `<div class="column container">
+    <zeta-stepper variant="horizontal" activestep="2">
+        <li data-title="Title" data-label="label 1"></li>
+        <li data-title="Title" data-label="label 2"></li>
+        <li data-title="Title" data-label="label 3"></li>
+    </zeta-stepper>
+    <zeta-stepper variant="vertical" activestep="1">
+        <li data-title="Title" data-label="Step Number"></li>
+        <li data-title="Title 2" data-label="Step Number"></li>
+        <li data-title="Title 3" disabled data-label="Step Number"></li>
+    </zeta-stepper>
+</div>`;
