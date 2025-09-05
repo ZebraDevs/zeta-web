@@ -8,17 +8,13 @@ import "../search/search";
 import "../avatar/avatar";
 import "../dropdown/dropdown-menu/dropdown-menu-button";
 
-/**TODO:
- * - Elements need to be able to be rounded. Icon button doesnt have rounded prop
- * - Change documentation
- * - Ensure disabled works
- * - Ensure buttons return functions when clicked
- * - Limit menu and action items to max 6 each
- * - Check how many menu and action items there are for styling purposes
+/**
+ * TODO: UX-1513 Limiting the number of menu and action items to 6 each.
  */
 
 /**
  * A header component which can contain branding, navigation, search, and user profile actions.
+ * It is recommended to enter a maximum of 6 menu items and 6 action items.
  *
  * @property {string} platformName - The platform name text on the header.
  * @property {string} name - The name to show in the header, next to the user icon.
@@ -129,7 +125,7 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
           <div>
             <!--Header info container - Holds logo, platform name, and menu items-->
             <div id="header-info">
-              <zeta-icon-button id="hamburger-menu" flavor="text">hamburger_menu</zeta-icon-button>
+              <zeta-icon-button shape=${this.rounded ? "rounded" : "sharp"} flavor="subtle">hamburger_menu</zeta-icon-button>
               <img id="logo" src="../assets/zebra-logo.svg" alt="Zebra Technologies Logo" width="80px" height="32px" />
               <div class="platform-name">${this.platformName}</div>
             </div>
@@ -139,16 +135,16 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
         </div>
         <!--Right container - Holds search bar, action items, user info and app switcher-->
         <div id="header-right">
-          ${this.searchbar ? html`<zeta-search></zeta-search>` : nothing}
+          ${this.searchbar ? html`<zeta-search shape=${this.rounded ? "rounded" : "sharp"}></zeta-search>` : nothing}
           <!--Action items container - Holds action items-->
           <div id="action-items" class=${this.hasActionItems ? "has-items" : ""}><slot name="action-items"></slot></div>
           <!--User info button - Holds user name, avatar and chevron icon-->
-          <zeta-button flavor="text">
+          <zeta-button id="user-info-button" shape=${this.rounded ? "rounded" : "sharp"} flavor="subtle">
             <span id="name">${this.name}</span>
             <div id="avatar">${this.initials}</div>
-            <zeta-icon class="expand-icon">expand_more</zeta-icon>
+            <zeta-icon id="user-info-icon" .rounded=${this.rounded}>expand_more</zeta-icon>
           </zeta-button>
-          ${this.appSwitcher ? html`<zeta-icon-button flavor="text">apps</zeta-icon-button>` : nothing}
+          ${this.appSwitcher ? html`<zeta-icon-button shape=${this.rounded ? "rounded" : "sharp"} flavor="subtle">apps</zeta-icon-button>` : nothing}
         </div>
       </div>
     `;

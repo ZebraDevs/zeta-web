@@ -44,6 +44,7 @@ export class ZetaButton extends Flavored(BaseButton) {
    * - `"outline"` - Primary outline only.
    * - `"outline-subtle"` - Grey outline only.
    * - `"text"` - Primary text only.
+   * - `"subtle"` - White background with grey text. Same action colors as 'text' flavor.
    *
    * @remarks The value `"secondary"` is no longer supported and should not be used.
    */

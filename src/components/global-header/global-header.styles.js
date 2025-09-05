@@ -4,10 +4,12 @@ export default css`
     display: flex;
     flex-direction: row;
     align-items: center;
+    background-color: var(--surface-default);
   }
 
   #header-main {
     justify-content: space-between;
+    padding: var(--spacing-small) var(--spacing-large);
   }
 
   #header-right {
@@ -18,6 +20,10 @@ export default css`
     color: var(--main-default);
     font: var(--title-small);
     font-size: 12px;
+    background-color: inherit;
+  }
+  #user-info-icon {
+    background-color: inherit;
   }
 
   #platform-name {
@@ -55,10 +61,6 @@ export default css`
   zeta-button::part(button) {
     color: var(--main-subtle);
   }
-  zeta-icon-button:not([disabled]):not(:hover):not(:active)::part(button),
-  zeta-button:not([disabled]):not(:hover):not(:active)::part(button) {
-    --flavor-background-color: --surface-default;
-  }
 
   /*Spacing between elements in header-info*/
   #logo {
@@ -81,14 +83,11 @@ export default css`
     font-size: 11px;
   }
 
-  .expand-icon {
-    --icon-color: var(--main-default);
-  }
-
   /*Invert logo in dark mode*/
   @media (prefers-color-scheme: dark) {
     #logo {
       filter: invert(1);
+      background-color: transparent;
     }
   }
 `;
