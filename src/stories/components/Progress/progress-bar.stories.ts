@@ -14,13 +14,19 @@ const meta: Meta<ZetaProgressBar> = {
     value: 50,
     label: "Loading...",
     indeterminate: false,
-    buffering: false
+    buffering: false,
+    maxValue: undefined
   },
   argTypes: {
     size: {
       options: ["thin", "medium"],
       control: {
         type: "select"
+      }
+    },
+    maxValue: {
+      control: {
+        type: "number"
       }
     }
   },

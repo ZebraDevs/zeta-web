@@ -1,67 +1,53 @@
 import { customElement, property } from "lit/decorators.js";
-
 import { html, LitElement, nothing } from "lit";
 import styles from "./stepper.styles.js";
-import { classMap } from "lit/directives/class-map.js";
-import { Contourable } from "../../mixins/mixins.js";
+import "../icon/icon";
+import "./stepper-item";
+import "../progress-indicators/progress-bar/progress-bar";
+import "../button/icon-button/icon-button";
 
-/** Steppers convey progress through numbered steps.
+/**
+ * ZetaStepper is a container component for displaying a sequence of steps in a process.
  *
- * For the steps, pass `li` elements with `data-title` and `data-label` attributes as children
+ * To define individual steps, pass zeta-stepper-item elements as children of this component.
  *
- * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21529-11408
- * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21529-11531
+ * @slot - Pass as many zeta-stepper-items as needed.
  *
+ * @figma https://www.figma.com/design/1PXgz5r06wlObIrucWsOqx/Stepper?node-id=40231-1812&m=dev
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-stepper--docs
  */
 @customElement("zeta-stepper")
-export class ZetaStepper extends Contourable(LitElement) {
-  /** Stepper direction.  */
+export class ZetaStepper extends LitElement {
+  /** Stepper direction. Defaults to horizontal. */
   @property({ reflect: true }) variant: "vertical" | "horizontal" = "horizontal";
 
-  /** Current active step. */
-  @property({ type: Number }) activeStep = 0;
+  /**
+   * The current progress of the stepper, represented as a floating point number (0.0-1.0).
+   * This number is used by the progress bar.
+   */
+  @property({ type: Number }) progress: number = 0;
 
-  /** Show bar separator. */
-  @property({ type: Boolean }) bar = true;
+  /**
+   * Set to true when not all stepper items can be displayed on screen at once.
+   * Displays a button that allows users to view additional stepper items.
+   * User can set their own functionality to the button.
+   */
+  @property({ type: Boolean }) showOverflowButton: boolean = false;
 
-  private renderSteps = () => {
-    // prettier-ignore
-    const steps = Array.from(this.querySelectorAll<HTMLLIElement>("li"));
-    return html`${steps.map((step, index) => {
-      const classes = {
-        completed: index < this.activeStep,
-        active: this.activeStep === index
-      };
-
-      const barClass = {
-        show: this.bar,
-        completed: index < this.activeStep && this.bar,
-        active: this.activeStep === index && this.bar
-      };
-
-      return html`
-        <li class="step-container">
-          <div class="step ${classMap(classes)}">
-            <span>
-              <span class="step-number">${index + 1}</span>
-              <span class="bar ${classMap(barClass)}"></span>
-            </span>
-            <div class="step-content">
-              ${step.childNodes[0]} ${step.dataset.label ? html`<span class="step-label">${step.dataset.label}</span>` : nothing}
-              <span class="step-title">${step.dataset.title}</span>
-            </div>
-          </div>
-        </li>
-      `;
-    })}`;
-  };
+  /** Set to true for the progress bar to be shown. */
+  @property({ type: Boolean }) progressBar: boolean = false;
 
   protected render() {
     return html`
-      <ul class="steps">
-        ${this.renderSteps()}
-      </ul>
+      <div class="stepper-container">
+        <div class="stepper-container" role="list">
+          <slot></slot>
+        </div>
+        ${this.showOverflowButton
+          ? html`<zeta-button flavor="outline-subtle" class="stepper-item-overflow-button"><zeta-icon>chevron_right</zeta-icon></zeta-button>`
+          : ""}
+      </div>
+      ${this.progressBar ? html`<zeta-progress-bar value=${this.progress}></zeta-progress-bar>` : nothing}
     `;
   }
 

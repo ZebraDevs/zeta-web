@@ -1,186 +1,101 @@
 import { css } from "lit";
 export default css`
-  .steps {
+  /* Horizontal orientation - Styling */
+  :host {
+    --stepper-container-height: 92px;
+    --stepper-bar-width: 200px;
+    --stepper-bar-height: 3px;
+    --stepper-bar-vertical-width: 3px;
+    --stepper-overflow-button-width: 50px;
+    --stepper-overflow-button-margin: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Stepper Alignment */
+  ::slotted(zeta-stepper-item) {
+    flex-direction: row;
+  }
+
+  /* Counter Logic */
+  .stepper-container {
+    counter-reset: step;
+  }
+
+  .stepper-container {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .stepper-container {
     list-style-type: none;
     margin: 0;
     padding: 0;
     display: flex;
     width: fit-content;
+    height: var(--stepper-container-height);
   }
 
-  li {
+  /* Bar pseudo-element */
+  ::slotted(:not(zeta-stepper-item:last-child))::after {
+    content: "";
     display: flex;
-  }
-
-  .step-container:last-of-type {
-    margin-bottom: 0px;
-    .bar {
-      &:after {
-        width: 0 !important;
-        display: none;
-      }
-    }
-  }
-
-  .bar {
-    display: flex;
-    height: var(--spacing-4xl);
-    width: var(--spacing-11xl);
+    width: var(--stepper-bar-width);
+    height: var(--stepper-bar-height);
+    border-radius: inherit;
+    background-color: var(--border-subtle);
     align-items: center;
     justify-content: center;
-    margin-left: var(--spacing-large);
-
-    &:after {
-      content: "";
-      display: flex;
-      width: 100%;
-      height: var(--spacing-0-5);
-      border-radius: inherit;
-      background-color: var(--main-disabled);
-    }
-
-    &:not(.show) {
-      &::after {
-        display: none !important;
-      }
-    }
-
-    &.active {
-      &:after {
-        background-color: var(--surface-primary);
-      }
-    }
-
-    &.completed {
-      &:after {
-        background-color: var(--surface-positive);
-      }
-    }
+    margin-top: var(--spacing-large);
   }
 
-  .step {
+  /* Stepper progress bar */
+  zeta-progress-bar {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 0 var(--spacing-large);
-
-    span {
-      display: flex;
-    }
-
-    &:not(.active):not(.completed) {
-      color: var(--main-disabled);
-    }
-
-    &.active {
-      .step-label {
-        color: var(--surface-primary);
-      }
-
-      .step-number {
-        background-color: var(--surface-primary);
-      }
-    }
-
-    &.completed {
-      .step-label {
-        color: var(--surface-positive);
-      }
-
-      .step-number {
-        background-color: var(--surface-positive);
-      }
-    }
+    width: 100%;
+    height: var(--spacing-small);
+    background-color: var(--border-subtle);
+    border-radius: var(--radius-minimal);
+    margin-top: var(--spacing-large);
+  }
+  zeta-button::part(button) {
+    box-shadow: 0 0 0 2px var(--border-subtle);
   }
 
-  .step-content {
+  /* Stepper item overflow button */
+  .stepper-item-overflow-button {
     display: flex;
-    flex-direction: column;
-    align-self: baseline;
+    justify-content: right;
+    height: 100%;
+    width: var(--stepper-overflow-button-width);
+    margin-left: var(--stepper-overflow-button-margin);
+  }
 
-    .step-title {
-      margin-top: var(--spacing-small);
-      font: var(--body-medium);
+  /* Vertical orientation styles */
+  :host([variant="vertical"]) {
+    width: fit-content;
+    height: fit-content;
+
+    ::slotted(zeta-stepper-item) {
+      flex-direction: column;
+      display: block;
     }
 
-    .step-label {
+    zeta-progress-bar,
+    .stepper-item-overflow-button {
       display: none;
     }
-  }
 
-  .step-number {
-    width: var(--spacing-4xl);
-    height: var(--spacing-4xl);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--main-disabled);
-    color: var(--surface-default);
-    font: var(--label-large);
-  }
-
-  :host([rounded]) {
-    .step-number {
-      border-radius: var(--radius-full);
-    }
-
-    .bar {
-      border-radius: var(--radius-minimal);
-    }
-  }
-
-  :host([variant="vertical"]) {
-    span {
-      display: flex;
+    .stepper-container {
       flex-direction: column;
     }
 
-    .steps {
-      flex-direction: column;
-    }
-
-    .step-container {
-      flex-direction: column;
-      margin-bottom: var(--spacing-xl);
-    }
-
-    .step {
-      flex-direction: row;
-      text-align: left;
-      padding: 0;
-    }
-
-    .bar {
+    /* Bar pseudo-element */
+    ::slotted(:not(zeta-stepper-item:last-child))::after {
       height: var(--spacing-4xl);
-      width: var(--spacing-4xl);
-      margin-top: var(--spacing-minimum);
-      margin-left: 0;
-
-      &:after {
-        content: "";
-        width: var(--spacing-minimum);
-        height: 100%;
-      }
-    }
-
-    .step-title {
-      margin-top: var(--spacing-minimum);
-      font: var(--title-large);
-    }
-
-    .step-label {
-      display: flex;
-      font: var(--body-medium);
-    }
-
-    .step-number {
-      width: var(--spacing-4xl);
-      height: var(--spacing-4xl);
-      font: var(--label-medium);
-      margin-right: var(--spacing-2xl);
-      align-self: baseline;
+      width: var(--stepper-bar-vertical-width);
+      margin: var(--spacing-small) 0 var(--spacing-small) 18px;
     }
   }
 `;

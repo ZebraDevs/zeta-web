@@ -38,6 +38,9 @@ jobs:
       - name: Format code
         run: npx prettier src --write --ignore-unknown
 
+      - name: Run test-count
+        run: yarn test:count
+
       - name: Check diff
         id: diff
         run: git diff --quiet . || echo "changed=true" >> $GITHUB_OUTPUT

@@ -19,8 +19,15 @@ export class ZetaProgressBar extends Contourable(LitElement) {
   /** Displays the indeterminate progress indicator. If set to true, any argument for 'value' will be ignored. */
   @property({ type: Boolean, reflect: true }) indeterminate?: boolean;
 
-  /** The % complete of the process indicator. */
+  /**
+   * The % complete of the process indicator.
+   * Input a floating point number to represent a percentage. Values must be between 0.0-1.0.
+   * If maxValue is set, value can be any number between 0 and maxValue.
+   */
   @property({ type: Number }) value: number = 0;
+
+  /** If maxValue is null treat value as a percentage */
+  @property({ type: Number }) maxValue?: number;
 
   /** The label for the progress indicator. */
   @property({ type: String }) label?: string;
@@ -46,7 +53,7 @@ export class ZetaProgressBar extends Contourable(LitElement) {
 
   protected override render() {
     const barStyle = styleMap({
-      width: `${Math.max(0, Math.min(100, this.value))}%`
+      width: `${Math.max(0, Math.min(100, this.maxValue ? (this.value / this.maxValue) * 100 : this.value * 100))}%`
     });
 
     return html`<div class="progress-bar">

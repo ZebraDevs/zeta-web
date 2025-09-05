@@ -3,15 +3,72 @@ import { html } from "lit";
 import { spreadGenerator } from "../utils.js";
 const spread = spreadGenerator(ZetaStepper);
 import { ZetaStepper } from "../../components/stepper/stepper.js";
+import type { StepperItemFlavor } from "../../components/stepper/stepper-item.js";
+import { fn } from "@storybook/test";
 
-const meta: Meta<ZetaStepper> = {
+type Args = ZetaStepper & {
+  flavor1: StepperItemFlavor;
+  title1: string;
+  flavor2: StepperItemFlavor;
+  title2: string;
+  flavor3: StepperItemFlavor;
+  title3: string;
+  editing: boolean;
+  progress: number;
+  showOverflowButton: boolean;
+  progressBar: boolean;
+};
+const meta: Meta<Args> = {
   component: "zeta-stepper",
   tags: ["autodocs"],
   title: "Components/Stepper",
-  args: { bar: false, rounded: false, activeStep: 0 },
+  args: {
+    progress: 0,
+    showOverflowButton: false,
+    editing: false,
+    progressBar: false,
+    flavor1: "default",
+    title1: "Label",
+    flavor2: "default",
+    title2: "Label",
+    flavor3: "default",
+    title3: "Label",
+    onclick: fn()
+  },
   argTypes: {
     variant: {
       table: { disable: true }
+    },
+    slot: { table: { disable: true } },
+    progress: {
+      control: { type: "number", min: 0.0, max: 1.0, step: 0.01 }
+    },
+    showOverflowButton: {
+      control: { type: "boolean" }
+    },
+    editing: {
+      control: { type: "boolean" }
+    },
+    flavor1: {
+      options: ["partial", "success", "active", "default"],
+      control: { type: "select" }
+    },
+    title1: {
+      control: { type: "text" }
+    },
+    flavor2: {
+      options: ["partial", "success", "active", "default"],
+      control: { type: "select" }
+    },
+    title2: {
+      control: { type: "text" }
+    },
+    flavor3: {
+      options: ["partial", "success", "active", "default"],
+      control: { type: "select" }
+    },
+    title3: {
+      control: { type: "text" }
     }
   },
   parameters: {
@@ -30,9 +87,9 @@ export const Horizontal: StoryObj = {
   render: args => {
     return html`
       <zeta-stepper ${spread(args)} variant="horizontal">
-        <li data-title="title 1" data-label="label 1"></li>
-        <li data-title="title 2" data-label="label 2"></li>
-        <li data-title="title 3" data-label="label 3"></li>
+        <zeta-stepper-item flavor=${args.flavor1} ?editing=${args.editing}>${args.title1}</zeta-stepper-item>
+        <zeta-stepper-item flavor=${args.flavor2} ?editing=${args.editing}>${args.title2}</zeta-stepper-item>
+        <zeta-stepper-item flavor=${args.flavor3} ?editing=${args.editing}>${args.title3}</zeta-stepper-item>
       </zeta-stepper>
     `;
   },
@@ -49,9 +106,9 @@ export const Vertical: StoryObj = {
   render: args => {
     return html`
       <zeta-stepper ${spread(args)} variant="vertical">
-        <li data-title="title 1" data-label="label 1"></li>
-        <li data-title="title 2" data-label="label 2"></li>
-        <li data-title="title 3" data-label="label 3"></li>
+        <zeta-stepper-item flavor=${args.flavor1} ?editing=${args.editing}>${args.title1}</zeta-stepper-item>
+        <zeta-stepper-item flavor=${args.flavor2} ?editing=${args.editing}>${args.title2}</zeta-stepper-item>
+        <zeta-stepper-item flavor=${args.flavor3} ?editing=${args.editing}>${args.title3}</zeta-stepper-item>
       </zeta-stepper>
     `;
   },

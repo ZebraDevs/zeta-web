@@ -34,6 +34,8 @@ import type { ZetaIconName } from "@zebra-fed/zeta-icons";
  *
  * @cssproperty --icon-size The width/height of the icon
  * @cssproperty --icon-color The color of the icon
+ * @cssproperty --icon-border-width The border width of the icon.
+ * @cssproperty --icon-border-color The border color of the icon.
  * @slot {ZetaIconName} - Name of icon to be displayed. Full list of icons can be found at {@link https://design.zebra.com/icons Zeta Icons}. If this value and the name prop are both populated, the name prop will take precedence.
  */
 @customElement("zeta-icon")
