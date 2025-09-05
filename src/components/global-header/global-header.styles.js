@@ -28,9 +28,6 @@ export default css`
   ::slotted([slot="menu-items"]) {
     padding-left: var(--spacing-small);
   }
-  ::slotted([slot="menu-items"].has-items) {
-    border-left: 1px solid var(--border-default);
-  }
   ::slotted([slot="menu-items"]) zeta-button::part(button) {
     font: var(--label-medium);
   }
@@ -40,12 +37,18 @@ export default css`
   ::slotted([slot="action-items"]) {
     padding-right: var(--spacing-small);
   }
-  ::slotted([slot="action-items"].has-items) {
+  #menu-items.has-items {
+    border-left: 1px solid var(--border-default);
+  }
+  #action-items.has-items {
     border-right: 1px solid var(--border-default);
   }
 
   /*zeta-icon-button and zeta-button styling*/
   zeta-icon-button::part(icon) {
+    --icon-color: var(--main-default);
+  }
+  ::slotted([slot="action-items"]) {
     --icon-color: var(--main-default);
   }
   zeta-icon-button::part(button),
@@ -82,18 +85,10 @@ export default css`
     --icon-color: var(--main-default);
   }
 
+  /*Invert logo in dark mode*/
   @media (prefers-color-scheme: dark) {
     #logo {
       filter: invert(1);
     }
-  }
-
-  /*Dropdown menu specific styling*/
-  .drop-down-menu {
-    display: flex;
-    flex-direction: column;
-    box-shadow: none;
-    width: 180px;
-    align-items: flex-start;
   }
 `;

@@ -53,11 +53,27 @@ export const GlobalHeader: StoryObj = {
       .rounded=${args.rounded}
     >
       <!-- Menu items -->
+      <zeta-dropdown-menu-button slot="menu-items" flavor="text" .items=${[{ label: "Menu Item" }, { label: "Menu Item" }, { label: "Menu Item" }]}
+        >Nav Item</zeta-dropdown-menu-button
+      >
       <zeta-button slot="menu-items" flavor="text">Nav Item</zeta-button>
-      <zeta-dropdown-menu-button slot="menu-items" flavor="text" .items=${[{ label: "Menu Item" }]}>Nav Item</zeta-dropdown-menu-button>
+      <zeta-button slot="menu-items" flavor="text">Nav Item</zeta-button>
+      <zeta-button slot="menu-items" flavor="text">Nav Item</zeta-button>
+      <zeta-button slot="menu-items" flavor="text">Nav Item</zeta-button>
+      <zeta-button slot="menu-items" flavor="text">Nav Item</zeta-button>
+      <zeta-button slot="menu-items" flavor="text">Nav Item</zeta-button>
       <!-- Action items -->
+      <zeta-action-menu-button
+        slot="action-items"
+        icon="more_horizontal"
+        flavor="text"
+        .items=${[{ label: "Menu Item" }, { label: "Menu Item" }, { label: "Menu Item" }]}
+      ></zeta-action-menu-button>
       <zeta-icon-button slot="action-items" flavor="text">star</zeta-icon-button>
-      <zeta-action-menu-button slot="action-items" icon="more_horizontal" flavor="text" .items=${[{ label: "Menu Item" }]}></zeta-action-menu-button>
+      <zeta-icon-button slot="action-items" flavor="text">star</zeta-icon-button>
+      <zeta-icon-button slot="action-items" flavor="text">star</zeta-icon-button>
+      <zeta-icon-button slot="action-items" flavor="text">star</zeta-icon-button>
+      <zeta-icon-button slot="action-items" flavor="text">star</zeta-icon-button>
     </zeta-global-header>`;
   }
 };

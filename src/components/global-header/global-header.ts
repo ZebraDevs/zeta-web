@@ -13,6 +13,8 @@ import "../dropdown/dropdown-menu/dropdown-menu-button";
  * - Change documentation
  * - Ensure disabled works
  * - Ensure buttons return functions when clicked
+ * - Limit menu and action items to max 6 each
+ * - Check how many menu and action items there are for styling purposes
  */
 
 /**
@@ -83,6 +85,40 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
    */
   @queryAssignedElements({ slot: "action-items" }) actionItems!: Array<Node>;
 
+  /**
+   * Tracks whether there are any menu items present.
+   */
+  private hasMenuItems: Boolean = true;
+
+  /**
+   * Tracks whether there are any action items present.
+   */
+  private hasActionItems: Boolean = true;
+
+  /**
+   * Checks the number of items in a slot and updates the corresponding boolean property.
+   * @param items - array of nodes to check
+   * @param type - "menu" or "action" to specify which type of items are being checked
+   */
+  private itemCheck(items: Array<Node>, type: "menu" | "action") {
+    items = items ?? [];
+    if (type === "menu") {
+      items.length > 0 ? (this.hasMenuItems = true) : (this.hasMenuItems = false);
+    }
+    if (type === "action") {
+      items.length > 0 ? (this.hasActionItems = true) : (this.hasActionItems = false);
+    }
+  }
+
+  /**
+   * Checks the slots for items after the component has been updated.
+   * This ensures that any changes to the slotted content are detected and the state is updated accordingly.
+   */
+  protected override updated() {
+    this.itemCheck(this.menuItems, "menu");
+    this.itemCheck(this.actionItems, "action");
+  }
+
   protected override render() {
     return html`
       <!--Main container - Holds all items-->
@@ -98,14 +134,14 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
               <div class="platform-name">${this.platformName}</div>
             </div>
             <!--Menu items container - Holds menu items-->
-            <slot name="menu-items"></slot>
+            <div id="menu-items" class=${this.hasMenuItems ? "has-items" : ""}><slot name="menu-items"></slot></div>
           </div>
         </div>
         <!--Right container - Holds search bar, action items, user info and app switcher-->
         <div id="header-right">
           ${this.searchbar ? html`<zeta-search></zeta-search>` : nothing}
           <!--Action items container - Holds action items-->
-          <slot name="action-items"></slot>
+          <div id="action-items" class=${this.hasActionItems ? "has-items" : ""}><slot name="action-items"></slot></div>
           <!--User info button - Holds user name, avatar and chevron icon-->
           <zeta-button flavor="text">
             <span id="name">${this.name}</span>
