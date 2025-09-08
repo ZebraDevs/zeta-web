@@ -105,7 +105,7 @@ export class ExampleWrapper extends LitElement {
   loadQuery = () => {
     const query = this.getQueryString();
 
-    const url = "/components/" + query.replace("?", "") + ".html";
+    const url = "/components/" + query.replace("?", "") + ".js";
 
     if (!query || !components.includes(query.replace("?", ""))) {
       this.child = html`<div class="container">Please select a component from the dropdown above.</div>`;
@@ -114,6 +114,7 @@ export class ExampleWrapper extends LitElement {
 
     fetch(url)
       .then((response) => response.text())
+      .then((text) => text.split("`")[1])
       .then((text) => {
         this.child = unsafeHTML(text);
         this.requestUpdate();
