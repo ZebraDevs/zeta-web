@@ -71,7 +71,7 @@ export default `<style>
         </zeta-accordion-item>
     </zeta-accordion>
 
-    <zeta-accordion incard>
+    <zeta-accordion incard data-theme='dark'>
         <zeta-accordion-item title='Title' selectable selected>
             <div class="placeholder">
                 <svg class="placeholder-cross" viewBox="0 0 400 240" preserveAspectRatio="none">

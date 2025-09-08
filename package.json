@@ -7,9 +7,6 @@
     "assets",
     "LICENSE-3RD-PARTY"
   ],
-  "workspaces": [
-    "example/"
-  ],
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "exports": {
