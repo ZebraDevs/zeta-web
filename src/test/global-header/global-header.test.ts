@@ -66,7 +66,7 @@ describe("zeta-global-header", () => {
       expect(avatar).to.exist;
       await expect(avatar?.textContent).to.equal("RK");
     });
-    it("renders the app switcher", async () => {
+    it("renders the app switcher", () => {
       const appSwitcher = subject.shadowRoot?.querySelector("#app-switcher");
       expect(appSwitcher).to.exist;
     });
@@ -82,7 +82,7 @@ describe("zeta-global-header", () => {
       const assignedNodesLength = (actionItems as HTMLSlotElement)?.assignedNodes().length;
       await expect(assignedNodesLength).to.equal(6);
     });
-    it("renders the zebra logo", async () => {
+    it("renders the zebra logo", () => {
       const logo = subject.shadowRoot?.querySelector("#logo") as HTMLImageElement;
       expect(logo).to.exist;
       expect(logo.src).to.contain("zebra-logo.svg");
@@ -90,12 +90,12 @@ describe("zeta-global-header", () => {
   });
 
   describe("Dimensions", () => {
-    it("has a logo height of 32px", async () => {
+    it("has a logo height of 32px", () => {
       const logo = subject.shadowRoot?.querySelector("#logo") as HTMLImageElement;
       expect(logo).to.exist;
       expect(logo).to.have.style("height", "32px");
     });
-    it("has a logo width of 80px", async () => {
+    it("has a logo width of 80px", () => {
       const logo = subject.shadowRoot?.querySelector("#logo") as HTMLImageElement;
       expect(logo).to.exist;
       expect(logo).to.have.style("width", "80px");
@@ -111,7 +111,7 @@ describe("zeta-global-header", () => {
   });
 
   describe("Styling", () => {
-    it("has the correct background color", async () => {
+    it("has the correct background color", () => {
       const mainContainer = subject.shadowRoot?.querySelector("#header-main");
       expect(mainContainer).to.exist;
       expect(mainContainer).to.have.style("background-color", "rgb(255, 255, 255)");
