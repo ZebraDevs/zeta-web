@@ -1,8 +1,9 @@
-import { html, LitElement, nothing } from "lit";
+import { html, LitElement, nothing, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./global-header.styles.js";
 import "../icon/icon.js";
 import { Contourable } from "../../mixins/mixins.js";
+import * as zetaTheme from "../../index.css?raw";
 
 /**
  * A header with support for displaying a zeta-navigation-menu
@@ -24,8 +25,7 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
   /** The position of the navigation. */
   @property({ type: String }) menuPosition: "inline" | "below" = "inline";
 
-  // @property({ type: String, attribute: "data-theme", reflect: true }) theme = "dark";
-  @property({ type: String, attribute: "data-contrast", reflect: true }) contrast = "more";
+  @property({ type: String, attribute: "data-theme", reflect: true }) theme = "dark";
 
   protected override render() {
     return html`
@@ -45,7 +45,7 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
     `;
   }
 
-  static styles = [super.styles ?? [], styles];
+  static styles = [super.styles ?? [], styles, unsafeCSS(zetaTheme.default)];
 }
 
 declare global {

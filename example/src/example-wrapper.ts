@@ -1,10 +1,11 @@
-import { LitElement, css, html } from "lit";
+import { LitElement, css, html, unsafeCSS } from "lit";
 import { customElement } from "lit/decorators.js";
 import "@zebra-fed/zeta-web";
 import { unsafeHTML } from "lit/directives/unsafe-html.js";
 import type { DirectiveResult } from "lit/async-directive.js";
 import componentsData from "./components.json" assert { type: "json" };
 const components = Array.isArray(componentsData) ? componentsData : Object.values(componentsData);
+import * as zeta from "@zebra-fed/zeta-web/index.css?raw";
 
 @customElement("example-wrapper")
 export class ExampleWrapper extends LitElement {
@@ -13,6 +14,7 @@ export class ExampleWrapper extends LitElement {
   }
 
   static styles = [
+    unsafeCSS(zeta.default),
     css`
       #app {
         background-color: var(--surface-default);

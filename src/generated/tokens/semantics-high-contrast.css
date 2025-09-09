@@ -1,6 +1,5 @@
 @media (prefers-contrast: more) {
-  :root,
-  [data-theme] {
+  :root {
     --main-default: var(--color-cool-100, #0c0d0e);
     --main-subtle: var(--color-cool-90, #1d1e23);
     --main-primary: var(--color-blue-80, #004d99);

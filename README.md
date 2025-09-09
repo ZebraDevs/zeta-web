@@ -53,7 +53,7 @@ Zeta Web Components can be directly used in many web frameworks including Angula
    <script type="module" src="./node_modules/@zebra-fed/zeta-web/dist/components/button/button.js"></script>
 
    <!-- or full package-->
-   <script type="module" src="./node_modules/@zebra-fed/zeta-web/dist/index.js"></script>
+   <script type="module" src="./node_modules/@zebra-fed/zeta-web/"></script>
    ```
 
    To reduce bloat, we recommend only importing the components you will actually use into your project.
@@ -63,6 +63,41 @@ Zeta Web Components can be directly used in many web frameworks including Angula
    ```html
    <zeta-button>Hello world!</zeta-button>
    ```
+
+   ### Styles
+
+Zeta styles are composed of primitives (basic value swatches such as `color-red-10`, `spacing-4`) and semantic tokens (descriptive values like `surface-default`, `spacing-large`, `avatar-purple`). These are imported via `index.css`.
+
+To learn more about Zeta theme, see [tokens](https://design.zebra.com/docs/Theme/tokens).
+
+If you only need the styles, simply import `index.css`. Importing `index.css` is not necessary if you are using the Zeta components, as they include the styles automatically.
+
+By default, if the user has set `prefers-color-scheme` or `prefers-contrast`, this will be respected - serving light or dark; regular or high contrast tokens.
+
+To override a theme, you can add `data-theme: light | dark` or `data-contrast: less | more` attributes to any element. This will cause any child element to respect that value.
+
+> Note: If you want to apply `data-theme` or `data-contrast` within the shadow dom, you will need to inject the styles again.
+
+```ts How to inject Zeta index.css in a new custom lit element.
+// Importing styles into Lit
+import * as zeta from "@zebra-fed/zeta-web/index.css?raw";
+import { html, LitElement } from "lit";
+
+@customElement("a")
+export class A extends LitElement {
+  static styles = [unsafeCSS(zeta.default)];
+
+  // (Optionally) apply the data-* attribute to the whole element.
+  @property({ attribute: "data-theme", reflect: true }) theme = "dark";
+  @property({ attribute: "data-contrast", reflect: true }) contrast = "more";
+
+  protected override render() {
+    return html`<div data-theme="dark" data-contrast="more">
+      // Or you can apply the data-* attributes to individual children
+    </div>`;
+  }
+}
+```
 
 ### React
 

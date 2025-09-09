@@ -1,5 +1,4 @@
-:root [data-contrast="less"],
-[data-theme][data-contrast="less"] {
+[data-contrast="less"] {
   /* main/default
 
   Default value is 'color/cool/90'
