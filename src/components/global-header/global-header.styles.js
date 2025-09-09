@@ -18,6 +18,7 @@ export default css`
 
   #platform-name {
     font: var(--label-large);
+    color: var(--main-default);
   }
 
   /*User info container - Holds name, avatar and icon*/
@@ -85,10 +86,8 @@ export default css`
   }
 
   /*Invert logo in dark mode*/
-  @media (prefers-color-scheme: dark) {
-    #logo {
-      filter: invert(1);
-      background-color: transparent;
-    }
+  #logo {
+    filter: invert(1);
+    background-color: transparent;
   }
 `;
