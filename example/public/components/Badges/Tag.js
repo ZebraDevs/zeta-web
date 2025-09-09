@@ -1,0 +1,4 @@
+export default `<div class="container row">
+    <zeta-tag direction="left">Left</zeta-tag>
+    <zeta-tag direction="right">Right</zeta-tag>
+</div>`;
