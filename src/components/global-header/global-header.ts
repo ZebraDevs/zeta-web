@@ -84,12 +84,12 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
   /**
    * Tracks whether there are any menu items present. Used for styling purposes.
    */
-  private hasMenuItems: Boolean = true;
+  private hasMenuItems: boolean = true;
 
   /**
    * Tracks whether there are any action items present. Used for styling purposes.
    */
-  private hasActionItems: Boolean = true;
+  private hasActionItems: boolean = true;
 
   /**
    * Checks the number of items in a slot and updates the corresponding boolean property.

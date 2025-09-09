@@ -50,7 +50,7 @@ describe("zeta-global-header", () => {
     });
   });
 
-  describe("Content", async () => {
+  describe("Content", () => {
     it("renders the platform name", async () => {
       const platformName = subject.shadowRoot?.querySelector("#platform-name");
       expect(platformName).to.exist;
@@ -68,7 +68,7 @@ describe("zeta-global-header", () => {
     });
     it("renders the app switcher", async () => {
       const appSwitcher = subject.shadowRoot?.querySelector("#app-switcher");
-      await expect(appSwitcher).to.exist;
+      expect(appSwitcher).to.exist;
     });
     it("renders the menu items", async () => {
       const menuItems = subject.shadowRoot?.querySelector("slot[name='menu-items']");
@@ -85,7 +85,7 @@ describe("zeta-global-header", () => {
     it("renders the zebra logo", async () => {
       const logo = subject.shadowRoot?.querySelector("#logo") as HTMLImageElement;
       expect(logo).to.exist;
-      await expect(logo.src).to.contain("zebra-logo.svg");
+      expect(logo.src).to.contain("zebra-logo.svg");
     });
   });
 
@@ -93,14 +93,14 @@ describe("zeta-global-header", () => {
     it("has a logo height of 32px", async () => {
       const logo = subject.shadowRoot?.querySelector("#logo") as HTMLImageElement;
       expect(logo).to.exist;
-      await expect(logo).to.have.style("height", "32px");
+      expect(logo).to.have.style("height", "32px");
     });
     it("has a logo width of 80px", async () => {
       const logo = subject.shadowRoot?.querySelector("#logo") as HTMLImageElement;
       expect(logo).to.exist;
-      await expect(logo).to.have.style("width", "80px");
+      expect(logo).to.have.style("width", "80px");
     });
-    it("has icon buttons with dimensions of 40px by 40px", async () => {
+    it("has icon buttons with dimensions of 40px by 40px", () => {
       const iconButtons = subject.shadowRoot?.querySelectorAll("zeta-icon-button");
       expect(iconButtons).to.exist;
       iconButtons!.forEach(button => {
@@ -114,34 +114,34 @@ describe("zeta-global-header", () => {
     it("has the correct background color", async () => {
       const mainContainer = subject.shadowRoot?.querySelector("#header-main");
       expect(mainContainer).to.exist;
-      await expect(mainContainer).to.have.style("background-color", "rgb(255, 255, 255)");
+      expect(mainContainer).to.have.style("background-color", "rgb(255, 255, 255)");
     });
-    it("has buttons with flavor of subtle", async () => {
+    it("has buttons with flavor of subtle", () => {
       const buttons = subject.shadowRoot?.querySelectorAll("zeta-button");
       expect(buttons).to.exist;
       buttons!.forEach(button => {
         expect(button).to.have.attribute("flavor", "subtle");
       });
     });
-    it("has an avatar with the correct background color", async () => {
+    it("has an avatar with the correct background color", () => {
       const avatar = subject.shadowRoot?.querySelector("#avatar");
       expect(avatar).to.exist;
-      await expect(avatar).to.have.style("background-color", "rgb(67, 0, 143)");
+      expect(avatar).to.have.style("background-color", "rgb(67, 0, 143)");
     });
-    it("has platform name with the correct color", async () => {
+    it("has platform name with the correct color", () => {
       const platformName = subject.shadowRoot?.querySelector("#platform-name");
       expect(platformName).to.exist;
-      await expect(platformName).to.have.style("color", "rgb(29, 30, 35)");
+      expect(platformName).to.have.style("color", "rgb(29, 30, 35)");
     });
-    it("has name with the correct color", async () => {
+    it("has name with the correct color", () => {
       const name = subject.shadowRoot?.querySelector("#name");
       expect(name).to.exist;
-      await expect(name).to.have.style("color", "rgb(29, 30, 35)");
+      expect(name).to.have.style("color", "rgb(29, 30, 35)");
     });
   });
 
   describe("Interaction", () => {
-    it("user info button is clickable", async () => {
+    it("user info button is clickable", () => {
       const userInfoButton = subject.shadowRoot?.querySelector("#user-info-button") as HTMLButtonElement;
       expect(userInfoButton).to.exist;
 
@@ -150,7 +150,7 @@ describe("zeta-global-header", () => {
       userInfoButton?.click();
       expect(onClickSpy).to.have.been.calledOnce;
     });
-    it("hamburger menu button is clickable", async () => {
+    it("hamburger menu button is clickable", () => {
       const hamburgerMenuButton = subject.shadowRoot?.querySelector("zeta-icon-button");
       expect(hamburgerMenuButton).to.exist;
 
@@ -159,7 +159,7 @@ describe("zeta-global-header", () => {
       hamburgerMenuButton?.click();
       expect(onClickSpy).to.have.been.calledOnce;
     });
-    it("app switcher button is clickable", async () => {
+    it("app switcher button is clickable", () => {
       const appSwitcherButton = subject.shadowRoot?.querySelector("#app-switcher") as HTMLButtonElement;
       expect(appSwitcherButton).to.exist;
 
