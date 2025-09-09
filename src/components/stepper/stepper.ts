@@ -1,10 +1,10 @@
 import { customElement, property } from "lit/decorators.js";
 import { html, LitElement, nothing } from "lit";
 import styles from "./stepper.styles.js";
-import "../icon/icon";
-import "./stepper-item";
-import "../progress-indicators/progress-bar/progress-bar";
-import "../button/icon-button/icon-button";
+import "../icon/icon.js";
+import "./stepper-item.js";
+import "../progress-indicators/progress-bar/progress-bar.js";
+import "../button/icon-button/icon-button.js";
 
 /**
  * ZetaStepper is a container component for displaying a sequence of steps in a process.

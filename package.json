@@ -20,6 +20,11 @@
     "./primitives.css": "./dist/primitives.css",
     "./semantics.css": "./dist/semantics.css"
   },
+  "workspaces": {
+    "packages": [
+      "example"
+    ]
+  },
   "description": "Zebra Zeta Design System - Web Components",
   "repository": {
     "type": "git",
@@ -152,5 +157,5 @@
       "last 1 safari version"
     ]
   },
-  "packageManager": "yarn@4.9.2"
+  "packageManager": "yarn@4.9.4"
 }

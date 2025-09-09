@@ -1,7 +1,7 @@
 import { customElement, property } from "lit/decorators.js";
 import { html, LitElement, nothing } from "lit";
 import styles from "./stepper-item.styles.js";
-import "../icon/icon";
+import "../icon/icon.js";
 
 //Make a type for flavor
 export type StepperItemFlavor = "partial" | "success" | "active" | "default";
