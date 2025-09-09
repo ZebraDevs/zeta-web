@@ -22,7 +22,6 @@ import * as zetaTheme from "../../index.css?raw";
  * @property {String} initials - The initials to display within the user icon.
  * @property {Boolean} appSwitcher - Shows the app switcher icon. Make true to show the app switcher icon.
  * @property {Boolean} searchbar - Shows the search bar. Make true to show the search bar.
- * @property {Boolean} rounded - Applies rounded corners to all elements on the header. Set to true to round all elements.
  * @slot menu-items - Slot for menu items on the left side of the header. Expects elements of type zeta-button or zeta-dropdown-menu-button.
  * @slot action-items - Slot for action items on the right side of the header. Expects elements of type zeta-icon-button or zeta-action-menu-button.
  *
@@ -68,12 +67,6 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
    * Make true to show the search bar.
    */
   @property({ type: Boolean }) searchbar: boolean = false;
-
-  /**
-   * Applies rounded corners to all elements on the header.
-   * Set to true to round all elements.
-   */
-  @property({ type: Boolean }) rounded: boolean = false;
 
   /**
    * Slot for menu items on the left side of the header.

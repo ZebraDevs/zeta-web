@@ -4,7 +4,7 @@ import { html } from "lit";
 import "../../components/global-header/global-header";
 import "../../components/action-menu/action-menu-button";
 
-const meta: Meta<ZetaGlobalHeader> = {
+const meta: Meta<ZetaGlobalHeader & { "data-theme": string }> = {
   component: "zeta-global-header",
   tags: ["autodocs"],
   title: "Components/Global Header",
@@ -22,7 +22,8 @@ const meta: Meta<ZetaGlobalHeader> = {
     initials: { control: "text" },
     appSwitcher: { control: "boolean" },
     searchbar: { control: "boolean" },
-    rounded: { control: "boolean" }
+    rounded: { control: "boolean" },
+    "data-theme": { table: { disable: true } }
   },
   parameters: {
     design: {

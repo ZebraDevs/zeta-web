@@ -114,7 +114,7 @@ describe("zeta-global-header", () => {
     it("has the correct background color", () => {
       const mainContainer = subject.shadowRoot?.querySelector("#header-main");
       expect(mainContainer).to.exist;
-      expect(mainContainer).to.have.style("background-color", "rgb(255, 255, 255)");
+      expect(mainContainer).to.have.style("background-color", "rgb(21, 21, 25)");
     });
     it("has buttons with flavor of subtle", () => {
       const buttons = subject.shadowRoot?.querySelectorAll("zeta-button");
@@ -126,17 +126,17 @@ describe("zeta-global-header", () => {
     it("has an avatar with the correct background color", () => {
       const avatar = subject.shadowRoot?.querySelector("#avatar");
       expect(avatar).to.exist;
-      expect(avatar).to.have.style("background-color", "rgb(67, 0, 143)");
+      expect(avatar).to.have.style("background-color", "rgb(220, 193, 251)");
     });
     it("has platform name with the correct color", () => {
       const platformName = subject.shadowRoot?.querySelector("#platform-name");
       expect(platformName).to.exist;
-      expect(platformName).to.have.style("color", "rgb(29, 30, 35)");
+      expect(platformName).to.have.style("color", "rgb(243, 246, 250)");
     });
     it("has name with the correct color", () => {
       const name = subject.shadowRoot?.querySelector("#name");
       expect(name).to.exist;
-      expect(name).to.have.style("color", "rgb(29, 30, 35)");
+      expect(name).to.have.style("color", "rgb(243, 246, 250)");
     });
   });
 
