@@ -136,7 +136,7 @@ export class ZetaFileUpload extends Contourable(LitElement) {
         <div class="main-content">
           <h1>${this.headline}</h1>
           <h2>${msg("or")}</h2>
-          <zeta-button .rounded=${this.rounded} @click=${this.openFileInput}>Select Files</zeta-button>
+          <zeta-button shape=${this.rounded ? "rounded" : "sharp"} @click=${this.openFileInput}>Select Files</zeta-button>
         </div>
         ${this.errorMsg || this.caption ? html`<h2 class="caption">${this.errorMsg || this.caption}</h2>` : nothing}
         <input type="file" id=${this.id} name=${ifDefined(this.name)} accept=${ifDefined(this.accept)} .multiple=${this.multiple} />

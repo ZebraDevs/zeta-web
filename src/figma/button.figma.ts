@@ -12,7 +12,8 @@ figma.connect("https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-
       Negative: "negative",
       Outline: "outline",
       "Outline Subtle": "outline-subtle",
-      Text: "text"
+      Text: "text",
+      Subtle: "subtle"
     }),
     size: figma.enum("Size", { Small: "small", Medium: "medium", Large: "large" }),
     shape: figma.enum("Shape", { "Full Rounded": "full", Rounded: "rounded", Sharp: "sharp" }),
@@ -32,7 +33,8 @@ figma.connect("https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-
       Negative: "negative",
       Outline: "outline",
       "Outline Subtle": "outline-subtle",
-      Text: "text"
+      Text: "text",
+      Subtle: "subtle"
     }),
     size: figma.enum("Size", { Small: "small", Medium: "medium", Large: "large" }),
     shape: figma.enum("Shape", { "Full Rounded": "full", Rounded: "rounded", Sharp: "sharp" }),
