@@ -1,4 +1,4 @@
-import { html, LitElement, nothing } from "lit";
+import { html, LitElement, nothing, unsafeCSS } from "lit";
 import { customElement, property, queryAssignedElements } from "lit/decorators.js";
 import styles from "./global-header.styles.js";
 import "../icon/icon.js";
@@ -7,6 +7,7 @@ import "../button/icon-button/icon-button";
 import "../search/search";
 import "../avatar/avatar";
 import "../dropdown/dropdown-menu/dropdown-menu-button";
+import * as zetaTheme from "../../index.css?raw";
 
 /**
  * TODO: UX-1513 Limiting the number of menu and action items to 6 each.
@@ -42,6 +43,11 @@ import "../dropdown/dropdown-menu/dropdown-menu-button";
  */
 @customElement("zeta-global-header")
 export class ZetaGlobalHeader extends Contourable(LitElement) {
+  /**
+   * Autoset the theme to dark mode for this component.
+   */
+  @property({ type: String, attribute: "data-theme", reflect: true }) theme = "dark";
+
   /** The platform name text on the header. */
   @property({ type: String }) platformName: string = "Platform Name";
 
@@ -145,7 +151,7 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
     `;
   }
 
-  static styles = [super.styles ?? [], styles];
+  static styles = [super.styles ?? [], styles, unsafeCSS(zetaTheme.default)];
 }
 
 declare global {
