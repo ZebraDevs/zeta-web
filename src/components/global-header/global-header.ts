@@ -43,7 +43,7 @@ import "../dropdown/dropdown-menu/dropdown-menu-button";
 @customElement("zeta-global-header")
 export class ZetaGlobalHeader extends Contourable(LitElement) {
   /** The platform name text on the header. */
-  @property({ type: String }) platformName: string;
+  @property({ type: String }) platformName: string = "Platform Name";
 
   /** The name to show in the header, next to the user icon. */
   @property({ type: String }) name: string = "Name";
@@ -121,14 +121,14 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
           <div id="header-info">
             <zeta-icon-button shape=${this.rounded ? "rounded" : "sharp"} flavor="subtle">hamburger_menu</zeta-icon-button>
             <img id="logo" src="../assets/zebra-logo.svg" alt="Zebra Technologies Logo" width="80px" height="32px" />
-            <div class="platform-name">${this.platformName}</div>
+            <div id="platform-name">${this.platformName}</div>
           </div>
           <!--Menu items container - Holds menu items-->
           <div id="menu-items" class=${this.hasMenuItems ? "has-items" : ""}><slot name="menu-items"></slot></div>
         </div>
         <!--Right container - Holds search bar, action items, user info and app switcher-->
         <div id="header-right">
-          ${this.searchbar ? html`<zeta-search shape=${this.rounded ? "rounded" : "sharp"}></zeta-search>` : nothing}
+          ${this.searchbar ? html`<zeta-search id="search-bar" shape=${this.rounded ? "rounded" : "sharp"}></zeta-search>` : nothing}
           <!--Action items container - Holds action items-->
           <div id="action-items" class=${this.hasActionItems ? "has-items" : ""}><slot name="action-items"></slot></div>
           <!--User info button - Holds user name, avatar and chevron icon-->
@@ -137,7 +137,9 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
             <div id="avatar">${this.initials}</div>
             <zeta-icon id="user-info-icon" .rounded=${this.rounded}>expand_more</zeta-icon>
           </zeta-button>
-          ${this.appSwitcher ? html`<zeta-icon-button shape=${this.rounded ? "rounded" : "sharp"} flavor="subtle">apps</zeta-icon-button>` : nothing}
+          ${this.appSwitcher
+            ? html`<zeta-icon-button id="app-switcher" shape=${this.rounded ? "rounded" : "sharp"} flavor="subtle">apps</zeta-icon-button>`
+            : nothing}
         </div>
       </div>
     `;

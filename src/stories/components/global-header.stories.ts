@@ -65,7 +65,7 @@ export const GlobalHeader: StoryObj = {
       <zeta-button shape=${args.rounded ? "rounded" : "sharp"} slot="menu-items" flavor="subtle">Nav Item</zeta-button>
       <zeta-button shape=${args.rounded ? "rounded" : "sharp"} slot="menu-items" flavor="subtle">Nav Item</zeta-button>
       <zeta-button shape=${args.rounded ? "rounded" : "sharp"} slot="menu-items" flavor="subtle">Nav Item</zeta-button>
-      <zeta-button shape=${args.rounded ? "rounded" : "sharp"} slot="menu-items" flavor="subtle">Nav Item</zeta-button>
+
       <!-- Action items -->
       <zeta-action-menu-button
         shape=${args.rounded ? "rounded" : "sharp"}
@@ -82,23 +82,3 @@ export const GlobalHeader: StoryObj = {
     </zeta-global-header>`;
   }
 };
-
-// export const WithMenuItems: StoryObj = {
-//   render: args =>
-//     html`<zeta-global-header menuPosition=${args.menuPosition} headline=${args.headline}>
-//       <zeta-icon-button slot="leading" flavor="text">apps</zeta-icon-button>
-//       <zeta-tab-bar slot="navigation-menu">
-//         <zeta-tab-item active>Menu Item</zeta-tab-item>
-//         <zeta-tab-item>Menu Item</zeta-tab-item>
-//         <zeta-tab-item>Menu Item</zeta-tab-item>
-//         <zeta-tab-item>Menu Item</zeta-tab-item>
-//       </zeta-tab-bar>
-//       <zeta-icon-button slot="trailing" flavor="text">star</zeta-icon-button>
-//       <zeta-icon-button slot="trailing" flavor="text">star</zeta-icon-button>
-//       <zeta-icon-button slot="trailing" flavor="text">star</zeta-icon-button>
-//       <zeta-navigation-profile slot="trailing" rounded>
-//         <zeta-avatar slot="leading" size="s"></zeta-avatar>
-//         My account
-//       </zeta-navigation-profile>
-//     </zeta-global-header>`
-// };
