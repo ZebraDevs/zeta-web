@@ -1,6 +1,7 @@
 /* All tokens defined here are used in code but not from figma */
 :root,
-:host {
+:host,
+* {
   color: var(--main-default);
   font-family: var(--type-family-regular);
 
