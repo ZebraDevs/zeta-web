@@ -1,0 +1,81 @@
+export default `<style>
+    .column {
+        display: flex;
+        flex-direction: column;
+        gap: 8px
+    }
+
+    .column.scroll .row {
+        padding: 2px !important;
+        gap: 24px !important
+    }
+</style>
+
+<div class="column scroll">
+    <!-- Round -->
+    <div class="row">
+        <zeta-icon-button shape="rounded" size="small" flavor="primary">hamburger_menu</zeta-icon-button>
+        <zeta-icon-button shape="rounded" size="small" flavor="positive">star</zeta-icon-button>
+        <zeta-icon-button shape="rounded" size="small" flavor="negative">barcode</zeta-icon-button>
+        <zeta-icon-button shape="rounded" size="small" flavor="outline">adjustments</zeta-icon-button>
+        <zeta-icon-button shape="rounded" size="small" flavor="outline-subtle">server</zeta-icon-button>
+        <zeta-icon-button shape="rounded" size="small" flavor="text">group</zeta-icon-button>
+    </div>
+    <div class="row">
+        <zeta-icon-button shape="rounded" size="medium" flavor="primary">hamburger_menu</zeta-icon-button>
+        <zeta-icon-button shape="rounded" size="medium" flavor="positive">star</zeta-icon-button>
+        <zeta-icon-button shape="rounded" size="medium" flavor="negative">barcode</zeta-icon-button>
+        <zeta-icon-button shape="rounded" size="medium" flavor="outline">adjustments</zeta-icon-button>
+        <zeta-icon-button shape="rounded" size="medium" flavor="outline-subtle">server</zeta-icon-button>
+        <zeta-icon-button shape="rounded" size="medium" flavor="text">group</zeta-icon-button>
+    </div>
+    <div class="row">
+        <zeta-icon-button shape="rounded" size="large" flavor="primary">hamburger_menu</zeta-icon-button>
+        <zeta-icon-button shape="rounded" size="large" flavor="positive">star</zeta-icon-button>
+        <zeta-icon-button shape="rounded" size="large" flavor="negative">barcode</zeta-icon-button>
+        <zeta-icon-button shape="rounded" size="large" flavor="outline">adjustments</zeta-icon-button>
+        <zeta-icon-button shape="rounded" size="large" flavor="outline-subtle">server</zeta-icon-button>
+        <zeta-icon-button shape="rounded" size="large" flavor="text">group</zeta-icon-button>
+    </div>
+    <div class="row">
+        <zeta-icon-button shape="rounded" size="large" disabled flavor="primary">hamburger_menu</zeta-icon-button>
+        <zeta-icon-button shape="rounded" size="large" disabled flavor="positive">star</zeta-icon-button>
+        <zeta-icon-button shape="rounded" size="large" disabled flavor="negative">barcode</zeta-icon-button>
+        <zeta-icon-button shape="rounded" size="large" disabled flavor="outline">adjustments</zeta-icon-button>
+        <zeta-icon-button shape="rounded" size="large" disabled flavor="outline-subtle">server</zeta-icon-button>
+        <zeta-icon-button shape="rounded" size="large" disabled flavor="text">group</zeta-icon-button>
+    </div>
+    <!-- Fully rounded -->
+    <div class="row">
+        <zeta-icon-button shape="full" size="small" flavor="primary">hamburger_menu</zeta-icon-button>
+        <zeta-icon-button shape="full" size="small" flavor="positive">star</zeta-icon-button>
+        <zeta-icon-button shape="full" size="small" flavor="negative">barcode</zeta-icon-button>
+        <zeta-icon-button shape="full" size="small" flavor="outline">adjustments</zeta-icon-button>
+        <zeta-icon-button shape="full" size="small" flavor="outline-subtle">server</zeta-icon-button>
+        <zeta-icon-button shape="full" size="small" flavor="text">group</zeta-icon-button>
+    </div>
+    <div class="row">
+        <zeta-icon-button shape="full" size="medium" flavor="primary">hamburger_menu</zeta-icon-button>
+        <zeta-icon-button shape="full" size="medium" flavor="positive">star</zeta-icon-button>
+        <zeta-icon-button shape="full" size="medium" flavor="negative">barcode</zeta-icon-button>
+        <zeta-icon-button shape="full" size="medium" flavor="outline">adjustments</zeta-icon-button>
+        <zeta-icon-button shape="full" size="medium" flavor="outline-subtle">server</zeta-icon-button>
+        <zeta-icon-button shape="full" size="medium" flavor="text">group</zeta-icon-button>
+    </div>
+    <div class="row">
+        <zeta-icon-button shape="full" size="large" flavor="primary">hamburger_menu</zeta-icon-button>
+        <zeta-icon-button shape="full" size="large" flavor="positive">star</zeta-icon-button>
+        <zeta-icon-button shape="full" size="large" flavor="negative">barcode</zeta-icon-button>
+        <zeta-icon-button shape="full" size="large" flavor="outline">adjustments</zeta-icon-button>
+        <zeta-icon-button shape="full" size="large" flavor="outline-subtle">server</zeta-icon-button>
+        <zeta-icon-button shape="full" size="large" flavor="text">group</zeta-icon-button>
+    </div>
+    <div class="row">
+        <zeta-icon-button shape="full" size="large" disabled flavor="primary">hamburger_menu</zeta-icon-button>
+        <zeta-icon-button shape="full" size="large" disabled flavor="positive">star</zeta-icon-button>
+        <zeta-icon-button shape="full" size="large" disabled flavor="negative">barcode</zeta-icon-button>
+        <zeta-icon-button shape="full" size="large" disabled flavor="outline">adjustments</zeta-icon-button>
+        <zeta-icon-button shape="full" size="large" disabled flavor="outline-subtle">server</zeta-icon-button>
+        <zeta-icon-button shape="full" size="large" disabled flavor="text">group</zeta-icon-button>
+    </div>
+</div>`;
