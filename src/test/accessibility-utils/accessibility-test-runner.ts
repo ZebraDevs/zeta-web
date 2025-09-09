@@ -1,5 +1,6 @@
 import { getContrast } from "polished";
 import { elementUpdated, expect } from "@open-wc/testing";
+import "../../index.css";
 
 interface AccessibilityTests {
   darkMode: boolean;
@@ -30,20 +31,6 @@ export const contrastTest = async (testName: string, foreground: HTMLElement | E
   const themeMode = "theme-mode";
   const contrastMode = "contrast-mode";
 
-  const waitForStylesheet = (link: HTMLLinkElement) => {
-    return new Promise<void>((resolve, reject) => {
-      const timeout = setTimeout(() => reject(new Error(`Stylesheet load timeout: ${link.href}`)), 1000); // 1 seconds timeout
-      link.onload = () => {
-        clearTimeout(timeout);
-        resolve();
-      };
-      link.onerror = () => {
-        clearTimeout(timeout);
-        reject(new Error(`Failed to load stylesheet: ${link.href}`));
-      };
-    });
-  };
-
   for (const test of tests) {
     if (document.getElementById(themeMode)) {
       document.getElementById(themeMode)!.remove();
@@ -51,21 +38,9 @@ export const contrastTest = async (testName: string, foreground: HTMLElement | E
     if (document.getElementById(contrastMode)) {
       document.getElementById(contrastMode)!.remove();
     }
-    // Apply theme and contrast modes based on the test configuration
-
-    const primitives = document.createElement("link");
-    primitives.id = themeMode;
-    primitives.rel = "stylesheet";
-    primitives.href = `src/generated/tokens/primitives${test.darkMode ? "-dark" : ""}.css?direct&cacheBust=${Date.now()}`;
-    document.head.appendChild(primitives);
-
-    const semantics = document.createElement("link");
-    semantics.id = contrastMode;
-    semantics.rel = "stylesheet";
-    semantics.href = `src/generated/tokens/semantics${test.highContrast ? "-high-contrast" : ""}.css?direct&cacheBust=${Date.now()}`;
-    document.head.appendChild(semantics);
-
-    await Promise.all([waitForStylesheet(primitives), waitForStylesheet(semantics)]); // Load stylesheets in parallel
+    const html = document.documentElement;
+    html.setAttribute("data-theme", test.darkMode ? "dark" : "light");
+    html.setAttribute("data-contrast", test.highContrast ? "more" : "less");
 
     await elementUpdated(foreground);
     await elementUpdated(background);
@@ -75,8 +50,6 @@ export const contrastTest = async (testName: string, foreground: HTMLElement | E
     const fg = fgStyles.color;
     const bg = bgStyles.backgroundColor;
     const contrast = getContrast(fg, bg);
-    await elementUpdated(foreground);
-    await elementUpdated(background);
 
     try {
       if (test.highContrast) {
@@ -91,5 +64,7 @@ export const contrastTest = async (testName: string, foreground: HTMLElement | E
       );
       throw error;
     }
+    html.removeAttribute("data-theme");
+    html.removeAttribute("data-contrast");
   }
 };

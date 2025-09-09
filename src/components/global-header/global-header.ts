@@ -117,6 +117,8 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
     this.itemCheck(this.actionItems, "action");
   }
 
+  @property({ type: String, attribute: "data-theme", reflect: true }) theme = "dark";
+
   protected override render() {
     return html`
       <!--Main container - Holds all items-->

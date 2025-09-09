@@ -66,12 +66,14 @@ import { ZetaStatusChip } from "./components/chips/status-chip/status-chip.js";
 import { ZetaStatusLabel } from "./components/badges/status-label/status-label.js";
 import { ZetaStepper } from "./components/stepper/stepper.js";
 import { ZetaStepperInput } from "./components/stepper-input/stepper-input.js";
+import { ZetaStepperItem } from "./components/stepper/stepper-item.js";
 import { ZetaSwitch } from "./components/switch/switch.js";
 import { ZetaSystemBanner } from "./components/system-banner/system-banner.js";
 import { ZetaTabBar } from "./components/tab-bar/tab-bar.js";
 import { ZetaTabItem } from "./components/tab-bar/tab-item/tab-item.js";
 import { ZetaTag } from "./components/badges/tag/tag.js";
 import { ZetaTextInput } from "./components/text-input/text-input.js";
+import { ZetaTileButton } from "./components/button/tile-button/tile-button.js";
 import { ZetaTooltip } from "./components/tooltip/tooltip.js";
 import { ZetaTopAppbar } from "./components/top-appbar/top-appbar.js";
 import { ZetaUploadItem } from "./components/upload-item/upload-item.js";
@@ -143,12 +145,14 @@ export {
   ZetaStatusLabel,
   ZetaStepper,
   ZetaStepperInput,
+  ZetaStepperItem,
   ZetaSwitch,
   ZetaSystemBanner,
   ZetaTabBar,
   ZetaTabItem,
   ZetaTag,
   ZetaTextInput,
+  ZetaTileButton,
   ZetaTooltip,
   ZetaTopAppbar,
   ZetaUploadItem
