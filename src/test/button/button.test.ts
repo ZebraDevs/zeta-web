@@ -8,7 +8,7 @@ import "@zebra-fed/zeta-icons/index.css";
 import { contrastTest } from "../accessibility-utils/accessibility-test-runner.js";
 
 const buttonText = "Button";
-const flavors = ["primary", "positive", "negative", "outline", "outline-subtle", "text"];
+const flavors = ["primary", "positive", "negative", "outline", "outline-subtle", "text", "subtle"];
 
 describe("zeta-button", () => {
   let subject: ZetaButton;

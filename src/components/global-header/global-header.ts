@@ -3,10 +3,10 @@ import { customElement, property, queryAssignedElements } from "lit/decorators.j
 import styles from "./global-header.styles.js";
 import "../icon/icon.js";
 import { Contourable } from "../../mixins/mixins.js";
-import "../button/icon-button/icon-button";
-import "../search/search";
-import "../avatar/avatar";
-import "../dropdown/dropdown-menu/dropdown-menu-button";
+import "../button/icon-button/icon-button.js";
+import "../search/search.js";
+import "../avatar/avatar.js";
+import "../dropdown/dropdown-menu/dropdown-menu-button.js";
 import * as zetaTheme from "../../index.css?raw";
 
 /**
@@ -133,7 +133,7 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
           <!--User info button - Holds user name, avatar and chevron icon-->
           <zeta-button id="user-info-button" shape=${this.rounded ? "rounded" : "sharp"} flavor="subtle">
             <span id="name">${this.name}</span>
-            <div id="avatar">${this.initials}</div>
+            <zeta-avatar id="avatar" size="xxs" .showClose=${false} .showRing=${false}>${this.initials}</zeta-avatar>
             <zeta-icon id="user-info-icon" .rounded=${this.rounded}>expand_more</zeta-icon>
           </zeta-button>
           ${this.appSwitcher

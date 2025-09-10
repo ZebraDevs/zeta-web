@@ -17,15 +17,14 @@ export default css`
   }
 
   #platform-name {
-    font: var(--label-large);
+    font: var(--title-medium);
     color: var(--main-default);
   }
 
   /*User info container - Holds name, avatar and icon*/
   #name {
     color: var(--main-default);
-    font: var(--title-small);
-    font-size: 12px;
+    font: var(--label-small);
     background-color: inherit;
   }
   #user-info-icon {
@@ -46,10 +45,10 @@ export default css`
     padding-right: var(--spacing-small);
   }
   #menu-items.has-items {
-    border-left: 1px solid var(--border-default);
+    border-left: var(--border-size-small) solid var(--border-default);
   }
   #action-items.has-items {
-    border-right: 1px solid var(--border-default);
+    border-right: var(--border-size-small) solid var(--border-default);
   }
 
   /*zeta-icon-button and zeta-button styling*/
@@ -76,8 +75,6 @@ export default css`
   #avatar {
     background-color: var(--avatar-purple);
     border-radius: 50%;
-    width: var(--spacing-2xl);
-    height: var(--spacing-2xl);
     color: var(--main-inverse);
     display: flex;
     align-items: center;

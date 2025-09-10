@@ -5,7 +5,7 @@ import "../../components/button/icon-button/icon-button.js";
 import "../../index.css";
 import { contrastTest } from "../accessibility-utils/accessibility-test-runner.js";
 
-const flavors = ["primary", "positive", "negative", "outline", "outline-subtle", "text"];
+const flavors = ["primary", "positive", "negative", "outline", "outline-subtle", "text", "subtle"];
 const iconName = "star";
 
 describe("zeta-icon-button", () => {

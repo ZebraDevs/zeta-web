@@ -16,6 +16,7 @@ export type ButtonFlavor = Exclude<Flavor, "inverse">;
  *
  * @slot - Content shown on button; typically text.
  * @part button - The button element
+ * @part icon - The icon element of the button, for buttons of type "icon".
  *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=23126-110945
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-buttons--docs
