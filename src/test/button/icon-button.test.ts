@@ -143,6 +143,7 @@ describe("zeta-icon-button", () => {
           case "text":
           case "basic":
           case "basic-negative":
+          case "subtle":
             finalFlavor = "--surface-default";
             break;
           default:
