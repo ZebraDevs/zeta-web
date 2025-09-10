@@ -80,6 +80,9 @@ export const GlobalHeader: StoryObj = {
       <zeta-icon-button shape=${args.rounded ? "rounded" : "sharp"} slot="action-items" flavor="subtle">star</zeta-icon-button>
       <zeta-icon-button shape=${args.rounded ? "rounded" : "sharp"} slot="action-items" flavor="subtle">star</zeta-icon-button>
       <zeta-icon-button shape=${args.rounded ? "rounded" : "sharp"} slot="action-items" flavor="subtle">star</zeta-icon-button>
+
+      <!--Zeta avatar-->
+      <zeta-avatar id="avatar" slot="user-avatar" size="xxs" .showClose=${false} .showRing=${false}>${args.initials}</zeta-avatar>
     </zeta-global-header>`;
   }
 };

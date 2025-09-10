@@ -73,13 +73,8 @@ export default css`
 
   /*Style avatar icon*/
   #avatar {
-    background-color: var(--avatar-purple);
-    border-radius: 50%;
-    color: var(--main-inverse);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 11px;
+    --avatar-color: var(--avatar-purple);
+    --avatar-initials-color: var(--main-inverse);
   }
 
   /*Invert logo in dark mode*/

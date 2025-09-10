@@ -21,6 +21,7 @@ import * as zetaTheme from "../../index.css?raw";
  * @property {Boolean} searchbar - Shows the search bar. Make true to show the search bar.
  * @slot menu-items - Slot for menu items on the left side of the header. Expects elements of type zeta-button or zeta-dropdown-menu-button.
  * @slot action-items - Slot for action items on the right side of the header. Expects elements of type zeta-icon-button or zeta-action-menu-button.
+ * @slot user-avatar - Slot for user avatar. Input should be of type zeta-avatar. You must set the size prop to xxs.
  *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=23144-118110
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-global-header--docs
@@ -33,8 +34,9 @@ import * as zetaTheme from "../../index.css?raw";
  *  searchbar
  *  rounded
  * >
- * <zeta-button slot="menu-items">
- * </zeta-button> <zeta-icon-button slot="action-items">
+ * <zeta-button slot="menu-items"></zeta-button>
+ * <zeta-icon-button slot="action-items"></zeta-icon-button>
+ * <zeta-avatar slot="user-avatar" size="xxs">${this.initials}</zeta-avatar>
  * </zeta-icon-button></zeta-global-header>
  */
 @customElement("zeta-global-header")
@@ -159,7 +161,7 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
           <!--Header info container - Holds logo, platform name, and menu items-->
           <div id="header-info">
             <zeta-icon-button shape=${this.rounded ? "rounded" : "sharp"} flavor="subtle">hamburger_menu</zeta-icon-button>
-            <img id="logo" src="../assets/zebra-logo.svg" alt="Zebra Technologies Logo" width="80px" height="32px" />
+            <img id="logo" src="/assets/zebra-logo.svg" alt="Zebra Technologies Logo" width="80px" height="32px" />
             <div id="platform-name">${this.platformName}</div>
           </div>
           <!--Menu items container - Holds menu items-->
@@ -173,7 +175,7 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
           <!--User info button - Holds user name, avatar and chevron icon-->
           <zeta-button id="user-info-button" shape=${this.rounded ? "rounded" : "sharp"} flavor="subtle">
             <span id="name">${this.name}</span>
-            <zeta-avatar id="avatar" size="xxs" .showClose=${false} .showRing=${false}>${this.initials}</zeta-avatar>
+            <slot id="avatar" name="user-avatar"></slot>
             <zeta-icon id="user-info-icon" .rounded=${this.rounded}>expand_more</zeta-icon>
           </zeta-button>
           ${this.appSwitcher
