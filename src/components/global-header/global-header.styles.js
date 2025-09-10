@@ -87,4 +87,15 @@ export default css`
     filter: invert(1);
     background-color: transparent;
   }
+
+  /*Hide components at different screen sizes*/
+  /*Use nth child for slotted elements and display none for others*/
+  @media (max-width: 1440px) {
+    #header-right.six-menu-action-items #search-bar {
+      display: none;
+    }
+    #header-main {
+      gap: var(--spacing-6xl);
+    }
+  }
 `;

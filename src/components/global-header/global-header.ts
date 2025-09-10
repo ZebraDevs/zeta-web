@@ -10,12 +10,9 @@ import "../dropdown/dropdown-menu/dropdown-menu-button.js";
 import * as zetaTheme from "../../index.css?raw";
 
 /**
- * TODO: UX-1513 Limiting the number of menu and action items to 6 each.
- */
-
-/**
  * A header component which can contain branding, navigation, search, and user profile actions.
- * It is recommended to enter a maximum of 6 menu items and 6 action items.
+ * Header will only allow a maximum of 6 menu items and 6 action items. Any additional items will be hidden.
+ * If you have a maximum amount (6) of menu and action items, the search bar will be hidden at a screen size of 1440px or smaller.
  *
  * @property {String} platformName - The platform name text on the header.
  * @property {String} name - The name to show in the header, next to the user icon.
@@ -102,12 +99,55 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
   }
 
   /**
+   * Limits the number of visible items in the menu-items and action-items slots to 6 each.
+   * Any items beyond the sixth will have their display style set to 'none'.
+   * This method is called during the updated lifecycle to ensure it runs after any slot content changes.
+   */
+  private limitSlotItems() {
+    const menuSlot = this.shadowRoot?.querySelector('slot[name="menu-items"]') as HTMLSlotElement | null;
+    const menuNodes = menuSlot?.assignedElements() ?? [];
+    //Apply display none to any menu items over index 5
+    menuNodes.forEach((el, index) => {
+      (el as HTMLElement).style.display = index < 6 ? "" : "none";
+    });
+
+    const actionSlot = this.shadowRoot?.querySelector('slot[name="action-items"]') as HTMLSlotElement | null;
+    const actionNodes = actionSlot?.assignedElements() ?? [];
+    //Apply display none to any action items over index 5
+    actionNodes.forEach((el, index) => {
+      (el as HTMLElement).style.display = index < 6 ? "" : "none";
+    });
+  }
+
+  /**
+   * Applies or removes the 'six-menu-action-items' class to the header-right container
+   * based on whether there are exactly 6 menu items and 6 action items.
+   * Used to start hiding components in CSS when the header gets smaller.
+   */
+  private checkMaxSlotItems() {
+    const headerRightContainer = this.shadowRoot?.getElementById("header-right");
+    if (headerRightContainer) {
+      if (this.menuItems.length === 6 && this.actionItems.length === 6) {
+        headerRightContainer.classList.add("six-menu-action-items");
+      } else {
+        headerRightContainer.classList.remove("six-menu-action-items");
+      }
+    }
+  }
+
+  /**
    * Checks the slots for items after the component has been updated.
    * This ensures that any changes to the slotted content are detected and the state is updated accordingly.
    */
   protected override updated() {
     this.itemCheck(this.menuItems, "menu");
     this.itemCheck(this.actionItems, "action");
+
+    //Check if there are 6 menu and 6 action items to apply special class
+    this.checkMaxSlotItems();
+
+    //Limiting the number of menu and action items to 6 each
+    this.limitSlotItems();
   }
 
   protected override render() {
