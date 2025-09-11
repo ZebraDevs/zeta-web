@@ -27,6 +27,9 @@ describe("zeta-global-header", () => {
           <zeta-icon-button shape=rounded slot="action-items" flavor="subtle">star</zeta-icon-button>
           <zeta-icon-button shape=rounded slot="action-items" flavor="subtle">star</zeta-icon-button>
 
+          <!-- Avatar -->
+          <zeta-avatar id="avatar" slot="user-avatar" size="xxs" .showClose=false .showRing=false>RK</zeta-avatar>
+
         </zeta-global-header>`
   ) => {
     // prettier-ignore
@@ -62,7 +65,7 @@ describe("zeta-global-header", () => {
       await expect(name?.textContent).to.equal("Name");
     });
     it("renders the initials", async () => {
-      const avatar = subject.shadowRoot?.querySelector("#avatar");
+      const avatar = subject.querySelector("#avatar");
       expect(avatar).to.exist;
       await expect(avatar?.textContent).to.equal("RK");
     });
@@ -124,7 +127,9 @@ describe("zeta-global-header", () => {
       });
     });
     it("has an avatar with the correct background color", () => {
-      const avatar = subject.shadowRoot?.querySelector("#avatar");
+      const avatarElement = subject.querySelector("#avatar");
+      expect(avatarElement).to.exist;
+      const avatar = avatarElement?.shadowRoot?.querySelector(".avatar");
       expect(avatar).to.exist;
       expect(avatar).to.have.style("background-color", "rgb(220, 193, 251)");
     });

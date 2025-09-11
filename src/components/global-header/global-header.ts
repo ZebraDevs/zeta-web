@@ -161,7 +161,7 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
           <!--Header info container - Holds logo, platform name, and menu items-->
           <div id="header-info">
             <zeta-icon-button shape=${this.rounded ? "rounded" : "sharp"} flavor="subtle">hamburger_menu</zeta-icon-button>
-            <img id="logo" src="/assets/zebra-logo.svg" alt="Zebra Technologies Logo" width="80px" height="32px" />
+            <img id="logo" src="../assets/zebra-logo.svg" alt="Zebra Technologies Logo" width="80px" height="32px" />
             <div id="platform-name">${this.platformName}</div>
           </div>
           <!--Menu items container - Holds menu items-->
