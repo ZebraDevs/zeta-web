@@ -3,7 +3,7 @@ import type { Constructor } from "./utils.js";
 import { property } from "lit/decorators.js";
 import styles from "./flavor.styles.js";
 
-export type Flavor = "primary" | "positive" | "negative" | "outline" | "outline-subtle" | "text" | "inverse";
+export type Flavor = "primary" | "positive" | "negative" | "outline" | "outline-subtle" | "text" | "inverse" | "subtle";
 
 export declare class FlavoredInterface {
   flavor: Flavor;
@@ -30,6 +30,7 @@ export const Flavored = <T extends Constructor<LitElement>>(superClass: T) => {
      * * outline-subtle - grey outline only.
      * * text - primary text only.
      * * inverse - black/white background. Note that this flavor is not supported in all components.
+     * * subtle - white background with grey text. Same action colors as 'text' flavor.
      *
      * @remarks The value `"secondary"` is no longer supported and should not be used.
      */

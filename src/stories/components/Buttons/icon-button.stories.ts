@@ -4,6 +4,7 @@ import { ZetaIconButton } from "../../../components/button/icon-button/icon-butt
 import { spreadGenerator } from "../../utils.js";
 import { html } from "lit";
 import { ShapeList } from "../../../mixins/contourable-three.js";
+
 const spread = spreadGenerator(ZetaIconButton);
 
 const meta: Meta<ZetaIconButton> = {
@@ -47,7 +48,7 @@ const meta: Meta<ZetaIconButton> = {
       }
     },
     flavor: {
-      options: ["primary", "positive", "negative", "outline", "outline-subtle", "text"],
+      options: ["primary", "positive", "negative", "outline", "outline-subtle", "text", "subtle"],
       control: {
         type: "select"
       }

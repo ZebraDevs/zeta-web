@@ -16,6 +16,7 @@ export type ButtonFlavor = Exclude<Flavor, "inverse">;
  *
  * @slot - Content shown on button; typically text.
  * @part button - The button element
+ * @part icon - The icon element of the button, for buttons of type "icon".
  *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=23126-110945
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-buttons--docs
@@ -44,6 +45,7 @@ export class ZetaButton extends Flavored(BaseButton) {
    * - `"outline"` - Primary outline only.
    * - `"outline-subtle"` - Grey outline only.
    * - `"text"` - Primary text only.
+   * - `"subtle"` - White background with grey text. Same action colors as 'text' flavor.
    *
    * @remarks The value `"secondary"` is no longer supported and should not be used.
    */
@@ -75,7 +77,7 @@ export class ZetaButton extends Flavored(BaseButton) {
         class="contourable-target"
       >
         ${this._buttonType === "icon"
-          ? html`<zeta-icon .rounded=${this.shape != "sharp"}><slot></slot></zeta-icon>`
+          ? html`<zeta-icon part="icon" .rounded=${this.shape != "sharp"}><slot></slot></zeta-icon>`
           : html`${leading}
               <slot></slot>
               ${trailing}`}

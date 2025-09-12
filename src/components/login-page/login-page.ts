@@ -32,7 +32,7 @@ export class ZetaLoginPage extends Contourable(LitElement) {
           <div class="product">${this.name}</div>
         </div>
         <zeta-button
-          ?rounded=${this.rounded}
+          shape=${this.rounded ? "rounded" : "sharp"}
           flavor="primary"
           @click=${() => {
             this.login();

@@ -191,7 +191,7 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
   protected render() {
     document.addEventListener("click", this.handleOutsideClick.bind(this));
     return html`
-      <zeta-button id="anchor" @click=${() => this.handleClick()} .size=${this.size} ?rounded=${this.rounded} .flavor=${this.flavor}
+      <zeta-button id="anchor" @click=${() => this.handleClick()} .size=${this.size} shape=${this.rounded ? "rounded" : "sharp"} .flavor=${this.flavor}
         ><slot></slot><zeta-icon .rounded=${this.rounded}>${this.icon}</zeta-icon></zeta-button
       >
       <zeta-droppable .anchor=${this.anchor} .direction=${this.direction} .matchParentWidth=${true} ?open=${this.open} ?rounded=${this.rounded}

@@ -1,6 +1,6 @@
 /* All tokens defined here are used in code but not from figma */
 
-:root [data-theme="dark"] {
+[data-theme="dark"] {
   --surface-overlay: rgba(0, 0, 0, 0.7);
 }
 

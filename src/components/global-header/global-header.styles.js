@@ -1,47 +1,96 @@
 import { css } from "lit";
 export default css`
-  :host {
-    display: block;
-    min-width: min-content;
+  :host * {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
     background-color: var(--surface-default);
-    --tab-bar-background: var(--surface-default);
+  }
+
+  #header-main {
+    justify-content: space-between;
+    padding: var(--spacing-small) var(--spacing-large);
+  }
+
+  #header-right {
+    gap: var(--spacing-large);
+  }
+
+  #platform-name {
+    font: var(--title-medium);
     color: var(--main-default);
   }
 
-  ::slotted(zeta-icon-button) {
-    --icon-button-icon-color: var(--main-default);
-    --icon-button-icon-color-disabled: var(--main-disabled);
-    --icon-button-color: var(--surface-default);
+  /*User info container - Holds name, avatar and icon*/
+  #name {
+    color: var(--main-default);
+    font: var(--label-small);
+    background-color: inherit;
+  }
+  #user-info-icon {
+    background-color: inherit;
   }
 
-  .slotted-content,
-  .leading,
-  .global-header {
-    display: flex;
-    align-items: center;
+  /*Optional nav items*/
+  ::slotted([slot="menu-items"]) {
+    padding-left: var(--spacing-small);
+  }
+  ::slotted([slot="menu-items"]) zeta-button::part(button) {
+    font: var(--label-medium);
+  }
+  ::slotted([slot="menu-items"]) zeta-icon {
+    --icon-color: var(--main-subtle);
+  }
+  ::slotted([slot="action-items"]) {
+    padding-right: var(--spacing-small);
+  }
+  #menu-items.has-items {
+    border-left: var(--border-size-small) solid var(--border-default);
+  }
+  #action-items.has-items {
+    border-right: var(--border-size-small) solid var(--border-default);
   }
 
-  .global-header {
-    gap: var(--spacing-2xl);
-    justify-content: space-between;
-    padding: var(--spacing-small) var(--spacing-2xl);
+  /*zeta-icon-button and zeta-button styling*/
+  zeta-icon-button::part(icon) {
+    --icon-color: var(--main-default);
+  }
+  ::slotted([slot="action-items"]) {
+    --icon-color: var(--main-default);
+  }
+  zeta-icon-button::part(button),
+  zeta-button::part(button) {
+    color: var(--main-subtle);
   }
 
-  .slotted-content {
-    gap: var(--spacing-small);
+  /*Spacing between elements in header-info*/
+  #logo {
+    margin: 0 var(--spacing-large) 0 var(--spacing-small);
+  }
+  #header-info {
+    margin-right: var(--spacing-large);
   }
 
-  .leading {
-    gap: var(--spacing-2xl);
+  /*Style avatar icon*/
+  #avatar {
+    --avatar-color: var(--avatar-purple);
+    --avatar-initials-color: var(--main-inverse);
   }
 
-  .header {
-    font: var(--title-large);
+  /*Invert logo in dark mode*/
+  #logo {
+    filter: invert(1);
+    background-color: transparent;
   }
 
-  .navigation-menu {
-    padding: 0 var(--spacing-small);
+  /*Hide components at different screen sizes*/
+  /*Use nth child for slotted elements and display none for others*/
+  @media (max-width: 1440px) {
+    #header-right.six-menu-action-items #search-bar {
+      display: none;
+    }
+    #header-main {
+      gap: var(--spacing-6xl);
+    }
   }
 `;
