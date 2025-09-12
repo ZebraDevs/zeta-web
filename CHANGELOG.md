@@ -1,5 +1,45 @@
 # Changelog
 
+## [0.12.0](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.11.0...zeta-web-v0.12.0) (2025-09-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* **UX-1452:** Update Global Header to new Figma designs ([#107](https://github.com/ZebraDevs/zeta-web/issues/107))
+
+### ✨ New Features
+
+* **UX-1452:** Avatar is now a slot, avatar styling uses avatar css variables, changed logo src to potentially fix non loading issue ([dcff366](https://github.com/ZebraDevs/zeta-web/commit/dcff3661731c0ec658516ff1881f78cb6e90bc93))
+* **UX-1452:** Update Global Header to new Figma designs ([#107](https://github.com/ZebraDevs/zeta-web/issues/107)) ([dcff366](https://github.com/ZebraDevs/zeta-web/commit/dcff3661731c0ec658516ff1881f78cb6e90bc93))
+* **UX-1513:** Global Header Search bar hides on smaller screens when max slot items are applied. Limits slot items to 6 children each ([dcff366](https://github.com/ZebraDevs/zeta-web/commit/dcff3661731c0ec658516ff1881f78cb6e90bc93))
+
+
+### 🪲 Bug Fixes
+
+* minor bugs with adding new flavor ([dcff366](https://github.com/ZebraDevs/zeta-web/commit/dcff3661731c0ec658516ff1881f78cb6e90bc93))
+* remove rounded props from button instances ([dcff366](https://github.com/ZebraDevs/zeta-web/commit/dcff3661731c0ec658516ff1881f78cb6e90bc93))
+* **UX-1507:** Improve Stepper implementation with improved scaling and alignment ([63235bb](https://github.com/ZebraDevs/zeta-web/commit/63235bb3591224e3cd3ec21b27daf3c7d5a58449))
+
+
+### 📈 Documentation
+
+* Add TileButton to example app ([172f9b8](https://github.com/ZebraDevs/zeta-web/commit/172f9b84d500561630379d1d0800ec06d75bd1b1))
+* **UX-1487:** Update documentation for consistency ([#102](https://github.com/ZebraDevs/zeta-web/issues/102)) ([afdb316](https://github.com/ZebraDevs/zeta-web/commit/afdb316c5f88f0bb621edbdbe05824a605f4caf0))
+
+
+### 🧪 Tests
+
+* Add global header tests ([dcff366](https://github.com/ZebraDevs/zeta-web/commit/dcff3661731c0ec658516ff1881f78cb6e90bc93))
+* Fix failing icon button test ([dcff366](https://github.com/ZebraDevs/zeta-web/commit/dcff3661731c0ec658516ff1881f78cb6e90bc93))
+
+
+### 🧹 Miscellaneous Chores
+
+* change example to use js  ([#108](https://github.com/ZebraDevs/zeta-web/issues/108)) ([172f9b8](https://github.com/ZebraDevs/zeta-web/commit/172f9b84d500561630379d1d0800ec06d75bd1b1))
+* Clean up documentation and logic, eslint fixes ([dcff366](https://github.com/ZebraDevs/zeta-web/commit/dcff3661731c0ec658516ff1881f78cb6e90bc93))
+* release 0.12.0 ([b4cdce1](https://github.com/ZebraDevs/zeta-web/commit/b4cdce18a22d285d14179896349cdb2f75bcb0c3))
+* **UX-1384:** Proposal for theme overrides ([#106](https://github.com/ZebraDevs/zeta-web/issues/106)) ([e78ca91](https://github.com/ZebraDevs/zeta-web/commit/e78ca9146c65208387b965243a11518f124f3574))
+
 ## [0.11.0](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.10.2...zeta-web-v0.11.0) (2025-08-14)
 
 
