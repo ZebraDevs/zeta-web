@@ -10,6 +10,12 @@ import "../dropdown/dropdown-menu/dropdown-menu-button.js";
 import * as zetaTheme from "../../index.css?raw";
 
 /**
+ * TODO:
+ * UX(1516) - Work with designers to make the component more dynamically responsive on a wider range of screen sizes.
+ * UX(1517) - Fix the logo SVG not loading properly in Storybook.
+ */
+
+/**
  * A header component which can contain branding, navigation, search, and user profile actions.
  * Header will only allow a maximum of 6 menu items and 6 action items. Any additional items will be hidden.
  * If you have a maximum amount (6) of menu and action items, the search bar will be hidden at a screen size of 1440px or smaller.
