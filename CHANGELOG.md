@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.12.1](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.12.0...zeta-web-v0.12.1) (2025-09-17)
+
+
+### 🪲 Bug Fixes
+
+* stepper item role attribute moved to connectedcallback ([#114](https://github.com/ZebraDevs/zeta-web/issues/114)) ([6d68a64](https://github.com/ZebraDevs/zeta-web/commit/6d68a64beee5a8bab5476a828496b14510bc2f54))
+* **UX-1494:** Fix icon alignment in small size button ([#112](https://github.com/ZebraDevs/zeta-web/issues/112)) ([fbcc3f5](https://github.com/ZebraDevs/zeta-web/commit/fbcc3f50e808d38edd644abf1e120e253a50087e))
+
 ## [0.12.0](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.11.0...zeta-web-v0.12.0) (2025-09-12)
 
 
