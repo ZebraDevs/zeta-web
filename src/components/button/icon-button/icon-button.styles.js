@@ -25,7 +25,6 @@ export default css`
 
   :host([size="small"]) > button {
     padding: var(--spacing-minimum);
-    --icon-size: var(--spacing-xl);
     width: var(--spacing-3xl);
     height: var(--spacing-3xl);
   }
