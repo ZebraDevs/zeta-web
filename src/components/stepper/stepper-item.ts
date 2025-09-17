@@ -18,7 +18,10 @@ export type StepperItemFlavor = "partial" | "success" | "active" | "default";
 @customElement("zeta-stepper-item")
 export class ZetaStepperItem extends LitElement {
   connectedCallback(): void {
-    super.connectedCallback();
+    // @ts-expect-error-next-line
+    if (super.connectedCallback) {
+      super.connectedCallback();
+    }
     this.setAttribute("role", "listitem");
   }
 
