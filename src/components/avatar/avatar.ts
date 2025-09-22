@@ -9,7 +9,7 @@ import type { AvatarSize } from "./avatar-size.js";
 /**
  * An avatar is a visual representation of a user or entity.
  *
- * @cssproperty --avatar-color - The color of the avatar
+ * @cssproperty --avatar-color - The color of the avatar. Defaults to purple. Recommended colors: --avatar-blue, --avatar-green, --avatar-yellow, --avatar-orange, --avatar-purple, --avatar-pink, --avatar-teal
  * @cssproperty --avatar-initials-color - The color of the initials
  * @slot - The content of the avatar. Should be an img element, a zeta-icon, or text.
  * @slot status - The content of the status slot. Usually used for indicators or badges.

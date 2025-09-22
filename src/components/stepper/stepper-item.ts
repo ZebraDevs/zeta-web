@@ -11,6 +11,9 @@ export type StepperItemFlavor = "partial" | "success" | "active" | "default";
  * Steps are automatically incremented starting from 1.
  *
  * @slot - Title of the label for each step.
+ * @cssproperty --stepper-title-width - Width of the title text. Defaults to 230px.
+ * @cssproperty --stepper-edit-icon-left - Left position of the edit icon. Defaults to 7px.
+ * @cssproperty --stepper-edit-icon-border - Border color of the edit icon. Defaults to rgb(250, 251, 252).
  *
  * @figma https://www.figma.com/design/1PXgz5r06wlObIrucWsOqx/Stepper?node-id=40231-1812&m=dev
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-stepper--docs
