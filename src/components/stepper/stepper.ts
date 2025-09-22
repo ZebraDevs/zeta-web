@@ -14,11 +14,11 @@ import "../button/icon-button/icon-button.js";
  *
  * @slot - Pass as many zeta-stepper-items as needed.
  * @cssproperty --stepper-container-height - Height of the overall container. Defaults to 92px.
- * @cssproperty -- stepper-bar-width - Width of the bar between each step. Defaults to 200px.
- * @cssproperty -- stepper-bar-height - Height of the bar between each step. Defaults to 3px.
- * @cssproperty -- stepper-bar-vertical-width - Width of the bar between each step in vertical variant. Defaults to 3px.
- * @cssproperty -- stepper-overflow-button-width - Width of the overflow button. Defaults to 50px.
- * @cssproperty -- stepper-overflow-button-height - Height of the overflow button. Defaults to 60px.
+ * @cssproperty --stepper-bar-width - Width of the bar between each step. Defaults to 200px.
+ * @cssproperty --stepper-bar-height - Height of the bar between each step. Defaults to 3px.
+ * @cssproperty --stepper-bar-vertical-width - Width of the bar between each step in vertical variant. Defaults to 3px.
+ * @cssproperty --stepper-overflow-button-width - Width of the overflow button. Defaults to 50px.
+ * @cssproperty --stepper-overflow-button-height - Height of the overflow button. Defaults to 60px.
  *
  * @figma https://www.figma.com/design/1PXgz5r06wlObIrucWsOqx/Stepper?node-id=40231-1812&m=dev
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-stepper--docs
