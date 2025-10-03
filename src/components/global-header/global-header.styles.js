@@ -77,10 +77,17 @@ export default css`
     --avatar-initials-color: var(--main-inverse);
   }
 
-  /*Invert logo in dark mode*/
-  #logo {
+  .logo svg {
+    background-color: transparent;
+  }
+
+  /* Invert logo in dark mode*/
+  .logo {
     filter: invert(1);
     background-color: transparent;
+    width: 80px;
+    height: 32px;
+    margin-inline: var(--spacing-large);
   }
 
   /*Hide components at different screen sizes*/

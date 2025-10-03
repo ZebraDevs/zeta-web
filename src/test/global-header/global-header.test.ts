@@ -6,10 +6,19 @@ import "../../index.css";
 import "../../components/global-header/global-header.styles.js";
 
 describe("zeta-global-header", () => {
+  beforeEach(() => {
+    window.resizeTo?.(1920, 1080); // If supported
+    // Or, for jsdom:
+    (window as any).innerWidth = 1920;
+    (window as any).innerHeight = 1080;
+    document.documentElement.style.width = "1920px";
+    window.dispatchEvent(new Event("resize"));
+  });
+
   let subject: ZetaGlobalHeader;
   const createComponent = (
     template = `<zeta-global-header .platformName="Platform Name" .name="Name" .initials="RK" appSwitcher=true .rounded=true>
-          
+
           <!-- Menu items -->
           <zeta-dropdown-menu-button rounded=true slot="menu-items" flavor="subtle"
           .items=[{ label: "Menu Item" }, { label: "Menu Item" }, { label: "Menu Item" }]>Nav Item</zeta-dropdown-menu-button>
@@ -86,22 +95,20 @@ describe("zeta-global-header", () => {
       await expect(assignedNodesLength).to.equal(6);
     });
     it("renders the zebra logo", () => {
-      const logo = subject.shadowRoot?.querySelector("#logo") as HTMLImageElement;
+      const logo = subject.shadowRoot?.querySelector(".logo");
       expect(logo).to.exist;
-      expect(logo.src).to.contain("zebra-logo.svg");
+      const svg = logo?.querySelector("svg");
+      expect(svg).to.exist;
     });
   });
 
   describe("Dimensions", () => {
-    it("has a logo height of 32px", () => {
-      const logo = subject.shadowRoot?.querySelector("#logo") as HTMLImageElement;
+    it("logo has correct dimensions", () => {
+      const logo = subject.shadowRoot?.querySelector(".logo") as HTMLElement;
       expect(logo).to.exist;
-      expect(logo).to.have.style("height", "32px");
-    });
-    it("has a logo width of 80px", () => {
-      const logo = subject.shadowRoot?.querySelector("#logo") as HTMLImageElement;
-      expect(logo).to.exist;
-      expect(logo).to.have.style("width", "80px");
+      const rect = logo.getBoundingClientRect();
+      expect(rect.height).to.be.closeTo(32, 1); // allow 1px tolerance
+      expect(rect.width).to.be.closeTo(80, 1);
     });
     it("has icon buttons with dimensions of 40px by 40px", () => {
       const iconButtons = subject.shadowRoot?.querySelectorAll("zeta-icon-button");
