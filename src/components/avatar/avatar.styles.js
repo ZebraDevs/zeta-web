@@ -60,7 +60,7 @@ export default css`
     border-radius: var(--radius-full);
     color: var(--avatar-initials-color, var(--main-inverse));
     font-weight: 500;
-    background-color: var(--avatar-color, var(--surface-avatar-purple));
+    background-color: var(--avatar-color, var(--avatar-purple));
     width: 100%;
     height: 100%;
     display: flex;
