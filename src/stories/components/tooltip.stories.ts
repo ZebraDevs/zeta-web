@@ -1,14 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaTooltip } from "../../components/tooltip/tooltip.js";
+import { html } from "lit";
 
 const meta: Meta<ZetaTooltip> = {
   component: "zeta-tooltip",
   tags: ["autodocs"],
   title: "Components/Tooltip",
   args: {
-    label: "Label",
     point: "bottom",
-    rounded: false
+    rounded: false,
+    slot: "Label"
   },
   argTypes: {
     point: {
@@ -28,4 +29,8 @@ const meta: Meta<ZetaTooltip> = {
 
 export default meta;
 
-export const Tooltip: StoryObj<ZetaTooltip> = {};
+export const Tooltip: StoryObj = {
+  render: args => {
+    return html` <zeta-tooltip .point=${args.point} .rounded=${args.rounded}> ${args.slot} </zeta-tooltip>`;
+  }
+};
