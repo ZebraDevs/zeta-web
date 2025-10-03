@@ -15,9 +15,14 @@ export default css`
     }
   }
 
-  .label {
+  slot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font: var(--label-small);
     color: var(--main-inverse);
+    --icon-color: var(--main-inverse);
+    --icon-size: var(--label-small);
   }
 
   .point {
