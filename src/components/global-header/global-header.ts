@@ -1,4 +1,6 @@
-import { html, LitElement, nothing, unsafeCSS } from "lit";
+import { html, LitElement, nothing } from "lit";
+import zebraLogoSvg from "../../../assets/zebra-logo.svg?raw";
+import { unsafeSVG } from "lit-html/directives/unsafe-svg.js";
 import { customElement, property, queryAssignedElements } from "lit/decorators.js";
 import styles from "./global-header.styles.js";
 import "../icon/icon.js";
@@ -7,7 +9,7 @@ import "../button/icon-button/icon-button.js";
 import "../search/search.js";
 import "../avatar/avatar.js";
 import "../dropdown/dropdown-menu/dropdown-menu-button.js";
-import * as zetaTheme from "../../index.css?raw";
+import "../../index.css";
 
 /**
  * TODO:
@@ -167,7 +169,7 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
           <!--Header info container - Holds logo, platform name, and menu items-->
           <div id="header-info">
             <zeta-icon-button shape=${this.rounded ? "rounded" : "sharp"} flavor="subtle">hamburger_menu</zeta-icon-button>
-            <img id="logo" src="../assets/zebra-logo.svg" alt="Zebra Technologies Logo" width="80px" height="32px" />
+            <span class="logo">${unsafeSVG(zebraLogoSvg)}</span>
             <div id="platform-name">${this.platformName}</div>
           </div>
           <!--Menu items container - Holds menu items-->
@@ -192,7 +194,7 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
     `;
   }
 
-  static styles = [super.styles ?? [], styles, unsafeCSS(zetaTheme.default)];
+  static styles = [super.styles ?? [], styles];
 }
 
 declare global {
