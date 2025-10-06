@@ -24,6 +24,8 @@ export type DialogFlavor = "default" | "info" | "success" | "warning" | "error";
  * ```
  * When shown as a modal, clicking the background barrier will close the modal by default; this can be changed with the `closeOnBarrierClicked` property.
  *
+ * When the confirm button is clicked, the dialog will close. To change this behavior, you can set the button's `type` attribute to `submit`.
+ *
  * @slot - Body of dialog; typically text.
  * @slot {zeta-button} confirm - Button used in footer. Must be of type zeta-button.
  * @slot {zeta-button} cancel - Button used in footer. Must be of type zeta-button.
