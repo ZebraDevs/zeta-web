@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.12.2](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.12.1...zeta-web-v0.12.2) (2025-10-06)
+
+
+### 🪲 Bug Fixes
+
+* Fix zebra logo svg ([#118](https://github.com/ZebraDevs/zeta-web/issues/118)) ([0992290](https://github.com/ZebraDevs/zeta-web/commit/0992290e70a0451c4f7a281402706c9ecf080010))
+* stylesheet * cauess issues ([0992290](https://github.com/ZebraDevs/zeta-web/commit/0992290e70a0451c4f7a281402706c9ecf080010))
+* **UX-1523:** Update tooltip to use slot instead of prop for content ([#117](https://github.com/ZebraDevs/zeta-web/issues/117)) ([f26e818](https://github.com/ZebraDevs/zeta-web/commit/f26e81812c3326d4f4cc1683086e7535b9566862))
+
+
+### 📈 Documentation
+
+* Add documentation for css properties ([#115](https://github.com/ZebraDevs/zeta-web/issues/115)) ([8ab6d4c](https://github.com/ZebraDevs/zeta-web/commit/8ab6d4ce2bb5a10bcab6075fe09f089efa03eaac))
+
 ## [0.12.1](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.12.0...zeta-web-v0.12.1) (2025-09-17)
 
 
