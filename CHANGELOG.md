@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.12.3](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.12.2...zeta-web-v0.12.3) (2025-10-06)
+
+
+### 📈 Documentation
+
+* Add backticks to fix tooltip comment ([#119](https://github.com/ZebraDevs/zeta-web/issues/119)) ([69b960f](https://github.com/ZebraDevs/zeta-web/commit/69b960f681cdda3a8c758a6373dea1a1718b4fe1))
+
 ## [0.12.2](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.12.1...zeta-web-v0.12.2) (2025-10-06)
 
 
