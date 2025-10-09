@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.12.4](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.12.3...zeta-web-v0.12.4) (2025-10-06)
+
+
+### 📈 Documentation
+
+* Update dialog doc ([9c47444](https://github.com/ZebraDevs/zeta-web/commit/9c47444f637a9c3a5e1018a31ea185592db2f1c0))
+
+
+### 🧹 Miscellaneous Chores
+
+* **deps:** bump tar-fs from 3.1.0 to 3.1.1 ([#121](https://github.com/ZebraDevs/zeta-web/issues/121)) ([5c8d5e0](https://github.com/ZebraDevs/zeta-web/commit/5c8d5e060d267c2da3992fc62512d09500e063a1))
+
 ## [0.12.3](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.12.2...zeta-web-v0.12.3) (2025-10-06)
 
 
