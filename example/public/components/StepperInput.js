@@ -2,7 +2,6 @@ export default `<style>
     .column {
         align-items: center;
     }
-        
     .row{
         justify-content: space-evenly;
     }
