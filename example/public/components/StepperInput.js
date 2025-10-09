@@ -2,6 +2,10 @@ export default `<style>
     .column {
         align-items: center;
     }
+        
+    .row{
+        justify-content: space-evenly;
+    }
 </style>
 
 <div class="row">
