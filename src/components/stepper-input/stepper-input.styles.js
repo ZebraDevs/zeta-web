@@ -40,7 +40,7 @@ export default css`
 
     &:has(input:disabled) {
       background-color: var(--surface-disabled);
-      border: var(--border-size-small) solid transparent;
+      box-shadow: none;
     }
   }
 

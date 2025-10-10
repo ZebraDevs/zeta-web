@@ -1,14 +1,13 @@
 export default `<style>
-    .column {
-        padding: 40px;
-        gap: 36px;
-
+    zeta-tooltip{
+        align-self: center;
+        padding: 18px;
     }
 </style>
 
-<div class="column">
-    <zeta-tooltip point="bottom" label="Label"></zeta-tooltip>
-    <zeta-tooltip point="right" label="Label"></zeta-tooltip>
-    <zeta-tooltip point="top" label="Label"></zeta-tooltip>
-    <zeta-tooltip point="left" label="Label"></zeta-tooltip>
+<div class="column full">
+    <zeta-tooltip point="bottom">Label</zeta-tooltip>
+    <zeta-tooltip point="right">Label</zeta-tooltip>
+    <zeta-tooltip point="top">Label</zeta-tooltip>
+    <zeta-tooltip point="left">Label</zeta-tooltip>
 </div>`;
