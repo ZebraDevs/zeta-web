@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.12.5](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.12.4...zeta-web-v0.12.5) (2025-10-10)
+
+
+### 📈 Documentation
+
+* Update example app ([#123](https://github.com/ZebraDevs/zeta-web/issues/123)) ([9298ac5](https://github.com/ZebraDevs/zeta-web/commit/9298ac533fa3a144bf95d09db12b7779dd7982e0))
+
+
+### ⛓️ Dependencies
+
+* Update yarn and node deps ([6258201](https://github.com/ZebraDevs/zeta-web/commit/62582019707df52dbc6aa550da7a129080833fb4))
+
 ## [0.12.4](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.12.3...zeta-web-v0.12.4) (2025-10-06)
 
 
