@@ -12,8 +12,8 @@ export default css`
   .container {
     min-width: 20px;
     min-height: 20px;
-    border: var(--border-size-medium) solid var(--checkbox-border-color) !important;
-    background-color: var(--checkbox-background) !important;
+    border: var(--border-size-medium) solid var(--checkbox-border-color);
+    background-color: var(--checkbox-background);
   }
 
   :host([disabled]) *[part="icon"] {
@@ -21,22 +21,22 @@ export default css`
   }
   :host([indeterminate]) *[part="icon"],
   :host([checked]) *[part="icon"] {
-    --icon-color: var(--checkbox-icon-color) !important;
+    --icon-color: var(--checkbox-icon-color);
   }
 
   :host([indeterminate]:not([disabled])) label,
   :host([checked]:not([disabled])) label {
     .container {
-      background-color: var(--checkbox-checked-background) !important;
+      background-color: var(--checkbox-checked-background);
     }
 
     &:hover .container {
-      background-color: var(--checkbox-hover-background) !important;
+      background-color: var(--checkbox-hover-background);
     }
   }
 
-  :host([rounded]) > .container {
-    border-radius: 2px !important;
+  :host([rounded]) .container {
+    border-radius: 2px;
   }
 
   :host([reverse]) label {
@@ -46,7 +46,7 @@ export default css`
   label {
     cursor: pointer;
     width: auto !important;
-    height: 100% !important;
+    height: 100%;
     display: flex;
   }
 `;

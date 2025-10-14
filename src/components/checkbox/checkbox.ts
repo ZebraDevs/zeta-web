@@ -46,7 +46,7 @@ export class ZetaCheckbox extends BaseToggleFormElement {
    */
   @property({ type: Boolean, reflect: true }) reverse: boolean = false;
 
-  static styles = [styles, super.styles];
+  static styles = [super.styles, styles];
 }
 
 declare global {
