@@ -1,5 +1,5 @@
 [data-contrast="less"] {
-  /* main/default
+  /* colors/main/default
 
   Default value is 'color/cool/90'
   - Light mode: #1d1e23
@@ -11,7 +11,43 @@
   */
   --main-default: var(--color-cool-90, #1d1e23);
 
-  /* main/subtle
+  /* colors/main/inverse
+
+  Default value is 'color/pure/0'
+  - Light mode: #ffffff
+  - Dark mode: #000000  
+
+  Default high contrast (AAA) value is 'color/pure/0'
+  - Light mode: #ffffff
+  - Dark mode: #000000
+  */
+  --main-inverse: var(--color-pure-0, #ffffff);
+
+  /* colors/main/inverse-subtle
+
+  Default value is 'color/cool/20'
+  - Light mode: #f3f6fa
+  - Dark mode: #1d1e23  
+
+  Default high contrast (AAA) value is 'color/pure/0'
+  - Light mode: #ffffff
+  - Dark mode: #000000
+  */
+  --main-inverse-subtle: var(--color-cool-20, #f3f6fa);
+
+  /* colors/main/light
+
+  Default value is 'color/cool/30'
+  - Light mode: #e0e3e9
+  - Dark mode: #2c2f36  
+
+  Default high contrast (AAA) value is 'color/pure/0'
+  - Light mode: #ffffff
+  - Dark mode: #000000
+  */
+  --main-light: var(--color-cool-30, #e0e3e9);
+
+  /* colors/main/subtle
 
   Default value is 'color/cool/70'
   - Light mode: #545963
@@ -23,31 +59,43 @@
   */
   --main-subtle: var(--color-cool-70, #545963);
 
-  /* main/primary
+  /* colors/main/primary-legacy
 
-  Default value is 'color/blue/60'
-  - Light mode: #0073e6
-  - Dark mode: #599fe5  
+  Default value is 'color/blue-brand/60'
+  - Light mode: #1f69ff
+  - Dark mode: #003fbd  
 
-  Default high contrast (AAA) value is 'color/blue/80'
-  - Light mode: #004d99
-  - Dark mode: #b7dbff
+  Default high contrast (AAA) value is 'color/blue-brand/40'
+  - Light mode: #5ea2ff
+  - Dark mode: #0e336f
   */
-  --main-primary: var(--color-blue-60, #0073e6);
+  --main-primary-legacy: var(--color-blue-brand-60, #1f69ff);
 
-  /* main/secondary
+  /* colors/main/primary
 
-  Default value is 'color/yellow/60'
-  - Light mode: #8d7400
-  - Dark mode: #c2a728  
+  Default value is 'color/blue-brand/60'
+  - Light mode: #1f69ff
+  - Dark mode: #003fbd  
 
-  Default high contrast (AAA) value is 'color/yellow/80'
-  - Light mode: #564908
-  - Dark mode: #f3d961
+  Default high contrast (AAA) value is 'color/blue-brand/40'
+  - Light mode: #5ea2ff
+  - Dark mode: #0e336f
   */
-  --main-secondary: var(--color-yellow-60, #8d7400);
+  --main-primary: var(--color-blue-brand-60, #1f69ff);
 
-  /* main/positive
+  /* colors/main/secondary
+
+  Default value is 'color/green-brand/50'
+  - Light mode: #a8f931
+  - Dark mode: #528406  
+
+  Default high contrast (AAA) value is 'color/green-brand/40'
+  - Light mode: #b6ff4a
+  - Dark mode: #335106
+  */
+  --main-secondary: var(--color-green-brand-50, #a8f931);
+
+  /* colors/main/positive
 
   Default value is 'color/green/60'
   - Light mode: #00864f
@@ -59,7 +107,7 @@
   */
   --main-positive: var(--color-green-60, #00864f);
 
-  /* main/warning
+  /* colors/main/warning
 
   Default value is 'color/orange/60'
   - Light mode: #ae6500
@@ -71,7 +119,7 @@
   */
   --main-warning: var(--color-orange-60, #ae6500);
 
-  /* main/negative
+  /* colors/main/negative
 
   Default value is 'color/red/60'
   - Light mode: #d70015
@@ -83,7 +131,7 @@
   */
   --main-negative: var(--color-red-60, #d70015);
 
-  /* main/info
+  /* colors/main/info
 
   Default value is 'color/purple/60'
   - Light mode: #7e0cff
@@ -95,151 +143,259 @@
   */
   --main-info: var(--color-purple-60, #7e0cff);
 
-  /* main/disabled
+  /* colors/main/disabled
 
   Default value is 'color/cool/50'
   - Light mode: #8d95a3
   - Dark mode: #7a8190  
 
-  Default high contrast (AAA) value is 'color/cool/60'
-  - Light mode: #7a8190
-  - Dark mode: #8d95a3
+  Default high contrast (AAA) value is 'color/cool/80'
+  - Light mode: #2c2f36
+  - Dark mode: #e0e3e9
   */
   --main-disabled: var(--color-cool-50, #8d95a3);
 
-  /* main/light
+  /* colors/text/default
 
-  Default value is 'color/cool/30'
-  - Light mode: #e0e3e9
-  - Dark mode: #2c2f36  
-
-  Default high contrast (AAA) value is 'color/pure/0'
-  - Light mode: #ffffff
-  - Dark mode: #151519
-  */
-  --main-light: var(--color-cool-30, #e0e3e9);
-
-  /* main/inverse
-
-  Default value is 'color/cool/20'
-  - Light mode: #f3f6fa
-  - Dark mode: #1d1e23  
-
-  Default high contrast (AAA) value is 'color/pure/0'
-  - Light mode: #ffffff
-  - Dark mode: #151519
-  */
-  --main-inverse: var(--color-cool-20, #f3f6fa);
-
-  /* border/default
-
-  Default value is 'color/cool/40'
-  - Light mode: #ced2db
-  - Dark mode: #545963  
+  Default value is 'color/cool/90'
+  - Light mode: #1d1e23
+  - Dark mode: #f3f6fa  
 
   Default high contrast (AAA) value is 'color/cool/100'
   - Light mode: #0c0d0e
   - Dark mode: #f8fbff
   */
-  --border-default: var(--color-cool-40, #ced2db);
+  --text-default: var(--color-cool-90, #1d1e23);
 
-  /* border/selected
+  /* colors/text/body
 
-  Default value is 'color/cool/90'
-  - Light mode: #1d1e23
-  - Dark mode: #f3f6fa  
-
-  Default high contrast (AAA) value is 'color/cool/90'
-  - Light mode: #1d1e23
-  - Dark mode: #f3f6fa
-  */
-  --border-selected: var(--color-cool-90, #1d1e23);
-
-  /* border/hover
-
-  Default value is 'color/cool/90'
-  - Light mode: #1d1e23
-  - Dark mode: #f3f6fa  
+  Default value is 'color/cool/70'
+  - Light mode: #545963
+  - Dark mode: #bbc1cb  
 
   Default high contrast (AAA) value is 'color/cool/90'
   - Light mode: #1d1e23
   - Dark mode: #f3f6fa
   */
-  --border-hover: var(--color-cool-90, #1d1e23);
+  --text-body: var(--color-cool-70, #545963);
 
-  /* border/subtle
+  /* colors/text/inline
 
   Default value is 'color/cool/30'
   - Light mode: #e0e3e9
   - Dark mode: #2c2f36  
 
+  Default high contrast (AAA) value is 'color/pure/0'
+  - Light mode: #ffffff
+  - Dark mode: #000000
+  */
+  --text-inline: var(--color-cool-30, #e0e3e9);
+
+  /* colors/text/disabled
+
+  Default value is 'color/cool/50'
+  - Light mode: #8d95a3
+  - Dark mode: #7a8190  
+
   Default high contrast (AAA) value is 'color/cool/80'
   - Light mode: #2c2f36
   - Dark mode: #e0e3e9
   */
-  --border-subtle: var(--color-cool-30, #e0e3e9);
+  --text-disabled: var(--color-cool-50, #8d95a3);
 
-  /* border/disabled
+  /* colors/text/link
+
+  Default value is 'color/blue-brand/80'
+  - Light mode: #003fbd
+  - Dark mode: #5ea2ff  
+
+  Default high contrast (AAA) value is 'color/blue-brand/90'
+  - Light mode: #002775
+  - Dark mode: #8dc0ff
+  */
+  --text-link: var(--color-blue-brand-80, #003fbd);
+
+  /* colors/text/inverse
+
+  Default value is 'color/pure/0'
+  - Light mode: #ffffff
+  - Dark mode: #000000  
+
+  Default high contrast (AAA) value is 'color/pure/0'
+  - Light mode: #ffffff
+  - Dark mode: #000000
+  */
+  --text-inverse: var(--color-pure-0, #ffffff);
+
+  /* colors/text/inverse-subtle
 
   Default value is 'color/cool/20'
   - Light mode: #f3f6fa
   - Dark mode: #1d1e23  
 
-  Default high contrast (AAA) value is 'color/cool/20'
-  - Light mode: #f3f6fa
-  - Dark mode: #1d1e23
+  Default high contrast (AAA) value is 'color/pure/0'
+  - Light mode: #ffffff
+  - Dark mode: #000000
   */
-  --border-disabled: var(--color-cool-20, #f3f6fa);
+  --text-inverse-subtle: var(--color-cool-20, #f3f6fa);
 
-  /* border/pure
+  /* colors/text/primary
+
+  Default value is 'color/blue-brand/60'
+  - Light mode: #1f69ff
+  - Dark mode: #003fbd  
+
+  Default high contrast (AAA) value is 'color/blue-brand/80'
+  - Light mode: #003fbd
+  - Dark mode: #5ea2ff
+  */
+  --text-primary: var(--color-blue-brand-60, #1f69ff);
+
+  /* colors/text/secondary
+
+  Default value is 'color/green-brand/50'
+  - Light mode: #a8f931
+  - Dark mode: #528406  
+
+  Default high contrast (AAA) value is 'color/green-brand/80'
+  - Light mode: #528406
+  - Dark mode: #a8f931
+  */
+  --text-secondary: var(--color-green-brand-50, #a8f931);
+
+  /* colors/text/positive
+
+  Default value is 'color/green/60'
+  - Light mode: #00864f
+  - Dark mode: #67b796  
+
+  Default high contrast (AAA) value is 'color/green/80'
+  - Light mode: #005f38
+  - Dark mode: #beefdb
+  */
+  --text-positive: var(--color-green-60, #00864f);
+
+  /* colors/text/warning
+
+  Default value is 'color/orange/60'
+  - Light mode: #ae6500
+  - Dark mode: #d78d26  
+
+  Default high contrast (AAA) value is 'color/orange/80'
+  - Light mode: #764502
+  - Dark mode: #ffd292
+  */
+  --text-warning: var(--color-orange-60, #ae6500);
+
+  /* colors/text/negative
+
+  Default value is 'color/red/60'
+  - Light mode: #d70015
+  - Dark mode: #f36170  
+
+  Default high contrast (AAA) value is 'color/red/80'
+  - Light mode: #8f000e
+  - Dark mode: #ffb3bb
+  */
+  --text-negative: var(--color-red-60, #d70015);
+
+  /* colors/text/info
+
+  Default value is 'color/purple/60'
+  - Light mode: #7e0cff
+  - Dark mode: #9b71df  
+
+  Default high contrast (AAA) value is 'color/purple/80'
+  - Light mode: #43008f
+  - Dark mode: #dcc1fb
+  */
+  --text-info: var(--color-purple-60, #7e0cff);
+
+  /* colors/icon/default
+
+  Default value is 'color/cool/90'
+  - Light mode: #1d1e23
+  - Dark mode: #f3f6fa  
+
+  Default high contrast (AAA) value is 'color/pure/1000'
+  - Light mode: #000000
+  - Dark mode: #ffffff
+  */
+  --icon-default: var(--color-cool-90, #1d1e23);
+
+  /* colors/icon/inverse
 
   Default value is 'color/pure/0'
   - Light mode: #ffffff
-  - Dark mode: #151519  
+  - Dark mode: #000000  
 
   Default high contrast (AAA) value is 'color/pure/0'
   - Light mode: #ffffff
-  - Dark mode: #151519
+  - Dark mode: #000000
   */
-  --border-pure: var(--color-pure-0, #ffffff);
+  --icon-inverse: var(--color-pure-0, #ffffff);
 
-  /* border/primary-main
+  /* colors/icon/pure
 
-  Default value is 'color/blue/60'
-  - Light mode: #0073e6
-  - Dark mode: #599fe5  
+  Default value is 'color/pure/0'
+  - Light mode: #ffffff
+  - Dark mode: #000000  
 
-  Default high contrast (AAA) value is 'color/blue/80'
-  - Light mode: #004d99
-  - Dark mode: #b7dbff
+  Default high contrast (AAA) value is 'color/pure/0'
+  - Light mode: #ffffff
+  - Dark mode: #000000
   */
-  --border-primary-main: var(--color-blue-60, #0073e6);
+  --icon-pure: var(--color-pure-0, #ffffff);
 
-  /* border/primary
+  /* colors/icon/blue
 
-  Default value is 'color/blue/50'
-  - Light mode: #599fe5
-  - Dark mode: #0073e6  
+  Default value is 'color/blue-brand/60'
+  - Light mode: #1f69ff
+  - Dark mode: #003fbd  
 
-  Default high contrast (AAA) value is 'color/blue/70'
-  - Light mode: #0061c2
-  - Dark mode: #7ebeff
+  Default high contrast (AAA) value is 'color/blue-brand/80'
+  - Light mode: #003fbd
+  - Dark mode: #5ea2ff
   */
-  --border-primary: var(--color-blue-50, #599fe5);
+  --icon-blue: var(--color-blue-brand-60, #1f69ff);
 
-  /* border/secondary
+  /* colors/icon/subtle
 
-  Default value is 'color/yellow/50'
-  - Light mode: #c2a728
-  - Dark mode: #8d7400  
+  Default value is 'color/cool/70'
+  - Light mode: #545963
+  - Dark mode: #bbc1cb  
 
-  Default high contrast (AAA) value is 'color/yellow/70'
-  - Light mode: #766200
-  - Dark mode: #dbb91c
+  Default high contrast (AAA) value is 'color/cool/90'
+  - Light mode: #1d1e23
+  - Dark mode: #f3f6fa
   */
-  --border-secondary: var(--color-yellow-50, #c2a728);
+  --icon-subtle: var(--color-cool-70, #545963);
 
-  /* border/positive
+  /* colors/icon/disabled
+
+  Default value is 'color/cool/50'
+  - Light mode: #8d95a3
+  - Dark mode: #7a8190  
+
+  Default high contrast (AAA) value is 'color/cool/80'
+  - Light mode: #2c2f36
+  - Dark mode: #e0e3e9
+  */
+  --icon-disabled: var(--color-cool-50, #8d95a3);
+
+  /* colors/icon/inverse-subtle
+
+  Default value is 'color/cool/20'
+  - Light mode: #f3f6fa
+  - Dark mode: #1d1e23  
+
+  Default high contrast (AAA) value is 'color/pure/0'
+  - Light mode: #ffffff
+  - Dark mode: #000000
+  */
+  --icon-inverse-subtle: var(--color-cool-20, #f3f6fa);
+
+  /* colors/icon/positive
 
   Default value is 'color/green/50'
   - Light mode: #67b796
@@ -249,9 +405,9 @@
   - Light mode: #006d3f
   - Dark mode: #84dab6
   */
-  --border-positive: var(--color-green-50, #67b796);
+  --icon-positive: var(--color-green-50, #67b796);
 
-  /* border/warning
+  /* colors/icon/warning
 
   Default value is 'color/orange/50'
   - Light mode: #d78d26
@@ -261,9 +417,9 @@
   - Light mode: #965802
   - Dark mode: #ffb348
   */
-  --border-warning: var(--color-orange-50, #d78d26);
+  --icon-warning: var(--color-orange-50, #d78d26);
 
-  /* border/negative
+  /* colors/icon/negative
 
   Default value is 'color/red/50'
   - Light mode: #f36170
@@ -273,45 +429,45 @@
   - Light mode: #b50012
   - Dark mode: #f98c97
   */
-  --border-negative: var(--color-red-50, #f36170);
+  --icon-negative: var(--color-red-50, #f36170);
 
-  /* border/info
+  /* colors/surface/inverse-pure
 
-  Default value is 'color/purple/50'
-  - Light mode: #9b71df
-  - Dark mode: #7e0cff  
+  Default value is 'color/pure/1000'
+  - Light mode: #000000
+  - Dark mode: #ffffff  
 
-  Default high contrast (AAA) value is 'color/purple/70'
-  - Light mode: #6400d6
-  - Dark mode: #cea4ff
+  Default high contrast (AAA) value is 'color/pure/1000'
+  - Light mode: #000000
+  - Dark mode: #ffffff
   */
-  --border-info: var(--color-purple-50, #9b71df);
+  --surface-inverse-pure: var(--color-pure-1000, #000000);
 
-  /* surface/default
+  /* colors/surface/inverse
+
+  Default value is 'color/cool/90'
+  - Light mode: #1d1e23
+  - Dark mode: #f3f6fa  
+
+  Default high contrast (AAA) value is 'color/cool/100'
+  - Light mode: #0c0d0e
+  - Dark mode: #f8fbff
+  */
+  --surface-inverse: var(--color-cool-90, #1d1e23);
+
+  /* colors/surface/default
 
   Default value is 'color/pure/0'
   - Light mode: #ffffff
-  - Dark mode: #151519  
+  - Dark mode: #000000  
 
   Default high contrast (AAA) value is 'color/pure/0'
   - Light mode: #ffffff
-  - Dark mode: #151519
+  - Dark mode: #000000
   */
   --surface-default: var(--color-pure-0, #ffffff);
 
-  /* surface/default-inverse
-
-  Default value is 'color/warm/100'
-  - Light mode: #151519
-  - Dark mode: #fafafa  
-
-  Default high contrast (AAA) value is 'color/pure/1000'
-  - Light mode: #151519
-  - Dark mode: #ffffff
-  */
-  --surface-default-inverse: var(--color-warm-100, #151519);
-
-  /* surface/hover
+  /* colors/surface/hover
 
   Default value is 'color/cool/20'
   - Light mode: #f3f6fa
@@ -323,43 +479,7 @@
   */
   --surface-hover: var(--color-cool-20, #f3f6fa);
 
-  /* surface/selected
-
-  Default value is 'color/blue/10'
-  - Light mode: #f1f8ff
-  - Dark mode: #101b25  
-
-  Default high contrast (AAA) value is 'color/blue/10'
-  - Light mode: #f1f8ff
-  - Dark mode: #101b25
-  */
-  --surface-selected: var(--color-blue-10, #f1f8ff);
-
-  /* surface/selected-hover
-
-  Default value is 'color/blue/20'
-  - Light mode: #e2f1ff
-  - Dark mode: #002c58  
-
-  Default high contrast (AAA) value is 'color/blue/20'
-  - Light mode: #e2f1ff
-  - Dark mode: #002c58
-  */
-  --surface-selected-hover: var(--color-blue-20, #e2f1ff);
-
-  /* surface/disabled
-
-  Default value is 'color/cool/30'
-  - Light mode: #e0e3e9
-  - Dark mode: #2c2f36  
-
-  Default high contrast (AAA) value is 'color/cool/30'
-  - Light mode: #e0e3e9
-  - Dark mode: #2c2f36
-  */
-  --surface-disabled: var(--color-cool-30, #e0e3e9);
-
-  /* surface/cool
+  /* colors/surface/cool
 
   Default value is 'color/cool/10'
   - Light mode: #f8fbff
@@ -371,7 +491,7 @@
   */
   --surface-cool: var(--color-cool-10, #f8fbff);
 
-  /* surface/warm
+  /* colors/surface/warm
 
   Default value is 'color/warm/10'
   - Light mode: #fafafa
@@ -383,19 +503,19 @@
   */
   --surface-warm: var(--color-warm-10, #fafafa);
 
-  /* surface/primary
+  /* colors/surface/warmer
 
-  Default value is 'color/blue/60'
-  - Light mode: #0073e6
-  - Dark mode: #599fe5  
+  Default value is 'color/brown-brand/10'
+  - Light mode: #fdf7f0
+  - Dark mode: #1a0e06  
 
-  Default high contrast (AAA) value is 'color/blue/80'
-  - Light mode: #004d99
-  - Dark mode: #b7dbff
+  Default high contrast (AAA) value is 'color/brown-brand/20'
+  - Light mode: #f6e5d3
+  - Dark mode: #2b1a0c
   */
-  --surface-primary: var(--color-blue-60, #0073e6);
+  --surface-warmer: var(--color-brown-brand-10, #fdf7f0);
 
-  /* surface/primary-subtle
+  /* colors/surface/selected
 
   Default value is 'color/blue/10'
   - Light mode: #f1f8ff
@@ -405,9 +525,105 @@
   - Light mode: #f1f8ff
   - Dark mode: #101b25
   */
-  --surface-primary-subtle: var(--color-blue-10, #f1f8ff);
+  --surface-selected: var(--color-blue-10, #f1f8ff);
 
-  /* surface/secondary
+  /* colors/surface/selected-hover
+
+  Default value is 'color/blue/20'
+  - Light mode: #e2f1ff
+  - Dark mode: #002c58  
+
+  Default high contrast (AAA) value is 'color/blue/20'
+  - Light mode: #e2f1ff
+  - Dark mode: #002c58
+  */
+  --surface-selected-hover: var(--color-blue-20, #e2f1ff);
+
+  /* colors/surface/disabled
+
+  Default value is 'color/cool/30'
+  - Light mode: #e0e3e9
+  - Dark mode: #2c2f36  
+
+  Default high contrast (AAA) value is 'color/cool/30'
+  - Light mode: #e0e3e9
+  - Dark mode: #2c2f36
+  */
+  --surface-disabled: var(--color-cool-30, #e0e3e9);
+
+  /* colors/surface/primary-legacy
+
+  Default value is 'color/blue/60'
+  - Light mode: #0073e6
+  - Dark mode: #599fe5  
+
+  Default high contrast (AAA) value is 'color/blue/80'
+  - Light mode: #004d99
+  - Dark mode: #b7dbff
+  */
+  --surface-primary-legacy: var(--color-blue-60, #0073e6);
+
+  /* colors/surface/primary-legacy-subtle
+
+  Default value is 'color/blue/10'
+  - Light mode: #f1f8ff
+  - Dark mode: #101b25  
+
+  Default high contrast (AAA) value is 'color/blue/90'
+  - Light mode: #002c58
+  - Dark mode: #e2f1ff
+  */
+  --surface-primary-legacy-subtle: var(--color-blue-10, #f1f8ff);
+
+  /* colors/surface/primary
+
+  Default value is 'color/blue-brand/60'
+  - Light mode: #1f69ff
+  - Dark mode: #003fbd  
+
+  Default high contrast (AAA) value is 'color/blue-brand/80'
+  - Light mode: #003fbd
+  - Dark mode: #5ea2ff
+  */
+  --surface-primary: var(--color-blue-brand-60, #1f69ff);
+
+  /* colors/surface/primary-subtle
+
+  Default value is 'color/blue-brand/10'
+  - Light mode: #e0f0ff
+  - Dark mode: #050a18  
+
+  Default high contrast (AAA) value is 'color/blue-brand/90'
+  - Light mode: #002775
+  - Dark mode: #8dc0ff
+  */
+  --surface-primary-subtle: var(--color-blue-brand-10, #e0f0ff);
+
+  /* colors/surface/secondary
+
+  Default value is 'color/green-brand/50'
+  - Light mode: #a8f931
+  - Dark mode: #528406  
+
+  Default high contrast (AAA) value is 'color/green-brand/80'
+  - Light mode: #528406
+  - Dark mode: #a8f931
+  */
+  --surface-secondary: var(--color-green-brand-50, #a8f931);
+
+  /* colors/surface/secondary-subtle
+
+  Default value is 'color/green-brand/10'
+  - Light mode: #e2ffb6
+  - Dark mode: #0c1405  
+
+  Default high contrast (AAA) value is 'color/green-brand/90'
+  - Light mode: #335106
+  - Dark mode: #c4ff6b
+  */
+  --surface-secondary-subtle: var(--color-green-brand-10, #e2ffb6);
+
+  /* colors/surface/secondary-legacy
 
   Default value is 'color/yellow/60'
   - Light mode: #8d7400
@@ -417,45 +633,21 @@
   - Light mode: #564908
   - Dark mode: #f3d961
   */
-  --surface-secondary: var(--color-yellow-60, #8d7400);
+  --surface-secondary-legacy: var(--color-yellow-60, #8d7400);
 
-  /* surface/secondary-subtle
+  /* colors/surface/secondary-legacy-subtle
 
   Default value is 'color/yellow/10'
   - Light mode: #fff7d4
   - Dark mode: #181400  
 
-  Default high contrast (AAA) value is 'color/yellow/10'
-  - Light mode: #fff7d4
-  - Dark mode: #181400
+  Default high contrast (AAA) value is 'color/yellow/90'
+  - Light mode: #352b00
+  - Dark mode: #ffea89
   */
-  --surface-secondary-subtle: var(--color-yellow-10, #fff7d4);
+  --surface-secondary-legacy-subtle: var(--color-yellow-10, #fff7d4);
 
-  /* surface/positive
-
-  Default value is 'color/green/60'
-  - Light mode: #00864f
-  - Dark mode: #67b796  
-
-  Default high contrast (AAA) value is 'color/green/80'
-  - Light mode: #005f38
-  - Dark mode: #beefdb
-  */
-  --surface-positive: var(--color-green-60, #00864f);
-
-  /* surface/positive-subtle
-
-  Default value is 'color/green/10'
-  - Light mode: #ecfff7
-  - Dark mode: #081711  
-
-  Default high contrast (AAA) value is 'color/green/10'
-  - Light mode: #ecfff7
-  - Dark mode: #081711
-  */
-  --surface-positive-subtle: var(--color-green-10, #ecfff7);
-
-  /* surface/warning
+  /* colors/surface/warning
 
   Default value is 'color/orange/60'
   - Light mode: #ae6500
@@ -467,43 +659,43 @@
   */
   --surface-warning: var(--color-orange-60, #ae6500);
 
-  /* surface/warning-subtle
+  /* colors/surface/warning-subtle
 
   Default value is 'color/orange/10'
   - Light mode: #fef2e2
   - Dark mode: #1e1100  
 
-  Default high contrast (AAA) value is 'color/orange/10'
-  - Light mode: #fef2e2
-  - Dark mode: #1e1100
+  Default high contrast (AAA) value is 'color/orange/90'
+  - Light mode: #402600
+  - Dark mode: #ffe7c6
   */
   --surface-warning-subtle: var(--color-orange-10, #fef2e2);
 
-  /* surface/negative
+  /* colors/surface/positive
 
-  Default value is 'color/red/60'
-  - Light mode: #d70015
-  - Dark mode: #f36170  
+  Default value is 'color/green/60'
+  - Light mode: #00864f
+  - Dark mode: #67b796  
 
-  Default high contrast (AAA) value is 'color/red/80'
-  - Light mode: #8f000e
-  - Dark mode: #ffb3bb
+  Default high contrast (AAA) value is 'color/green/80'
+  - Light mode: #005f38
+  - Dark mode: #beefdb
   */
-  --surface-negative: var(--color-red-60, #d70015);
+  --surface-positive: var(--color-green-60, #00864f);
 
-  /* surface/negative-subtle
+  /* colors/surface/positive-subtle
 
-  Default value is 'color/red/10'
-  - Light mode: #fff0f1
-  - Dark mode: #220f11  
+  Default value is 'color/green/10'
+  - Light mode: #ecfff7
+  - Dark mode: #081711  
 
-  Default high contrast (AAA) value is 'color/red/10'
-  - Light mode: #fff0f1
-  - Dark mode: #220f11
+  Default high contrast (AAA) value is 'color/green/90'
+  - Light mode: #00331e
+  - Dark mode: #d8ffef
   */
-  --surface-negative-subtle: var(--color-red-10, #fff0f1);
+  --surface-positive-subtle: var(--color-green-10, #ecfff7);
 
-  /* surface/info
+  /* colors/surface/info
 
   Default value is 'color/purple/60'
   - Light mode: #7e0cff
@@ -515,19 +707,211 @@
   */
   --surface-info: var(--color-purple-60, #7e0cff);
 
-  /* surface/info-subtle
+  /* colors/surface/info-subtle
 
   Default value is 'color/purple/10'
   - Light mode: #f7f0ff
   - Dark mode: #180f22  
 
-  Default high contrast (AAA) value is 'color/purple/10'
-  - Light mode: #f7f0ff
-  - Dark mode: #180f22
+  Default high contrast (AAA) value is 'color/purple/90'
+  - Light mode: #260052
+  - Dark mode: #efe1ff
   */
   --surface-info-subtle: var(--color-purple-10, #f7f0ff);
 
-  /* state/disabled/disabled
+  /* colors/surface/negative
+
+  Default value is 'color/red/60'
+  - Light mode: #d70015
+  - Dark mode: #f36170  
+
+  Default high contrast (AAA) value is 'color/red/80'
+  - Light mode: #8f000e
+  - Dark mode: #ffb3bb
+  */
+  --surface-negative: var(--color-red-60, #d70015);
+
+  /* colors/surface/negative-subtle
+
+  Default value is 'color/red/10'
+  - Light mode: #fff0f1
+  - Dark mode: #220f11  
+
+  Default high contrast (AAA) value is 'color/red/90'
+  - Light mode: #520008
+  - Dark mode: #ffe1e4
+  */
+  --surface-negative-subtle: var(--color-red-10, #fff0f1);
+
+  /* colors/border/default
+
+  Default value is 'color/cool/40'
+  - Light mode: #ced2db
+  - Dark mode: #545963  
+
+  Default high contrast (AAA) value is 'color/pure/0'
+  - Light mode: #ffffff
+  - Dark mode: #000000
+  */
+  --border-default: var(--color-cool-40, #ced2db);
+
+  /* colors/border/selected
+
+  Default value is 'color/cool/90'
+  - Light mode: #1d1e23
+  - Dark mode: #f3f6fa  
+
+  Default high contrast (AAA) value is 'color/cool/90'
+  - Light mode: #1d1e23
+  - Dark mode: #f3f6fa
+  */
+  --border-selected: var(--color-cool-90, #1d1e23);
+
+  /* colors/border/hover
+
+  Default value is 'color/cool/90'
+  - Light mode: #1d1e23
+  - Dark mode: #f3f6fa  
+
+  Default high contrast (AAA) value is 'color/cool/90'
+  - Light mode: #1d1e23
+  - Dark mode: #f3f6fa
+  */
+  --border-hover: var(--color-cool-90, #1d1e23);
+
+  /* colors/border/subtle
+
+  Default value is 'color/cool/30'
+  - Light mode: #e0e3e9
+  - Dark mode: #2c2f36  
+
+  Default high contrast (AAA) value is 'color/cool/80'
+  - Light mode: #2c2f36
+  - Dark mode: #e0e3e9
+  */
+  --border-subtle: var(--color-cool-30, #e0e3e9);
+
+  /* colors/border/disabled
+
+  Default value is 'color/cool/20'
+  - Light mode: #f3f6fa
+  - Dark mode: #1d1e23  
+
+  Default high contrast (AAA) value is 'color/cool/20'
+  - Light mode: #f3f6fa
+  - Dark mode: #1d1e23
+  */
+  --border-disabled: var(--color-cool-20, #f3f6fa);
+
+  /* colors/border/pure
+
+  Default value is 'color/pure/0'
+  - Light mode: #ffffff
+  - Dark mode: #000000  
+
+  Default high contrast (AAA) value is 'color/pure/0'
+  - Light mode: #ffffff
+  - Dark mode: #000000
+  */
+  --border-pure: var(--color-pure-0, #ffffff);
+
+  /* colors/border/black
+
+  Default value is 'color/cool/90'
+  - Light mode: #1d1e23
+  - Dark mode: #f3f6fa  
+
+  Default high contrast (AAA) value is 'color/pure/0'
+  - Light mode: #ffffff
+  - Dark mode: #000000
+  */
+  --border-black: var(--color-cool-90, #1d1e23);
+
+  /* colors/border/primary
+
+  Default value is 'color/blue-brand/60'
+  - Light mode: #1f69ff
+  - Dark mode: #003fbd  
+
+  Default high contrast (AAA) value is 'color/blue-brand/80'
+  - Light mode: #003fbd
+  - Dark mode: #5ea2ff
+  */
+  --border-primary: var(--color-blue-brand-60, #1f69ff);
+
+  /* colors/border/primary-legacy
+
+  Default value is 'color/blue-brand/50'
+  - Light mode: #3886ff
+  - Dark mode: #002775  
+
+  Default high contrast (AAA) value is 'color/blue-brand/70'
+  - Light mode: #0e53e5
+  - Dark mode: #1f69ff
+  */
+  --border-primary-legacy: var(--color-blue-brand-50, #3886ff);
+
+  /* colors/border/positive
+
+  Default value is 'color/green/50'
+  - Light mode: #67b796
+  - Dark mode: #00864f  
+
+  Default high contrast (AAA) value is 'color/green/70'
+  - Light mode: #006d3f
+  - Dark mode: #84dab6
+  */
+  --border-positive: var(--color-green-50, #67b796);
+
+  /* colors/border/secondary
+
+  Default value is 'color/green-brand/50'
+  - Light mode: #a8f931
+  - Dark mode: #528406  
+
+  Default high contrast (AAA) value is 'color/green-brand/70'
+  - Light mode: #6faf13
+  - Dark mode: #8fd820
+  */
+  --border-secondary: var(--color-green-brand-50, #a8f931);
+
+  /* colors/border/warning
+
+  Default value is 'color/orange/50'
+  - Light mode: #d78d26
+  - Dark mode: #ae6500  
+
+  Default high contrast (AAA) value is 'color/orange/70'
+  - Light mode: #965802
+  - Dark mode: #ffb348
+  */
+  --border-warning: var(--color-orange-50, #d78d26);
+
+  /* colors/border/negative
+
+  Default value is 'color/red/50'
+  - Light mode: #f36170
+  - Dark mode: #d70015  
+
+  Default high contrast (AAA) value is 'color/red/70'
+  - Light mode: #b50012
+  - Dark mode: #f98c97
+  */
+  --border-negative: var(--color-red-50, #f36170);
+
+  /* colors/border/info
+
+  Default value is 'color/purple/50'
+  - Light mode: #9b71df
+  - Dark mode: #7e0cff  
+
+  Default high contrast (AAA) value is 'color/purple/70'
+  - Light mode: #6400d6
+  - Dark mode: #cea4ff
+  */
+  --border-info: var(--color-purple-50, #9b71df);
+
+  /* colors/state/disabled/disabled
 
   Default value is 'color/cool/30'
   - Light mode: #e0e3e9
@@ -539,31 +923,19 @@
   */
   --state-disabled-disabled: var(--color-cool-30, #e0e3e9);
 
-  /* state/default/enabled
+  /* colors/state/default/enabled
 
   Default value is 'color/pure/0'
   - Light mode: #ffffff
-  - Dark mode: #151519  
+  - Dark mode: #000000  
 
   Default high contrast (AAA) value is 'color/pure/0'
   - Light mode: #ffffff
-  - Dark mode: #151519
+  - Dark mode: #000000
   */
   --state-default-enabled: var(--color-pure-0, #ffffff);
 
-  /* state/default/hover
-
-  Default value is 'color/cool/20'
-  - Light mode: #f3f6fa
-  - Dark mode: #1d1e23  
-
-  Default high contrast (AAA) value is 'color/cool/20'
-  - Light mode: #f3f6fa
-  - Dark mode: #1d1e23
-  */
-  --state-default-hover: var(--color-cool-20, #f3f6fa);
-
-  /* state/default/selected
+  /* colors/state/default/selected
 
   Default value is 'color/blue/10'
   - Light mode: #f1f8ff
@@ -575,43 +947,91 @@
   */
   --state-default-selected: var(--color-blue-10, #f1f8ff);
 
-  /* state/default/focus
+  /* colors/state/default/hover
+
+  Default value is 'color/cool/20'
+  - Light mode: #f3f6fa
+  - Dark mode: #1d1e23  
+
+  Default high contrast (AAA) value is 'color/cool/20'
+  - Light mode: #f3f6fa
+  - Dark mode: #1d1e23
+  */
+  --state-default-hover: var(--color-cool-20, #f3f6fa);
+
+  /* colors/state/default/focus
 
   Default value is 'color/pure/0'
   - Light mode: #ffffff
-  - Dark mode: #151519  
+  - Dark mode: #000000  
 
   Default high contrast (AAA) value is 'color/pure/0'
   - Light mode: #ffffff
-  - Dark mode: #151519
+  - Dark mode: #000000
   */
   --state-default-focus: var(--color-pure-0, #ffffff);
 
-  /* state/primary/enabled
+  /* colors/state/primary/enabled
+
+  Default value is 'color/blue-brand/60'
+  - Light mode: #1f69ff
+  - Dark mode: #003fbd  
+
+  Default high contrast (AAA) value is 'color/blue-brand/90'
+  - Light mode: #002775
+  - Dark mode: #8dc0ff
+  */
+  --state-primary-enabled: var(--color-blue-brand-60, #1f69ff);
+
+  /* colors/state/primary/selected
+
+  Default value is 'color/blue-brand/70'
+  - Light mode: #0e53e5
+  - Dark mode: #1f69ff  
+
+  Default high contrast (AAA) value is 'color/blue-brand/90'
+  - Light mode: #002775
+  - Dark mode: #8dc0ff
+  */
+  --state-primary-selected: var(--color-blue-brand-70, #0e53e5);
+
+  /* colors/state/primary/focus
+
+  Default value is 'color/blue-brand/60'
+  - Light mode: #1f69ff
+  - Dark mode: #003fbd  
+
+  Default high contrast (AAA) value is 'color/blue-brand/80'
+  - Light mode: #003fbd
+  - Dark mode: #5ea2ff
+  */
+  --state-primary-focus: var(--color-blue-brand-60, #1f69ff);
+
+  /* colors/state/primary/hover
+
+  Default value is 'color/blue-brand/50'
+  - Light mode: #3886ff
+  - Dark mode: #002775  
+
+  Default high contrast (AAA) value is 'color/blue-brand/70'
+  - Light mode: #0e53e5
+  - Dark mode: #1f69ff
+  */
+  --state-primary-hover: var(--color-blue-brand-50, #3886ff);
+
+  /* colors/state/primary-legacy/enabled
 
   Default value is 'color/blue/60'
   - Light mode: #0073e6
   - Dark mode: #599fe5  
 
-  Default high contrast (AAA) value is 'color/blue/80'
-  - Light mode: #004d99
-  - Dark mode: #b7dbff
+  Default high contrast (AAA) value is 'color/blue/90'
+  - Light mode: #002c58
+  - Dark mode: #e2f1ff
   */
-  --state-primary-enabled: var(--color-blue-60, #0073e6);
+  --state-primary-legacy-enabled: var(--color-blue-60, #0073e6);
 
-  /* state/primary/hover
-
-  Default value is 'color/blue/50'
-  - Light mode: #599fe5
-  - Dark mode: #0073e6  
-
-  Default high contrast (AAA) value is 'color/blue/70'
-  - Light mode: #0061c2
-  - Dark mode: #7ebeff
-  */
-  --state-primary-hover: var(--color-blue-50, #599fe5);
-
-  /* state/primary/selected
+  /* colors/state/primary-legacy/selected
 
   Default value is 'color/blue/70'
   - Light mode: #0061c2
@@ -621,9 +1041,9 @@
   - Light mode: #002c58
   - Dark mode: #e2f1ff
   */
-  --state-primary-selected: var(--color-blue-70, #0061c2);
+  --state-primary-legacy-selected: var(--color-blue-70, #0061c2);
 
-  /* state/primary/focus
+  /* colors/state/primary-legacy/focus
 
   Default value is 'color/blue/60'
   - Light mode: #0073e6
@@ -633,9 +1053,69 @@
   - Light mode: #004d99
   - Dark mode: #b7dbff
   */
-  --state-primary-focus: var(--color-blue-60, #0073e6);
+  --state-primary-legacy-focus: var(--color-blue-60, #0073e6);
 
-  /* state/negative/enabled
+  /* colors/state/primary-legacy/hover
+
+  Default value is 'color/blue/50'
+  - Light mode: #599fe5
+  - Dark mode: #0073e6  
+
+  Default high contrast (AAA) value is 'color/blue/70'
+  - Light mode: #0061c2
+  - Dark mode: #7ebeff
+  */
+  --state-primary-legacy-hover: var(--color-blue-50, #599fe5);
+
+  /* colors/state/secondary/enabled
+
+  Default value is 'color/green-brand/60'
+  - Light mode: #8fd820
+  - Dark mode: #6faf13  
+
+  Default high contrast (AAA) value is 'color/green-brand/90'
+  - Light mode: #335106
+  - Dark mode: #c4ff6b
+  */
+  --state-secondary-enabled: var(--color-green-brand-60, #8fd820);
+
+  /* colors/state/secondary/selected
+
+  Default value is 'color/green-brand/70'
+  - Light mode: #6faf13
+  - Dark mode: #8fd820  
+
+  Default high contrast (AAA) value is 'color/green-brand/90'
+  - Light mode: #335106
+  - Dark mode: #c4ff6b
+  */
+  --state-secondary-selected: var(--color-green-brand-70, #6faf13);
+
+  /* colors/state/secondary/focus
+
+  Default value is 'color/green-brand/60'
+  - Light mode: #8fd820
+  - Dark mode: #6faf13  
+
+  Default high contrast (AAA) value is 'color/green-brand/80'
+  - Light mode: #528406
+  - Dark mode: #a8f931
+  */
+  --state-secondary-focus: var(--color-green-brand-60, #8fd820);
+
+  /* colors/state/secondary/hover
+
+  Default value is 'color/green-brand/50'
+  - Light mode: #a8f931
+  - Dark mode: #528406  
+
+  Default high contrast (AAA) value is 'color/green-brand/70'
+  - Light mode: #6faf13
+  - Dark mode: #8fd820
+  */
+  --state-secondary-hover: var(--color-green-brand-50, #a8f931);
+
+  /* colors/state/negative/enabled
 
   Default value is 'color/red/60'
   - Light mode: #d70015
@@ -647,19 +1127,7 @@
   */
   --state-negative-enabled: var(--color-red-60, #d70015);
 
-  /* state/negative/hover
-
-  Default value is 'color/red/50'
-  - Light mode: #f36170
-  - Dark mode: #d70015  
-
-  Default high contrast (AAA) value is 'color/red/70'
-  - Light mode: #b50012
-  - Dark mode: #f98c97
-  */
-  --state-negative-hover: var(--color-red-50, #f36170);
-
-  /* state/negative/selected
+  /* colors/state/negative/selected
 
   Default value is 'color/red/70'
   - Light mode: #b50012
@@ -671,7 +1139,7 @@
   */
   --state-negative-selected: var(--color-red-70, #b50012);
 
-  /* state/negative/focus
+  /* colors/state/negative/focus
 
   Default value is 'color/red/60'
   - Light mode: #d70015
@@ -683,55 +1151,19 @@
   */
   --state-negative-focus: var(--color-red-60, #d70015);
 
-  /* state/secondary/enabled
+  /* colors/state/negative/hover
 
-  Default value is 'color/yellow/40'
-  - Light mode: #dbb91c
-  - Dark mode: #766200  
+  Default value is 'color/red/50'
+  - Light mode: #f36170
+  - Dark mode: #d70015  
 
-  Default high contrast (AAA) value is 'color/yellow/80'
-  - Light mode: #564908
-  - Dark mode: #f3d961
+  Default high contrast (AAA) value is 'color/red/70'
+  - Light mode: #b50012
+  - Dark mode: #f98c97
   */
-  --state-secondary-enabled: var(--color-yellow-40, #dbb91c);
+  --state-negative-hover: var(--color-red-50, #f36170);
 
-  /* state/secondary/hover
-
-  Default value is 'color/yellow/30'
-  - Light mode: #f3d961
-  - Dark mode: #564908  
-
-  Default high contrast (AAA) value is 'color/yellow/70'
-  - Light mode: #766200
-  - Dark mode: #dbb91c
-  */
-  --state-secondary-hover: var(--color-yellow-30, #f3d961);
-
-  /* state/secondary/selected
-
-  Default value is 'color/yellow/50'
-  - Light mode: #c2a728
-  - Dark mode: #8d7400  
-
-  Default high contrast (AAA) value is 'color/yellow/90'
-  - Light mode: #352b00
-  - Dark mode: #ffea89
-  */
-  --state-secondary-selected: var(--color-yellow-50, #c2a728);
-
-  /* state/secondary/focus
-
-  Default value is 'color/yellow/40'
-  - Light mode: #dbb91c
-  - Dark mode: #766200  
-
-  Default high contrast (AAA) value is 'color/yellow/80'
-  - Light mode: #564908
-  - Dark mode: #f3d961
-  */
-  --state-secondary-focus: var(--color-yellow-40, #dbb91c);
-
-  /* state/info/enabled
+  /* colors/state/info/enabled
 
   Default value is 'color/purple/60'
   - Light mode: #7e0cff
@@ -743,19 +1175,7 @@
   */
   --state-info-enabled: var(--color-purple-60, #7e0cff);
 
-  /* state/info/hover
-
-  Default value is 'color/purple/50'
-  - Light mode: #9b71df
-  - Dark mode: #7e0cff  
-
-  Default high contrast (AAA) value is 'color/purple/70'
-  - Light mode: #6400d6
-  - Dark mode: #cea4ff
-  */
-  --state-info-hover: var(--color-purple-50, #9b71df);
-
-  /* state/info/selected
+  /* colors/state/info/selected
 
   Default value is 'color/purple/70'
   - Light mode: #6400d6
@@ -767,7 +1187,7 @@
   */
   --state-info-selected: var(--color-purple-70, #6400d6);
 
-  /* state/info/focus
+  /* colors/state/info/focus
 
   Default value is 'color/purple/60'
   - Light mode: #7e0cff
@@ -779,55 +1199,19 @@
   */
   --state-info-focus: var(--color-purple-60, #7e0cff);
 
-  /* state/inverse/enabled
+  /* colors/state/info/hover
 
-  Default value is 'color/cool/100'
-  - Light mode: #0c0d0e
-  - Dark mode: #f8fbff  
+  Default value is 'color/purple/50'
+  - Light mode: #9b71df
+  - Dark mode: #7e0cff  
 
-  Default high contrast (AAA) value is 'color/pure/1000'
-  - Light mode: #151519
-  - Dark mode: #ffffff
+  Default high contrast (AAA) value is 'color/purple/70'
+  - Light mode: #6400d6
+  - Dark mode: #cea4ff
   */
-  --state-inverse-enabled: var(--color-cool-100, #0c0d0e);
+  --state-info-hover: var(--color-purple-50, #9b71df);
 
-  /* state/inverse/hover
-
-  Default value is 'color/cool/90'
-  - Light mode: #1d1e23
-  - Dark mode: #f3f6fa  
-
-  Default high contrast (AAA) value is 'color/cool/90'
-  - Light mode: #1d1e23
-  - Dark mode: #f3f6fa
-  */
-  --state-inverse-hover: var(--color-cool-90, #1d1e23);
-
-  /* state/inverse/selected
-
-  Default value is 'color/cool/100'
-  - Light mode: #0c0d0e
-  - Dark mode: #f8fbff  
-
-  Default high contrast (AAA) value is 'color/pure/1000'
-  - Light mode: #151519
-  - Dark mode: #ffffff
-  */
-  --state-inverse-selected: var(--color-cool-100, #0c0d0e);
-
-  /* state/inverse/focus
-
-  Default value is 'color/cool/100'
-  - Light mode: #0c0d0e
-  - Dark mode: #f8fbff  
-
-  Default high contrast (AAA) value is 'color/pure/1000'
-  - Light mode: #151519
-  - Dark mode: #ffffff
-  */
-  --state-inverse-focus: var(--color-cool-100, #0c0d0e);
-
-  /* state/positive/enabled
+  /* colors/state/positive/enabled
 
   Default value is 'color/green/60'
   - Light mode: #00864f
@@ -839,19 +1223,7 @@
   */
   --state-positive-enabled: var(--color-green-60, #00864f);
 
-  /* state/positive/hover
-
-  Default value is 'color/green/50'
-  - Light mode: #67b796
-  - Dark mode: #00864f  
-
-  Default high contrast (AAA) value is 'color/green/70'
-  - Light mode: #006d3f
-  - Dark mode: #84dab6
-  */
-  --state-positive-hover: var(--color-green-50, #67b796);
-
-  /* state/positive/selected
+  /* colors/state/positive/selected
 
   Default value is 'color/green/70'
   - Light mode: #006d3f
@@ -863,7 +1235,7 @@
   */
   --state-positive-selected: var(--color-green-70, #006d3f);
 
-  /* state/positive/focus
+  /* colors/state/positive/focus
 
   Default value is 'color/green/60'
   - Light mode: #00864f
@@ -875,7 +1247,67 @@
   */
   --state-positive-focus: var(--color-green-60, #00864f);
 
-  /* chart/1/primary
+  /* colors/state/positive/hover
+
+  Default value is 'color/green/50'
+  - Light mode: #67b796
+  - Dark mode: #00864f  
+
+  Default high contrast (AAA) value is 'color/green/70'
+  - Light mode: #006d3f
+  - Dark mode: #84dab6
+  */
+  --state-positive-hover: var(--color-green-50, #67b796);
+
+  /* colors/state/inverse/enabled
+
+  Default value is 'color/cool/100'
+  - Light mode: #0c0d0e
+  - Dark mode: #f8fbff  
+
+  Default high contrast (AAA) value is 'color/pure/1000'
+  - Light mode: #000000
+  - Dark mode: #ffffff
+  */
+  --state-inverse-enabled: var(--color-cool-100, #0c0d0e);
+
+  /* colors/state/inverse/hover
+
+  Default value is 'color/cool/90'
+  - Light mode: #1d1e23
+  - Dark mode: #f3f6fa  
+
+  Default high contrast (AAA) value is 'color/cool/90'
+  - Light mode: #1d1e23
+  - Dark mode: #f3f6fa
+  */
+  --state-inverse-hover: var(--color-cool-90, #1d1e23);
+
+  /* colors/state/inverse/selected
+
+  Default value is 'color/cool/100'
+  - Light mode: #0c0d0e
+  - Dark mode: #f8fbff  
+
+  Default high contrast (AAA) value is 'color/pure/1000'
+  - Light mode: #000000
+  - Dark mode: #ffffff
+  */
+  --state-inverse-selected: var(--color-cool-100, #0c0d0e);
+
+  /* colors/state/inverse/focus
+
+  Default value is 'color/cool/100'
+  - Light mode: #0c0d0e
+  - Dark mode: #f8fbff  
+
+  Default high contrast (AAA) value is 'color/pure/1000'
+  - Light mode: #000000
+  - Dark mode: #ffffff
+  */
+  --state-inverse-focus: var(--color-cool-100, #0c0d0e);
+
+  /* colors/chart/1 - blue/primary
 
   Default value is 'color/blue/60'
   - Light mode: #0073e6
@@ -887,7 +1319,7 @@
   */
   --chart-1-primary: var(--color-blue-60, #0073e6);
 
-  /* chart/1/secondary
+  /* colors/chart/1 - blue/secondary
 
   Default value is 'color/blue/40'
   - Light mode: #7ebeff
@@ -899,31 +1331,7 @@
   */
   --chart-1-secondary: var(--color-blue-40, #7ebeff);
 
-  /* chart/2/primary
-
-  Default value is 'color/green/60'
-  - Light mode: #00864f
-  - Dark mode: #67b796  
-
-  Default high contrast (AAA) value is 'color/green/90'
-  - Light mode: #00331e
-  - Dark mode: #d8ffef
-  */
-  --chart-2-primary: var(--color-green-60, #00864f);
-
-  /* chart/2/secondary
-
-  Default value is 'color/green/40'
-  - Light mode: #84dab6
-  - Dark mode: #006d3f  
-
-  Default high contrast (AAA) value is 'color/green/70'
-  - Light mode: #006d3f
-  - Dark mode: #84dab6
-  */
-  --chart-2-secondary: var(--color-green-40, #84dab6);
-
-  /* chart/3/primary
+  /* colors/chart/2 - orange/primary
 
   Default value is 'color/orange/50'
   - Light mode: #d78d26
@@ -933,9 +1341,9 @@
   - Light mode: #402600
   - Dark mode: #ffe7c6
   */
-  --chart-3-primary: var(--color-orange-50, #d78d26);
+  --chart-2-primary: var(--color-orange-50, #d78d26);
 
-  /* chart/3/secondary
+  /* colors/chart/2 - orange/secondary
 
   Default value is 'color/orange/30'
   - Light mode: #ffd292
@@ -945,9 +1353,33 @@
   - Light mode: #965802
   - Dark mode: #ffb348
   */
-  --chart-3-secondary: var(--color-orange-30, #ffd292);
+  --chart-2-secondary: var(--color-orange-30, #ffd292);
 
-  /* chart/4/primary
+  /* colors/chart/3 - green/primary
+
+  Default value is 'color/green/60'
+  - Light mode: #00864f
+  - Dark mode: #67b796  
+
+  Default high contrast (AAA) value is 'color/green/90'
+  - Light mode: #00331e
+  - Dark mode: #d8ffef
+  */
+  --chart-3-primary: var(--color-green-60, #00864f);
+
+  /* colors/chart/3 - green/secondary
+
+  Default value is 'color/green/40'
+  - Light mode: #84dab6
+  - Dark mode: #006d3f  
+
+  Default high contrast (AAA) value is 'color/green/70'
+  - Light mode: #006d3f
+  - Dark mode: #84dab6
+  */
+  --chart-3-secondary: var(--color-green-40, #84dab6);
+
+  /* colors/chart/4 - red/primary
 
   Default value is 'color/red/60'
   - Light mode: #d70015
@@ -959,7 +1391,7 @@
   */
   --chart-4-primary: var(--color-red-60, #d70015);
 
-  /* chart/4/secondary
+  /* colors/chart/4 - red/secondary
 
   Default value is 'color/red/40'
   - Light mode: #f98c97
@@ -971,7 +1403,7 @@
   */
   --chart-4-secondary: var(--color-red-40, #f98c97);
 
-  /* chart/5/primary
+  /* colors/chart/5 - purple/primary
 
   Default value is 'color/purple/60'
   - Light mode: #7e0cff
@@ -983,7 +1415,7 @@
   */
   --chart-5-primary: var(--color-purple-60, #7e0cff);
 
-  /* chart/5/secondary
+  /* colors/chart/5 - purple/secondary
 
   Default value is 'color/purple/40'
   - Light mode: #cea4ff
@@ -995,7 +1427,7 @@
   */
   --chart-5-secondary: var(--color-purple-40, #cea4ff);
 
-  /* chart/6/primary
+  /* colors/chart/6 - teal/primary
 
   Default value is 'color/teal/60'
   - Light mode: #1a8080
@@ -1007,7 +1439,7 @@
   */
   --chart-6-primary: var(--color-teal-60, #1a8080);
 
-  /* chart/6/secondary
+  /* colors/chart/6 - teal/secondary
 
   Default value is 'color/teal/40'
   - Light mode: #91e1e1
@@ -1019,7 +1451,7 @@
   */
   --chart-6-secondary: var(--color-teal-40, #91e1e1);
 
-  /* chart/7/primary
+  /* colors/chart/7 - pink/primary
 
   Default value is 'color/pink/60'
   - Light mode: #d30589
@@ -1031,7 +1463,7 @@
   */
   --chart-7-primary: var(--color-pink-60, #d30589);
 
-  /* chart/7/secondary
+  /* colors/chart/7 - pink/secondary
 
   Default value is 'color/pink/40'
   - Light mode: #ff94d8
@@ -1043,67 +1475,211 @@
   */
   --chart-7-secondary: var(--color-pink-40, #ff94d8);
 
-  /* chart/8/primary
+  /* colors/chart/8 - gray/primary
 
-  Default value is 'color/cool/90'
-  - Light mode: #1d1e23
-  - Dark mode: #f3f6fa  
+  Default value is 'color/black-brand/60'
+  - Light mode: #757575
+  - Dark mode: #757575  
 
-  Default high contrast (AAA) value is 'color/cool/90'
-  - Light mode: #1d1e23
-  - Dark mode: #f3f6fa
+  Default high contrast (AAA) value is 'color/black-brand/90'
+  - Light mode: #303030
+  - Dark mode: #e6e6e6
   */
-  --chart-8-primary: var(--color-cool-90, #1d1e23);
+  --chart-8-primary: var(--color-black-brand-60, #757575);
 
-  /* chart/8/secondary
+  /* colors/chart/8 - gray/secondary
 
-  Default value is 'color/cool/70'
-  - Light mode: #545963
-  - Dark mode: #bbc1cb  
+  Default value is 'color/black-brand/40'
+  - Light mode: #9e9e9e
+  - Dark mode: #3d3d3d  
 
-  Default high contrast (AAA) value is 'color/cool/70'
-  - Light mode: #545963
-  - Dark mode: #bbc1cb
+  Default high contrast (AAA) value is 'color/black-brand/70'
+  - Light mode: #666666
+  - Dark mode: #9e9e9e
   */
-  --chart-8-secondary: var(--color-cool-70, #545963);
+  --chart-8-secondary: var(--color-black-brand-40, #9e9e9e);
 
-  /* avatar/blue
+  /* colors/chart/9 - brand green/primary
 
-  Default value is 'color/blue/80'
-  - Light mode: #004d99
-  - Dark mode: #b7dbff  
+  Default value is 'color/green-brand/60'
+  - Light mode: #8fd820
+  - Dark mode: #6faf13  
+
+  Default high contrast (AAA) value is 'color/green-brand/90'
+  - Light mode: #335106
+  - Dark mode: #c4ff6b
+  */
+  --chart-9-primary: var(--color-green-brand-60, #8fd820);
+
+  /* colors/chart/9 - brand green/secondary
+
+  Default value is 'color/green-brand/40'
+  - Light mode: #b6ff4a
+  - Dark mode: #335106  
+
+  Default high contrast (AAA) value is 'color/green-brand/70'
+  - Light mode: #6faf13
+  - Dark mode: #8fd820
+  */
+  --chart-9-secondary: var(--color-green-brand-40, #b6ff4a);
+
+  /* colors/chart/10 - magenta/primary
+
+  Default value is 'color/magenta-brand/60'
+  - Light mode: #ff40fc
+  - Dark mode: #c200bf  
+
+  Default high contrast (AAA) value is 'color/magenta-brand/90'
+  - Light mode: #8a0087
+  - Dark mode: #ff9ffd
+  */
+  --chart-10-primary: var(--color-magenta-brand-60, #ff40fc);
+
+  /* colors/chart/10 - magenta/secondary
+
+  Default value is 'color/magenta-brand/40'
+  - Light mode: #ff73fc
+  - Dark mode: #4b0049  
+
+  Default high contrast (AAA) value is 'color/magenta-brand/70'
+  - Light mode: #e600e0
+  - Dark mode: #ff40fc
+  */
+  --chart-10-secondary: var(--color-magenta-brand-40, #ff73fc);
+
+  /* colors/chart/11 - band orange/primary
+
+  Default value is 'color/orange-brand/60'
+  - Light mode: #ff4d00
+  - Dark mode: #d13f00  
+
+  Default high contrast (AAA) value is 'color/orange-brand/90'
+  - Light mode: #8a2900
+  - Dark mode: #ffbfa6
+  */
+  --chart-11-primary: var(--color-orange-brand-60, #ff4d00);
+
+  /* colors/chart/11 - band orange/secondary
+
+  Default value is 'color/orange-brand/40'
+  - Light mode: #ff9f75
+  - Dark mode: #66220d  
+
+  Default high contrast (AAA) value is 'color/orange-brand/70'
+  - Light mode: #f34300
+  - Dark mode: #ff4d00
+  */
+  --chart-11-secondary: var(--color-orange-brand-40, #ff9f75);
+
+  /* colors/chart/12 - brand blue/primary
+
+  Default value is 'color/blue-brand/60'
+  - Light mode: #1f69ff
+  - Dark mode: #003fbd  
+
+  Default high contrast (AAA) value is 'color/blue-brand/90'
+  - Light mode: #002775
+  - Dark mode: #8dc0ff
+  */
+  --chart-12-primary: var(--color-blue-brand-60, #1f69ff);
+
+  /* colors/chart/12 - brand blue/secondary
+
+  Default value is 'color/blue-brand/40'
+  - Light mode: #5ea2ff
+  - Dark mode: #0e336f  
+
+  Default high contrast (AAA) value is 'color/blue-brand/70'
+  - Light mode: #0e53e5
+  - Dark mode: #1f69ff
+  */
+  --chart-12-secondary: var(--color-blue-brand-40, #5ea2ff);
+
+  /* colors/avatar/primary-legacy
+
+  Default value is 'color/blue/60'
+  - Light mode: #0073e6
+  - Dark mode: #599fe5  
 
   Default high contrast (AAA) value is 'color/blue/80'
   - Light mode: #004d99
   - Dark mode: #b7dbff
   */
-  --avatar-blue: var(--color-blue-80, #004d99);
+  --avatar-primary-legacy: var(--color-blue-60, #0073e6);
 
-  /* avatar/green
+  /* colors/avatar/blue
+
+  Default value is 'color/blue-brand/60'
+  - Light mode: #1f69ff
+  - Dark mode: #003fbd  
+
+  Default high contrast (AAA) value is 'color/blue-brand/80'
+  - Light mode: #003fbd
+  - Dark mode: #5ea2ff
+  */
+  --avatar-blue: var(--color-blue-brand-60, #1f69ff);
+
+  /* colors/avatar/teal
+
+  Default value is 'color/teal/60'
+  - Light mode: #1a8080
+  - Dark mode: #65c4c4  
+
+  Default high contrast (AAA) value is 'color/teal/80'
+  - Light mode: #005b5b
+  - Dark mode: #bcfbfb
+  */
+  --avatar-teal: var(--color-teal-60, #1a8080);
+
+  /* colors/avatar/green
 
   Default value is 'color/green/60'
   - Light mode: #00864f
   - Dark mode: #67b796  
 
-  Default high contrast (AAA) value is 'color/green/60'
-  - Light mode: #00864f
-  - Dark mode: #67b796
+  Default high contrast (AAA) value is 'color/green/80'
+  - Light mode: #005f38
+  - Dark mode: #beefdb
   */
   --avatar-green: var(--color-green-60, #00864f);
 
-  /* avatar/orange
+  /* colors/avatar/secondary
+
+  Default value is 'color/green-brand/60'
+  - Light mode: #8fd820
+  - Dark mode: #6faf13  
+
+  Default high contrast (AAA) value is 'color/green-brand/80'
+  - Light mode: #528406
+  - Dark mode: #a8f931
+  */
+  --avatar-secondary: var(--color-green-brand-60, #8fd820);
+
+  /* colors/avatar/yellow
+
+  Default value is 'color/yellow/50'
+  - Light mode: #c2a728
+  - Dark mode: #8d7400  
+
+  Default high contrast (AAA) value is 'color/yellow/80'
+  - Light mode: #564908
+  - Dark mode: #f3d961
+  */
+  --avatar-yellow: var(--color-yellow-50, #c2a728);
+
+  /* colors/avatar/orange
 
   Default value is 'color/orange/50'
   - Light mode: #d78d26
   - Dark mode: #ae6500  
 
-  Default high contrast (AAA) value is 'color/orange/50'
-  - Light mode: #d78d26
-  - Dark mode: #ae6500
+  Default high contrast (AAA) value is 'color/orange/80'
+  - Light mode: #764502
+  - Dark mode: #ffd292
   */
   --avatar-orange: var(--color-orange-50, #d78d26);
 
-  /* avatar/pink
+  /* colors/avatar/pink
 
   Default value is 'color/pink/80'
   - Light mode: #840054
@@ -1115,152 +1691,107 @@
   */
   --avatar-pink: var(--color-pink-80, #840054);
 
-  /* avatar/purple
+  /* colors/avatar/purple
 
-  Default value is 'color/purple/80'
-  - Light mode: #43008f
-  - Dark mode: #dcc1fb  
+  Default value is 'color/purple/60'
+  - Light mode: #7e0cff
+  - Dark mode: #9b71df  
 
   Default high contrast (AAA) value is 'color/purple/80'
   - Light mode: #43008f
   - Dark mode: #dcc1fb
   */
-  --avatar-purple: var(--color-purple-80, #43008f);
-
-  /* avatar/teal
-
-  Default value is 'color/teal/80'
-  - Light mode: #005b5b
-  - Dark mode: #bcfbfb  
-
-  Default high contrast (AAA) value is 'color/teal/80'
-  - Light mode: #005b5b
-  - Dark mode: #bcfbfb
-  */
-  --avatar-teal: var(--color-teal-80, #005b5b);
-
-  /* avatar/yellow
-
-  Default value is 'color/yellow/50'
-  - Light mode: #c2a728
-  - Dark mode: #8d7400  
-
-  Default high contrast (AAA) value is 'color/yellow/50'
-  - Light mode: #c2a728
-  - Dark mode: #8d7400
-  */
-  --avatar-yellow: var(--color-yellow-50, #c2a728);
+  --avatar-purple: var(--color-purple-60, #7e0cff);
 
   /* spacing/None
   Default value is 0px
   */
   --spacing-none: var(--spacing-0, 0px);
-
   /* spacing/Minimum
   Default value is 4px
   */
   --spacing-minimum: var(--spacing-1, 4px);
-
   /* spacing/Small
   Default value is 8px
   */
   --spacing-small: var(--spacing-2, 8px);
-
   /* spacing/Medium
   Default value is 12px
   */
   --spacing-medium: var(--spacing-3, 12px);
-
   /* spacing/Large
   Default value is 16px
   */
   --spacing-large: var(--spacing-4, 16px);
-
   /* spacing/Xl
   Default value is 20px
   */
   --spacing-xl: var(--spacing-5, 20px);
-
   /* spacing/2xl
   Default value is 24px
   */
   --spacing-2xl: var(--spacing-6, 24px);
-
   /* spacing/3xl
   Default value is 28px
   */
   --spacing-3xl: var(--spacing-7, 28px);
-
   /* spacing/4xl
   Default value is 32px
   */
   --spacing-4xl: var(--spacing-8, 32px);
-
   /* spacing/5xl
   Default value is 36px
   */
   --spacing-5xl: var(--spacing-9, 36px);
-
   /* spacing/6xl
   Default value is 40px
   */
   --spacing-6xl: var(--spacing-10, 40px);
-
   /* spacing/7xl
   Default value is 44px
   */
   --spacing-7xl: var(--spacing-11, 44px);
-
   /* spacing/8xl
   Default value is 48px
   */
   --spacing-8xl: var(--spacing-12, 48px);
-
   /* spacing/9xl
   Default value is 64px
   */
   --spacing-9xl: var(--spacing-13, 64px);
-
   /* spacing/10xl
   Default value is 80px
   */
   --spacing-10xl: var(--spacing-14, 80px);
-
   /* spacing/11xl
   Default value is 96px
   */
   --spacing-11xl: var(--spacing-15, 96px);
-
   /* radius/None
   Default value is 0px
   Default high contrast value (AAA) is 0px
   */
   --radius-none: var(--radius-0, 0px);
-
   /* radius/Minimal
   Default value is 4px
   Default high contrast value (AAA) is 0px
   */
   --radius-minimal: var(--radius-s, 4px);
-
   /* radius/Rounded
   Default value is 8px
   Default high contrast value (AAA) is 0px
   */
   --radius-rounded: var(--radius-m, 8px);
-
   /* radius/Large
   Default value is 16px
   Default high contrast value (AAA) is 0px
   */
   --radius-large: var(--radius-l, 16px);
-
   /* radius/Xl
   Default value is 24px
   Default high contrast value (AAA) is 0px
   */
   --radius-xl: var(--radius-xl, 24px);
-
   /* radius/Full
   Default value is 360px
   Default high contrast value (AAA) is 0px
