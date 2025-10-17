@@ -143,12 +143,12 @@ export class ZetaDroppable extends Contourable(LitElement) {
   };
 
   connectedCallback() {
-    super.connectedCallback();
+    super.connectedCallback?.();
     window.addEventListener("resize", this.resizeHandler);
   }
 
   disconnectedCallback() {
-    super.disconnectedCallback();
+    super.disconnectedCallback?.();
     window.removeEventListener("resize", this.resizeHandler);
   }
 
