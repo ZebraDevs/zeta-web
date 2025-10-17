@@ -122,6 +122,36 @@ export class ZetaDroppable extends Contourable(LitElement) {
     }
   };
 
+  //Common use case is to run this if matchParentWidth is true
+  //Adjusts the width of the droppable to match the width of the anchor element
+  private matchParentWidthHandler = () => {
+    const style = window.getComputedStyle(this);
+    const anchorPosition = this.getAnchorPosition();
+    this.style.width = `calc(${anchorPosition.width}px - ${style.paddingLeft} - ${style.paddingRight})`;
+  };
+
+  //Handles window resize events
+  private resizeHandler = () => {
+    //If there is an open droppable and an anchor, recalculate its position
+    if (this.open && this.anchor) {
+      this.setDroppablePosition();
+      //Will also automatically adjust width of droppable to parent on resize if matchParentWidth is true
+      if (this.matchParentWidth) {
+        this.matchParentWidthHandler();
+      }
+    }
+  };
+
+  connectedCallback() {
+    super.connectedCallback?.();
+    window.addEventListener("resize", this.resizeHandler);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback?.();
+    window.removeEventListener("resize", this.resizeHandler);
+  }
+
   protected updated() {
     if (this.open) {
       this.setDroppablePosition();
@@ -133,8 +163,7 @@ export class ZetaDroppable extends Contourable(LitElement) {
       this.style.top = `${anchorPosition.top + anchorPosition.height}px`;
     }
     if (this.matchParentWidth) {
-      const style = window.getComputedStyle(this);
-      this.style.width = `calc(${anchorPosition.width}px - ${style.paddingLeft} - ${style.paddingRight})`;
+      this.matchParentWidthHandler();
     }
   }
 
