@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.12.7](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.12.6...zeta-web-v0.12.7) (2025-10-17)
+
+
+### 🪲 Bug Fixes
+
+* **UX-1528:** Make droppable position update with screen resize ([#128](https://github.com/ZebraDevs/zeta-web/issues/128)) ([4ea41ca](https://github.com/ZebraDevs/zeta-web/commit/4ea41ca0266c50b6b2cfb88343daa31719e0157a))
+
 ## [0.12.6](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.12.5...zeta-web-v0.12.6) (2025-10-15)
 
 
