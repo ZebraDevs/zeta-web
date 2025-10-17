@@ -15,6 +15,12 @@ export type CheckboxType = Extract<InputType, "checkbox">;
  * @event {Event} change - Fired when the checkbox value changes
  * @event {InputEvent} input - Fired when the checkbox value changes
  *
+ * @cssproperty --checkbox-background - Background colour of the checkbox in its default/unchecked state
+ * @cssproperty --checkbox-checked-background - Background colour when the checkbox is checked or indeterminate
+ * @cssproperty --checkbox-hover-background - Background colour when hovering over a checked/indeterminate checkbox
+ * @cssproperty --checkbox-border-color - Border colour of the checkbox container
+ * @cssproperty --checkbox-icon-color - Colour of the checkmark or indeterminate icon inside the checkbox
+ *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21510-54003
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-checkbox--docs
  */
@@ -40,7 +46,7 @@ export class ZetaCheckbox extends BaseToggleFormElement {
    */
   @property({ type: Boolean, reflect: true }) reverse: boolean = false;
 
-  static styles = [styles, super.styles];
+  static styles = [super.styles, styles];
 }
 
 declare global {

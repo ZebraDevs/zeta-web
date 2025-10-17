@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.12.6](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.12.5...zeta-web-v0.12.6) (2025-10-15)
+
+
+### ⛓️ Dependencies
+
+* **automated:** Update zeta-icons to v1.3.0 ([939c6db](https://github.com/ZebraDevs/zeta-web/commit/939c6dbbf3fc1354b756bbe04900a6d0e0a21354))
+* **automated:** Update zeta-icons to v1.4.0 ([8f4c2ba](https://github.com/ZebraDevs/zeta-web/commit/8f4c2bacdb0192e3f3bb421b3ce5709a5892146e))
+
+
+### 🧹 Miscellaneous Chores
+
+* **UX-1527:** Add CSS variables to allow external styling, and update ([7670542](https://github.com/ZebraDevs/zeta-web/commit/76705426bbdd042c5b4960a04e7c63dff12f7bd6))
+* **UX-1527:** Allow checkbox to be styled externally ([#126](https://github.com/ZebraDevs/zeta-web/issues/126)) ([7670542](https://github.com/ZebraDevs/zeta-web/commit/76705426bbdd042c5b4960a04e7c63dff12f7bd6))
+
 ## [0.12.5](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.12.4...zeta-web-v0.12.5) (2025-10-10)
 
 
