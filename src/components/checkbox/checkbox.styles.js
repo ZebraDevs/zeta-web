@@ -2,30 +2,41 @@ import { css } from "lit";
 export default css`
   :host {
     display: inline-block;
+    --checkbox-checked-background: var(--surface-primary);
+    --checkbox-hover-background: var(--border-hover);
+    --checkbox-border-color: var(--main-subtle);
+    --checkbox-background: var(--surface-default);
+    --checkbox-icon-color: var(--main-inverse);
   }
 
   .container {
     min-width: 20px;
     min-height: 20px;
+    border: var(--border-size-medium) solid var(--checkbox-border-color);
+    background-color: var(--checkbox-background);
   }
 
   :host([disabled]) *[part="icon"] {
     color: var(--main-disabled);
   }
+  :host([indeterminate]) *[part="icon"],
+  :host([checked]) *[part="icon"] {
+    --icon-color: var(--checkbox-icon-color);
+  }
 
   :host([indeterminate]:not([disabled])) label,
   :host([checked]:not([disabled])) label {
     .container {
-      background-color: var(--surface-primary);
+      background-color: var(--checkbox-checked-background);
     }
 
     &:hover .container {
-      background-color: var(--border-hover);
+      background-color: var(--checkbox-hover-background);
     }
   }
 
-  :host([rounded]) > .container {
-    border-radius: 2px !important;
+  :host([rounded]) .container {
+    border-radius: 2px;
   }
 
   :host([reverse]) label {
@@ -35,7 +46,7 @@ export default css`
   label {
     cursor: pointer;
     width: auto !important;
-    height: 100% !important;
+    height: 100%;
     display: flex;
   }
 `;

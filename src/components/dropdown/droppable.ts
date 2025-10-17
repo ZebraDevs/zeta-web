@@ -122,7 +122,7 @@ export class ZetaDroppable extends Contourable(LitElement) {
     }
   };
 
-  //Common usecase is to run this if matchParentWidth is true
+  //Common use case is to run this if matchParentWidth is true
   //Adjusts the width of the droppable to match the width of the anchor element
   private matchParentWidthHandler = () => {
     const style = window.getComputedStyle(this);
