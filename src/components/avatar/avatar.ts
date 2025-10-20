@@ -11,6 +11,7 @@ import type { AvatarSize } from "./avatar-size.js";
  *
  * @cssproperty --avatar-color - The color of the avatar. Defaults to purple. Recommended colors: --avatar-blue, --avatar-green, --avatar-yellow, --avatar-orange, --avatar-purple, --avatar-pink, --avatar-teal
  * @cssproperty --avatar-initials-color - The color of the initials
+ * @cssproperty --avatar-border-color - The colour of the avatar border.
  * @slot - The content of the avatar. Should be an img element, a zeta-icon, or text.
  * @slot status - The content of the status slot. Usually used for indicators or badges.
  * @attr {boolean} show-ring - Shows the ring around the avatar.

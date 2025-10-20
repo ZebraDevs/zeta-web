@@ -50,7 +50,7 @@ export default css`
   }
 
   :host([show-ring]) .avatar {
-    border: var(--border-width) solid var(--border-default);
+    border: var(--border-width) solid var(--avatar-border-color, var(--border-default));
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
