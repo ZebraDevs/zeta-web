@@ -62,15 +62,15 @@
 
   /* colors/main/primary-legacy
 
-  Default value is 'color/blue/70'
-  - Light mode: #0061c2
-  - Dark mode: #7ebeff  
+  Default value is 'color/blue-brand/60'
+  - Light mode: #1f69ff
+  - Dark mode: #003fbd  
 
-  Default high contrast (AAA) value is 'color/blue/40'
-  - Light mode: #7ebeff
-  - Dark mode: #0061c2
+  Default high contrast (AAA) value is 'color/blue-brand/40'
+  - Light mode: #5ea2ff
+  - Dark mode: #0e336f
   */
-  --main-primary-legacy: var(--color-blue-70, #0061c2);
+  --main-primary-legacy: var(--color-blue-brand-60, #1f69ff);
 
   /* colors/main/primary
 
@@ -347,6 +347,18 @@
   - Dark mode: #000000
   */
   --icon-pure: var(--color-pure-0, #ffffff);
+
+  /* colors/icon/blue
+
+  Default value is 'color/blue-brand/60'
+  - Light mode: #1f69ff
+  - Dark mode: #003fbd  
+
+  Default high contrast (AAA) value is 'color/blue-brand/80'
+  - Light mode: #003fbd
+  - Dark mode: #5ea2ff
+  */
+  --icon-blue: var(--color-blue-brand-60, #1f69ff);
 
   /* colors/icon/subtle
 
@@ -804,6 +816,18 @@
   */
   --border-pure: var(--color-pure-0, #ffffff);
 
+  /* colors/border/black
+
+  Default value is 'color/cool/90'
+  - Light mode: #1d1e23
+  - Dark mode: #f3f6fa  
+
+  Default high contrast (AAA) value is 'color/pure/0'
+  - Light mode: #ffffff
+  - Dark mode: #000000
+  */
+  --border-black: var(--color-cool-90, #1d1e23);
+
   /* colors/border/primary
 
   Default value is 'color/blue-brand/60'
@@ -818,15 +842,15 @@
 
   /* colors/border/primary-legacy
 
-  Default value is 'color/blue/50'
-  - Light mode: #599fe5
-  - Dark mode: #0073e6  
+  Default value is 'color/blue-brand/50'
+  - Light mode: #3886ff
+  - Dark mode: #002775  
 
-  Default high contrast (AAA) value is 'color/blue/70'
-  - Light mode: #0061c2
-  - Dark mode: #7ebeff
+  Default high contrast (AAA) value is 'color/blue-brand/70'
+  - Light mode: #0e53e5
+  - Dark mode: #1f69ff
   */
-  --border-primary-legacy: var(--color-blue-50, #599fe5);
+  --border-primary-legacy: var(--color-blue-brand-50, #3886ff);
 
   /* colors/border/positive
 

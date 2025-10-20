@@ -4,7 +4,7 @@
   --main-inverse-subtle: var(--color-pure-0, #ffffff);
   --main-light: var(--color-pure-0, #ffffff);
   --main-subtle: var(--color-cool-90, #1d1e23);
-  --main-primary-legacy: var(--color-blue-40, #7ebeff);
+  --main-primary-legacy: var(--color-blue-brand-40, #5ea2ff);
   --main-primary: var(--color-blue-brand-40, #5ea2ff);
   --main-secondary: var(--color-green-brand-40, #b6ff4a);
   --main-positive: var(--color-green-80, #005f38);
@@ -28,6 +28,7 @@
   --icon-default: var(--color-pure-1000, #000000);
   --icon-inverse: var(--color-pure-0, #ffffff);
   --icon-pure: var(--color-pure-0, #ffffff);
+  --icon-blue: var(--color-blue-brand-80, #003fbd);
   --icon-subtle: var(--color-cool-90, #1d1e23);
   --icon-disabled: var(--color-cool-80, #2c2f36);
   --icon-inverse-subtle: var(--color-pure-0, #ffffff);
@@ -66,8 +67,9 @@
   --border-subtle: var(--color-cool-80, #2c2f36);
   --border-disabled: var(--color-cool-20, #f3f6fa);
   --border-pure: var(--color-pure-0, #ffffff);
+  --border-black: var(--color-pure-0, #ffffff);
   --border-primary: var(--color-blue-brand-80, #003fbd);
-  --border-primary-legacy: var(--color-blue-70, #0061c2);
+  --border-primary-legacy: var(--color-blue-brand-70, #0e53e5);
   --border-positive: var(--color-green-70, #006d3f);
   --border-secondary: var(--color-green-brand-70, #6faf13);
   --border-warning: var(--color-orange-70, #965802);
