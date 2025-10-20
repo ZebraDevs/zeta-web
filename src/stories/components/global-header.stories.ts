@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaGlobalHeader } from "../../components/global-header/global-header.js";
 import { html } from "lit";
+import { fn } from "@storybook/test";
 import "../../components/global-header/global-header";
 import "../../components/action-menu/action-menu-button";
 
@@ -14,7 +15,9 @@ const meta: Meta<ZetaGlobalHeader & { "data-theme": string }> = {
     initials: "RK",
     appSwitcher: true,
     searchbar: true,
-    rounded: false
+    rounded: false,
+    onUserInfoClick: fn(),
+    onHamburgerMenuClick: fn()
   },
   argTypes: {
     platformName: { control: "text" },
@@ -52,6 +55,8 @@ export const GlobalHeader: StoryObj = {
       .appSwitcher=${args.appSwitcher}
       .searchbar=${args.searchbar}
       .rounded=${args.rounded}
+      .onUserInfoClick=${args.onUserInfoClick}
+      .onHamburgerMenuClick=${args.onHamburgerMenuClick}
     >
       <!-- Menu items -->
       <zeta-dropdown-menu-button
