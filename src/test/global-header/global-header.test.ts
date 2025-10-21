@@ -180,6 +180,35 @@ describe("zeta-global-header", () => {
       appSwitcherButton?.click();
       expect(onClickSpy).to.have.been.calledOnce;
     });
+    //Test of userInfoButton calls the onUserInfoClick callback function
+    it("calls the onUserInfoClick callback when user info button is clicked", () => {
+      const onUserInfoClickSpy = sinon.spy();
+      subject.onUserInfoClick = onUserInfoClickSpy;
+
+      // Get the user info button
+      const userInfoButton = subject.shadowRoot?.querySelector("#user-info-button") as HTMLButtonElement;
+      expect(userInfoButton).to.exist;
+
+      // Simulate the click
+      userInfoButton.click();
+
+      // Assert the callback was called
+      expect(onUserInfoClickSpy).to.have.been.calledOnce;
+    });
+    it("calls the onHamburgerMenuClick callback when hamburger menu button is clicked", () => {
+      const onHamburgerMenuClickSpy = sinon.spy();
+      subject.onHamburgerMenuClick = onHamburgerMenuClickSpy;
+
+      // Get the hamburger menu button
+      const hamburgerMenuButton = subject.shadowRoot?.querySelector("zeta-icon-button");
+      expect(hamburgerMenuButton).to.exist;
+
+      // Simulate the click
+      hamburgerMenuButton!.click();
+
+      // Assert the callback was called
+      expect(onHamburgerMenuClickSpy).to.have.been.calledOnce;
+    });
   });
 
   // describe("Golden", () => {});

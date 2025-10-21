@@ -27,6 +27,8 @@ import "../../index.css";
  * @property {String} initials - The initials to display within the user icon.
  * @property {Boolean} appSwitcher - Shows the app switcher icon. Make true to show the app switcher icon.
  * @property {Boolean} searchbar - Shows the search bar. Make true to show the search bar.
+ * @property {Function} onUserInfoClick - Function to be called when the user info button is clicked. You can also listen for the 'user-info-click' event.
+ * @property {Function} onHamburgerMenuClick - Function to be called when the hamburger menu button is clicked. You can also listen for the 'hamburger-menu-click' event.
  * @slot menu-items - Slot for menu items on the left side of the header. Expects elements of type zeta-button or zeta-dropdown-menu-button.
  * @slot action-items - Slot for action items on the right side of the header. Expects elements of type zeta-icon-button or zeta-action-menu-button.
  * @slot user-avatar - Slot for user avatar. Input should be of type zeta-avatar. You must set the size prop to xxs.
@@ -74,6 +76,16 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
    * Make true to show the search bar.
    */
   @property({ type: Boolean }) searchbar: boolean = false;
+
+  /**
+   * Function to be called when the user info button is clicked.
+   */
+  @property({ attribute: false }) onUserInfoClick: () => void | undefined;
+
+  /**
+   * Function to be called when the hamburger menu button is clicked.
+   */
+  @property({ attribute: false }) onHamburgerMenuClick: () => void | undefined;
 
   /**
    * Slot for menu items on the left side of the header.
@@ -146,6 +158,40 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
   }
 
   /**
+   * Handles the click event on the user info button.
+   * Calls the onUserInfoClick function if it is defined.
+   */
+  private _handleUserInfoClick = () => {
+    this.dispatchEvent(
+      new CustomEvent("user-info-click", {
+        bubbles: true,
+        composed: true
+      })
+    );
+
+    if (this.onUserInfoClick) {
+      this.onUserInfoClick();
+    }
+  };
+
+  /**
+   * Handles the click event on the hamburger menu button.
+   * Calls the onHamburgerMenuClick function if it is defined.
+   */
+  private _handleHamburgerMenuClick = () => {
+    this.dispatchEvent(
+      new CustomEvent("hamburger-menu-click", {
+        bubbles: true,
+        composed: true
+      })
+    );
+
+    if (this.onHamburgerMenuClick) {
+      this.onHamburgerMenuClick();
+    }
+  };
+
+  /**
    * Checks the slots for items after the component has been updated.
    * This ensures that any changes to the slotted content are detected and the state is updated accordingly.
    */
@@ -168,7 +214,9 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
         <div id="header-left">
           <!--Header info container - Holds logo, platform name, and menu items-->
           <div id="header-info">
-            <zeta-icon-button shape=${this.rounded ? "rounded" : "sharp"} flavor="subtle">hamburger_menu</zeta-icon-button>
+            <zeta-icon-button shape=${this.rounded ? "rounded" : "sharp"} flavor="subtle" @click=${this._handleHamburgerMenuClick}>
+              hamburger_menu
+            </zeta-icon-button>
             <span class="logo">${unsafeSVG(zebraLogoSvg)}</span>
             <div id="platform-name">${this.platformName}</div>
           </div>
@@ -181,7 +229,7 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
           <!--Action items container - Holds action items-->
           <div id="action-items" class=${this.hasActionItems ? "has-items" : ""}><slot name="action-items"></slot></div>
           <!--User info button - Holds user name, avatar and chevron icon-->
-          <zeta-button id="user-info-button" shape=${this.rounded ? "rounded" : "sharp"} flavor="subtle">
+          <zeta-button id="user-info-button" shape=${this.rounded ? "rounded" : "sharp"} flavor="subtle" @click=${this._handleUserInfoClick}>
             <span id="name">${this.name}</span>
             <slot id="avatar" name="user-avatar"></slot>
             <zeta-icon id="user-info-icon" .rounded=${this.rounded}>expand_more</zeta-icon>
