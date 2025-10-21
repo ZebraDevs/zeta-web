@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.12.7](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.12.6...zeta-web-v0.12.7) (2025-10-21)
+
+
+### 🪲 Bug Fixes
+
+* **UX-1528:** Make droppable position update with screen resize ([#128](https://github.com/ZebraDevs/zeta-web/issues/128)) ([4ea41ca](https://github.com/ZebraDevs/zeta-web/commit/4ea41ca0266c50b6b2cfb88343daa31719e0157a))
+* **UX-1529:** Add click functions & listeners on buttons in Global Header ([#131](https://github.com/ZebraDevs/zeta-web/issues/131)) ([32d2947](https://github.com/ZebraDevs/zeta-web/commit/32d29473f4207e93ce3f1d2673eb5a4f65900f93))
+* **UX-1529:** Implement tests for new click callback functions ([32d2947](https://github.com/ZebraDevs/zeta-web/commit/32d29473f4207e93ce3f1d2673eb5a4f65900f93))
+
+
+### ⛓️ Dependencies
+
+* **automated:** Update zeta-icons to v1.5.0 ([596c3d9](https://github.com/ZebraDevs/zeta-web/commit/596c3d9c6650672d87acaa09f93385100243b161))
+* Update node dependencies ([#135](https://github.com/ZebraDevs/zeta-web/issues/135)) ([ca2b157](https://github.com/ZebraDevs/zeta-web/commit/ca2b15700a053847e0e151340cc4bfdf9b563c2b))
+
+
+### 🧹 Miscellaneous Chores
+
+* **deps-dev:** bump vite from 6.3.6 to 6.4.1 ([#133](https://github.com/ZebraDevs/zeta-web/issues/133)) ([c4f5850](https://github.com/ZebraDevs/zeta-web/commit/c4f5850e86dbee67f4a60af8004559bea1b3eec0))
+
 ## [0.12.6](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.12.5...zeta-web-v0.12.6) (2025-10-15)
 
 
