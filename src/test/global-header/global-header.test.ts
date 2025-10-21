@@ -181,7 +181,7 @@ describe("zeta-global-header", () => {
       expect(onClickSpy).to.have.been.calledOnce;
     });
     //Test of userInfoButton calls the onUserInfoClick callback function
-    it("calls the onUserInfoClick callback when user info button is clicked", async () => {
+    it("calls the onUserInfoClick callback when user info button is clicked", () => {
       const onUserInfoClickSpy = sinon.spy();
       subject.onUserInfoClick = onUserInfoClickSpy;
 
@@ -190,12 +190,12 @@ describe("zeta-global-header", () => {
       expect(userInfoButton).to.exist;
 
       // Simulate the click
-      userInfoButton!.click();
+      userInfoButton.click();
 
       // Assert the callback was called
       expect(onUserInfoClickSpy).to.have.been.calledOnce;
     });
-    it("calls the onHamburgerMenuClick callback when hamburger menu button is clicked", async () => {
+    it("calls the onHamburgerMenuClick callback when hamburger menu button is clicked", () => {
       const onHamburgerMenuClickSpy = sinon.spy();
       subject.onHamburgerMenuClick = onHamburgerMenuClickSpy;
 
