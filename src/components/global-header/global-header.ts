@@ -80,12 +80,12 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
   /**
    * Function to be called when the user info button is clicked.
    */
-  @property({ attribute: false }) onUserInfoClick: () => void;
+  @property({ attribute: false }) onUserInfoClick: () => void | undefined;
 
   /**
    * Function to be called when the hamburger menu button is clicked.
    */
-  @property({ attribute: false }) onHamburgerMenuClick: () => void;
+  @property({ attribute: false }) onHamburgerMenuClick: () => void | undefined;
 
   /**
    * Slot for menu items on the left side of the header.
