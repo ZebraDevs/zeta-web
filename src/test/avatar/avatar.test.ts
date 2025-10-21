@@ -86,7 +86,7 @@ describe("zeta-avatar", () => {
       expect(avatarDiv).to.exist;
 
       const style = getComputedStyle(avatarDiv!);
-      expect(style.borderColor).to.equal("rgb(255, 0, 0)");
+      await expect(style.borderColor).to.equal("rgb(255, 0, 0)");
     });
   });
 
