@@ -62,15 +62,15 @@
 
   /* colors/main/primary-legacy
 
-  Default value is 'color/blue-brand/60'
-  - Light mode: #1f69ff
-  - Dark mode: #003fbd  
+  Default value is 'color/blue/60'
+  - Light mode: #0073e6
+  - Dark mode: #599fe5  
 
-  Default high contrast (AAA) value is 'color/blue-brand/40'
-  - Light mode: #5ea2ff
-  - Dark mode: #0e336f
+  Default high contrast (AAA) value is 'color/blue/80'
+  - Light mode: #004d99
+  - Dark mode: #b7dbff
   */
-  --main-primary-legacy: var(--color-blue-brand-60, #1f69ff);
+  --main-primary-legacy: var(--color-blue-60, #0073e6);
 
   /* colors/main/primary
 
@@ -78,23 +78,23 @@
   - Light mode: #1f69ff
   - Dark mode: #003fbd  
 
-  Default high contrast (AAA) value is 'color/blue-brand/40'
-  - Light mode: #5ea2ff
-  - Dark mode: #0e336f
+  Default high contrast (AAA) value is 'color/blue-brand/80'
+  - Light mode: #003fbd
+  - Dark mode: #5ea2ff
   */
   --main-primary: var(--color-blue-brand-60, #1f69ff);
 
   /* colors/main/secondary
 
-  Default value is 'color/green-brand/50'
-  - Light mode: #a8f931
-  - Dark mode: #528406  
+  Default value is 'color/green-brand/60'
+  - Light mode: #8fd820
+  - Dark mode: #6faf13  
 
-  Default high contrast (AAA) value is 'color/green-brand/40'
-  - Light mode: #b6ff4a
-  - Dark mode: #335106
+  Default high contrast (AAA) value is 'color/green-brand/80'
+  - Light mode: #528406
+  - Dark mode: #a8f931
   */
-  --main-secondary: var(--color-green-brand-50, #a8f931);
+  --main-secondary: var(--color-green-brand-60, #8fd820);
 
   /* colors/main/positive
 
@@ -347,18 +347,6 @@
   - Dark mode: #000000
   */
   --icon-pure: var(--color-pure-0, #ffffff);
-
-  /* colors/icon/blue
-
-  Default value is 'color/blue-brand/60'
-  - Light mode: #1f69ff
-  - Dark mode: #003fbd  
-
-  Default high contrast (AAA) value is 'color/blue-brand/80'
-  - Light mode: #003fbd
-  - Dark mode: #5ea2ff
-  */
-  --icon-blue: var(--color-blue-brand-60, #1f69ff);
 
   /* colors/icon/subtle
 
@@ -816,18 +804,6 @@
   */
   --border-pure: var(--color-pure-0, #ffffff);
 
-  /* colors/border/black
-
-  Default value is 'color/cool/90'
-  - Light mode: #1d1e23
-  - Dark mode: #f3f6fa  
-
-  Default high contrast (AAA) value is 'color/pure/0'
-  - Light mode: #ffffff
-  - Dark mode: #000000
-  */
-  --border-black: var(--color-cool-90, #1d1e23);
-
   /* colors/border/primary
 
   Default value is 'color/blue-brand/60'
@@ -842,15 +818,15 @@
 
   /* colors/border/primary-legacy
 
-  Default value is 'color/blue-brand/50'
-  - Light mode: #3886ff
-  - Dark mode: #002775  
+  Default value is 'color/blue/50'
+  - Light mode: #599fe5
+  - Dark mode: #0073e6  
 
-  Default high contrast (AAA) value is 'color/blue-brand/70'
-  - Light mode: #0e53e5
-  - Dark mode: #1f69ff
+  Default high contrast (AAA) value is 'color/blue/70'
+  - Light mode: #0061c2
+  - Dark mode: #7ebeff
   */
-  --border-primary-legacy: var(--color-blue-brand-50, #3886ff);
+  --border-primary-legacy: var(--color-blue-50, #599fe5);
 
   /* colors/border/positive
 
