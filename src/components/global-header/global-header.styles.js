@@ -4,12 +4,12 @@ export default css`
     display: flex;
     flex-direction: row;
     align-items: center;
-    background-color: var(--surface-default);
   }
 
   #header-main {
     justify-content: space-between;
     padding: var(--spacing-small) var(--spacing-large);
+    background-color: var(--surface-default);
   }
 
   #header-right {
