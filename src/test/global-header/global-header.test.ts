@@ -182,22 +182,22 @@ describe("zeta-global-header", () => {
     });
     //Test of userInfoButton calls the onUserInfoClick callback function
     it("calls the onUserInfoClick callback when user info button is clicked", () => {
-      const onUserInfoClickSpy = sinon.spy();
-      subject.onUserInfoClick = onUserInfoClickSpy;
+      const eventSpy = sinon.spy();
+      subject.addEventListener("user-info-click", eventSpy);
 
       // Get the user info button
-      const userInfoButton = subject.shadowRoot?.querySelector("#user-info-button") as HTMLButtonElement;
+      const userInfoButton = subject.shadowRoot?.querySelector("#user-info-button");
       expect(userInfoButton).to.exist;
 
       // Simulate the click
-      userInfoButton.click();
+      (userInfoButton as HTMLButtonElement).click();
 
-      // Assert the callback was called
-      expect(onUserInfoClickSpy).to.have.been.calledOnce;
+      // Assert the event was dispatched
+      expect(eventSpy).to.have.been.calledOnce;
     });
     it("calls the onHamburgerMenuClick callback when hamburger menu button is clicked", () => {
-      const onHamburgerMenuClickSpy = sinon.spy();
-      subject.onHamburgerMenuClick = onHamburgerMenuClickSpy;
+      const eventSpy = sinon.spy();
+      subject.addEventListener("hamburger-menu-click", eventSpy);
 
       // Get the hamburger menu button
       const hamburgerMenuButton = subject.shadowRoot?.querySelector("zeta-icon-button");
@@ -206,8 +206,8 @@ describe("zeta-global-header", () => {
       // Simulate the click
       hamburgerMenuButton!.click();
 
-      // Assert the callback was called
-      expect(onHamburgerMenuClickSpy).to.have.been.calledOnce;
+      // Assert the event was dispatched
+      expect(eventSpy).to.have.been.calledOnce;
     });
   });
 

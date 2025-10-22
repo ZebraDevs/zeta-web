@@ -14,7 +14,7 @@ import "../../index.css";
 /**
  * TODO:
  * UX(1516) - Work with designers to make the component more dynamically responsive on a wider range of screen sizes.
- * UX(1517) - Fix the logo SVG not loading properly in Storybook.
+ * Make listener event for the hamburger menu and user info button - copy accordion item and then apply accordion logic to project.
  */
 
 /**
@@ -26,9 +26,11 @@ import "../../index.css";
  * @property {String} name - The name to show in the header, next to the user icon.
  * @property {String} initials - The initials to display within the user icon.
  * @property {Boolean} appSwitcher - Shows the app switcher icon. Make true to show the app switcher icon.
+ *
+ * @event user-info-click - Fired when the user info button is clicked. Event detail contains the component instance.
+ * @event hamburger-menu-click - Fired when the hamburger menu button is clicked. Event detail contains the component instance.
+ *
  * @property {Boolean} searchbar - Shows the search bar. Make true to show the search bar.
- * @property {Function} onUserInfoClick - Function to be called when the user info button is clicked. You can also listen for the 'user-info-click' event.
- * @property {Function} onHamburgerMenuClick - Function to be called when the hamburger menu button is clicked. You can also listen for the 'hamburger-menu-click' event.
  * @slot menu-items - Slot for menu items on the left side of the header. Expects elements of type zeta-button or zeta-dropdown-menu-button.
  * @slot action-items - Slot for action items on the right side of the header. Expects elements of type zeta-icon-button or zeta-action-menu-button.
  * @slot user-avatar - Slot for user avatar. Input should be of type zeta-avatar. You must set the size prop to xxs.
@@ -76,16 +78,6 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
    * Make true to show the search bar.
    */
   @property({ type: Boolean }) searchbar: boolean = false;
-
-  /**
-   * Function to be called when the user info button is clicked.
-   */
-  @property({ attribute: false }) onUserInfoClick: () => void | undefined;
-
-  /**
-   * Function to be called when the hamburger menu button is clicked.
-   */
-  @property({ attribute: false }) onHamburgerMenuClick: () => void | undefined;
 
   /**
    * Slot for menu items on the left side of the header.
@@ -159,36 +151,16 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
 
   /**
    * Handles the click event on the user info button.
-   * Calls the onUserInfoClick function if it is defined.
    */
   private _handleUserInfoClick = () => {
-    this.dispatchEvent(
-      new CustomEvent("user-info-click", {
-        bubbles: true,
-        composed: true
-      })
-    );
-
-    if (this.onUserInfoClick) {
-      this.onUserInfoClick();
-    }
+    this.dispatchEvent(new CustomEvent("user-info-click", { bubbles: true, composed: true }));
   };
 
   /**
    * Handles the click event on the hamburger menu button.
-   * Calls the onHamburgerMenuClick function if it is defined.
    */
   private _handleHamburgerMenuClick = () => {
-    this.dispatchEvent(
-      new CustomEvent("hamburger-menu-click", {
-        bubbles: true,
-        composed: true
-      })
-    );
-
-    if (this.onHamburgerMenuClick) {
-      this.onHamburgerMenuClick();
-    }
+    this.dispatchEvent(new CustomEvent("hamburger-menu-click", { bubbles: true, composed: true }));
   };
 
   /**
