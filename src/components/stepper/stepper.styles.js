@@ -18,11 +18,6 @@ export default css`
     flex-direction: row;
   }
 
-  /* Counter Logic */
-  .stepper-container {
-    counter-reset: step;
-  }
-
   .stepper-container {
     display: flex;
     flex-direction: row;

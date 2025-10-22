@@ -44,11 +44,19 @@ export class ZetaStepper extends LitElement {
   /** Set to true for the progress bar to be shown. */
   @property({ type: Boolean }) progressBar: boolean = false;
 
+  private assignStepNumbers() {
+    this.querySelectorAll("zeta-stepper-item").forEach((item, index) => (item.stepNumber = index + 1));
+  }
+
+  firstUpdated() {
+    this.assignStepNumbers();
+  }
+
   protected render() {
     return html`
       <div class="stepper-container">
         <div class="stepper-container" role="list">
-          <slot></slot>
+          <slot @slotchange=${() => this.assignStepNumbers()}></slot>
         </div>
         ${this.showOverflowButton
           ? html`<zeta-button flavor="outline-subtle" class="stepper-item-overflow-button"><zeta-icon>chevron_right</zeta-icon></zeta-button>`
