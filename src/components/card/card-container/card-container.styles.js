@@ -21,7 +21,7 @@ export default css`
     padding-bottom: var(--spacing-large);
   }
 
-  :host(:not([collapsible])) .card:not(.slot-populated) .card-content {
+  :host(:not([collapsible])) .card:not(.slot-populated) .card-content-wrapper {
     margin: 0;
   }
 
@@ -66,7 +66,7 @@ export default css`
     padding-bottom: var(--spacing-large);
   }
 
-  .card-content {
+  .card-content-wrapper {
     width: calc(100% - var(--spacing-7xl));
     position: relative;
     margin-left: calc(var(--spacing-2xl) - var(--border-size-medium));
@@ -78,12 +78,12 @@ export default css`
       margin-bottom 0.3s ease-in-out;
   }
 
-  .card-content-wrapper {
+  .card-content {
     overflow: hidden;
   }
 
-  :host([collapsible][expanded]) .card-content,
-  :host(:not([collapsible])) .card-content {
+  :host([collapsible][expanded]) .card-content-wrapper,
+  :host(:not([collapsible])) .card-content-wrapper {
     grid-template-rows: 1fr;
     margin-bottom: calc(var(--spacing-2xl) - var(--border-size-medium));
   }
