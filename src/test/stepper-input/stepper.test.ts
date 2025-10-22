@@ -97,7 +97,7 @@ describe("zeta-stepper", () => {
       for (const [index, item] of stepperItems.entries()) {
         const stepNumber = item.shadowRoot?.querySelector(".step-number");
         expect(stepNumber).to.exist;
-        await expect(stepNumber).to.equal(index + 1);
+        await expect(stepNumber?.textContent?.trim()).to.equal((index + 1).toString());
       }
     });
     it("renders a check mark icon when flavor is set to success", async () => {
