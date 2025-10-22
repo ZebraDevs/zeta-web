@@ -4,9 +4,7 @@
       "release-type": "node"
     }
   },
-  "extra-files": [
-    ".storybook/preview-head.html"
-  ],
+  "extra-files": [".storybook/preview-head.html"],
   "changelog-sections": [
     {
       "type": "feat",
@@ -38,28 +36,23 @@
     },
     {
       "type": "perf",
-      "section": "Performance Improvements",
-      "hidden": true
+      "section": "🏎️ Performance Improvements"
     },
     {
       "type": "refactor",
-      "section": "Code Refactoring",
-      "hidden": true
+      "section": "🔧 Code Refactoring"
     },
     {
       "type": "style",
-      "section": "Styles",
-      "hidden": true
+      "section": "💄 Styles"
     },
     {
       "type": "build",
-      "section": "Build System",
-      "hidden": true
+      "section": "🛠️ Build System"
     },
     {
       "type": "ci",
-      "section": "Continuous Integration",
-      "hidden": true
+      "section": "👷 Continuous Integration"
     }
   ]
 }
