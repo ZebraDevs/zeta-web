@@ -50,6 +50,11 @@ export class ZetaStepperItem extends LitElement {
   @property({ type: Boolean, reflect: true }) editing = false;
 
   /**
+   * The step number to display. This is automatically assigned by the parent zeta-stepper component; do not set this property manually.
+   */
+  @property({ type: Number, attribute: false, state: true }) stepNumber: number = 0;
+
+  /**
    * Obtain the orientation of the stepper parent.
    */
   private obtainOrientation() {
@@ -60,7 +65,7 @@ export class ZetaStepperItem extends LitElement {
     return html`
       <div class="step">
         <span class="step-number">
-          ${this.flavor === "success" ? html`<zeta-icon name="check_mark"></zeta-icon>` : html`<span class="number"></span>`}
+          ${this.flavor === "success" ? html`<zeta-icon name="check_mark"></zeta-icon>` : html`<span class="number">${this.stepNumber}</span>`}
           ${this.editing ? html`<zeta-icon name="edit"></zeta-icon>` : nothing}
         </span>
         <span class="step-title"><slot></slot></span>

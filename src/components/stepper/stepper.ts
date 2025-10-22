@@ -3,6 +3,7 @@ import { html, LitElement, nothing } from "lit";
 import styles from "./stepper.styles.js";
 import "../icon/icon.js";
 import "./stepper-item.js";
+import { ZetaStepperItem } from "./stepper-item.js";
 import "../progress-indicators/progress-bar/progress-bar.js";
 import "../button/icon-button/icon-button.js";
 
@@ -44,11 +45,19 @@ export class ZetaStepper extends LitElement {
   /** Set to true for the progress bar to be shown. */
   @property({ type: Boolean }) progressBar: boolean = false;
 
+  private assignStepNumbers() {
+    (this.querySelectorAll("zeta-stepper-item") as NodeListOf<ZetaStepperItem>).forEach((item, index) => (item.stepNumber = index + 1));
+  }
+
+  firstUpdated() {
+    this.assignStepNumbers();
+  }
+
   protected render() {
     return html`
       <div class="stepper-container">
         <div class="stepper-container" role="list">
-          <slot></slot>
+          <slot @slotchange=${this.assignStepNumbers}></slot>
         </div>
         ${this.showOverflowButton
           ? html`<zeta-button flavor="outline-subtle" class="stepper-item-overflow-button"><zeta-icon>chevron_right</zeta-icon></zeta-button>`
