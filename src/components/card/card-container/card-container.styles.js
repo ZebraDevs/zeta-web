@@ -73,7 +73,6 @@ export default css`
     margin-right: calc(var(--spacing-2xl) - var(--border-size-medium));
     display: grid;
     grid-template-rows: 0fr;
-    overflow: hidden;
     transition:
       grid-template-rows 0.3s ease-in-out,
       margin-bottom 0.3s ease-in-out;
