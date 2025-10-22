@@ -83,7 +83,7 @@ export default css`
 
   /* Invert logo in dark mode*/
   .logo {
-    filter: invert(1);
+    fill: var(--state-inverse-enabled);
     background-color: transparent;
     width: 80px;
     height: 32px;
