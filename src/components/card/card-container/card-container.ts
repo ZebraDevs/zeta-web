@@ -7,6 +7,8 @@ import "../../icon/icon.js";
 /** A card component with a header and optional content that can be collapsible.
  *
  * @slot - The main content of the card. If `collapsible` is true, this content will be hidden when the card is collapsed.
+ * @part content - The content area of the card where slotted content is rendered.
+ * @part header - The header area of the card.
  *
  * @figma - https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-10&m=dev
  * @storybook - https://design.zebra.com/web/storybook/index.html/?path=/story/components-cards--container
@@ -44,7 +46,7 @@ export class ZetaCardContainer extends Contourable(LitElement) {
     return html`
       <div class="border">
         <div class="card ${this.hasSlotContent ? "slot-populated" : ""}">
-          <div class="card-header" @click=${this.collapsible ? () => (this.expanded = !this.expanded) : null}>
+          <div part="header" class="card-header" @click=${this.collapsible ? () => (this.expanded = !this.expanded) : null}>
             ${this.collapsible ? html`<zeta-icon name="expand_more"></zeta-icon>` : nothing}
             <div class="header-content">
               <div class="title-container">
@@ -55,7 +57,7 @@ export class ZetaCardContainer extends Contourable(LitElement) {
             </div>
           </div>
           <div class="card-content-wrapper">
-            <div part="card-content" class="card-content">
+            <div part="content" class="card-content">
               <slot
                 @slotchange=${(e: Event) => {
                   const slot = e.target as HTMLSlotElement;
