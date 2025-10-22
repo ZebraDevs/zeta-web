@@ -14,7 +14,6 @@ import "../../index.css";
 /**
  * TODO:
  * UX(1516) - Work with designers to make the component more dynamically responsive on a wider range of screen sizes.
- * Make listener event for the hamburger menu and user info button - copy accordion item and then apply accordion logic to project.
  */
 
 /**
@@ -27,8 +26,8 @@ import "../../index.css";
  * @property {String} initials - The initials to display within the user icon.
  * @property {Boolean} appSwitcher - Shows the app switcher icon. Make true to show the app switcher icon.
  *
- * @event user-info-click - Fired when the user info button is clicked. Event detail contains the component instance.
- * @event hamburger-menu-click - Fired when the hamburger menu button is clicked. Event detail contains the component instance.
+ * @event user-info-click - Fired when the user info button is clicked.
+ * @event hamburger-menu-click - Fired when the hamburger menu button is clicked.
  *
  * @property {Boolean} searchbar - Shows the search bar. Make true to show the search bar.
  * @slot menu-items - Slot for menu items on the left side of the header. Expects elements of type zeta-button or zeta-dropdown-menu-button.
