@@ -54,8 +54,8 @@ export class ZetaCardContainer extends Contourable(LitElement) {
               <h5 class="card-description">${this.description}</h5>
             </div>
           </div>
-          <div class="card-content">
-            <div class="card-content-wrapper">
+          <div class="card-content-wrapper">
+            <div part="card-content" class="card-content">
               <slot
                 @slotchange=${(e: Event) => {
                   const slot = e.target as HTMLSlotElement;
