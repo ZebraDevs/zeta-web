@@ -94,12 +94,10 @@ describe("zeta-stepper", () => {
       const stepperItems = Array.from(subject.querySelectorAll("zeta-stepper-item") ?? []);
       await expect(stepperItems.length).to.equal(3);
 
-      for (const item of stepperItems) {
+      for (const [index, item] of stepperItems.entries()) {
         const stepNumber = item.shadowRoot?.querySelector(".step-number");
         expect(stepNumber).to.exist;
-
-        const stepNumberPseudoElement = window.getComputedStyle(stepNumber as HTMLElement, "::before");
-        await expect(stepNumberPseudoElement.content).to.equal("counter(step)");
+        await expect(stepNumber).to.equal(index + 1);
       }
     });
     it("renders a check mark icon when flavor is set to success", async () => {

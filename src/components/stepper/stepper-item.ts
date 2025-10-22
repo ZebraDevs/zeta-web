@@ -1,4 +1,4 @@
-import { customElement, property } from "lit/decorators.js";
+import { customElement, property, state } from "lit/decorators.js";
 import { html, LitElement, nothing } from "lit";
 import styles from "./stepper-item.styles.js";
 import "../icon/icon.js";
@@ -52,7 +52,7 @@ export class ZetaStepperItem extends LitElement {
   /**
    * The step number to display. This is automatically assigned by the parent zeta-stepper component; do not set this property manually.
    */
-  @property({ type: Number, attribute: false, state: true }) stepNumber: number = 0;
+  @state({}) stepNumber: number = 0;
 
   /**
    * Obtain the orientation of the stepper parent.
