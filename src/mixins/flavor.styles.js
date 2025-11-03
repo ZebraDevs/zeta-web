@@ -7,6 +7,15 @@ export default css`
     &:active {
       background-color: var(--state-primary-selected);
     }
+
+    @media (hover: hover), (hover: none) and (pointer: fine) {
+      &:hover {
+        background-color: var(--state-primary-hover);
+      }
+      &:active {
+        background-color: var(--state-primary-selected);
+      }
+    }
   }
   :host([flavor="secondary"]:not([disabled])) > :first-child {
     background-color: var(--flavor-background-color, var(--state-secondary-enabled));
@@ -14,6 +23,15 @@ export default css`
     -webkit-tap-highlight-color: transparent;
     &:active {
       background-color: var(--state-secondary-selected);
+    }
+
+    @media (hover: hover), (hover: none) and (pointer: fine) {
+      &:hover {
+        background-color: var(--state-secondary-hover);
+      }
+      &:active {
+        background-color: var(--state-secondary-selected);
+      }
     }
   }
   :host([flavor="positive"]:not([disabled])) > :first-child {
@@ -23,6 +41,15 @@ export default css`
     &:active {
       background-color: var(--state-positive-selected);
     }
+
+    @media (hover: hover), (hover: none) and (pointer: fine) {
+      &:hover {
+        background-color: var(--state-positive-hover);
+      }
+      &:active {
+        background-color: var(--state-positive-selected);
+      }
+    }
   }
   :host([flavor="negative"]:not([disabled])) > :first-child {
     background-color: var(--flavor-background-color, var(--state-negative-enabled));
@@ -30,6 +57,15 @@ export default css`
     -webkit-tap-highlight-color: transparent;
     &:active {
       background-color: var(--state-negative-selected);
+    }
+
+    @media (hover: hover), (hover: none) and (pointer: fine) {
+      &:hover {
+        background-color: var(--state-negative-hover);
+      }
+      &:active {
+        background-color: var(--state-negative-selected);
+      }
     }
   }
   :host([flavor="outline"]:not([disabled])) > :first-child,
@@ -42,6 +78,15 @@ export default css`
     -webkit-tap-highlight-color: transparent;
     &:active {
       background-color: var(--surface-selected);
+    }
+
+    @media (hover: hover), (hover: none) and (pointer: fine) {
+      &:hover {
+        background-color: var(--surface-hover);
+      }
+      &:active {
+        background-color: var(--surface-selected);
+      }
     }
   }
   :host([flavor="outline"]:not([disabled])) > :first-child {
@@ -61,54 +106,5 @@ export default css`
 
   :host([disabled]) > * {
     background: var(--flavor-disabled-background-color, var(--surface-disabled));
-  }
-
-  //If device supports hover, apply hover and active styles
-  @media (hover: hover) {
-    :host([flavor="primary"]:not([disabled])) > :first-child {
-      &:hover {
-        background-color: var(--state-primary-hover);
-      }
-      &:active {
-        background-color: var(--state-primary-selected);
-      }
-    }
-    :host([flavor="secondary"]:not([disabled])) > :first-child {
-      &:hover {
-        background-color: var(--state-secondary-hover);
-      }
-      &:active {
-        background-color: var(--state-secondary-selected);
-      }
-    }
-    :host([flavor="positive"]:not([disabled])) > :first-child {
-      &:hover {
-        background-color: var(--state-positive-hover);
-      }
-      &:active {
-        background-color: var(--state-positive-selected);
-      }
-    }
-    :host([flavor="negative"]:not([disabled])) > :first-child {
-      &:hover {
-        background-color: var(--state-negative-hover);
-      }
-      &:active {
-        background-color: var(--state-negative-selected);
-      }
-    }
-    :host([flavor="outline"]:not([disabled])) > :first-child,
-    :host([flavor="outline-subtle"]:not([disabled])) > :first-child,
-    :host([flavor="text"]:not([disabled])) > :first-child,
-    :host([flavor="basic"]:not([disabled])) > :first-child,
-    :host([flavor="basic-negative"]:not([disabled])) > :first-child,
-    :host([flavor="subtle"]:not([disabled])) > :first-child {
-      &:hover {
-        background-color: var(--surface-hover);
-      }
-      &:active {
-        background-color: var(--surface-selected);
-      }
-    }
   }
 `;
