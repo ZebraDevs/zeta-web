@@ -17,10 +17,6 @@ export default css`
     align-items: flex-start;
   }
 
-  .step-number::before {
-    content: counter(step);
-  }
-
   :host([flavor="default"]) .step-number {
     color: var(--step-text-default-color);
   }
@@ -40,10 +36,6 @@ export default css`
     background-color: var(--step-background-success-color);
     border: none;
     --icon-color: var(--step-success-icon-color);
-  }
-  /*Get rid of counter step on success flavor*/
-  :host([flavor="success"]) .step-number::before {
-    content: "";
   }
 
   /*Step styling*/
@@ -97,7 +89,7 @@ export default css`
   :host([editing]) .step-number zeta-icon[name="check_mark"] + zeta-icon[name="edit"] {
     left: 3px;
   }
-  :host([editing]) .step-number::before,
+  :host([editing]) .step-number .number,
   :host([editing]) .step-number zeta-icon[name="check_mark"] {
     position: relative;
     left: var(--spacing-medium);

@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.12.8](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.12.7...zeta-web-v0.12.8) (2025-10-22)
+
+
+### 🪲 Bug Fixes
+
+* **UX-1532:** Fix Global Header button events ([#136](https://github.com/ZebraDevs/zeta-web/issues/136)) ([c6c5668](https://github.com/ZebraDevs/zeta-web/commit/c6c56684b3ecefa6f9827280681e6c50119c5f68))
+* **UX-1532:** Fix Global Header Logo color ([c6c5668](https://github.com/ZebraDevs/zeta-web/commit/c6c56684b3ecefa6f9827280681e6c50119c5f68))
+* **UX-1533:** Stepper counter on Safari counts ([#140](https://github.com/ZebraDevs/zeta-web/issues/140)) ([a705462](https://github.com/ZebraDevs/zeta-web/commit/a7054624ca8f66ce5e6b03a3023e099ac2fc2eb4))
+* **UX-1534:** Change avatar background colour on global header ([#141](https://github.com/ZebraDevs/zeta-web/issues/141)) ([dc4273b](https://github.com/ZebraDevs/zeta-web/commit/dc4273bfb228551945380cd9457b2ce5f99ce7fe))
+
+
+### 💄 Styles
+
+* **UX-1531:** Add part to card-content ([#138](https://github.com/ZebraDevs/zeta-web/issues/138)) ([552803d](https://github.com/ZebraDevs/zeta-web/commit/552803ddebdb42bab4c45f711ee75a9ece352c8d))
+
+
+### 👷 Continuous Integration
+
+* Update emojis for changelog headers ([#139](https://github.com/ZebraDevs/zeta-web/issues/139)) ([d6a06d8](https://github.com/ZebraDevs/zeta-web/commit/d6a06d89c49089bc801f65b5d90eec0086c22e70))
+
 ## [0.12.7](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.12.6...zeta-web-v0.12.7) (2025-10-21)
 
 
