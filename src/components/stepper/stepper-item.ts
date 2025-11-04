@@ -11,9 +11,17 @@ export type StepperItemFlavor = "partial" | "success" | "active" | "default";
  * Steps are automatically incremented starting from 1.
  *
  * @slot - Title of the label for each step.
- * @cssproperty --stepper-title-width - Width of the title text. Defaults to 230px.
- * @cssproperty --stepper-edit-icon-left - Left position of the edit icon. Defaults to 7px.
- * @cssproperty --stepper-edit-icon-border - Border color of the edit icon. Defaults to rgb(250, 251, 252).
+ * @cssproperty --step-title-width - Width of the title text. Defaults to 230px.
+ * @cssproperty --step-edit-icon-left - Left position of the edit icon. Defaults to 7px.
+ * @cssproperty --step-edit-icon-border-color - Border color of the edit icon. Defaults to rgb(250, 251, 252).
+ * @cssproperty --step-edit-icon-color - Color of the edit icon. Defaults to var(--main-subtle).
+ * @cssproperty --step-success-icon-color - Color of the success checkmark icon. Defaults to var(--state-default-focus).
+ * @cssproperty --step-text-default-color - Text color for default flavor. Defaults to var(--main-default).
+ * @cssproperty --step-text-active-color - Text color for active flavor. Defaults to var(--state-default-focus).
+ * @cssproperty --step-background-default-color - Background color for default flavor. Defaults to var(--surface-default).
+ * @cssproperty --step-background-active-color - Background color for active flavor. Defaults to var(--surface-primary).
+ * @cssproperty --step-background-partial-color - Background color for partial flavor. Defaults to var(--surface-positive-subtle).
+ * @cssproperty --step-background-success-color - Background color for success flavor. Defaults to var(--surface-positive).
  *
  * @figma https://www.figma.com/design/1PXgz5r06wlObIrucWsOqx/Stepper?node-id=40231-1812&m=dev
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-stepper--docs
