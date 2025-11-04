@@ -1,5 +1,34 @@
 # Changelog
 
+## [0.12.9](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.12.8...zeta-web-v0.12.9) (2025-11-04)
+
+
+### 🪲 Bug Fixes
+
+* **UX-1535:** Fixed bug where edit icon border colour was not showing and could not ([ad4f5b9](https://github.com/ZebraDevs/zeta-web/commit/ad4f5b90422226216f1ddf64a49e7fcc622ff7d1))
+* **UX-1536:** Fixes sticky hover styling for buttons on iOS devices ([#144](https://github.com/ZebraDevs/zeta-web/issues/144)) ([aa16b84](https://github.com/ZebraDevs/zeta-web/commit/aa16b84d0f925929cf954b982b8a53f47e527cbd))
+
+
+### 📈 Documentation
+
+* **UX-1535:** Updated documentation with new CSS props ([ad4f5b9](https://github.com/ZebraDevs/zeta-web/commit/ad4f5b90422226216f1ddf64a49e7fcc622ff7d1))
+
+
+### ⛓️ Dependencies
+
+* **automated:** Update zeta-icons to v1.6.0 ([0f71ef4](https://github.com/ZebraDevs/zeta-web/commit/0f71ef46414d0cc4405794b5f100908a317c3293))
+
+
+### 🧹 Miscellaneous Chores
+
+* **deps:** bump tar from 7.5.1 to 7.5.2 ([#145](https://github.com/ZebraDevs/zeta-web/issues/145)) ([e8facf8](https://github.com/ZebraDevs/zeta-web/commit/e8facf83e30819c84e1c53b78ab78ca2a57bfc23))
+* **UX-1536:** Default tap styling on mobile is disabled. ([aa16b84](https://github.com/ZebraDevs/zeta-web/commit/aa16b84d0f925929cf954b982b8a53f47e527cbd))
+
+
+### 💄 Styles
+
+* **UX-1535:** Custom colors for stepper item background colours, text colours and icon colours ([#143](https://github.com/ZebraDevs/zeta-web/issues/143)) ([ad4f5b9](https://github.com/ZebraDevs/zeta-web/commit/ad4f5b90422226216f1ddf64a49e7fcc622ff7d1))
+
 ## [0.12.8](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.12.7...zeta-web-v0.12.8) (2025-10-22)
 
 
