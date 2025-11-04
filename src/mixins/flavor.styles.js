@@ -3,42 +3,69 @@ export default css`
   :host([flavor="primary"]:not([disabled])) > :first-child {
     background-color: var(--flavor-background-color, var(--state-primary-enabled));
     color: var(--state-default-enabled);
-
-    &:hover {
-      background-color: var(--state-primary-hover);
-    }
+    -webkit-tap-highlight-color: transparent;
     &:active {
       background-color: var(--state-primary-selected);
+    }
+
+    @media (hover: hover), (hover: none) and (pointer: fine) {
+      &:hover {
+        background-color: var(--state-primary-hover);
+      }
+      &:active {
+        background-color: var(--state-primary-selected);
+      }
     }
   }
   :host([flavor="secondary"]:not([disabled])) > :first-child {
     background-color: var(--flavor-background-color, var(--state-secondary-enabled));
     color: var(--state-default-enabled);
-    &:hover {
-      background-color: var(--state-secondary-hover);
-    }
+    -webkit-tap-highlight-color: transparent;
     &:active {
       background-color: var(--state-secondary-selected);
+    }
+
+    @media (hover: hover), (hover: none) and (pointer: fine) {
+      &:hover {
+        background-color: var(--state-secondary-hover);
+      }
+      &:active {
+        background-color: var(--state-secondary-selected);
+      }
     }
   }
   :host([flavor="positive"]:not([disabled])) > :first-child {
     background-color: var(--flavor-background-color, var(--state-positive-enabled));
     color: var(--state-default-enabled);
-    &:hover {
-      background-color: var(--state-positive-hover);
-    }
+    -webkit-tap-highlight-color: transparent;
     &:active {
       background-color: var(--state-positive-selected);
+    }
+
+    @media (hover: hover), (hover: none) and (pointer: fine) {
+      &:hover {
+        background-color: var(--state-positive-hover);
+      }
+      &:active {
+        background-color: var(--state-positive-selected);
+      }
     }
   }
   :host([flavor="negative"]:not([disabled])) > :first-child {
     background-color: var(--flavor-background-color, var(--state-negative-enabled));
     color: var(--state-default-enabled);
-    &:hover {
-      background-color: var(--state-negative-hover);
-    }
+    -webkit-tap-highlight-color: transparent;
     &:active {
       background-color: var(--state-negative-selected);
+    }
+
+    @media (hover: hover), (hover: none) and (pointer: fine) {
+      &:hover {
+        background-color: var(--state-negative-hover);
+      }
+      &:active {
+        background-color: var(--state-negative-selected);
+      }
     }
   }
   :host([flavor="outline"]:not([disabled])) > :first-child,
@@ -48,11 +75,18 @@ export default css`
   :host([flavor="basic-negative"]:not([disabled])) > :first-child,
   :host([flavor="subtle"]:not([disabled])) > :first-child {
     background-color: var(--flavor-background-color, var(--surface-default));
-    &:hover {
-      background-color: var(--surface-hover);
-    }
+    -webkit-tap-highlight-color: transparent;
     &:active {
       background-color: var(--surface-selected);
+    }
+
+    @media (hover: hover), (hover: none) and (pointer: fine) {
+      &:hover {
+        background-color: var(--surface-hover);
+      }
+      &:active {
+        background-color: var(--surface-selected);
+      }
     }
   }
   :host([flavor="outline"]:not([disabled])) > :first-child {
