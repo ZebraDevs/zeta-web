@@ -25,7 +25,7 @@ export default css`
     }
   }
 
-  //Hover styless
+  /* Hover styles */
   @media (hover: hover), (hover: none) and (pointer: fine) {
     .navigation-profile:hover {
       background-color: var(--state-inverse-hover) !important;
