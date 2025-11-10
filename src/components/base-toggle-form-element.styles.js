@@ -6,6 +6,7 @@ export default css`
     gap: var(--spacing-medium);
     align-items: center;
     position: relative;
+    -webkit-tap-highlight-color: transparent;
   }
 
   input {
@@ -39,8 +40,10 @@ export default css`
     justify-content: center;
   }
 
-  :host label:hover .container {
-    border-color: var(--border-hover);
+  @media (hover: hover), (hover: none) and (pointer: fine) {
+    :host label:hover .container {
+      border-color: var(--border-hover);
+    }
   }
 
   :host([indeterminate]:not([disabled])) label,
@@ -48,7 +51,11 @@ export default css`
     .container {
       border-color: var(--surface-primary);
     }
-    &:hover .container {
+  }
+
+  @media (hover: hover), (hover: none) and (pointer: fine) {
+    :host([indeterminate]:not([disabled])) label:hover .container,
+    :host([checked]:not([disabled])) label:hover .container {
       border-color: var(--border-hover);
     }
   }

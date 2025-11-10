@@ -22,8 +22,10 @@ export default css`
     background-color: var(--main-primary);
   }
 
-  :host([checked]:not([disabled]):hover) label:hover *[part="icon"] {
-    background-color: var(--border-hover);
+  @media (hover: hover), (hover: none) and (pointer: fine) {
+    :host([checked]:not([disabled]):hover) label:hover *[part="icon"] {
+      background-color: var(--border-hover);
+    }
   }
 
   :host([disabled]) {

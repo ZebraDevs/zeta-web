@@ -26,8 +26,11 @@ export default css`
     font-weight: 500;
     --icon-color: var(--main-subtle);
     background-color: var(--surface-default);
+    -webkit-tap-highlight-color: transparent;
+  }
 
-    &:hover {
+  @media (hover: hover), (hover: none) and (pointer: fine) {
+    :host > *:hover {
       background-color: var(--surface-hover);
       color: var(--main-default);
       --icon-color: var(--main-default);

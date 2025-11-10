@@ -86,8 +86,10 @@ export default css`
     transition: border-color 0.2s ease;
   }
 
-  .input:hover {
-    border-color: var(--border-hover);
+  @media (hover: hover), (hover: none) and (pointer: fine) {
+    .input:hover {
+      border-color: var(--border-hover);
+    }
   }
 
   .input:focus-visible {
@@ -127,8 +129,10 @@ export default css`
     border-radius: var(--radius-none);
   }
 
-  .expand-more:hover {
-    background-color: var(--main-light);
+  @media (hover: hover), (hover: none) and (pointer: fine) {
+    .expand-more:hover {
+      background-color: var(--main-light);
+    }
   }
 
   :host([rounded]) .expand-more {

@@ -8,14 +8,17 @@ export default css`
     justify-content: space-between;
     align-items: center;
     color: var(--main-subtle);
+    -webkit-tap-highlight-color: transparent;
   }
 
   :host(:not([disabled])[active]) {
     background-color: var(--surface-selected);
   }
 
-  :host(:not([disabled]):hover) {
-    color: var(--main-default);
+  @media (hover: hover), (hover: none) and (pointer: fine) {
+    :host(:not([disabled]):hover) {
+      color: var(--main-default);
+    }
   }
 
   h1 {

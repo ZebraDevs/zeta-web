@@ -4,12 +4,15 @@ export default css`
     background-color: var(--surface-default-inverse);
     color: var(--main-inverse);
 
-    &:hover {
-      background-color: var(--state-inverse-hover) !important;
-    }
-
     &:active {
       background-color: var(--state-inverse-selected) !important;
+    }
+  }
+
+  //Hover styles
+  @media (hover: hover), (hover: none) and (pointer: fine) {
+    .tertiary-interactive:hover {
+      background-color: var(--state-inverse-hover) !important;
     }
   }
 `;

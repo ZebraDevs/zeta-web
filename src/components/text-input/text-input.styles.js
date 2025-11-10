@@ -105,6 +105,7 @@ export default css`
     background-color: var(--surface-default);
     padding: var(--spacing-medium);
     box-shadow: 0 0 0 var(--border-size-small) var(--border-default);
+    -webkit-tap-highlight-color: transparent;
   }
 
   .input-container input,
@@ -124,8 +125,10 @@ export default css`
     color: var(--main-subtle);
   }
 
-  .input-container:hover {
-    box-shadow: 0 0 0 var(--border-size-small) var(--border-hover) !important;
+  @media (hover: hover), (hover: none) and (pointer: fine) {
+    .input-container:hover {
+      box-shadow: 0 0 0 var(--border-size-small) var(--border-hover) !important;
+    }
   }
 
   .input-container:has(input:focus),
@@ -213,8 +216,10 @@ export default css`
     fill: var(--main-subtle);
   }
 
-  :host([type="integer"]) .input-container .arrows-container .arrow:hover svg {
-    fill: var(--main-default);
+  @media (hover: hover), (hover: none) and (pointer: fine) {
+    :host([type="integer"]) .input-container .arrows-container .arrow:hover svg {
+      fill: var(--main-default);
+    }
   }
 
   :host([type="integer"]) .input-container .arrows-container .arrow:active {

@@ -46,9 +46,11 @@ export default css`
     }
   }
 
-  button:hover {
-    background: var(--surface-hover);
-    border: var(--border-size-small) solid transparent;
+  @media (hover: hover), (hover: none) and (pointer: fine) {
+    button:hover {
+      background: var(--surface-hover);
+      border: var(--border-size-small) solid transparent;
+    }
   }
 
   button:active {
