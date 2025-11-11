@@ -51,7 +51,7 @@ const meta: Meta<ZetaDropdownMenuButton & { onopen: () => void }> = {
     flavor: "primary",
     open: false,
     direction: undefined,
-    slot: "Dropdown Menu",
+    defaultText: "Select an option",
     onclick: fn(),
     onchange: fn(),
     oninput: fn(),
@@ -111,13 +111,13 @@ export const DropdownMenuButton: StoryObj<ZetaDropdownMenuButton & { onopen: () 
             .items=${items1}
             ?open=${args.open}
             .direction=${args.direction}
+            .defaultText=${args.defaultText}
             @click=${args.onclick}
             @change=${args.onchange}
             @input=${args.oninput}
             @open=${args.onopen}
             @close=${args.onclose}
           >
-            ${args.slot}
           </zeta-dropdown-menu-button>
           <button type="submit">Submit</button>
         </form>
@@ -143,6 +143,7 @@ export const DropdownMenuButton: StoryObj<ZetaDropdownMenuButton & { onopen: () 
             .flavor=${args.flavor}
             .type=${"checkbox-dropdown"}
             .items=${items2}
+            .defaultText=${args.defaultText}
             ?open=${args.open}
             .direction=${args.direction}
             @click=${args.onclick}
@@ -151,7 +152,6 @@ export const DropdownMenuButton: StoryObj<ZetaDropdownMenuButton & { onopen: () 
             @open=${args.onopen}
             @close=${args.onclose}
           >
-            ${args.slot}
           </zeta-dropdown-menu-button>
           <button type="submit">Submit</button>
         </form>
@@ -177,6 +177,7 @@ export const DropdownMenuButton: StoryObj<ZetaDropdownMenuButton & { onopen: () 
             .flavor=${args.flavor}
             .type=${"radio-dropdown"}
             .items=${items3}
+            .defaultText=${args.defaultText}
             ?open=${args.open}
             .direction=${args.direction}
             @click=${args.onclick}
@@ -185,7 +186,6 @@ export const DropdownMenuButton: StoryObj<ZetaDropdownMenuButton & { onopen: () 
             @open=${args.onopen}
             @close=${args.onclose}
           >
-            ${args.slot}
           </zeta-dropdown-menu-button>
           <button type="submit">Submit</button>
         </form>
