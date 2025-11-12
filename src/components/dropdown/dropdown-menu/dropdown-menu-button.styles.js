@@ -5,6 +5,10 @@ export default css`
     width: fit-content;
   }
 
+  .with-icon {
+    padding-right: var(--spacing-small);
+  }
+
   .droppable-item {
     height: var(--spacing-6xl);
     padding-left: var(--spacing-medium);
