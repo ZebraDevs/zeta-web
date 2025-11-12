@@ -22,13 +22,13 @@ export type ZetaDropdownItem = { label: string; icon?: ZetaIconName; checked?: b
  *
  * Zeta Dropdown Menu Button places a button that when clicked opens a dropdown menu containing the items passed into it through the items prop.
  *
- * @prop {string} defaultText - The default text to display when no item is selected. Default is "Select an option".
- * @prop {boolean} open - Controls the state of the dropdown menu. Default is false.
- * @prop {Array<ZetaDropdownItem>} items - Array of items to populate the dropdown.
- * @prop {ButtonFlavor} flavor - The flavor of the dropdown button. Default is "primary".
- * @prop {InputType} type - The type of dropdown. Options are "text-dropdown", "checkbox-dropdown", and "radio-dropdown". Default is "text-dropdown".
- * @prop {string} name - The name of the dropdown menu button for form control. Default is "default".
- * @prop {"left" | "right" | "bottom" | "top"} direction - The direction of the droppable relative to the anchor. Defaults to bottom if left undefined.
+ * @property {string} defaultText - The default text to display when no item is selected. Default is "Select an option".
+ * @property {boolean} open - Controls the state of the dropdown menu. Default is false.
+ * @property {Array<ZetaDropdownItem>} items - Array of items to populate the dropdown. Includes label, icon (optional), checked (optional), disabled (optional), and onClick (optional) properties.
+ * @property {ButtonFlavor} flavor - The flavor of the dropdown button. Default is "primary".
+ * @property {InputType} type - The type of dropdown. Options are "text-dropdown", "checkbox-dropdown", and "radio-dropdown". Default is "text-dropdown".
+ * @property {string} name - The name of the dropdown menu button for form control. Default is "default".
+ * @property {"left" | "right" | "bottom" | "top"} direction - The direction of the droppable relative to the anchor. Defaults to bottom if left undefined.
  *
  * @event {CustomEvent<ZetaDropdownEventDetail>} open - Fired when the dropdown is opened.
  * @event {CustomEvent<ZetaDropdownEventDetail>} close - Fired when the dropdown is closed.
