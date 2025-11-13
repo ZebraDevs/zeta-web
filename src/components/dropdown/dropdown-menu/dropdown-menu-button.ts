@@ -200,13 +200,19 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
   }
 
   connectedCallback() {
-    super.connectedCallback();
+    // @ts-expect-error-next-line
+    if (super.connectedCallback) {
+      super.connectedCallback();
+    }
     document.addEventListener("click", this.handleOutsideClick);
   }
 
   disconnectedCallback() {
     document.removeEventListener("click", this.handleOutsideClick);
-    super.disconnectedCallback();
+    // @ts-expect-error-next-line
+    if (super.disconnectedCallback) {
+      super.disconnectedCallback();
+    }
   }
 
   protected render() {
