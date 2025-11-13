@@ -22,6 +22,8 @@ export type ZetaDropdownItem = { label: string; icon?: ZetaIconName; checked?: b
  *
  * Zeta Dropdown Menu Button places a button that when clicked opens a dropdown menu containing the items passed into it through the items prop.
  *
+ * @property {boolean} matchParentWidth - Whether the dropdown menu should match the width of its parent. Enabled by default. If disabled, the dropdown menu will size to fit its content.
+ *
  * @slot - The slotted text will be displayed on the dropdown menu button.
  * @event {CustomEvent<ZetaDropdownEventDetail>} open - Fired when the dropdown is opened.
  * @event {CustomEvent<ZetaDropdownEventDetail>} close - Fired when the dropdown is closed.
@@ -32,6 +34,13 @@ export type ZetaDropdownItem = { label: string; icon?: ZetaIconName; checked?: b
  */
 @customElement("zeta-dropdown-menu-button")
 export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(LitElement)))) {
+  /**
+   * Whether the dropdown menu should match the width of its parent.
+   * Enabled by default.
+   * If disabled, the dropdown menu will size to fit its content.
+   */
+  @property({ type: Boolean }) matchParentWidth: boolean = true;
+
   /** Controls the state of the dropdown menu. */
   @property({ type: Boolean }) open: boolean = false;
 
@@ -92,8 +101,10 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
         if (this.type === "checkbox-dropdown") {
           this.checkedValues = [...this.checkedValues, item.label];
           this.input.value = this.checkedValues.toString();
+          this.input.dispatchEvent(new InputEvent("input"));
         } else if (this.type === "radio-dropdown") {
           this.input.value = item.label;
+          this.input.dispatchEvent(new InputEvent("input"));
         }
         //this.input.dispatchEvent(new Event("input")); TODO here too
       }
@@ -130,11 +141,11 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
     this.dispatchEvent(new ZetaDropdownEvent(this.open).toEvent()); //TODO BK this was added on my branch
   }
 
-  private handleOutsideClick(e: Event) {
+  private handleOutsideClick = (e: Event) => {
     if (this.open && !this.contains(e.target as Node)) {
       this.handleClick();
     }
-  }
+  };
 
   private renderItems() {
     if (this.type === "radio-dropdown") {
@@ -188,13 +199,22 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
     }
   }
 
+  connectedCallback() {
+    super.connectedCallback();
+    document.addEventListener("click", this.handleOutsideClick);
+  }
+
+  disconnectedCallback() {
+    document.removeEventListener("click", this.handleOutsideClick);
+    super.disconnectedCallback();
+  }
+
   protected render() {
-    document.addEventListener("click", this.handleOutsideClick.bind(this));
     return html`
       <zeta-button id="anchor" @click=${() => this.handleClick()} .size=${this.size} shape=${this.rounded ? "rounded" : "sharp"} .flavor=${this.flavor}
         ><slot></slot><zeta-icon .rounded=${this.rounded}>${this.icon}</zeta-icon></zeta-button
       >
-      <zeta-droppable .anchor=${this.anchor} .direction=${this.direction} .matchParentWidth=${true} ?open=${this.open} ?rounded=${this.rounded}
+      <zeta-droppable .anchor=${this.anchor} .direction=${this.direction} .matchParentWidth=${this.matchParentWidth} ?open=${this.open} ?rounded=${this.rounded}
         >${this.renderItems()}</zeta-droppable
       >
       ${super.render()}
