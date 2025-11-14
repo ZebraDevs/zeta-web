@@ -11,12 +11,37 @@ export default css`
 
   .droppable-item {
     background-color: var(--surface-default);
-    padding: var(--spacing-small) var(--spacing-medium);
     display: flex;
     align-items: center;
-    gap: var(--spacing-small);
     user-select: none;
+  }
+
+  /* Size Variants */
+  :host([size="small"]) .droppable-item {
+    font: var(--label-small);
+    padding: var(--spacing-small);
+    gap: var(--spacing-minimum);
+  }
+  :host([size="small"]) ::slotted([slot="icon"]) {
+    --icon-size: var(--spacing-large);
+  }
+
+  :host([size="medium"]) .droppable-item {
     font: var(--body-medium);
+    padding: var(--spacing-small) var(--spacing-medium);
+    gap: var(--spacing-small);
+  }
+  :host([size="medium"]) ::slotted([slot="icon"]) {
+    --icon-size: var(--spacing-xl);
+  }
+
+  :host([size="large"]) .droppable-item {
+    font: var(--body-medium);
+    padding: var(--spacing-medium) var(--spacing-large);
+    gap: var(--spacing-small);
+  }
+  :host([size="large"]) ::slotted([slot="icon"]) {
+    --icon-size: var(--spacing-xl);
   }
 
   .droppable-item:hover {
