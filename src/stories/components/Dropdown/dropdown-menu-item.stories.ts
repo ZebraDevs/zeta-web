@@ -13,6 +13,12 @@ const meta: Meta<ZetaDropdownMenuItem & { icon: ZetaIconName }> = {
     slot: "Menu Item"
   },
   argTypes: {
+    size: {
+      options: ["small", "medium", "large"],
+      control: {
+        type: "select"
+      }
+    },
     icon: {
       options: ZetaIconNameList,
       control: { type: "select" }
@@ -33,7 +39,7 @@ export default meta;
 
 export const DropdownMenuItem: StoryObj<ZetaDropdownMenuItem & { icon: ZetaIconName }> = {
   render: args =>
-    html`<zeta-dropdown-menu-item .rounded=${args.rounded} .disabled=${args.disabled}>
+    html`<zeta-dropdown-menu-item .rounded=${args.rounded} .disabled=${args.disabled} size=${args.size}>
       <zeta-icon .rounded=${args.rounded} slot="icon">${args.icon}</zeta-icon>
       ${args.slot}
     </zeta-dropdown-menu-item>`

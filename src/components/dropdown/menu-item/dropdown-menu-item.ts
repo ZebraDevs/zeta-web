@@ -1,7 +1,7 @@
 import { customElement } from "lit/decorators.js";
 import styles from "./dropdown-menu-item.styles.js";
 import { html, LitElement } from "lit";
-import { Contourable, Interactive } from "../../../mixins/mixins.js";
+import { Contourable, Interactive, Size } from "../../../mixins/mixins.js";
 import "../../icon/icon.js";
 
 /** Zeta Dropdown Menu Item is a component that represents an item in a dropdown menu.
@@ -12,7 +12,7 @@ import "../../icon/icon.js";
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-dropdown--docs
  */
 @customElement("zeta-dropdown-menu-item")
-export class ZetaDropdownMenuItem extends Contourable(Interactive(LitElement)) {
+export class ZetaDropdownMenuItem extends Contourable(Size(Interactive(LitElement))) {
   key(e: KeyboardEvent, type: "down" | "up") {
     if (type === "up") {
       if (e.key === " ") {
