@@ -13,6 +13,7 @@ export default css`
     padding: var(--spacing-medium);
     box-shadow: var(--elevation-3);
     z-index: 5;
+    overflow-x: auto;
   }
 
   :host([rounded]) {
