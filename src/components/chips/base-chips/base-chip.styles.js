@@ -23,9 +23,12 @@ export default css`
     color: var(--main-default);
     transition: background-color 0.2s ease-out;
     background-color: var(--surface-default);
+    -webkit-tap-highlight-color: transparent;
+  }
 
-    &:hover,
-    &:active {
+  @media (hover: hover), (hover: none) and (pointer: fine) {
+    .container:hover,
+    .container:active {
       background-color: var(--surface-hover);
     }
   }

@@ -25,8 +25,10 @@ export default css`
     margin: 0;
   }
 
-  :host([collapsible]) .card-header:hover {
-    background-color: var(--surface-hover);
+  @media (hover: hover), (hover: none) and (pointer: fine) {
+    :host([collapsible]) .card-header:hover {
+      background-color: var(--surface-hover);
+    }
   }
 
   :host(:not([expanded])) .card-header zeta-icon {
@@ -99,6 +101,7 @@ export default css`
     align-items: flex-start;
     transition: all 0.4s ease-in-out;
     background-color: var(--surface-default);
+    -webkit-tap-highlight-color: transparent;
   }
 
   .border {

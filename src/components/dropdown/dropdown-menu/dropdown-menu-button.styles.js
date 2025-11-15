@@ -3,6 +3,7 @@ export default css`
   :host {
     display: block;
     width: fit-content;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .droppable-item {
@@ -10,8 +11,10 @@ export default css`
     padding-left: var(--spacing-medium);
   }
 
-  .droppable-item:hover {
-    background-color: var(--surface-hover);
+  @media (hover: hover), (hover: none) and (pointer: fine) {
+    .droppable-item:hover {
+      background-color: var(--surface-hover);
+    }
   }
 
   .droppable-item:active {

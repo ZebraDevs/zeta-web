@@ -4,6 +4,7 @@ export default css`
   :host {
     display: flex;
     min-height: 64px;
+    -webkit-tap-highlight-color: transparent;
   }
 
   :host > div {
@@ -14,8 +15,10 @@ export default css`
     padding: var(--spacing-2) var(--spacing-3);
     user-select: none;
     background-color: var(--surface-default);
+  }
 
-    &:hover {
+  @media (hover: hover), (hover: none) and (pointer: fine) {
+    :host > div:hover {
       background-color: var(--surface-hover);
     }
   }
@@ -72,11 +75,14 @@ export default css`
     }
   }
 
-  :host([flavor="completed"]) {
-    > div,
-    > div:hover {
+  @media (hover: hover), (hover: none) and (pointer: fine) {
+    :host([flavor="completed"]) > div,
+    :host([flavor="completed"]) > div:hover {
       background-color: var(--surface-flavor-positive-subtle);
     }
+  }
+
+  :host([flavor="completed"]) {
     .subtitle {
       color: var(--text-flavor-positive);
     }
@@ -85,11 +91,15 @@ export default css`
       --icon-color: var(--text-flavor-positive);
     }
   }
-  :host([flavor="error"]) {
-    > div,
-    > div:hover {
+
+  @media (hover: hover), (hover: none) and (pointer: fine) {
+    :host([flavor="error"]) > div,
+    :host([flavor="error"]) > div:hover {
       background-color: var(--surface-flavor-negative-subtle);
     }
+  }
+
+  :host([flavor="error"]) {
     .subtitle {
       color: var(--text-flavor-negative);
     }

@@ -2,6 +2,7 @@ import { css } from "lit";
 export default css`
   :host {
     display: flex;
+    -webkit-tap-highlight-color: transparent;
   }
 
   a {
@@ -11,16 +12,20 @@ export default css`
     color: var(--main-subtle);
   }
 
-  a:hover ::slotted([slot="icon"]) {
-    --icon-color: var(--main-primary);
+  @media (hover: hover), (hover: none) and (pointer: fine) {
+    a:hover ::slotted([slot="icon"]) {
+      --icon-color: var(--main-primary);
+    }
   }
 
   a:active ::slotted([slot="icon"]) {
     --icon-color: var(--main-default);
   }
 
-  a:hover {
-    color: var(--main-primary);
+  @media (hover: hover), (hover: none) and (pointer: fine) {
+    a:hover {
+      color: var(--main-primary);
+    }
   }
 
   a:active {

@@ -9,6 +9,7 @@ export default css`
     align-items: center;
     gap: var(--spacing-minimum);
     transition: border-radius 0.3s ease-in-out;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .label {
@@ -113,12 +114,14 @@ export default css`
       }
     }
 
-    > button:hover {
-      background-color: var(--state-secondary-hover);
-    }
-
     > button:active {
       background-color: var(--state-secondary-selected);
+    }
+  }
+
+  @media (hover: hover), (hover: none) and (pointer: fine) {
+    :host([flavor="secondary"]:not([disabled])) > button:hover {
+      background-color: var(--state-secondary-hover);
     }
   }
 
@@ -131,12 +134,14 @@ export default css`
       }
     }
 
-    > button:hover {
-      background-color: var(--state-inverse-hover);
-    }
-
     > button:active {
       background-color: var(--state-inverse-selected);
+    }
+  }
+
+  @media (hover: hover), (hover: none) and (pointer: fine) {
+    :host([flavor="inverse"]:not([disabled])) > button:hover {
+      background-color: var(--state-inverse-hover);
     }
   }
 

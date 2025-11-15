@@ -5,6 +5,7 @@ export default css`
     align-items: center;
     border-radius: inherit;
     gap: var(--spacing-small);
+    -webkit-tap-highlight-color: transparent;
   }
 
   button {
@@ -45,9 +46,12 @@ export default css`
     font: var(--body-small);
     width: var(--spacing-4xl);
     color: var(--main-default);
+    -webkit-tap-highlight-color: transparent;
 
-    &:hover {
-      background-color: var(--state-default-hover);
+    @media (hover: hover), (hover: none) and (pointer: fine) {
+      &:hover {
+        background-color: var(--state-default-hover);
+      }
     }
 
     &:active {
