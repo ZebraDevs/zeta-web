@@ -108,7 +108,7 @@ describe("zeta-dropdown-menu-button", () => {
       const dropdownMenuButtonWidth = window.getComputedStyle(dropdownMenuButton).width;
       const droppableWidth = window.getComputedStyle(dropdownMenu).width;
 
-      expect(dropdownMenuButtonWidth).to.equal(droppableWidth);
+      await expect(dropdownMenuButtonWidth).to.equal(droppableWidth);
     });
     it("The dropdown menu is not the same width as the dropdown menu button when matchParentWidth is false", async () => {
       subject = await createComponent(`<zeta-dropdown-menu-button
@@ -138,7 +138,7 @@ describe("zeta-dropdown-menu-button", () => {
       const dropdownMenuButtonWidth = dropdownMenuButton.getBoundingClientRect().width;
       const droppableWidth = dropdownMenu.getBoundingClientRect().width;
 
-      expect(dropdownMenuButtonWidth).to.not.equal(droppableWidth);
+      await expect(dropdownMenuButtonWidth).to.not.equal(droppableWidth);
     });
   });
 
