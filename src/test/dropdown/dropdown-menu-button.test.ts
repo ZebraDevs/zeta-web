@@ -6,6 +6,7 @@ import type { ZetaDropdownMenuItem } from "../../components/dropdown/menu-item/d
 import type { ZetaRadioButton } from "../../components/radio-button/radio-button.js";
 import "../../components/dropdown/dropdown-menu/dropdown-menu-button.js";
 import type { ZetaDropdownItem } from "../../components/dropdown/dropdown-menu/dropdown-menu-button.js";
+import type { ZetaDroppable } from "../../components/dropdown/droppable.js";
 // import { getIconName } from "../utils.js";
 
 describe("zeta-dropdown-menu-button", () => {
@@ -90,6 +91,54 @@ describe("zeta-dropdown-menu-button", () => {
       const droppableTop = droppableRect.top;
 
       await expect(droppableTop).to.equal(dropdownMenuButtonBottom);
+    });
+    it("makes the dropdown menu match the width of the dropdown menu button when matchParentWidth is true", async () => {
+      subject.matchParentWidth = true;
+      await subject.updateComplete;
+
+      (subject.shadowRoot?.querySelector("zeta-button") as ZetaButton).click();
+      await subject.updateComplete;
+
+      const dropdownMenuButton = subject.shadowRoot?.querySelector("zeta-button") as ZetaButton;
+      expect(dropdownMenuButton).to.exist;
+
+      const dropdownMenu = subject.shadowRoot?.querySelector("zeta-droppable") as ZetaDroppable;
+      expect(dropdownMenu).to.exist;
+
+      const dropdownMenuButtonWidth = window.getComputedStyle(dropdownMenuButton).width;
+      const droppableWidth = window.getComputedStyle(dropdownMenu).width;
+
+      expect(dropdownMenuButtonWidth).to.equal(droppableWidth);
+    });
+    it("The dropdown menu is not the same width as the dropdown menu button when matchParentWidth is false", async () => {
+      subject = await createComponent(`<zeta-dropdown-menu-button
+            size="medium"
+            name="dropdown-menu"
+            rounded=true
+            flavor="primary"
+            type="text-dropdown"
+          >
+            abc
+          </zeta-dropdown-menu-button>`);
+      subject.matchParentWidth = false;
+      await subject.updateComplete;
+
+      (subject.shadowRoot?.querySelector("zeta-button") as ZetaButton).click();
+      await subject.updateComplete;
+
+      const dropdownMenuButton = subject.shadowRoot?.querySelector("zeta-button") as ZetaButton;
+      expect(dropdownMenuButton).to.exist;
+
+      const dropdownMenu = subject.shadowRoot?.querySelector("zeta-droppable") as ZetaDroppable;
+      expect(dropdownMenu).to.exist;
+
+      // Verify the droppable actually received the matchParentWidth property
+      expect(dropdownMenu.matchParentWidth).to.be.false;
+
+      const dropdownMenuButtonWidth = dropdownMenuButton.getBoundingClientRect().width;
+      const droppableWidth = dropdownMenu.getBoundingClientRect().width;
+
+      expect(dropdownMenuButtonWidth).to.not.equal(droppableWidth);
     });
   });
 

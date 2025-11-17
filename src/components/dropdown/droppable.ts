@@ -164,6 +164,8 @@ export class ZetaDroppable extends Contourable(LitElement) {
     }
     if (this.matchParentWidth) {
       this.matchParentWidthHandler();
+    } else {
+      this.style.width = "";
     }
   }
 
