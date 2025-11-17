@@ -11,7 +11,7 @@ export default css`
 
   .droppable-item {
     height: var(--spacing-6xl);
-    padding-left: var(--spacing-medium);
+    padding: 0 var(--spacing-medium);
   }
 
   .droppable-item:hover {
