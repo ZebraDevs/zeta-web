@@ -1,6 +1,7 @@
 import { fixture, html, unsafeStatic, expect, elementUpdated } from "@open-wc/testing";
 import type { ZetaDroppable } from "../../components/dropdown/droppable.js";
 import "../../components/dropdown/droppable.js";
+import "../../components/button/button.js";
 import "../../index.css";
 
 describe("zeta-droppable", () => {
@@ -67,7 +68,38 @@ describe("zeta-droppable", () => {
     });
   });
 
-  // describe("Dimensions", () => {});
+  describe("Dimensions", () => {
+    it("ensures the droppable does not exceed the dropdown menu button width when dropdown menu item text is long", async () => {
+      // Create a zeta-button as the anchor
+      const anchorButton = document.createElement("zeta-button");
+      anchorButton.textContent = "Dropdown";
+      anchorButton.setAttribute("size", "medium");
+      document.body.appendChild(anchorButton);
+      await elementUpdated(anchorButton);
+
+      subject.anchor = anchorButton;
+      subject.matchParentWidth = true;
+      subject.open = true;
+      await elementUpdated(subject);
+
+      const longText = "This is a very long dropdown menu item text to test the width of the droppable component.";
+      subject.innerHTML = `<zeta-dropdown-menu-item>${longText}</zeta-dropdown-menu-item>`;
+      await elementUpdated(subject);
+
+      const droppableWidth = subject.getBoundingClientRect().width;
+      const buttonWidth = anchorButton.getBoundingClientRect().width;
+
+      // The droppable width should match the button width
+      await expect(droppableWidth).to.equal(buttonWidth);
+
+      // Check overflow-x: auto
+      const computedStyle = window.getComputedStyle(subject);
+      await expect(computedStyle.overflowX).to.equal("auto");
+
+      // Clean up
+      document.body.removeChild(anchorButton);
+    });
+  });
 
   describe("Styling", () => {
     it("sets the correct border radius when rounded is true", async () => {
