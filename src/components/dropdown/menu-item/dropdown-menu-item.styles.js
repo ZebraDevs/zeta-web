@@ -3,7 +3,7 @@ export default css`
   .header {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex: 1;
   }
 
