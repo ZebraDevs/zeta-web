@@ -2,6 +2,7 @@ import { css } from "lit";
 export default css`
   :host {
     margin-left: var(--spacing-2xl);
+    -webkit-tap-highlight-color: transparent;
   }
 
   .container {
@@ -27,7 +28,9 @@ export default css`
     color: var(--main-default);
   }
 
-  :host(:not([disabled]):hover) .sub-item {
-    color: var(--main-default);
+  @media (hover: hover), (hover: none) and (pointer: fine) {
+    :host(:not([disabled]):hover) .sub-item {
+      color: var(--main-default);
+    }
   }
 `;

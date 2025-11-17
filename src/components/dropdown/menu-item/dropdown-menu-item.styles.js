@@ -18,10 +18,13 @@ export default css`
     align-items: center;
     user-select: none;
     font: var(--body-medium);
+    -webkit-tap-highlight-color: transparent;
   }
 
-  .droppable-item:hover {
-    background-color: var(--surface-hover);
+  @media (hover: hover), (hover: none) and (pointer: fine) {
+    .droppable-item:hover {
+      background-color: var(--surface-hover);
+    }
   }
 
   .droppable-item:active {

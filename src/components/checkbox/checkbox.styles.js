@@ -29,8 +29,11 @@ export default css`
     .container {
       background-color: var(--checkbox-checked-background);
     }
+  }
 
-    &:hover .container {
+  @media (hover: hover), (hover: none) and (pointer: fine) {
+    :host([indeterminate]:not([disabled])) label:hover .container,
+    :host([checked]:not([disabled])) label:hover .container {
       background-color: var(--checkbox-hover-background);
     }
   }

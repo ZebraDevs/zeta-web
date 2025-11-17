@@ -8,6 +8,7 @@ export default css`
     box-shadow: rgba(99, 99, 99, 0.1) 0px 2px 8px 0px;
     transition: background-color 0.2s;
     color: var(--main-subtle);
+    -webkit-tap-highlight-color: transparent;
   }
 
   zeta-icon {
@@ -32,8 +33,10 @@ export default css`
     font: var(--body-medium);
   }
 
-  .option:hover {
-    background-color: rgb(0, 115, 230, 0.1);
+  @media (hover: hover), (hover: none) and (pointer: fine) {
+    .option:hover {
+      background-color: rgb(0, 115, 230, 0.1);
+    }
   }
 
   :host([selected]) .option {
