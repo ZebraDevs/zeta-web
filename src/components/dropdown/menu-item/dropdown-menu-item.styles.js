@@ -2,6 +2,8 @@ import { css } from "lit";
 export default css`
   .header {
     display: flex;
+    align-items: center;
+    justify-content: center;
     flex: 1;
   }
 
