@@ -49,7 +49,7 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
   @property({ type: Array }) items: Array<ZetaDropdownItem> = [
     {
       label: "Auto Item",
-      icon: "star",
+      icon: undefined,
       checked: false
     }
   ];
@@ -193,8 +193,8 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
             }
           }}
           ?rounded=${this.rounded}
-          ><zeta-icon slot="icon" ?rounded=${this.rounded}>${item.icon}</zeta-icon>${item.label}</zeta-dropdown-menu-item
-        >`;
+          >${item.icon ? html`<zeta-icon class="with-icon" slot="icon" ?rounded=${this.rounded}>${item.icon}</zeta-icon>` : ""} ${item.label}
+        </zeta-dropdown-menu-item>`;
       });
     }
   }
