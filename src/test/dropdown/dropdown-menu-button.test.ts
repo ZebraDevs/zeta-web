@@ -44,7 +44,7 @@ describe("zeta-dropdown-menu-button", () => {
       const buttonElement = subject.shadowRoot?.querySelector("zeta-button") as ZetaButton;
       expect(buttonElement).to.exist;
 
-      //Text of button also includes the icon, so we check if the default text is part of it
+      // Text of button also includes the icon, so we check if the default text is part of it
       expect(buttonElement.textContent).to.include(text);
     });
 

@@ -131,7 +131,11 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
   private handleItemClick(text: string) {
     if (this.type === "radio-dropdown" || this.type === "text-dropdown") {
       this.input.value = text;
-      this.buttonTextMatchesSelected ? (this.displayText = text) : (this.displayText = "");
+      if (this.buttonTextMatchesSelected) {
+        this.displayText = text;
+      } else {
+        this.displayText = "";
+      }
       if (this.type === "text-dropdown") this.handleClick();
       this.input.dispatchEvent(new InputEvent("input"));
     } else if (this.type === "checkbox-dropdown") {
