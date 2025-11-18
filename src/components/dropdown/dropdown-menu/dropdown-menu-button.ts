@@ -24,6 +24,7 @@ export type ZetaDropdownItem = { label: string; icon?: ZetaIconName; checked?: b
  *
  * @property {boolean} matchParentWidth - Whether the dropdown menu should match the width of its parent. Enabled by default. If disabled, the dropdown menu will size to fit its content.
  * @property {string} defaultText - The default text to display when no item is selected. Default is "Select an option".
+ * @property {boolean} buttonTextMatchesSelected - Whether the button text should update to match the selected item. Default is true.
  * @property {boolean} open - Controls the state of the dropdown menu. Default is false.
  * @property {Array<ZetaDropdownItem>} items - Array of items to populate the dropdown. Includes label, icon (optional), checked (optional), disabled (optional), and onClick (optional) properties.
  * @property {ButtonFlavor} flavor - The flavor of the dropdown button. Default is "primary".
@@ -46,6 +47,9 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
    * If disabled, the dropdown menu will size to fit its content.
    */
   @property({ type: Boolean }) matchParentWidth: boolean = true;
+
+  /** Whether the button text should update to match the selected item. */
+  @property({ type: Boolean }) buttonTextMatchesSelected: boolean = true;
 
   /** The default text to display when no item is selected. */
   @property({ type: String }) defaultText: string = "Select an option";
@@ -127,7 +131,7 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
   private handleItemClick(text: string) {
     if (this.type === "radio-dropdown" || this.type === "text-dropdown") {
       this.input.value = text;
-      this.displayText = text;
+      this.buttonTextMatchesSelected ? (this.displayText = text) : (this.displayText = "");
       if (this.type === "text-dropdown") this.handleClick();
       this.input.dispatchEvent(new InputEvent("input"));
     } else if (this.type === "checkbox-dropdown") {

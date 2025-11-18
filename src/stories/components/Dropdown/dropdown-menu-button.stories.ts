@@ -53,6 +53,7 @@ const meta: Meta<ZetaDropdownMenuButton & { onopen: () => void }> = {
     direction: undefined,
     defaultText: "Select an option",
     matchParentWidth: true,
+    buttonTextMatchesSelected: true,
     onclick: fn(),
     onchange: fn(),
     oninput: fn(),
@@ -114,6 +115,7 @@ export const DropdownMenuButton: StoryObj<ZetaDropdownMenuButton & { onopen: () 
             .direction=${args.direction}
             .matchParentWidth=${args.matchParentWidth}
             .defaultText=${args.defaultText}
+            .buttonTextMatchesSelected=${args.buttonTextMatchesSelected}
             @click=${args.onclick}
             @change=${args.onchange}
             @input=${args.oninput}
@@ -149,6 +151,7 @@ export const DropdownMenuButton: StoryObj<ZetaDropdownMenuButton & { onopen: () 
             ?open=${args.open}
             .direction=${args.direction}
             .matchParentWidth=${args.matchParentWidth}
+            .buttonTextMatchesSelected=${args.buttonTextMatchesSelected}
             @click=${args.onclick}
             @change=${args.onchange}
             @input=${args.oninput}
@@ -184,6 +187,7 @@ export const DropdownMenuButton: StoryObj<ZetaDropdownMenuButton & { onopen: () 
             ?open=${args.open}
             .direction=${args.direction}
             .matchParentWidth=${args.matchParentWidth}
+            .buttonTextMatchesSelected=${args.buttonTextMatchesSelected}
             @click=${args.onclick}
             @change=${args.onchange}
             @input=${args.oninput}
