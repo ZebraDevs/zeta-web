@@ -52,6 +52,7 @@ const meta: Meta<ZetaDropdownMenuButton & { onopen: () => void }> = {
     open: false,
     direction: undefined,
     defaultText: "Select an option",
+    matchParentWidth: true,
     onclick: fn(),
     onchange: fn(),
     oninput: fn(),
@@ -111,6 +112,7 @@ export const DropdownMenuButton: StoryObj<ZetaDropdownMenuButton & { onopen: () 
             .items=${items1}
             ?open=${args.open}
             .direction=${args.direction}
+            .matchParentWidth=${args.matchParentWidth}
             .defaultText=${args.defaultText}
             @click=${args.onclick}
             @change=${args.onchange}
@@ -146,6 +148,7 @@ export const DropdownMenuButton: StoryObj<ZetaDropdownMenuButton & { onopen: () 
             .defaultText=${args.defaultText}
             ?open=${args.open}
             .direction=${args.direction}
+            .matchParentWidth=${args.matchParentWidth}
             @click=${args.onclick}
             @change=${args.onchange}
             @input=${args.oninput}
@@ -180,6 +183,7 @@ export const DropdownMenuButton: StoryObj<ZetaDropdownMenuButton & { onopen: () 
             .defaultText=${args.defaultText}
             ?open=${args.open}
             .direction=${args.direction}
+            .matchParentWidth=${args.matchParentWidth}
             @click=${args.onclick}
             @change=${args.onchange}
             @input=${args.oninput}

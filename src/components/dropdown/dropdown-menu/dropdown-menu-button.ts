@@ -22,6 +22,7 @@ export type ZetaDropdownItem = { label: string; icon?: ZetaIconName; checked?: b
  *
  * Zeta Dropdown Menu Button places a button that when clicked opens a dropdown menu containing the items passed into it through the items prop.
  *
+ * @property {boolean} matchParentWidth - Whether the dropdown menu should match the width of its parent. Enabled by default. If disabled, the dropdown menu will size to fit its content.
  * @property {string} defaultText - The default text to display when no item is selected. Default is "Select an option".
  * @property {boolean} open - Controls the state of the dropdown menu. Default is false.
  * @property {Array<ZetaDropdownItem>} items - Array of items to populate the dropdown. Includes label, icon (optional), checked (optional), disabled (optional), and onClick (optional) properties.
@@ -39,6 +40,13 @@ export type ZetaDropdownItem = { label: string; icon?: ZetaIconName; checked?: b
  */
 @customElement("zeta-dropdown-menu-button")
 export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(LitElement)))) {
+  /**
+   * Whether the dropdown menu should match the width of its parent.
+   * Enabled by default.
+   * If disabled, the dropdown menu will size to fit its content.
+   */
+  @property({ type: Boolean }) matchParentWidth: boolean = true;
+
   /** The default text to display when no item is selected. */
   @property({ type: String }) defaultText: string = "Select an option";
 
@@ -50,7 +58,7 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
   @property({ type: Array }) items: Array<ZetaDropdownItem> = [
     {
       label: "Auto Item",
-      icon: "star",
+      icon: undefined,
       checked: false
     }
   ];
@@ -106,8 +114,10 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
         if (this.type === "checkbox-dropdown") {
           this.checkedValues = [...this.checkedValues, item.label];
           this.input.value = this.checkedValues.toString();
+          this.input.dispatchEvent(new InputEvent("input"));
         } else if (this.type === "radio-dropdown") {
           this.input.value = item.label;
+          this.input.dispatchEvent(new InputEvent("input"));
         }
         //this.input.dispatchEvent(new Event("input")); TODO here too
       }
@@ -145,11 +155,11 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
     this.dispatchEvent(new ZetaDropdownEvent(this.open).toEvent()); //TODO BK this was added on my branch
   }
 
-  private handleOutsideClick(e: Event) {
+  private handleOutsideClick = (e: Event) => {
     if (this.open && !this.contains(e.target as Node)) {
       this.handleClick();
     }
-  }
+  };
 
   private renderItems() {
     if (this.type === "radio-dropdown") {
@@ -197,19 +207,34 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
             }
           }}
           ?rounded=${this.rounded}
-          ><zeta-icon slot="icon" ?rounded=${this.rounded}>${item.icon}</zeta-icon>${item.label}</zeta-dropdown-menu-item
-        >`;
+          >${item.icon ? html`<zeta-icon class="with-icon" slot="icon" ?rounded=${this.rounded}>${item.icon}</zeta-icon>` : ""} ${item.label}
+        </zeta-dropdown-menu-item>`;
       });
     }
   }
 
+  connectedCallback() {
+    // @ts-expect-error-next-line
+    if (super.connectedCallback) {
+      super.connectedCallback();
+    }
+    document.addEventListener("click", this.handleOutsideClick);
+  }
+
+  disconnectedCallback() {
+    document.removeEventListener("click", this.handleOutsideClick);
+    // @ts-expect-error-next-line
+    if (super.disconnectedCallback) {
+      super.disconnectedCallback();
+    }
+  }
+
   protected render() {
-    document.addEventListener("click", this.handleOutsideClick.bind(this));
     return html`
       <zeta-button id="anchor" @click=${() => this.handleClick()} .size=${this.size} shape=${this.rounded ? "rounded" : "sharp"} .flavor=${this.flavor}
         >${this.displayText === "" ? this.defaultText : this.displayText}<zeta-icon .rounded=${this.rounded}>${this.icon}</zeta-icon></zeta-button
       >
-      <zeta-droppable .anchor=${this.anchor} .direction=${this.direction} .matchParentWidth=${true} ?open=${this.open} ?rounded=${this.rounded}
+      <zeta-droppable .anchor=${this.anchor} .direction=${this.direction} .matchParentWidth=${this.matchParentWidth} ?open=${this.open} ?rounded=${this.rounded}
         >${this.renderItems()}</zeta-droppable
       >
       ${super.render()}
