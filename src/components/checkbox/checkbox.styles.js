@@ -49,4 +49,28 @@ export default css`
     height: 100%;
     display: flex;
   }
+
+  /* Size Variants */
+  :host([size="small"]) label {
+    font: var(--label-small);
+    gap: var(--spacing-small);
+  }
+  :host([size="small"]) .container {
+    min-width: 15px;
+    min-height: 15px;
+  }
+  :host([size="small"]) .container [part="icon"] {
+    --icon-size: var(--spacing-large);
+  }
+
+  :host([size="large"]) label {
+    font: var(--body-medium);
+  }
+  :host([size="large"]) .container {
+    min-width: 25px;
+    min-height: 25px;
+  }
+  :host([size="large"]) .container [part="icon"] {
+    --icon-size: var(--spacing-2xl);
+  }
 `;
