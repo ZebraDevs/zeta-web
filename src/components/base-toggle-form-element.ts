@@ -1,5 +1,5 @@
 import { html, LitElement } from "lit";
-import { Contourable, Interactive } from "../mixins/mixins.js";
+import { Contourable, Interactive, Size } from "../mixins/mixins.js";
 import styles from "./base-toggle-form-element.styles.js";
 import { FormField } from "../mixins/form-field.js";
 import "./icon/icon.js";
@@ -12,7 +12,7 @@ import "./icon/icon.js";
  *
  * @part icon - The icon of the element.
  */
-export abstract class BaseToggleFormElement extends FormField(Interactive(Contourable(LitElement))) {
+export abstract class BaseToggleFormElement extends FormField(Size(Interactive(Contourable(LitElement)))) {
   static override shadowRootOptions: ShadowRootInit = {
     ...LitElement.shadowRootOptions,
     mode: "open",
