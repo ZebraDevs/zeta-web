@@ -23,8 +23,15 @@ export type ZetaDropdownItem = { label: string; icon?: ZetaIconName; checked?: b
  * Zeta Dropdown Menu Button places a button that when clicked opens a dropdown menu containing the items passed into it through the items prop.
  *
  * @property {boolean} matchParentWidth - Whether the dropdown menu should match the width of its parent. Enabled by default. If disabled, the dropdown menu will size to fit its content.
+ * @property {string} defaultText - The default text to display when no item is selected. Defaults to an empty string if nothing is set.
+ * @property {boolean} buttonTextMatchesSelected - Whether the button text should update to match the selected item. Default is true. Only applicable for the text-dropdown type.
+ * @property {boolean} open - Controls the state of the dropdown menu. Default is false.
+ * @property {Array<ZetaDropdownItem>} items - Array of items to populate the dropdown. Includes label, icon (optional), checked (optional), disabled (optional), and onClick (optional) properties.
+ * @property {ButtonFlavor} flavor - The flavor of the dropdown button. Default is "primary".
+ * @property {InputType} type - The type of dropdown. Options are "text-dropdown", "checkbox-dropdown", and "radio-dropdown". Default is "text-dropdown".
+ * @property {string} name - The name of the dropdown menu button for form control. Default is "default".
+ * @property {"left" | "right" | "bottom" | "top"} direction - The direction of the droppable relative to the anchor. Defaults to bottom if left undefined.
  *
- * @slot - The slotted text will be displayed on the dropdown menu button.
  * @event {CustomEvent<ZetaDropdownEventDetail>} open - Fired when the dropdown is opened.
  * @event {CustomEvent<ZetaDropdownEventDetail>} close - Fired when the dropdown is closed.
  * @event {InputEvent} input - Fired when the dropdown is closed.
@@ -40,6 +47,12 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
    * If disabled, the dropdown menu will size to fit its content.
    */
   @property({ type: Boolean }) matchParentWidth: boolean = true;
+
+  /** Whether the button text should update to match the selected item. */
+  @property({ type: Boolean }) buttonTextMatchesSelected: boolean = true;
+
+  /** The default text to display when no item is selected. */
+  @property({ type: String }) defaultText: string = "";
 
   /** Controls the state of the dropdown menu. */
   @property({ type: Boolean }) open: boolean = false;
@@ -69,7 +82,8 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
   /** The direction of the droppable relative to the anchor. Defaults to bottom if left undefined.*/
   @property({ type: String }) direction?: "left" | "right" | "bottom" | "top" = "bottom";
 
-  @state() icon: string = "chevron_left";
+  /** The text state which displays the currently selected item */
+  @state() private displayText: string = "";
 
   private checkedValues: string[] = [];
 
@@ -114,6 +128,11 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
   private handleItemClick(text: string) {
     if (this.type === "radio-dropdown" || this.type === "text-dropdown") {
       this.input.value = text;
+      if (this.buttonTextMatchesSelected && this.type === "text-dropdown") {
+        this.displayText = text;
+      } else {
+        this.displayText = "";
+      }
       if (this.type === "text-dropdown") this.handleClick();
       this.input.dispatchEvent(new InputEvent("input"));
     } else if (this.type === "checkbox-dropdown") {
@@ -133,10 +152,8 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
     if (this.open) {
       //TODO move this to CSS
       document.body.style.overflow = "hidden";
-      this.icon = "expand_more";
     } else {
       document.body.style.overflow = "auto";
-      this.icon = "chevron_left";
     }
     this.dispatchEvent(new ZetaDropdownEvent(this.open).toEvent()); //TODO BK this was added on my branch
   }
@@ -218,7 +235,11 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
   protected render() {
     return html`
       <zeta-button id="anchor" @click=${() => this.handleClick()} .size=${this.size} shape=${this.rounded ? "rounded" : "sharp"} .flavor=${this.flavor}
-        ><slot></slot><zeta-icon .rounded=${this.rounded}>${this.icon}</zeta-icon></zeta-button
+        >${this.displayText === "" ? this.defaultText : this.displayText}<zeta-icon
+          style="${this.open ? "rotate: -90deg;" : "rotate: 0deg;"}"
+          .rounded=${this.rounded}
+          >chevron_left</zeta-icon
+        ></zeta-button
       >
       <zeta-droppable .anchor=${this.anchor} .direction=${this.direction} .matchParentWidth=${this.matchParentWidth} ?open=${this.open} ?rounded=${this.rounded}
         >${this.renderItems()}</zeta-droppable
