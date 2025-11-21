@@ -19,9 +19,8 @@ describe("zeta-dropdown-menu-button", () => {
             rounded=true
             flavor="primary"
             type="text-dropdown"
-            
+            defaultText="Select an option"
           >
-            Dropdown Menu
           </zeta-dropdown-menu-button>`
   ) => {
     // prettier-ignore
@@ -40,9 +39,13 @@ describe("zeta-dropdown-menu-button", () => {
   });
 
   describe("Content", () => {
-    it("renders the text correctly", async () => {
-      const text = "Dropdown Menu";
-      await expect(subject.innerText.trim()).to.equal(text);
+    it("renders the text correctly", () => {
+      const text = "Select an option";
+      const buttonElement = subject.shadowRoot?.querySelector("zeta-button") as ZetaButton;
+      expect(buttonElement).to.exist;
+
+      // Text of button also includes the icon, so we check if the default text is part of it
+      expect(buttonElement.textContent).to.include(text);
     });
 
     // it.skip("renders an icon with the correct name", async () => {
