@@ -1,5 +1,45 @@
 # Changelog
 
+## [1.0.0](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.12.9...zeta-web-v1.0.0) (2025-11-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* **UX-1541:** Change dropdown menu button text on selection of dropdown item ([#149](https://github.com/ZebraDevs/zeta-web/issues/149))
+
+### ✨ New Features
+
+* **UX-1542:** Make icon optional for text dropdown menu items ([#150](https://github.com/ZebraDevs/zeta-web/issues/150)) ([0129d26](https://github.com/ZebraDevs/zeta-web/commit/0129d26a3d1f5d1e8ee6cb2499e658c1ac32c722))
+* **UX-1546:** Add sizes to dropdown menu item, radio and checkbox ([#154](https://github.com/ZebraDevs/zeta-web/issues/154)) ([240ce31](https://github.com/ZebraDevs/zeta-web/commit/240ce3182c4aedadccaa2895049754e85ce6564f))
+
+
+### 🪲 Bug Fixes
+
+* **UX-1540:** Fix input chip avatar image ([#148](https://github.com/ZebraDevs/zeta-web/issues/148)) ([c059b4f](https://github.com/ZebraDevs/zeta-web/commit/c059b4f98c1e0f4ac1f2b31a1a51cdead26e43f5))
+
+
+### ⛓️ Dependencies
+
+* **automated:** Update zeta-icons to v1.7.0 ([6776730](https://github.com/ZebraDevs/zeta-web/commit/6776730953c5969f764399566c3e579122a31feb))
+* **automated:** Update zeta-icons to v1.8.0 ([1450c8d](https://github.com/ZebraDevs/zeta-web/commit/1450c8db2f5a1b7ac871c79645ffffc571b8c794))
+* **automated:** Update zeta-icons to v1.9.0 ([62b8eb7](https://github.com/ZebraDevs/zeta-web/commit/62b8eb7a979d36db78e595622391010b39d6f8d9))
+
+
+### 🧹 Miscellaneous Chores
+
+* **deps:** bump js-yaml from 3.14.1 to 3.14.2 ([#155](https://github.com/ZebraDevs/zeta-web/issues/155)) ([f6a7e82](https://github.com/ZebraDevs/zeta-web/commit/f6a7e82432c20a437b0fbd7288a0ceaad7fc4791))
+
+
+### 🔧 Code Refactoring
+
+* **UX-1541:** Change dropdown menu button text on selection of dropdown item ([#149](https://github.com/ZebraDevs/zeta-web/issues/149)) ([df0101d](https://github.com/ZebraDevs/zeta-web/commit/df0101d908fe4ca56183d058728ffd868f71b6d1))
+* **UX-1544:** Add scroll when dropdown menu text exceeds dropdown menu container ([#153](https://github.com/ZebraDevs/zeta-web/issues/153)) ([0be5d10](https://github.com/ZebraDevs/zeta-web/commit/0be5d10058437bced19545331c6d00950aa16b37))
+
+
+### 💄 Styles
+
+* **UX-1543:** Control whether dropdown menu matches dropdown button width ([#152](https://github.com/ZebraDevs/zeta-web/issues/152)) ([23f0d00](https://github.com/ZebraDevs/zeta-web/commit/23f0d0050ddc4d7ea851b5f46887b953b477f51d))
+
 ## [0.12.9](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.12.8...zeta-web-v0.12.9) (2025-11-04)
 
 
