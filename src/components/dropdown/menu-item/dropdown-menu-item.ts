@@ -28,10 +28,8 @@ export class ZetaDropdownMenuItem extends Contourable(Size(Interactive(LitElemen
       @keydown=${(e: KeyboardEvent) => this.key(e, "down")}
       @keyup=${(e: KeyboardEvent) => this.key(e, "up")}
     >
-      <div class="leading"><slot name="icon"></slot></div>
-      <div class="header">
-        <slot></slot>
-      </div>
+      <slot name="icon"></slot>
+      <slot></slot>
     </div>`;
   }
 
