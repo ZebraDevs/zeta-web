@@ -19,6 +19,11 @@ const meta: Meta<ZetaRadioButton> = {
     onchange: fn(),
     oninput: fn()
   },
+  argTypes: {
+    size: {
+      options: ["small", "medium", "large"]
+    }
+  },
   parameters: {
     design: {
       url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=21510-54345&mode=design&t=DUHsS5bjWB5UW1iG-4"

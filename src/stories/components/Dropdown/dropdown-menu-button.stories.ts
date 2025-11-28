@@ -51,8 +51,9 @@ const meta: Meta<ZetaDropdownMenuButton & { onopen: () => void }> = {
     flavor: "primary",
     open: false,
     direction: undefined,
-    slot: "Dropdown Menu",
+    defaultText: "Select an option",
     matchParentWidth: true,
+    buttonTextMatchesSelected: true,
     onclick: fn(),
     onchange: fn(),
     oninput: fn(),
@@ -113,13 +114,14 @@ export const DropdownMenuButton: StoryObj<ZetaDropdownMenuButton & { onopen: () 
             ?open=${args.open}
             .direction=${args.direction}
             .matchParentWidth=${args.matchParentWidth}
+            .defaultText=${args.defaultText}
+            .buttonTextMatchesSelected=${args.buttonTextMatchesSelected}
             @click=${args.onclick}
             @change=${args.onchange}
             @input=${args.oninput}
             @open=${args.onopen}
             @close=${args.onclose}
           >
-            ${args.slot}
           </zeta-dropdown-menu-button>
           <button type="submit">Submit</button>
         </form>
@@ -145,16 +147,17 @@ export const DropdownMenuButton: StoryObj<ZetaDropdownMenuButton & { onopen: () 
             .flavor=${args.flavor}
             .type=${"checkbox-dropdown"}
             .items=${items2}
+            .defaultText=${args.defaultText}
             ?open=${args.open}
             .direction=${args.direction}
             .matchParentWidth=${args.matchParentWidth}
+            .buttonTextMatchesSelected=${args.buttonTextMatchesSelected}
             @click=${args.onclick}
             @change=${args.onchange}
             @input=${args.oninput}
             @open=${args.onopen}
             @close=${args.onclose}
           >
-            ${args.slot}
           </zeta-dropdown-menu-button>
           <button type="submit">Submit</button>
         </form>
@@ -180,16 +183,17 @@ export const DropdownMenuButton: StoryObj<ZetaDropdownMenuButton & { onopen: () 
             .flavor=${args.flavor}
             .type=${"radio-dropdown"}
             .items=${items3}
+            .defaultText=${args.defaultText}
             ?open=${args.open}
             .direction=${args.direction}
             .matchParentWidth=${args.matchParentWidth}
+            .buttonTextMatchesSelected=${args.buttonTextMatchesSelected}
             @click=${args.onclick}
             @change=${args.onchange}
             @input=${args.oninput}
             @open=${args.onopen}
             @close=${args.onclose}
           >
-            ${args.slot}
           </zeta-dropdown-menu-button>
           <button type="submit">Submit</button>
         </form>

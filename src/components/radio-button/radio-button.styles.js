@@ -33,4 +33,30 @@ export default css`
       background-color: var(--surface-disabled);
     }
   }
+
+  /* Size Variants */
+  :host([size="small"]) label {
+    font: var(--body-small);
+    gap: var(--spacing-small);
+  }
+  :host([size="small"]) .container {
+    height: var(--spacing-medium);
+    width: var(--spacing-medium);
+  }
+  :host([size="small"]) .container [part="icon"] {
+    width: 6px;
+    height: 6px;
+  }
+
+  :host([size="large"]) label {
+    font: var(--body-medium);
+  }
+  :host([size="large"]) .container {
+    height: var(--spacing-xl);
+    width: var(--spacing-xl);
+  }
+  :host([size="large"]) .container [part="icon"] {
+    width: 12px;
+    height: 12px;
+  }
 `;
