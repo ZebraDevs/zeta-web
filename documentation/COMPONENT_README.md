@@ -70,9 +70,13 @@ export default css`
 
 ### Hover styling for mobile
 
-When creating a component which will have different styles on hover, it is highly recommended to wrap this styling within this specific media query, for example:
+When creating a component which will have different styles on hover, it is highly recommended to wrap this styling within this specific media query, and also make the webkit tap highlight color transparent. For example:
 
 ```css
+:host {
+  -webkit-tap-highlight-color: transparent;
+}
+
 @media (hover: hover), (hover: none) and (pointer: fine) {
   .navigation-profile:hover {
     background-color: var(--state-inverse-hover) !important;
@@ -83,6 +87,8 @@ When creating a component which will have different styles on hover, it is highl
 This is because on mobile, by default, hover styles will remain 'active' after click. This leads to the hover styles becoming 'stuck', which leads to unintended results.
 
 By wrapping the component hover styles within this media query, it disables the hover styles for mobile devices. This is intended, as hovering on mobile is not possible. Other styles, like active, remain unaffected.
+
+Regarding the webkit tap highlight color: on mobile, taps are automatically styled. If you want to use your own styling for the component with :active, it is recommended to add this on your main div or host component.
 
 ### Export the component {#export-the-component-web}
 
