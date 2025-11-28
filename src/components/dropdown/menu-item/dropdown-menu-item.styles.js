@@ -16,6 +16,9 @@ export default css`
     display: flex;
     align-items: center;
     user-select: none;
+    padding: var(--spacing-small) var(--spacing-medium);
+    gap: var(--spacing-small);
+    font: var(--body-medium);
   }
 
   /* Size Variants */
