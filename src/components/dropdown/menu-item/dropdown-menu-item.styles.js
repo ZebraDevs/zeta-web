@@ -7,7 +7,9 @@ export default css`
     justify-content: flex-start;
     flex: 1;
     user-select: none;
+    padding: var(--spacing-small) var(--spacing-medium);
     gap: var(--spacing-small);
+    font: var(--body-medium);
   }
 
   /* Size Variants */
