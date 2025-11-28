@@ -2,6 +2,8 @@ import { css } from "lit";
 export default css`
   .header {
     display: flex;
+    align-items: center;
+    justify-content: center;
     flex: 1;
   }
 
@@ -14,7 +16,6 @@ export default css`
     padding: var(--spacing-small) var(--spacing-medium);
     display: flex;
     align-items: center;
-    gap: var(--spacing-small);
     user-select: none;
     font: var(--body-medium);
     -webkit-tap-highlight-color: transparent;

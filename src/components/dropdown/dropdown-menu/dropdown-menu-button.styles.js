@@ -6,9 +6,13 @@ export default css`
     -webkit-tap-highlight-color: transparent;
   }
 
+  .with-icon {
+    padding-right: var(--spacing-small);
+  }
+
   .droppable-item {
     height: var(--spacing-6xl);
-    padding-left: var(--spacing-medium);
+    padding: 0 var(--spacing-medium);
   }
 
   @media (hover: hover), (hover: none) and (pointer: fine) {
