@@ -1,20 +1,11 @@
 import { css } from "lit";
 export default css`
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex: 1;
-  }
-
-  .leading {
-    display: flex;
-  }
-
   .droppable-item {
     background-color: var(--surface-default);
     display: flex;
     align-items: center;
+    justify-content: flex-start;
+    flex: 1;
     user-select: none;
     padding: var(--spacing-small) var(--spacing-medium);
     gap: var(--spacing-small);

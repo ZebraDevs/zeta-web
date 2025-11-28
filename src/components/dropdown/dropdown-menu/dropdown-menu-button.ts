@@ -210,7 +210,7 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
             }
           }}
           ?rounded=${this.rounded}
-          >${item.icon ? html`<zeta-icon class="with-icon" slot="icon" ?rounded=${this.rounded}>${item.icon}</zeta-icon>` : ""} ${item.label}
+          ><zeta-icon slot="icon" ?rounded=${this.rounded}>${item.icon}</zeta-icon> ${item.label}
         </zeta-dropdown-menu-item>`;
       });
     }
