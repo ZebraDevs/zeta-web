@@ -8,12 +8,15 @@ export default css`
     color: var(--main-subtle);
     padding: var(--spacing-medium) var(--spacing-large);
     font: var(--title-medium);
+    -webkit-tap-highlight-color: transparent;
   }
 
-  :host(:not([disabled]):hover),
-  :host(:not([disabled]):active),
-  :host(:not([disabled])[active]) {
-    color: var(--main-default);
+  @media (hover: hover), (hover: none) and (pointer: fine) {
+    :host(:not([disabled]):hover),
+    :host(:not([disabled]):active),
+    :host(:not([disabled])[active]) {
+      color: var(--main-default);
+    }
   }
 
   :host([disabled]) {

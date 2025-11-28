@@ -7,6 +7,7 @@ export default css`
   :host {
     cursor: pointer;
     background-color: var(--surface-default);
+    -webkit-tap-highlight-color: transparent;
   }
 
   h4 {
@@ -32,8 +33,10 @@ export default css`
     border-radius: var(--radius-rounded);
   }
 
-  .chevron-wrapper:hover {
-    background-color: var(--surface-selected-hover);
+  @media (hover: hover), (hover: none) and (pointer: fine) {
+    .chevron-wrapper:hover {
+      background-color: var(--surface-selected-hover);
+    }
   }
 
   zeta-icon.chevron {
@@ -64,8 +67,10 @@ export default css`
     min-height: 0;
   }
 
-  .accordion-item-header .row:hover {
-    background-color: var(--surface-hover);
+  @media (hover: hover), (hover: none) and (pointer: fine) {
+    .accordion-item-header .row:hover {
+      background-color: var(--surface-hover);
+    }
   }
 
   .title-wrapper {

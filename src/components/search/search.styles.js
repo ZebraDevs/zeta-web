@@ -45,13 +45,16 @@ export default css`
     background-color: var(--surface-default);
     flex-shrink: 0;
     gap: var(--spacing-small);
-
-    &:hover {
-      box-shadow: 0 0 0 var(--border-size-small) var(--border-hover);
-    }
+    -webkit-tap-highlight-color: transparent;
 
     &:has(input:focus) {
       box-shadow: 0 0 0 var(--border-size-medium) var(--border-primary);
+    }
+  }
+
+  @media (hover: hover), (hover: none) and (pointer: fine) {
+    form:hover {
+      box-shadow: 0 0 0 var(--border-size-small) var(--border-hover);
     }
   }
 

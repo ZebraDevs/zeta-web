@@ -4,7 +4,6 @@ export default css`
     display: flex;
     height: fit-content;
     width: fit-content;
-    background-color: var(--surface-default);
   }
   :host .text {
     font: var(--label-medium);
@@ -66,13 +65,16 @@ export default css`
     --icon-color: var(--main-inverse);
     background-color: var(--state-inverse-enabled);
   }
-  :host([flavor="inverse"]) > button:hover {
-    background-color: var(--state-inverse-hover);
-  }
   :host([flavor="inverse"]) > button:active {
     background-color: var(--state-inverse-selected);
   }
   :host([flavor="inverse"]) > button:focus {
     background-color: var(--state-inverse-focus);
+  }
+
+  @media (hover: hover), (hover: none) and (pointer: fine) {
+    :host([flavor="inverse"]) > button:hover {
+      background-color: var(--state-inverse-hover);
+    }
   }
 `;

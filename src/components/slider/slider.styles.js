@@ -29,9 +29,11 @@ export default css`
     transition: scale 0.1s linear;
   }
 
-  :host(:not([disabled])) .handle {
-    &:hover:not(:active) {
-      scale: 1.25;
+  @media (hover: hover), (hover: none) and (pointer: fine) {
+    :host(:not([disabled])) .handle {
+      &:hover:not(:active) {
+        scale: 1.25;
+      }
     }
   }
 

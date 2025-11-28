@@ -49,8 +49,10 @@ export default css`
     display: flex;
     align-items: center;
     justify-content: center;
+  }
 
-    &:hover {
+  @media (hover: hover), (hover: none) and (pointer: fine) {
+    .uploading:hover {
       .percentage {
         display: none;
       }

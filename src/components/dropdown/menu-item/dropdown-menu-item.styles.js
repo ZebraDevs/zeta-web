@@ -24,6 +24,7 @@ export default css`
 
   :host([size="medium"]) .droppable-item {
     font: var(--body-medium);
+    -webkit-tap-highlight-color: transparent;
     padding: var(--spacing-small) var(--spacing-medium);
     gap: var(--spacing-small);
   }
@@ -40,8 +41,10 @@ export default css`
     --icon-size: var(--spacing-xl);
   }
 
-  .droppable-item:hover {
-    background-color: var(--surface-hover);
+  @media (hover: hover), (hover: none) and (pointer: fine) {
+    .droppable-item:hover {
+      background-color: var(--surface-hover);
+    }
   }
 
   .droppable-item:active {
