@@ -68,6 +68,22 @@ export default css`
 `;
 ```
 
+### Hover styling for mobile
+
+When creating a component which will have different styles on hover, it is highly recommended to wrap this styling within this specific media query, for example:
+
+```css
+@media (hover: hover), (hover: none) and (pointer: fine) {
+  .navigation-profile:hover {
+    background-color: var(--state-inverse-hover) !important;
+  }
+}
+```
+
+This is because on mobile, by default, hover styles will remain 'active' after click. This leads to the hover styles becoming 'stuck', which leads to unintended results.
+
+By wrapping the component hover styles within this media query, it disables the hover styles for mobile devices. This is intended, as hovering on mobile is not possible. Other styles, like active, remain unaffected.
+
 ### Export the component {#export-the-component-web}
 
 `src/index.ts`
