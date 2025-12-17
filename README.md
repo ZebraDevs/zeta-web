@@ -3,8 +3,6 @@
 Zeta Web is a native web component library created by Zebra Technologies written in TypeScript.  
 The Zeta Design System includes foundations, components, and best practices that can be used when building UX.
 
-> 🚧 **Note**: This package is in pre-release, and so many aspects are incomplete.
-
 ## Previewing the components
 
 To view examples of all the components in the library, you can pull this repo and run the Storybook instance.
