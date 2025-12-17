@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.0.0...zeta-web-v1.0.1) (2025-12-17)
+
+
+### 📈 Documentation
+
+* Update readme ([6475562](https://github.com/ZebraDevs/zeta-web/commit/6475562a410c7d0a2667d4fc26c0637c173bcb05))
+
 ## [1.0.0](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v0.12.9...zeta-web-v1.0.0) (2025-11-28)
 
 
