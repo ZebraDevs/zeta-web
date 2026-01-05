@@ -3,6 +3,7 @@ import { customElement, property } from "lit/decorators.js";
 import styles from "./icon.styles.js";
 import { Contourable } from "../../mixins/mixins.js";
 import type { ZetaIconName } from "@zebra-fed/zeta-icons";
+export { ZetaPlusMinus } from "./plus-minus";
 
 /**
  *

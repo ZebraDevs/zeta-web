@@ -5,6 +5,9 @@ import { ifDefined } from "lit/directives/if-defined.js";
 import "../../../components/icon/icon.js";
 import "../../../components/badges/label/label.js";
 import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
+import { spreadGenerator } from "../../utils.js";
+
+const spread = spreadGenerator(ZetaNavigationDrawerItem);
 
 const meta: Meta<ZetaNavigationDrawerItem> = {
   component: "zeta-navigation-drawer-item",
@@ -30,6 +33,24 @@ export const Item: StoryObj<ZetaNavigationDrawerItem> = {
   argTypes: {
     rounded: { table: { disable: true } }
   }
+};
+
+export const ExpandableItem: StoryObj<ZetaNavigationDrawerItem> = {
+  argTypes: {
+    rounded: { table: { disable: true } },
+    expandable: { table: { disable: true } }
+  },
+  args: {
+    expandable: true,
+    headline: "Global Configurations"
+  },
+  render: args =>
+    html`<zeta-navigation-drawer-item ${spread(args)}>
+      <zeta-navigation-drawer-item expandable slot="children">
+        <zeta-icon slot="leading" name="label"></zeta-icon>Tags
+        <zeta-navigation-drawer-item slot="children"> <zeta-icon slot="leading" name="wifi"></zeta-icon>Wi-Fi Presets </zeta-navigation-drawer-item>
+      </zeta-navigation-drawer-item>
+    </zeta-navigation-drawer-item>`
 };
 
 export const ItemWithLeadingIcon: StoryObj<ZetaNavigationDrawerItem | any> = {

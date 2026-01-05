@@ -50,6 +50,7 @@ import { ZetaNavigationRailItem } from "./components/navigation-rail/navigation-
 import { ZetaNotificationIndicator } from "./components/badges/indicators/indicators.js";
 import { ZetaOption } from "./components/select-input/option.js";
 import { ZetaPagination } from "./components/pagination/pagination.js";
+import { ZetaPlusMinus } from "./components/icon/plus-minus.js";
 import { ZetaPriorityPill } from "./components/badges/priority-pill/priority-pill.js";
 import { ZetaProgressBar } from "./components/progress-indicators/progress-bar/progress-bar.js";
 import { ZetaProgressCircle } from "./components/progress-indicators/progress-circle/progress-circle.js";
@@ -129,6 +130,7 @@ export {
   ZetaNotificationIndicator,
   ZetaOption,
   ZetaPagination,
+  ZetaPlusMinus,
   ZetaPriorityPill,
   ZetaProgressBar,
   ZetaProgressCircle,
