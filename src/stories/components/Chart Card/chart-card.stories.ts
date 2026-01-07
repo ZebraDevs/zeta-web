@@ -56,7 +56,13 @@ export const Default: StoryObj = {
       <zeta-chart-card ${spread(args)}>
         <span slot="title">Chart Title</span>
         <span slot="subtitle">Chart Subtitle</span>
-        ${args.content ? html`<div style="height: 200px; background: var(--surface-subtle); border-radius: var(--spacing-small); display: flex; align-items: center; justify-content: center; color: var(--main-subtle);">Chart Content</div>` : nothing}
+        ${args.content
+          ? html`<div
+              style="height: 200px; background: var(--surface-subtle); border-radius: var(--spacing-small); display: flex; align-items: center; justify-content: center; color: var(--main-subtle);"
+            >
+              Chart Content
+            </div>`
+          : nothing}
         <zeta-button slot="footer" flavor="outline" size="small">View Details</zeta-button>
       </zeta-chart-card>
     </div>
@@ -108,15 +114,17 @@ export const Clickable: StoryObj = {
   },
   render: args => html`
     <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--spacing-2xl); padding: var(--spacing-2xl);">
-      <zeta-chart-card 
-        ${spread(args)}
-        @click=${() => alert("Card clicked!")}
-      >
+      <zeta-chart-card ${spread(args)} @click=${() => alert("Card clicked!")}>
         <span slot="title">Clickable Card</span>
         <span slot="subtitle">Click to interact</span>
-        ${args.content ? html`<div style="height: 200px; background: var(--surface-subtle); border-radius: var(--spacing-small); display: flex; align-items: center; justify-content: center; color: var(--main-subtle);">Chart Content</div>` : nothing}
+        ${args.content
+          ? html`<div
+              style="height: 200px; background: var(--surface-subtle); border-radius: var(--spacing-small); display: flex; align-items: center; justify-content: center; color: var(--main-subtle);"
+            >
+              Chart Content
+            </div>`
+          : nothing}
       </zeta-chart-card>
     </div>
   `
 };
-

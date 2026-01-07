@@ -27,13 +27,13 @@ export class ZetaChartCard extends Contourable(LitElement) {
   @property({ type: Boolean, reflect: true }) loading = false;
 
   /** Error message to display in the content area.
-   * 
+   *
    * When provided, the error message will be displayed instead of the slotted content.
    */
   @property({ type: String }) error?: string;
 
   /** Whether the card is clickable.
-   * 
+   *
    * When true, the card will have hover effects and can be clicked.
    * Use the `click` event to handle clicks.
    */
@@ -68,9 +68,7 @@ export class ZetaChartCard extends Contourable(LitElement) {
         @click=${this.clickable ? this.handleClick : nothing}
         @keydown=${this.clickable ? this.handleKeyDown : nothing}
       >
-        ${this.renderHeader()}
-        ${this.renderContent()}
-        ${this.renderFooter()}
+        ${this.renderHeader()} ${this.renderContent()} ${this.renderFooter()}
       </div>
     `;
   }
@@ -87,12 +85,8 @@ export class ZetaChartCard extends Contourable(LitElement) {
     return html`
       <div part="header" class="header">
         <div class="header-left">
-          ${this.hasTitleSlot
-            ? html`<div class="title"><slot name="title"></slot></div>`
-            : nothing}
-          ${this.hasSubtitleSlot
-            ? html`<div class="subtitle"><slot name="subtitle"></slot></div>`
-            : nothing}
+          ${this.hasTitleSlot ? html`<div class="title"><slot name="title"></slot></div>` : nothing}
+          ${this.hasSubtitleSlot ? html`<div class="subtitle"><slot name="subtitle"></slot></div>` : nothing}
         </div>
       </div>
     `;
@@ -105,9 +99,7 @@ export class ZetaChartCard extends Contourable(LitElement) {
   private renderContent() {
     return html`
       <div part="content" class="content">
-        ${this.error
-          ? html`<div class="error"><span>${this.error}</span></div>`
-          : html`<slot @slotchange=${this.handleContentSlotChange}></slot>`}
+        ${this.error ? html`<div class="error"><span>${this.error}</span></div>` : html`<slot @slotchange=${this.handleContentSlotChange}></slot>`}
       </div>
     `;
   }
@@ -171,9 +163,7 @@ export class ZetaChartCard extends Contourable(LitElement) {
   private handleFooterSlotChange = (e: Event) => {
     const slot = e.target as HTMLSlotElement;
     const assignedNodes = slot.assignedNodes({ flatten: true });
-    this.hasFooterSlot = assignedNodes.some(
-      node => node.nodeType === Node.ELEMENT_NODE || (node.nodeType === Node.TEXT_NODE && node.textContent?.trim())
-    );
+    this.hasFooterSlot = assignedNodes.some(node => node.nodeType === Node.ELEMENT_NODE || (node.nodeType === Node.TEXT_NODE && node.textContent?.trim()));
     this.updateSlotStates();
   };
 
@@ -185,9 +175,9 @@ export class ZetaChartCard extends Contourable(LitElement) {
     super.connectedCallback();
     this.updateSlotStates();
 
-    const slots = this.shadowRoot?.querySelectorAll('slot');
+    const slots = this.shadowRoot?.querySelectorAll("slot");
     slots?.forEach(slot => {
-      slot.addEventListener('slotchange', this.updateSlotStates);
+      slot.addEventListener("slotchange", this.updateSlotStates);
     });
   }
 
@@ -197,9 +187,9 @@ export class ZetaChartCard extends Contourable(LitElement) {
    */
   disconnectedCallback() {
     super.disconnectedCallback();
-    const slots = this.shadowRoot?.querySelectorAll('slot');
+    const slots = this.shadowRoot?.querySelectorAll("slot");
     slots?.forEach(slot => {
-      slot.removeEventListener('slotchange', this.updateSlotStates);
+      slot.removeEventListener("slotchange", this.updateSlotStates);
     });
   }
 

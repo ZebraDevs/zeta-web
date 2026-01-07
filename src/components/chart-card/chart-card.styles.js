@@ -113,7 +113,7 @@ export default css`
   }
 
   .error::before {
-    content: '⚠️';
+    content: "⚠️";
   }
 
   /* Footer */
@@ -150,12 +150,7 @@ export default css`
   .skeleton-header {
     height: 24px;
     width: 60%;
-    background: linear-gradient(
-      90deg,
-      var(--surface-subtle) 25%,
-      var(--surface-hover) 50%,
-      var(--surface-subtle) 75%
-    );
+    background: linear-gradient(90deg, var(--surface-subtle) 25%, var(--surface-hover) 50%, var(--surface-subtle) 75%);
     background-size: 200% 100%;
     animation: shimmerAnimation 1.5s infinite;
     border-radius: var(--spacing-small);
@@ -165,12 +160,7 @@ export default css`
   .skeleton-content {
     flex: 1;
     margin: var(--spacing-3xl);
-    background: linear-gradient(
-      90deg,
-      var(--surface-subtle) 25%,
-      var(--surface-hover) 50%,
-      var(--surface-subtle) 75%
-    );
+    background: linear-gradient(90deg, var(--surface-subtle) 25%, var(--surface-hover) 50%, var(--surface-subtle) 75%);
     background-size: 200% 100%;
     animation: shimmerAnimation 1.5s infinite;
     border-radius: var(--spacing-small);
@@ -180,12 +170,7 @@ export default css`
   .skeleton-footer {
     height: 32px;
     width: 120px;
-    background: linear-gradient(
-      90deg,
-      var(--surface-subtle) 25%,
-      var(--surface-hover) 50%,
-      var(--surface-subtle) 75%
-    );
+    background: linear-gradient(90deg, var(--surface-subtle) 25%, var(--surface-hover) 50%, var(--surface-subtle) 75%);
     background-size: 200% 100%;
     animation: shimmerAnimation 1.5s infinite;
     border-radius: var(--spacing-small);
@@ -201,4 +186,3 @@ export default css`
     }
   }
 `;
-

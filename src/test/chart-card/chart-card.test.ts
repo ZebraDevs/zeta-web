@@ -46,21 +46,13 @@ describe("zeta-chart-card", () => {
 
       const title = subject.shadowRoot?.querySelector(".title");
       const subtitle = subject.shadowRoot?.querySelector(".subtitle");
-      
+
       if (title) {
-        await contrastTest(
-          "Chart Card title",
-          title as HTMLElement,
-          subject.shadowRoot?.querySelector(".card") as HTMLElement
-        );
+        await contrastTest("Chart Card title", title as HTMLElement, subject.shadowRoot?.querySelector(".card") as HTMLElement);
       }
-      
+
       if (subtitle) {
-        await contrastTest(
-          "Chart Card subtitle",
-          subtitle as HTMLElement,
-          subject.shadowRoot?.querySelector(".card") as HTMLElement
-        );
+        await contrastTest("Chart Card subtitle", subtitle as HTMLElement, subject.shadowRoot?.querySelector(".card") as HTMLElement);
       }
     });
 
@@ -170,7 +162,6 @@ describe("zeta-chart-card", () => {
     });
   });
 
-
   describe("Interaction", () => {
     it("dispatches click event when card is clicked and clickable", async () => {
       subject.setAttribute("clickable", "true");
@@ -233,6 +224,3 @@ describe("zeta-chart-card", () => {
     });
   });
 });
-
-
-
