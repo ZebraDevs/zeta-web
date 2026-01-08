@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html, nothing } from "lit";
+import { fn } from "@storybook/test";
 import { ZetaChartCard } from "../../../components/chart-card/chart-card.js";
 import "../../../components/chart-card/chart-card";
 import "../../../components/button/button.js";
@@ -11,22 +12,20 @@ const meta: Meta<ZetaChartCard> = {
   title: "Components/Chart Card",
   component: "zeta-chart-card",
   args: {
-    loading: false,
     clickable: false
   },
   argTypes: {
-    loading: {
-      control: { type: "boolean" },
-      description: "Show loading skeleton"
-    },
     clickable: {
       control: { type: "boolean" },
       description: "Make card clickable with hover effects"
     },
-    minHeight: {
+    title: {
       control: { type: "text" },
-      description: "Minimum height of the card",
-      table: { defaultValue: { summary: "undefined" } }
+      description: "Title text displayed in header (when no header slot provided)"
+    },
+    subtitle: {
+      control: { type: "text" },
+      description: "Subtitle text displayed in header (when no header slot provided)"
     },
     error: {
       control: { type: "text" },
@@ -49,13 +48,13 @@ export default meta;
 
 export const Default: StoryObj = {
   args: {
+    title: "Chart Title",
+    subtitle: "Chart Subtitle",
     content: true
   },
   render: args => html`
     <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--spacing-2xl); padding: var(--spacing-2xl);">
       <zeta-chart-card ${spread(args)}>
-        <span slot="title">Chart Title</span>
-        <span slot="subtitle">Chart Subtitle</span>
         ${args.content
           ? html`<div
               style="height: 200px; background: var(--surface-subtle); border-radius: var(--spacing-small); display: flex; align-items: center; justify-content: center; color: var(--main-subtle);"
@@ -69,24 +68,10 @@ export const Default: StoryObj = {
   `
 };
 
-export const LoadingState: StoryObj = {
-  args: {
-    loading: true
-  },
-  argTypes: {
-    loading: { table: { disable: true } }
-  },
-  render: args => html`
-    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--spacing-2xl); padding: var(--spacing-2xl);">
-      <zeta-chart-card ${spread(args)}></zeta-chart-card>
-      <zeta-chart-card ${spread(args)}></zeta-chart-card>
-      <zeta-chart-card ${spread(args)}></zeta-chart-card>
-    </div>
-  `
-};
-
 export const ErrorState: StoryObj = {
   args: {
+    title: "Chart with Error",
+    subtitle: "Error example",
     error: "Failed to load chart data. Please try again later.",
     content: false
   },
@@ -96,27 +81,26 @@ export const ErrorState: StoryObj = {
   },
   render: args => html`
     <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--spacing-2xl); padding: var(--spacing-2xl);">
-      <zeta-chart-card ${spread(args)}>
-        <span slot="title">Chart with Error</span>
-        <span slot="subtitle">Error example</span>
-      </zeta-chart-card>
+      <zeta-chart-card ${spread(args)}></zeta-chart-card>
     </div>
   `
 };
 
 export const Clickable: StoryObj = {
   args: {
+    title: "Clickable Card",
+    subtitle: "Click to interact",
     clickable: true,
-    content: true
+    content: true,
+    onclick: fn()
   },
   argTypes: {
-    clickable: { table: { disable: true } }
+    clickable: { table: { disable: true } },
+    onclick: { table: { disable: true } }
   },
   render: args => html`
     <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--spacing-2xl); padding: var(--spacing-2xl);">
-      <zeta-chart-card ${spread(args)} @click=${() => alert("Card clicked!")}>
-        <span slot="title">Clickable Card</span>
-        <span slot="subtitle">Click to interact</span>
+      <zeta-chart-card ${spread(args)} @click=${args.onclick}>
         ${args.content
           ? html`<div
               style="height: 200px; background: var(--surface-subtle); border-radius: var(--spacing-small); display: flex; align-items: center; justify-content: center; color: var(--main-subtle);"

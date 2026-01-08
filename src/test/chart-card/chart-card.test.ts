@@ -19,9 +19,7 @@ describe("zeta-chart-card", () => {
         display: block;
       }
     </style>
-    <zeta-chart-card>
-      <span slot="title">Test Title</span>
-      <span slot="subtitle">Test Subtitle</span>
+    <zeta-chart-card title="Test Title" subtitle="Test Subtitle">
       <div style='color: var(--main-default); width: 360px; height: 200px'>Chart Content</div>
     </zeta-chart-card>
     </div>`
@@ -81,7 +79,7 @@ describe("zeta-chart-card", () => {
   });
 
   describe("Content", () => {
-    it("renders title and subtitle slots", async () => {
+    it("renders title and subtitle from props", async () => {
       await subject.updateComplete;
 
       const title = subject.shadowRoot?.querySelector(".title");
@@ -89,6 +87,8 @@ describe("zeta-chart-card", () => {
 
       expect(title).to.exist;
       expect(subtitle).to.exist;
+      expect(title?.textContent).to.contain("Test Title");
+      expect(subtitle?.textContent).to.contain("Test Subtitle");
     });
 
     it("renders content slot", async () => {
@@ -100,8 +100,7 @@ describe("zeta-chart-card", () => {
 
     it("renders footer slot when provided", async () => {
       const template = `
-        <zeta-chart-card>
-          <span slot="title">Test</span>
+        <zeta-chart-card title="Test">
           <div>Content</div>
           <div slot="footer">Footer</div>
         </zeta-chart-card>
@@ -114,7 +113,7 @@ describe("zeta-chart-card", () => {
       expect(footer).to.exist;
     });
 
-    it("hides header when no title, subtitle, or actions", async () => {
+    it("hides header when no title, subtitle, or header slot", async () => {
       const template = `
         <zeta-chart-card>
           <div>Content only</div>
@@ -128,6 +127,22 @@ describe("zeta-chart-card", () => {
       expect(header).to.not.exist;
     });
 
+    it("renders header slot when provided", async () => {
+      const template = `
+        <zeta-chart-card>
+          <div slot="header">Custom Header</div>
+          <div>Content</div>
+        </zeta-chart-card>
+      `;
+      const all = await fixture(html`${unsafeStatic(template)}`);
+      const card = all.querySelector("zeta-chart-card") as ZetaChartCard;
+      await card.updateComplete;
+
+      const header = card.shadowRoot?.querySelector(".header");
+      expect(header).to.exist;
+      expect(header?.textContent).to.contain("Custom Header");
+    });
+
     it("displays error message when error property is set", async () => {
       subject.setAttribute("error", "Test error message");
       await subject.updateComplete;
@@ -135,30 +150,6 @@ describe("zeta-chart-card", () => {
       const error = subject.shadowRoot?.querySelector(".error");
       expect(error).to.exist;
       expect(error?.textContent).to.contain("Test error message");
-    });
-  });
-
-  describe("Loading State", () => {
-    it("shows skeleton when loading is true", async () => {
-      subject.setAttribute("loading", "true");
-      await subject.updateComplete;
-
-      const skeleton = subject.shadowRoot?.querySelector(".skeleton");
-      expect(skeleton).to.exist;
-      expect(skeleton?.classList.contains("skeleton")).to.be.true;
-    });
-
-    it("shows skeleton header, content, and footer", async () => {
-      subject.setAttribute("loading", "true");
-      await subject.updateComplete;
-
-      const skeletonHeader = subject.shadowRoot?.querySelector(".skeleton-header");
-      const skeletonContent = subject.shadowRoot?.querySelector(".skeleton-content");
-      const skeletonFooter = subject.shadowRoot?.querySelector(".skeleton-footer");
-
-      expect(skeletonHeader).to.exist;
-      expect(skeletonContent).to.exist;
-      expect(skeletonFooter).to.exist;
     });
   });
 
@@ -214,13 +205,4 @@ describe("zeta-chart-card", () => {
     });
   });
 
-  describe("Styling", () => {
-    it("applies minHeight when provided", async () => {
-      subject.setAttribute("minHeight", "300px");
-      await subject.updateComplete;
-
-      const card = subject.shadowRoot?.querySelector(".card") as HTMLElement;
-      expect(card.style.getPropertyValue("--chart-card-min-height")).to.equal("300px");
-    });
-  });
 });

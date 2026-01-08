@@ -57,7 +57,7 @@ export default css`
     min-width: 0;
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-2xs);
+    gap: var(--spacing-minimum);
   }
 
   .title {
@@ -142,47 +142,4 @@ export default css`
     background-color: var(--border-subtle);
   }
 
-  /* Loading skeleton */
-  .skeleton {
-    pointer-events: none;
-  }
-
-  .skeleton-header {
-    height: 24px;
-    width: 60%;
-    background: linear-gradient(90deg, var(--surface-subtle) 25%, var(--surface-hover) 50%, var(--surface-subtle) 75%);
-    background-size: 200% 100%;
-    animation: shimmerAnimation 1.5s infinite;
-    border-radius: var(--spacing-small);
-    margin: var(--spacing-2xl) var(--spacing-3xl);
-  }
-
-  .skeleton-content {
-    flex: 1;
-    margin: var(--spacing-3xl);
-    background: linear-gradient(90deg, var(--surface-subtle) 25%, var(--surface-hover) 50%, var(--surface-subtle) 75%);
-    background-size: 200% 100%;
-    animation: shimmerAnimation 1.5s infinite;
-    border-radius: var(--spacing-small);
-    min-height: 150px;
-  }
-
-  .skeleton-footer {
-    height: 32px;
-    width: 120px;
-    background: linear-gradient(90deg, var(--surface-subtle) 25%, var(--surface-hover) 50%, var(--surface-subtle) 75%);
-    background-size: 200% 100%;
-    animation: shimmerAnimation 1.5s infinite;
-    border-radius: var(--spacing-small);
-    margin: 0 var(--spacing-3xl) var(--spacing-2xl) var(--spacing-3xl);
-  }
-
-  @keyframes shimmerAnimation {
-    0% {
-      background-position: 200% 0;
-    }
-    100% {
-      background-position: -200% 0;
-    }
-  }
 `;

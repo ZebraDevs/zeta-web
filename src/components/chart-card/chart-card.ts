@@ -5,8 +5,7 @@ import { Contourable } from "../../mixins/contour.js";
 
 /** A flexible card component specifically designed for dashboard charts and visualizations.
  *
- * @slot title - The title of the chart card, displayed in the header.
- * @slot subtitle - The subtitle of the chart card, displayed below the title in the header.
+ * @slot header - The header content of the chart card. If not provided, title and subtitle props will be used.
  * @slot - The main content of the card, typically containing chart visualizations.
  * @slot footer - Footer content, typically containing action buttons or additional information.
  *
@@ -20,11 +19,25 @@ import { Contourable } from "../../mixins/contour.js";
  */
 @customElement("zeta-chart-card")
 export class ZetaChartCard extends Contourable(LitElement) {
-  /** The minimum height of the card content area. */
-  @property({ type: String }) minHeight?: string;
+  private _title: string = "";
+  /** The title of the chart card, displayed in the header when no header slot is provided. */
+  @property({ type: String })
+  get title(): string {
+    return this._title;
+  }
+  set title(value: string) {
+    this._title = value ?? "";
+  }
 
-  /** Whether the card is in a loading state, showing a skeleton. */
-  @property({ type: Boolean, reflect: true }) loading = false;
+  private _subtitle: string = "";
+  /** The subtitle of the chart card, displayed below the title in the header when no header slot is provided. */
+  @property({ type: String })
+  get subtitle(): string {
+    return this._subtitle;
+  }
+  set subtitle(value: string) {
+    this._subtitle = value ?? "";
+  }
 
   /** Error message to display in the content area.
    *
@@ -39,54 +52,50 @@ export class ZetaChartCard extends Contourable(LitElement) {
    */
   @property({ type: Boolean, reflect: true }) clickable = false;
 
-  /** Internal state to track if title slot has content */
-  @state() private hasTitleSlot = false;
-
-  /** Internal state to track if subtitle slot has content */
-  @state() private hasSubtitleSlot = false;
+  /** Internal state to track if header slot has content */
+  @state() private hasHeaderSlot = false;
 
   /** Internal state to track if footer slot has content */
   @state() private hasFooterSlot = false;
 
   protected override render() {
-    if (this.loading) {
-      return html`
-        <div part="skeleton" class="card skeleton">
-          <div class="skeleton-header"></div>
-          <div class="skeleton-content"></div>
-          <div class="skeleton-footer"></div>
-        </div>
-      `;
-    }
-
     return html`
       <div
         class="card ${this.clickable ? "clickable" : ""}"
-        style="${this.minHeight ? `--chart-card-min-height: ${this.minHeight}` : nothing}"
         role="${this.clickable ? "button" : "article"}"
         tabindex="${this.clickable ? "0" : nothing}"
         @click=${this.clickable ? this.handleClick : nothing}
         @keydown=${this.clickable ? this.handleKeyDown : nothing}
       >
-        ${this.renderHeader()} ${this.renderContent()} ${this.renderFooter()}
+        ${this.renderHeader()}
+        ${this.renderContent()}
+        ${this.renderFooter()}
       </div>
     `;
   }
 
   /**
-   * Renders the card header with title and subtitle slots.
-   * Returns nothing if neither title nor subtitle slots have content.
+   * Renders the card header.
+   * Uses header slot if provided, otherwise uses title and subtitle props.
    */
   private renderHeader() {
-    if (!this.hasTitleSlot && !this.hasSubtitleSlot) {
+    if (this.hasHeaderSlot) {
+      return html`
+        <div part="header" class="header">
+          <slot name="header" @slotchange=${this.handleHeaderSlotChange}></slot>
+        </div>
+      `;
+    }
+
+    if (!this._title && !this._subtitle) {
       return nothing;
     }
 
     return html`
       <div part="header" class="header">
         <div class="header-left">
-          ${this.hasTitleSlot ? html`<div class="title"><slot name="title"></slot></div>` : nothing}
-          ${this.hasSubtitleSlot ? html`<div class="subtitle"><slot name="subtitle"></slot></div>` : nothing}
+          ${this._title ? html`<div class="title">${this._title}</div>` : nothing}
+          ${this._subtitle ? html`<div class="subtitle">${this._subtitle}</div>` : nothing}
         </div>
       </div>
     `;
@@ -99,7 +108,7 @@ export class ZetaChartCard extends Contourable(LitElement) {
   private renderContent() {
     return html`
       <div part="content" class="content">
-        ${this.error ? html`<div class="error"><span>${this.error}</span></div>` : html`<slot @slotchange=${this.handleContentSlotChange}></slot>`}
+        ${this.error ? html`<div class="error"><span>${this.error}</span></div>` : html`<slot></slot>`}
       </div>
     `;
   }
@@ -149,10 +158,13 @@ export class ZetaChartCard extends Contourable(LitElement) {
   }
 
   /**
-   * Handles content slot changes.
-   * Updates slot states to reflect current slot content.
+   * Handles header slot changes.
+   * Updates hasHeaderSlot state based on whether header slot has content.
    */
-  private handleContentSlotChange = () => {
+  private handleHeaderSlotChange = (e: Event) => {
+    const slot = e.target as HTMLSlotElement;
+    const assignedNodes = slot.assignedNodes({ flatten: true });
+    this.hasHeaderSlot = assignedNodes.some(node => node.nodeType === Node.ELEMENT_NODE || (node.nodeType === Node.TEXT_NODE && node.textContent?.trim()));
     this.updateSlotStates();
   };
 
@@ -195,11 +207,10 @@ export class ZetaChartCard extends Contourable(LitElement) {
 
   /**
    * Updates internal state tracking for all slots.
-   * Checks for presence of title, subtitle, and footer slots.
+   * Checks for presence of header and footer slots.
    */
   private updateSlotStates = () => {
-    this.hasTitleSlot = !!this.querySelector('[slot="title"]');
-    this.hasSubtitleSlot = !!this.querySelector('[slot="subtitle"]');
+    this.hasHeaderSlot = !!this.querySelector('[slot="header"]');
     this.hasFooterSlot = !!this.querySelector('[slot="footer"]');
     this.requestUpdate();
   };
