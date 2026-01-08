@@ -67,9 +67,7 @@ export class ZetaChartCard extends Contourable(LitElement) {
         @click=${this.clickable ? this.handleClick : nothing}
         @keydown=${this.clickable ? this.handleKeyDown : nothing}
       >
-        ${this.renderHeader()}
-        ${this.renderContent()}
-        ${this.renderFooter()}
+        ${this.renderHeader()} ${this.renderContent()} ${this.renderFooter()}
       </div>
     `;
   }
@@ -106,11 +104,7 @@ export class ZetaChartCard extends Contourable(LitElement) {
    * Displays error message if error property is set, otherwise renders slotted content.
    */
   private renderContent() {
-    return html`
-      <div part="content" class="content">
-        ${this.error ? html`<div class="error"><span>${this.error}</span></div>` : html`<slot></slot>`}
-      </div>
-    `;
+    return html` <div part="content" class="content">${this.error ? html`<div class="error"><span>${this.error}</span></div>` : html`<slot></slot>`}</div> `;
   }
 
   /**

@@ -204,5 +204,4 @@ describe("zeta-chart-card", () => {
       expect(clickEventFired).to.be.true;
     });
   });
-
 });

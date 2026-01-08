@@ -141,5 +141,4 @@ export default css`
     height: var(--border-size-small);
     background-color: var(--border-subtle);
   }
-
 `;
