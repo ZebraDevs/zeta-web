@@ -1,0 +1,94 @@
+import { Canvas, Meta, Description, ArgTypes, Title, Story } from "@storybook/blocks";
+
+import * as Shimmer from "./shimmer.stories.ts";
+
+<Meta of={Shimmer} title="Shimmer" />
+
+<Title />
+
+# Shimmer
+
+<Description of="zeta-shimmer" />
+<div
+  style={{
+    margin: "25px 30px 0",
+    padding: "40px 30px",
+    borderRadius: "4px",
+    background: "#FFFFFF",
+    boxShadow: "rgba(0, 0, 0, 0.10) 0 1px 3px 0",
+    border: "1px solid hsla(203, 50%, 30%, 0.15)"
+  }}
+>
+  <Story of={Shimmer.Shimmer} />
+</div>
+
+Shimmer is a loading skeleton component that displays an animated shimmer effect to indicate content is loading. It provides a smooth, animated placeholder that helps maintain visual continuity while data is being fetched.
+
+## Basic Usage
+
+Use the Shimmer component to show loading states in your application. It automatically adapts to light and dark color schemes.
+
+```html
+<zeta-shimmer></zeta-shimmer>
+```
+
+## Customization
+
+You can customize the shimmer's dimensions using CSS custom properties:
+
+```html
+<!-- Custom height -->
+<zeta-shimmer style="--shimmer-height: 30px;"></zeta-shimmer>
+
+<!-- Custom width -->
+<zeta-shimmer style="--shimmer-width: 200px;"></zeta-shimmer>
+
+<!-- Both custom height and width -->
+<zeta-shimmer style="--shimmer-height: 40px; --shimmer-width: 300px;"></zeta-shimmer>
+
+<!-- Custom animation speed -->
+<zeta-shimmer style="--shimmer-animation-duration: 2s;"></zeta-shimmer>
+
+<!-- Rounded corners -->
+<zeta-shimmer style="--shimmer-border-radius: 8px;"></zeta-shimmer>
+```
+
+## Common Use Cases
+
+**Table Loading States:**
+```html
+<div style="display: flex; flex-direction: column; gap: 8px;">
+  <zeta-shimmer></zeta-shimmer>
+  <zeta-shimmer></zeta-shimmer>
+  <zeta-shimmer></zeta-shimmer>
+</div>
+```
+
+**Flex Layout:**
+```html
+<div style="display: flex; gap: 10px;">
+  <zeta-shimmer style="flex: 1;"></zeta-shimmer>
+  <zeta-shimmer style="flex: 2;"></zeta-shimmer>
+  <zeta-shimmer style="flex: 1;"></zeta-shimmer>
+</div>
+```
+
+## CSS Custom Properties
+
+| Property | Description | Default |
+|----------|-------------|---------|
+| `--shimmer-height` | Controls the height of the shimmer element | `20px` |
+| `--shimmer-width` | Controls the width of the shimmer element | `100%` |
+| `--shimmer-animation-duration` | Controls the duration of the shimmer animation | `1.5s` |
+| `--shimmer-border-radius` | Controls the border radius of the shimmer element | `0px` |
+
+## Accessibility
+
+The Shimmer component is designed to be accessible and provides visual feedback for loading states. It uses semantic HTML and follows WCAG guidelines.
+
+## Properties
+
+The Shimmer component uses CSS custom properties for customization. All properties are optional and have sensible defaults.
+
+<ArgTypes of={Shimmer} />
+
