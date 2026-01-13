@@ -134,10 +134,25 @@ describe("zeta-chart-card", () => {
       `;
       const card = await fixture<ZetaChartCard>(html`${unsafeStatic(template)}`);
       await elementUpdated(card);
-
+      
+      // Wait for slot to be assigned and component to update
+      await card.updateComplete;
+      
+      // Verify the slot element exists in light DOM
+      const headerSlotElement = card.querySelector('[slot="header"]');
+      expect(headerSlotElement).to.exist;
+      
+      // Wait for component to detect slot and re-render
+      await card.updateComplete;
+      
       const header = card.shadowRoot?.querySelector(".header");
       expect(header).to.exist;
-      expect(header?.textContent).to.contain("Custom Header");
+      
+      const headerSlot = card.shadowRoot?.querySelector('slot[name="header"]') as HTMLSlotElement;
+      expect(headerSlot).to.exist;
+      const assignedElements = headerSlot?.assignedElements();
+      expect(assignedElements?.length).to.be.greaterThan(0);
+      expect(assignedElements?.[0]?.textContent?.trim()).to.equal("Custom Header");
     });
 
     it("displays error message when error property is set", async () => {
