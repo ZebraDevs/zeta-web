@@ -127,7 +127,7 @@ export class ZetaChartCard extends Contourable(LitElement) {
    * Handles click events when card is clickable.
    * Dispatches a custom click event with the original event in detail.
    */
-  private handleClick(e: Event) {
+  private handleClick = (e: Event): void => {
     if (!this.clickable) return;
     e.preventDefault();
     this.dispatchEvent(
@@ -137,19 +137,19 @@ export class ZetaChartCard extends Contourable(LitElement) {
         detail: { originalEvent: e }
       })
     );
-  }
+  };
 
   /**
    * Handles keyboard events for accessibility.
    * Triggers click on Enter or Space key when card is clickable.
    */
-  private handleKeyDown(e: KeyboardEvent) {
+  private handleKeyDown = (e: KeyboardEvent): void => {
     if (!this.clickable) return;
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
       this.handleClick(e);
     }
-  }
+  };
 
   /**
    * Handles header slot changes.
@@ -178,7 +178,7 @@ export class ZetaChartCard extends Contourable(LitElement) {
    * Initializes slot state tracking and sets up slot change listeners.
    */
   connectedCallback() {
-    super.connectedCallback();
+    super.connectedCallback?.();
     this.updateSlotStates();
 
     const slots = this.shadowRoot?.querySelectorAll("slot");
@@ -192,7 +192,7 @@ export class ZetaChartCard extends Contourable(LitElement) {
    * Cleans up slot change listeners.
    */
   disconnectedCallback() {
-    super.disconnectedCallback();
+    super.disconnectedCallback?.();
     const slots = this.shadowRoot?.querySelectorAll("slot");
     slots?.forEach(slot => {
       slot.removeEventListener("slotchange", this.updateSlotStates);

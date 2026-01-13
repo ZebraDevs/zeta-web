@@ -1,4 +1,4 @@
-import { fixture, html, unsafeStatic, expect } from "@open-wc/testing";
+import { fixture, html, unsafeStatic, expect, elementUpdated } from "@open-wc/testing";
 import type { ZetaChartCard } from "../../components/chart-card/chart-card.js";
 import { contrastTest } from "../accessibility-utils/accessibility-test-runner";
 import "../../components/chart-card/chart-card.js";
@@ -61,7 +61,7 @@ describe("zeta-chart-card", () => {
 
     it("has proper role when clickable", async () => {
       subject.setAttribute("clickable", "true");
-      await subject.updateComplete;
+      await elementUpdated(subject);
 
       const card = subject.shadowRoot?.querySelector(".card");
       expect(card?.getAttribute("role")).to.equal("button");
@@ -70,7 +70,7 @@ describe("zeta-chart-card", () => {
 
     it("has proper role when not clickable", async () => {
       subject.removeAttribute("clickable");
-      await subject.updateComplete;
+      await elementUpdated(subject);
 
       const card = subject.shadowRoot?.querySelector(".card");
       expect(card?.getAttribute("role")).to.equal("article");
@@ -107,7 +107,8 @@ describe("zeta-chart-card", () => {
       `;
       const all = await fixture(html`${unsafeStatic(template)}`);
       const card = all.querySelector("zeta-chart-card") as ZetaChartCard;
-      await card.updateComplete;
+      expect(card).to.exist;
+      await elementUpdated(card);
 
       const footer = card.shadowRoot?.querySelector(".footer");
       expect(footer).to.exist;
@@ -121,7 +122,8 @@ describe("zeta-chart-card", () => {
       `;
       const all = await fixture(html`${unsafeStatic(template)}`);
       const card = all.querySelector("zeta-chart-card") as ZetaChartCard;
-      await card.updateComplete;
+      expect(card).to.exist;
+      await elementUpdated(card);
 
       const header = card.shadowRoot?.querySelector(".header");
       expect(header).to.not.exist;
@@ -136,7 +138,8 @@ describe("zeta-chart-card", () => {
       `;
       const all = await fixture(html`${unsafeStatic(template)}`);
       const card = all.querySelector("zeta-chart-card") as ZetaChartCard;
-      await card.updateComplete;
+      expect(card).to.exist;
+      await elementUpdated(card);
 
       const header = card.shadowRoot?.querySelector(".header");
       expect(header).to.exist;
