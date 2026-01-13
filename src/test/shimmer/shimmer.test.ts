@@ -5,9 +5,7 @@ import "../../components/shimmer/shimmer.js";
 describe("zeta-shimmer", () => {
   let subject: ZetaShimmer;
 
-  const createComponent = (
-    template = `<zeta-shimmer></zeta-shimmer>`
-  ) => {
+  const createComponent = (template = `<zeta-shimmer></zeta-shimmer>`) => {
     // prettier-ignore
     return fixture<ZetaShimmer>(html`${unsafeStatic(template)}`);
   };
@@ -79,4 +77,3 @@ describe("zeta-shimmer", () => {
 
   // describe("Performance", () => {});
 });
-
