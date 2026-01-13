@@ -105,9 +105,7 @@ describe("zeta-chart-card", () => {
           <div slot="footer">Footer</div>
         </zeta-chart-card>
       `;
-      const all = await fixture(html`${unsafeStatic(template)}`);
-      const card = all.querySelector("zeta-chart-card") as ZetaChartCard;
-      expect(card).to.exist;
+      const card = await fixture<ZetaChartCard>(html`${unsafeStatic(template)}`);
       await elementUpdated(card);
 
       const footer = card.shadowRoot?.querySelector(".footer");
@@ -120,9 +118,7 @@ describe("zeta-chart-card", () => {
           <div>Content only</div>
         </zeta-chart-card>
       `;
-      const all = await fixture(html`${unsafeStatic(template)}`);
-      const card = all.querySelector("zeta-chart-card") as ZetaChartCard;
-      expect(card).to.exist;
+      const card = await fixture<ZetaChartCard>(html`${unsafeStatic(template)}`);
       await elementUpdated(card);
 
       const header = card.shadowRoot?.querySelector(".header");
@@ -136,9 +132,7 @@ describe("zeta-chart-card", () => {
           <div>Content</div>
         </zeta-chart-card>
       `;
-      const all = await fixture(html`${unsafeStatic(template)}`);
-      const card = all.querySelector("zeta-chart-card") as ZetaChartCard;
-      expect(card).to.exist;
+      const card = await fixture<ZetaChartCard>(html`${unsafeStatic(template)}`);
       await elementUpdated(card);
 
       const header = card.shadowRoot?.querySelector(".header");
