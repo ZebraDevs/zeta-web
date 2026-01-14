@@ -21,25 +21,24 @@ export default css`
     box-sizing: border-box;
   }
 
-  /* Interactive state */
-  :host([clickable]) .card {
+  .card[role="button"] {
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
   }
 
   @media (hover: hover), (hover: none) and (pointer: fine) {
-    :host([clickable]) .card:hover {
+    .card[role="button"]:hover {
       transform: translateY(-2px);
       box-shadow: var(--elevation-2);
     }
   }
 
-  :host([clickable]) .card:focus-visible {
+  .card[role="button"]:focus-visible {
     outline: 2px solid var(--main-primary);
     outline-offset: 2px;
   }
 
-  :host([clickable]) .card:active {
+  .card[role="button"]:active {
     transform: translateY(0);
   }
 
@@ -110,10 +109,6 @@ export default css`
     display: flex;
     align-items: center;
     gap: var(--spacing-small);
-  }
-
-  .error::before {
-    content: "⚠️";
   }
 
   /* Footer */

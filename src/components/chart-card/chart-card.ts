@@ -2,6 +2,7 @@ import { html, LitElement, nothing } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 import styles from "./chart-card.styles.js";
 import { Contourable } from "../../mixins/contour.js";
+import "../../icon/icon.js";
 
 /** A flexible card component specifically designed for dashboard charts and visualizations.
  *
@@ -19,25 +20,11 @@ import { Contourable } from "../../mixins/contour.js";
  */
 @customElement("zeta-chart-card")
 export class ZetaChartCard extends Contourable(LitElement) {
-  private _title: string = "";
   /** The title of the chart card, displayed in the header when no header slot is provided. */
-  @property({ type: String })
-  get title(): string {
-    return this._title;
-  }
-  set title(value: string) {
-    this._title = value ?? "";
-  }
+  @property({ type: String }) title: string = "";
 
-  private _subtitle: string = "";
   /** The subtitle of the chart card, displayed below the title in the header when no header slot is provided. */
-  @property({ type: String })
-  get subtitle(): string {
-    return this._subtitle;
-  }
-  set subtitle(value: string) {
-    this._subtitle = value ?? "";
-  }
+  @property({ type: String }) subtitle: string = "";
 
   /** Error message to display in the content area.
    *
@@ -52,30 +39,23 @@ export class ZetaChartCard extends Contourable(LitElement) {
    */
   @property({ type: Boolean, reflect: true }) clickable = false;
 
-  /** Internal state to track if header slot has content */
   @state() private hasHeaderSlot = false;
-
-  /** Internal state to track if footer slot has content */
   @state() private hasFooterSlot = false;
 
   protected override render() {
     return html`
       <div
-        class="card ${this.clickable ? "clickable" : ""}"
+        class="card"
         role="${this.clickable ? "button" : "article"}"
         tabindex="${this.clickable ? "0" : nothing}"
         @click=${this.clickable ? this.handleClick : nothing}
         @keydown=${this.clickable ? this.handleKeyDown : nothing}
       >
-        ${this.renderHeader()} ${this.renderContent()} ${this.renderFooter()}
+        ${this.renderHeader()}${this.renderContent()}${this.renderFooter()}
       </div>
     `;
   }
 
-  /**
-   * Renders the card header.
-   * Uses header slot if provided, otherwise uses title and subtitle props.
-   */
   private renderHeader() {
     if (this.hasHeaderSlot) {
       return html`
@@ -85,32 +65,33 @@ export class ZetaChartCard extends Contourable(LitElement) {
       `;
     }
 
-    if (!this._title && !this._subtitle) {
+    if (!this.title && !this.subtitle) {
       return nothing;
     }
 
     return html`
       <div part="header" class="header">
         <div class="header-left">
-          ${this._title ? html`<div class="title">${this._title}</div>` : nothing}
-          ${this._subtitle ? html`<div class="subtitle">${this._subtitle}</div>` : nothing}
+          ${this.title ? html`<div class="title">${this.title}</div>` : nothing}
+          ${this.subtitle ? html`<div class="subtitle">${this.subtitle}</div>` : nothing}
         </div>
       </div>
     `;
   }
 
-  /**
-   * Renders the card content area.
-   * Displays error message if error property is set, otherwise renders slotted content.
-   */
   private renderContent() {
-    return html` <div part="content" class="content">${this.error ? html`<div class="error"><span>${this.error}</span></div>` : html`<slot></slot>`}</div> `;
+    return html`
+      <div part="content" class="content">
+        ${this.error
+          ? html`<div class="error">
+              <zeta-icon .rounded=${this.rounded}>warning</zeta-icon>
+              <span>${this.error}</span>
+            </div>`
+          : html`<slot></slot>`}
+      </div>
+    `;
   }
 
-  /**
-   * Renders the card footer with footer slot.
-   * Returns nothing if footer slot has no content.
-   */
   private renderFooter() {
     if (!this.hasFooterSlot) {
       return nothing;
@@ -123,26 +104,23 @@ export class ZetaChartCard extends Contourable(LitElement) {
     `;
   }
 
-  /**
-   * Handles click events when card is clickable.
-   * Dispatches a custom click event with the original event in detail.
-   */
   private handleClick = (e: Event): void => {
     if (!this.clickable) return;
+
+    e.stopImmediatePropagation();
     e.preventDefault();
+    e.stopPropagation();
+
     this.dispatchEvent(
       new CustomEvent("click", {
         bubbles: true,
         composed: true,
+        cancelable: true,
         detail: { originalEvent: e }
       })
     );
   };
 
-  /**
-   * Handles keyboard events for accessibility.
-   * Triggers click on Enter or Space key when card is clickable.
-   */
   private handleKeyDown = (e: KeyboardEvent): void => {
     if (!this.clickable) return;
     if (e.key === "Enter" || e.key === " ") {
@@ -151,32 +129,24 @@ export class ZetaChartCard extends Contourable(LitElement) {
     }
   };
 
-  /**
-   * Handles header slot changes.
-   * Updates hasHeaderSlot state based on whether header slot has content.
-   */
   private handleHeaderSlotChange = (e: Event) => {
     const slot = e.target as HTMLSlotElement;
     const assignedNodes = slot.assignedNodes({ flatten: true });
-    this.hasHeaderSlot = assignedNodes.some(node => node.nodeType === Node.ELEMENT_NODE || (node.nodeType === Node.TEXT_NODE && node.textContent?.trim()));
+    this.hasHeaderSlot = assignedNodes.some(
+      node => node.nodeType === Node.ELEMENT_NODE || (node.nodeType === Node.TEXT_NODE && node.textContent?.trim())
+    );
     this.updateSlotStates();
   };
 
-  /**
-   * Handles footer slot changes.
-   * Updates hasFooterSlot state based on whether footer slot has content.
-   */
   private handleFooterSlotChange = (e: Event) => {
     const slot = e.target as HTMLSlotElement;
     const assignedNodes = slot.assignedNodes({ flatten: true });
-    this.hasFooterSlot = assignedNodes.some(node => node.nodeType === Node.ELEMENT_NODE || (node.nodeType === Node.TEXT_NODE && node.textContent?.trim()));
+    this.hasFooterSlot = assignedNodes.some(
+      node => node.nodeType === Node.ELEMENT_NODE || (node.nodeType === Node.TEXT_NODE && node.textContent?.trim())
+    );
     this.updateSlotStates();
   };
 
-  /**
-   * Lifecycle hook called when element is connected to DOM.
-   * Initializes slot state tracking and sets up slot change listeners.
-   */
   connectedCallback() {
     super.connectedCallback?.();
     this.updateSlotStates();
@@ -187,10 +157,6 @@ export class ZetaChartCard extends Contourable(LitElement) {
     });
   }
 
-  /**
-   * Lifecycle hook called when element is disconnected from DOM.
-   * Cleans up slot change listeners.
-   */
   disconnectedCallback() {
     super.disconnectedCallback?.();
     const slots = this.shadowRoot?.querySelectorAll("slot");
@@ -199,10 +165,6 @@ export class ZetaChartCard extends Contourable(LitElement) {
     });
   }
 
-  /**
-   * Updates internal state tracking for all slots.
-   * Checks for presence of header and footer slots.
-   */
   private updateSlotStates = () => {
     this.hasHeaderSlot = !!this.querySelector('[slot="header"]');
     this.hasFooterSlot = !!this.querySelector('[slot="footer"]');
