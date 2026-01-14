@@ -2,7 +2,7 @@ import { html, LitElement, nothing } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 import styles from "./chart-card.styles.js";
 import { Contourable } from "../../mixins/contour.js";
-import "../../icon/icon.js";
+import "../icon/icon.js";
 
 /** A flexible card component specifically designed for dashboard charts and visualizations.
  *
