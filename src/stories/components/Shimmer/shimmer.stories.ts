@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
-import { html } from "lit";
+import { html, nothing } from "lit";
 import { ZetaShimmer } from "../../../components/shimmer/shimmer.js";
 import "../../../components/shimmer/shimmer.js";
 import { spreadGenerator } from "../../utils.js";
@@ -60,16 +60,18 @@ export const Shimmer: StoryObj<ShimmerArgs> = {
     "--shimmer-border-radius": borderRadius,
     ...args
   }) => {
-    return html`
-      ${(height || width || duration || borderRadius) &&
-      html`<style>
+    const styleContent = height || width || duration || borderRadius
+      ? `
         zeta-shimmer {
           ${height ? `--shimmer-height: ${height};` : ""}
           ${width ? `--shimmer-width: ${width};` : ""}
           ${duration ? `--shimmer-animation-duration: ${duration};` : ""}
           ${borderRadius ? `--shimmer-border-radius: ${borderRadius};` : ""}
         }
-      </style>`}
+      `
+      : "";
+    return html`
+      ${styleContent ? html`<style>${styleContent}</style>` : nothing}
       <div style="display: flex; flex-direction: column; gap: 20px; padding: 30px; max-width: 600px;">
         <div>
           <h4 style="margin-bottom: 10px;">Interactive Shimmer (Use Controls)</h4>
