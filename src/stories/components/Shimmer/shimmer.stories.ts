@@ -60,8 +60,9 @@ export const Shimmer: StoryObj<ShimmerArgs> = {
     "--shimmer-border-radius": borderRadius,
     ...args
   }) => {
-    const styleContent = height || width || duration || borderRadius
-      ? `
+    const styleContent =
+      height || width || duration || borderRadius
+        ? `
         zeta-shimmer {
           ${height ? `--shimmer-height: ${height};` : ""}
           ${width ? `--shimmer-width: ${width};` : ""}
@@ -69,9 +70,13 @@ export const Shimmer: StoryObj<ShimmerArgs> = {
           ${borderRadius ? `--shimmer-border-radius: ${borderRadius};` : ""}
         }
       `
-      : "";
+        : "";
     return html`
-      ${styleContent ? html`<style>${styleContent}</style>` : nothing}
+      ${styleContent
+        ? html`<style>
+            ${styleContent}
+          </style>`
+        : nothing}
       <div style="display: flex; flex-direction: column; gap: 20px; padding: 30px; max-width: 600px;">
         <div>
           <h4 style="margin-bottom: 10px;">Interactive Shimmer (Use Controls)</h4>
