@@ -72,8 +72,7 @@ export class ZetaChartCard extends Contourable(LitElement) {
     return html`
       <div part="header" class="header">
         <div class="header-left">
-          ${this.title ? html`<div class="title">${this.title}</div>` : nothing}
-          ${this.subtitle ? html`<div class="subtitle">${this.subtitle}</div>` : nothing}
+          ${this.title ? html`<div class="title">${this.title}</div>` : nothing} ${this.subtitle ? html`<div class="subtitle">${this.subtitle}</div>` : nothing}
         </div>
       </div>
     `;
@@ -132,18 +131,14 @@ export class ZetaChartCard extends Contourable(LitElement) {
   private handleHeaderSlotChange = (e: Event) => {
     const slot = e.target as HTMLSlotElement;
     const assignedNodes = slot.assignedNodes({ flatten: true });
-    this.hasHeaderSlot = assignedNodes.some(
-      node => node.nodeType === Node.ELEMENT_NODE || (node.nodeType === Node.TEXT_NODE && node.textContent?.trim())
-    );
+    this.hasHeaderSlot = assignedNodes.some(node => node.nodeType === Node.ELEMENT_NODE || (node.nodeType === Node.TEXT_NODE && node.textContent?.trim()));
     this.updateSlotStates();
   };
 
   private handleFooterSlotChange = (e: Event) => {
     const slot = e.target as HTMLSlotElement;
     const assignedNodes = slot.assignedNodes({ flatten: true });
-    this.hasFooterSlot = assignedNodes.some(
-      node => node.nodeType === Node.ELEMENT_NODE || (node.nodeType === Node.TEXT_NODE && node.textContent?.trim())
-    );
+    this.hasFooterSlot = assignedNodes.some(node => node.nodeType === Node.ELEMENT_NODE || (node.nodeType === Node.TEXT_NODE && node.textContent?.trim()));
     this.updateSlotStates();
   };
 
