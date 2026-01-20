@@ -16,6 +16,7 @@ import { ZetaCardBody } from "./components/card/card-body/card-body.js";
 import { ZetaCardContainer } from "./components/card/card-container/card-container.js";
 import { ZetaCardFooter } from "./components/card/card-footer/card-footer.js";
 import { ZetaCardHeader } from "./components/card/card-header/card-header.js";
+import { ZetaChartCard } from "./components/chart-card/chart-card.js";
 import { ZetaCheckbox } from "./components/checkbox/checkbox.js";
 import { ZetaDialog } from "./components/dialog/dialog.js";
 import { ZetaDropdownMenuButton } from "./components/dropdown/dropdown-menu/dropdown-menu-button.js";
@@ -95,6 +96,7 @@ export {
   ZetaCardContainer,
   ZetaCardFooter,
   ZetaCardHeader,
+  ZetaChartCard,
   ZetaCheckbox,
   ZetaDialog,
   ZetaDropdownMenuButton,
