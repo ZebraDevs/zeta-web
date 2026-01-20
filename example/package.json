@@ -10,10 +10,10 @@
   },
   "dependencies": {
     "@zebra-fed/zeta-web": "workspace:^",
-    "lit": "^3.3.1"
+    "lit": "^3.3.2"
   },
   "devDependencies": {
     "typescript": "~5.8.3",
-    "vite": "^7.2.4"
+    "vite": "^7.3.1"
   }
 }
