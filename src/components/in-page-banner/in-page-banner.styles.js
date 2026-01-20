@@ -25,7 +25,7 @@ export default css`
         flex-direction: column;
         flex: 1;
 
-        > .header {
+        > div[part="header"] {
           display: flex;
           flex-direction: row;
           justify-content: space-between;
@@ -34,15 +34,13 @@ export default css`
             font: var(--label-large);
           }
         }
-        > .body {
+
+        > div[part="body"] {
+          max-width: calc(100% - var(--spacing-3xl));
+          margin-top: var(--spacing-0-5);
           margin-top: var(--spacing-minimum);
           margin-right: var(--spacing-3xl);
           font: var(--body-small);
-        }
-
-        > .content {
-          max-width: calc(100% - var(--spacing-3xl));
-          margin-top: var(--spacing-0-5);
 
           > ::slotted(*) {
             max-width: 100%;
@@ -76,7 +74,7 @@ export default css`
         }
       }
     }
-    > .footer {
+    > div[part="footer"] {
       display: flex;
       flex-direction: row;
       gap: var(--spacing-small);
@@ -87,7 +85,7 @@ export default css`
   }
 
   :host([rounded]),
-  :host([rounded]) .content ::slotted(*) {
+  :host([rounded]) div[part="body"] ::slotted(*) {
     border-radius: var(--radius-minimal);
   }
 
@@ -121,9 +119,6 @@ export default css`
     --banner-icon-color: var(--main-negative);
   }
 
-  ::slotted([slot="action"])zeta-button[flavor="outline-subtle"] {
-    --button-background-color: transparent;
-  }
   ::slotted([slot="action"]) {
     margin-top: var(--spacing-large);
   }

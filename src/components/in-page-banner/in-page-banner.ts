@@ -6,13 +6,17 @@ import "../button/icon-button/icon-button.js";
 import { ZetaCloseEvent } from "../../events.js";
 import type { ZetaIconName } from "@zebra-fed/zeta-icons";
 
-/** In page banners display an important, succinct message, and may provide actions for users to address. Banners should be displayed at the top of the screen,below a top app bar. Only one banner should be shown at a time.
+/** In page banners display an important, succinct message, and may provide actions for users to address. Banners should be displayed at the top of the screen, below a top app bar. Only one banner should be shown at a time.
  *
  * This component represents a banner that can be displayed within a page.
- * It can have a title, body text, and various status options.
+ * It can have a title, body content, and various status options.
  *
  * @slot - The main content of the banner.
  * @slot action - The action buttons.
+ *
+ * @part header - The header section containing the title.
+ * @part body - The body section containing the main content.
+ * @part footer - The footer section containing action buttons.
  *
  * @event {CustomEvent<ZetaCloseEventDetail>} close - Fired when the close icon is clicked.
  *
@@ -77,19 +81,20 @@ export class ZetaInPageBanner extends Contourable(LitElement) {
       <div class="container">
         ${this.showIcon ? html` <div class="leading"><zeta-icon .rounded=${this.rounded}>${this.getIcon()}</zeta-icon></div>` : nothing}
         <div class="center">
-          <div class="header">${this.title && this.title.length > 0 ? html`<div class="title">${this.title}</div>` : nothing}</div>
-          <div class="content">
+          <div part="header">${this.title ? html`<div class="title">${this.title}</div>` : nothing}</div>
+          <div part="body">
             <slot></slot>
           </div>
         </div>
         <div class="trailing">
           ${this.canClose
-            ? html`<zeta-icon-button name="close" flavor="text" size="small" shape=${this.rounded ? "rounded" : "sharp"} @click=${() => this.close()}>
+            ? html`<zeta-icon-button flavor="text" size="small" shape=${this.rounded ? "rounded" : "sharp"} @click=${() => this.close()}>
+                close
               </zeta-icon-button>`
             : nothing}
         </div>
       </div>
-      <div class="footer">
+      <div part="footer">
         <slot name="action"></slot>
       </div>
     `;
