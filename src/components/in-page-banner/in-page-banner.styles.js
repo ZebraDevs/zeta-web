@@ -1,31 +1,71 @@
 import { css } from "lit";
 export default css`
   :host {
+    --banner-background-color: var(--surface-default);
+    --banner-border-color: var(--border-default);
+    --banner-foreground-color: var(--main-default);
+    --banner-icon-color: var(--main-default);
+
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     padding: var(--spacing-medium);
     justify-content: center;
     align-items: center;
-    border: var(--border-size-small) solid;
-    color: var(--main-default);
+    border: var(--border-size-small) solid var(--banner-border-color);
+    color: var(--banner-foreground-color);
+    background-color: var(--banner-background-color);
 
-    > .leading {
-      padding-right: var(--spacing-small);
-      padding-top: var(--spacing-0-5);
-      align-self: stretch;
-      --icon-size: 20px;
-    }
-
-    > .trailing {
-      flex: 1;
+    > .container {
       display: flex;
-      flex-direction: column;
-      gap: var(--spacing-minimum);
+      flex-direction: row;
+      width: 100%;
 
-      > .header {
+      > .center {
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        flex-direction: column;
+        flex: 1;
+
+        > .header {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+
+          > .title {
+            font: var(--label-large);
+          }
+        }
+        > .body {
+          margin-top: var(--spacing-minimum);
+          margin-right: var(--spacing-3xl);
+          font: var(--body-small);
+        }
+
+        > .content {
+          max-width: calc(100% - var(--spacing-3xl));
+          margin-top: var(--spacing-0-5);
+
+          > ::slotted(*) {
+            max-width: 100%;
+            height: auto;
+          }
+        }
+      }
+
+      > .leading {
+        padding-right: var(--spacing-small);
+        padding-top: var(--spacing-0-5);
+        align-self: stretch;
+        --icon-size: 20px;
+
+        zeta-icon {
+          --icon-color: var(--banner-icon-color);
+        }
+      }
+
+      > .trailing {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-minimum);
 
         zeta-icon-button {
           margin-top: -4px;
@@ -34,32 +74,15 @@ export default css`
           --icon-button-icon-color: var(--main-default);
           cursor: pointer;
         }
-
-        > .title {
-          font: var(--label-large);
-        }
       }
-      > .body {
-        margin-top: var(--spacing-minimum);
-        margin-right: var(--spacing-3xl);
-        font: var(--body-small);
-      }
-
-      > .content {
-        max-width: calc(100% - var(--spacing-3xl));
-
-        > ::slotted(*) {
-          max-width: 100%;
-          height: auto;
-        }
-      }
-
-      > .footer {
-        display: flex;
-        flex-direction: row;
-        gap: var(--spacing-small);
-        max-width: calc(100% - var(--spacing-3xl));
-      }
+    }
+    > .footer {
+      display: flex;
+      flex-direction: row;
+      gap: var(--spacing-small);
+      max-width: calc(100% - var(--spacing-3xl));
+      align-items: flex-start;
+      width: 100%;
     }
   }
 
@@ -69,50 +92,39 @@ export default css`
   }
 
   :host([status="default"]) {
-    border-color: var(--border-default);
-    background: var(--surface-default);
-    fill: var(--main-default);
+    --banner-border-color: var(--border-default);
+    --banner-background-color: var(--surface-default);
+    --banner-icon-color: var(--main-default);
   }
 
   :host([status="info"]) {
-    border-color: var(--border-info);
-    background: var(--surface-info-subtle);
-    zeta-icon {
-      --icon-color: var(--main-info);
-    }
+    --banner-border-color: var(--border-info);
+    --banner-background-color: var(--surface-info-subtle);
+    --banner-icon-color: var(--main-info);
   }
 
   :host([status="positive"]) {
-    border-color: var(--border-positive);
-    background: var(--surface-positive-subtle);
-    zeta-icon {
-      --icon-color: var(--main-positive);
-    }
+    --banner-border-color: var(--border-positive);
+    --banner-background-color: var(--surface-positive-subtle);
+    --banner-icon-color: var(--main-positive);
   }
 
   :host([status="warning"]) {
-    border-color: var(--border-warning);
-    background: var(--surface-warning-subtle);
-
-    zeta-icon {
-      --icon-color: var(--main-warning);
-    }
+    --banner-border-color: var(--border-warning);
+    --banner-background-color: var(--surface-warning-subtle);
+    --banner-icon-color: var(--main-warning);
   }
 
   :host([status="negative"]) {
-    border-color: var(--border-negative);
-    background: var(--surface-negative-subtle);
-    zeta-icon {
-      --icon-color: var(--main-negative);
-    }
+    --banner-border-color: var(--border-negative);
+    --banner-background-color: var(--surface-negative-subtle);
+    --banner-icon-color: var(--main-negative);
   }
 
+  ::slotted([slot="action"])zeta-button[flavor="outline-subtle"] {
+    --button-background-color: transparent;
+  }
   ::slotted([slot="action"]) {
     margin-top: var(--spacing-large);
-  }
-
-  ::slotted([slot="leadingAction"]:not(zeta-button)),
-  ::slotted([slot="trailingAction"]:not(zeta-button)) {
-    display: none;
   }
 `;
