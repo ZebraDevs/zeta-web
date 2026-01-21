@@ -1,5 +1,11 @@
 <h1 class='sbdocs-title'>@zebra-fed/zeta-web</h1>
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./documentation/dark-wide.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./documentation/light-wide.svg">
+  <img alt="Fallback image description" src="./documentation/light-wide.svg">
+</picture>
+
 Zeta Web is a native web component library created by Zebra Technologies written in TypeScript.  
 The Zeta Design System includes foundations, components, and best practices that can be used when building UX.
 
