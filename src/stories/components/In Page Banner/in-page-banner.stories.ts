@@ -4,6 +4,7 @@ import { unsafeHTML } from "lit/directives/unsafe-html.js";
 import { fn } from "@storybook/test";
 import { spreadGenerator } from "../../utils.js";
 import { ZetaInPageBanner } from "../../../components/in-page-banner/in-page-banner.js";
+import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
 const spread = spreadGenerator(ZetaInPageBanner);
 
 const meta: Meta<ZetaInPageBanner> = {
@@ -22,6 +23,13 @@ const meta: Meta<ZetaInPageBanner> = {
       control: {
         type: "select"
       }
+    },
+    icon: {
+      options: [undefined, ...ZetaIconNameList],
+      control: {
+        type: "select"
+      },
+      type: "string"
     }
   },
   parameters: {
@@ -39,18 +47,37 @@ export default meta;
 export const Banner: StoryObj = {
   argTypes: {
     action: { table: { disable: true } }
-  }
+  },
+  render: args =>
+    html`<style>
+        zeta-in-page-banner {
+          ${args["--banner-border-color"] && `--banner-border-color: ${args["--banner-border-color"]};`};
+          ${args["--banner-background-color"] && `--banner-background-color: ${args["--banner-background-color"]};`};
+          ${args["--banner-foreground-color"] && `--banner-foreground-color: ${args["--banner-foreground-color"]};`};
+          ${args["--banner-icon-color"] && `--banner-icon-color: ${args["--banner-icon-color"]};`};
+        }
+      </style>
+      <zeta-in-page-banner ${spread(args)}> ${args.slot} </zeta-in-page-banner>`
 };
 
 export const BannerSingleAction: StoryObj = {
   argTypes: {
     action: { table: { disable: true } }
   },
-  render: args =>
-    html`<zeta-in-page-banner ${spread(args)}>
-      ${args.slot}
-      <zeta-button slot="action">Button</zeta-button>
-    </zeta-in-page-banner>`
+  render: args => {
+    return html` <style>
+        zeta-in-page-banner {
+          ${args["--banner-border-color"] && `--banner-border-color: ${args["--banner-border-color"]};`};
+          ${args["--banner-background-color"] && `--banner-background-color: ${args["--banner-background-color"]};`};
+          ${args["--banner-foreground-color"] && `--banner-foreground-color: ${args["--banner-foreground-color"]};`};
+          ${args["--banner-icon-color"] && `--banner-icon-color: ${args["--banner-icon-color"]};`};
+        }
+      </style>
+      <zeta-in-page-banner ${spread(args)}>
+        ${args.slot}
+        <zeta-button flavor="outline-subtle" slot="action">Button</zeta-button>
+      </zeta-in-page-banner>`;
+  }
 };
 
 export const BannerDualAction: StoryObj = {
@@ -58,14 +85,22 @@ export const BannerDualAction: StoryObj = {
     action: { table: { disable: true } }
   },
   render: args =>
-    html`<zeta-in-page-banner ${spread(args)}>
-      ${args.slot}
-      <zeta-button slot="action">Button</zeta-button>
-      <zeta-button slot="action">Button 2</zeta-button>
-    </zeta-in-page-banner>`
+    html` <style>
+        zeta-in-page-banner {
+          ${args["--banner-border-color"] && `--banner-border-color: ${args["--banner-border-color"]};`};
+          ${args["--banner-background-color"] && `--banner-background-color: ${args["--banner-background-color"]};`};
+          ${args["--banner-foreground-color"] && `--banner-foreground-color: ${args["--banner-foreground-color"]};`};
+          ${args["--banner-icon-color"] && `--banner-icon-color: ${args["--banner-icon-color"]};`};
+        }
+      </style>
+      <zeta-in-page-banner ${spread(args)}>
+        ${args.slot}
+        <zeta-button flavor="outline-subtle" slot="action">Button</zeta-button>
+        <zeta-button flavor="outline-subtle" slot="action">Button 2</zeta-button>
+      </zeta-in-page-banner>`
 };
 
-export const BannerWithImage: StoryObj<ZetaInPageBanner & { imageX: number; imageY: number }> = {
+export const BannerWithImage: StoryObj = {
   args: {
     imageX: 450,
     imageY: 330
@@ -90,13 +125,21 @@ export const BannerWithImage: StoryObj<ZetaInPageBanner & { imageX: number; imag
     slot: { table: { disable: true } }
   },
   render: ({ slot, imageX, imageY, ...args }) =>
-    html` <zeta-in-page-banner ${spread(args)}>
-      <img src=${"https://placehold.co/" + imageX + "x" + imageY + "/png"} />
-      <zeta-button slot="action">Button</zeta-button>
-    </zeta-in-page-banner>`
+    html` <style>
+        zeta-in-page-banner {
+          ${args["--banner-border-color"] && `--banner-border-color: ${args["--banner-border-color"]};`};
+          ${args["--banner-background-color"] && `--banner-background-color: ${args["--banner-background-color"]};`};
+          ${args["--banner-foreground-color"] && `--banner-foreground-color: ${args["--banner-foreground-color"]};`};
+          ${args["--banner-icon-color"] && `--banner-icon-color: ${args["--banner-icon-color"]};`};
+        }
+      </style>
+      <zeta-in-page-banner ${spread(args)}>
+        <img src=${"https://placehold.co/" + imageX + "x" + imageY + "/png"} />
+        <zeta-button flavor="outline-subtle" slot="action">Button</zeta-button>
+      </zeta-in-page-banner>`
 };
 
-export const BannerWithContent: StoryObj<ZetaInPageBanner & { constrainedWidth: boolean }> = {
+export const BannerWithContent: StoryObj = {
   args: {
     constrainedWidth: false,
     slot: `<h1 style="text-decoration: underline">Add more content</h1>
@@ -112,11 +155,20 @@ export const BannerWithContent: StoryObj<ZetaInPageBanner & { constrainedWidth: 
       <img src=${"https://placehold.co/250x200/png"} />
 </div>`
   },
-  render: ({ title, rounded, status, constrainedWidth, slot }) => {
-    const renderedBanner = html`<zeta-in-page-banner title=${title} ?rounded=${rounded} status=${status}>
-      ${unsafeHTML(`${slot}`)}
-      <zeta-button slot="action">Button</zeta-button>
-    </zeta-in-page-banner>`;
+  render: ({ title, rounded, status, constrainedWidth, slot, ...args }) => {
+    const renderedBanner = html` <style>
+        zeta-in-page-banner {
+          ${args["--banner-border-color"] && `--banner-border-color: ${args["--banner-border-color"]};`};
+          ${args["--banner-background-color"] && `--banner-background-color: ${args["--banner-background-color"]};`};
+          ${args["--banner-foreground-color"] && `--banner-foreground-color: ${args["--banner-foreground-color"]};`};
+          ${args["--banner-icon-color"] && `--banner-icon-color: ${args["--banner-icon-color"]};`};
+        }
+      </style>
+
+      <zeta-in-page-banner title=${title} ?rounded=${rounded} status=${status}>
+        ${unsafeHTML(`${slot}`)}
+        <zeta-button slot="action">Button</zeta-button>
+      </zeta-in-page-banner>`;
 
     const renderedBannerInContainer = html`<div style="max-width: 500px;">${renderedBanner}</div>`;
 
@@ -154,9 +206,17 @@ export const BannerConstrainedWidth: StoryObj = {
     }
   },
   render: ({ slot, constrainedWidth, imageX, imageY, ...args }) => {
-    const renderedBanner = html`<zeta-in-page-banner ${spread(args)}>
-      <img src=${"https://placehold.co/" + imageX + "x" + imageY + "/png"} />
-    < zeta - button flavor = "positive" slot = "action" > Button </zeta-button>
+    const renderedBanner = html` <style>
+        zeta-in-page-banner {
+          ${args["--banner-border-color"] && `--banner-border-color: ${args["--banner-border-color"]};`};
+          ${args["--banner-background-color"] && `--banner-background-color: ${args["--banner-background-color"]};`};
+          ${args["--banner-foreground-color"] && `--banner-foreground-color: ${args["--banner-foreground-color"]};`};
+          ${args["--banner-icon-color"] && `--banner-icon-color: ${args["--banner-icon-color"]};`};
+        }
+      </style>
+      <zeta-in-page-banner ${spread(args)}>
+        <img src=${"https://placehold.co/" + imageX + "x" + imageY + "/png"} />
+        <zeta-button flavor="positive" slot="action">Button</zeta-button>
       </zeta-in-page-banner>`;
 
     const renderedBannerInContainer = html`<div style="max-width: 500px;">${renderedBanner}</div>`;
