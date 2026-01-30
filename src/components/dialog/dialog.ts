@@ -36,16 +36,6 @@ export type DialogFlavor = "default" | "info" | "success" | "warning" | "error";
  * @part footer - Styles the dialog footer
  * @part header - Styles the dialog header
  *
- * @property {string} title - Title of the dialog.
- * @property {boolean} showLeadingIcon - Whether to show a leading icon in the header.
- * @property {ZetaIconName} leadingIcon - Icon to display in the header.
- * @property {DialogFlavor} flavor - What type of dialog box to show (default, info, success, warning, error).
- * @property {string} confirmButtonFlavor - Colour of the confirm button (primary, positive, negative).
- * @property {boolean} initialOpen - Whether the modal is initially open.
- * @property {boolean} centered - **Deprecated.** Whether header text should be centered.
- * @property {boolean} rounded - Whether the dialog and buttons should have rounded corners.
- * @property {string} returnValue - The return value of the dialog when closed.
- *
  * @cssproperty --dialog-width - Width of the dialog. Defaults to 480px.
  * @cssproperty --dialog-max-height - Max height of the dialog. Defaults to 80vh.
  * @cssproperty --dialog-title-font-size - Font size of the dialog title. Defaults to 1.25rem.
