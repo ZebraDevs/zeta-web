@@ -10,6 +10,7 @@ const meta: Meta<
     other: string;
     flavor: "info" | "success" | "warning" | "error" | "default";
     confirmButtonFlavor: "primary" | "positive" | "negative";
+    leadingIcon: boolean;
     "--icon-color": String;
     onOpen: () => void;
     onClose: () => void;
@@ -31,7 +32,8 @@ const meta: Meta<
     onOpen: fn(),
     onClose: fn(),
     onCancel: fn(),
-    closeOnBarrierClicked: true
+    closeOnBarrierClicked: true,
+    leadingIcon: true
   },
   argTypes: {
     initialOpen: {
@@ -78,6 +80,7 @@ export const Dialog: StoryObj = {
           .title=${args.title}
           .flavor=${args.flavor}
           .confirmButtonFlavor=${args.confirmButtonFlavor}
+          .leadingIcon=${args.leadingIcon}
           @open=${args.onOpen}
           @close=${args.onClose}
           @cancel=${args.onCancel}
@@ -125,6 +128,7 @@ export const DialogOpen: StoryObj = {
           .title=${args.title}
           .flavor=${args.flavor}
           .confirmButtonFlavor=${args.confirmButtonFlavor}
+          .leadingIcon=${args.leadingIcon}
           @open=${args.onOpen}
           @close=${args.onClose}
           @cancel=${args.onCancel}
