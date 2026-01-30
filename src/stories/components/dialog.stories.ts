@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/web-components";
 import { html, nothing } from "lit";
 import { ZetaDialog } from "../../components/dialog/dialog.js";
 import { fn } from "@storybook/test";
+import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
 
 const meta: Meta<
   Omit<ZetaDialog, "icon"> & {
@@ -10,7 +11,8 @@ const meta: Meta<
     other: string;
     flavor: "info" | "success" | "warning" | "error" | "default";
     confirmButtonFlavor: "primary" | "positive" | "negative";
-    leadingIcon: boolean;
+    showLeadingIcon: boolean;
+    leadingIcon: string;
     "--icon-color": String;
     onOpen: () => void;
     onClose: () => void;
@@ -33,7 +35,7 @@ const meta: Meta<
     onClose: fn(),
     onCancel: fn(),
     closeOnBarrierClicked: true,
-    leadingIcon: true
+    showLeadingIcon: true
   },
   argTypes: {
     initialOpen: {
@@ -48,6 +50,10 @@ const meta: Meta<
     },
     confirmButtonFlavor: {
       options: ["primary", "positive", "negative"],
+      control: { type: "select" }
+    },
+    leadingIcon: {
+      options: [null, ...ZetaIconNameList],
       control: { type: "select" }
     },
     "--icon-color": { control: "color" }
@@ -80,6 +86,7 @@ export const Dialog: StoryObj = {
           .title=${args.title}
           .flavor=${args.flavor}
           .confirmButtonFlavor=${args.confirmButtonFlavor}
+          .showLeadingIcon=${args.showLeadingIcon}
           .leadingIcon=${args.leadingIcon}
           @open=${args.onOpen}
           @close=${args.onClose}
@@ -128,6 +135,7 @@ export const DialogOpen: StoryObj = {
           .title=${args.title}
           .flavor=${args.flavor}
           .confirmButtonFlavor=${args.confirmButtonFlavor}
+          .showLeadingIcon=${args.showLeadingIcon}
           .leadingIcon=${args.leadingIcon}
           @open=${args.onOpen}
           @close=${args.onClose}

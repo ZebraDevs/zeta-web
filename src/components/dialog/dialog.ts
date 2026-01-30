@@ -3,6 +3,7 @@ import { customElement, property, queryAssignedElements } from "lit/decorators.j
 import { LitElement, html } from "lit";
 import styles from "./dialog.styles.js";
 import { ZetaButton } from "../button/button.js";
+import type { ZetaIconName } from "@zebra-fed/zeta-icons";
 import { Contourable, Popup } from "../../mixins/mixins.js";
 
 export type DialogFlavor = "default" | "info" | "success" | "warning" | "error";
@@ -34,6 +35,16 @@ export type DialogFlavor = "default" | "info" | "success" | "warning" | "error";
  * @part body - Styles the dialog body
  * @part footer - Styles the dialog footer
  * @part header - Styles the dialog header
+ *
+ * @property {string} title - Title of the dialog.
+ * @property {boolean} showLeadingIcon - Whether to show a leading icon in the header.
+ * @property {ZetaIconName} leadingIcon - Icon to display in the header.
+ * @property {DialogFlavor} flavor - What type of dialog box to show (default, info, success, warning, error).
+ * @property {string} confirmButtonFlavor - Colour of the confirm button (primary, positive, negative).
+ * @property {boolean} initialOpen - Whether the modal is initially open.
+ * @property {boolean} centered - **Deprecated.** Whether header text should be centered.
+ * @property {boolean} rounded - Whether the dialog and buttons should have rounded corners.
+ * @property {string} returnValue - The return value of the dialog when closed.
  *
  * @cssproperty --dialog-width - Width of the dialog. Defaults to 480px.
  * @cssproperty --dialog-max-height - Max height of the dialog. Defaults to 80vh.
@@ -101,7 +112,10 @@ export class ZetaDialog extends Contourable(Popup(LitElement)) {
   @property({ type: Boolean }) initialOpen: boolean = false;
 
   /** Whether to show a leading icon in the header. */
-  @property({ type: Boolean }) leadingIcon: boolean = true;
+  @property({ type: Boolean }) showLeadingIcon: boolean = true;
+
+  /** Icon to display in the header. */
+  @property({ type: String }) leadingIcon?: ZetaIconName;
 
   /**
    * What type of dialog box to show.
@@ -169,7 +183,7 @@ export class ZetaDialog extends Contourable(Popup(LitElement)) {
     return html`
       <dialog .returnValue=${this.returnValue} id=${this.id} ?open=${this.initialOpen}>
         <header part="header">
-          ${this.leadingIcon ? html`<zeta-icon part="header-icon" name=${this.getHeaderIconName()}></zeta-icon>` : ""}
+          ${this.showLeadingIcon ? html`<zeta-icon part="header-icon" name=${this.leadingIcon ?? this.getHeaderIconName()}></zeta-icon>` : ""}
           <h1>${this._title}</h1>
           <zeta-icon @click=${() => this.hide("close")} name="close"></zeta-icon>
         </header>
