@@ -104,8 +104,8 @@ export class ZetaDialog extends Contourable(Popup(LitElement)) {
   /** Whether to show a leading icon in the header. */
   @property({ type: Boolean }) showLeadingIcon: boolean = true;
 
-  /** Icon to display in the header. */
-  @property({ type: String }) leadingIcon?: ZetaIconName;
+  /** Icon to display in the header. Initial value is undefined. */
+  @property({ type: String }) leadingIcon?: ZetaIconName = undefined;
 
   /**
    * What type of dialog box to show.
