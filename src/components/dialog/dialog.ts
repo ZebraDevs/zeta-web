@@ -3,6 +3,7 @@ import { customElement, property, queryAssignedElements } from "lit/decorators.j
 import { LitElement, html } from "lit";
 import styles from "./dialog.styles.js";
 import { ZetaButton } from "../button/button.js";
+import type { ZetaIconName } from "@zebra-fed/zeta-icons";
 import { Contourable, Popup } from "../../mixins/mixins.js";
 
 export type DialogFlavor = "default" | "info" | "success" | "warning" | "error";
@@ -100,6 +101,12 @@ export class ZetaDialog extends Contourable(Popup(LitElement)) {
   /** Whether the modal is initially open. */
   @property({ type: Boolean }) initialOpen: boolean = false;
 
+  /** Whether to show a leading icon in the header. */
+  @property({ type: Boolean }) showLeadingIcon: boolean = true;
+
+  /** Icon to display in the header. Initial value is undefined. */
+  @property({ type: String }) leadingIcon?: ZetaIconName = undefined;
+
   /**
    * What type of dialog box to show.
    * This will change the icon and icon colour shown in the header.
@@ -166,7 +173,7 @@ export class ZetaDialog extends Contourable(Popup(LitElement)) {
     return html`
       <dialog .returnValue=${this.returnValue} id=${this.id} ?open=${this.initialOpen}>
         <header part="header">
-          <zeta-icon part="header-icon" name=${this.getHeaderIconName()}></zeta-icon>
+          ${this.showLeadingIcon ? html`<zeta-icon part="header-icon" name=${this.leadingIcon ?? this.getHeaderIconName()}></zeta-icon>` : ""}
           <h1>${this._title}</h1>
           <zeta-icon @click=${() => this.hide("close")} name="close"></zeta-icon>
         </header>
