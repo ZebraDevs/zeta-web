@@ -31,10 +31,10 @@ export default css`
     background-color: var(--surface-default);
     color: var(--main-default);
     border: 1px solid var(--border-default, #ced2db);
-  }
 
-  dialog.has-content {
-    overflow: visible;
+    &.has-content {
+      overflow: visible;
+    }
   }
 
   dialog[open] {
@@ -104,10 +104,10 @@ export default css`
     /*Note: the designs as of 28/11/2024 show a different font size for the large dialog body ("Standard/Body/Large"). This isnt in ZDS tokens and needs to be changed in Figma*/
     font: var(--body-medium);
     min-height: 1.5rem;
-  }
 
-  div[part="body"].has-content {
-    overflow: visible;
+    &.has-content {
+      overflow: visible;
+    }
   }
 
   :host([flavor="info"]) {
