@@ -38,6 +38,10 @@ export default css`
 
     &.has-content {
       overflow: visible;
+
+      div[part="body"] {
+        overflow: visible;
+      }
     }
   }
 
@@ -108,10 +112,6 @@ export default css`
     /*Note: the designs as of 28/11/2024 show a different font size for the large dialog body ("Standard/Body/Large"). This isnt in ZDS tokens and needs to be changed in Figma*/
     font: var(--body-medium);
     min-height: 1.5rem;
-
-    &.has-content {
-      overflow: visible;
-    }
   }
 
   :host([flavor="info"]) {

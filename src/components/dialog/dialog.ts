@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
-import { customElement, property, queryAssignedElements } from "lit/decorators.js";
+import { customElement, property, queryAssignedElements, queryAssignedNodes } from "lit/decorators.js";
 import { LitElement, html } from "lit";
 import styles from "./dialog.styles.js";
 import { ZetaButton } from "../button/button.js";
@@ -150,7 +150,7 @@ export class ZetaDialog extends Contourable(Popup(LitElement)) {
    * In the class where this is used, it will change overflow from auto to visible when there is an element node in the slot.
    * Plain text will maintain overflow: auto (creating as scroll bar on overflow).
    */
-  @queryAssignedElements({ flatten: true }) bodyContent!: NodeList;
+  @queryAssignedNodes({ flatten: true }) bodyContent!: NodeList;
 
   // set props to buttons
   private handleActionButtonChange = () => {
