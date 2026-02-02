@@ -1,5 +1,37 @@
 # Changelog
 
+## [1.1.0](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.0.1...zeta-web-v1.1.0) (2026-01-30)
+
+
+### ✨ New Features
+
+* **UX-1553:** Chart Card Component ([#159](https://github.com/ZebraDevs/zeta-web/issues/159)) ([623ad7f](https://github.com/ZebraDevs/zeta-web/commit/623ad7f88847d0006815ca87e09cb646e14ee6f4))
+* **UX-1556:** Shimmer component for Zeta Web ([#163](https://github.com/ZebraDevs/zeta-web/issues/163)) ([999be10](https://github.com/ZebraDevs/zeta-web/commit/999be1065ce6de0dcde30750c0edf229aeb4ff5c))
+* **UX-1561:** Make leading icon optional, make buttons stay to right ([#167](https://github.com/ZebraDevs/zeta-web/issues/167)) ([319135b](https://github.com/ZebraDevs/zeta-web/commit/319135b52d9f562e3c95e29ea0fdd73b4aac60f1))
+
+
+### 📈 Documentation
+
+* Add image to readme ([6d562b4](https://github.com/ZebraDevs/zeta-web/commit/6d562b498a1f2b76367ff1b7e4127169f648dab5))
+
+
+### ⛓️ Dependencies
+
+* Update deps ([c510447](https://github.com/ZebraDevs/zeta-web/commit/c51044792feb0a90af36e40155e468df74df0943))
+
+
+### 🧹 Miscellaneous Chores
+
+* **deps-dev:** bump storybook from 8.6.14 to 8.6.15 ([#160](https://github.com/ZebraDevs/zeta-web/issues/160)) ([c8342fb](https://github.com/ZebraDevs/zeta-web/commit/c8342fb2951947fff9b6764a514e8655f2d79631))
+* **deps:** bump qs from 6.14.0 to 6.14.1 ([#161](https://github.com/ZebraDevs/zeta-web/issues/161)) ([b7ea2e8](https://github.com/ZebraDevs/zeta-web/commit/b7ea2e8a2f22cde5d344b5025bb696e072ae1f84))
+* **deps:** bump tar from 7.5.2 to 7.5.4 ([#164](https://github.com/ZebraDevs/zeta-web/issues/164)) ([a45c558](https://github.com/ZebraDevs/zeta-web/commit/a45c558ec6e2b47bc60530acfb5a12c4429f030c))
+* **deps:** bump tar from 7.5.4 to 7.5.7 ([#166](https://github.com/ZebraDevs/zeta-web/issues/166)) ([69cd255](https://github.com/ZebraDevs/zeta-web/commit/69cd25561f5306605d7302a4905857c3ca319d23))
+
+
+### 💄 Styles
+
+* **HMX-5599:** Update In Page Banner ([#165](https://github.com/ZebraDevs/zeta-web/issues/165)) ([5a4b003](https://github.com/ZebraDevs/zeta-web/commit/5a4b0038cf93088776a24641167a3a0116166004))
+
 ## [1.0.1](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.0.0...zeta-web-v1.0.1) (2025-12-17)
 
 

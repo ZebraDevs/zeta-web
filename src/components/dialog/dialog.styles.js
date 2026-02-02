@@ -10,6 +10,10 @@ export default css`
       justify-content: space-between;
     }
 
+    footer[data-element-count="2"] {
+      justify-content: flex-end;
+    }
+
     & .actions,
     & ::slotted([slot="other"]) {
       width: fit-content;
