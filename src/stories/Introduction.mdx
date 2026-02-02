@@ -2,9 +2,7 @@ import Intro from "../../README.md?raw";
 import { Markdown } from "@storybook/blocks";
 
 export const Introduction = ({ content }) => {
-  return content.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, p1, p2) => {
-    return p2.includes("http") ? match : `[${p1}](https://github.com/ZebraDevs/zeta-web/blob/main/${p2})`;
-  });
+  return content.replace(/<picture[\s\S]*?<\/picture>/gi, "");
 };
 
 <Markdown>{Introduction({ content: Intro })}</Markdown>
