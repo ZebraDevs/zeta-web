@@ -138,6 +138,13 @@ export class ZetaDialog extends Contourable(Popup(LitElement)) {
   /** Action button 3 (Learn more/Other). */
   @queryAssignedElements({ slot: "other", flatten: true }) otherBtn!: NodeList;
 
+  /**
+   * Content in the dialog body.
+   * In the class where this is used, it will change overflow from auto to visible when there is an element node in the slot.
+   * Plain text will maintain overflow: auto (creating as scroll bar on overflow).
+   */
+  @queryAssignedElements({ flatten: true }) bodyContent!: NodeList;
+
   // set props to buttons
   private handleActionButtonChange = () => {
     this.requestUpdate();
@@ -164,13 +171,13 @@ export class ZetaDialog extends Contourable(Popup(LitElement)) {
     const count = this.handleActionButtonChange();
 
     return html`
-      <dialog .returnValue=${this.returnValue} id=${this.id} ?open=${this.initialOpen}>
+      <dialog .returnValue=${this.returnValue} id=${this.id} ?open=${this.initialOpen} class=${this.bodyContent.length > 0 ? "has-content" : ""}>
         <header part="header">
           <zeta-icon part="header-icon" name=${this.getHeaderIconName()}></zeta-icon>
           <h1>${this._title}</h1>
           <zeta-icon @click=${() => this.hide("close")} name="close"></zeta-icon>
         </header>
-        <div part="body"><slot></slot></div>
+        <div part="body" class=${this.bodyContent.length > 0 ? "has-content" : ""}><slot></slot></div>
         <footer data-element-count=${count} part="footer">
           <slot @click=${() => this.hide("other")} @slotchange=${this.handleActionButtonChange} name="other"></slot>
           <div class="actions">
