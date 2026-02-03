@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.1.1](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.1.0...zeta-web-v1.1.1) (2026-02-03)
+
+
+### 🪲 Bug Fixes
+
+* **UX-1565:** Add part to Dialog to allow external styling ([#169](https://github.com/ZebraDevs/zeta-web/issues/169)) ([4b65128](https://github.com/ZebraDevs/zeta-web/commit/4b65128e034b3771830ef5ec123f498e9ad027e1))
+
+
+### 📈 Documentation
+
+* remove image from readme on storybook ([cfccda6](https://github.com/ZebraDevs/zeta-web/commit/cfccda6c67691d070feec37c37b556ecc609c7db))
+
+
+### ⛓️ Dependencies
+
+* update deps ([6068b44](https://github.com/ZebraDevs/zeta-web/commit/6068b447cbdcf6fa6f2f514de058d70fe58022d5))
+
 ## [1.1.0](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.0.1...zeta-web-v1.1.0) (2026-01-30)
 
 
