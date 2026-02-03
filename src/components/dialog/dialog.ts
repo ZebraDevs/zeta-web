@@ -32,6 +32,7 @@ export type DialogFlavor = "default" | "info" | "success" | "warning" | "error";
  * @slot {zeta-button} cancel - Button used in footer. Must be of type zeta-button.
  * @slot {zeta-button} other - Button used in footer. Must be of type zeta-button.
  *
+ * @part dialog - Styles the whole dialog component
  * @part body - Styles the dialog body
  * @part footer - Styles the dialog footer
  * @part header - Styles the dialog header
@@ -171,7 +172,7 @@ export class ZetaDialog extends Contourable(Popup(LitElement)) {
     const count = this.handleActionButtonChange();
 
     return html`
-      <dialog .returnValue=${this.returnValue} id=${this.id} ?open=${this.initialOpen}>
+      <dialog .returnValue=${this.returnValue} id=${this.id} ?open=${this.initialOpen} part="dialog">
         <header part="header">
           ${this.showLeadingIcon ? html`<zeta-icon part="header-icon" name=${this.leadingIcon ?? this.getHeaderIconName()}></zeta-icon>` : ""}
           <h1>${this._title}</h1>
