@@ -32,6 +32,7 @@ export type DialogFlavor = "default" | "info" | "success" | "warning" | "error";
  * @slot {zeta-button} cancel - Button used in footer. Must be of type zeta-button.
  * @slot {zeta-button} other - Button used in footer. Must be of type zeta-button.
  *
+ * @part dialog - Styles the whole dialog component
  * @part body - Styles the dialog body
  * @part footer - Styles the dialog footer
  * @part header - Styles the dialog header
