@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.1.1...zeta-web-v1.1.2) (2026-02-11)
+
+
+### ⛓️ Dependencies
+
+* update deps ([2590450](https://github.com/ZebraDevs/zeta-web/commit/259045047978b63314b9e6d9607f7fa46e9b00a3))
+
 ## [1.1.1](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.1.0...zeta-web-v1.1.1) (2026-02-03)
 
 
