@@ -4,6 +4,7 @@ import styles from "./status-label.styles.js";
 import { type ZetaIconName } from "@zebra-fed/zeta-icons";
 import { Contourable } from "../../../mixins/mixins.js";
 import "../../icon/icon.js";
+
 /** To help some information, labels, or errors stand out, we present them with badges. They can look like buttons, but users can’t select them. They just guide users to things they should pay attention to.
  *
  * @slot - Text displayed on label.
@@ -36,9 +37,9 @@ export class ZetaStatusLabel extends Contourable(LitElement) {
    */
   @property({ type: String }) icon?: ZetaIconName;
 
-  /** Whether to show an icon.
+  /** Whether to show the icon.
    *
-   * If no icon is provided, an indicator circle will be rendered.
+   * If [icon] is `undefined`, an indicator circle will be rendered.
    */
   @property({ type: Boolean }) showIcon = true;
 
