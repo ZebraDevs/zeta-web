@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.2.0](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.1.1...zeta-web-v1.2.0) (2026-02-19)
+
+
+### ✨ New Features
+
+* Status label parts ([#171](https://github.com/ZebraDevs/zeta-web/issues/171)) ([d31a991](https://github.com/ZebraDevs/zeta-web/commit/d31a9910ae3bd2a9886241c3c083a0821491a79f))
+
+
+### ⛓️ Dependencies
+
+* update deps ([2590450](https://github.com/ZebraDevs/zeta-web/commit/259045047978b63314b9e6d9607f7fa46e9b00a3))
+
+
+### 🧹 Miscellaneous Chores
+
+* **deps:** bump qs from 6.14.1 to 6.15.0 ([#172](https://github.com/ZebraDevs/zeta-web/issues/172)) ([e16c20f](https://github.com/ZebraDevs/zeta-web/commit/e16c20f5caf287a1477f92967d318807f6fa8fe5))
+* **deps:** bump tar from 7.5.7 to 7.5.9 ([#173](https://github.com/ZebraDevs/zeta-web/issues/173)) ([8a80344](https://github.com/ZebraDevs/zeta-web/commit/8a803447d0e775582d5933cc3bd66553f79c0988))
+
 ## [1.1.1](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.1.0...zeta-web-v1.1.1) (2026-02-03)
 
 
