@@ -4,9 +4,14 @@ import styles from "./status-label.styles.js";
 import { type ZetaIconName } from "@zebra-fed/zeta-icons";
 import { Contourable } from "../../../mixins/mixins.js";
 import "../../icon/icon.js";
+
 /** To help some information, labels, or errors stand out, we present them with badges. They can look like buttons, but users can’t select them. They just guide users to things they should pay attention to.
  *
  * @slot - Text displayed on label.
+ *
+ * @part container - The top level div making up the component.
+ * @part icon-container - Wrapper around the icon.
+ * @part text - The div wrapping the text of either the label or the slot.
  *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=21836-37274
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-badges--docs
@@ -32,9 +37,9 @@ export class ZetaStatusLabel extends Contourable(LitElement) {
    */
   @property({ type: String }) icon?: ZetaIconName;
 
-  /** Whether to show a custom icon.
+  /** Whether to show the icon.
    *
-   * An icon must be provided for this to have an effect.
+   * If [icon] is `undefined`, an indicator circle will be rendered.
    */
   @property({ type: Boolean }) showIcon = true;
 
@@ -49,9 +54,9 @@ export class ZetaStatusLabel extends Contourable(LitElement) {
     </svg>`;
 
     return html`
-      <div class="container">
-        ${(this.icon && this.showIcon) || !this.icon ? html`<div class="icon-container">${icon}</div>` : nothing}
-        <div class="text">${this.label ? this.label : html`<slot></slot>`}</div>
+      <div part="container">
+        ${this.showIcon ? html`<div part="icon-container">${icon}</div>` : nothing}
+        <div part="text">${this.label ? this.label : html`<slot></slot>`}</div>
       </div>
     `;
   }
