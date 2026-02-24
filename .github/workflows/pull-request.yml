@@ -1,5 +1,6 @@
 name: CI - Pull Request
-on: pull_request_target
+# on: pull_request_target
+on: pull_request
 
 # Pull Request Runs on the same branch will be cancelled
 concurrency:
@@ -76,7 +77,7 @@ jobs:
         run: yarn install --immutable
 
       - name: Code Quality
-        uses: ZebraDevs/web-components-code-quality@main
+        uses: ZebraDevs/web-components-code-quality@deps
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           test-results-path: "src/test/test-results.xml"
