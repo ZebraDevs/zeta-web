@@ -1,10 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaTextInput } from "../../components/text-input/text-input.js";
 import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
-import { html } from "lit";
+import { html, nothing } from "lit";
 import { spreadGenerator } from "../utils.js";
 import { fn } from "@storybook/test";
-const spread = spreadGenerator(ZetaTextInput);
+
+// Omitting label, hintText and errorText from spread as they are handled as slots, and not attributes/properties. This is because of the complexity of handling them as both attributes and slots, and the fact that they are not commonly used as attributes in the codebase, but rather as slots.
+const spread = spreadGenerator(ZetaTextInput, ["label", "hintText", "errorText"]);
 
 type InputStory = ZetaTextInput;
 //TODO: These are seperate on Figma, should be split here too?
@@ -61,13 +63,14 @@ const meta: Meta<InputStory> = {
     }
   }
 };
-// console.log('Text-Input attributes:', ZetaTextInput.elementProperties);
 
 export const TextInput: StoryObj<InputStory> = {
   name: "Default text input",
   render: ({ oninput, onchange, onblur, onfocus, ...args }) =>
     html`<div style="width: 200px; height: 400px;">
-      <zeta-text-input type="integer" min="50" max="200" @change=${onchange} @input=${oninput} @blur=${onblur} @focus=${onfocus} ${spread(args)}>
+      <zeta-text-input @change=${onchange} @input=${oninput} @blur=${onblur} @focus=${onfocus} ${spread(args)}>
+        ${args.label ? html`<span slot="label">${args.label}</span>` : nothing} ${args.hintText ? html`<span slot="hint">${args.hintText}</span>` : nothing}
+        ${args.errorText ? html`<span slot="error">${args.errorText}</span>` : nothing}
       </zeta-text-input>
     </div>`
 };

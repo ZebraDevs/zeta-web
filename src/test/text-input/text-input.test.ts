@@ -64,10 +64,17 @@ describe("zeta-text-input", () => {
     it("should render label", async () => {
       const labelText = "Label";
       const t = await setup({ label: labelText });
-      const label = t.shadowRoot?.querySelector("label");
+      console.log("SHADOWROOT", t.shadowRoot);
+      console.log(t);
+      debugger;
+      const e = getSlotText(t);
+      console.log("SLOTTED LABEL", e);
 
-      assert.notEqual(label, undefined);
-      assert.equal(label?.textContent?.includes(labelText), true);
+      // const label = t.shadowRoot?.querySelector("slot[name='label']");
+      assert.equal(getSlotText(t), labelText);
+
+      // assert.notEqual(label, undefined);
+      // assert.equal(label?.textContent?.includes(labelText), true);
     });
 
     it("should render hint text", async () => {

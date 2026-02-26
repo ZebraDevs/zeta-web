@@ -33,8 +33,17 @@ const _spread = (_spreadData: SpreadData, properties: PropertyDeclarationMap): D
   return returnVal;
 };
 
-export const spreadGenerator = (clas: typeof LitElement) => {
-  return (spreadData: SpreadData) => _spread(spreadData, clas.elementProperties as PropertyDeclarationMap);
+export const spreadGenerator = (clas: typeof LitElement, omit: string[] = []) => {
+  return (spreadData: SpreadData) => {
+    const filteredSpreadData = Object.entries(spreadData).reduce((acc, [key, value]) => {
+      if (!omit.includes(key)) {
+        acc[key] = value;
+      }
+      return acc;
+    }, {} as SpreadData);
+
+    return _spread(filteredSpreadData, clas.elementProperties as PropertyDeclarationMap);
+  };
 };
 
 export const placeholder = (width: number = 400, height: number = 400) => {

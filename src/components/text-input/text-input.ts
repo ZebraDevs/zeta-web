@@ -1,4 +1,4 @@
-import { customElement, property, query } from "lit/decorators.js";
+import { customElement, property, query, state } from "lit/decorators.js";
 import { html, LitElement, nothing } from "lit";
 import styles from "./text-input.styles.js";
 import { type ZetaIconName } from "@zebra-fed/zeta-icons";
@@ -17,6 +17,10 @@ import { FormField } from "../../mixins/form-field.js";
  * @event {FocusEvent} blur - Fired when the input field is blurred
  * @event {Event} change - Fired when the input value changes and is committed
  * @event {InputEvent} input - Fired when the input value changes
+ *
+ * @slot hint - Slot for hint text. This will be shown below the input field. If the `error` prop is true, this will be replaced with the content of the `errorText` prop.
+ * @slot label - Slot for the label. This will be shown above the input field.
+ * @slot error - Slot for error text. This will be shown below the input field if the `error` prop is true, replacing the content of the `hint` slot.
  *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=23116-92946
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-text-input--docs
@@ -54,6 +58,7 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
   /**
    * Label shown above text field.
    *
+   * @deprecated("Use the label slot instead")
    */
   @property() label = "";
 
@@ -61,6 +66,8 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
    * Hint text shown below text field.
    *
    * if `error`, then `errorText` is shown instead.
+   *
+   * @deprecated("Use the hint slot instead")
    */
   @property() hintText?: string;
 
@@ -68,11 +75,19 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
    * Error hint text
    *
    * Shown if `error`, replaces `hintText`.
+   *
+   * @deprecated("Use the error slot instead")
    */
   @property() errorText?: string;
 
   /** Type of field */
   @property({ type: String, reflect: true }) type: "text" | "textarea" | "password" | "time" | "date" | "number" | "integer" = "text";
+
+  @state() private _hintSlotHasContent = false;
+
+  private _onHintSlotChange = (e: Event) => {
+    this._hintSlotHasContent = (e.target as HTMLSlotElement).assignedNodes({ flatten: true }).length > 0;
+  };
 
   private _valueOnLastFocus: string | null = null;
 
@@ -156,9 +171,8 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
   protected render() {
     if (this.label) {
       return html`<label class="container"> ${this.label} ${this.renderInput()} </label>`;
-    } else {
-      return html`<div class="container">${this.renderInput()}</div>`;
     }
+    return html`<div class="container"><slot name="label"></slot>${this.renderInput()}</div>`;
   }
 
   private renderInput() {
@@ -169,12 +183,16 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
     });
     return html`
       <div class=${containerClass}>${this.renderLeftIcon()} ${this.renderPrefix()} ${super.render()} ${this.renderRightIcon()} ${this.renderSuffix()}</div>
-      ${this.error || this.hintText
+      ${this.error || this.hintText || this._hintSlotHasContent
         ? html`<div class="hint-text">
             <zeta-icon .rounded=${this.rounded}>${this.error ? "error" : "info"}</zeta-icon>
-            <span id="hint-text">${this.error ? this.errorText : this.hintText}</span>
-          </div> `
-        : nothing}
+            <span id="hint-text">
+              ${this.error
+                ? html`<slot name="error">${this.errorText}</slot>`
+                : html`<slot name="hint" @slotchange=${this._onHintSlotChange}>${this.hintText}</slot>`}
+            </span>
+          </div>`
+        : html`<slot name="hint" @slotchange=${this._onHintSlotChange} style="display:none"></slot>`}
     `;
   }
 

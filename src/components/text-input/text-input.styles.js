@@ -106,6 +106,9 @@ export default css`
     padding: var(--spacing-medium);
     box-shadow: 0 0 0 var(--border-size-small) var(--border-default);
     -webkit-tap-highlight-color: transparent;
+    transition:
+      background-color 0.2s ease-in-out,
+      box-shadow 0.2s ease-in-out;
   }
 
   .input-container input,

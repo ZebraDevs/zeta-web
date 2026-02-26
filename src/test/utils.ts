@@ -72,6 +72,8 @@ export const getSlottedIconName = (parent: HTMLElement, slotName: string = "icon
 export const getSlotText = (elementWithASlot: HTMLElement): string | null => {
   const slotNode = getSlotTextNode(elementWithASlot)!;
   const textNodes = slotNode.assignedNodes();
+  console.log(elementWithASlot);
+  console.log("SLOTTED NODES", textNodes);
   return textNodes
     .filter(a => a.nodeName === "#text")
     .reduce((acc, item) => acc + item.textContent, "")

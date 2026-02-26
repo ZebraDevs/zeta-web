@@ -3,6 +3,7 @@ import type { ZetaIconName } from "@zebra-fed/zeta-icons";
 import type { ZetaTextInput } from "../../components/text-input/text-input.js";
 import "../../components/text-input/text-input.js";
 import { ifDefined } from "lit/directives/if-defined.js";
+import { nothing } from "lit";
 
 interface Props {
   disabled?: boolean;
@@ -39,23 +40,24 @@ export async function setup({
   min = undefined,
   max = undefined
 }: Props) {
-  return await fixture<ZetaTextInput>(
+   return await fixture<ZetaTextInput>(
     html`<zeta-text-input
       ?required=${required}
-      ?error=${error}
-      hintText=${hint}
+      ?error=${error} 
       suffix=${suffix}
       prefix=${prefix}
       ?disabled=${disabled}
       leadingIcon=${ifDefined(leadingIcon)}
       trailingIcon=${ifDefined(trailingIcon)}
-      errorText=${errorText ?? ""}
       type=${type}
       name=${ifDefined(name)}
-      value=${ifDefined(value)}
-      label=${ifDefined(label)}
+      value=${ifDefined(value)} 
       min=${ifDefined(min)}
       max=${ifDefined(max)}
-    ></zeta-text-input>`
-  );
+    >
+    ${label ? html`<span slot="label">${label}</span>` :  nothing}
+    ${hint ? html`<span slot="hint">${hint}</span>` :  nothing}
+    ${errorText ? html`<span slot="error">${errorText}</span>` :  nothing}
+    </zeta-text-input>`);
+  
 }

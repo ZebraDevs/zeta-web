@@ -23,7 +23,10 @@ export type InputType =
   | "select"
   | "stepper"
   | "number"
-  | "integer"; //Extend this when adding more form controls
+  | "integer"
+  | "email"
+  | "url"
+  | "tel"; //Extend this when adding more form controls
 
 //TODO add all properties here
 
