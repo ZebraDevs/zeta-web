@@ -1,4 +1,4 @@
-import fs, { write } from "fs";
+import fs from "fs";
 import path from "path";
 import { log } from "./utils";
 import { createMinifier } from "dts-minify";
