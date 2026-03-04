@@ -49,25 +49,25 @@ export const AvatarWithInitials: StoryObj<AvatarStory> = {
 };
 
 export const AvatarWithImage: StoryObj<AvatarStory> = {
-  args: {
-    slot: "<img src='https://design.zebra.com/img/zeta_web.svg'></img>"
-  },
   argTypes: {
     slot: { table: { disable: true } },
     status: { table: { disable: true } }
   },
-  render: AvatarWithInitials.render
+  render: ({ onclose, ...args }) => {
+    return html`<zeta-avatar ${spread(args)} @close=${onclose}
+      ><img style="filter: invert(1); width: 80%; height: 80%;" src="https://design.zebra.com/img/logo.svg"
+    /></zeta-avatar>`;
+  }
 };
 
 export const AvatarWithIcon: StoryObj<AvatarStory> = {
-  args: {
-    slot: "<zeta-icon>groups</zeta-icon>"
-  },
   argTypes: {
     slot: { table: { disable: true } },
     status: { table: { disable: true } }
   },
-  render: AvatarWithInitials.render
+  render: ({ onclose, ...args }) => {
+    return html`<zeta-avatar ${spread(args)} @close=${onclose}><zeta-icon style="--icon-color: white">groups</zeta-icon></zeta-avatar>`;
+  }
 };
 
 export const AvatarWithStatus: StoryObj<AvatarStory> = {
