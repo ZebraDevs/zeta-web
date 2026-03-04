@@ -218,7 +218,7 @@ function countTests(testFiles: TestFiles): TestCounts {
     const fileTestCounts: Map<string, number> = new Map();
 
     // loop through each component
-    for (const [componentName, testGroups] of Object.entries(file as Map<String, Map<String, String[]>>)) {
+    for (const [ testGroups] of Object.entries(file as Map<String, Map<String, String[]>>)) {
       const testGroupsArray = testGroups as Array<string>;
 
       // if the component has tests that aren't in a test group
@@ -326,7 +326,6 @@ async function main() {
   // prepend last updated and version info to the markdown output
   const header = `**Last updated:** ${lastUpdated}  |  **Zeta Web version:** ${zetaVersion}`;
   const markdownTable = [header, "", generateMDTable(testCounts)].join("\n");
-
   // write test count table to markdown file
   await writeToFile(outputDir + "/test_counts.md", markdownTable);
 }
