@@ -59,8 +59,8 @@ import { ZetaRangeSelector } from "./components/slider/range-selector/range-sele
 import { ZetaSearch } from "./components/search/search.js";
 import { ZetaSegmentedControl } from "./components/segmented-control/segmented-control.js";
 import { ZetaSegmentedItem } from "./components/segmented-control/segmented-item.js";
-import { ZetaShimmer } from "./components/shimmer/shimmer.js";
 import { ZetaSelectInput } from "./components/select-input/select-input.js";
+import { ZetaShimmer } from "./components/shimmer/shimmer.js";
 import { ZetaSlider } from "./components/slider/slider.js";
 import { ZetaSliderInputField } from "./components/slider/slider-input-field/slider-input-field.js";
 import { ZetaSnackbar } from "./components/snackbar/snackbar.js";

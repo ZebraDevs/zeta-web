@@ -38,6 +38,8 @@ export default css`
     height: var(--spacing-large);
     width: var(--spacing-large);
     justify-content: center;
+    flex-shrink: 0;
+    aspect-ratio: 1;
   }
 
   @media (hover: hover), (hover: none) and (pointer: fine) {

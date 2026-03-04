@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.2.1](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.2.0...zeta-web-v1.2.1) (2026-03-04)
+
+
+### ⛓️ Dependencies
+
+* Update deps and zeta-icons ([2ee9759](https://github.com/ZebraDevs/zeta-web/commit/2ee9759513007f01640caf5633be593efdef9e21))
+
+
+### 🧹 Miscellaneous Chores
+
+* **deps:** bump basic-ftp from 5.1.0 to 5.2.0 ([#176](https://github.com/ZebraDevs/zeta-web/issues/176)) ([14ab37e](https://github.com/ZebraDevs/zeta-web/commit/14ab37ec0e5b4c0f0a804b5880e8d9173a211249))
+* **deps:** bump koa from 2.16.3 to 2.16.4 ([#177](https://github.com/ZebraDevs/zeta-web/issues/177)) ([1fcc007](https://github.com/ZebraDevs/zeta-web/commit/1fcc0079ca773377f33dc6637dd2c7b4dc4e7f94))
+* **deps:** bump rollup from 4.57.1 to 4.59.0 ([#178](https://github.com/ZebraDevs/zeta-web/issues/178)) ([49e6f16](https://github.com/ZebraDevs/zeta-web/commit/49e6f1681bcc14fc6357b70f46ee7262b9c6a837))
+* tidy code warnings ([6a11b10](https://github.com/ZebraDevs/zeta-web/commit/6a11b1070c3c0989bf8edc6110e6eb19db9a451a))
+
 ## [1.2.0](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.1.1...zeta-web-v1.2.0) (2026-02-19)
 
 

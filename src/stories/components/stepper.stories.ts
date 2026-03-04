@@ -1,10 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import { spreadGenerator } from "../utils.js";
-const spread = spreadGenerator(ZetaStepper);
 import { ZetaStepper } from "../../components/stepper/stepper.js";
 import type { StepperItemFlavor } from "../../components/stepper/stepper-item.js";
 import { fn } from "@storybook/test";
+
+const spread = spreadGenerator(ZetaStepper);
 
 type Args = ZetaStepper & {
   flavor1: StepperItemFlavor;

@@ -26,7 +26,7 @@ export class ZetaLabel extends Contourable(LitElement) {
   protected override render() {
     return html`
       <div class="container">
-        <div class="text">${this.label && this.label}<slot></slot></div>
+        <div class="text">${this.label}<slot></slot></div>
       </div>
     `;
   }
