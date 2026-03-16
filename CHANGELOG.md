@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.2.2](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.2.1...zeta-web-v1.2.2) (2026-03-16)
+
+
+### 🪲 Bug Fixes
+
+* **UX-1545:** Fix icon and image avatars not rendering properly ([#181](https://github.com/ZebraDevs/zeta-web/issues/181)) ([fc4ce50](https://github.com/ZebraDevs/zeta-web/commit/fc4ce50d0ae2562674183582797251765bda1428))
+* **UX-1562:** Don't allow toggle form elements to shrink/warp ([#179](https://github.com/ZebraDevs/zeta-web/issues/179)) ([7bfe0c5](https://github.com/ZebraDevs/zeta-web/commit/7bfe0c50b40a72451e6b35a18ab3f350fb66855c))
+* **UX-1568:** Make select-input component fire scroll events on scroll of options ([#182](https://github.com/ZebraDevs/zeta-web/issues/182)) ([d3d5b6c](https://github.com/ZebraDevs/zeta-web/commit/d3d5b6c5124b3783d370684b4d5dd0e789b46d36))
+
+
+### ⛓️ Dependencies
+
+* Update deps ([6ab97f8](https://github.com/ZebraDevs/zeta-web/commit/6ab97f8d776801320fdfcb016ec98f084f8c5c85))
+
+
+### 🧹 Miscellaneous Chores
+
+* **deps-dev:** bump dompurify from 3.3.1 to 3.3.2 ([#183](https://github.com/ZebraDevs/zeta-web/issues/183)) ([79729b0](https://github.com/ZebraDevs/zeta-web/commit/79729b039f2dab47858110ef90cb6aff6220ec0a))
+* **deps:** bump tar from 7.5.9 to 7.5.11 ([#184](https://github.com/ZebraDevs/zeta-web/issues/184)) ([c4c797a](https://github.com/ZebraDevs/zeta-web/commit/c4c797a7e0a43e2679be8fcae24e859a87015b50))
+
 ## [1.2.1](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.2.0...zeta-web-v1.2.1) (2026-03-04)
 
 
