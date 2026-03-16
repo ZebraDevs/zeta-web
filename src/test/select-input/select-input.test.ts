@@ -92,8 +92,7 @@ describe("zeta-select-input", () => {
       const inputWidth = input?.getBoundingClientRect().width;
       const optionsWidth = options?.getBoundingClientRect().width;
 
-      const optionsMargin = 2;
-      await expect(inputWidth).to.equal((optionsWidth ?? 0) + optionsMargin);
+      await expect(inputWidth).to.equal(optionsWidth);
     });
 
     it("renders the options box with the correct height", async () => {
@@ -190,8 +189,8 @@ describe("zeta-select-input", () => {
 
     it("sets the selected option on option click", async () => {
       const input = subject.shadowRoot?.querySelector(".input");
-      const optionsContainer = subject.shadowRoot?.querySelector(".options") as HTMLSlotElement;
-      const options = optionsContainer.assignedElements({ flatten: true }) as ZetaOption[];
+      const optionsContainer = subject.shadowRoot?.querySelector(".options");
+      const options = (optionsContainer?.querySelector("slot") as HTMLSlotElement).assignedElements({ flatten: true }) as ZetaOption[];
 
       expect(input).to.exist;
       expect(optionsContainer).to.exist;
@@ -207,8 +206,8 @@ describe("zeta-select-input", () => {
 
     it("sets the selected option on option space key press", async () => {
       const input = subject.shadowRoot?.querySelector(".input");
-      const optionsContainer = subject.shadowRoot?.querySelector(".options") as HTMLSlotElement;
-      const options = optionsContainer.assignedElements({ flatten: true }) as ZetaOption[];
+      const optionsContainer = subject.shadowRoot?.querySelector(".options");
+      const options = (optionsContainer?.querySelector("slot") as HTMLSlotElement).assignedElements({ flatten: true }) as ZetaOption[];
 
       expect(input).to.exist;
       expect(optionsContainer).to.exist;
@@ -225,8 +224,8 @@ describe("zeta-select-input", () => {
 
     it("doesn't deselect the selected option on option click", async () => {
       const input = subject.shadowRoot?.querySelector(".input");
-      const optionsContainer = subject.shadowRoot?.querySelector(".options") as HTMLSlotElement;
-      const options = optionsContainer.assignedElements({ flatten: true }) as ZetaOption[];
+      const optionsContainer = subject.shadowRoot?.querySelector(".options");
+      const options = (optionsContainer?.querySelector("slot") as HTMLSlotElement).assignedElements({ flatten: true }) as ZetaOption[];
 
       expect(input).to.exist;
       expect(optionsContainer).to.exist;
@@ -250,8 +249,8 @@ describe("zeta-select-input", () => {
 
     it("doesn't deselect the selected option on option space key press", async () => {
       const input = subject.shadowRoot?.querySelector(".input");
-      const optionsContainer = subject.shadowRoot?.querySelector(".options") as HTMLSlotElement;
-      const options = optionsContainer.assignedElements({ flatten: true }) as ZetaOption[];
+      const optionsContainer = subject.shadowRoot?.querySelector(".options");
+      const options = (optionsContainer?.querySelector("slot") as HTMLSlotElement).assignedElements({ flatten: true }) as ZetaOption[];
 
       expect(input).to.exist;
       expect(optionsContainer).to.exist;
