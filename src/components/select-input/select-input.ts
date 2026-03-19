@@ -72,6 +72,9 @@ export class ZetaSelectInput extends FormField(Size(Contourable(Interactive(LitE
    *  Default is 200px */
   @property({ type: Number }) optionsDialogHeight = 200;
 
+  /** Whether to use fixed positioning for the options dropdown, so it escapes overflow:hidden ancestors. */
+  @property({ type: Boolean }) fixedDropdown = false;
+
   @queryAssignedNodes() optionsNodeList: NodeListOf<HTMLOptionElement>;
 
   @state() private _selectedOption: HTMLOptionElement | undefined = undefined;
@@ -111,6 +114,30 @@ export class ZetaSelectInput extends FormField(Size(Contourable(Interactive(LitE
         this.toggleOpen();
       }
     });
+  }
+
+  protected override updated(changedProperties: PropertyValues): void {
+    super.updated(changedProperties);
+    if (this.fixedDropdown && changedProperties.has("open")) {
+      // prettier-ignore
+      const options = this.shadowRoot?.querySelector<HTMLElement>(".options");
+      if (this.open) {
+        // prettier-ignore
+        const input = this.shadowRoot?.querySelector<HTMLElement>(".input");
+        if (input && options) {
+          const rect = input.getBoundingClientRect();
+          options.style.position = "fixed";
+          options.style.top = `${rect.bottom + 2}px`;
+          options.style.left = `${rect.left}px`;
+          options.style.width = `${rect.width}px`;
+        }
+      } else if (options) {
+        options.style.position = "";
+        options.style.top = "";
+        options.style.left = "";
+        options.style.width = "";
+      }
+    }
   }
 
   setValue(v: string): void {
