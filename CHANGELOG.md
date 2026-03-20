@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.3](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.2.2...zeta-web-v1.2.3) (2026-03-20)
+
+
+### 🪲 Bug Fixes
+
+* **UX-1569:** Select Input - fixed position prop ([#185](https://github.com/ZebraDevs/zeta-web/issues/185)) ([f7138e3](https://github.com/ZebraDevs/zeta-web/commit/f7138e38ca5cb55dd9c9da089f03d8c509e386d4))
+
 ## [1.2.2](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.2.1...zeta-web-v1.2.2) (2026-03-16)
 
 
