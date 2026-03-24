@@ -9,7 +9,7 @@ export default css`
 
   #header-main {
     justify-content: space-between;
-    padding: var(--spacing-small) var(--spacing-large);
+    padding: 6px;
     background-color: var(--surface-default);
   }
 
@@ -52,6 +52,10 @@ export default css`
     border-right: var(--border-size-small) solid var(--border-default);
   }
 
+  #header-info zeta-icon-button {
+    margin-right: 10px;
+  }
+
   /*zeta-icon-button and zeta-button styling*/
   zeta-icon-button::part(icon) {
     --icon-color: var(--main-default);
@@ -84,6 +88,7 @@ export default css`
   [part="logo"] svg {
     background-color: transparent;
     fill: var(--state-inverse-enabled);
+    width: 76px;
   }
 
   /* Invert logo in dark mode*/
