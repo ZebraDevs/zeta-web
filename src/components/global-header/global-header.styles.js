@@ -4,6 +4,7 @@ export default css`
     display: flex;
     flex-direction: row;
     align-items: center;
+    color: var(--state-inverse-enabled);
   }
 
   #header-main {
@@ -77,12 +78,13 @@ export default css`
     --avatar-initials-color: var(--main-inverse);
   }
 
-  .logo svg {
+  [part="logo"] svg {
     background-color: transparent;
+    fill: var(--state-inverse-enabled);
   }
 
   /* Invert logo in dark mode*/
-  .logo {
+  [part="logo"] {
     fill: var(--state-inverse-enabled);
     background-color: transparent;
     width: 80px;

@@ -95,7 +95,7 @@ describe("zeta-global-header", () => {
       await expect(assignedNodesLength).to.equal(6);
     });
     it("renders the zebra logo", () => {
-      const logo = subject.shadowRoot?.querySelector(".logo");
+      const logo = subject.shadowRoot?.querySelector('[part="logo"]');
       expect(logo).to.exist;
       const svg = logo?.querySelector("svg");
       expect(svg).to.exist;
@@ -104,7 +104,7 @@ describe("zeta-global-header", () => {
 
   describe("Dimensions", () => {
     it("logo has correct dimensions", () => {
-      const logo = subject.shadowRoot?.querySelector(".logo") as HTMLElement;
+      const logo = subject.shadowRoot?.querySelector('[part="logo"]') as HTMLElement;
       expect(logo).to.exist;
       const rect = logo.getBoundingClientRect();
       expect(rect.height).to.be.closeTo(32, 1); // allow 1px tolerance

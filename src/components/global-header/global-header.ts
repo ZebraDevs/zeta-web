@@ -1,6 +1,4 @@
 import { html, LitElement, nothing } from "lit";
-import zebraLogoSvg from "../../../assets/zebra-logo.svg?raw";
-import { unsafeSVG } from "lit-html/directives/unsafe-svg.js";
 import { customElement, property, queryAssignedElements } from "lit/decorators.js";
 import styles from "./global-header.styles.js";
 import "../icon/icon.js";
@@ -21,19 +19,21 @@ import "../../index.css";
  * Header will only allow a maximum of 6 menu items and 6 action items. Any additional items will be hidden.
  * If you have a maximum amount (6) of menu and action items, the search bar will be hidden at a screen size of 1440px or smaller.
  *
- * @property {String} platformName - The platform name text on the header.
  * @property {String} name - The name to show in the header, next to the user icon.
  * @property {String} initials - The initials to display within the user icon.
  * @property {Boolean} appSwitcher - Shows the app switcher icon. Make true to show the app switcher icon.
+ * @property {Boolean} searchbar - Shows the search bar. Make true to show the search bar.
  *
  * @event user-info-click - Fired when the user info button is clicked.
  * @event hamburger-menu-click - Fired when the hamburger menu button is clicked.
  *
- * @property {Boolean} searchbar - Shows the search bar. Make true to show the search bar.
+ * @slot platform-name - Slot for the platform name in the header. Falls back to the platformName property if not provided.
  * @slot menu-items - Slot for menu items on the left side of the header. Expects elements of type zeta-button or zeta-dropdown-menu-button.
  * @slot action-items - Slot for action items on the right side of the header. Expects elements of type zeta-icon-button or zeta-action-menu-button.
  * @slot user-avatar - Slot for user avatar. Input should be of type zeta-avatar. You must set the size prop to xxs.
+ * @slot logo - Slot for a custom logo to replace the default Zebra logo.
  *
+ * @part logo - The container for the logo in the header. By default, this will contain the Zebra logo, but if you use the "logo" slot, your custom logo will be placed here instead.
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=23144-118110
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-global-header--docs
  *
@@ -57,8 +57,11 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
    */
   @property({ type: String, attribute: "data-theme", reflect: true }) theme = "dark";
 
-  /** The platform name text on the header. */
-  @property({ type: String }) platformName: string = "Platform Name";
+  /** The platform name text on the header.
+   * @deprecated The 'platformName' property is deprecated. Please use the default slot to set the platform name instead.
+   */
+  @property({ type: String })
+  platformName: string = "Platform Name";
 
   /** The name to show in the header, next to the user icon. */
   @property({ type: String }) name: string = "Name";
@@ -188,8 +191,29 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
             <zeta-icon-button shape=${this.rounded ? "rounded" : "sharp"} flavor="subtle" @click=${this._handleHamburgerMenuClick}>
               hamburger_menu
             </zeta-icon-button>
-            <span class="logo">${unsafeSVG(zebraLogoSvg)}</span>
-            <div id="platform-name">${this.platformName}</div>
+            <span part="logo">
+              <slot name="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 121 40" width="80" height="32" fill="none">
+                  <defs>
+                    <clipPath id="a" clipPathUnits="userSpaceOnUse">
+                      <path d="M0 792h1224V0H0Z" />
+                    </clipPath>
+                  </defs>
+                  <path d="M25.94 20.55 23.2 17.8v7.79h2.75Z" />
+                  <g clip-path="url(#a)" transform="matrix(.2222 0 0 -.2222 -75.5 107.79)">
+                    <path
+                      d="M407.08 429.98h30.17l-12.34 12.33-.05.06H409a20.4 20.4 0 0 1-1.92 40.7v-40.75l-33.9 33.79a61 61 0 0 1-10.56-6.97l32.08-31.95v-70.17l24.77-24.77v17.51l-12.39 12.39Z"
+                    />
+                    <path
+                      d="m419.47 429.9-.06-59.82h12.38l.06 47.38zm42.5-24.84-12.39 12.38h-17.73l12.37-12.38Zm-79.66-26.39v53.29l-28.45 28.45a62 62 0 0 1-6.98-10.55l23.04-23.04V409.3l-27.95 27.97a62 62 0 0 1-2.1-15.42s41.05-41.74 42.44-43.18m-42.23 25.46v-17.51l79.4-79.39v17.51zm141.32-18.48h-12.39v-15.66h-12.38a20.4 20.4 0 1 1 40.8 0zm100.88-15.92-9.3-17.67h-57.87l37.63 72.3h-33.32l9.3 17.67h57.88l-37.64-72.3Zm33.61 36.28h29.68v-17.67h-29.68v-18.61h29.68v-17.67h-51.53v89.97h51.53v-17.67h-29.68Zm62.24-38.31h7.96c9.17 0 13.09 3.1 13.09 10.4 0 4.3-1.62 7.41-4.86 9.17-2.43 1.34-4.59 1.61-11.2 1.61h-4.99Zm0 37.1h5.4c9.98 0 14.16 3.1 14.16 10.52 0 7.29-4.18 10.39-14.43 10.39h-5.13Zm8.9 37.23c11.47 0 18.08-1.22 22.94-4.32 6.2-3.77 9.98-11.46 9.98-20.1 0-6.33-2.03-11.6-6.07-15.64-2.57-2.7-4.59-3.92-9.44-5.26 5.53-1.22 7.95-2.43 10.79-5.13 4.04-3.77 6.07-9.04 6.07-15.65 0-8.36-3.38-15.78-9.18-19.69-4.45-2.97-9.84-4.18-19.01-4.18h-36.83v89.97zm71.62-42.89c8.9 0 14.3 4.58 14.3 12.4 0 7.42-5.27 12.55-12.95 12.55h-8.37v-24.95Zm-7.02-47.08h-21.85v89.97h29.14c11.87 0 20.5-2.16 26.43-6.74 6.2-4.86 9.72-12.95 9.72-22.8 0-13.76-5.8-22.8-17.4-27.38l19.82-33.05h-26.16l-19.7 34.8zm80.01 35.39 9.04 28.8 9.02-28.8Zm29.15-35.4h23.71l-29.54 89.98h-27.79l-29.67-89.97h23.04l5.55 17.7h29.16z"
+                    />
+                  </g>
+                </svg>
+              </slot>
+            </span>
+            <slot name="platform-name">
+              <div id="platform-name">${this.platformName}</div>
+            </slot>
           </div>
           <!--Menu items container - Holds menu items-->
           <div id="menu-items" class=${this.hasMenuItems ? "has-items" : ""}><slot name="menu-items"></slot></div>
