@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.3.0](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.2.3...zeta-web-v1.3.0) (2026-03-24)
+
+
+### ✨ New Features
+
+* **Global header:** Add custom logo slot and part ([#189](https://github.com/ZebraDevs/zeta-web/issues/189)) ([486cddd](https://github.com/ZebraDevs/zeta-web/commit/486cddd66dc2091f7f23991d8a52b03f3ed7e3d8))
+
+
+### 🧹 Miscellaneous Chores
+
+* **deps:** bump flatted from 3.3.3 to 3.4.2 ([#187](https://github.com/ZebraDevs/zeta-web/issues/187)) ([933b10b](https://github.com/ZebraDevs/zeta-web/commit/933b10b617f6b8190dd2450ed6acf8b0966b8b07))
+
+
+### 👷 Continuous Integration
+
+* Ignore whitespace in pr action  ([486cddd](https://github.com/ZebraDevs/zeta-web/commit/486cddd66dc2091f7f23991d8a52b03f3ed7e3d8))
+
 ## [1.2.3](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.2.2...zeta-web-v1.2.3) (2026-03-20)
 
 
