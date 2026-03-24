@@ -92,8 +92,8 @@
     "@types/jest": "^29.5.14",
     "@types/node": "^22.19.15",
     "@types/react": "^19.2.14",
-    "@typescript-eslint/eslint-plugin": "^8.57.1",
-    "@typescript-eslint/parser": "^8.57.1",
+    "@typescript-eslint/eslint-plugin": "^8.57.2",
+    "@typescript-eslint/parser": "^8.57.2",
     "@wc-toolkit/type-parser": "^1.2.0",
     "@web/test-runner": "^0.20.2",
     "@web/test-runner-commands": "^0.9.0",
@@ -119,9 +119,9 @@
     "storybook": "^8.6.18",
     "ts-lit-plugin": "^2.0.2",
     "ts-morph": "^25.0.1",
-    "typedoc": "^0.28.17",
+    "typedoc": "^0.28.18",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.57.1",
+    "typescript-eslint": "^8.57.2",
     "vite": "^6.4.1"
   },
   "dependencies": {

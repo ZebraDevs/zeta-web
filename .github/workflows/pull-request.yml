@@ -43,7 +43,7 @@ jobs:
 
       - name: Check diff
         id: diff
-        run: git diff --quiet . || echo "changed=true" >> $GITHUB_OUTPUT
+        run: git diff --quiet --ignore-all-space . || echo "changed=true" >> $GITHUB_OUTPUT
 
       - name: Commit files
         if: steps.diff.outputs.changed == 'true'

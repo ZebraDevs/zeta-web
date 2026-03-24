@@ -1,11 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaGlobalHeader } from "../../components/global-header/global-header.js";
 import { html, nothing } from "lit";
+import { keyed } from "lit/directives/keyed.js";
 import { action } from "@storybook/addon-actions";
 import "../../components/global-header/global-header";
 import "../../components/action-menu/action-menu-button";
 
-const meta: Meta<ZetaGlobalHeader & { "data-theme": string; customLogo: string }> = {
+const meta: Meta<ZetaGlobalHeader & { "data-theme": string; customLogo: string; logo: string }> = {
   component: "zeta-global-header",
   tags: ["autodocs"],
   title: "Components/Global Header",
@@ -26,6 +27,7 @@ const meta: Meta<ZetaGlobalHeader & { "data-theme": string; customLogo: string }
     searchbar: { control: "boolean" },
     rounded: { control: "boolean" },
     customLogo: { control: "text" },
+    logo: { table: { disable: true } },
     "data-theme": { table: { disable: true } }
   },
   parameters: {
@@ -48,7 +50,7 @@ export const GlobalHeader: StoryObj = {
     }
   },
   render: args => {
-    return html`<zeta-global-header
+    return html`${keyed(args.customLogo, html`<zeta-global-header
       .platformName=${args.platformName}
       .name=${args.name}
       .initials=${args.initials}
@@ -69,8 +71,6 @@ export const GlobalHeader: StoryObj = {
       >
       <zeta-button shape=${args.rounded ? "rounded" : "sharp"} slot="menu-items" flavor="subtle">Nav Item</zeta-button>
 
-      <img slot="logo" src="https://www.svgrepo.com/show/434029/cat.svg" alt="Custom Logo" style="height: 24px" />
-
       <!-- Action items -->
       <zeta-action-menu-button
         shape=${args.rounded ? "rounded" : "sharp"}
@@ -83,6 +83,6 @@ export const GlobalHeader: StoryObj = {
 
       <!--Zeta avatar-->
       <zeta-avatar id="avatar" slot="user-avatar" size="xxs" .showClose=${false} .showRing=${false}>${args.initials}</zeta-avatar>
-    </zeta-global-header>`;
+    </zeta-global-header>`)}`;
   }
 };
