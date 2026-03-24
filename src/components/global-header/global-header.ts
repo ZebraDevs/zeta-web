@@ -19,15 +19,15 @@ import "../../index.css";
  * Header will only allow a maximum of 6 menu items and 6 action items. Any additional items will be hidden.
  * If you have a maximum amount (6) of menu and action items, the search bar will be hidden at a screen size of 1440px or smaller.
  *
- * @property {String} platformName - The platform name text on the header.
  * @property {String} name - The name to show in the header, next to the user icon.
  * @property {String} initials - The initials to display within the user icon.
  * @property {Boolean} appSwitcher - Shows the app switcher icon. Make true to show the app switcher icon.
+ * @property {Boolean} searchbar - Shows the search bar. Make true to show the search bar.
  *
  * @event user-info-click - Fired when the user info button is clicked.
  * @event hamburger-menu-click - Fired when the hamburger menu button is clicked.
  *
- * @property {Boolean} searchbar - Shows the search bar. Make true to show the search bar.
+ * @slot platform-name - Slot for the platform name in the header. Falls back to the platformName property if not provided.
  * @slot menu-items - Slot for menu items on the left side of the header. Expects elements of type zeta-button or zeta-dropdown-menu-button.
  * @slot action-items - Slot for action items on the right side of the header. Expects elements of type zeta-icon-button or zeta-action-menu-button.
  * @slot user-avatar - Slot for user avatar. Input should be of type zeta-avatar. You must set the size prop to xxs.
@@ -57,8 +57,11 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
    */
   @property({ type: String, attribute: "data-theme", reflect: true }) theme = "dark";
 
-  /** The platform name text on the header. */
-  @property({ type: String }) platformName: string = "Platform Name";
+  /** The platform name text on the header.
+   * @deprecated The 'platformName' property is deprecated. Please use the default slot to set the platform name instead.
+   */
+  @property({ type: String })
+  platformName: string = "Platform Name";
 
   /** The name to show in the header, next to the user icon. */
   @property({ type: String }) name: string = "Name";
@@ -208,7 +211,9 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
                 </svg>
               </slot>
             </span>
-            <div id="platform-name">${this.platformName}</div>
+            <slot name="platform-name">
+              <div id="platform-name">${this.platformName}</div>
+            </slot>
           </div>
           <!--Menu items container - Holds menu items-->
           <div id="menu-items" class=${this.hasMenuItems ? "has-items" : ""}><slot name="menu-items"></slot></div>

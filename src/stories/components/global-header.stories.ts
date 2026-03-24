@@ -50,39 +50,42 @@ export const GlobalHeader: StoryObj = {
     }
   },
   render: args => {
-    return html`${keyed(args.customLogo, html`<zeta-global-header
-      .platformName=${args.platformName}
-      .name=${args.name}
-      .initials=${args.initials}
-      .appSwitcher=${args.appSwitcher}
-      .searchbar=${args.searchbar}
-      .rounded=${args.rounded}
-      @user-info-click=${action("user-info-click")}
-      @hamburger-menu-click=${action("hamburger-menu-click")}
-    >
-      ${args.customLogo ? html`<span slot="logo">${args.customLogo}</span>` : nothing}
-      <!-- Menu items -->
-      <zeta-dropdown-menu-button
-        rounded=${args.rounded}
-        slot="menu-items"
-        flavor="subtle"
-        .items=${[{ label: "Menu Item" }, { label: "Menu Item" }, { label: "Menu Item" }]}
-        >Nav Item</zeta-dropdown-menu-button
+    return html`${keyed(
+      args.customLogo,
+      html`<zeta-global-header
+        platformName=${args.platformName}
+        .name=${args.name}
+        .initials=${args.initials}
+        .appSwitcher=${args.appSwitcher}
+        .searchbar=${args.searchbar}
+        .rounded=${args.rounded}
+        @user-info-click=${action("user-info-click")}
+        @hamburger-menu-click=${action("hamburger-menu-click")}
       >
-      <zeta-button shape=${args.rounded ? "rounded" : "sharp"} slot="menu-items" flavor="subtle">Nav Item</zeta-button>
+        ${args.customLogo ? html`<span slot="logo">${args.customLogo}</span>` : nothing}
+        <!-- Menu items -->
+        <zeta-dropdown-menu-button
+          rounded=${args.rounded}
+          slot="menu-items"
+          flavor="subtle"
+          .items=${[{ label: "Menu Item" }, { label: "Menu Item" }, { label: "Menu Item" }]}
+          >Nav Item</zeta-dropdown-menu-button
+        >
+        <zeta-button shape=${args.rounded ? "rounded" : "sharp"} slot="menu-items" flavor="subtle">Nav Item</zeta-button>
 
-      <!-- Action items -->
-      <zeta-action-menu-button
-        shape=${args.rounded ? "rounded" : "sharp"}
-        slot="action-items"
-        icon="more_horizontal"
-        flavor="subtle"
-        .items=${[{ label: "Menu Item" }, { label: "Menu Item" }, { label: "Menu Item" }]}
-      ></zeta-action-menu-button>
-      <zeta-icon-button shape=${args.rounded ? "rounded" : "sharp"} slot="action-items" flavor="subtle">star</zeta-icon-button>
+        <!-- Action items -->
+        <zeta-action-menu-button
+          shape=${args.rounded ? "rounded" : "sharp"}
+          slot="action-items"
+          icon="more_horizontal"
+          flavor="subtle"
+          .items=${[{ label: "Menu Item" }, { label: "Menu Item" }, { label: "Menu Item" }]}
+        ></zeta-action-menu-button>
+        <zeta-icon-button shape=${args.rounded ? "rounded" : "sharp"} slot="action-items" flavor="subtle">star</zeta-icon-button>
 
-      <!--Zeta avatar-->
-      <zeta-avatar id="avatar" slot="user-avatar" size="xxs" .showClose=${false} .showRing=${false}>${args.initials}</zeta-avatar>
-    </zeta-global-header>`)}`;
+        <!--Zeta avatar-->
+        <zeta-avatar id="avatar" slot="user-avatar" size="xxs" .showClose=${false} .showRing=${false}>${args.initials}</zeta-avatar>
+      </zeta-global-header>`
+    )}`;
   }
 };
