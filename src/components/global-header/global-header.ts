@@ -33,7 +33,9 @@ import "../../index.css";
  * @slot menu-items - Slot for menu items on the left side of the header. Expects elements of type zeta-button or zeta-dropdown-menu-button.
  * @slot action-items - Slot for action items on the right side of the header. Expects elements of type zeta-icon-button or zeta-action-menu-button.
  * @slot user-avatar - Slot for user avatar. Input should be of type zeta-avatar. You must set the size prop to xxs.
+ * @slot logo - Slot for a custom logo to replace the default Zebra logo.
  *
+ * @part logo - The container for the logo in the header. By default, this will contain the Zebra logo, but if you use the "logo" slot, your custom logo will be placed here instead.
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=23144-118110
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-global-header--docs
  *
@@ -188,7 +190,7 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
             <zeta-icon-button shape=${this.rounded ? "rounded" : "sharp"} flavor="subtle" @click=${this._handleHamburgerMenuClick}>
               hamburger_menu
             </zeta-icon-button>
-            <span class="logo">${unsafeSVG(zebraLogoSvg)}</span>
+            <span part="logo">${this.querySelector(':scope > [slot="logo"]') ? html`<slot name="logo"></slot>` : unsafeSVG(zebraLogoSvg)}</span>
             <div id="platform-name">${this.platformName}</div>
           </div>
           <!--Menu items container - Holds menu items-->

@@ -77,12 +77,12 @@ export default css`
     --avatar-initials-color: var(--main-inverse);
   }
 
-  .logo svg {
+  [part="logo"] svg {
     background-color: transparent;
   }
 
   /* Invert logo in dark mode*/
-  .logo {
+  [part="logo"] {
     fill: var(--state-inverse-enabled);
     background-color: transparent;
     width: 80px;
