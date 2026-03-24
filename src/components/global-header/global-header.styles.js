@@ -55,6 +55,9 @@ export default css`
   /*zeta-icon-button and zeta-button styling*/
   zeta-icon-button::part(icon) {
     --icon-color: var(--main-default);
+    --icon-size: var(--spacing-2xl);
+    width: var(--spacing-2xl);
+    height: var(--spacing-2xl);
   }
   ::slotted([slot="action-items"]) {
     --icon-color: var(--main-default);
