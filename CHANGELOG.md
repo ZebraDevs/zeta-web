@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.2.5](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.2.4...zeta-web-v1.2.5) (2026-04-01)
+
+
+### ⛓️ Dependencies
+
+* Update deps ([#193](https://github.com/ZebraDevs/zeta-web/issues/193)) ([fdbf769](https://github.com/ZebraDevs/zeta-web/commit/fdbf769fd89601da46458ea5f5683294967668ff))
+
+
+### 🧹 Miscellaneous Chores
+
+* **Global Header:** Update icon size to match designs  ([#191](https://github.com/ZebraDevs/zeta-web/issues/191)) ([759d4c9](https://github.com/ZebraDevs/zeta-web/commit/759d4c991082c238391481eb68ce9c899e022030))
+* Make platformName nullable ([648d989](https://github.com/ZebraDevs/zeta-web/commit/648d989ec786ab6f15722ed3c9151d06389f0422))
+
+
+### 👷 Continuous Integration
+
+* Update release please to only push major on breaking changes ([759d4c9](https://github.com/ZebraDevs/zeta-web/commit/759d4c991082c238391481eb68ce9c899e022030))
+
 ## [1.2.4](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.2.3...zeta-web-v1.2.4) (2026-03-24)
 
 
