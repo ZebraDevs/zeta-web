@@ -60,8 +60,7 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
   /** The platform name text on the header.
    * @deprecated The 'platformName' property is deprecated. Please use the default slot to set the platform name instead.
    */
-  @property({ type: String })
-  platformName: string = "Platform Name";
+  @property({ type: String }) platformName?: string;
 
   /** The name to show in the header, next to the user icon. */
   @property({ type: String }) name: string = "Name";
