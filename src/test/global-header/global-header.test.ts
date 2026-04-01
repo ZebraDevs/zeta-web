@@ -17,7 +17,7 @@ describe("zeta-global-header", () => {
 
   let subject: ZetaGlobalHeader;
   const createComponent = (
-    template = `<zeta-global-header .platformName="Platform Name" .name="Name" .initials="RK" appSwitcher=true .rounded=true>
+    template = `<zeta-global-header platformName="Platform Name" .name="Name" .initials="RK" appSwitcher=true .rounded=true>
 
           <!-- Menu items -->
           <zeta-dropdown-menu-button rounded=true slot="menu-items" flavor="subtle"
