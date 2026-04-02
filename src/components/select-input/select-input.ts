@@ -29,6 +29,8 @@ import type { ZetaOptionClickEventDetail } from "../../events.js";
  * @event {FocusEvent} focus - Fired when the select input receives focus.
  * @event {FocusEvent} blur - Fired when the select input loses focus.
  *
+ * @part input-text - The text of the selected option or placeholder.
+ *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-39&m=dev
  * @storybook https://design.zebra.com/web/storybook/index.html?path=/docs/components-select-input--docs
  */
@@ -187,13 +189,15 @@ export class ZetaSelectInput extends FormField(Size(Contourable(Interactive(LitE
   renderInputContent(): TemplateResult {
     return html`
       ${this.icon ? html`<zeta-icon class="contourable-target">${this.icon}</zeta-icon>` : nothing}
-      ${this._selectedOption
-        ? this._selectedOption.innerText
-        : this.placeholder === undefined
-          ? "Select an option"
-          : this.placeholder === ""
-            ? ""
-            : this.placeholder}
+      <span part="input-text">
+        ${this._selectedOption
+          ? this._selectedOption.innerText
+          : this.placeholder === undefined
+            ? "Select an option"
+            : this.placeholder === ""
+              ? ""
+              : this.placeholder}
+      </span>
       <zeta-icon class="contourable-target expand-more">expand_more</zeta-icon>
     `;
   }

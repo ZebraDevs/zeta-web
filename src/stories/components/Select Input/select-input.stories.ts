@@ -65,15 +65,15 @@ export const SelectInput: StoryObj = {
         console.error("Form reset", e);
       }}
     >
-      <zeta-select-input ${spread(args)}>
-        <zeta-option value="1">Option 1</zeta-option>
-        <zeta-option value="2">Option 2</zeta-option>
-        <zeta-option value="3">Option 3</zeta-option>
-        <zeta-option value="4">Option 4</zeta-option>
-        <zeta-option value="5">Option 5</zeta-option>
-        <zeta-option value="6">Option 6</zeta-option>
-      </zeta-select-input>
-
+      <div style="max-width: 300px;">
+        <zeta-select-input ${spread(args)}>
+          <zeta-option value="1">Option 1</zeta-option>
+          <zeta-option value="2">Option 2</zeta-option>
+          <zeta-option value="3">Option 3</zeta-option>
+          <zeta-option value="4">Option 4</zeta-option>
+          <zeta-option value="5">a djksflakjsdfhla djksflakjsdfhla djksflakjsdfhla djksflakjsdfhla djksflakjsdfhla djksflakjsdfhla </zeta-option>
+        </zeta-select-input>
+      </div>
       <button type="submit">Submit</button>
     </form>
   `
