@@ -9,6 +9,8 @@ import { ZetaOptionClickEvent } from "../../events.js";
 /** ZetaOption web component.
  *
  * @slot - The default slot
+ * @part option-text - The text of the option.
+ * @cssproperty --option-max-lines - The maximum number of lines to display before truncating with an ellipsis. Default is 2.
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-39&m=dev
  * @storybook https://design.zebra.com/web/storybook/index.html?path=/docs/components-select-input--docs
@@ -44,7 +46,7 @@ export class ZetaOption extends Contourable(Interactive(Size(LitElement))) {
     this.addEventListener("keyup", (e: KeyboardEvent) => this.key(e, "up"));
     return html`
       <div tabindex="0" class="option" @click=${this._handleClick}>
-        <slot></slot>
+        <span part="option-text"><slot></slot></span>
       </div>
     `;
   }
