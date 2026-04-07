@@ -52,7 +52,7 @@ export class ZetaSnackbar extends ContourableThree(Interactive(LitElement)) {
           ${this.hasCloseAction
             ? html`
                 <button id="closeButton" @click=${() => this.remove()}>
-                  <zeta-icon id="closeIcon" .rounded=${this.shape !== "sharp"}>close</zeta-icon>
+                  <zeta-icon id="closeIcon" .rounded=${this.shape !== "sharp"}>cancel</zeta-icon>
                 </button>
               `
             : nothing}

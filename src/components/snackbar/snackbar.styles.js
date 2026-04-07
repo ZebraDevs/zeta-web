@@ -6,6 +6,7 @@ export default css`
     align-items: center;
     justify-content: space-between;
     padding: var(--spacing-medium) var(--spacing-large);
+    gap: var(--spacing-small);
   }
 
   .snackbar-root div {
