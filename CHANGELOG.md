@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.2.6](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.2.5...zeta-web-v1.2.6) (2026-04-07)
+
+
+### 🪲 Bug Fixes
+
+* **HMX-9126:** Fix zeta select input and option for long inputs ([#194](https://github.com/ZebraDevs/zeta-web/issues/194)) ([005a206](https://github.com/ZebraDevs/zeta-web/commit/005a20615b5acca92a183aafd411756de2c3678b))
+
+
+### ⛓️ Dependencies
+
+* Update deps ([8659827](https://github.com/ZebraDevs/zeta-web/commit/8659827111f5238763b88bb7b25cdbbf6ba2b8fd))
+
+
+### 🧹 Miscellaneous Chores
+
+* **deps-dev:** bump vite from 6.4.1 to 6.4.2 ([#195](https://github.com/ZebraDevs/zeta-web/issues/195)) ([0411cb5](https://github.com/ZebraDevs/zeta-web/commit/0411cb55e7309f7a3441b7ba09875aaef4471239))
+
 ## [1.2.5](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.2.4...zeta-web-v1.2.5) (2026-04-01)
 
 
