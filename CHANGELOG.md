@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.7](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.2.6...zeta-web-v1.2.7) (2026-04-07)
+
+
+### 🧹 Miscellaneous Chores
+
+* **NO-TICKET:** Update icon and make gap between text and button ([#197](https://github.com/ZebraDevs/zeta-web/issues/197)) ([28ae1f0](https://github.com/ZebraDevs/zeta-web/commit/28ae1f05047937209dd6a59c526cd756f87ddb3d))
+
 ## [1.2.6](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.2.5...zeta-web-v1.2.6) (2026-04-07)
 
 
