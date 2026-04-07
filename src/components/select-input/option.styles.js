@@ -1,9 +1,8 @@
 import { css } from "lit";
 export default css`
-  :root {
+  :host {
     display: block;
   }
-
   .option {
     display: flex;
     gap: var(--spacing-minimum);
@@ -20,6 +19,9 @@ export default css`
     -webkit-box-orient: vertical;
     -webkit-line-clamp: var(--option-max-lines, 2);
     overflow: hidden;
+    min-width: 0;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 
   zeta-icon {

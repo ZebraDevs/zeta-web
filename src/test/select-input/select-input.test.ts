@@ -8,6 +8,16 @@ import "../../components/select-input/option";
 
 import "../../index.css";
 
+const space = {
+  key: " ",
+  code: "Space",
+  keyCode: 32,
+  which: 32,
+  bubbles: true,
+  composed: true,
+  cancelable: true
+};
+
 describe("zeta-select-input", () => {
   let subject: ZetaSelectInput;
 
@@ -174,7 +184,7 @@ describe("zeta-select-input", () => {
       expect(input).to.exist;
       expect(options).to.exist;
 
-      const event = new KeyboardEvent("keydown", { key: " ", bubbles: true, composed: true });
+      const event = new KeyboardEvent("keydown", space);
       (input as HTMLElement).dispatchEvent(event);
       await subject.updateComplete;
 
@@ -218,7 +228,8 @@ describe("zeta-select-input", () => {
       expect(input).to.exist;
       expect(options).to.exist;
 
-      const event = new KeyboardEvent("keydown", { key: " ", bubbles: true, composed: true });
+      const event = new KeyboardEvent("keydown", space);
+
       (input as HTMLElement).dispatchEvent(event);
       expect(subject.open).to.be.true;
 
@@ -251,7 +262,7 @@ describe("zeta-select-input", () => {
       expect(input).to.exist;
       expect(optionsContainer).to.exist;
 
-      const event = new KeyboardEvent("keydown", { key: " ", bubbles: true, composed: true });
+      const event = new KeyboardEvent("keydown", space);
       (input as HTMLElement).dispatchEvent(event);
       expect(subject.open).to.be.true;
 
@@ -294,7 +305,7 @@ describe("zeta-select-input", () => {
       expect(input).to.exist;
       expect(optionsContainer).to.exist;
 
-      const event = new KeyboardEvent("keydown", { key: " ", bubbles: true, composed: true });
+      const event = new KeyboardEvent("keydown", space);
       (input as HTMLElement).dispatchEvent(event);
       expect(subject.open).to.be.true;
 
@@ -308,7 +319,7 @@ describe("zeta-select-input", () => {
 
       (options[0].shadowRoot?.querySelector(".option") as HTMLElement).dispatchEvent(event);
 
-      expect(subject.open).to.be.true;
+      expect(subject.open).to.be.false;
       await expect(subject.value).to.equal("1");
     });
   });

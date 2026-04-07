@@ -33,17 +33,25 @@ export class ZetaOption extends Contourable(Interactive(Size(LitElement))) {
     }
   };
 
-  key(e: KeyboardEvent, type: "down" | "up") {
-    if (type === "down") {
-      if (e.key === " " || e.key === "Enter") {
-        this._handleClick();
-      }
+  private _handleKeyDown = (e: KeyboardEvent) => {
+    if (e.key === " " || e.key === "Enter") {
+      this._handleClick();
     }
+  };
+
+  override connectedCallback() {
+    // @ts-expect-error-next-line
+    if (super.connectedCallback) super.connectedCallback();
+    this.addEventListener("keydown", this._handleKeyDown);
+  }
+
+  override disconnectedCallback() {
+    // @ts-expect-error-next-line
+    if (super.disconnectedCallback) super.disconnectedCallback();
+    this.removeEventListener("keydown", this._handleKeyDown);
   }
 
   protected override render() {
-    this.addEventListener("keydown", (e: KeyboardEvent) => this.key(e, "down"));
-    this.addEventListener("keyup", (e: KeyboardEvent) => this.key(e, "up"));
     return html`
       <div tabindex="0" class="option" @click=${this._handleClick}>
         <span part="option-text"><slot></slot></span>

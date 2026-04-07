@@ -70,8 +70,13 @@ export const SelectInput: StoryObj = {
           <zeta-option value="1">Option 1</zeta-option>
           <zeta-option value="2">Option 2</zeta-option>
           <zeta-option value="3">Option 3</zeta-option>
-          <zeta-option value="4">Option 4</zeta-option>
-          <zeta-option value="5">a djksflakjsdfhla djksflakjsdfhla djksflakjsdfhla djksflakjsdfhla djksflakjsdfhla djksflakjsdfhla </zeta-option>
+          <zeta-option value="4">
+            adjksflak jsdfhladjksflakjsdfh ladjksflakj sdfhladjksf lakjsdfhladjksflakjsdfhladjksflakjsdfh laadjksflakjs dfhladjksf lakjsdfhla djksflakjsdf
+            hladjk sflakjsdfh la djksflakjsdfh lad jksflakj sdfhlaad hd
+          </zeta-option>
+          <zeta-option value="5">
+            adjksflakjsdfhladjksflakjsdfhladjksflakjsdfhladjksflakjsdfhladjksflakjsdfhladjksflakjsdfhlaadjksflakjsdfhladjksflakjsdfhladjksflakjsdfhladjksflakjsdfhladjksflakjsdfhladjksflakjsdfhlaadjksflakjsdfhladjksflakjsdfhladjksflakjsdfhladjksflakjsdfhladjksflakjsdfhladjksflakjsdfhla
+          </zeta-option>
         </zeta-select-input>
       </div>
       <button type="submit">Submit</button>
