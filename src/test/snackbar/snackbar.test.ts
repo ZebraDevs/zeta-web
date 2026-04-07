@@ -49,6 +49,32 @@ describe("zeta-snackbar", () => {
       expect(iconElement).to.not.be.null;
       await expect(iconElement.textContent).to.equal("happy");
     });
+
+    it("displays the default close icon when closeActionIcon is not provided", async () => {
+      const closeIcon = subject.shadowRoot!.querySelector("#closeIcon") as ZetaIcon;
+
+      expect(closeIcon).to.not.be.null;
+      await expect(closeIcon.textContent).to.equal("cancel");
+    });
+
+    it("displays the custom close icon when closeActionIcon is provided", async () => {
+      subject.closeActionIcon = "close";
+      await subject.updateComplete;
+
+      const closeIcon = subject.shadowRoot!.querySelector("#closeIcon") as ZetaIcon;
+      await expect(closeIcon.textContent).to.equal("close");
+    });
+
+    it("updates the close icon when closeActionIcon property is changed", async () => {
+      let closeIcon = subject.shadowRoot!.querySelector("#closeIcon") as ZetaIcon;
+      await expect(closeIcon.textContent).to.equal("cancel");
+
+      subject.closeActionIcon = "delete";
+      await subject.updateComplete;
+
+      closeIcon = subject.shadowRoot!.querySelector("#closeIcon") as ZetaIcon;
+      await expect(closeIcon.textContent).to.equal("delete");
+    });
   });
 
   // describe("Dimensions", () => {});

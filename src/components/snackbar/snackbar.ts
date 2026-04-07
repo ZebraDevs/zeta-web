@@ -5,6 +5,7 @@ import "../icon/icon.js";
 import "../button/button.js";
 import { Interactive } from "../../mixins/interactive.js";
 import { ContourableThree } from "../../mixins/contourable-three.js";
+import { type ZetaIconName } from "@zebra-fed/zeta-icons";
 
 /** Snackbars provide brief messages about app processes at the bottom of the screen.
  *
@@ -34,6 +35,12 @@ export class ZetaSnackbar extends ContourableThree(Interactive(LitElement)) {
   @property({ type: String }) actionLabel?: string;
 
   /**
+   * Icon used for the close icon.
+   * Will default to 'cancel' icon if not provided.
+   */
+  @property({ type: String }) closeActionIcon?: ZetaIconName;
+
+  /**
    * Function to call when the action is clicked.
    * @type {Function}
    * @default () => {}
@@ -52,7 +59,7 @@ export class ZetaSnackbar extends ContourableThree(Interactive(LitElement)) {
           ${this.hasCloseAction
             ? html`
                 <button id="closeButton" @click=${() => this.remove()}>
-                  <zeta-icon id="closeIcon" .rounded=${this.shape !== "sharp"}>cancel</zeta-icon>
+                  <zeta-icon id="closeIcon" .rounded=${this.shape !== "sharp"}>${this.closeActionIcon ?? "cancel"}</zeta-icon>
                 </button>
               `
             : nothing}
