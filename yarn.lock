@@ -999,9 +999,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@figma/code-connect@npm:^1.4.2":
-  version: 1.4.2
-  resolution: "@figma/code-connect@npm:1.4.2"
+"@figma/code-connect@npm:^1.4.3":
+  version: 1.4.3
+  resolution: "@figma/code-connect@npm:1.4.3"
   dependencies:
     boxen: "npm:5.1.1"
     chalk: "npm:^4.1.2"
@@ -1027,7 +1027,7 @@ __metadata:
     zod-validation-error: "npm:^3.2.0"
   bin:
     figma: bin/figma
-  checksum: 10c0/e3a2b9d788e64f96c3c767c731d8f835645371e087c87b3c5166deb3f5a6be7cf156577f5927204c09d0e1ed84522ee66e08a4a8b62f52bd1a6f1f820813f8d8
+  checksum: 10c0/0b42a4f3bfdfe2049e6af04979114016c5270974eb5c34331af8f9e6cade27a5884554b34be3c8ecb7ebd9b3dc10cfd71cac6ebf8c19c85aeb6d492ccc8d9d50
   languageName: node
   linkType: hard
 
@@ -1724,14 +1724,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@playwright/test@npm:^1.59.0":
-  version: 1.59.0
-  resolution: "@playwright/test@npm:1.59.0"
+"@playwright/test@npm:^1.59.1":
+  version: 1.59.1
+  resolution: "@playwright/test@npm:1.59.1"
   dependencies:
-    playwright: "npm:1.59.0"
+    playwright: "npm:1.59.1"
   bin:
     playwright: cli.js
-  checksum: 10c0/161e8f4e61dc3679d055ca13ddb08211834bc1d54e08b2b269e94fb38408fb29a6fa36a67103bfbf6d9c02a3cf2c4073f0c1f0e6bfc3d3106e4d276d2dceb6b2
+  checksum: 10c0/8c2d94a860d3c254a0b114df2f888ad0a0e9310f45b6059bd5d4da196d965cadf6922267cef0881cfa9784d4bef6d78363d2c2d94caa64be67ff644c41162137
   languageName: node
   linkType: hard
 
@@ -3120,12 +3120,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^22.19.15":
-  version: 22.19.15
-  resolution: "@types/node@npm:22.19.15"
+"@types/node@npm:^22.19.17":
+  version: 22.19.17
+  resolution: "@types/node@npm:22.19.17"
   dependencies:
     undici-types: "npm:~6.21.0"
-  checksum: 10c0/f17eaf3d0d1da5e93ad9e287efb78201f8a5282973c004c5f70d91675c5c6b926a23acaa7b158a42b3d7e27e36b349d65a531710c91c308fca53dd7fa280ef98
+  checksum: 10c0/b66c484c0a9f6d88b1ef360b0f487717234ee1a482cb2551ff73d9f3c43a42a777daf4c8a5eee970960728f8fe1f3877d3d8c6ffabcbca74cb401a59db700fa4
   languageName: node
   linkType: hard
 
@@ -3883,10 +3883,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zebra-fed/zeta-icons@npm:1.9.2":
-  version: 1.9.2
-  resolution: "@zebra-fed/zeta-icons@npm:1.9.2"
-  checksum: 10c0/92787733833cff37a8b3b0db56b2257471f6a2c87e07a6a38ae970b4c8aaf0a85fd7c2470fe2e52e2a8e942c797be6b52f38bdb2083532c0d8298f827f212cb5
+"@zebra-fed/zeta-icons@npm:1.9.3":
+  version: 1.9.3
+  resolution: "@zebra-fed/zeta-icons@npm:1.9.3"
+  checksum: 10c0/2fd880143503cef1fe8b8c040eb17687e62f1cee9b32c50da3665194e23a34b1814505f0926b2973680f5035cce015b78c51ed2877ff66eaeb4cbe49f158dda9
   languageName: node
   linkType: hard
 
@@ -3898,13 +3898,13 @@ __metadata:
     "@custom-elements-manifest/analyzer": "npm:^0.10.10"
     "@eslint/js": "npm:^9.39.4"
     "@etchteam/storybook-addon-status": "npm:^5.0.0"
-    "@figma/code-connect": "npm:^1.4.2"
+    "@figma/code-connect": "npm:^1.4.3"
     "@fontsource/ibm-plex-sans": "npm:^5.2.8"
     "@lit/localize": "npm:^0.12.2"
     "@lit/localize-tools": "npm:^0.8.1"
     "@open-wc/lit-helpers": "npm:^0.7.0"
     "@open-wc/testing": "npm:^4.0.0"
-    "@playwright/test": "npm:^1.59.0"
+    "@playwright/test": "npm:^1.59.1"
     "@remcovaes/web-test-runner-vite-plugin": "npm:^1.4.1"
     "@storybook/addon-a11y": "npm:^8.6.18"
     "@storybook/addon-actions": "npm:^8.6.18"
@@ -3920,7 +3920,7 @@ __metadata:
     "@storybook/web-components": "npm:^8.6.18"
     "@storybook/web-components-vite": "npm:^8.6.18"
     "@types/jest": "npm:^29.5.14"
-    "@types/node": "npm:^22.19.15"
+    "@types/node": "npm:^22.19.17"
     "@types/react": "npm:^19.2.14"
     "@typescript-eslint/eslint-plugin": "npm:^8.58.0"
     "@typescript-eslint/parser": "npm:^8.58.0"
@@ -3929,7 +3929,7 @@ __metadata:
     "@web/test-runner-commands": "npm:^0.9.0"
     "@web/test-runner-junit-reporter": "npm:^0.8.0"
     "@web/test-runner-playwright": "npm:^0.11.1"
-    "@zebra-fed/zeta-icons": "npm:1.9.2"
+    "@zebra-fed/zeta-icons": "npm:1.9.3"
     axe-playwright: "npm:^2.2.2"
     cem-plugin-better-lit-types: "npm:^0.2.1"
     cem-plugin-custom-jsdoc-tags: "npm:^1.2.0"
@@ -3955,7 +3955,7 @@ __metadata:
     typedoc: "npm:^0.28.18"
     typescript: "npm:^5.9.3"
     typescript-eslint: "npm:^8.58.0"
-    vite: "npm:^6.4.1"
+    vite: "npm:^6.4.2"
   languageName: unknown
   linkType: soft
 
@@ -9687,27 +9687,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"playwright-core@npm:1.59.0":
-  version: 1.59.0
-  resolution: "playwright-core@npm:1.59.0"
+"playwright-core@npm:1.59.1":
+  version: 1.59.1
+  resolution: "playwright-core@npm:1.59.1"
   bin:
     playwright-core: cli.js
-  checksum: 10c0/73d93d78e8cd72b9440e41f29542189b4ce3b77f6ecc60ddb6edc5c65245fe5e235275dd62d62a9fd07d546710f0ee78827b9c98037f9dd8de2cd8e98cd33f31
+  checksum: 10c0/d41a74d9681ce3beb3d5239e9ed577710b4ad099a6ca2476219c6599d51e9cb4b80bd72ed82c528da6a5d929c18ae3b872cf02bb83f78fa1c2cb9199c501abee
   languageName: node
   linkType: hard
 
-"playwright@npm:1.59.0":
-  version: 1.59.0
-  resolution: "playwright@npm:1.59.0"
+"playwright@npm:1.59.1":
+  version: 1.59.1
+  resolution: "playwright@npm:1.59.1"
   dependencies:
     fsevents: "npm:2.3.2"
-    playwright-core: "npm:1.59.0"
+    playwright-core: "npm:1.59.1"
   dependenciesMeta:
     fsevents:
       optional: true
   bin:
     playwright: cli.js
-  checksum: 10c0/03b400ae1f822e8f943b5b44cd33c89f6e1afdf7467e89ed8bab945df8c23646b50361afedd2791774fa2d2bde33016b5a770c30856e0220edf4cf69537bdd28
+  checksum: 10c0/dfe38396e616e5c4f98825ce90037bb96e477c5a2bd9258a24854f8ce72a8a41427b19098863866f85aa0216e70287dd537c4438d761aca93995e31ae099c533
   languageName: node
   linkType: hard
 
@@ -11636,11 +11636,11 @@ __metadata:
     "@zebra-fed/zeta-web": "workspace:^"
     lit: "npm:^3.3.2"
     typescript: "npm:~5.8.3"
-    vite: "npm:^7.3.1"
+    vite: "npm:^7.3.2"
   languageName: unknown
   linkType: soft
 
-"vite@npm:^6.4.1":
+"vite@npm:^6.4.2":
   version: 6.4.2
   resolution: "vite@npm:6.4.2"
   dependencies:
@@ -11695,7 +11695,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^7.3.1":
+"vite@npm:^7.3.2":
   version: 7.3.2
   resolution: "vite@npm:7.3.2"
   dependencies:
