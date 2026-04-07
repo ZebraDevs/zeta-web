@@ -34,6 +34,7 @@ export default css`
 
   zeta-icon {
     color: var(--main-subtle);
+    flex-shrink: 0;
   }
 
   :host([size="medium"]) zeta-icon,
@@ -84,6 +85,14 @@ export default css`
     border-radius: var(--radius-none);
     cursor: pointer;
     transition: border-color 0.2s ease;
+  }
+
+  [part="input-text"] {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   @media (hover: hover), (hover: none) and (pointer: fine) {

@@ -1,5 +1,8 @@
 import { css } from "lit";
 export default css`
+  :host {
+    display: block;
+  }
   .option {
     display: flex;
     gap: var(--spacing-minimum);
@@ -9,6 +12,16 @@ export default css`
     transition: background-color 0.2s;
     color: var(--main-subtle);
     -webkit-tap-highlight-color: transparent;
+  }
+
+  [part="option-text"] {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: var(--option-max-lines, 2);
+    overflow: hidden;
+    min-width: 0;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 
   zeta-icon {

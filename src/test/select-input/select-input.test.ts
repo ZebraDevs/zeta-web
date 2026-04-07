@@ -8,6 +8,16 @@ import "../../components/select-input/option";
 
 import "../../index.css";
 
+const space = {
+  key: " ",
+  code: "Space",
+  keyCode: 32,
+  which: 32,
+  bubbles: true,
+  composed: true,
+  cancelable: true
+};
+
 describe("zeta-select-input", () => {
   let subject: ZetaSelectInput;
 
@@ -65,8 +75,47 @@ describe("zeta-select-input", () => {
       const inputChildren = Array.from(input?.children || []);
 
       await expect((inputChildren[0] as ZetaIcon).textContent).to.equal("star");
-      await expect((inputChildren[1] as ZetaIcon).textContent).to.equal("expand_more");
+      await expect(inputChildren[1].getAttribute("part")).to.equal("input-text");
+      await expect((inputChildren[2] as ZetaIcon).textContent).to.equal("expand_more");
       expect(input?.textContent).to.include("Select an option");
+    });
+
+    it("renders placeholder text in input-text part", async () => {
+      const inputText = subject.shadowRoot?.querySelector("[part='input-text']");
+      expect(inputText).to.exist;
+      await expect(inputText?.textContent?.trim()).to.equal("Select an option");
+    });
+
+    it("renders custom placeholder in input-text part", async () => {
+      subject = await createComponent(`<zeta-select-input placeholder="Choose one">
+        <zeta-option value="1">Option 1</zeta-option>
+      </zeta-select-input>`);
+      const inputText = subject.shadowRoot?.querySelector("[part='input-text']");
+      expect(inputText).to.exist;
+      await expect(inputText?.textContent?.trim()).to.equal("Choose one");
+    });
+
+    it("renders empty string when placeholder is empty in input-text part", async () => {
+      subject = await createComponent(`<zeta-select-input placeholder="">
+        <zeta-option value="1">Option 1</zeta-option>
+      </zeta-select-input>`);
+      const inputText = subject.shadowRoot?.querySelector("[part='input-text']");
+      expect(inputText).to.exist;
+      await expect(inputText?.textContent?.trim()).to.equal("");
+    });
+
+    it("renders selected option text in input-text part after selection", async () => {
+      const input = subject.shadowRoot?.querySelector(".input");
+      const optionsContainer = subject.shadowRoot?.querySelector(".options");
+      const options = (optionsContainer?.querySelector("slot") as HTMLSlotElement).assignedElements({ flatten: true }) as ZetaOption[];
+
+      (input as HTMLElement).click();
+      (options[0].shadowRoot?.querySelector(".option") as HTMLElement).click();
+      await subject.updateComplete;
+
+      const inputText = subject.shadowRoot?.querySelector("[part='input-text']");
+      expect(inputText).to.exist;
+      await expect(inputText?.textContent?.trim()).to.equal("Option 1");
     });
 
     it("renders a hidden options div", async () => {
@@ -135,7 +184,7 @@ describe("zeta-select-input", () => {
       expect(input).to.exist;
       expect(options).to.exist;
 
-      const event = new KeyboardEvent("keydown", { key: " ", bubbles: true, composed: true });
+      const event = new KeyboardEvent("keydown", space);
       (input as HTMLElement).dispatchEvent(event);
       await subject.updateComplete;
 
@@ -179,7 +228,8 @@ describe("zeta-select-input", () => {
       expect(input).to.exist;
       expect(options).to.exist;
 
-      const event = new KeyboardEvent("keydown", { key: " ", bubbles: true, composed: true });
+      const event = new KeyboardEvent("keydown", space);
+
       (input as HTMLElement).dispatchEvent(event);
       expect(subject.open).to.be.true;
 
@@ -212,7 +262,7 @@ describe("zeta-select-input", () => {
       expect(input).to.exist;
       expect(optionsContainer).to.exist;
 
-      const event = new KeyboardEvent("keydown", { key: " ", bubbles: true, composed: true });
+      const event = new KeyboardEvent("keydown", space);
       (input as HTMLElement).dispatchEvent(event);
       expect(subject.open).to.be.true;
 
@@ -255,7 +305,7 @@ describe("zeta-select-input", () => {
       expect(input).to.exist;
       expect(optionsContainer).to.exist;
 
-      const event = new KeyboardEvent("keydown", { key: " ", bubbles: true, composed: true });
+      const event = new KeyboardEvent("keydown", space);
       (input as HTMLElement).dispatchEvent(event);
       expect(subject.open).to.be.true;
 
@@ -269,7 +319,7 @@ describe("zeta-select-input", () => {
 
       (options[0].shadowRoot?.querySelector(".option") as HTMLElement).dispatchEvent(event);
 
-      expect(subject.open).to.be.true;
+      expect(subject.open).to.be.false;
       await expect(subject.value).to.equal("1");
     });
   });
