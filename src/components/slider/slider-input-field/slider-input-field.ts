@@ -5,7 +5,7 @@ import styles from "./slider-input-field.styles.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 import "../../text-input/text-input.js";
 import "../slider.js";
-import { FormField, type InputType } from "../../../mixins/form-field.js";
+import { FormField } from "../../../mixins/form-field.js";
 import { ZetaSlider } from "../slider.js";
 
 //TODO: min / max dont seem to change values of slider correctly.
@@ -46,7 +46,7 @@ export class ZetaSliderInputField extends FormField(Contourable(LitElement)) {
   /**  Disables the input field. */
   @property({ type: Boolean, reflect: true }) disabled: boolean;
 
-  type: InputType = "slider";
+  override type = "slider";
 
   @query("input.contourable-target") input!: HTMLInputElement;
 

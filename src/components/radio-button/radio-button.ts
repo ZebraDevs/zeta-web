@@ -1,5 +1,4 @@
 import { customElement } from "lit/decorators.js";
-import { type InputType } from "../../mixins/form-field.js";
 
 import { BaseToggleFormElement } from "../base-toggle-form-element.js";
 import styles from "./radio-button.styles.js";
@@ -20,7 +19,7 @@ export class ZetaRadioButton extends BaseToggleFormElement {
     this.internals.role = "radio";
     this.addController(this.radioButtonController);
   }
-  override type: InputType = "radio";
+  override type = "radio";
   override handleChange(event: Event): void {
     if (this.checked) super.handleChange(event); //Fires change Event only if checked.
     this.radioButtonController.handleChange();

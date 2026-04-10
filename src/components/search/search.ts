@@ -3,7 +3,7 @@ import { html, LitElement, nothing } from "lit";
 import styles from "./search.styles.js";
 import { Interactive, Size } from "../../mixins/mixins.js";
 import "../icon/icon.js";
-import { FormField, type InputType } from "../../mixins/form-field.js";
+import { FormField } from "../../mixins/form-field.js";
 import { ContourableThree } from "../../mixins/contourable-three.js";
 
 //TODO onsubmit
@@ -25,7 +25,7 @@ import { ContourableThree } from "../../mixins/contourable-three.js";
  */
 @customElement("zeta-search")
 export class ZetaSearch extends FormField(Size(ContourableThree(Interactive(LitElement)))) {
-  type: InputType = "search";
+  override type = "search";
 
   static override shadowRootOptions: ShadowRootInit = {
     ...LitElement.shadowRootOptions,
