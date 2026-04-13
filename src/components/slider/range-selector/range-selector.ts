@@ -7,7 +7,7 @@ import { ifDefined } from "lit/directives/if-defined.js";
 import { type ZetaRangeSliderEventDetail, ZetaRangeSliderEvent } from "../../../events.js";
 import "../../text-input/text-input.js";
 import "../slider.js";
-import { FormField, type InputType } from "../../../mixins/form-field.js";
+import { FormField, type ZetaInputType } from "../../../mixins/form-field.js";
 
 export type ZetaRangeValues = { min: number; max: number };
 
@@ -50,7 +50,7 @@ export class ZetaRangeSelector extends FormField(Contourable(LitElement)) {
 
   id = "hidden-range-selector-input";
 
-  type: InputType = "range-selector";
+  override type: Extract<ZetaInputType, "range-selector"> = "range-selector";
 
   @query("input#hidden-range-selector-input") hiddenInput!: HTMLInputElement;
   @query(".lower-input") lowerInput!: HTMLInputElement;

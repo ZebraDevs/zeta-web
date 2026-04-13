@@ -2,7 +2,7 @@ import { customElement, eventOptions, property, query, state } from "lit/decorat
 import styles from "./dropdown-menu-button.styles.js";
 import { html, LitElement } from "lit";
 import { Contourable, Flavored, Size } from "../../../mixins/mixins.js";
-import { FormField, type InputType } from "../../../mixins/form-field.js";
+import { FormField, type ZetaInputType } from "../../../mixins/form-field.js";
 import type { ZetaDroppable } from "../droppable.js";
 import "../../button/button.js";
 import "../../radio-button/radio-button.js";
@@ -14,6 +14,7 @@ import { ZetaDropdownEvent } from "../../../events.js";
 import type { ButtonFlavor } from "../../button/button.js";
 
 export type ZetaDropdownItem = { label: string; icon?: ZetaIconName; checked?: boolean; disabled?: boolean; onClick?: () => void };
+export type ZetaDropdownType = Extract<ZetaInputType, "text-dropdown" | "checkbox-dropdown" | "radio-dropdown">;
 
 //TODO check to see if this works with keyboard input
 //     include check to see if input event is fired too
@@ -28,7 +29,7 @@ export type ZetaDropdownItem = { label: string; icon?: ZetaIconName; checked?: b
  * @property {boolean} open - Controls the state of the dropdown menu. Default is false.
  * @property {Array<ZetaDropdownItem>} items - Array of items to populate the dropdown. Includes label, icon (optional), checked (optional), disabled (optional), and onClick (optional) properties.
  * @property {ButtonFlavor} flavor - The flavor of the dropdown button. Default is "primary".
- * @property {InputType} type - The type of dropdown. Options are "text-dropdown", "checkbox-dropdown", and "radio-dropdown". Default is "text-dropdown".
+ * @property {ZetaDropdownType} type - The type of dropdown. Options are "text-dropdown", "checkbox-dropdown", and "radio-dropdown". Default is "text-dropdown".
  * @property {string} name - The name of the dropdown menu button for form control. Default is "default".
  * @property {"left" | "right" | "bottom" | "top"} direction - The direction of the droppable relative to the anchor. Defaults to bottom if left undefined.
  *
@@ -74,7 +75,7 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
    * - "checkbox-dropdown" - A dropdown with checkboxes.
    * - "radio-dropdown" - A dropdown with radio buttons.
    */
-  @property({ type: String }) type: InputType = "text-dropdown";
+  @property({ type: String }) type: ZetaDropdownType = "text-dropdown";
 
   /** The name of the dropdown menu button for form control*/
   @property({ type: String }) name: string = "default";

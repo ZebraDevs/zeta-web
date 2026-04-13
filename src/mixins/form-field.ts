@@ -6,29 +6,49 @@ import { type AbstractConstructor } from "./utils.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 import { live } from "lit/directives/live.js";
 
-export type InputType =
+// Retrieved on 2026/04/10 from https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input
+type GenericInputTypes =
   | "checkbox"
-  | "text"
-  | "textarea"
-  | "password"
-  | "time"
+  | "color"
   | "date"
+  | "datetime-local"
+  | "email"
+  | "file"
+  | "hidden"
+  | "image"
+  | "month"
+  | "number"
+  | "password"
   | "radio"
+  | "range"
+  | "reset"
   | "search"
-  | "text-dropdown"
+  | "submit"
+  | "tel"
+  | "text"
+  | "time"
+  | "url"
+  | "week";
+
+type ZetaExtraInputTypes =
   | "checkbox-dropdown"
+  | "integer"
   | "radio-dropdown"
-  | "slider"
   | "range-selector"
   | "select"
+  | "slider"
   | "stepper"
-  | "number"
-  | "integer"; //Extend this when adding more form controls
+  | "text-dropdown"
+  | "textarea";
 
+// Zeta inputs do not match generic HTML inputs, but does have some interesting extras.
+export type ZetaInputType =
+  | Exclude<GenericInputTypes, "color" | "datetime-local" | "file" | "hidden" | "image" | "range" | "reset" | "submit" | "week">
+  | ZetaExtraInputTypes;
 //TODO add all properties here
 
 declare abstract class FormFieldInterface {
-  abstract type: InputType;
+  abstract type: ZetaInputType;
   name: string;
   required: boolean;
   value: string;
@@ -89,7 +109,7 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
     /**
      * The type of the form control.
      */
-    abstract type: InputType;
+    abstract type: ZetaInputType;
 
     private get isCheckable() {
       return this.type === "checkbox" || this.type === "radio";
@@ -344,6 +364,8 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
 
     protected override render() {
       const notUrlEmailPassword = /*this.type !== 'url' && this.type !== 'email' && */ this.type !== "password";
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-assignment
+      const autoCompleteValue = this.autoComplete as any;
 
       switch (this.type) {
         case "checkbox":
@@ -375,7 +397,7 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
             ?required=${this.required}
             aria-required=${this.required ? "true" : "false"}
             autocapitalize=${ifDefined(this.autoCapitalize)}
-            autocomplete=${ifDefined(this.autoComplete)}
+            autocomplete=${ifDefined(autoCompleteValue)}
             placeholder=${ifDefined(this.placeholder)}
             ?readonly=${this.readOnly}
             spellcheck=${ifDefined(notUrlEmailPassword ? this.spellCheck : undefined)}
@@ -389,7 +411,7 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
         case "checkbox-dropdown":
         case "radio-dropdown":
           return html`<input
-            type=${this.type}
+            type="text"
             id=${ifDefined(this.id !== "" ? this.id : undefined)}
             name=${ifDefined(this.name)}
             ?disabled=${this.disabled}
@@ -397,7 +419,7 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
             ?required=${this.required}
             aria-required=${this.required ? "true" : "false"}
             autocapitalize=${ifDefined(notUrlEmailPassword ? this.autoCapitalize : undefined)}
-            autocomplete=${ifDefined(this.autoComplete)}
+            autocomplete=${ifDefined(autoCompleteValue)}
             placeholder=${ifDefined(this.placeholder)}
             ?readonly=${this.readOnly}
             .value=${live(this.value ?? "")}
@@ -458,9 +480,9 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
               ?hidden=${true}
             ></select>
           `;
-        default:
+        case "stepper":
           return html`<input
-            type=${this.type === "stepper" ? "number" : this.type}
+            type="number"
             id=${ifDefined(this.id !== "" ? this.id : undefined)}
             name=${ifDefined(this.name)}
             ?disabled=${this.disabled}
@@ -468,7 +490,49 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
             ?required=${this.required}
             aria-required=${this.required ? "true" : "false"}
             autocapitalize=${ifDefined(notUrlEmailPassword ? this.autoCapitalize : undefined)}
-            autocomplete=${ifDefined(this.autoComplete)}
+            autocomplete=${ifDefined(autoCompleteValue)}
+            placeholder=${ifDefined(this.placeholder)}
+            ?readonly=${this.readOnly}
+            .value=${live(this.value ?? "")}
+            @input=${this._handleInput}
+            @change=${this._handleChange}
+            @focus=${this.handleFocus}
+            @blur=${this.handleBlur}
+            min=${ifDefined(this.min)}
+            max=${ifDefined(this.max)}
+          /> `;
+        case "integer":
+          return html`<input
+            type="text"
+            id=${ifDefined(this.id !== "" ? this.id : undefined)}
+            name=${ifDefined(this.name)}
+            ?disabled=${this.disabled}
+            aria-disabled=${this.disabled ? "true" : "false"}
+            ?required=${this.required}
+            aria-required=${this.required ? "true" : "false"}
+            autocapitalize=${ifDefined(notUrlEmailPassword ? this.autoCapitalize : undefined)}
+            autocomplete=${ifDefined(autoCompleteValue)}
+            placeholder=${ifDefined(this.placeholder)}
+            ?readonly=${this.readOnly}
+            .value=${live(this.value ?? "")}
+            @input=${this._handleInput}
+            @change=${this._handleChange}
+            @focus=${this.handleFocus}
+            @blur=${this.handleBlur}
+            min=${ifDefined(this.min)}
+            max=${ifDefined(this.max)}
+          /> `;
+        default:
+          return html`<input
+            type=${this.type as GenericInputTypes}
+            id=${ifDefined(this.id !== "" ? this.id : undefined)}
+            name=${ifDefined(this.name)}
+            ?disabled=${this.disabled}
+            aria-disabled=${this.disabled ? "true" : "false"}
+            ?required=${this.required}
+            aria-required=${this.required ? "true" : "false"}
+            autocapitalize=${ifDefined(notUrlEmailPassword ? this.autoCapitalize : undefined)}
+            autocomplete=${ifDefined(autoCompleteValue)}
             placeholder=${ifDefined(this.placeholder)}
             ?readonly=${this.readOnly}
             .value=${live(this.value ?? "")}

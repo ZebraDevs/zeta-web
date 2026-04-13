@@ -1,11 +1,9 @@
 import { customElement, property } from "lit/decorators.js";
-import { type InputType } from "../../mixins/form-field.js";
 import { BaseToggleFormElement } from "../base-toggle-form-element.js";
 import styles from "./checkbox.styles.js";
 import "../icon/icon.js";
 import { LitElement } from "lit";
-
-export type CheckboxType = Extract<InputType, "checkbox">;
+import type { ZetaInputType } from "../../mixins/form-field.js";
 
 // TODO: When should change event fire? Does not seem to fire at all? Unless it needs to be in a form?
 
@@ -37,7 +35,7 @@ export class ZetaCheckbox extends BaseToggleFormElement {
     this.internals.role = "checkbox";
   }
 
-  override type: CheckboxType = "checkbox";
+  override type: Extract<ZetaInputType, "checkbox"> = "checkbox";
 
   override value = "on";
 
