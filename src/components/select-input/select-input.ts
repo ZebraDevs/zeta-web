@@ -1,7 +1,7 @@
 import { customElement, property, query, queryAssignedNodes, state } from "lit/decorators.js";
 import { html, LitElement, nothing, type PropertyValues, type TemplateResult } from "lit";
 
-import { FormField } from "../../mixins/form-field.js";
+import { FormField, type ZetaInputType } from "../../mixins/form-field.js";
 import { Size } from "../../mixins/size.js";
 import { Contourable } from "../../mixins/contour.js";
 import { Interactive } from "../../mixins/interactive.js";
@@ -45,7 +45,7 @@ export class ZetaSelectInput extends FormField(Size(Contourable(Interactive(LitE
   static styles = [styles, super.styles ?? []];
 
   /** The type used in FormField mixin */
-  override type = "select";
+  override type: Extract<ZetaInputType, "select"> = "select";
 
   /** Whether field is in error state. */
   @property({ type: Boolean, reflect: true }) error = false;

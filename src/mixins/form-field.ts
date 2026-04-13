@@ -43,7 +43,7 @@ type ZetaExtraInputTypes =
 
 // Zeta inputs do not match generic HTML inputs, but does have some interesting extras.
 export type ZetaInputType =
-  | Omit<GenericInputTypes, "color" | "datetime-local" | "file" | "hidden" | "image" | "range" | "reset" | "submit" | "week">
+  | Exclude<GenericInputTypes, "color" | "datetime-local" | "file" | "hidden" | "image" | "range" | "reset" | "submit" | "week">
   | ZetaExtraInputTypes;
 //TODO add all properties here
 
@@ -371,7 +371,7 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
         case "checkbox":
         case "radio":
           return html`<input
-            type=${this.type as "checkbox" | "radio"}
+            type=${this.type}
             id=${ifDefined(this.id !== "" ? this.id : undefined)}
             name=${ifDefined(this.name)}
             ?required=${this.required}
@@ -480,6 +480,48 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
               ?hidden=${true}
             ></select>
           `;
+        case "stepper":
+          return html`<input
+            type="number"
+            id=${ifDefined(this.id !== "" ? this.id : undefined)}
+            name=${ifDefined(this.name)}
+            ?disabled=${this.disabled}
+            aria-disabled=${this.disabled ? "true" : "false"}
+            ?required=${this.required}
+            aria-required=${this.required ? "true" : "false"}
+            autocapitalize=${ifDefined(notUrlEmailPassword ? this.autoCapitalize : undefined)}
+            autocomplete=${ifDefined(autoCompleteValue)}
+            placeholder=${ifDefined(this.placeholder)}
+            ?readonly=${this.readOnly}
+            .value=${live(this.value ?? "")}
+            @input=${this._handleInput}
+            @change=${this._handleChange}
+            @focus=${this.handleFocus}
+            @blur=${this.handleBlur}
+            min=${ifDefined(this.min)}
+            max=${ifDefined(this.max)}
+          /> `;
+        case "integer":
+          return html`<input
+            type="text"
+            id=${ifDefined(this.id !== "" ? this.id : undefined)}
+            name=${ifDefined(this.name)}
+            ?disabled=${this.disabled}
+            aria-disabled=${this.disabled ? "true" : "false"}
+            ?required=${this.required}
+            aria-required=${this.required ? "true" : "false"}
+            autocapitalize=${ifDefined(notUrlEmailPassword ? this.autoCapitalize : undefined)}
+            autocomplete=${ifDefined(autoCompleteValue)}
+            placeholder=${ifDefined(this.placeholder)}
+            ?readonly=${this.readOnly}
+            .value=${live(this.value ?? "")}
+            @input=${this._handleInput}
+            @change=${this._handleChange}
+            @focus=${this.handleFocus}
+            @blur=${this.handleBlur}
+            min=${ifDefined(this.min)}
+            max=${ifDefined(this.max)}
+          /> `;
         default:
           return html`<input
             type=${this.type as GenericInputTypes}

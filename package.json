@@ -44,7 +44,7 @@
     "analyze": "cem analyze",
     "build-storybook:with-output-dir": "yarn run build && storybook build -o ",
     "build": "yarn prebuild && node scripts/build.js",
-    "check": "yarn analyze & yarn lint & yarn lint:lit-analyzer & yarn test & yarn docs",
+    "check": "yarn analyze && yarn lint && yarn lint:lit-analyzer && yarn test && yarn docs",
     "create": "cd scripts && node makeWebComponentTemplate.js",
     "docs": "npx typedoc --logLevel Warn",
     "lint:lit-analyzer": "lit-analyzer src/components/**/* src/stories/**/* src/mixins/**/* src/test/**/* src/utils/**/* --quiet",

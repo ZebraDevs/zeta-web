@@ -29,7 +29,7 @@ export type ZetaDropdownType = Extract<ZetaInputType, "text-dropdown" | "checkbo
  * @property {boolean} open - Controls the state of the dropdown menu. Default is false.
  * @property {Array<ZetaDropdownItem>} items - Array of items to populate the dropdown. Includes label, icon (optional), checked (optional), disabled (optional), and onClick (optional) properties.
  * @property {ButtonFlavor} flavor - The flavor of the dropdown button. Default is "primary".
- * @property {InputType} type - The type of dropdown. Options are "text-dropdown", "checkbox-dropdown", and "radio-dropdown". Default is "text-dropdown".
+ * @property {ZetaDropdownType} type - The type of dropdown. Options are "text-dropdown", "checkbox-dropdown", and "radio-dropdown". Default is "text-dropdown".
  * @property {string} name - The name of the dropdown menu button for form control. Default is "default".
  * @property {"left" | "right" | "bottom" | "top"} direction - The direction of the droppable relative to the anchor. Defaults to bottom if left undefined.
  *

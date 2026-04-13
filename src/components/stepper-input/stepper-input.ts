@@ -1,5 +1,5 @@
 import { customElement, property, query } from "lit/decorators.js";
-import { FormField } from "../../mixins/form-field.js";
+import { FormField, type ZetaInputType } from "../../mixins/form-field.js";
 import { html, LitElement, nothing } from "lit";
 import styles from "./stepper-input.styles.js";
 import { Contourable } from "../../mixins/mixins.js";
@@ -86,7 +86,8 @@ export class ZetaStepperInput extends FormField(Contourable(LitElement)) {
    * Shown if `error`, replaces `hintText`.
    */
   @property() errorText?: string;
-  override type = "stepper";
+
+  override type: Extract<ZetaInputType, "stepper"> = "stepper";
 
   handleChange(_event: Event) {
     this.value = this.validateValue(this.value);

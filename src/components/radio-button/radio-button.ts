@@ -3,6 +3,7 @@ import { customElement } from "lit/decorators.js";
 import { BaseToggleFormElement } from "../base-toggle-form-element.js";
 import styles from "./radio-button.styles.js";
 import { RadioButtonController } from "./radio-button-controller.js";
+import type { ZetaInputType } from "../../mixins/form-field.js";
 
 /** Radio buttons are used for mutually exclusive choices, not for multiple choices. Only one radio button can be selected at a time. When a user chooses a new item, the previous choice is automatically deselected.
  *
@@ -19,7 +20,8 @@ export class ZetaRadioButton extends BaseToggleFormElement {
     this.internals.role = "radio";
     this.addController(this.radioButtonController);
   }
-  override type = "radio";
+  override type: Extract<ZetaInputType, "radio"> = "radio";
+
   override handleChange(event: Event): void {
     if (this.checked) super.handleChange(event); //Fires change Event only if checked.
     this.radioButtonController.handleChange();
