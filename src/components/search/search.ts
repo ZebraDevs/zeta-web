@@ -25,8 +25,7 @@ import { ContourableThree } from "../../mixins/contourable-three.js";
  */
 @customElement("zeta-search")
 export class ZetaSearch extends FormField(Size(ContourableThree(Interactive(LitElement)))) {
-    override type: Extract<ZetaInputType, "search"> = "search";
-  
+  override type: Extract<ZetaInputType, "search"> = "search";
 
   static override shadowRootOptions: ShadowRootInit = {
     ...LitElement.shadowRootOptions,
