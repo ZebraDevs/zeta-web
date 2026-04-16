@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.2.8](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.2.7...zeta-web-v1.2.8) (2026-04-16)
+
+
+### 🪲 Bug Fixes
+
+* Add rows to text area ([#201](https://github.com/ZebraDevs/zeta-web/issues/201)) ([19383d3](https://github.com/ZebraDevs/zeta-web/commit/19383d37f1847250ddaf9f0f953f28487d241c7f))
+
+
+### ⛓️ Dependencies
+
+* update deps ([a8f17a6](https://github.com/ZebraDevs/zeta-web/commit/a8f17a6dfc41c71564ffcf110f3809a6aab4ccb5))
+
+
+### 🧹 Miscellaneous Chores
+
+* Update Input types to have better support for inputs ([#199](https://github.com/ZebraDevs/zeta-web/issues/199)) ([2566adf](https://github.com/ZebraDevs/zeta-web/commit/2566adf444a64b02e829b02335519d0e7f40e951))
+
 ## [1.2.7](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.2.6...zeta-web-v1.2.7) (2026-04-07)
 
 
