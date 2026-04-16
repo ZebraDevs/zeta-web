@@ -57,7 +57,7 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
    *
    * Prop only applies when `type` is set to `textarea`.
    */
-  @property({ type: Number }) rows?: number = 2;
+  @property({ type: Number }) rows?: number;
 
   /**
    * Label shown above text field.

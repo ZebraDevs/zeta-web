@@ -5,7 +5,6 @@ import { property, query, queryAssignedNodes, state } from "lit/decorators.js";
 import { type AbstractConstructor } from "./utils.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 import { live } from "lit/directives/live.js";
-import type { ZetaTextInput } from "../components/text-input/text-input";
 
 // Retrieved on 2026/04/10 from https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input
 type GenericInputTypes =
@@ -368,6 +367,9 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
       // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-assignment
       const autoCompleteValue = this.autoComplete as any;
 
+      const rawRows = this.type === "textarea" ? (this as { rows?: number }).rows : undefined;
+      const rows = rawRows && rawRows > 0 ? rawRows : 2;
+
       switch (this.type) {
         case "checkbox":
         case "radio":
@@ -407,7 +409,7 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
             @focus=${this.handleFocus}
             @blur=${this.handleBlur}
             .value=${live(this.value ?? "")}
-            rows=${ifDefined((this as unknown as ZetaTextInput).rows)}
+            rows=${rows}
           ></textarea>`;
         case "text-dropdown":
         case "checkbox-dropdown":

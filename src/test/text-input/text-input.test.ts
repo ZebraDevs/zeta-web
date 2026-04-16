@@ -152,6 +152,29 @@ describe("zeta-text-input", () => {
 
       return await expect(hexColor).to.equal(getComputedStyle(el).getPropertyValue("--main-disabled"));
     });
+
+    it("should default to 2 rows when type is textarea and rows is not specified", async () => {
+      const el = await setup({ type: "textarea" });
+      const textArea = el.shadowRoot?.querySelector("textarea");
+      const rows = textArea?.rows;
+      assert.equal(rows, 2);
+    });
+
+    it("should accept rows when type is textarea and rows is specified", async () => {
+      const numOfRows = 4;
+      const el = await setup({ type: "textarea", rows: numOfRows });
+      const textArea = el.shadowRoot?.querySelector("textarea");
+      const rows = textArea?.rows;
+      assert.equal(rows, numOfRows);
+    });
+
+    it("should default to 2 rows when type is textarea and rows is invalid", async () => {
+      const numOfRows = -1;
+      const el = await setup({ type: "textarea", rows: numOfRows });
+      const textArea = el.shadowRoot?.querySelector("textarea");
+      const rows = textArea?.rows;
+      assert.equal(rows, 2);
+    });
   });
 
   describe("Interaction", () => {

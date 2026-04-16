@@ -20,6 +20,7 @@ interface Props {
   type?: "text" | "date" | "textarea" | "password" | "time" | "number" | "integer";
   min?: number;
   max?: number;
+  rows?: number;
 }
 
 export async function setup({
@@ -37,7 +38,8 @@ export async function setup({
   name = undefined,
   value = undefined,
   min = undefined,
-  max = undefined
+  max = undefined,
+  rows = undefined
 }: Props) {
   return await fixture<ZetaTextInput>(
     html`<zeta-text-input
@@ -56,6 +58,7 @@ export async function setup({
       label=${ifDefined(label)}
       min=${ifDefined(min)}
       max=${ifDefined(max)}
+      rows=${ifDefined(rows)}
     ></zeta-text-input>`
   );
 }
