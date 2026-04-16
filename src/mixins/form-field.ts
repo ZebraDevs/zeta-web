@@ -5,6 +5,7 @@ import { property, query, queryAssignedNodes, state } from "lit/decorators.js";
 import { type AbstractConstructor } from "./utils.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 import { live } from "lit/directives/live.js";
+import type { ZetaTextInput } from "../components/text-input/text-input";
 
 // Retrieved on 2026/04/10 from https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input
 type GenericInputTypes =
@@ -406,6 +407,7 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
             @focus=${this.handleFocus}
             @blur=${this.handleBlur}
             .value=${live(this.value ?? "")}
+            rows=${ifDefined((this as unknown as ZetaTextInput).rows)}
           ></textarea>`;
         case "text-dropdown":
         case "checkbox-dropdown":

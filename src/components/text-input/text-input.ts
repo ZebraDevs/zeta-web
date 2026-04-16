@@ -7,6 +7,8 @@ import { Contourable, Interactive, Size } from "../../mixins/mixins.js";
 import "../icon/icon.js";
 import { FormField } from "../../mixins/form-field.js";
 
+// TODO: Split into separate TextInput and TextArea components, as the shared code is minimal and this would simplify the implementation of both components. This would also allow us to remove the `rows` property from TextInput, which is not applicable to it.
+
 /** A text input field for entering text.
  *
  * Text input component with icon, affix, label and hint text.
@@ -50,6 +52,12 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
 
   /** Suffix text. */
   @property({ type: String }) suffix?: string;
+
+  /** The number of visible text lines for the control. If it is specified, it must be a positive integer. If it is not specified, the default value is 2.
+   *
+   * Prop only applies when `type` is set to `textarea`.
+   */
+  @property({ type: Number }) rows?: number = 2;
 
   /**
    * Label shown above text field.
