@@ -1,9 +1,9 @@
-## Directory structure {#directory-structure-web}
+## Directory structure {/* #directory-structure-web */}
 
 Test files are stored in the `src/tests` folder. Each test file should replicate the directory structure of the corresponding component in the `src/components` directory to ensure consistency and easy navigation.
 For example, if your component is located at `src/components/button/button.ts`, the test should be placed at `src/test/button/button.test.ts`.
 
-## Test groups {#test-groups-web}
+## Test groups {/* #test-groups-web */}
 
 Each test file should follow a consistent pattern, organizing tests into groups for Accessibility, Content, Dimensions, Styling, Interaction, Golden, and Performance.
 While not every group needs to be populated for each component, they should be included as necessary to thoroughly validate the component's behavior and quality.
@@ -32,7 +32,7 @@ While not every group needs to be populated for each component, they should be i
 - **Performance**  
   Animation performance, rendering performance, data manipulation performance, etc.
 
-## Testing file template {#testing-file-template-web}
+## Testing file template {/* #testing-file-template-web */}
 
 ```ts
 import { fixture, html, expect, unsafeStatic } from "@open-wc/testing";
@@ -73,17 +73,17 @@ describe("zeta-_replacelower_", () => {
 });
 ```
 
-## Golden testing {#golden-testing-web}
+## Golden testing {/* #golden-testing-web */}
 
 Golden testing is not currently implemented in Zeta Web; however, it is a feature we are actively working on and plan to introduce in the near future to enhance our testing capabilities.
 
-## Helper functions {#helper-functions-web}
+## Helper functions {/* #helper-functions-web */}
 
 To streamline and enhance the testing process, we’ve developed a set of utility functions designed to handle common testing tasks efficiently. These functions simplify operations such as converting CSS variables to their computed values, retrieving slotted elements, managing coordinates, and executing various mouse interactions. By leveraging these utilities, developers can focus on writing more meaningful tests without getting bogged down by repetitive tasks.
 
 See [utils.ts](https://github.com/ZebraDevs/zeta-web/blob/main/src/test/utils.ts) for all utility functions.
 
-## Guidelines {#guidelines-web}
+## Guidelines {/* #guidelines-web */}
 
 - Test group describe blocks must be nested in "component" describe blocks `describe("replace-with-zeta-tag", () => {`.
 - You can have multiple "component" describe blocks.

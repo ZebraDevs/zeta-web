@@ -4,7 +4,7 @@ These components are open source, and we warmly welcome contributions from the c
 
 Contributions to the Zeta libraries are encouraged; however, new components _must_ be defined in the [Figma designs](https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components) before proceeding.
 
-## Component creation and contribution process {#component-creation-web}
+## Component creation and contribution process {/* #component-creation-web */}
 
 For both Zeta libraries, the process for component creation follows the same steps:
 
@@ -33,7 +33,7 @@ For both Zeta libraries, the process for component creation follows the same ste
 
 9. **Merging**: Once the review is complete and all checks have passed, your PR will be merged. We utilize squash merging for all PRs, which means that the title and description of the PR will be used as the commit title and body. This helps maintain a clean and concise commit history. Note that the merged changes will not be immediately distributed until a formal release is conducted.
 
-## Package specific overview {#package-specific-overview-web}
+## Package specific overview {/* #package-specific-overview-web */}
 
 Before contributing code to the project, it is essential to be well-acquainted with both [TypeScript](https://www.typescriptlang.org/) and the [Lit library](https://lit.dev/). TypeScript, a superset of JavaScript, offers strong typing and other features that enhance code quality and maintainability, which are crucial for collaborative development. Understanding its syntax and best practices will enable you to write more robust and error-resistant code. Similarly, familiarity with Lit is vital, as it provides the framework for creating efficient, lightweight web components. Knowing how Lit manages templates, styles, and reactive properties will help you contribute effectively and ensure that your code integrates seamlessly with the existing codebase. By mastering both TypeScript and Lit, you’ll be better prepared to develop high-quality, reusable components that adhere to the project’s standards.
 
@@ -41,7 +41,7 @@ For a better developer experience, we recommend [`ts-lit-plugin`](https://www.np
 
 When contributing new code to Zeta Web, ensure that you do not edit files that are automatically generated. Currently that is `primitives.css` and `semantics.css`, but we hope to utilize automation in the future to generate code directly from figma designs.
 
-### Creating a new component {#creating-a-new-component-web}
+### Creating a new component {/* #creating-a-new-component-web */}
 
 When creating a new component, it’s crucial first to determine if your component can extend an existing class, such as `Rounded` or `Flavor`, to leverage reusable functionality and maintain consistency across the project. Start by creating two files: `component.ts` and `component.styles.js`. In `component.ts`, you’ll define the structure and logic of your component using TypeScript. Import the necessary elements from Lit and your styles from `component.styles.js`. The component should be annotated with TSDoc to provide comprehensive documentation, including details about supported slots, custom CSS properties, parts, events, and links to associated Figma designs and Storybook instances. Use the @customElement decorator to register your component, and extend it from the base class, such as `Rounded(LitElement)`. Define properties with appropriate decorators and implement the render method to output your component’s template.
 
@@ -102,11 +102,11 @@ export default css`
 `;
 ```
 
-### Adding examples {#adding-examples-web}
+### Adding examples {/* #adding-examples-web */}
 
 When developing components, it’s crucial to ensure that all arguments and argTypes are thoroughly filled in Storybook, as this practice enhances the clarity and usability of your stories and ensures that components are fully documented and easily understood by other developers. If additional documentation is needed to explain component behaviors, interactions, or usage guidelines, we encourage creating a Docs.mdx file, which can be rendered by Storybook to provide rich documentation alongside your stories, offering a more complete view of your components. It is also essential that the stories you create in Storybook accurately match the designs provided in Figma, ensuring consistency between design and implementation, facilitating a seamless user experience, and maintaining visual integrity across the application. By following these guidelines, you can contribute to a robust and well-documented component library that enhances both development efficiency and product quality. If you have any questions or need further guidance, please feel free to reach out to the team or consult our documentation resources.
 
-## Releasing {#releasing-web}
+## Releasing {/* #releasing-web */}
 
 Our repositories utilize [Release-Please](https://github.com/googleapis/release-please) to streamline release management. This tool automates the generation of release notes and version bumping, based on keywords in the pull requests that are merged. These keywords are defined in the repository’s `release-please-config.json` file. When code is merged, Release-Please automatically generates pull requests (PRs) that, once merged, will create a release and distribute the updated code.
 

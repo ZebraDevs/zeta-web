@@ -1,4 +1,4 @@
-### Create component file {#create-component-file-web}
+### Create component file {/* #create-component-file-web */}
 
 This file contains the implementation of the component and should follow the structure below:
 
@@ -90,7 +90,7 @@ By wrapping the component hover styles within this media query, it disables the 
 
 Regarding the webkit tap highlight color: on mobile, taps are automatically styled. If you want to use your own styling for the component with :active, it is recommended to add this on your main div or host component.
 
-### Export the component {#export-the-component-web}
+### Export the component {/* #export-the-component-web */}
 
 `src/index.ts`
 
@@ -107,7 +107,7 @@ export {
 
 Only export the main component from the component file (for example, ZetaX). Avoid exporting internal helper classes, private widgets, or subcomponents that are not intended for public use. Exporting only the main component keeps the public API clean and prevents users from relying on internal implementation details, which may change without notice. This approach also reduces confusion and makes it easier for users to discover and use the intended component.
 
-### Create the \*book file {#create-the-book-file-web}
+### Create the \*book file {/* #create-the-book-file-web */}
 
 We use storybook for web and should typically include a single story. This story should demonstrate every variant of the component. If this is not feasible, you may create multiple stories.
 
@@ -150,7 +150,7 @@ export const X: StoryObj<X> = {
 
 Learn more about [Storybook](https://storybook.js.org/docs).
 
-### Create the example file {#create-the-example-file-web}
+### Create the example file {/* #create-the-example-file-web */}
 
 This file should contain a simple example of how to use the component. If possible, replicate the default version of the component shown in Figma. This example will also be used for demonstrating the component on design.zebra.com/docs/components/x. This file must be structured as shown in the example below:
 
@@ -165,7 +165,7 @@ This file should contain a simple example of how to use the component. If possib
 </zeta-x>
 ```
 
-### Link example page {#link-example-page-web}
+### Link example page {/* #link-example-page-web */}
 
 To add the example page to the example app, add it to the list of components:
 
