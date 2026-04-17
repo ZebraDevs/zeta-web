@@ -26,7 +26,18 @@ import type { AvatarSize } from "./avatar-size.js";
 export class ZetaAvatar extends LitElement {
   /**
    * The size of the avatar.
-   * Possible values are "xxxs", "xxs", "xs", "s", "m", "l", "xl", "xxl", "xxxl".
+   * Possible values:
+   * - xxxs: 24px
+   * - xxs: 32px
+   * - xs: 36px
+   * - s: 40px
+   * - m: 48px
+   * - l: 64px
+   * - xl: 80px
+   * - xxl: 120px
+   * - xxxl: 200px
+   *
+   * Default value: m
    */
   @property({ type: String, reflect: true }) size?: AvatarSize;
 
