@@ -114,7 +114,7 @@
     "eslint-plugin-wc": "^2.2.1",
     "lit-analyzer": "^2.0.3",
     "prettier": "3.8.3",
-    "react": "^19.2.5",
+    "react": "^19.2.6",
     "sinon": "^21.1.2",
     "storybook": "^8.6.18",
     "ts-lit-plugin": "^2.0.2",
