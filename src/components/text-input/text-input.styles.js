@@ -31,16 +31,16 @@ export default css`
   }
 
   /* ERROR */
-  :host([error]:not([disabled])) .input-container {
+  :host([error]:not([disabled])) .input-container:not([disabled]) {
     background-color: var(--surface-negative-subtle);
     box-shadow: 0 0 0 var(--border-size-medium) var(--border-negative);
   }
 
-  :host([error]:not([disabled])) .hint-text zeta-icon {
+  :host([error]:not([disabled])) .hint-text:not([disabled]) zeta-icon {
     --icon-color: var(--main-negative);
   }
 
-  :host([error]:not([disabled])) .hint-text {
+  :host([error]:not([disabled])) .hint-text:not([disabled]) {
     color: var(--main-negative);
   }
 

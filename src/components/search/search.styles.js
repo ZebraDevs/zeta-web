@@ -26,7 +26,7 @@ export default css`
     display: var(--search-icon-display, block);
   }
 
-  :host(:not([disabled])) zeta-icon.right {
+  :host(:not([disabled])) zeta-icon.right:not([disabled]) {
     --icon-color: var(--main-default);
   }
 

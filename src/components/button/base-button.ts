@@ -9,7 +9,7 @@ import { ContourableThree } from "../../mixins/contourable-three.js";
  * @event {SubmitEvent} submit - Fired when the button is clicked and has the type submit
  */
 export class BaseButton extends ContourableThree(Size(Interactive(LitElement))) {
-  static formAssociated = true;
+  static readonly formAssociated = true;
   /** @internal */
   static override shadowRootOptions: ShadowRootInit = {
     ...LitElement.shadowRootOptions,
@@ -41,7 +41,16 @@ export class BaseButton extends ContourableThree(Size(Interactive(LitElement))) 
   }
 
   override click() {
-    if (!this.disabled) this.buttonElement?.click();
+    if (!!this.disabled || !!this.formDisabled) this.buttonElement?.click();
+  }
+
+  protected async formDisabledCallback() {
+    await this.updateComplete;
+    this.requestUpdate();
+  }
+
+  get formDisabled(): boolean | undefined {
+    return this?.internals.form?.querySelector("fieldset")?.disabled;
   }
 
   //TODO do i need to change the target of on click events?

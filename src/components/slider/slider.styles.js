@@ -30,7 +30,7 @@ export default css`
   }
 
   @media (hover: hover), (hover: none) and (pointer: fine) {
-    :host(:not([disabled])) .handle {
+    :host(:not([disabled])) .handle:not([disabled]) {
       &:hover:not(:active) {
         scale: 1.25;
       }

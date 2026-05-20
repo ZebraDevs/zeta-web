@@ -64,10 +64,9 @@ export class ZetaButton extends Flavored(BaseButton) {
   protected render() {
     const leading = this.leadingIcon ? html`<zeta-icon name="${this.leadingIcon}" .rounded=${this.shape != "sharp"}></zeta-icon>` : nothing;
     const trailing = this.trailingIcon ? html`<zeta-icon name="${this.trailingIcon}" .rounded=${this.shape != "sharp"}></zeta-icon>` : nothing;
-
     return html`
       <button
-        ?disabled=${this.disabled}
+        ?disabled=${!!this.disabled || !!this.formDisabled}
         value=${ifDefined(this.value)}
         name=${ifDefined(this.name)}
         type=${ifDefined(this.type)}

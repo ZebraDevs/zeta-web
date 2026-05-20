@@ -23,7 +23,7 @@ export default css`
   }
 
   @media (hover: hover), (hover: none) and (pointer: fine) {
-    :host([checked]:not([disabled]):hover) label:hover *[part="icon"] {
+    :host([checked]:not([disabled]):hover) label:not([disabled]):hover *[part="icon"] {
       background-color: var(--border-hover);
     }
   }

@@ -48,16 +48,16 @@ export default css`
     }
   }
 
-  :host([indeterminate]:not([disabled])) label,
-  :host([checked]:not([disabled])) label {
+  :host([indeterminate]:not([disabled])) label:not([disabled]),
+  :host([checked]:not([disabled])) label:not([disabled]) {
     .container {
       border-color: var(--surface-primary);
     }
   }
 
   @media (hover: hover), (hover: none) and (pointer: fine) {
-    :host([indeterminate]:not([disabled])) label:hover .container,
-    :host([checked]:not([disabled])) label:hover .container {
+    :host([indeterminate]:not([disabled])) label:not([disabled]):hover .container,
+    :host([checked]:not([disabled])) label:not([disabled]):hover .container {
       border-color: var(--border-hover);
     }
   }

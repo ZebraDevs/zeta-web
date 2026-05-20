@@ -4,21 +4,15 @@ export default css`
     user-select: none;
   }
 
-  :host(:not([disabled])) .interactive-target,
-  :host(:not([disabled])) > :not(:has(.interactive-target)):first-child {
+  :host(:not([disabled])):not(:has(input[disabled])):not(:has(.interactive-target[disabled])),
+  :host(:not([disabled])):not(:has(input[disabled])):not(:has(.interactive-target[disabled])) > :not(:has(.interactive-target)):first-child:not([disabled]) {
     cursor: pointer;
   }
 
-  /* :host(:not([disabled]):hover) .interactive-target {
-    background: var(--surface-hover);
-  } */
-
-  /* :host(:not([disabled]):active) .interactive-target {
-    background: var(--surface-selected);
-  } */
-
   :host([disabled]) > *,
-  :host([disabled]) ::slotted(zeta-icon) {
+  :host([disabled]) ::slotted(zeta-icon),
+  .interactive-target[disabled],
+  .interactive-target[disabled] > * {
     cursor: not-allowed;
     --icon-color: var(--main-disabled);
     color: var(--main-disabled);

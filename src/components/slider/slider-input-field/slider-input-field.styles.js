@@ -76,7 +76,7 @@ export default css`
   }
 
   :host([error]:not([disabled])) {
-    input {
+    input:not([disabled]) {
       background-color: var(--surface-negative-subtle);
       border: var(--border-size-small) var(--border-negative) solid;
     }

@@ -16,24 +16,29 @@ export default css`
     background-color: var(--checkbox-background);
   }
 
-  :host([disabled]) *[part="icon"] {
+  :host([disabled]) *[part="icon"],
+  input[disabled] *[part="icon"],
+  :host:has(input[disabled]) *[part="icon"],
+  :host([disabled]) .label,
+  :host:has(input[disabled]) {
     color: var(--main-disabled);
   }
+
   :host([indeterminate]) *[part="icon"],
   :host([checked]) *[part="icon"] {
     --icon-color: var(--checkbox-icon-color);
   }
 
-  :host([indeterminate]:not([disabled])) label,
-  :host([checked]:not([disabled])) label {
+  :host([indeterminate]:not([disabled])):not(:has(input[disabled])) label,
+  :host([checked]:not([disabled])):not(:has(input[disabled])) label {
     .container {
       background-color: var(--checkbox-checked-background);
     }
   }
 
   @media (hover: hover), (hover: none) and (pointer: fine) {
-    :host([indeterminate]:not([disabled])) label:hover .container,
-    :host([checked]:not([disabled])) label:hover .container {
+    :host([indeterminate]:not([disabled])):not(:has(input[disabled])) label:hover .container,
+    :host([checked]:not([disabled])):not(:has(input[disabled])) label:hover .container {
       background-color: var(--checkbox-hover-background);
     }
   }

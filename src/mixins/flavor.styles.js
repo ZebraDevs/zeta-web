@@ -1,6 +1,6 @@
 import { css } from "lit";
 export default css`
-  :host([flavor="primary"]:not([disabled])) > :first-child {
+  :host([flavor="primary"]:not([disabled])) > :first-child:not([disabled]) {
     background-color: var(--flavor-background-color, var(--state-primary-enabled));
     color: var(--state-default-enabled);
     -webkit-tap-highlight-color: transparent;
@@ -17,7 +17,7 @@ export default css`
       }
     }
   }
-  :host([flavor="secondary"]:not([disabled])) > :first-child {
+  :host([flavor="secondary"]:not([disabled])) > :first-child:not([disabled]) {
     background-color: var(--flavor-background-color, var(--state-secondary-enabled));
     color: var(--state-default-enabled);
     -webkit-tap-highlight-color: transparent;
@@ -34,7 +34,7 @@ export default css`
       }
     }
   }
-  :host([flavor="positive"]:not([disabled])) > :first-child {
+  :host([flavor="positive"]:not([disabled])) > :first-child:not([disabled]) {
     background-color: var(--flavor-background-color, var(--state-positive-enabled));
     color: var(--state-default-enabled);
     -webkit-tap-highlight-color: transparent;
@@ -51,7 +51,7 @@ export default css`
       }
     }
   }
-  :host([flavor="negative"]:not([disabled])) > :first-child {
+  :host([flavor="negative"]:not([disabled])) > :first-child:not([disabled]) {
     background-color: var(--flavor-background-color, var(--state-negative-enabled));
     color: var(--state-default-enabled);
     -webkit-tap-highlight-color: transparent;
@@ -68,12 +68,12 @@ export default css`
       }
     }
   }
-  :host([flavor="outline"]:not([disabled])) > :first-child,
-  :host([flavor="outline-subtle"]:not([disabled])) > :first-child,
-  :host([flavor="text"]:not([disabled])) > :first-child,
-  :host([flavor="basic"]:not([disabled])) > :first-child,
-  :host([flavor="basic-negative"]:not([disabled])) > :first-child,
-  :host([flavor="subtle"]:not([disabled])) > :first-child {
+  :host([flavor="outline"]:not([disabled])) > :first-child:not([disabled]),
+  :host([flavor="outline-subtle"]:not([disabled])) > :first-child:not([disabled]),
+  :host([flavor="text"]:not([disabled])) > :first-child:not([disabled]),
+  :host([flavor="basic"]:not([disabled])) > :first-child:not([disabled]),
+  :host([flavor="basic-negative"]:not([disabled])) > :first-child:not([disabled]),
+  :host([flavor="subtle"]:not([disabled])) > :first-child:not([disabled]) {
     background-color: var(--flavor-background-color, var(--surface-default));
     -webkit-tap-highlight-color: transparent;
     &:active {
@@ -89,22 +89,24 @@ export default css`
       }
     }
   }
-  :host([flavor="outline"]:not([disabled])) > :first-child {
+  :host([flavor="outline"]:not([disabled])) > :first-child:not([disabled]) {
     color: var(--main-primary);
     box-shadow: 0 0 0 var(--border-size-small) var(--border-primary-main);
   }
-  :host([flavor="outline-subtle"]:not([disabled])) > :first-child {
+  :host([flavor="outline-subtle"]:not([disabled])) > :first-child:not([disabled]) {
     color: var(--main-default);
     box-shadow: 0 0 0 var(--border-size-small) var(--border-default);
   }
-  :host([flavor="text"]:not([disabled])) > :first-child {
+  :host([flavor="text"]:not([disabled])) > :first-child:not([disabled]) {
     color: var(--main-primary);
   }
-  :host([flavor="subtle"]:not([disabled])) > :first-child {
+  :host([flavor="subtle"]:not([disabled])) > :first-child:not([disabled]) {
     color: var(--main-subtle);
   }
 
-  :host([disabled]) > * {
+  :host([disabled]) > *,
+  .interactive-target[disabled],
+  .interactive-target[disabled] > * {
     background: var(--flavor-disabled-background-color, var(--surface-disabled));
   }
 `;

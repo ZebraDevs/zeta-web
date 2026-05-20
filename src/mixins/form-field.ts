@@ -196,6 +196,19 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
       return this.internals.validationMessage;
     }
 
+    protected async formDisabledCallback() {
+      await this.updateComplete;
+      this.requestUpdate();
+    }
+
+    get formDisabled(): boolean | undefined {
+      return this?.internals.form?.querySelector("fieldset")?.disabled;
+    }
+
+    get _disabled(): boolean {
+      return !!this.disabled || !!this.formDisabled;
+    }
+
     private getValue(value: string | null, checked: boolean | undefined): string | null {
       if (this.isCheckable) {
         if (checked) {
@@ -378,9 +391,9 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
             id=${ifDefined(this.id !== "" ? this.id : undefined)}
             name=${ifDefined(this.name)}
             ?required=${this.required}
-            ?disabled=${this.disabled}
+            ?disabled=${this._disabled}
             aria-label=${this.ariaLabel || nothing}
-            aria-disabled=${this.disabled ? "true" : "false"}
+            aria-disabled=${this._disabled ? "true" : "false"}
             aria-required=${this.required ? "true" : "false"}
             value=${ifDefined(live(this.value))}
             .checked=${live(this.checked !== undefined ? this.checked : false)}
@@ -395,8 +408,8 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
           return html`<textarea
             id=${ifDefined(this.id !== "" ? this.id : undefined)}
             name=${ifDefined(this.name)}
-            ?disabled=${this.disabled}
-            aria-disabled=${this.disabled ? "true" : "false"}
+            ?disabled=${this._disabled}
+            aria-disabled=${this._disabled ? "true" : "false"}
             ?required=${this.required}
             aria-required=${this.required ? "true" : "false"}
             autocapitalize=${ifDefined(this.autoCapitalize)}
@@ -418,8 +431,8 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
             type="text"
             id=${ifDefined(this.id !== "" ? this.id : undefined)}
             name=${ifDefined(this.name)}
-            ?disabled=${this.disabled}
-            aria-disabled=${this.disabled ? "true" : "false"}
+            ?disabled=${this._disabled}
+            aria-disabled=${this._disabled ? "true" : "false"}
             ?required=${this.required}
             aria-required=${this.required ? "true" : "false"}
             autocapitalize=${ifDefined(notUrlEmailPassword ? this.autoCapitalize : undefined)}
@@ -439,8 +452,8 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
             id=${ifDefined(this.id !== "" ? this.id : undefined)}
             .id=${this.id}
             name=${ifDefined(this.name)}
-            ?disabled=${this.disabled}
-            aria-disabled=${this.disabled ? "true" : "false"}
+            ?disabled=${this._disabled}
+            aria-disabled=${this._disabled ? "true" : "false"}
             ?required=${this.required}
             aria-required=${this.required ? "true" : "false"}
             ?readonly=${this.readOnly}
@@ -459,8 +472,8 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
             id=${ifDefined(this.id !== "" ? this.id : undefined)}
             .id=${this.id}
             name=${ifDefined(this.name)}
-            ?disabled=${this.disabled}
-            aria-disabled=${this.disabled ? "true" : "false"}
+            ?disabled=${this._disabled}
+            aria-disabled=${this._disabled ? "true" : "false"}
             ?required=${this.required}
             aria-required=${this.required ? "true" : "false"}
             ?readonly=${this.readOnly}
@@ -474,8 +487,8 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
             <select
               id=${ifDefined(this.id !== "" ? this.id : undefined)}
               name=${this.name}
-              ?disabled=${this.disabled}
-              aria-disabled=${this.disabled ? "true" : "false"}
+              ?disabled=${this._disabled}
+              aria-disabled=${this._disabled ? "true" : "false"}
               ?required=${this.required}
               aria-required=${this.required ? "true" : "false"}
               .value=${live(this.value ?? "")}
@@ -489,8 +502,8 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
             type="number"
             id=${ifDefined(this.id !== "" ? this.id : undefined)}
             name=${ifDefined(this.name)}
-            ?disabled=${this.disabled}
-            aria-disabled=${this.disabled ? "true" : "false"}
+            ?disabled=${this._disabled}
+            aria-disabled=${this._disabled ? "true" : "false"}
             ?required=${this.required}
             aria-required=${this.required ? "true" : "false"}
             autocapitalize=${ifDefined(notUrlEmailPassword ? this.autoCapitalize : undefined)}
@@ -510,8 +523,8 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
             type="text"
             id=${ifDefined(this.id !== "" ? this.id : undefined)}
             name=${ifDefined(this.name)}
-            ?disabled=${this.disabled}
-            aria-disabled=${this.disabled ? "true" : "false"}
+            ?disabled=${this._disabled}
+            aria-disabled=${this._disabled ? "true" : "false"}
             ?required=${this.required}
             aria-required=${this.required ? "true" : "false"}
             autocapitalize=${ifDefined(notUrlEmailPassword ? this.autoCapitalize : undefined)}
@@ -531,8 +544,8 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
             type=${this.type as GenericInputTypes}
             id=${ifDefined(this.id !== "" ? this.id : undefined)}
             name=${ifDefined(this.name)}
-            ?disabled=${this.disabled}
-            aria-disabled=${this.disabled ? "true" : "false"}
+            ?disabled=${this._disabled}
+            aria-disabled=${this._disabled ? "true" : "false"}
             ?required=${this.required}
             aria-required=${this.required ? "true" : "false"}
             autocapitalize=${ifDefined(notUrlEmailPassword ? this.autoCapitalize : undefined)}
