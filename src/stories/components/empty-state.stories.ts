@@ -47,6 +47,8 @@ export const EmptyState: StoryObj = {
   argTypes: {},
   render: args => html`
     <zeta-empty-state ${spread(args)}>
+      ${args.title ? html`<h4 slot="title" class="title">${args.title}</h4>` : ""}
+      ${args.description ? html`<p slot="description" class="description">${args.description}</p>` : ""}
       ${args.illustration ? html`<zeta-illustration slot="illustration" name=${args.illustration} basePath=""> </zeta-illustration>` : ""}
       ${args.primaryAction ? html`<zeta-button slot="primaryAction" flavor="primary">${args.primaryAction}</zeta-button>` : ""}
       ${args.secondaryAction ? html`<zeta-button slot="secondaryAction" flavor="outline-subtle">${args.secondaryAction}</zeta-button>` : ""}
