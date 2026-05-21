@@ -50,7 +50,7 @@ describe("zeta-chart-card", () => {
       }
 
       if (subtitle) {
-        await contrastTest("Chart Card subtitle", subtitle , subject.shadowRoot?.querySelector(".card") as HTMLElement);
+        await contrastTest("Chart Card subtitle", subtitle, subject.shadowRoot?.querySelector(".card") as HTMLElement);
       }
     });
 
