@@ -9,13 +9,10 @@ export default css`
 
   h4.title,
   ::slotted([slot="title"]) {
+    font: var(--h4);
     text-align: center;
     margin-top: var(--spacing-6xl);
     margin-bottom: var(--spacing-small);
-  }
-
-  h4.title {
-    font: var(--h4);
   }
 
   p.description {

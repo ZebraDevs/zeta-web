@@ -100,8 +100,8 @@ describe("zeta-switch disabled", () => {
       subject = await fixture(html`<zeta-switch activeIcon="microphone" inactiveIcon="microphone_off" disabled></zeta-switch>`);
       track = subject.shadowRoot?.querySelector('[part="track"]');
       thumb = subject.shadowRoot?.querySelector('[part="thumb"]');
-      activeIcon = subject.shadowRoot?.querySelector('zeta-icon[part="icon active"]') as ZetaIcon;
-      inactiveIcon = subject.shadowRoot?.querySelector('zeta-icon[part="icon inactive"]') as ZetaIcon;
+      activeIcon = subject.shadowRoot?.querySelector('zeta-icon[part="icon active"]');
+      inactiveIcon = subject.shadowRoot?.querySelector('zeta-icon[part="icon inactive"]');
     });
     it("inactiveIcon color, :hover color", async () => {
       await expect(getIconColor(inactiveIcon!)).to.equal(getCssVarColorValue(inactiveIcon!, "--main-disabled"));

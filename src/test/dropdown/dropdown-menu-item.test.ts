@@ -105,7 +105,7 @@ describe("zeta-dropdown-menu-item", () => {
       await elementUpdated(subject);
 
       const iconElement = subject.shadowRoot?.querySelector("zeta-icon") as ZetaIcon;
-      const style = window.getComputedStyle(iconElement as Element);
+      const style = window.getComputedStyle(iconElement);
 
       await expect(style.color).to.equal(getCssVarColorValue(iconElement, "--main-disabled"));
     });

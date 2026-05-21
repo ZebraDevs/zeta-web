@@ -26,13 +26,13 @@ export class ZetaAccordion extends Contourable(LitElement) {
 
   protected firstUpdated(_changedProperties: PropertyValues) {
     super.firstUpdated(_changedProperties);
-    this.addEventListener("item-expanded", this.handleItemExpanded as EventListener);
-    this.addEventListener("item-selected", this.handleItemSelected as EventListener);
+    this.addEventListener("item-expanded", this.handleItemExpanded);
+    this.addEventListener("item-selected", this.handleItemSelected);
   }
 
   public disconnectedCallback(): void {
-    this.removeEventListener("item-expanded", this.handleItemExpanded as EventListener);
-    this.removeEventListener("item-selected", this.handleItemSelected as EventListener);
+    this.removeEventListener("item-expanded", this.handleItemExpanded);
+    this.removeEventListener("item-selected", this.handleItemSelected);
 
     // @ts-expect-error-next-line
     if (super.disconnectedCallback) super.disconnectedCallback();

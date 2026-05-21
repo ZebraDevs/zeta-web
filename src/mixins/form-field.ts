@@ -528,7 +528,7 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
           /> `;
         default:
           return html`<input
-            type=${this.type as GenericInputTypes}
+            type=${this.type}
             id=${ifDefined(this.id !== "" ? this.id : undefined)}
             name=${ifDefined(this.name)}
             ?disabled=${this.disabled}

@@ -162,8 +162,8 @@ describe("zeta-stepper", () => {
 
         //Do not check last stepper item - it does not have a bar
         if (index != 2) {
-          const barWidth = window.getComputedStyle(item as HTMLElement, "::after").width;
-          const barHeight = window.getComputedStyle(item as HTMLElement, "::after").height;
+          const barWidth = window.getComputedStyle(item, "::after").width;
+          const barHeight = window.getComputedStyle(item, "::after").height;
 
           await expect(barWidth).to.equal("200px");
           await expect(barHeight).to.equal("3px");
