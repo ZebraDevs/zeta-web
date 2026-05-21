@@ -1,5 +1,37 @@
 # Changelog
 
+## [1.3.0](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.2.8...zeta-web-v1.3.0) (2026-05-21)
+
+
+### ✨ New Features
+
+* **UX-1573:** Update empty state component ([#212](https://github.com/ZebraDevs/zeta-web/issues/212)) ([adf40db](https://github.com/ZebraDevs/zeta-web/commit/adf40db8f917ae0df9496dcc42bec26c38a32730))
+
+
+### 📈 Documentation
+
+* **Avatar:** Document avatar sizes ([b544a5b](https://github.com/ZebraDevs/zeta-web/commit/b544a5b215d40228f713e33f3982c12ad5d903ee))
+* Update docs ([ae535a9](https://github.com/ZebraDevs/zeta-web/commit/ae535a963b9f61423afd45b07b7e4eea40469370))
+
+
+### ⛓️ Dependencies
+
+* Update deps ([4715a8b](https://github.com/ZebraDevs/zeta-web/commit/4715a8bb11648fa93b8c2138a0d38cc405600b64))
+* Update deps ([964fb14](https://github.com/ZebraDevs/zeta-web/commit/964fb14606bf8479681b44f0ecbb5326d3bdef8a))
+* Update yarn ([15673b1](https://github.com/ZebraDevs/zeta-web/commit/15673b1ff243b286c9fdcb2bba5e651aedc0ade2))
+
+
+### 🧹 Miscellaneous Chores
+
+* **deps:** bump @xmldom/xmldom from 0.8.12 to 0.8.13 ([#208](https://github.com/ZebraDevs/zeta-web/issues/208)) ([bead713](https://github.com/ZebraDevs/zeta-web/commit/bead71393097a84fcea2352d2d876df7e7dc5eea))
+* **deps:** bump basic-ftp from 5.2.0 to 5.3.0 ([#204](https://github.com/ZebraDevs/zeta-web/issues/204)) ([40ad9bf](https://github.com/ZebraDevs/zeta-web/commit/40ad9bfdf3f50d33b4bb996097fb735648783472))
+* **deps:** bump basic-ftp from 5.3.0 to 5.3.1 ([#206](https://github.com/ZebraDevs/zeta-web/issues/206)) ([5134d17](https://github.com/ZebraDevs/zeta-web/commit/5134d17cc3ab52855fce61539c9b980f2564cb2e))
+* **deps:** bump follow-redirects from 1.15.11 to 1.16.0 ([#203](https://github.com/ZebraDevs/zeta-web/issues/203)) ([c24fa96](https://github.com/ZebraDevs/zeta-web/commit/c24fa9621028b9d856b7c6b5e5bb8698ca20b670))
+* **deps:** bump ip-address from 10.1.0 to 10.2.0 ([#209](https://github.com/ZebraDevs/zeta-web/issues/209)) ([afe610d](https://github.com/ZebraDevs/zeta-web/commit/afe610db3e32958054d887608bb478223ca0d414))
+* **deps:** bump lodash from 4.17.23 to 4.18.1 ([#207](https://github.com/ZebraDevs/zeta-web/issues/207)) ([ae2a994](https://github.com/ZebraDevs/zeta-web/commit/ae2a9942461ba40cca7dbbddecbee620accd604d))
+* **deps:** bump postcss from 8.5.6 to 8.5.15 ([#211](https://github.com/ZebraDevs/zeta-web/issues/211)) ([2b9eddd](https://github.com/ZebraDevs/zeta-web/commit/2b9eddd8c1d4292b82d8836cf78835edf16cd1a5))
+* **deps:** Bump React deps ([#205](https://github.com/ZebraDevs/zeta-web/issues/205)) ([0c13c26](https://github.com/ZebraDevs/zeta-web/commit/0c13c268485d22d3230e4f31bab23c038e74018a))
+
 ## [1.2.8](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.2.7...zeta-web-v1.2.8) (2026-04-16)
 
 
