@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaEmptyState } from "../../components/empty-state/empty-state";
 import "../../../src/components/empty-state/empty-state";
-import { html } from "lit";
+import { html, nothing } from "lit";
 import "../../components/illustration/illustration";
 import { spreadGenerator } from "../utils";
 import { ZetaIllustrationNamesList } from "../../components/illustration/illustration";
@@ -47,9 +47,11 @@ export const EmptyState: StoryObj = {
   argTypes: {},
   render: args => html`
     <zeta-empty-state ${spread(args)}>
-      ${args.illustration ? html`<zeta-illustration slot="illustration" name=${args.illustration} basePath=""> </zeta-illustration>` : ""}
-      ${args.primaryAction ? html`<zeta-button slot="primaryAction" flavor="primary">${args.primaryAction}</zeta-button>` : ""}
-      ${args.secondaryAction ? html`<zeta-button slot="secondaryAction" flavor="outline-subtle">${args.secondaryAction}</zeta-button>` : ""}
+      ${args.title ? html`<h4 slot="title" class="title">${args.title}</h4>` : nothing}
+      ${args.description ? html`<p slot="description" class="description">${args.description}</p>` : nothing}
+      ${args.illustration ? html`<zeta-illustration slot="illustration" name=${args.illustration} basePath=""> </zeta-illustration>` : nothing}
+      ${args.primaryAction ? html`<zeta-button slot="primaryAction" flavor="primary">${args.primaryAction}</zeta-button>` : nothing}
+      ${args.secondaryAction ? html`<zeta-button slot="secondaryAction" flavor="outline-subtle">${args.secondaryAction}</zeta-button>` : nothing}
     </zeta-empty-state>
   `
 };

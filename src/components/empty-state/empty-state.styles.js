@@ -1,34 +1,37 @@
 import { css } from "lit";
 export default css`
   :host {
-    max-width: 375px;
+    max-width: var(--empty-state-max-width, 375px);
     align-items: center;
     justify-content: center;
     display: flex;
   }
 
-  h4 {
+  h4.title,
+  ::slotted([slot="title"]) {
+    font: var(--h4);
     text-align: center;
     margin-top: var(--spacing-6xl);
     margin-bottom: var(--spacing-small);
-    font: var(--h4);
   }
 
-  p {
-    text-align: center;
+  p.description,
+  ::slotted([slot="description"]) {
     font: var(--body-small);
     color: var(--main-subtle);
     margin: var(--spacing-none);
+    text-align: center;
   }
 
-  .actions {
+  div[part="actions"] {
     display: flex;
     flex-direction: row;
     gap: var(--spacing-small);
     justify-content: center;
     margin-top: var(--spacing-large);
   }
-  .content {
+
+  div[part="content"] {
     margin-top: var(--spacing-large);
   }
 

@@ -8,26 +8,42 @@ import { Contourable } from "../../mixins/contour.js";
  * @slot primaryAction - Primary Action Button. Should be a `zeta-button`.
  * @slot secondaryAction - Secondary Action Button. Should be a `zeta-button`.
  * @slot illustration - Illustration to be displayed in the empty state. Should be a `zeta-illustration`.
+ * @slot title - Title of the empty state. Should be a `h4` element.
+ * @slot description - Description of the empty state. Should be a `p` element.
+ *
+ * @cssproperty --empty-state-max-width - Max width of the empty state. Default is 375px.
+ *
+ * @part container - The container of the empty state.
+ * @part content - The content of the empty state (title, description, actions).
+ * @part actions - The container for the action buttons.
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=38470-1055
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-empty-state--docs
  */
 @customElement("zeta-empty-state")
 export class ZetaEmptyState extends Contourable(LitElement) {
-  /** Title of the empty state */
+  /** Title of the empty state.
+   *
+   * @deprecated - The title should be slotted in using the `title` slot. This property will be removed in a future release.
+   */
   @property({ type: String }) title: string;
 
-  /** Description of the empty state */
+  /** Description of the empty state
+   *
+   * @deprecated - The description should be slotted in using the `description` slot. This property will be removed in a future release.
+   */
   @property({ type: String }) description: string;
 
   protected override render() {
     return html`
-      <div class="container">
+      <div part="container">
         <slot name="illustration"></slot>
-        <div class="content">
-          <h4 class="title">${this.title}</h4>
-          <p class="description">${this.description}</p>
-          <div class="actions">
+        <div part="content">
+          <slot name="title"><h4 class="title">${this.title}</h4></slot>
+          <slot name="description">
+            <p class="description">${this.description}</p>
+          </slot>
+          <div part="actions">
             <slot name="secondaryAction"></slot>
             <slot name="primaryAction"></slot>
           </div>
