@@ -15,13 +15,10 @@ export default css`
     margin-bottom: var(--spacing-small);
   }
 
-  p.description {
-    font: var(--body-small);
-    color: var(--main-subtle);
-  }
-
   p.description,
   ::slotted([slot="description"]) {
+    font: var(--body-small);
+    color: var(--main-subtle);
     margin: var(--spacing-none);
     text-align: center;
   }
