@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.3.1](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.3.0...zeta-web-v1.3.1) (2026-05-27)
+
+
+### ⛓️ Dependencies
+
+* Update zeta icons and other deps ([8a9c80d](https://github.com/ZebraDevs/zeta-web/commit/8a9c80dab8d2547d0d12fa1662c27e4136b42885))
+
+
+### 🧹 Miscellaneous Chores
+
+* **deps:** bump qs from 6.15.0 to 6.15.2 ([#213](https://github.com/ZebraDevs/zeta-web/issues/213)) ([5d04194](https://github.com/ZebraDevs/zeta-web/commit/5d04194d4cd92939b20fb2659e9da4f3194753cb))
+
 ## [1.3.0](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.2.8...zeta-web-v1.3.0) (2026-05-21)
 
 
