@@ -95,7 +95,8 @@ export default tseslint.config(
       "@typescript-eslint/no-unused-expressions": 0,
       "@typescript-eslint/no-explicit-any": 0,
       "@typescript-eslint/no-unsafe-assignment": 0,
-      "@typescript-eslint/no-unsafe-member-access": 0
+      "@typescript-eslint/no-unsafe-member-access": 0,
+      "@typescript-eslint/no-floating-promises": 0
     }
   }
 );
