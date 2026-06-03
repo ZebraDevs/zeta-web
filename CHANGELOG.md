@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.3](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.3.2...zeta-web-v1.3.3) (2026-06-03)
+
+
+### ⛓️ Dependencies
+
+* Update zeta icons ([79e02c1](https://github.com/ZebraDevs/zeta-web/commit/79e02c1ab00b392eae9c8762c3ee1cc3245b13b9))
+
 ## [1.3.2](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.3.1...zeta-web-v1.3.2) (2026-06-02)
 
 
