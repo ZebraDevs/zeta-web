@@ -4515,10 +4515,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zebra-fed/zeta-icons@npm:1.9.4":
-  version: 1.9.4
-  resolution: "@zebra-fed/zeta-icons@npm:1.9.4"
-  checksum: 10c0/81946bb9dc4a2d9c3612dedb6f13a9f35e51eb49ea8a494ed691135dbf5666ed2d669440d1bd1c14b64c144315257b488714b13995cab07fb9a02f99977bfdb1
+"@zebra-fed/zeta-icons@npm:1.9.5":
+  version: 1.9.5
+  resolution: "@zebra-fed/zeta-icons@npm:1.9.5"
+  checksum: 10c0/33eb4f2656cf528c263f13bac56bc6c7e4106e1803c0454ae3cdad7c204fcdf49484fb5b1bf3b2dd337add7c014856a1b95946651ec62cef8f800aaab9ce181c
   languageName: node
   linkType: hard
 
@@ -4561,12 +4561,12 @@ __metadata:
     "@web/test-runner-commands": "npm:^0.9.0"
     "@web/test-runner-junit-reporter": "npm:^0.8.0"
     "@web/test-runner-playwright": "npm:^0.11.1"
-    "@zebra-fed/zeta-icons": "npm:1.9.4"
+    "@zebra-fed/zeta-icons": "npm:1.9.5"
     axe-playwright: "npm:^2.2.2"
     cem-plugin-better-lit-types: "npm:^0.2.1"
     cem-plugin-custom-jsdoc-tags: "npm:^1.2.0"
     custom-element-jsx-integration: "npm:^1.6.0"
-    dompurify: "npm:^3.4.7"
+    dompurify: "npm:^3.4.8"
     dts-minify: "npm:^0.3.3"
     eslint: "npm:^9.39.4"
     eslint-config-prettier: "npm:^10.1.8"
@@ -6276,15 +6276,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dompurify@npm:^3.4.7":
-  version: 3.4.7
-  resolution: "dompurify@npm:3.4.7"
+"dompurify@npm:^3.4.8":
+  version: 3.4.8
+  resolution: "dompurify@npm:3.4.8"
   dependencies:
     "@types/trusted-types": "npm:^2.0.7"
   dependenciesMeta:
     "@types/trusted-types":
       optional: true
-  checksum: 10c0/b39940e95259bfaea658cb2bec819d47f271f9fe47e4e3cfff1fb7876089264d7c21e36ea09dad0d9a0f70add502ce6787ba9e7467f2c7b996382eb1d8daa375
+  checksum: 10c0/8f56a53d0ac80c76068772c9b72721f31fad68cac64a528e2420699ce2bd26b3516e29a5a7bd2205c2732d7114b9859998bf922d20cdb9361c4a05dab8352570
   languageName: node
   linkType: hard
 
