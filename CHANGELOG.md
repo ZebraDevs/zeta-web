@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.5](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.3.4...zeta-web-v1.3.5) (2026-06-30)
+
+
+### 🧹 Miscellaneous Chores
+
+* **NO-TICKET:** Add part to icon container in in-page-banner ([#218](https://github.com/ZebraDevs/zeta-web/issues/218)) ([4040aeb](https://github.com/ZebraDevs/zeta-web/commit/4040aebe82fa753815e23f1ef9f1771245caef61))
+
 ## [1.3.4](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.3.3...zeta-web-v1.3.4) (2026-06-15)
 
 
