@@ -79,7 +79,7 @@ export class ZetaInPageBanner extends Contourable(LitElement) {
   protected render() {
     return html`
       <div class="container">
-        ${this.showIcon ? html` <div class="leading"><zeta-icon .rounded=${this.rounded}>${this.getIcon()}</zeta-icon></div>` : nothing}
+        ${this.showIcon ? html` <div class="leading" part="icon"><zeta-icon .rounded=${this.rounded}>${this.getIcon()}</zeta-icon></div>` : nothing}
         <div class="center">
           <div part="header">${this.title ? html`<div class="title">${this.title}</div>` : nothing}</div>
           <div part="body">
