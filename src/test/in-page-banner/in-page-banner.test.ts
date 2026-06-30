@@ -107,6 +107,11 @@ describe("zeta-in-page-banner", () => {
         await expect(icon?.textContent?.trim()).to.equal(expectedIcon);
       }
     });
+
+    it("has a part on the icon container", () => {
+      const iconContainer = subject.shadowRoot?.querySelector('[part~="icon"]');
+      expect(iconContainer).to.not.be.null;
+    });
   });
 
   // describe("Dimensions", () => {});

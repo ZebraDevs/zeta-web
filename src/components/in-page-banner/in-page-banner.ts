@@ -17,6 +17,7 @@ import type { ZetaIconName } from "@zebra-fed/zeta-icons";
  * @part header - The header section containing the title.
  * @part body - The body section containing the main content.
  * @part footer - The footer section containing action buttons.
+ * @part icon - The container containing the status icon.
  *
  * @event {CustomEvent<ZetaCloseEventDetail>} close - Fired when the close icon is clicked.
  *
@@ -24,7 +25,6 @@ import type { ZetaIconName } from "@zebra-fed/zeta-icons";
  * @cssproperty --banner-background-color - The background color of the banner.
  * @cssproperty --banner-foreground-color - The foreground color of the banner.
  * @cssproperty --banner-icon-color - The icon color of the banner.
- *
  *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21156-27071
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-in-page-banner--docs
@@ -79,7 +79,7 @@ export class ZetaInPageBanner extends Contourable(LitElement) {
   protected render() {
     return html`
       <div class="container">
-        ${this.showIcon ? html` <div class="leading"><zeta-icon .rounded=${this.rounded}>${this.getIcon()}</zeta-icon></div>` : nothing}
+        ${this.showIcon ? html` <div class="leading" part="icon"><zeta-icon .rounded=${this.rounded}>${this.getIcon()}</zeta-icon></div>` : nothing}
         <div class="center">
           <div part="header">${this.title ? html`<div class="title">${this.title}</div>` : nothing}</div>
           <div part="body">
