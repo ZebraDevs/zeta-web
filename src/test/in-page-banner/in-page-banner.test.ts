@@ -111,7 +111,7 @@ describe("zeta-in-page-banner", () => {
     it("has a part on the icon container", async () => {
       const iconContainer = subject.shadowRoot?.querySelector(".leading");
       expect(iconContainer).to.not.be.null;
-      expect(iconContainer?.getAttribute("part")).to.equal("icon");
+      await expect(iconContainer?.getAttribute("part")).to.equal("icon");
     });
   });
 
