@@ -31,20 +31,11 @@ type GenericInputTypes =
   | "week";
 
 type ZetaExtraInputTypes =
-  | "checkbox-dropdown"
-  | "integer"
-  | "radio-dropdown"
-  | "range-selector"
-  | "select"
-  | "slider"
-  | "stepper"
-  | "text-dropdown"
-  | "textarea";
+  "checkbox-dropdown" | "integer" | "radio-dropdown" | "range-selector" | "select" | "slider" | "stepper" | "text-dropdown" | "textarea";
 
 // Zeta inputs do not match generic HTML inputs, but does have some interesting extras.
 export type ZetaInputType =
-  | Exclude<GenericInputTypes, "color" | "datetime-local" | "file" | "hidden" | "image" | "range" | "reset" | "submit" | "week">
-  | ZetaExtraInputTypes;
+  Exclude<GenericInputTypes, "color" | "datetime-local" | "file" | "hidden" | "image" | "range" | "reset" | "submit" | "week"> | ZetaExtraInputTypes;
 //TODO add all properties here
 
 declare abstract class FormFieldInterface {

@@ -55,13 +55,15 @@ export const Default: StoryObj = {
   render: args => html`
     <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--spacing-2xl); padding: var(--spacing-2xl);">
       <zeta-chart-card ${spread(args)}>
-        ${args.content
-          ? html`<div
-              style="height: 200px; background: var(--surface-subtle); border-radius: var(--spacing-small); display: flex; align-items: center; justify-content: center; color: var(--main-subtle);"
-            >
-              Chart Content
-            </div>`
-          : nothing}
+        ${
+          args.content
+            ? html`<div
+                style="height: 200px; background: var(--surface-subtle); border-radius: var(--spacing-small); display: flex; align-items: center; justify-content: center; color: var(--main-subtle);"
+              >
+                Chart Content
+              </div>`
+            : nothing
+        }
         <zeta-button slot="footer" flavor="outline" size="small">View Details</zeta-button>
       </zeta-chart-card>
     </div>
@@ -101,13 +103,15 @@ export const Clickable: StoryObj = {
   render: args => html`
     <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--spacing-2xl); padding: var(--spacing-2xl);">
       <zeta-chart-card ${spread(args)} @click=${args.onclick}>
-        ${args.content
-          ? html`<div
-              style="height: 200px; background: var(--surface-subtle); border-radius: var(--spacing-small); display: flex; align-items: center; justify-content: center; color: var(--main-subtle);"
-            >
-              Chart Content
-            </div>`
-          : nothing}
+        ${
+          args.content
+            ? html`<div
+                style="height: 200px; background: var(--surface-subtle); border-radius: var(--spacing-small); display: flex; align-items: center; justify-content: center; color: var(--main-subtle);"
+              >
+                Chart Content
+              </div>`
+            : nothing
+        }
       </zeta-chart-card>
     </div>
   `

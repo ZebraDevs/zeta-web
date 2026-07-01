@@ -72,16 +72,18 @@ export class ZetaProgressCircle extends Contourable(LitElement) {
               height: `${this.size}px`
             })}
           >
-            ${this.size > 24
-              ? html`<span
-                  class="percentage"
-                  style=${styleMap({
-                    fontSize: `${this.size / 4}px`
-                  })}
-                >
-                  ${this.progress}%
-                </span>`
-              : nothing}
+            ${
+              this.size > 24
+                ? html`<span
+                    class="percentage"
+                    style=${styleMap({
+                      fontSize: `${this.size / 4}px`
+                    })}
+                  >
+                    ${this.progress}%
+                  </span>`
+                : nothing
+            }
             <div
               @click=${() => {
                 this.dispatchEvent(new ZetaCancelUploadEvent().toEvent());

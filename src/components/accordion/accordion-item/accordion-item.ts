@@ -104,9 +104,11 @@ export class ZetaAccordionItem extends Contourable(LitElement) {
     return html`<div>
       <div class="accordion-item-header" part="item-header">
         <div class="row" @click=${() => wholeTileTap && wholeTileTap()}>
-          ${this.selectable && this.hasDefaultSlot
-            ? html`<div class="chevron-wrapper" @click=${() => leftTap && leftTap()}><zeta-icon class="chevron">chevron_right</zeta-icon></div>`
-            : nothing}
+          ${
+            this.selectable && this.hasDefaultSlot
+              ? html`<div class="chevron-wrapper" @click=${() => leftTap && leftTap()}><zeta-icon class="chevron">chevron_right</zeta-icon></div>`
+              : nothing
+          }
           <div @click=${() => rightTap && rightTap()} class="title-wrapper">
             <h4 class="title">${this.title}</h4>
             ${this.selectable && this.selected ? html`<zeta-icon class="check trailing">check_mark</zeta-icon>` : nothing}

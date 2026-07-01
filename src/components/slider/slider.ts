@@ -303,9 +303,11 @@ export class ZetaSlider extends Contourable(LitElement) {
         <div id="track" class="track contourable-target" @click=${this.trackClickHandler}>${this.getSteps()}</div>
         <div id="selected-area" class="selected-area contourable-target" @click=${this.trackClickHandler}></div>
         <div id="handle-l" class="handle" @mousedown=${(e: MouseEvent) => this.mouseDownHandler(e, this.leftHandle, this.rightHandle)}></div>
-        ${this.type == "range"
-          ? html`<div id="handle-r" class="handle" @mousedown=${(e: MouseEvent) => this.mouseDownHandler(e, this.rightHandle, this.leftHandle)}></div>`
-          : nothing}
+        ${
+          this.type == "range"
+            ? html`<div id="handle-r" class="handle" @mousedown=${(e: MouseEvent) => this.mouseDownHandler(e, this.rightHandle, this.leftHandle)}></div>`
+            : nothing
+        }
       </div>
     `;
   }

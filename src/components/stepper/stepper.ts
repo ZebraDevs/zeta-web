@@ -58,9 +58,11 @@ export class ZetaStepper extends LitElement {
         <div class="stepper-container" role="list">
           <slot @slotchange=${() => this.assignStepNumbers()}></slot>
         </div>
-        ${this.showOverflowButton
-          ? html`<zeta-button flavor="outline-subtle" class="stepper-item-overflow-button"><zeta-icon>chevron_right</zeta-icon></zeta-button>`
-          : ""}
+        ${
+          this.showOverflowButton
+            ? html`<zeta-button flavor="outline-subtle" class="stepper-item-overflow-button"><zeta-icon>chevron_right</zeta-icon></zeta-button>`
+            : ""
+        }
       </div>
       ${this.progressBar ? html`<zeta-progress-bar value=${this.progress}></zeta-progress-bar>` : nothing}
     `;

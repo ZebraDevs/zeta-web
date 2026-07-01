@@ -43,9 +43,11 @@ export abstract class BaseToggleFormElement extends FormField(Size(Interactive(C
               @keydown=${(e: KeyboardEvent) => this.key(e, "down")}
               @keyup=${(e: KeyboardEvent) => this.key(e, "up")}
             >
-              ${this.type === "checkbox"
-                ? html`<zeta-icon part="icon" ?rounded=${this.rounded}> ${this.indeterminate ? "remove" : "check_mark"} </zeta-icon>`
-                : html`<div part="icon"></div>`}
+              ${
+                this.type === "checkbox"
+                  ? html`<zeta-icon part="icon" ?rounded=${this.rounded}> ${this.indeterminate ? "remove" : "check_mark"} </zeta-icon>`
+                  : html`<div part="icon"></div>`
+              }
             </div>
             <slot></slot>
             ${super.render()}

@@ -39,13 +39,15 @@ export const AccordionItem: StoryObj = {
   render: args => html`
     <zeta-accordion-item ${spread(args)}>
       ${!args.navigation && html`<div>content!</div>`}
-      ${!args.navigation &&
-      args.header &&
-      html`<div slot="header" style="display: flex; gap: var(--spacing-medium);">
-        <zeta-button flavor="outline-subtle">Action 1</zeta-button>
-        <zeta-button flavor="outline-subtle">Action 2</zeta-button>
-        <zeta-button flavor="outline-subtle">Action 3</zeta-button>
-      </div>`}
+      ${
+        !args.navigation &&
+        args.header &&
+        html`<div slot="header" style="display: flex; gap: var(--spacing-medium);">
+          <zeta-button flavor="outline-subtle">Action 1</zeta-button>
+          <zeta-button flavor="outline-subtle">Action 2</zeta-button>
+          <zeta-button flavor="outline-subtle">Action 3</zeta-button>
+        </div>`
+      }
     </zeta-accordion-item>
   `
 };
