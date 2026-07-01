@@ -5,6 +5,8 @@ export default css`
     --banner-border-color: var(--border-default);
     --banner-foreground-color: var(--main-default);
     --banner-icon-color: var(--main-default);
+    --banner-title-font: var(--label-large);
+    --banner-body-font: var(--body-small);
 
     display: flex;
     flex-direction: column;
@@ -31,7 +33,7 @@ export default css`
           justify-content: space-between;
 
           > .title {
-            font: var(--label-large);
+            font: var(--banner-title-font);
           }
         }
 
@@ -40,7 +42,7 @@ export default css`
           margin-top: var(--spacing-0-5);
           margin-top: var(--spacing-minimum);
           margin-right: var(--spacing-3xl);
-          font: var(--body-small);
+          font: var(--banner-body-font);
 
           > ::slotted(*) {
             max-width: 100%;
