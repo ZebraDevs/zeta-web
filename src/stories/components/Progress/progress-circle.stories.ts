@@ -51,12 +51,14 @@ const meta: Meta<ProgressCircleStory> = {
 export const ProgressCircle: StoryObj<ProgressCircleStory> = {
   render: ({ oncancelupload, ...args }) => {
     return html`
-      ${args["--progress-circle-color"] &&
-      html`<style>
-        zeta-progress-circle {
-          --progress-circle-color: ${args["--progress-circle-color"]};
-        }
-      </style>`}
+      ${
+        args["--progress-circle-color"] &&
+        html`<style>
+          zeta-progress-circle {
+            --progress-circle-color: ${args["--progress-circle-color"]};
+          }
+        </style>`
+      }
       <zeta-progress-circle @cancel-upload=${oncancelupload} ${spread(args)}></zeta-progress-circle>
     `;
   }

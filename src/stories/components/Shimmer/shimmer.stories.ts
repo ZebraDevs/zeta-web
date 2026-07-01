@@ -72,11 +72,13 @@ export const Shimmer: StoryObj<ShimmerArgs> = {
       `
         : "";
     return html`
-      ${styleContent
-        ? html`<style>
-            ${styleContent}
-          </style>`
-        : nothing}
+      ${
+        styleContent
+          ? html`<style>
+              ${styleContent}
+            </style>`
+          : nothing
+      }
       <div style="display: flex; flex-direction: column; gap: 20px; padding: 30px; max-width: 600px;">
         <div>
           <h4 style="margin-bottom: 10px;">Interactive Shimmer (Use Controls)</h4>

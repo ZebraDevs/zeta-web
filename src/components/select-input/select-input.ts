@@ -190,13 +190,15 @@ export class ZetaSelectInput extends FormField(Size(Contourable(Interactive(LitE
     return html`
       ${this.icon ? html`<zeta-icon class="contourable-target">${this.icon}</zeta-icon>` : nothing}
       <span part="input-text">
-        ${this._selectedOption
-          ? this._selectedOption.innerText
-          : this.placeholder === undefined
-            ? "Select an option"
-            : this.placeholder === ""
-              ? ""
-              : this.placeholder}
+        ${
+          this._selectedOption
+            ? this._selectedOption.innerText
+            : this.placeholder === undefined
+              ? "Select an option"
+              : this.placeholder === ""
+                ? ""
+                : this.placeholder
+        }
       </span>
       <zeta-icon class="contourable-target expand-more">expand_more</zeta-icon>
     `;

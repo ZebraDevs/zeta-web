@@ -45,12 +45,14 @@ export default meta;
 export const ProgressBar: StoryObj = {
   render: ({ ...args }) => {
     return html`
-      ${args["--progress-bar-color"] &&
-      html`<style>
-        zeta-progress-bar {
-          --progress-bar-color: ${args["--progress-bar-color"]};
-        }
-      </style>`}
+      ${
+        args["--progress-bar-color"] &&
+        html`<style>
+          zeta-progress-bar {
+            --progress-bar-color: ${args["--progress-bar-color"]};
+          }
+        </style>`
+      }
       <zeta-progress-bar ${spread(args)}></zeta-progress-bar>
     `;
   }

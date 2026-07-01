@@ -158,12 +158,14 @@ export class ZetaStepperInput extends FormField(Contourable(LitElement)) {
             add
           </zeta-icon-button>
         </div>
-        ${this.error || this.hintText
-          ? html`<div class="hint-text">
-              <zeta-icon .rounded=${this.rounded}>${this.error ? "error" : "info"}</zeta-icon>
-              <span id="hint-text">${this.error ? this.errorText : this.hintText}</span>
-            </div>`
-          : nothing}
+        ${
+          this.error || this.hintText
+            ? html`<div class="hint-text">
+                <zeta-icon .rounded=${this.rounded}>${this.error ? "error" : "info"}</zeta-icon>
+                <span id="hint-text">${this.error ? this.errorText : this.hintText}</span>
+              </div>`
+            : nothing
+        }
       </div>
     `;
   }

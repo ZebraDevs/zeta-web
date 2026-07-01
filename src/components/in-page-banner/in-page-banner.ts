@@ -89,11 +89,13 @@ export class ZetaInPageBanner extends Contourable(LitElement) {
           </div>
         </div>
         <div class="trailing">
-          ${this.canClose
-            ? html`<zeta-icon-button flavor="text" size="small" shape=${this.rounded ? "rounded" : "sharp"} @click=${() => this.close()}>
-                close
-              </zeta-icon-button>`
-            : nothing}
+          ${
+            this.canClose
+              ? html`<zeta-icon-button flavor="text" size="small" shape=${this.rounded ? "rounded" : "sharp"} @click=${() => this.close()}>
+                  close
+                </zeta-icon-button>`
+              : nothing
+          }
         </div>
       </div>
       <div part="footer">

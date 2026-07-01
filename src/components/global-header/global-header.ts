@@ -228,9 +228,11 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
             <slot id="avatar" name="user-avatar"></slot>
             <zeta-icon id="user-info-icon" .rounded=${this.rounded}>expand_more</zeta-icon>
           </zeta-button>
-          ${this.appSwitcher
-            ? html`<zeta-icon-button id="app-switcher" shape=${this.rounded ? "rounded" : "sharp"} flavor="subtle">apps</zeta-icon-button>`
-            : nothing}
+          ${
+            this.appSwitcher
+              ? html`<zeta-icon-button id="app-switcher" shape=${this.rounded ? "rounded" : "sharp"} flavor="subtle">apps</zeta-icon-button>`
+              : nothing
+          }
         </div>
       </div>
     `;

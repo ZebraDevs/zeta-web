@@ -81,12 +81,14 @@ export class ZetaChartCard extends Contourable(LitElement) {
   private renderContent() {
     return html`
       <div part="content" class="content">
-        ${this.error
-          ? html`<div class="error">
-              <zeta-icon .rounded=${this.rounded}>warning</zeta-icon>
-              <span>${this.error}</span>
-            </div>`
-          : html`<slot></slot>`}
+        ${
+          this.error
+            ? html`<div class="error">
+                <zeta-icon .rounded=${this.rounded}>warning</zeta-icon>
+                <span>${this.error}</span>
+              </div>`
+            : html`<slot></slot>`
+        }
       </div>
     `;
   }

@@ -42,12 +42,14 @@ export const Accordion: StoryObj<AccordionStoryArgs> = {
         .rounded=${args.rounded}
       >
         ${!args.navigation && html`<div>content!</div>`}
-        ${!args.navigation &&
-        html`<div slot="header" style="display: flex; gap: var(--spacing-medium);">
-          <zeta-button flavor="outline-subtle">Action 1</zeta-button>
-          <zeta-button flavor="outline-subtle">Action 2</zeta-button>
-          <zeta-button flavor="outline-subtle">Action 3</zeta-button>
-        </div>`}
+        ${
+          !args.navigation &&
+          html`<div slot="header" style="display: flex; gap: var(--spacing-medium);">
+            <zeta-button flavor="outline-subtle">Action 1</zeta-button>
+            <zeta-button flavor="outline-subtle">Action 2</zeta-button>
+            <zeta-button flavor="outline-subtle">Action 3</zeta-button>
+          </div>`
+        }
       </zeta-accordion-item>
       <zeta-accordion-item title="Accordion Item 2" .selectable=${args.selectable && !args.navigation} .navigation=${args.navigation} .rounded=${args.rounded}>
         ${!args.navigation && html`<div>content!</div>`}
