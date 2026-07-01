@@ -112,6 +112,24 @@ describe("zeta-in-page-banner", () => {
       const iconContainer = subject.shadowRoot?.querySelector('[part~="icon"]');
       expect(iconContainer).to.not.be.null;
     });
+
+    it("renders the correct title font when the css property is set", async () => {
+      const customFont = "25px Arial";
+      subject.style.setProperty("--banner-title-font", customFont);
+      await subject.updateComplete;
+      const titleElement = subject.shadowRoot?.querySelector(".title");
+      expect(titleElement).to.not.be.null;
+      await expect(getComputedStyle(titleElement!).font).to.equal(customFont);
+    });
+
+    it("renders the correct body font when the css property is set", async () => {
+      const customFont = "13px Arial";
+      subject.style.setProperty("--banner-body-font", customFont);
+      await subject.updateComplete;
+      const bodyElement = subject.shadowRoot?.querySelector("div[part='body']");
+      expect(bodyElement).to.not.be.null;
+      await expect(getComputedStyle(bodyElement!).font).to.equal(customFont);
+    });
   });
 
   // describe("Dimensions", () => {});

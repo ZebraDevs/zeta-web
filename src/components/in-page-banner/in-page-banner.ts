@@ -25,6 +25,8 @@ import type { ZetaIconName } from "@zebra-fed/zeta-icons";
  * @cssproperty --banner-background-color - The background color of the banner.
  * @cssproperty --banner-foreground-color - The foreground color of the banner.
  * @cssproperty --banner-icon-color - The icon color of the banner.
+ * @cssproperty --banner-title-font - The font of the banner title.
+ * @cssproperty --banner-body-font - The font of the banner body content.
  *
  * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21156-27071
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-in-page-banner--docs
