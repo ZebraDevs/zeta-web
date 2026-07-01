@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.3.6](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.3.5...zeta-web-v1.3.6) (2026-07-01)
+
+
+### ⛓️ Dependencies
+
+* Update deps ([17dc2f3](https://github.com/ZebraDevs/zeta-web/commit/17dc2f32fdc4fa7afe45835e132bc79a4b8e40bb))
+
+
+### 🧹 Miscellaneous Chores
+
+* **deps-dev:** bump dompurify from 3.4.10 to 3.4.11 ([#222](https://github.com/ZebraDevs/zeta-web/issues/222)) ([3b9b4d9](https://github.com/ZebraDevs/zeta-web/commit/3b9b4d96fcffedb2f59e49dbfd49479ba4d23246))
+* **deps:** bump @babel/core from 7.29.0 to 7.29.7 ([#226](https://github.com/ZebraDevs/zeta-web/issues/226)) ([39a861f](https://github.com/ZebraDevs/zeta-web/commit/39a861ff6286b39d421d5a18b82730eebfcbbd77))
+* **deps:** bump form-data from 4.0.5 to 4.0.6 ([#221](https://github.com/ZebraDevs/zeta-web/issues/221)) ([4c103b4](https://github.com/ZebraDevs/zeta-web/commit/4c103b45573f558538e916cc9e3c394a8a0553fe))
+* **deps:** bump js-yaml from 3.14.2 to 3.15.0 ([#223](https://github.com/ZebraDevs/zeta-web/issues/223)) ([050e7bc](https://github.com/ZebraDevs/zeta-web/commit/050e7bc167e01caf7f42c01ee541baea42fa3596))
+* **deps:** bump markdown-it from 14.1.1 to 14.2.0 ([#225](https://github.com/ZebraDevs/zeta-web/issues/225)) ([65114ff](https://github.com/ZebraDevs/zeta-web/commit/65114ff49cd63ff3c142648cfcb8ed5b1bb46807))
+* **deps:** bump tar from 7.5.11 to 7.5.19 ([#224](https://github.com/ZebraDevs/zeta-web/issues/224)) ([07d6c0d](https://github.com/ZebraDevs/zeta-web/commit/07d6c0d4953e15b25f2dab2272c904675c58b585))
+* **NO-TICKET:** Add CSS properties to in page banner ([#220](https://github.com/ZebraDevs/zeta-web/issues/220)) ([f977244](https://github.com/ZebraDevs/zeta-web/commit/f9772441f7279324c81f9ba86c04b04b16c75caa))
+
 ## [1.3.5](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.3.4...zeta-web-v1.3.5) (2026-06-30)
 
 
