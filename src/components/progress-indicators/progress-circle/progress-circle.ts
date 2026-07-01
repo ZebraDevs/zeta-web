@@ -77,8 +77,8 @@ export class ZetaProgressCircle extends Contourable(LitElement) {
                 ? html`<span
                     class="percentage"
                     style=${styleMap({
-                    fontSize: `${this.size / 4}px`
-                  })}
+                      fontSize: `${this.size / 4}px`
+                    })}
                   >
                     ${this.progress}%
                   </span>`
