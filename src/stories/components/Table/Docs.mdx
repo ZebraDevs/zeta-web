@@ -128,9 +128,9 @@ A full-featured, highly configurable data table web component.
     </tr>
     <tr>
       <td>Nested Rows</td>
-      <td>Expandable child rows</td>
+      <td>Expandable child rows or custom nested content (DOM Node)</td>
       <td>
-        <code>expandable</code> + <code>_children</code>
+        <code>expandable</code> + <code>_nested</code>
       </td>
     </tr>
     <tr>
@@ -306,11 +306,11 @@ A full-featured, highly configurable data table web component.
     </tr>
     <tr>
       <td>
-        <code>all-loaded</code>
+        <code>has-more-data</code>
       </td>
       <td>boolean</td>
-      <td>false</td>
-      <td>All data loaded (infinite scroll)</td>
+      <td>true</td>
+      <td>Whether there is more data to load (infinite scroll). Set to false when all data has been fetched.</td>
     </tr>
     <tr>
       <td>
@@ -537,9 +537,11 @@ Set via `ref` (React), `ViewChild` (Angular), `.prop` (Vue), or direct JS assign
       <td>
         <code>width</code>
       </td>
-      <td>number</td>
+      <td>number | string</td>
       <td>—</td>
-      <td>Initial width in px</td>
+      <td>
+        Initial column width. Number for pixels (e.g. <code>200</code>), string for any CSS unit (e.g. <code>"25%"</code>, <code>"12rem"</code>). Drag-resize converts to px.
+      </td>
     </tr>
     <tr>
       <td>
@@ -665,10 +667,10 @@ Set via `ref` (React), `ViewChild` (Angular), `.prop` (Vue), or direct JS assign
     </tr>
     <tr>
       <td>
-        <code>_children</code>
+        <code>_nested</code>
       </td>
-      <td>ZetaTableRow[]</td>
-      <td>Nested/expandable child rows</td>
+      <td>ZetaTableRow[] | Node</td>
+      <td>Nested content: an array of child rows (columns auto-derived from keys) or a DOM Node for fully custom nested views (images, components, etc.)</td>
     </tr>
     <tr>
       <td>
@@ -890,7 +892,8 @@ Set via `ref` (React), `ViewChild` (Angular), `.prop` (Vue), or direct JS assign
 <table>
   <thead>
     <tr>
-      <th>Event</th>
+      <th>CustomEvent Name</th>
+      <th>Callback Method</th>
       <th>Detail</th>
       <th>Description</th>
     </tr>
@@ -900,12 +903,18 @@ Set via `ref` (React), `ViewChild` (Angular), `.prop` (Vue), or direct JS assign
       <td>
         <code>zeta-table-row-click</code>
       </td>
+      <td>
+        <code>onRowClick</code>
+      </td>
       <td>{"{ row, rowId, rowIndex }"}</td>
       <td>Row clicked</td>
     </tr>
     <tr>
       <td>
         <code>zeta-table-selection-change</code>
+      </td>
+      <td>
+        <code>onSelectionChange</code>
       </td>
       <td>{"{ selectedIds }"}</td>
       <td>Checkbox selection changed</td>
@@ -914,12 +923,18 @@ Set via `ref` (React), `ViewChild` (Angular), `.prop` (Vue), or direct JS assign
       <td>
         <code>zeta-table-row-expand</code>
       </td>
+      <td>
+        <code>onRowExpand</code>
+      </td>
       <td>{"{ rowId, expanded }"}</td>
       <td>Row expanded/collapsed</td>
     </tr>
     <tr>
       <td>
         <code>zeta-table-action</code>
+      </td>
+      <td>
+        <code>onRowAction</code>
       </td>
       <td>{"{ actionKey, row, rowIndex }"}</td>
       <td>Row action menu item clicked</td>
@@ -932,7 +947,8 @@ Set via `ref` (React), `ViewChild` (Angular), `.prop` (Vue), or direct JS assign
 <table>
   <thead>
     <tr>
-      <th>Event</th>
+      <th>CustomEvent Name</th>
+      <th>Callback Method</th>
       <th>Detail</th>
       <th>Description</th>
     </tr>
@@ -942,12 +958,18 @@ Set via `ref` (React), `ViewChild` (Angular), `.prop` (Vue), or direct JS assign
       <td>
         <code>zeta-table-sort-change</code>
       </td>
+      <td>
+        <code>onSortChange</code>
+      </td>
       <td>{"{ field, direction }"}</td>
       <td>Column sort changed</td>
     </tr>
     <tr>
       <td>
         <code>zeta-table-column-filter</code>
+      </td>
+      <td>
+        <code>onColumnFilter</code>
       </td>
       <td>{"{ field, selectedValues }"}</td>
       <td>Column filter applied</td>
@@ -956,12 +978,18 @@ Set via `ref` (React), `ViewChild` (Angular), `.prop` (Vue), or direct JS assign
       <td>
         <code>zeta-table-column-search</code>
       </td>
+      <td>
+        <code>onColumnSearch</code>
+      </td>
       <td>{"{ field, value, searchValues }"}</td>
       <td>Column search changed</td>
     </tr>
     <tr>
       <td>
         <code>zeta-table-search</code>
+      </td>
+      <td>
+        <code>onTableSearch</code>
       </td>
       <td>{"{ value }"}</td>
       <td>Global search changed</td>
@@ -974,7 +1002,8 @@ Set via `ref` (React), `ViewChild` (Angular), `.prop` (Vue), or direct JS assign
 <table>
   <thead>
     <tr>
-      <th>Event</th>
+      <th>CustomEvent Name</th>
+      <th>Callback Method</th>
       <th>Detail</th>
       <th>Description</th>
     </tr>
@@ -984,12 +1013,18 @@ Set via `ref` (React), `ViewChild` (Angular), `.prop` (Vue), or direct JS assign
       <td>
         <code>zeta-table-page-change</code>
       </td>
+      <td>
+        <code>onPageChange</code>
+      </td>
       <td>{"{ page, pageSize }"}</td>
       <td>Page changed</td>
     </tr>
     <tr>
       <td>
         <code>zeta-table-load-more</code>
+      </td>
+      <td>
+        <code>onLoadMore</code>
       </td>
       <td>{"{ currentCount }"}</td>
       <td>More data needed (infinite scroll)</td>
@@ -998,12 +1033,18 @@ Set via `ref` (React), `ViewChild` (Angular), `.prop` (Vue), or direct JS assign
       <td>
         <code>zeta-table-export</code>
       </td>
+      <td>
+        <code>onExport</code>
+      </td>
       <td>{"{ csv, columns, data }"}</td>
       <td>Export clicked</td>
     </tr>
     <tr>
       <td>
         <code>zeta-table-refresh</code>
+      </td>
+      <td>
+        <code>onRefresh</code>
       </td>
       <td>—</td>
       <td>Refresh clicked</td>

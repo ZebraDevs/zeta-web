@@ -479,10 +479,14 @@ export default css`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    cursor: default;
+  }
+
+  .zeta-table-header-title--sortable {
     cursor: pointer;
   }
 
-  .zeta-table-header-title:hover {
+  .zeta-table-header-title--sortable:hover {
     color: var(--table-sort-active-color);
   }
 

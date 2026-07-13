@@ -32,7 +32,7 @@ export interface ZetaTableReactProps {
   data: ZetaTableRow[];
   paginationType?: PaginationType;
   loading?: boolean;
-  allLoaded?: boolean;
+  hasMoreData?: boolean;
   selectable?: boolean;
   selectAll?: boolean;
   selectedRows?: (string | number)[];
@@ -106,7 +106,7 @@ export const ZetaTableReact = forwardRef<HTMLElement, ZetaTableReactProps>(funct
     data,
     paginationType,
     loading,
-    allLoaded,
+    hasMoreData,
     selectable,
     selectAll,
     selectedRows,
@@ -262,7 +262,7 @@ export const ZetaTableReact = forwardRef<HTMLElement, ZetaTableReactProps>(funct
     // with undefined (which would clear the value).
     if (paginationType !== undefined) table.paginationType = paginationType;
     if (loading !== undefined) table.loading = loading;
-    if (allLoaded !== undefined) table.allLoaded = allLoaded;
+    if (hasMoreData !== undefined) table.hasMoreData = hasMoreData;
     if (selectable !== undefined) table.selectable = selectable;
     if (selectAll !== undefined) table.selectAll = selectAll;
     if (selectedRows !== undefined) table.selectedRows = selectedRows;
@@ -306,7 +306,7 @@ export const ZetaTableReact = forwardRef<HTMLElement, ZetaTableReactProps>(funct
     // All props are listed as dependencies so the effect re-runs whenever
     // the consumer passes new values. This is the single source of truth
     // for syncing React props → Lit element properties.
-    columns, data, paginationType, loading, allLoaded,
+    columns, data, paginationType, loading, hasMoreData,
     selectable, selectAll, selectedRows, expandable, exportable,
     columnConfigure, showDataCount, tableTitle, pageSize, currentPage,
     totalItems, actionsLabel, searchPlaceholder, refreshLabel, columnsLabel,

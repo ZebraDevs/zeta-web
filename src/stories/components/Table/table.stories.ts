@@ -41,7 +41,8 @@ const sampleColumns: ZetaTableColumn[] = [
     tooltip: true,
     resizable: true
   },
-  { field: "startDate", title: "Start Date", width: 120, sortable: true, filterable: true, tooltip: false, resizable: true }
+  { field: "startDate", title: "Start Date", width: 120, sortable: true, filterable: true, tooltip: false, resizable: true },
+  { field: "favorite", title: "★", width: 50, sortable: false, filterable: false, resizable: false }
 ];
 
 const departments = ["Engineering", "Marketing", "Sales", "HR", "Finance", "Operations"];
@@ -64,27 +65,81 @@ function getActionsForRole(role: string, disabled: boolean): ZetaTableAction[] |
   ];
 }
 
+/** Creates a DOM element styled as a colored status badge */
+function createStatusBadge(text: string, color: string, bg: string): HTMLElement {
+  const badge = document.createElement("span");
+  badge.textContent = text;
+  badge.style.cssText = `display:inline-flex; align-items:center; padding:2px 8px; border-radius:12px; font-size:12px; font-weight:500; color:${color}; background:${bg};`;
+  return badge;
+}
+
+/** Creates a DOM element with an inline SVG user icon + name side by side */
+function createIconName(name: string): HTMLElement {
+  const wrapper = document.createElement("div");
+  wrapper.style.cssText = "display:flex; align-items:center; gap:8px;";
+  wrapper.innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" style="fill:#6b7280; flex-shrink:0;"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg><span>${name}</span>`;
+  return wrapper;
+}
+
+/** Creates a star rating toggle button (interactive DOM Node) */
+function createStarButton(filled: boolean): HTMLElement {
+  const btn = document.createElement("button");
+  btn.title = filled ? "Unstar" : "Star";
+  btn.style.cssText = "background:none; border:none; cursor:pointer; padding:2px; display:inline-flex; align-items:center;";
+  btn.innerHTML = filled
+    ? `<svg viewBox="0 0 24 24" width="18" height="18" style="fill:#f59e0b;"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>`
+    : `<svg viewBox="0 0 24 24" width="18" height="18" style="fill:#d1d5db;"><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"/></svg>`;
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const isFilled = btn.querySelector("svg")!.style.fill === "rgb(245, 158, 11)";
+    btn.innerHTML = isFilled
+      ? `<svg viewBox="0 0 24 24" width="18" height="18" style="fill:#d1d5db;"><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"/></svg>`
+      : `<svg viewBox="0 0 24 24" width="18" height="18" style="fill:#f59e0b;"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>`;
+    btn.title = isFilled ? "Star" : "Unstar";
+  });
+  return btn;
+}
+
+const roleStyles: Record<string, { color: string; bg: string }> = {
+  Manager: { color: "#0d6832", bg: "#dcfce7" },
+  Senior: { color: "#1d4ed8", bg: "#dbeafe" },
+  Junior: { color: "#92400e", bg: "#fef3c7" },
+  Lead: { color: "#6d28d9", bg: "#ede9fe" },
+  Director: { color: "#9f1239", bg: "#ffe4e6" },
+  Intern: { color: "#475569", bg: "#f1f5f9" }
+};
+
 function generateData(count: number): ZetaTableRow[] {
   const data: ZetaTableRow[] = [];
   for (let i = 1; i <= count; i++) {
     const role = roles[i % roles.length];
     const isDisabled = i === 7;
+    const rs = roleStyles[role] || { color: "#333", bg: "#eee" };
     data.push({
       id: i,
-      name: `Employee ${i}`,
+      name: createIconName(`Employee ${i}`),
       email: `employee${i}@company.com`,
       department: departments[i % departments.length],
-      role,
+      role: createStatusBadge(role, rs.color, rs.bg),
       salary: `$${50000 + i * 1500}`,
       location: locations[i % locations.length],
       startDate: `2020-${String((i % 12) + 1).padStart(2, "0")}-${String((i % 28) + 1).padStart(2, "0")}`,
+      favorite: createStarButton(i % 4 === 0),
       _nested:
-        i % 3 === 0
-          ? [
-              { id: `${i}-1`, name: "Sub-task 1", email: "-", department: "-", role: "Task", salary: "-", location: "-", startDate: "-" },
-              { id: `${i}-2`, name: "Sub-task 2", email: "-", department: "-", role: "Task", salary: "-", location: "-", startDate: "-" }
-            ]
-          : undefined,
+        i % 5 === 0
+          ? (() => {
+              const el = document.createElement("div");
+              el.style.cssText = "padding:12px; display:flex; gap:16px; align-items:center;";
+              el.innerHTML = `<svg viewBox="0 0 24 24" width="48" height="48" style="fill:#6b7280; flex-shrink:0;"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                <div><strong>Employee ${i} — Custom View</strong><br/><span style="color:#666;">This nested content is a DOM Node. Consumers can render anything here: icons, charts, forms, etc.</span></div>`;
+              return el;
+            })()
+          : i % 3 === 0
+            ? [
+                { id: `${i}-1`, task: "Sub-task 1", status: createStatusBadge("Done", "#0d6832", "#dcfce7"), priority: createStatusBadge("High", "#9f1239", "#ffe4e6") },
+                { id: `${i}-2`, task: "Sub-task 2", status: createStatusBadge("In Progress", "#1d4ed8", "#dbeafe"), priority: createStatusBadge("Medium", "#92400e", "#fef3c7") }
+              ]
+            : undefined,
       _disabled: isDisabled,
       _checkboxDisabled: i === 4,
       _actions: getActionsForRole(role, isDisabled)
@@ -121,7 +176,7 @@ const meta: Meta<TableStory> = {
     pageSize: 10,
     currentPage: 1,
     loading: false,
-    allLoaded: false,
+    hasMoreData: true,
     columns: sampleColumns,
     data: generateData(50),
     selectedRows: [1, 3],
@@ -146,7 +201,7 @@ const meta: Meta<TableStory> = {
     showDataCount: { control: "boolean", description: "Show data count badge (e.g. 50 out of 50)" },
     allowDisabledSelection: { control: "boolean", description: "Allow checkbox/actions on disabled rows" },
     loading: { control: "boolean", description: "Loading state (for infinite scroll)" },
-    allLoaded: { control: "boolean", description: "Whether all data has been loaded (infinite scroll)" },
+    hasMoreData: { control: "boolean", description: "Whether there is more data to load (infinite scroll)" },
     tableTitle: { control: "text", description: "Title displayed in header bar" },
     searchPlaceholder: { control: "text", description: "Placeholder for global search input" },
     refreshLabel: { control: "text", description: "Tooltip text for refresh button (localization)" },
@@ -169,7 +224,7 @@ const meta: Meta<TableStory> = {
       description:
         "Column definitions. Per-column options: sortable, filterable, filterOptions, frozen, visible, tooltip, tooltipOnEllipsisOnly, resizable, disabled, width, minWidth"
     },
-    data: { control: "object", description: "Row data array. Per-row options: _disabled, _checkboxDisabled, _nested, _actions" },
+    data: { control: "object", description: "Row data array. Per-row options: _disabled, _checkboxDisabled, _nested (ZetaTableRow[] | Node), _actions" },
     selectedRows: { control: "object", description: "Array of initially selected row IDs" },
     disabledRows: { control: "object", description: "Array of disabled row IDs" }
   },
@@ -215,6 +270,47 @@ export const TableAll: StoryObj<TableStory> = {
       ...rest
     } = args;
 
+    const masterData = data as ZetaTableRow[];
+    let filteredData = [...masterData];
+    let currentSort: { field: string; direction: "asc" | "desc" | null } = { field: "", direction: null };
+    let currentPageNum = 1;
+
+    function toSortable(val: unknown): string | number | null {
+      if (val == null) return null;
+      if (typeof val === "number") return val;
+      if (val instanceof Node) return (val as HTMLElement).textContent?.trim().toLowerCase() ?? "";
+      return String(val).toLowerCase();
+    }
+
+    function sortData(rows: ZetaTableRow[]): ZetaTableRow[] {
+      if (!currentSort.field || !currentSort.direction) return [...rows];
+      const { field, direction } = currentSort;
+      return [...rows].sort((a, b) => {
+        const aVal = toSortable(a[field]);
+        const bVal = toSortable(b[field]);
+        if (aVal == null && bVal == null) return 0;
+        if (aVal == null) return 1;
+        if (bVal == null) return -1;
+        if (typeof aVal === "number" && typeof bVal === "number") {
+          return direction === "asc" ? aVal - bVal : bVal - aVal;
+        }
+        const cmp = String(aVal).localeCompare(String(bVal));
+        return direction === "asc" ? cmp : -cmp;
+      });
+    }
+
+    function updateTable(table: ZetaTable) {
+      const sorted = sortData(filteredData);
+      if (table.paginationType === "numbered") {
+        const pgSize = table.pageSize || 10;
+        const start = (currentPageNum - 1) * pgSize;
+        table.data = sorted.slice(start, start + pgSize);
+      } else {
+        table.data = sorted;
+      }
+      table.totalItems = filteredData.length;
+    }
+
     const handleSelectOnRowClick = (rowData: unknown, rowIndex: number) => {
       console.log("Row clicked & selected:", { rowIndex, rowData });
       (onSelectOnRowClick as Function)?.();
@@ -225,7 +321,10 @@ export const TableAll: StoryObj<TableStory> = {
       (onAction as Function)?.();
     };
 
-    const handleSortChange = (field: string, direction: "asc" | "desc" | null) => {
+    const handleSortChange = function (this: ZetaTable, field: string, direction: "asc" | "desc" | null) {
+      currentSort = { field, direction };
+      currentPageNum = 1;
+      updateTable(this);
       console.log("Sort changed:", { field, direction });
       (onSortChange as Function)?.();
     };
@@ -235,7 +334,9 @@ export const TableAll: StoryObj<TableStory> = {
       (onSelChange as Function)?.();
     };
 
-    const handlePageChange = (page: number, pgSize: number) => {
+    const handlePageChange = function (this: ZetaTable, page: number, pgSize: number) {
+      currentPageNum = page;
+      updateTable(this);
       console.log("Page changed:", { page, pageSize: pgSize });
       (onPageChange as Function)?.();
     };
@@ -255,59 +356,59 @@ export const TableAll: StoryObj<TableStory> = {
       (onExpand as Function)?.();
     };
 
-    const allData = data as ZetaTableRow[];
-
     const handleTableSearch = function (this: ZetaTable, searchTerm: string) {
       if (!searchTerm.trim()) {
-        this.data = [...allData];
-        this.totalItems = allData.length;
+        filteredData = [...masterData];
       } else {
         const term = searchTerm.toLowerCase();
-        const filtered = allData.filter(row =>
+        filteredData = masterData.filter(row =>
           Object.values(row).some(val => val != null && typeof val !== "object" && String(val).toLowerCase().includes(term))
         );
-        this.data = filtered;
-        this.totalItems = filtered.length;
       }
+      currentPageNum = 1;
+      updateTable(this);
       console.log("Global search:", searchTerm);
     };
 
     const handleColumnSearch = function (this: ZetaTable, field: string, value: string, allSearchValues: Record<string, string>) {
       const filterKeys = Object.keys(allSearchValues);
       if (filterKeys.length === 0) {
-        this.data = [...allData];
-        this.totalItems = allData.length;
+        filteredData = [...masterData];
       } else {
-        const filtered = allData.filter(row =>
+        filteredData = masterData.filter(row =>
           filterKeys.every(f =>
             String(row[f] ?? "")
               .toLowerCase()
               .includes(allSearchValues[f].toLowerCase())
           )
         );
-        this.data = filtered;
-        this.totalItems = filtered.length;
       }
+      currentPageNum = 1;
+      updateTable(this);
       console.log("Column search:", { field, value, allSearchValues });
     };
 
     const handleColumnFilter = function (this: ZetaTable, field: string, selectedValues: string[]) {
       if (selectedValues.length === 0) {
-        this.data = [...allData];
-        this.totalItems = allData.length;
+        filteredData = [...masterData];
       } else {
-        const filtered = allData.filter(row => selectedValues.includes(String(row[field] ?? "")));
-        this.data = filtered;
-        this.totalItems = filtered.length;
+        filteredData = masterData.filter(row => selectedValues.includes(String(row[field] ?? "")));
       }
+      currentPageNum = 1;
+      updateTable(this);
       console.log("Column filter:", { field, selectedValues });
     };
 
     const handleRefresh = function (this: ZetaTable) {
-      this.data = [...allData];
-      this.totalItems = allData.length;
+      filteredData = [...masterData];
+      currentSort = { field: "", direction: null };
+      currentPageNum = 1;
+      updateTable(this);
       console.log("Data refreshed");
     };
+
+    const initialPageSize = pageSize || 10;
+    const initialData = paginationType === "numbered" ? masterData.slice(0, initialPageSize) : [...masterData];
 
     return html`
       <p style="margin-bottom:12px; font-size:13px; color:#6b7280;">
@@ -325,7 +426,8 @@ export const TableAll: StoryObj<TableStory> = {
       <zeta-table
         ${spread(rest)}
         .columns=${columns}
-        .data=${data}
+        .data=${initialData}
+        .totalItems=${masterData.length}
         .selectedRows=${selectedRows}
         .disabledRows=${disabledRows || []}
         .showDataCount=${showDataCount}
@@ -374,10 +476,10 @@ export const InfiniteScrollWithAPI: StoryObj<TableStory> = {
     const totalRecords = 100;
     let currentData = generateData(20);
     let isLoading = false;
-    let allLoaded = false;
+    let hasMoreData = true;
 
     const handleLoadMore = function (this: ZetaTable, currentCount: number) {
-      if (isLoading || allLoaded) return;
+      if (isLoading || !hasMoreData) return;
       isLoading = true;
       this.loading = true;
 
@@ -385,10 +487,10 @@ export const InfiniteScrollWithAPI: StoryObj<TableStory> = {
         const nextBatch = generateData(currentCount + 20).slice(currentCount);
         currentData = [...currentData, ...nextBatch];
         isLoading = false;
-        allLoaded = currentData.length >= totalRecords;
+        hasMoreData = currentData.length < totalRecords;
         this.data = [...currentData];
         this.loading = false;
-        this.allLoaded = allLoaded;
+        this.hasMoreData = hasMoreData;
         console.log(`Loaded ${currentData.length} of ${totalRecords} rows`);
       }, 2000);
     };

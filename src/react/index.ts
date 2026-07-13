@@ -6,4 +6,4 @@ export type {
   ZetaTableAction,
   PaginationType,
   SortDirection
-} from "../components/table/ZetaTableReact.js";
+} from "../components/table/table.js";

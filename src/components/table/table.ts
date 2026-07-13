@@ -5,10 +5,25 @@ import { classMap } from "lit/directives/class-map.js";
 import { styleMap } from "lit/directives/style-map.js";
 import styles from "./table.styles.js";
 
+/**
+ * Defines a single column in the table.
+ * Each column maps to a `field` key in the row data objects.
+ * Consumers pass an array of these to configure headers, sorting, filtering, freezing, and tooltips.
+ */
 export interface ZetaTableColumn {
+  /** Data key — must match a property name in each ZetaTableRow object */
   field: string;
+  /** Display text shown in the column header */
   title: string;
-  width?: number;
+  /**
+   * Initial column width (overridden by user drag-resize).
+   * - **Number**: treated as pixels, e.g. `width: 200` → `200px`
+   * - **String**: used as-is as a CSS value, e.g. `width: "25%"`, `width: "12rem"`
+   *
+   * When the user drag-resizes a column, the width is converted to pixels regardless of the original unit.
+   */
+  width?: number | string;
+  /** Minimum width in pixels during resize (default: 60) */
   minWidth?: number;
   /** Enable sorting on this column (default: true) */
   sortable?: boolean;
@@ -30,36 +45,63 @@ export interface ZetaTableColumn {
   disabled?: boolean;
 }
 
+/** Sort direction: ascending, descending, or cleared (null = unsorted) */
 export type SortDirection = "asc" | "desc" | null;
 
+/**
+ * Internal sort tracking. `clickCount` drives the 3-state cycle:
+ * 1st click → asc, 2nd → desc, 3rd → reset to unsorted.
+ */
 export interface SortState {
   field: string;
   direction: SortDirection;
   clickCount: number;
 }
 
+/**
+ * Pagination strategy:
+ * - "none": all data rendered at once (no pagination)
+ * - "numbered": traditional page navigation with prev/next and page numbers
+ * - "infinite": auto-load more data via IntersectionObserver when user scrolls to the bottom
+ */
 export type PaginationType = "none" | "numbered" | "infinite";
 
+/**
+ * Defines a single item in the per-row action (kebab) menu.
+ * Consumers provide these via `rowActions` (global fallback) or `row._actions` (per-row override).
+ */
 export interface ZetaTableAction {
-  /** Unique key for this action */
+  /** Unique key for this action — passed to onRowAction callback to identify which action was clicked */
   key: string;
-  /** Display label */
+  /** Display label shown in the menu dropdown */
   label: string;
-  /** Optional icon (SVG string or emoji) */
+  /** Optional icon (SVG string or emoji) rendered before the label */
   icon?: string;
   /** Whether this action is disabled for a specific row (checked at render time) */
   disabled?: boolean;
 }
 
+/**
+ * Represents a single row of data in the table.
+ * Must have a unique `id`. All other keys map to column `field` values.
+ * Supports special underscore-prefixed properties for row-level behavior.
+ */
 export interface ZetaTableRow {
+  /** Unique identifier for this row — used for selection tracking, expansion, and action dispatch */
   id: string | number;
+  /** Data fields — keys should match column `field` names. Values can be strings, numbers, or DOM Nodes (for custom cell rendering). */
   [key: string]: unknown;
-  _nested?: ZetaTableRow[];
-  /** Disable this row (no interaction) */
+  /**
+   * Nested content shown when the row is expanded.
+   * - `ZetaTableRow[]`: Array of child rows — columns are auto-derived from the first item's keys.
+   * - `Node`: A DOM element rendered as-is, allowing consumers to provide fully custom nested views (images, components, etc.).
+   */
+  _nested?: ZetaTableRow[] | Node;
+  /** Disable this row (grey out, no interaction unless allowDisabledSelection is set) */
   _disabled?: boolean;
-  /** Disable checkbox for this specific row */
+  /** Disable only the checkbox for this row (row itself remains interactive) */
   _checkboxDisabled?: boolean;
-  /** Per-row action menu items. Pass `null` or omit to hide the menu for this row. */
+  /** Per-row action menu items. Pass `null` to hide the kebab menu for this specific row, or omit to use the global `rowActions` fallback. */
   _actions?: ZetaTableAction[] | null;
 }
 
@@ -67,7 +109,7 @@ export interface ZetaTableRow {
  * A full-featured, highly configurable data table component.
  *
  * ## Features
- * - **Sorting**: 3-state per-column sorting (asc → desc → none). Configurable per column via `sortable`.
+ * - **Sorting**: 3-state per-column sort indicator (asc → desc → none). Sorting is delegated to the consumer via `onSortChange`. Configurable per column via `sortable`.
  * - **Column Search**: Optional per-column search inputs. Enabled when `onColumnSearch` callback is provided.
  * - **Column Filter**: Optional per-column filter dropdown with checkboxes (Clear/Apply). Enabled when `onColumnFilter` is provided. Options via `filterOptions` on column or auto-populated from data.
  * - **Global Search**: Optional search bar in header. Enabled when `onTableSearch` callback is provided.
@@ -77,7 +119,7 @@ export interface ZetaTableRow {
  * - **Frozen Columns**: Columns can be frozen via `frozen` property or the column configure panel.
  * - **Column Resizing**: Drag to resize. Double-click header to auto-fit.
  * - **Column Configure**: Show/hide and freeze/unfreeze columns from a dropdown panel.
- * - **Pagination**: Numbered or infinite scroll. Server-side via `totalItems`.
+ * - **Pagination**: Numbered or infinite scroll. Consumer provides paged data via `onPageChange`/`onLoadMore` callbacks. Use `totalItems` to tell the table the full dataset size for page count calculation.
  * - **Nested Rows**: Expandable child rows via `_nested` property on row data.
  * - **Export**: CSV export of visible data.
  * - **Refresh**: Optional refresh button with consumer-controlled reload.
@@ -120,7 +162,7 @@ export interface ZetaTableRow {
  * {
  *   field: string;          // Data key
  *   title: string;          // Display header text
- *   width?: number;         // Initial width in px
+ *   width?: number | string; // Initial width — number for px (e.g. 200), string for CSS (e.g. "25%", "12rem")
  *   minWidth?: number;      // Minimum width for resize (default: 60)
  *   sortable?: boolean;     // Enable sorting (default: true)
  *   filterable?: boolean;   // Enable search/filter (default: true)
@@ -141,7 +183,7 @@ export interface ZetaTableRow {
  *   [key: string]: unknown;     // Data fields matching column `field` names
  *   _disabled?: boolean;        // Disable row (grey out, no interaction)
  *   _checkboxDisabled?: boolean; // Disable only the checkbox (row still interactive)
- *   _nested?: ZetaTableRow[]; // Nested/expandable child rows
+ *   _nested?: ZetaTableRow[] | Node; // Nested content: array of child rows (auto-columns) or a DOM Node (custom view)
  *   _actions?: ZetaTableAction[] | null; // Per-row kebab menu items (null = hide menu)
  * }
  * ```
@@ -315,9 +357,9 @@ export class ZetaTable extends LitElement {
   @property({ type: Boolean, reflect: true })
   loading = false;
 
-  /** Whether all data has been loaded (infinite scroll) */
-  @property({ type: Boolean, attribute: "all-loaded" })
-  allLoaded = false;
+  /** Whether there is more data to load (infinite scroll). Set to false when all data has been fetched. */
+  @property({ type: Boolean, attribute: "has-more-data" })
+  hasMoreData = true;
 
   /** Callback when infinite scroll needs more data. Receives current data count. */
   @property({ attribute: false })
@@ -353,41 +395,117 @@ export class ZetaTable extends LitElement {
   /** Custom loading indicator content for infinite scroll. Accepts a DOM node or string. */
   @property({ attribute: false }) loadingContent: unknown = null;
 
+  // ─── Internal Reactive State (@state) ───
+  // These trigger a re-render when changed but are NOT exposed as public attributes.
+
+  /** Set of currently selected row IDs — drives checkbox states and selection count */
   @state() private _selectedRows: Set<string | number> = new Set();
+
+  /** Current sort state: which field, which direction, and click count for the 3-state cycle */
   @state() private _sortState: SortState = { field: "", direction: null, clickCount: 0 };
+
+  /** Per-column search input values, keyed by field name */
   @state() private _searchValues: Record<string, string> = {};
+
+  /** Current value of the global (toolbar) search input */
   @state() private _globalSearchValue = "";
+
+  /** User-adjusted column widths (from drag resize), keyed by field name */
   @state() private _columnWidths: Record<string, number> = {};
+
+  /** Set of field names for columns currently visible (column configure panel toggles these) */
   @state() private _visibleColumns: Set<string> = new Set();
+
+  /** Set of field names for columns currently frozen (pinned to the left during horizontal scroll) */
   @state() private _frozenColumns: Set<string> = new Set();
+
+  /** Set of row IDs whose nested sub-rows are currently expanded */
   @state() private _expandedRows: Set<string | number> = new Set();
+
+  /** Whether the column configure dropdown panel is currently visible */
   @state() private _columnConfigureVisible = false;
+
+  /** Field name of the column whose filter dropdown panel is currently open (null = closed) */
   @state() private _filterPanelField: string | null = null;
+
+  /** Viewport-relative position for the filter dropdown panel */
   @state() private _filterPanelPos: { top: number; left: number } = { top: 0, left: 0 };
+
+  /** Currently applied filters per column — keyed by field, value is the set of selected filter options */
   @state() private _activeFilters: Record<string, Set<string>> = {};
+
+  /** Temporary filter selections in the open filter panel (committed to _activeFilters on "Apply") */
   @state() private _pendingFilterSelections: Set<string> = new Set();
+
+  /** Tooltip content and position state */
   @state() private _tooltipText = "";
   @state() private _tooltipX = 0;
   @state() private _tooltipY = 0;
   @state() private _tooltipVisible = false;
+
+  /** Set of disabled row IDs (synced from the `disabledRows` public property for O(1) lookup) */
   @state() private _disabledRows: Set<string | number> = new Set();
+
+  /** ID of the row that was last clicked (drives the active/highlight style) */
   @state() private _activeRow: string | number | null = null;
+
+  /** ID of the row whose action (kebab) menu is currently open (null = no menu open) */
   @state() private _actionMenuRowId: string | number | null = null;
+
+  /** Viewport-relative position for the action menu dropdown */
   @state() private _actionMenuPos: { top: number; left: number } = { top: 0, left: 0 };
+
+  /** Whether to render the actions column (true if any row has actions defined) */
   @state() private _showActionsColumn = false;
 
+  // ─── Non-reactive Private Fields ───
+  // These do NOT trigger re-renders when changed — used for imperative DOM tracking.
+
+  /** Getter for the scrollable container element (used for scroll listeners and IntersectionObserver root) */
   private get _scrollContainer(): HTMLElement | null {
     return this.querySelector(".zeta-table-scroll");
   }
 
+  /** Field name of the column currently being resized (null when not resizing) */
   private _resizingColumn: string | null = null;
+  /** Mouse X position when resize drag started */
   private _resizeStartX = 0;
+  /** Column width in px when resize drag started */
   private _resizeStartWidth = 0;
+  /** Set of field names that the user has manually drag-resized */
+  private _manuallyResizedColumns: Set<string> = new Set();
+
+  /** IntersectionObserver instance for infinite scroll sentinel detection */
   private _intersectionObserver: IntersectionObserver | null = null;
+
+  /** Debounce timer for tooltip show delay (400ms) */
   private _tooltipTimer: ReturnType<typeof setTimeout> | null = null;
+
+  /**
+   * Saved scroll position before data updates (infinite scroll).
+   * Captured in willUpdate, restored in updated to prevent scroll jumping
+   * when new rows are appended to the DOM.
+   */
   private _savedScrollTop?: number;
+
+  /**
+   * Number of data rows at the time loading started.
+   * Used to keep the loading row visible during the gap between `loading=false`
+   * and new data arriving (prevents a flash of empty space). Reset to -1 when idle.
+   */
   private _dataLengthWhenLoadingStarted = -1;
 
+  /**
+   * Lit lifecycle: called when the element is added to the DOM.
+   *
+   * - Injects the component's CSS into <head> as a global <style> tag (Light DOM
+   *   requires global styles since there's no shadow root to scope them).
+   *   Uses a `data-zeta-table` attribute guard to prevent duplicate injection
+   *   when multiple <zeta-table> instances exist on the same page.
+   * - Syncs public array props (selectedRows, disabledRows) into internal Sets for O(1) lookup.
+   * - Registers a document-level click listener to close dropdowns (column panel, action menu,
+   *   filter panel) when clicking outside.
+   */
   override connectedCallback() {
     super.connectedCallback();
     if (!document.querySelector("style[data-zeta-table]")) {
@@ -398,25 +516,45 @@ export class ZetaTable extends LitElement {
     }
     this._syncSelectedRows();
     this._syncDisabledRows();
-    document.addEventListener("click", this._handleDocumentClick);
+    document.addEventListener("click", this._closeOverlaysOnOutsideClick);
   }
 
+  /**
+   * Lit lifecycle: called when the element is removed from the DOM.
+   * Cleans up all external listeners and observers to prevent memory leaks.
+   */
   override disconnectedCallback() {
     super.disconnectedCallback();
-    document.removeEventListener("click", this._handleDocumentClick);
+    document.removeEventListener("click", this._closeOverlaysOnOutsideClick);
     this._scrollContainer?.removeEventListener("scroll", this._handleScrollClose);
     this._destroyInfiniteScrollObserver();
   }
 
+  /**
+   * Lit lifecycle: called before each render when reactive properties change.
+   * Handles scroll position preservation and state synchronization.
+   *
+   * Scroll preservation for infinite scroll:
+   * 1. When `data` changes → save current scroll position (before DOM updates)
+   * 2. When `loading` becomes true → record how many rows existed (to keep loading row visible)
+   * 3. When `loading` becomes false but data hasn't arrived yet → wait 150ms before hiding
+   *    the loading row (prevents flash of empty space during async data propagation)
+   * 4. When new data arrives (length > saved length) → clear the loading guard
+   * 5. When `hasMoreData` becomes false → clear loading guard (all data loaded)
+   */
   override willUpdate(changed: PropertyValues) {
+    // Save scroll position before new data causes a DOM re-render
     if (changed.has("data") && this.paginationType === "infinite") {
       const sc = this._scrollContainer;
       if (sc) this._savedScrollTop = sc.scrollTop;
     }
+
+    // Track loading transitions to keep the loading row visible during data fetch gaps
     if (changed.has("loading") && this.paginationType === "infinite") {
       if (this.loading) {
         this._dataLengthWhenLoadingStarted = this.data.length;
       } else if (!changed.has("data") && this._dataLengthWhenLoadingStarted >= 0) {
+        // Loading ended but data hasn't changed yet — keep loading row visible briefly
         setTimeout(() => {
           if (this._dataLengthWhenLoadingStarted >= 0) {
             this._dataLengthWhenLoadingStarted = -1;
@@ -425,30 +563,47 @@ export class ZetaTable extends LitElement {
         }, 150);
       }
     }
+
+    // New data arrived while loading guard is active → clear it
     if (changed.has("data") && this._dataLengthWhenLoadingStarted >= 0 && this.data.length > this._dataLengthWhenLoadingStarted) {
       this._dataLengthWhenLoadingStarted = -1;
     }
-    if (changed.has("allLoaded") && this.allLoaded) {
+
+    // All data loaded → no need for the loading guard anymore
+    if (changed.has("hasMoreData") && !this.hasMoreData) {
       this._dataLengthWhenLoadingStarted = -1;
     }
+
+    // Sync column visibility and widths when column definitions change
     if (changed.has("columns")) {
       this._syncVisibleColumns();
       this._syncColumnWidths();
     }
+
+    // Sync public array props to internal Sets when they change externally
     if (changed.has("selectedRows")) {
       this._syncSelectedRows();
     }
     if (changed.has("disabledRows")) {
       this._syncDisabledRows();
     }
+
+    // Sync external currentPage to internal state
     if (changed.has("currentPage")) {
       this._currentPage = this.currentPage;
     }
+
+    // Determine if the actions column should be shown (if any row has actions)
     if (changed.has("data") || changed.has("rowActions")) {
       this._showActionsColumn = this.rowActions.length > 0 || this.data.some(row => row._actions && row._actions.length > 0);
     }
   }
 
+  /**
+   * Lit lifecycle: called once after the first render.
+   * Sets up the IntersectionObserver for infinite scroll and attaches the
+   * scroll listener to close dropdowns on scroll.
+   */
   override firstUpdated() {
     if (this.paginationType === "infinite") {
       this._setupInfiniteScrollObserver();
@@ -456,6 +611,13 @@ export class ZetaTable extends LitElement {
     this._scrollContainer?.addEventListener("scroll", this._handleScrollClose);
   }
 
+  /**
+   * Lit lifecycle: called after every render (including first).
+   *
+   * - Manages IntersectionObserver lifecycle when paginationType changes at runtime.
+   * - Restores saved scroll position after data-driven DOM updates to prevent
+   *   the viewport from jumping when new rows are appended.
+   */
   override updated(changed: PropertyValues) {
     if (changed.has("paginationType")) {
       if (this.paginationType === "infinite") {
@@ -464,6 +626,8 @@ export class ZetaTable extends LitElement {
         this._destroyInfiniteScrollObserver();
       }
     }
+
+    // Restore scroll position after data update (captured in willUpdate)
     if (changed.has("data") && this._savedScrollTop !== undefined) {
       const sc = this._scrollContainer;
       if (sc) sc.scrollTop = this._savedScrollTop;
@@ -471,35 +635,57 @@ export class ZetaTable extends LitElement {
     }
   }
 
+  // ─── State Synchronization Helpers ───
+  // Convert public array/object properties to internal Sets for O(1) lookups during rendering.
+
+  /** Converts the public `selectedRows` array to an internal Set */
   private _syncSelectedRows() {
     this._selectedRows = new Set(this.selectedRows);
   }
 
+  /** Converts the public `disabledRows` array to an internal Set */
   private _syncDisabledRows() {
     this._disabledRows = new Set(this.disabledRows);
   }
 
+  /** Rebuilds visible and frozen column Sets from column definitions */
   private _syncVisibleColumns() {
     this._visibleColumns = new Set(this.columns.filter(c => c.visible !== false).map(c => c.field));
     this._frozenColumns = new Set(this.columns.filter(c => c.frozen).map(c => c.field));
   }
 
+  /**
+   * Reads initial numeric column widths from column definitions into the width tracking map.
+   * String widths (e.g. "25%", "12rem") are not stored here — they flow directly from
+   * `col.width` in the colgroup template until the user drag-resizes (which converts to px).
+   */
   private _syncColumnWidths() {
     const widths: Record<string, number> = {};
     for (const col of this.columns) {
-      if (col.width) {
+      if (typeof col.width === "number") {
         widths[col.field] = col.width;
       }
     }
     this._columnWidths = widths;
   }
 
-  private _handleDocumentClick = (e: Event) => {
+  // ─── Global Event Handlers ───
+
+  /**
+   * Document-level click handler (arrow function to preserve `this`).
+   * Closes open dropdown panels (column configure, action menu, filter panel)
+   * when the user clicks outside of them.
+   */
+  private _closeOverlaysOnOutsideClick = (e: Event) => {
     const path = e.composedPath();
+
+    // Close column configure panel if click is outside its wrapper
     const wrapper = this.querySelector(".zeta-table-column-panel-wrapper");
     if (wrapper && !path.includes(wrapper)) {
       this._columnConfigureVisible = false;
     }
+
+    // Close action menu if click is outside the menu and not on an action button
     if (this._actionMenuRowId !== null) {
       const menu = this.querySelector(".zeta-table-action-menu--open");
       const clickedBtn = path.some(el => (el as Element).classList?.contains("zeta-table-action-btn"));
@@ -507,6 +693,8 @@ export class ZetaTable extends LitElement {
         this._actionMenuRowId = null;
       }
     }
+
+    // Close filter panel if click is outside the panel and not on a filter icon button
     if (this._filterPanelField !== null) {
       const panel = this.querySelector(".zeta-table-filter-panel");
       const clickedFilterBtn = path.some(el => (el as Element).classList?.contains("zeta-table-header-icon-btn"));
@@ -516,6 +704,10 @@ export class ZetaTable extends LitElement {
     }
   };
 
+  /**
+   * Scroll handler: closes any open dropdown overlays (action menu, filter panel)
+   * when the table scrolls, since their fixed positions would become stale.
+   */
   private _handleScrollClose = () => {
     if (this._actionMenuRowId !== null) {
       this._actionMenuRowId = null;
@@ -525,14 +717,29 @@ export class ZetaTable extends LitElement {
     }
   };
 
+  // ─── Row State Helpers ───
+
+  /** Checks if a row is disabled — either via row._disabled flag or the disabledRows property */
   private _isRowDisabled(row: ZetaTableRow): boolean {
     return !!row._disabled || this._disabledRows.has(row.id);
   }
 
+  /** Returns true if any row click handler is configured (onRowClick or selectOnRowClick) */
   private _isClickable(): boolean {
     return this.onRowClick != null || this.selectOnRowClick != null;
   }
 
+  // ─── Row Interaction Handlers ───
+
+  /**
+   * Handles a click on a table row.
+   * - Ignores clicks on disabled rows (unless allowDisabledSelection is set)
+   * - Ignores clicks on <input> elements (checkboxes handle themselves)
+   * - Ignores clicks on <button> elements (action buttons handle themselves)
+   * - Sets the active row for visual highlighting
+   * - If selectOnRowClick is configured, toggles the row's checkbox selection
+   * - Dispatches both the callback and CustomEvent for framework-agnostic consumers
+   */
   private _handleRowClick(row: ZetaTableRow, rowIndex: number, e: MouseEvent) {
     if (this._isRowDisabled(row) && !this.allowDisabledSelection) return;
     const target = e.target as HTMLElement;
@@ -561,6 +768,15 @@ export class ZetaTable extends LitElement {
     );
   }
 
+  // ─── Sorting ───
+
+  /**
+   * Handles column header sort click.
+   * Implements a 3-state UI cycle: unsorted → ascending → descending → unsorted.
+   * Tracks click count per field to determine the current state in the cycle.
+   * Notifies the consumer via callback and CustomEvent — the consumer is responsible
+   * for sorting the data and updating the `data` property.
+   */
   private _handleSort(field: string) {
     const col = this.columns.find(c => c.field === field);
     if (col?.disabled) return;
@@ -591,6 +807,13 @@ export class ZetaTable extends LitElement {
     );
   }
 
+  // ─── Column Filtering ───
+
+  /**
+   * Toggles the filter dropdown panel for a column.
+   * Positions the panel below the filter icon button using getBoundingClientRect.
+   * Initializes pending selections from the currently active filter state.
+   */
   private _handleColumnFilter(col: ZetaTableColumn, e: MouseEvent) {
     if (this._filterPanelField === col.field) {
       this._filterPanelField = null;
@@ -603,6 +826,7 @@ export class ZetaTable extends LitElement {
     }
   }
 
+  /** Toggles a single filter option in the pending selections (before "Apply" is clicked) */
   private _handleFilterOptionToggle(value: string) {
     const updated = new Set(this._pendingFilterSelections);
     if (updated.has(value)) {
@@ -613,10 +837,16 @@ export class ZetaTable extends LitElement {
     this._pendingFilterSelections = updated;
   }
 
+  /** Clears all pending filter selections in the open filter panel (the "Clear" button) */
   private _clearColumnFilter() {
     this._pendingFilterSelections = new Set();
   }
 
+  /**
+   * Commits the pending filter selections as the active filter for the column.
+   * Closes the filter panel and notifies the consumer via callback and CustomEvent.
+   * The consumer is responsible for actually filtering the data and updating the `data` property.
+   */
   private _applyColumnFilter() {
     const field = this._filterPanelField!;
     const selectedValues = [...this._pendingFilterSelections];
@@ -643,28 +873,35 @@ export class ZetaTable extends LitElement {
     );
   }
 
-  private _handleHeaderDoubleClick(field: string) {
+  // ─── Column Resize ───
+
+  /**
+   * Restores the original column width on resize-handle double-click.
+   * Only acts if the user has previously drag-resized this column —
+   * resets to the width from the column definition (or removes the override).
+   * If the column hasn't been manually resized, does nothing.
+   */
+  private _handleResizeDoubleClick(field: string) {
+    if (!this._manuallyResizedColumns.has(field)) return;
+
     const col = this.columns.find(c => c.field === field);
-    if (col?.disabled || col?.resizable === false) return;
-
-    const rows = this._getDisplayedData();
-    const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d")!;
-    ctx.font = "14px 'IBM Plex Sans', sans-serif";
-
-    let maxWidth = ctx.measureText(col?.title || "").width + 40;
-
-    for (const row of rows) {
-      const cellValue = row[field] != null ? String(row[field]) : "";
-      const measured = ctx.measureText(cellValue).width + 28;
-      if (measured > maxWidth) maxWidth = measured;
+    const updated = { ...this._columnWidths };
+    if (typeof col?.width === "number") {
+      updated[field] = col.width;
+    } else {
+      delete updated[field];
     }
-
-    const minWidth = col?.minWidth || 60;
-    const finalWidth = Math.max(minWidth, Math.ceil(maxWidth));
-    this._columnWidths = { ...this._columnWidths, [field]: finalWidth };
+    this._columnWidths = updated;
+    this._manuallyResizedColumns.delete(field);
   }
 
+  // ─── Column Search ───
+
+  /**
+   * Handles per-column search input changes.
+   * Updates internal search values, resets pagination to page 1,
+   * and delegates the actual filtering to the consumer via callback and CustomEvent.
+   */
   private _handleColumnSearch(field: string, value: string) {
     if (value) {
       this._searchValues = { ...this._searchValues, [field]: value };
@@ -690,6 +927,10 @@ export class ZetaTable extends LitElement {
     );
   }
 
+  /**
+   * Handles global (toolbar) search input changes.
+   * Resets pagination to page 1 and delegates filtering to the consumer.
+   */
   private _handleGlobalSearch(e: InputEvent) {
     const value = (e.target as HTMLInputElement).value;
     this._globalSearchValue = value;
@@ -708,6 +949,9 @@ export class ZetaTable extends LitElement {
     );
   }
 
+  // ─── Row Selection ───
+
+  /** Toggles selection for a single row. Respects _checkboxDisabled and disabled row guards. */
   private _handleRowSelect(row: ZetaTableRow) {
     if (row._checkboxDisabled) return;
     if (this._isRowDisabled(row) && !this.allowDisabledSelection) return;
@@ -721,6 +965,11 @@ export class ZetaTable extends LitElement {
     this._dispatchSelectionChange();
   }
 
+  /**
+   * Toggles selection for all displayed rows.
+   * If all eligible rows are selected → deselects all. Otherwise → selects all.
+   * Rows with _checkboxDisabled or disabled state (without allowDisabledSelection) are excluded.
+   */
   private _handleSelectAll() {
     const displayed = this._getDisplayedData().filter(row => !row._checkboxDisabled && (!this._isRowDisabled(row) || this.allowDisabledSelection));
     const allSelected = displayed.every(row => this._selectedRows.has(row.id));
@@ -734,6 +983,7 @@ export class ZetaTable extends LitElement {
     this._dispatchSelectionChange();
   }
 
+  /** Notifies the consumer of selection changes via both the callback and CustomEvent */
   private _dispatchSelectionChange() {
     const selectedIds = [...this._selectedRows];
     if (this.onSelectionChange) {
@@ -748,6 +998,9 @@ export class ZetaTable extends LitElement {
     );
   }
 
+  // ─── Column Configure Panel ───
+
+  /** Toggles visibility of a column. Prevents hiding the last visible column. */
   private _toggleColumnVisibility(field: string) {
     const newSet = new Set(this._visibleColumns);
     if (newSet.has(field)) {
@@ -759,6 +1012,7 @@ export class ZetaTable extends LitElement {
     this._visibleColumns = newSet;
   }
 
+  /** Toggles the frozen (pinned) state of a column */
   private _toggleColumnFreeze(field: string) {
     const newSet = new Set(this._frozenColumns);
     if (newSet.has(field)) {
@@ -769,36 +1023,92 @@ export class ZetaTable extends LitElement {
     this._frozenColumns = newSet;
   }
 
+  /** Returns whether the given column is currently frozen */
   private _isColumnFrozen(col: ZetaTableColumn): boolean {
     return this._frozenColumns.has(col.field);
   }
 
+  // ─── Column Drag Resize ───
+
+  /**
+   * Phase 1 of 3: Initiates column drag-to-resize.
+   *
+   * Triggered on `mousedown` of the thin resize handle (<div>) rendered at the
+   * right edge of each resizable column header.
+   *
+   * Captures a snapshot of the starting state (mouse X, current column width)
+   * and attaches document-level listeners for the drag (Phase 2) and release (Phase 3).
+   * Document-level listeners are used because the mouse can move outside the handle
+   * (or even outside the table/browser) during a fast drag.
+   *
+   * This is a regular method (not arrow function) because it's called from the
+   * template with an inline wrapper: `@mousedown=${(e) => this._handleResizeStart(e, col.field)}`.
+   */
   private _handleResizeStart(e: MouseEvent, field: string) {
+    // Prevent text selection and click event propagation (e.g. sort) during resize
     e.preventDefault();
     e.stopPropagation();
+
     this._resizingColumn = field;
     this._resizeStartX = e.clientX;
-    const col = this.columns.find(c => c.field === field);
-    this._resizeStartWidth = this._columnWidths[field] || col?.width || 150;
+
+    const storedWidth = this._columnWidths[field];
+    if (typeof storedWidth === "number") {
+      this._resizeStartWidth = storedWidth;
+    } else {
+      const th = (e.target as HTMLElement).closest("th");
+      this._resizeStartWidth = th ? th.offsetWidth : 150;
+    }
+
+    // Attach drag tracking listeners on document (not the handle element)
     document.addEventListener("mousemove", this._handleResizeMove);
     document.addEventListener("mouseup", this._handleResizeEnd);
   }
 
+  /**
+   * Phase 2 of 3: Tracks mouse movement during column resize drag.
+   *
+   * On each mousemove, calculates the pixel difference from the start position,
+   * adds it to the starting width, clamps the result to the column's minimum width
+   * (col.minWidth or 60px default), and updates `_columnWidths` which triggers
+   * a Lit re-render to reflect the new width in the <colgroup> and header cell.
+   *
+   * Arrow function to preserve `this` context and to provide a stable reference
+   * for addEventListener/removeEventListener (same function object for both calls).
+   */
   private _handleResizeMove = (e: MouseEvent) => {
     if (!this._resizingColumn) return;
+    // Calculate how many pixels the mouse has moved horizontally since drag start
     const diff = e.clientX - this._resizeStartX;
     const col = this.columns.find(c => c.field === this._resizingColumn);
     const minWidth = col?.minWidth || 60;
+    // New width = starting width + drag delta, clamped to minimum
     const newWidth = Math.max(minWidth, this._resizeStartWidth + diff);
+    // Immutable update triggers Lit reactive re-render
     this._columnWidths = { ...this._columnWidths, [this._resizingColumn!]: newWidth };
   };
 
+  /**
+   * Phase 3 of 3: Ends the column resize drag on mouseup.
+   *
+   * Clears the resizing state and removes the document-level listeners
+   * to stop tracking mouse movement. The final column width persists in
+   * `_columnWidths` until the user resizes again or the component is destroyed.
+   *
+   * Arrow function for the same reasons as _handleResizeMove (stable reference + `this`).
+   */
   private _handleResizeEnd = () => {
+    if (this._resizingColumn) {
+      this._manuallyResizedColumns.add(this._resizingColumn);
+    }
     this._resizingColumn = null;
     document.removeEventListener("mousemove", this._handleResizeMove);
     document.removeEventListener("mouseup", this._handleResizeEnd);
   };
 
+  // ─── Row Expand/Collapse ───
+
+  /** Toggles expansion of a row's nested sub-rows. Notifies the consumer via callback and CustomEvent. */
   private _toggleExpand(rowId: string | number) {
     const newSet = new Set(this._expandedRows);
     if (newSet.has(rowId)) {
@@ -820,6 +1130,17 @@ export class ZetaTable extends LitElement {
     );
   }
 
+  // ─── Infinite Scroll ───
+
+  /**
+   * Creates an IntersectionObserver watching a sentinel <div> at the bottom of the table body.
+   * When the sentinel enters the viewport (user has scrolled to the bottom),
+   * fires the `onLoadMore` callback and dispatches the `zeta-table-load-more` event
+   * (only if not currently loading and hasMoreData is true).
+   *
+   * The observer uses the scroll container as its root (not the viewport) so it only
+   * triggers based on table scroll position, not page scroll.
+   */
   private _setupInfiniteScrollObserver() {
     this._destroyInfiniteScrollObserver();
     this.updateComplete.then(() => {
@@ -828,7 +1149,7 @@ export class ZetaTable extends LitElement {
       this._intersectionObserver = new IntersectionObserver(
         entries => {
           const entry = entries[0];
-          if (entry?.isIntersecting && !this.loading && !this.allLoaded) {
+          if (entry?.isIntersecting && !this.loading && this.hasMoreData) {
             if (this.onLoadMore) {
               this.onLoadMore(this.data.length);
             }
@@ -847,6 +1168,7 @@ export class ZetaTable extends LitElement {
     });
   }
 
+  /** Disconnects and cleans up the IntersectionObserver */
   private _destroyInfiniteScrollObserver() {
     if (this._intersectionObserver) {
       this._intersectionObserver.disconnect();
@@ -854,6 +1176,14 @@ export class ZetaTable extends LitElement {
     }
   }
 
+  // ─── Numbered Pagination ───
+
+  /**
+   * Navigates to a specific page number.
+   * Validates bounds, updates internal UI state, and notifies the consumer.
+   * The consumer is responsible for fetching/slicing the data for the requested page
+   * and updating the `data` property.
+   */
   private _navigateToPage(page: number) {
     const totalPages = this._getTotalPages();
     if (page < 1 || page > totalPages) return;
@@ -870,11 +1200,24 @@ export class ZetaTable extends LitElement {
     );
   }
 
+  /**
+   * Calculates total page count.
+   * Uses `totalItems` if provided (recommended), otherwise falls back to `data.length`.
+   * Since pagination is consumer-driven, `totalItems` should be set so the pagination
+   * UI can render the correct number of pages even when `data` contains only the current page.
+   */
   private _getTotalPages(): number {
     const total = this.totalItems >= 0 ? this.totalItems : this._getData().length;
     return Math.max(1, Math.ceil(total / this.pageSize));
   }
 
+  // ─── Tooltip ───
+
+  /**
+   * Shows a tooltip near the mouse cursor after a 400ms delay.
+   * If ellipsisOnly is true (default), only shows when the content overflows
+   * (scrollWidth > clientWidth indicates text is being truncated by CSS ellipsis).
+   */
   private _showTooltip(e: MouseEvent, text: string, ellipsisOnly = true) {
     if (ellipsisOnly) {
       const target = e.currentTarget as HTMLElement;
@@ -889,6 +1232,7 @@ export class ZetaTable extends LitElement {
     }, 400);
   }
 
+  /** Hides the tooltip and cancels any pending show timer */
   private _hideTooltip() {
     if (this._tooltipTimer) {
       clearTimeout(this._tooltipTimer);
@@ -897,6 +1241,13 @@ export class ZetaTable extends LitElement {
     this._tooltipVisible = false;
   }
 
+  // ─── Export ───
+
+  /**
+   * Handles the export button click.
+   * Generates a CSV from visible columns and filtered/sorted data,
+   * notifies the consumer, and triggers a browser download.
+   */
   private _handleExport() {
     const visibleCols = this._getVisibleColumns();
     const data = this._getFilteredSortedData();
@@ -914,6 +1265,7 @@ export class ZetaTable extends LitElement {
     this._downloadCSV(csvContent);
   }
 
+  /** Handles the refresh button click. Delegates data reload entirely to the consumer. */
   private _handleRefresh() {
     if (this.onRefresh) {
       this.onRefresh();
@@ -926,6 +1278,7 @@ export class ZetaTable extends LitElement {
     );
   }
 
+  /** Generates a CSV string with proper escaping (double-quotes for values containing quotes) */
   private _generateCSV(cols: ZetaTableColumn[], data: ZetaTableRow[]): string {
     const header = cols.map(c => `"${c.title.replace(/"/g, '""')}"`).join(",");
     const rows = data.map(row =>
@@ -940,6 +1293,7 @@ export class ZetaTable extends LitElement {
     return [header, ...rows].join("\n");
   }
 
+  /** Triggers a browser file download for the given CSV content using a temporary <a> element */
   private _downloadCSV(csv: string) {
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
@@ -950,46 +1304,47 @@ export class ZetaTable extends LitElement {
     URL.revokeObjectURL(url);
   }
 
+  // ─── Data Processing Pipeline ───
+
+  /** Returns only the columns that are currently toggled visible in the column configure panel */
   private _getVisibleColumns(): ZetaTableColumn[] {
     return this.columns.filter(c => this._visibleColumns.has(c.field));
   }
 
-  /** Returns a shallow copy of the current data set. Filtering is delegated to the consumer via callbacks. */
+  /**
+   * Returns a shallow copy of the raw data array.
+   * All data operations (sorting, filtering, searching, pagination) are delegated
+   * to the consumer — the table renders exactly what it receives.
+   */
   private _getData(): ZetaTableRow[] {
     return [...this.data];
   }
 
+  /**
+   * Returns the data as provided by the consumer.
+   * Sorting is fully delegated to the consumer via `onSortChange` callback / `zeta-table-sort-change` event.
+   * The consumer is responsible for sorting the data and updating the `data` property.
+   */
   private _getFilteredSortedData(): ZetaTableRow[] {
-    let data = this._getData();
-    if (this._sortState.field && this._sortState.direction) {
-      const { field, direction } = this._sortState;
-      data.sort((a, b) => {
-        const aVal = a[field];
-        const bVal = b[field];
-        if (aVal == null && bVal == null) return 0;
-        if (aVal == null) return 1;
-        if (bVal == null) return -1;
-        if (typeof aVal === "number" && typeof bVal === "number") {
-          return direction === "asc" ? aVal - bVal : bVal - aVal;
-        }
-        const aStr = String(aVal).toLowerCase();
-        const bStr = String(bVal).toLowerCase();
-        const cmp = aStr.localeCompare(bStr);
-        return direction === "asc" ? cmp : -cmp;
-      });
-    }
-    return data;
+    return this._getData();
   }
 
+  /**
+   * Returns the data to render on screen.
+   * Pagination is fully delegated to the consumer via `onPageChange` callback / `zeta-table-page-change` event.
+   * The consumer is responsible for providing the correct page of data via the `data` property.
+   */
   private _getDisplayedData(): ZetaTableRow[] {
-    const data = this._getFilteredSortedData();
-    if (this.paginationType === "numbered" && this.totalItems < 0) {
-      const start = (this._currentPage - 1) * this.pageSize;
-      return data.slice(start, start + this.pageSize);
-    }
-    return data;
+    return this._getFilteredSortedData();
   }
 
+  // ─── Frozen Column Helpers ───
+
+  /**
+   * Calculates the CSS `left` offset for a frozen column.
+   * Sums the widths of all frozen columns before this one, plus the
+   * fixed-width checkbox (44px) and expand (40px) columns if present.
+   */
   private _getFrozenLeftOffset(colIndex: number): number {
     const visibleCols = this._getVisibleColumns();
     let offset = 0;
@@ -998,12 +1353,18 @@ export class ZetaTable extends LitElement {
     for (let i = 0; i < colIndex; i++) {
       const col = visibleCols[i];
       if (this._isColumnFrozen(col)) {
-        offset += this._columnWidths[col.field] || col.width || 150;
+        const w = this._columnWidths[col.field] ?? (typeof col.width === "number" ? col.width : 150);
+        offset += w;
       }
     }
     return offset;
   }
 
+  /**
+   * Returns true if this is the rightmost frozen column.
+   * Used to apply a shadow on the right edge to visually separate
+   * frozen columns from the scrollable area.
+   */
   private _isLastFrozen(colIndex: number): boolean {
     const visibleCols = this._getVisibleColumns();
     for (let i = colIndex + 1; i < visibleCols.length; i++) {
@@ -1012,6 +1373,25 @@ export class ZetaTable extends LitElement {
     return true;
   }
 
+  // ─── Render Methods ───
+
+  /**
+   * Main render method — assembles the complete table DOM structure.
+   *
+   * Layout hierarchy:
+   *   .zeta-table-wrapper
+   *     ├── Header bar (title, data count, search, toolbar buttons)
+   *     ├── .zeta-table-scroll (scrollable container)
+   *     │     ├── <table>
+   *     │     │     ├── <colgroup> (column widths)
+   *     │     │     ├── <thead> (header row + optional search row)
+   *     │     │     └── <tbody> (data rows or no-data message + optional loading row)
+   *     │     └── Infinite scroll sentinel (hidden <div> observed by IntersectionObserver)
+   *     ├── Pagination footer (numbered mode only)
+   *     ├── Tooltip overlay
+   *     ├── Action menu overlay
+   *     └── Filter panel overlay
+   */
   protected override render() {
     const visibleCols = this._getVisibleColumns();
     const displayedData = this._getDisplayedData();
@@ -1052,6 +1432,12 @@ export class ZetaTable extends LitElement {
     `;
   }
 
+  /**
+   * Renders the toolbar bar above the table.
+   * Left side: table title, data count badge ("5 out of 51"), selection info.
+   * Right side: global search input, refresh button, export button, column configure button.
+   * Only renders if at least one left or right element is configured.
+   */
   private _renderHeaderBar() {
     const displayedCount = this._getDisplayedData().length;
     const totalData = this.totalItems >= 0 ? this.totalItems : this.data.length;
@@ -1112,6 +1498,12 @@ export class ZetaTable extends LitElement {
     `;
   }
 
+  /**
+   * Renders the column configure dropdown panel.
+   * Contains two sections:
+   *   1. Show/Hide: checkboxes to toggle column visibility (at least one must remain)
+   *   2. Freeze: checkboxes to pin columns to the left during horizontal scroll
+   */
   private _renderColumnConfigure() {
     return html`
       <div class="zeta-table-column-panel-wrapper">
@@ -1168,18 +1560,28 @@ export class ZetaTable extends LitElement {
     `;
   }
 
+  /** Renders <colgroup> to set initial column widths. Includes fixed-width cols for checkbox and expand columns. */
   private _renderColgroup(cols: ZetaTableColumn[]) {
     return html`
       <colgroup>
         ${this.selectable ? html`<col style="width:44px" />` : nothing} ${this.expandable ? html`<col style="width:40px" />` : nothing}
         ${cols.map(col => {
-          const w = this._columnWidths[col.field] || col.width;
-          return html`<col style=${w ? `width:${w}px` : ""} />`;
+          const w = this._columnWidths[col.field] ?? col.width;
+          if (w == null) return html`<col />`;
+          const cssWidth = typeof w === "number" ? `${w}px` : w;
+          return html`<col style="width:${cssWidth}" />`;
         })}
       </colgroup>
     `;
   }
 
+  /**
+   * Renders the primary header row (<tr>) containing:
+   * - Select-all checkbox (if selectable)
+   * - Expand column placeholder (if expandable)
+   * - One <th> per visible column (with sort icons, filter icons, resize handles)
+   * - Actions column header (if any row has actions)
+   */
   private _renderHeaderRow(cols: ZetaTableColumn[]) {
     const displayedData = this._getDisplayedData().filter(row => !row._checkboxDisabled && (!this._isRowDisabled(row) || this.allowDisabledSelection));
     const allSelected = displayedData.length > 0 && displayedData.every(row => this._selectedRows.has(row.id));
@@ -1213,6 +1615,11 @@ export class ZetaTable extends LitElement {
     `;
   }
 
+  /**
+   * Renders a single column header cell (<th>).
+   * Includes: title text, sort icons (if sortable), filter button (if filterable),
+   * and a resize handle (if resizable). Applies frozen positioning styles if the column is frozen.
+   */
   private _renderHeaderCell(col: ZetaTableColumn, index: number) {
     const isFrozen = this._isColumnFrozen(col);
     const leftOffset = isFrozen ? this._getFrozenLeftOffset(index) : 0;
@@ -1237,10 +1644,9 @@ export class ZetaTable extends LitElement {
       <th
         class=${classMap(cellClasses)}
         style=${styleMap(cellStyles)}
-        @dblclick=${isResizable ? () => this._handleHeaderDoubleClick(col.field) : nothing}
       >
         <div class="zeta-table-header-content">
-          <span class="zeta-table-header-title" @click=${isSortable ? () => this._handleSort(col.field) : nothing}>${col.title}</span>
+          <span class="zeta-table-header-title ${isSortable ? "zeta-table-header-title--sortable" : ""}" @click=${isSortable ? () => this._handleSort(col.field) : nothing}>${col.title}</span>
           <span class="zeta-table-header-icons">
             ${isFilterable
               ? html`<button class="zeta-table-header-icon-btn ${this._activeFilters[col.field]?.size ? "zeta-table-header-icon-btn--active" : ""}" title="Filter" @click=${(e: MouseEvent) => { e.stopPropagation(); this._handleColumnFilter(col, e); }}>
@@ -1256,12 +1662,14 @@ export class ZetaTable extends LitElement {
           ? html`<div
               class="zeta-table-resize-handle ${this._resizingColumn === col.field ? "zeta-table-resize-handle--active" : ""}"
               @mousedown=${(e: MouseEvent) => this._handleResizeStart(e, col.field)}
+              @dblclick=${(e: MouseEvent) => { e.stopPropagation(); this._handleResizeDoubleClick(col.field); }}
             ></div>`
           : nothing}
       </th>
     `;
   }
 
+  /** Renders the up/down sort arrow pair. The active direction's arrow gets a highlighted CSS class. */
   private _renderSortIcons(field: string) {
     const isAsc = this._sortState.field === field && this._sortState.direction === "asc";
     const isDesc = this._sortState.field === field && this._sortState.direction === "desc";
@@ -1278,6 +1686,11 @@ export class ZetaTable extends LitElement {
     `;
   }
 
+  /**
+   * Renders the per-column search input row (second header row).
+   * Only shown when `onColumnSearch` callback is provided.
+   * Each column gets a text input unless disabled or filterable=false.
+   */
   private _renderSearchRow(cols: ZetaTableColumn[]) {
     return html`
       <tr class="zeta-table-search-row">
@@ -1316,10 +1729,16 @@ export class ZetaTable extends LitElement {
     `;
   }
 
+  /**
+   * Renders a single data row (<tr>) with conditional CSS classes for:
+   * clickable, selected, active (last-clicked), and disabled states.
+   * Includes checkbox cell, expand button cell, data cells, and actions cell.
+   * If the row is expanded and has nested data, renders nested sub-rows below it.
+   */
   private _renderDataRow(row: ZetaTableRow, cols: ZetaTableColumn[], rowIndex: number) {
     const isSelected = this._selectedRows.has(row.id);
     const isExpanded = this._expandedRows.has(row.id);
-    const hasNested = this.expandable && row._nested && row._nested.length > 0;
+    const hasNested = this.expandable && row._nested != null && (row._nested instanceof Node || (Array.isArray(row._nested) && row._nested.length > 0));
     const isDisabled = this._isRowDisabled(row);
     const isActive = this._activeRow === row.id;
     const clickable = this._isClickable();
@@ -1365,12 +1784,17 @@ export class ZetaTable extends LitElement {
     `;
   }
 
+  /**
+   * Resolves the action menu items for a specific row.
+   * Priority: row._actions (explicit null hides menu) → row._actions array → global rowActions fallback.
+   */
   private _getActionsForRow(row: ZetaTableRow): ZetaTableAction[] | null {
     if (row._actions === null) return null;
     if (row._actions && row._actions.length > 0) return row._actions;
     return this.rowActions.length > 0 ? this.rowActions : null;
   }
 
+  /** Renders the actions (kebab menu) cell for a row. Shows a three-dot button if the row has actions. */
   private _renderActionsCell(row: ZetaTableRow) {
     const actions = this._getActionsForRow(row);
     const hasActions = actions && actions.length > 0;
@@ -1395,6 +1819,11 @@ export class ZetaTable extends LitElement {
     `;
   }
 
+  /**
+   * Renders the column filter dropdown panel (positioned absolutely near the filter icon).
+   * Shows a list of checkboxes for each filter option, plus Clear and Apply buttons.
+   * Options come from column.filterOptions or are auto-populated from the data.
+   */
   private _renderFilterPanel() {
     if (!this._filterPanelField) return nothing;
 
@@ -1427,6 +1856,10 @@ export class ZetaTable extends LitElement {
     `;
   }
 
+  /**
+   * Renders the action menu dropdown overlay (positioned absolutely near the kebab button).
+   * Contains a list of action buttons for the active row.
+   */
   private _renderActionMenuOverlay() {
     if (this._actionMenuRowId === null) return nothing;
 
@@ -1455,6 +1888,11 @@ export class ZetaTable extends LitElement {
     `;
   }
 
+  /**
+   * Toggles the action menu for a row.
+   * Calculates viewport-aware positioning: prefers below the button, falls back
+   * to above if there isn't enough space below, or uses a safe fallback position.
+   */
   private _toggleActionMenu(rowId: string | number, e: MouseEvent) {
     if (this._actionMenuRowId === rowId) {
       this._actionMenuRowId = null;
@@ -1488,6 +1926,7 @@ export class ZetaTable extends LitElement {
     }
   }
 
+  /** Handles click on a specific action menu item. Closes the menu and notifies the consumer. */
   private _handleActionClick(actionKey: string, row: ZetaTableRow, rowIndex: number) {
     this._actionMenuRowId = null;
     if (this.onRowAction) {
@@ -1502,6 +1941,17 @@ export class ZetaTable extends LitElement {
     );
   }
 
+  /**
+   * Renders a single data cell (<td>).
+   *
+   * Two rendering paths:
+   * 1. DOM Node values (e.g. React portal containers): rendered directly inside
+   *    a `.zeta-table-cell-inner` wrapper without text truncation.
+   * 2. Text values: wrapped in `.zeta-table-cell-inner` > `.zeta-table-cell-content`
+   *    with CSS ellipsis truncation and optional tooltip on hover.
+   *
+   * Applies frozen column positioning if the column is pinned.
+   */
   private _renderDataCell(row: ZetaTableRow, col: ZetaTableColumn, index: number) {
     const isFrozen = this._isColumnFrozen(col);
     const leftOffset = isFrozen ? this._getFrozenLeftOffset(index) : 0;
@@ -1552,9 +2002,37 @@ export class ZetaTable extends LitElement {
     `;
   }
 
+  /**
+   * Renders nested/expandable content inside a full-width <td> below the parent row.
+   *
+   * Two rendering modes:
+   * 1. **DOM Node**: If `_nested` is a Node (e.g. a React portal container, an <img>,
+   *    or any custom element), it is rendered directly as-is. This gives consumers
+   *    full control over the nested view.
+   * 2. **Array of ZetaTableRow**: Columns are derived from the keys of the first item
+   *    in the array (excluding underscore-prefixed internal keys like _nested, _disabled).
+   *    This means nested rows can have entirely different columns from the parent table.
+   */
   private _renderNestedRows(row: ZetaTableRow, cols: ZetaTableColumn[]) {
-    const nested = row._nested || [];
+    const nested = row._nested;
     const colSpan = this._getTotalColspan(cols);
+
+    // Mode 1: Consumer-provided DOM Node — render as-is
+    if (nested instanceof Node) {
+      return html`
+        <tr class="zeta-table-nested-row">
+          <td class="zeta-table-td" colspan="${colSpan}">
+            <div class="zeta-table-nested-content">${nested}</div>
+          </td>
+        </tr>
+      `;
+    }
+
+    // Mode 2: Array of row objects — derive columns from the first item's keys
+    const nestedData = nested || [];
+    if (nestedData.length === 0) return nothing;
+
+    const nestedKeys = Object.keys(nestedData[0]).filter(k => !k.startsWith("_"));
 
     return html`
       <tr class="zeta-table-nested-row">
@@ -1563,21 +2041,23 @@ export class ZetaTable extends LitElement {
             <table style="width:100%; border-collapse:collapse;">
               <thead>
                 <tr>
-                  ${cols.map(
-                    col =>
-                      html`<th style="padding:6px 12px; text-align:left; font-size:11px; border-bottom:1px solid var(--table-border-color);">${col.title}</th>`
+                  ${nestedKeys.map(
+                    key =>
+                      html`<th style="padding:6px 12px; text-align:left; font-size:11px; border-bottom:1px solid var(--table-border-color);">${key}</th>`
                   )}
                 </tr>
               </thead>
               <tbody>
-                ${nested.map(
+                ${nestedData.map(
                   child => html`
                     <tr>
-                      ${cols.map(
-                        col =>
-                          html`<td style="padding:6px 12px; font-size:13px; border-bottom:1px solid var(--table-border-color);">
-                            ${child[col.field] != null ? String(child[col.field]) : ""}
-                          </td>`
+                      ${nestedKeys.map(
+                        key => {
+                          const val = child[key];
+                          return html`<td style="padding:6px 12px; font-size:13px; border-bottom:1px solid var(--table-border-color);">
+                            ${val instanceof Node ? val : (val != null ? String(val) : "")}
+                          </td>`;
+                        }
                       )}
                     </tr>
                   `
@@ -1590,6 +2070,11 @@ export class ZetaTable extends LitElement {
     `;
   }
 
+  /**
+   * Renders the pagination footer for numbered pagination mode.
+   * Includes: page info text, rows-per-page selector, and page navigation buttons
+   * (first, prev, page numbers with ellipsis, next, last).
+   */
   private _renderPagination() {
     const totalPages = this._getTotalPages();
     const pages = this._getPaginationRange(totalPages);
@@ -1647,6 +2132,12 @@ export class ZetaTable extends LitElement {
     `;
   }
 
+  /**
+   * Generates the page number sequence for the pagination bar.
+   * For 7 or fewer pages: shows all page numbers.
+   * For more: shows first, last, current ±1, with "..." ellipsis gaps.
+   * Example: [1, "...", 4, 5, 6, "...", 20]
+   */
   private _getPaginationRange(totalPages: number): (number | string)[] {
     const current = this._currentPage;
     const pages: (number | string)[] = [];
@@ -1664,6 +2155,7 @@ export class ZetaTable extends LitElement {
     return pages;
   }
 
+  /** Renders the floating tooltip element. Visibility and position are controlled by state. */
   private _renderTooltip() {
     const tooltipStyles = {
       left: `${this._tooltipX}px`,
@@ -1674,6 +2166,7 @@ export class ZetaTable extends LitElement {
     `;
   }
 
+  /** Calculates the total colspan needed for full-width rows (no-data, loading). Accounts for checkbox, expand, and actions columns. */
   private _getTotalColspan(cols: ZetaTableColumn[]): number {
     let count = cols.length;
     if (this.selectable) count++;
@@ -1683,6 +2176,11 @@ export class ZetaTable extends LitElement {
   }
 }
 
+/**
+ * TypeScript global augmentation: registers "zeta-table" in the HTMLElementTagNameMap
+ * so that document.createElement("zeta-table") and querySelector("zeta-table")
+ * return the correct ZetaTable type.
+ */
 declare global {
   interface HTMLElementTagNameMap {
     "zeta-table": ZetaTable;
