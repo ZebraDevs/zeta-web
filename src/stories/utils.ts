@@ -37,6 +37,23 @@ export const spreadGenerator = (clas: typeof LitElement) => {
   return (spreadData: SpreadData) => _spread(spreadData, clas.elementProperties as PropertyDeclarationMap);
 };
 
+/**
+ * Extracts CSS custom properties (keys starting with `--`) from Storybook args
+ * and returns a style string. Useful for Light DOM components where `@cssproperty`
+ * controls are not applied by the spread function.
+ */
+export function cssVarsStyle(args: object, defaults?: Record<string, string>): string {
+  const vars: Record<string, string> = { ...defaults };
+  for (const [key, value] of Object.entries(args as Record<string, unknown>)) {
+    if (key.startsWith("--") && value != null && value !== "") {
+      vars[key] = String(value);
+    }
+  }
+  return Object.entries(vars)
+    .map(([k, v]) => `${k}: ${v}`)
+    .join("; ");
+}
+
 export const placeholder = (width: number = 400, height: number = 400) => {
   const widthMinusBorder = width - 2;
   const heightMinusBorder = height - 2;

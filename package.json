@@ -16,6 +16,10 @@
   "module": "./dist/index.js",
   "exports": {
     ".": "./dist/index.js",
+    "./react": {
+      "types": "./dist/react/index.d.ts",
+      "default": "./dist/react/index.js"
+    },
     "./assets/*": "./assets/*",
     "./events.js": "./dist/events.js",
     "./components/*": "./dist/components/*",
@@ -92,6 +96,7 @@
     "@types/jest": "^30.0.0",
     "@types/node": "^22.20.0",
     "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
     "@typescript-eslint/eslint-plugin": "^8.62.1",
     "@typescript-eslint/parser": "^8.62.1",
     "@wc-toolkit/type-parser": "^1.2.1",
@@ -116,6 +121,7 @@
     "lit-analyzer": "^2.0.3",
     "prettier": "3.9.4",
     "react": "^19.2.7",
+    "react-dom": "^19.2.7",
     "sinon": "^22.0.0",
     "storybook": "^8.6.18",
     "ts-lit-plugin": "^2.0.2",
@@ -125,11 +131,30 @@
     "typescript-eslint": "^8.62.1",
     "vite": "^6.4.3"
   },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    }
+  },
   "dependencies": {
     "@fontsource/ibm-plex-sans": "^5.2.8",
     "@lit/localize": "^0.12.2",
     "@zebra-fed/zeta-icons": "1.9.6",
     "lit": "^3.3.3"
+  },
+  "typesVersions": {
+    "*": {
+      "react": [
+        "dist/react/index.d.ts"
+      ]
+    }
   },
   "overrides": {
     "@storybook/blocks": {

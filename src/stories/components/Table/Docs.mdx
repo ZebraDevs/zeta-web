@@ -1,0 +1,1472 @@
+import { Canvas, Meta, Title } from "@storybook/blocks";
+import * as TableStories from "./table.stories";
+
+<Meta of={TableStories} title="Table" />
+
+<Title />
+
+A full-featured, highly configurable data table web component.
+
+<table>
+  <tbody>
+    <tr>
+      <td>
+        <strong>Tag</strong>
+      </td>
+      <td>
+        <code>{"<zeta-table>"}</code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Import</strong>
+      </td>
+      <td>
+        <code>{'import "@zebra-fed/zeta-web/dist/components/table/table.js"'}</code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Styles</strong>
+      </td>
+      <td>
+        <code>{'import "@zebra-fed/zeta-web/index.css"'}</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Features
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Description</th>
+      <th>Enabled by</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Sorting</td>
+      <td>3-state per-column sorting (asc, desc, none)</td>
+      <td>
+        <code>sortable</code> on column
+      </td>
+    </tr>
+    <tr>
+      <td>Column Search</td>
+      <td>Per-column search inputs</td>
+      <td>
+        <code>onColumnSearch</code> callback
+      </td>
+    </tr>
+    <tr>
+      <td>Column Filter</td>
+      <td>Dropdown with checkboxes (Clear/Apply)</td>
+      <td>
+        <code>onColumnFilter</code> callback
+      </td>
+    </tr>
+    <tr>
+      <td>Global Search</td>
+      <td>Search bar in toolbar</td>
+      <td>
+        <code>onTableSearch</code> callback
+      </td>
+    </tr>
+    <tr>
+      <td>Selection</td>
+      <td>Checkbox column with select-all</td>
+      <td>
+        <code>selectable</code> attribute
+      </td>
+    </tr>
+    <tr>
+      <td>Row Click</td>
+      <td>Pointer cursor + highlight on click</td>
+      <td>
+        <code>onRowClick</code> callback
+      </td>
+    </tr>
+    <tr>
+      <td>Disabled Rows</td>
+      <td>Grey out rows, prevent interaction</td>
+      <td>
+        <code>_disabled</code> on row
+      </td>
+    </tr>
+    <tr>
+      <td>Frozen Columns</td>
+      <td>Pin columns during horizontal scroll</td>
+      <td>
+        <code>frozen</code> on column
+      </td>
+    </tr>
+    <tr>
+      <td>Column Resizing</td>
+      <td>Drag to resize, double-click to auto-fit</td>
+      <td>
+        <code>resizable</code> on column
+      </td>
+    </tr>
+    <tr>
+      <td>Column Configure</td>
+      <td>Show/hide and freeze/unfreeze columns panel</td>
+      <td>
+        <code>column-configure</code> attribute
+      </td>
+    </tr>
+    <tr>
+      <td>Pagination</td>
+      <td>Numbered pages or infinite scroll</td>
+      <td>
+        <code>pagination-type</code> attribute
+      </td>
+    </tr>
+    <tr>
+      <td>Nested Rows</td>
+      <td>Expandable child rows</td>
+      <td>
+        <code>expandable</code> + <code>_children</code>
+      </td>
+    </tr>
+    <tr>
+      <td>Export</td>
+      <td>CSV export of visible data</td>
+      <td>
+        <code>exportable</code> attribute
+      </td>
+    </tr>
+    <tr>
+      <td>Refresh</td>
+      <td>Refresh button in toolbar</td>
+      <td>
+        <code>onRefresh</code> callback
+      </td>
+    </tr>
+    <tr>
+      <td>Row Actions</td>
+      <td>Per-row kebab menu</td>
+      <td>
+        <code>_actions</code> on row
+      </td>
+    </tr>
+    <tr>
+      <td>Tooltips</td>
+      <td>Auto-shown when content overflows</td>
+      <td>
+        <code>tooltip</code> on column
+      </td>
+    </tr>
+    <tr>
+      <td>Localization</td>
+      <td>Configurable labels</td>
+      <td>
+        <code>refreshLabel</code>, <code>columnsLabel</code>, etc.
+      </td>
+    </tr>
+    <tr>
+      <td>Custom Styling</td>
+      <td>Full theming via CSS custom properties</td>
+      <td>
+        CSS variables on <code>zeta-table</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## All Features Enabled
+
+<Canvas of={TableStories.TableAll} />
+
+---
+
+## Table Information
+
+## Attributes (HTML)
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>selectable</code>
+      </td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>Enable checkbox selection column</td>
+    </tr>
+    <tr>
+      <td>
+        <code>select-all</code>
+      </td>
+      <td>boolean</td>
+      <td>true</td>
+      <td>Show select-all checkbox in header</td>
+    </tr>
+    <tr>
+      <td>
+        <code>selected-rows</code>
+      </td>
+      <td>Array</td>
+      <td>[]</td>
+      <td>Initially selected row IDs</td>
+    </tr>
+    <tr>
+      <td>
+        <code>expandable</code>
+      </td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>Enable nested/expandable rows</td>
+    </tr>
+    <tr>
+      <td>
+        <code>exportable</code>
+      </td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>Show export button in toolbar</td>
+    </tr>
+    <tr>
+      <td>
+        <code>column-configure</code>
+      </td>
+      <td>boolean</td>
+      <td>true</td>
+      <td>Show column configure button</td>
+    </tr>
+    <tr>
+      <td>
+        <code>show-data-count</code>
+      </td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>Show data count badge</td>
+    </tr>
+    <tr>
+      <td>
+        <code>table-title</code>
+      </td>
+      <td>string</td>
+      <td>""</td>
+      <td>Title shown next to the data count</td>
+    </tr>
+    <tr>
+      <td>
+        <code>pagination-type</code>
+      </td>
+      <td>"none" | "numbered" | "infinite"</td>
+      <td>"none"</td>
+      <td>Pagination mode</td>
+    </tr>
+    <tr>
+      <td>
+        <code>page-size</code>
+      </td>
+      <td>number</td>
+      <td>20</td>
+      <td>Rows per page</td>
+    </tr>
+    <tr>
+      <td>
+        <code>current-page</code>
+      </td>
+      <td>number</td>
+      <td>1</td>
+      <td>Initial page (1-based)</td>
+    </tr>
+    <tr>
+      <td>
+        <code>total-items</code>
+      </td>
+      <td>number</td>
+      <td>-1</td>
+      <td>Total items (server-side pagination)</td>
+    </tr>
+    <tr>
+      <td>
+        <code>loading</code>
+      </td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>Loading state (infinite scroll)</td>
+    </tr>
+    <tr>
+      <td>
+        <code>all-loaded</code>
+      </td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>All data loaded (infinite scroll)</td>
+    </tr>
+    <tr>
+      <td>
+        <code>disabled-rows</code>
+      </td>
+      <td>Array</td>
+      <td>[]</td>
+      <td>Row IDs to disable</td>
+    </tr>
+    <tr>
+      <td>
+        <code>allow-disabled-selection</code>
+      </td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>Allow selection on disabled rows</td>
+    </tr>
+    <tr>
+      <td>
+        <code>search-placeholder</code>
+      </td>
+      <td>string</td>
+      <td>"Search..."</td>
+      <td>Global search placeholder</td>
+    </tr>
+    <tr>
+      <td>
+        <code>refresh-label</code>
+      </td>
+      <td>string</td>
+      <td>"Refresh"</td>
+      <td>Refresh button tooltip</td>
+    </tr>
+    <tr>
+      <td>
+        <code>columns-label</code>
+      </td>
+      <td>string</td>
+      <td>"Columns"</td>
+      <td>Columns button tooltip</td>
+    </tr>
+    <tr>
+      <td>
+        <code>actions-label</code>
+      </td>
+      <td>string</td>
+      <td>"Actions"</td>
+      <td>Actions column header tooltip</td>
+    </tr>
+  </tbody>
+</table>
+
+## Properties (JS only)
+
+Set via `ref` (React), `ViewChild` (Angular), `.prop` (Vue), or direct JS assignment.
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>columns</code>
+      </td>
+      <td>ZetaTableColumn[]</td>
+      <td>Column definitions</td>
+    </tr>
+    <tr>
+      <td>
+        <code>data</code>
+      </td>
+      <td>ZetaTableRow[]</td>
+      <td>Row data array</td>
+    </tr>
+    <tr>
+      <td>
+        <code>rowActions</code>
+      </td>
+      <td>ZetaTableAction[]</td>
+      <td>Fallback action menu items</td>
+    </tr>
+    <tr>
+      <td>
+        <code>onRowClick</code>
+      </td>
+      <td>(row, rowIndex) =&gt; void</td>
+      <td>Row click callback</td>
+    </tr>
+    <tr>
+      <td>
+        <code>selectOnRowClick</code>
+      </td>
+      <td>(row, rowIndex) =&gt; void</td>
+      <td>Click toggles checkbox</td>
+    </tr>
+    <tr>
+      <td>
+        <code>onRowAction</code>
+      </td>
+      <td>(actionKey, row, rowIndex) =&gt; void</td>
+      <td>Row action callback</td>
+    </tr>
+    <tr>
+      <td>
+        <code>onSortChange</code>
+      </td>
+      <td>(field, direction) =&gt; void</td>
+      <td>Sort change callback</td>
+    </tr>
+    <tr>
+      <td>
+        <code>onSelectionChange</code>
+      </td>
+      <td>(selectedIds) =&gt; void</td>
+      <td>Selection change callback</td>
+    </tr>
+    <tr>
+      <td>
+        <code>onPageChange</code>
+      </td>
+      <td>(page, pageSize) =&gt; void</td>
+      <td>Page change callback</td>
+    </tr>
+    <tr>
+      <td>
+        <code>onLoadMore</code>
+      </td>
+      <td>(currentCount) =&gt; void</td>
+      <td>Load more callback</td>
+    </tr>
+    <tr>
+      <td>
+        <code>onColumnSearch</code>
+      </td>
+      <td>(field, value, allFilters) =&gt; void</td>
+      <td>Column search callback</td>
+    </tr>
+    <tr>
+      <td>
+        <code>onColumnFilter</code>
+      </td>
+      <td>(field, selectedValues, column) =&gt; void</td>
+      <td>Column filter callback</td>
+    </tr>
+    <tr>
+      <td>
+        <code>onTableSearch</code>
+      </td>
+      <td>(searchTerm) =&gt; void</td>
+      <td>Global search callback</td>
+    </tr>
+    <tr>
+      <td>
+        <code>onRefresh</code>
+      </td>
+      <td>() =&gt; void</td>
+      <td>Refresh callback</td>
+    </tr>
+    <tr>
+      <td>
+        <code>onExport</code>
+      </td>
+      <td>(data) =&gt; void</td>
+      <td>Export callback</td>
+    </tr>
+    <tr>
+      <td>
+        <code>onRowExpand</code>
+      </td>
+      <td>(rowId, expanded) =&gt; void</td>
+      <td>Row expand/collapse callback</td>
+    </tr>
+    <tr>
+      <td>
+        <code>noDataContent</code>
+      </td>
+      <td>Node | string</td>
+      <td>Custom empty state content</td>
+    </tr>
+    <tr>
+      <td>
+        <code>loadingContent</code>
+      </td>
+      <td>Node | string</td>
+      <td>Custom loading indicator</td>
+    </tr>
+  </tbody>
+</table>
+
+## Column Definition
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>field</code>
+      </td>
+      <td>string</td>
+      <td>—</td>
+      <td>Data key matching row property (required)</td>
+    </tr>
+    <tr>
+      <td>
+        <code>title</code>
+      </td>
+      <td>string</td>
+      <td>—</td>
+      <td>Header text (required)</td>
+    </tr>
+    <tr>
+      <td>
+        <code>width</code>
+      </td>
+      <td>number</td>
+      <td>—</td>
+      <td>Initial width in px</td>
+    </tr>
+    <tr>
+      <td>
+        <code>minWidth</code>
+      </td>
+      <td>number</td>
+      <td>60</td>
+      <td>Minimum resize width</td>
+    </tr>
+    <tr>
+      <td>
+        <code>sortable</code>
+      </td>
+      <td>boolean</td>
+      <td>true</td>
+      <td>Enable sorting</td>
+    </tr>
+    <tr>
+      <td>
+        <code>filterable</code>
+      </td>
+      <td>boolean</td>
+      <td>true</td>
+      <td>Enable search/filter</td>
+    </tr>
+    <tr>
+      <td>
+        <code>filterOptions</code>
+      </td>
+      <td>string[]</td>
+      <td>—</td>
+      <td>Predefined filter options</td>
+    </tr>
+    <tr>
+      <td>
+        <code>frozen</code>
+      </td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>Freeze on horizontal scroll</td>
+    </tr>
+    <tr>
+      <td>
+        <code>visible</code>
+      </td>
+      <td>boolean</td>
+      <td>true</td>
+      <td>Column visibility</td>
+    </tr>
+    <tr>
+      <td>
+        <code>tooltip</code>
+      </td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>Always show tooltip</td>
+    </tr>
+    <tr>
+      <td>
+        <code>tooltipOnEllipsisOnly</code>
+      </td>
+      <td>boolean</td>
+      <td>true</td>
+      <td>Tooltip only on overflow</td>
+    </tr>
+    <tr>
+      <td>
+        <code>resizable</code>
+      </td>
+      <td>boolean</td>
+      <td>true</td>
+      <td>Allow resize</td>
+    </tr>
+    <tr>
+      <td>
+        <code>disabled</code>
+      </td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>Disable interaction</td>
+    </tr>
+  </tbody>
+</table>
+
+## Row Definition
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>id</code>
+      </td>
+      <td>string | number</td>
+      <td>Unique row identifier (required)</td>
+    </tr>
+    <tr>
+      <td>
+        <code>[field]</code>
+      </td>
+      <td>string | number | Node</td>
+      <td>Cell values — plain text or DOM element</td>
+    </tr>
+    <tr>
+      <td>
+        <code>_disabled</code>
+      </td>
+      <td>boolean</td>
+      <td>Grey out row, disable interaction</td>
+    </tr>
+    <tr>
+      <td>
+        <code>_checkboxDisabled</code>
+      </td>
+      <td>boolean</td>
+      <td>Disable only the checkbox</td>
+    </tr>
+    <tr>
+      <td>
+        <code>_children</code>
+      </td>
+      <td>ZetaTableRow[]</td>
+      <td>Nested/expandable child rows</td>
+    </tr>
+    <tr>
+      <td>
+        <code>_actions</code>
+      </td>
+      <td>ZetaTableAction[] | null</td>
+      <td>Per-row action menu (null = hide)</td>
+    </tr>
+  </tbody>
+</table>
+
+## CSS Properties
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>--table-width</code>
+      </td>
+      <td>100%</td>
+      <td>Table width</td>
+    </tr>
+    <tr>
+      <td>
+        <code>--table-max-height</code>
+      </td>
+      <td>none</td>
+      <td>Max height of scroll area</td>
+    </tr>
+    <tr>
+      <td>
+        <code>--table-border-color</code>
+      </td>
+      <td>#e0e3e9</td>
+      <td>Border color</td>
+    </tr>
+    <tr>
+      <td>
+        <code>--table-border-radius</code>
+      </td>
+      <td>8px</td>
+      <td>Wrapper border radius</td>
+    </tr>
+    <tr>
+      <td>
+        <code>--table-header-bg</code>
+      </td>
+      <td>#ffffff</td>
+      <td>Header background</td>
+    </tr>
+    <tr>
+      <td>
+        <code>--table-header-text</code>
+      </td>
+      <td>#1d1e23</td>
+      <td>Header text color</td>
+    </tr>
+    <tr>
+      <td>
+        <code>--table-header-height</code>
+      </td>
+      <td>40px</td>
+      <td>Header row height</td>
+    </tr>
+    <tr>
+      <td>
+        <code>--table-header-font-size</code>
+      </td>
+      <td>12px</td>
+      <td>Header font size</td>
+    </tr>
+    <tr>
+      <td>
+        <code>--table-header-font-weight</code>
+      </td>
+      <td>600</td>
+      <td>Header font weight</td>
+    </tr>
+    <tr>
+      <td>
+        <code>--table-header-border-bottom</code>
+      </td>
+      <td>2px solid</td>
+      <td>Header bottom border</td>
+    </tr>
+    <tr>
+      <td>
+        <code>--table-row-height</code>
+      </td>
+      <td>40px</td>
+      <td>Data row height</td>
+    </tr>
+    <tr>
+      <td>
+        <code>--table-row-bg</code>
+      </td>
+      <td>#fff</td>
+      <td>Row background</td>
+    </tr>
+    <tr>
+      <td>
+        <code>--table-row-hover-bg</code>
+      </td>
+      <td>#f5f7fa</td>
+      <td>Row hover background</td>
+    </tr>
+    <tr>
+      <td>
+        <code>--table-row-selected-bg</code>
+      </td>
+      <td>#e8f2ff</td>
+      <td>Selected row background</td>
+    </tr>
+    <tr>
+      <td>
+        <code>--table-row-active-bg</code>
+      </td>
+      <td>#e8f4fd</td>
+      <td>Active row background</td>
+    </tr>
+    <tr>
+      <td>
+        <code>--table-row-clickable-cursor</code>
+      </td>
+      <td>pointer</td>
+      <td>Clickable row cursor</td>
+    </tr>
+    <tr>
+      <td>
+        <code>--table-cell-padding-y</code>
+      </td>
+      <td>10px</td>
+      <td>Cell vertical padding</td>
+    </tr>
+    <tr>
+      <td>
+        <code>--table-cell-padding-x</code>
+      </td>
+      <td>12px</td>
+      <td>Cell horizontal padding</td>
+    </tr>
+    <tr>
+      <td>
+        <code>--table-cell-font-size</code>
+      </td>
+      <td>14px</td>
+      <td>Cell font size</td>
+    </tr>
+    <tr>
+      <td>
+        <code>--table-toolbar-bg</code>
+      </td>
+      <td>#fff</td>
+      <td>Toolbar background</td>
+    </tr>
+    <tr>
+      <td>
+        <code>--table-footer-bg</code>
+      </td>
+      <td>#fff</td>
+      <td>Footer background</td>
+    </tr>
+    <tr>
+      <td>
+        <code>--table-data-count-bg</code>
+      </td>
+      <td>#e8f2ff</td>
+      <td>Data count badge background</td>
+    </tr>
+    <tr>
+      <td>
+        <code>--table-data-count-color</code>
+      </td>
+      <td>#0073e6</td>
+      <td>Data count badge text color</td>
+    </tr>
+    <tr>
+      <td>
+        <code>--table-sort-active-color</code>
+      </td>
+      <td>#0073e6</td>
+      <td>Active sort icon color</td>
+    </tr>
+    <tr>
+      <td>
+        <code>--table-sort-inactive-color</code>
+      </td>
+      <td>#c4c9d4</td>
+      <td>Inactive sort icon color</td>
+    </tr>
+    <tr>
+      <td>
+        <code>--table-resize-handle-color</code>
+      </td>
+      <td>#0073e6</td>
+      <td>Resize handle color</td>
+    </tr>
+    <tr>
+      <td>
+        <code>--table-frozen-shadow</code>
+      </td>
+      <td>4px 0 8px -2px rgba(0,0,0,0.08)</td>
+      <td>Frozen column shadow</td>
+    </tr>
+  </tbody>
+</table>
+
+## Events
+
+## Row Interaction
+
+<table>
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>Detail</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>zeta-table-row-click</code>
+      </td>
+      <td>{"{ row, rowId, rowIndex }"}</td>
+      <td>Row clicked</td>
+    </tr>
+    <tr>
+      <td>
+        <code>zeta-table-selection-change</code>
+      </td>
+      <td>{"{ selectedIds }"}</td>
+      <td>Checkbox selection changed</td>
+    </tr>
+    <tr>
+      <td>
+        <code>zeta-table-row-expand</code>
+      </td>
+      <td>{"{ rowId, expanded }"}</td>
+      <td>Row expanded/collapsed</td>
+    </tr>
+    <tr>
+      <td>
+        <code>zeta-table-action</code>
+      </td>
+      <td>{"{ actionKey, row, rowIndex }"}</td>
+      <td>Row action menu item clicked</td>
+    </tr>
+  </tbody>
+</table>
+
+## Sorting & Filtering
+
+<table>
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>Detail</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>zeta-table-sort-change</code>
+      </td>
+      <td>{"{ field, direction }"}</td>
+      <td>Column sort changed</td>
+    </tr>
+    <tr>
+      <td>
+        <code>zeta-table-column-filter</code>
+      </td>
+      <td>{"{ field, selectedValues }"}</td>
+      <td>Column filter applied</td>
+    </tr>
+    <tr>
+      <td>
+        <code>zeta-table-column-search</code>
+      </td>
+      <td>{"{ field, value, searchValues }"}</td>
+      <td>Column search changed</td>
+    </tr>
+    <tr>
+      <td>
+        <code>zeta-table-search</code>
+      </td>
+      <td>{"{ value }"}</td>
+      <td>Global search changed</td>
+    </tr>
+  </tbody>
+</table>
+
+## Pagination & Data
+
+<table>
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>Detail</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>zeta-table-page-change</code>
+      </td>
+      <td>{"{ page, pageSize }"}</td>
+      <td>Page changed</td>
+    </tr>
+    <tr>
+      <td>
+        <code>zeta-table-load-more</code>
+      </td>
+      <td>{"{ currentCount }"}</td>
+      <td>More data needed (infinite scroll)</td>
+    </tr>
+    <tr>
+      <td>
+        <code>zeta-table-export</code>
+      </td>
+      <td>{"{ csv, columns, data }"}</td>
+      <td>Export clicked</td>
+    </tr>
+    <tr>
+      <td>
+        <code>zeta-table-refresh</code>
+      </td>
+      <td>—</td>
+      <td>Refresh clicked</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Usage
+
+### Installation
+
+```bash
+npm install @zebra-fed/zeta-web
+```
+
+Import global styles once in your app entry:
+
+```js
+import "@zebra-fed/zeta-web/index.css";
+```
+
+---
+
+## Plain HTML / JavaScript
+
+```html
+<zeta-table id="demo" selectable show-data-count table-title="Users" pagination-type="numbered" page-size="5" style="--table-row-height: 36px;"> </zeta-table>
+
+<script type="module">
+  import "@zebra-fed/zeta-web/dist/components/table/table.js";
+
+  const table = document.getElementById("demo");
+
+  table.columns = [
+    { field: "name", title: "Name", width: 180, sortable: true },
+    { field: "email", title: "Email", width: 220 },
+    { field: "role", title: "Role", width: 120 }
+  ];
+
+  table.data = [
+    { id: 1, name: "Alice", email: "alice@acme.com", role: "Admin" },
+    { id: 2, name: "Bob", email: "bob@acme.com", role: "Editor" },
+    { id: 3, name: "Carol", email: "carol@acme.com", role: "Viewer" }
+  ];
+
+  table.addEventListener("zeta-table-row-click", e => {
+    console.log("Clicked:", e.detail);
+  });
+</script>
+```
+
+---
+
+## Row Actions Example
+
+Row actions add a kebab menu (three-dot icon) as the last column. Each row defines its own actions via `_actions`, or you can set a fallback via the `rowActions` property.
+
+```typescript
+interface ZetaTableAction {
+  key: string; // Unique key passed to onRowAction callback
+  label: string; // Display label
+  icon?: string; // Optional icon
+  disabled?: boolean; // Disable for a specific row
+}
+```
+
+```javascript
+table.data = [
+  {
+    id: 1,
+    name: "Alice",
+    role: "Admin",
+    _actions: [
+      { key: "edit", label: "Edit" },
+      { key: "delete", label: "Delete" }
+    ]
+  },
+  {
+    id: 2,
+    name: "Bob",
+    role: "Viewer",
+    _actions: [
+      { key: "edit", label: "Edit" },
+      { key: "delete", label: "Delete", disabled: true }
+    ]
+  }
+];
+
+table.onRowAction = (actionKey, row, rowIndex) => {
+  console.log("Action:", actionKey, "on", row.name);
+};
+```
+
+---
+
+## How to use in ReactJs
+
+> React &lt; 19 does not natively set JS object properties on custom elements — use a `ref`.
+
+### Plain text cells
+
+```tsx
+import { useRef, useEffect } from "react";
+import "@zebra-fed/zeta-web/dist/components/table/table.js";
+
+const columns = [
+  { field: "name", title: "Name", width: 180, sortable: true },
+  { field: "email", title: "Email", width: 220 },
+  { field: "role", title: "Role", width: 120 }
+];
+
+const users = [
+  { id: 1, name: "Alice", email: "alice@acme.com", role: "Admin" },
+  { id: 2, name: "Bob", email: "bob@acme.com", role: "Editor" },
+  { id: 3, name: "Carol", email: "carol@acme.com", role: "Viewer" }
+];
+
+export function UsersTable() {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    el.columns = columns;
+    el.data = users;
+  }, []);
+
+  return (
+    <zeta-table
+      ref={ref}
+      selectable
+      show-data-count
+      table-title="Users"
+      pagination-type="numbered"
+      page-size="5"
+      style={{ "--table-row-height": "36px" } as React.CSSProperties}
+    />
+  );
+}
+```
+
+#### Custom elements in cells
+
+Use `ZetaTableReact` — a React wrapper that accepts JSX directly as cell values. It automatically renders React elements via portals, keeping them in the React tree (so context providers, state, event handlers all work).
+
+> `ZetaTableReact` handles all the `ref`, `useLayoutEffect`, and portal plumbing internally.
+> You just pass React components as cell values — no `document.createElement` needed.
+
+```tsx
+import { ZetaTableReact } from "@zebra-fed/zeta-web/react";
+
+function StatusBadge({ status }: { status: string }) {
+  return (
+    <span
+      style={{
+        background: status === "active" ? "#d1fae5" : "#fee2e2",
+        color: status === "active" ? "#065f46" : "#991b1b",
+        padding: "2px 8px",
+        borderRadius: "10px",
+        fontSize: "12px"
+      }}>
+      {status}
+    </span>
+  );
+}
+
+const columns = [
+  { field: "name", title: "Name", width: 180, sortable: true },
+  { field: "email", title: "Email", width: 220 },
+  { field: "status", title: "Status", width: 120 }
+];
+
+export function UsersTable() {
+  const data = [
+    { id: 1, name: "Alice", email: "alice@acme.com", status: <StatusBadge status="active" /> },
+    { id: 2, name: "Bob", email: "bob@acme.com", status: <StatusBadge status="inactive" /> },
+    { id: 3, name: "Carol", email: "carol@acme.com", status: <StatusBadge status="active" /> }
+  ];
+
+  return (
+    <ZetaTableReact
+      columns={columns}
+      data={data}
+      selectable
+      showDataCount
+      tableTitle="Users"
+      paginationType="numbered"
+      pageSize={5}
+      onRowAction={(key, row) => console.log("Action:", key, row)}
+      style={{ "--table-row-height": "36px" } as React.CSSProperties}
+    />
+  );
+}
+```
+
+**Using `document.createElement` (without `ZetaTableReact`):**
+
+If you prefer using the raw `<zeta-table>` element with a `ref`, you can pass DOM nodes:
+
+```tsx
+const tableData = users.map(user => {
+  const badge = document.createElement("span");
+  badge.textContent = user.status;
+  badge.className = `badge badge-${user.status}`;
+
+  return {
+    id: user.id,
+    name: user.name,
+    status: badge // renders as an HTML element, not text
+  };
+});
+```
+
+---
+
+## How to use in Angular
+
+Add `CUSTOM_ELEMENTS_SCHEMA` to your module:
+
+```typescript
+// app.module.ts
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
+import "@zebra-fed/zeta-web/dist/components/table/table.js";
+
+@NgModule({ schemas: [CUSTOM_ELEMENTS_SCHEMA] })
+export class AppModule {}
+```
+
+### Plain text cells
+
+```html
+<!-- users-table.component.html -->
+<zeta-table #zetaTable selectable show-data-count table-title="Users" pagination-type="numbered" page-size="5" [style.--table-row-height]="'36px'">
+</zeta-table>
+```
+
+```typescript
+// users-table.component.ts
+import { Component, ViewChild, ElementRef, AfterViewInit } from "@angular/core";
+
+@Component({ selector: "app-users-table", templateUrl: "./users-table.component.html" })
+export class UsersTableComponent implements AfterViewInit {
+  @ViewChild("zetaTable") tableRef!: ElementRef;
+
+  columns = [
+    { field: "name", title: "Name", width: 180, sortable: true },
+    { field: "email", title: "Email", width: 220 },
+    { field: "role", title: "Role", width: 120 }
+  ];
+
+  users = [
+    { id: 1, name: "Alice", email: "alice@acme.com", role: "Admin" },
+    { id: 2, name: "Bob", email: "bob@acme.com", role: "Editor" },
+    { id: 3, name: "Carol", email: "carol@acme.com", role: "Viewer" }
+  ];
+
+  ngAfterViewInit() {
+    const table = this.tableRef.nativeElement;
+    table.columns = this.columns;
+    table.data = this.users;
+  }
+}
+```
+
+#### Custom elements in cells
+
+**Using `document.createElement`:**
+
+```typescript
+private mapData(users: any[]): any[] {
+  return users.map((user) => {
+    const badge = document.createElement("span");
+    badge.textContent = user.status;
+    badge.className = `badge badge-${user.status}`;
+
+    return {
+      id: user.id,
+      name: user.name,
+      status: badge,  // renders as an HTML element, not text
+    };
+  });
+}
+```
+
+**Using Angular components (via `ViewContainerRef`):**
+
+```html
+<!-- Add a hidden host for dynamic components -->
+<ng-container #cellHost></ng-container>
+```
+
+```typescript
+import { ViewChild, ViewContainerRef, ComponentRef, Type } from "@angular/core";
+
+@ViewChild("cellHost", { read: ViewContainerRef }) cellHost!: ViewContainerRef;
+
+private cellRefs: ComponentRef<any>[] = [];
+
+private mapData(users: any[]): any[] {
+  this.cellRefs.forEach((ref) => ref.destroy());
+  this.cellRefs = [];
+
+  return users.map((user) => ({
+    id: user.id,
+    name: user.name,
+    status: this.renderCell(StatusBadgeComponent, { status: user.status }),
+  }));
+}
+
+private renderCell(component: Type<any>, data: any): HTMLElement {
+  const ref = this.cellHost.createComponent(component);
+  Object.assign(ref.instance, data);
+  ref.changeDetectorRef.detectChanges();
+  this.cellRefs.push(ref);
+  const el = ref.location.nativeElement as HTMLElement;
+  el.style.display = "contents";
+  return el;  // Angular component rendered inside the cell
+}
+```
+
+---
+
+### How to use in Vue 3
+
+Use the `.prop` modifier to pass JS objects as properties:
+
+```typescript
+// main.ts
+import { createApp } from "vue";
+import "@zebra-fed/zeta-web/index.css";
+import "@zebra-fed/zeta-web/dist/components/table/table.js";
+
+const app = createApp(App);
+app.config.compilerOptions.isCustomElement = tag => tag.startsWith("zeta-");
+app.mount("#app");
+```
+
+#### Plain text cells
+
+```vue
+<template>
+  <zeta-table
+    :columns.prop="columns"
+    :data.prop="users"
+    selectable
+    show-data-count
+    table-title="Users"
+    pagination-type="numbered"
+    page-size="5"
+    :style="{ '--table-row-height': '36px' }"
+    @zeta-table-row-click="e => console.log('Clicked:', e.detail)"
+  />
+</template>
+
+<script setup>
+const columns = [
+  { field: "name", title: "Name", width: 180, sortable: true },
+  { field: "email", title: "Email", width: 220 },
+  { field: "role", title: "Role", width: 120 }
+];
+
+const users = [
+  { id: 1, name: "Alice", email: "alice@acme.com", role: "Admin" },
+  { id: 2, name: "Bob", email: "bob@acme.com", role: "Editor" },
+  { id: 3, name: "Carol", email: "carol@acme.com", role: "Viewer" }
+];
+</script>
+```
+
+#### Custom elements in cells
+
+**Using Vue components (via `render` + `h`):**
+
+```vue
+<template>
+  <zeta-table
+    :columns.prop="columns"
+    :data.prop="tableData"
+    selectable
+    show-data-count
+    table-title="Users"
+    :style="{ '--table-row-height': '36px' }"
+  />
+</template>
+
+<script setup>
+import { computed, h, render, onUnmounted } from "vue";
+import StatusBadge from "./StatusBadge.vue";
+
+const columns = [
+  { field: "name", title: "Name", width: 180, sortable: true },
+  { field: "email", title: "Email", width: 220 },
+  { field: "status", title: "Status", width: 120 },
+];
+
+const users = [
+  { id: 1, name: "Alice", email: "alice@acme.com", status: "active" },
+  { id: 2, name: "Bob",   email: "bob@acme.com",   status: "inactive" },
+  { id: 3, name: "Carol", email: "carol@acme.com",  status: "active" },
+];
+
+const containers: HTMLElement[] = [];
+
+function renderVueComponent(component, props) {
+  const container = document.createElement("div");
+  container.style.display = "contents";
+  render(h(component, props), container);
+  containers.push(container);
+  return container;
+}
+
+const tableData = computed(() => {
+  containers.forEach((el) => render(null, el));
+  containers.length = 0;
+
+  return users.map((user) => ({
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    status: renderVueComponent(StatusBadge, { status: user.status }),
+  }));
+});
+
+onUnmounted(() => {
+  containers.forEach((el) => render(null, el));
+});
+</script>
+```
+
+```vue
+<!-- StatusBadge.vue -->
+<template>
+  <span :style="badgeStyle">{{ status }}</span>
+</template>
+
+<script setup>
+import { computed } from "vue";
+const props = defineProps({ status: String });
+
+const badgeStyle = computed(() => ({
+  background: props.status === "active" ? "#d1fae5" : "#fee2e2",
+  color: props.status === "active" ? "#065f46" : "#991b1b",
+  padding: "2px 8px",
+  borderRadius: "10px",
+  fontSize: "12px",
+}));
+</script>
+```
+
+**Using `document.createElement`:**
+
+```javascript
+const tableData = computed(() =>
+  users.map((user) => {
+    const badge = document.createElement("span");
+    badge.textContent = user.status;
+    badge.style.cssText = user.status === "active"
+      ? "background:#d1fae5; color:#065f46; padding:2px 8px; border-radius:10px; font-size:12px;"
+      : "background:#fee2e2; color:#991b1b; padding:2px 8px; border-radius:10px; font-size:12px;";
+
+    return { id: user.id, name: user.name, email: user.email, status: badge };
+  })
+);
+```
