@@ -4,6 +4,7 @@ import { customElement, property, state } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { styleMap } from "lit/directives/style-map.js";
 import styles from "./table.styles.js";
+import "../icon/icon.js";
 
 /**
  * Defines a single column in the table.
@@ -795,6 +796,26 @@ export class ZetaTable extends LitElement {
     } else {
       this._sortState = { field, direction: "asc", clickCount: 1 };
     }
+    this._emitSortChange();
+  }
+
+  /**
+   * Handles clicking an individual sort arrow icon.
+   * Sets the column to the specified direction, or clears sorting if already active.
+   */
+  private _handleSortArrowClick(field: string, direction: "asc" | "desc") {
+    const col = this.columns.find(c => c.field === field);
+    if (col?.disabled) return;
+
+    if (this._sortState.field === field && this._sortState.direction === direction) {
+      this._sortState = { field: "", direction: null, clickCount: 0 };
+    } else {
+      this._sortState = { field, direction, clickCount: direction === "asc" ? 1 : 2 };
+    }
+    this._emitSortChange();
+  }
+
+  private _emitSortChange() {
     if (this.onSortChange) {
       this.onSortChange(this._sortState.field, this._sortState.direction);
     }
@@ -1458,11 +1479,7 @@ export class ZetaTable extends LitElement {
           ${this.onTableSearch
             ? html`
                 <div class="zeta-table-global-search">
-                  <svg class="zeta-table-global-search-icon" viewBox="0 0 24 24" width="16" height="16">
-                    <path
-                      d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
-                    />
-                  </svg>
+                  <zeta-icon class="zeta-table-global-search-icon">search</zeta-icon>
                   <input
                     type="text"
                     class="zeta-table-global-search-input"
@@ -1476,18 +1493,14 @@ export class ZetaTable extends LitElement {
           ${this.onRefresh
             ? html`
                 <button class="zeta-table-toolbar-btn zeta-table-toolbar-btn--icon" @click=${this._handleRefresh} title=${this.refreshLabel}>
-                  <svg viewBox="0 0 24 24">
-                    <path
-                      d="M17.65 6.35A7.958 7.958 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"
-                    />
-                  </svg>
+                  <zeta-icon>refresh</zeta-icon>
                 </button>
               `
             : nothing}
           ${this.exportable
             ? html`
                 <button class="zeta-table-toolbar-btn zeta-table-toolbar-btn--icon" @click=${this._handleExport} title="Export to CSV">
-                  <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" /></svg>
+                  <zeta-icon>download</zeta-icon>
                 </button>
               `
             : nothing}
@@ -1514,11 +1527,7 @@ export class ZetaTable extends LitElement {
           }}
           title=${this.columnsLabel}
         >
-          <svg viewBox="0 0 24 24">
-            <path
-              d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
-            />
-          </svg>
+          <zeta-icon>more_vertical</zeta-icon>
         </button>
         ${this._columnConfigureVisible
           ? html`
@@ -1562,7 +1571,7 @@ export class ZetaTable extends LitElement {
   /** Renders <colgroup> to set initial column widths. Includes fixed-width cols for checkbox and expand columns. */
   private _renderColgroup(cols: ZetaTableColumn[]) {
     // prettier-ignore
-    return html`<colgroup>${this.selectable ? html`<col style="width:44px">` : nothing}${this.expandable ? html`<col style="width:40px">` : nothing}${cols.map(col => {
+    return html`<colgroup>${this.selectable ? html`<col class="zeta-table-col-checkbox-width">` : nothing}${this.expandable ? html`<col class="zeta-table-col-expand-width">` : nothing}${cols.map(col => {
       const w = this._columnWidths[col.field] ?? col.width;
       if (w == null) return html`<col>`;
       const cssWidth = typeof w === "number" ? `${w}px` : w;
@@ -1586,7 +1595,7 @@ export class ZetaTable extends LitElement {
       <tr class="zeta-table-header-row">
         ${this.selectable
           ? html`
-              <th class="zeta-table-th zeta-table-col-checkbox zeta-table-cell--frozen" style="left:0; z-index:16;">
+              <th class="zeta-table-th zeta-table-col-checkbox zeta-table-cell--frozen zeta-table-cell--frozen-start">
                 ${this.selectAll
                   ? html`<input
                       type="checkbox"
@@ -1600,7 +1609,7 @@ export class ZetaTable extends LitElement {
             `
           : nothing}
         ${this.expandable
-          ? html`<th class="zeta-table-th zeta-table-col-expand zeta-table-cell--frozen" style="left:${this.selectable ? "44px" : "0"}"></th>`
+          ? html`<th class="zeta-table-th zeta-table-col-expand zeta-table-cell--frozen ${this.selectable ? "zeta-table-cell--frozen-after-checkbox" : "zeta-table-cell--frozen-start"}"></th>`
           : nothing}
         ${cols.map((col, i) => this._renderHeaderCell(col, i))}
         ${this._showActionsColumn ? html`<th class="zeta-table-th zeta-table-col-actions">${this.actionsLabel}</th>` : nothing}
@@ -1651,7 +1660,7 @@ export class ZetaTable extends LitElement {
                     this._handleColumnFilter(col, e);
                   }}
                 >
-                  <svg viewBox="0 0 24 24" width="14" height="14"><path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z" /></svg>
+                  <zeta-icon class="zeta-table-filter-icon">filter_alt</zeta-icon>
                 </button>`
               : nothing}
             ${isSortable
@@ -1680,10 +1689,12 @@ export class ZetaTable extends LitElement {
 
     return html`
       <span class="zeta-table-sort-icons">
-        <svg class="zeta-table-sort-arrow ${isAsc ? "zeta-table-sort-arrow--active" : ""}" viewBox="0 0 10 8">
+        <svg class="zeta-table-sort-arrow ${isAsc ? "zeta-table-sort-arrow--active" : ""}" viewBox="0 0 10 8"
+          @click=${(e: MouseEvent) => { e.stopPropagation(); this._handleSortArrowClick(field, "asc"); }}>
           <polygon points="5,1 9,7 1,7" />
         </svg>
-        <svg class="zeta-table-sort-arrow ${isDesc ? "zeta-table-sort-arrow--active" : ""}" viewBox="0 0 10 8">
+        <svg class="zeta-table-sort-arrow ${isDesc ? "zeta-table-sort-arrow--active" : ""}" viewBox="0 0 10 8"
+          @click=${(e: MouseEvent) => { e.stopPropagation(); this._handleSortArrowClick(field, "desc"); }}>
           <polygon points="5,7 1,1 9,1" />
         </svg>
       </span>
@@ -1698,9 +1709,9 @@ export class ZetaTable extends LitElement {
   private _renderSearchRow(cols: ZetaTableColumn[]) {
     return html`
       <tr class="zeta-table-search-row">
-        ${this.selectable ? html`<th class="zeta-table-th zeta-table-col-checkbox zeta-table-cell--frozen" style="left:0;"></th>` : nothing}
+        ${this.selectable ? html`<th class="zeta-table-th zeta-table-col-checkbox zeta-table-cell--frozen zeta-table-cell--frozen-start"></th>` : nothing}
         ${this.expandable
-          ? html`<th class="zeta-table-th zeta-table-col-expand zeta-table-cell--frozen" style="left:${this.selectable ? "44px" : "0"}"></th>`
+          ? html`<th class="zeta-table-th zeta-table-col-expand zeta-table-cell--frozen ${this.selectable ? "zeta-table-cell--frozen-after-checkbox" : "zeta-table-cell--frozen-start"}"></th>`
           : nothing}
         ${cols.map((col, i) => {
           const isFrozen = this._isColumnFrozen(col);
@@ -1759,7 +1770,7 @@ export class ZetaTable extends LitElement {
       <tr class=${classMap(rowClasses)} @click=${(e: MouseEvent) => this._handleRowClick(row, rowIndex, e)}>
         ${this.selectable
           ? html`
-              <td class="zeta-table-td zeta-table-col-checkbox zeta-table-cell--frozen" style="left:0;">
+              <td class="zeta-table-td zeta-table-col-checkbox zeta-table-cell--frozen zeta-table-cell--frozen-start">
                 <input
                   type="checkbox"
                   .checked=${isSelected}
@@ -1771,7 +1782,7 @@ export class ZetaTable extends LitElement {
           : nothing}
         ${this.expandable
           ? html`
-              <td class="zeta-table-td zeta-table-col-expand zeta-table-cell--frozen" style="left:${this.selectable ? "44px" : "0"}">
+              <td class="zeta-table-td zeta-table-col-expand zeta-table-cell--frozen ${this.selectable ? "zeta-table-cell--frozen-after-checkbox" : "zeta-table-cell--frozen-start"}"
                 ${hasNested
                   ? html`
                       <button
@@ -1779,7 +1790,7 @@ export class ZetaTable extends LitElement {
                         @click=${() => this._toggleExpand(row.id)}
                         title="${isExpanded ? "Collapse" : "Expand"}"
                       >
-                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                        <zeta-icon>chevron_right</zeta-icon>
                       </button>
                     `
                   : nothing}
@@ -1821,11 +1832,7 @@ export class ZetaTable extends LitElement {
                     this._toggleActionMenu(row.id, e);
                   }}
                 >
-                  <svg viewBox="0 0 24 24" width="18" height="18">
-                    <circle cx="12" cy="5" r="2" />
-                    <circle cx="12" cy="12" r="2" />
-                    <circle cx="12" cy="19" r="2" />
-                  </svg>
+                  <zeta-icon class="zeta-table-action-menu-icon">more_vertical</zeta-icon>
                 </button>
               </div>
             `
@@ -2063,11 +2070,11 @@ export class ZetaTable extends LitElement {
       <tr class="zeta-table-nested-row">
         <td class="zeta-table-td" colspan="${colSpan}">
           <div class="zeta-table-nested-content">
-            <table style="width:100%; border-collapse:collapse;">
+            <table class="zeta-table-nested-table">
               <thead>
                 <tr>
                   ${nestedKeys.map(
-                    key => html`<th style="padding:6px 12px; text-align:left; font-size:11px; border-bottom:1px solid var(--table-border-color);">${key}</th>`
+                    key => html`<th class="zeta-table-nested-th">${key}</th>`
                   )}
                 </tr>
               </thead>
@@ -2077,7 +2084,7 @@ export class ZetaTable extends LitElement {
                     <tr>
                       ${nestedKeys.map(key => {
                         const val = child[key];
-                        return html`<td style="padding:6px 12px; font-size:13px; border-bottom:1px solid var(--table-border-color);">
+                        return html`<td class="zeta-table-nested-td">
                           ${val instanceof Node ? val : val != null ? (typeof val === "object" ? JSON.stringify(val) : String(val)) : ""}
                         </td>`;
                       })}
@@ -2135,7 +2142,7 @@ export class ZetaTable extends LitElement {
           </button>
           ${pages.map(p =>
             p === "..."
-              ? html`<span style="padding:0 4px;">...</span>`
+              ? html`<span class="zeta-table-page-ellipsis">...</span>`
               : html`<button
                   class="zeta-table-page-btn ${p === this._currentPage ? "zeta-table-page-btn--active" : ""}"
                   @click=${() => this._navigateToPage(p as number)}

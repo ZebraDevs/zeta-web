@@ -69,19 +69,19 @@ function getActionsForRole(role: string, disabled: boolean): ZetaTableAction[] |
 function createStatusBadge(text: string, color: string, bg: string): HTMLElement {
   const badge = document.createElement("span");
   badge.textContent = text;
-  badge.style.cssText = `display:inline-flex; align-items:center; padding:2px 8px; border-radius:12px; font-size:12px; font-weight:500; color:${color}; background:${bg};`;
+  badge.style.cssText = `display:inline-flex; align-items:center; padding:var(--spacing-0-5) var(--spacing-small); border-radius:var(--spacing-medium); font:var(--body-x-small); font-weight:var(--medium); color:${color}; background:${bg};`;
   return badge;
 }
 
 /** Creates a DOM element with an inline SVG user icon + name side by side */
 function createIconName(name: string): HTMLElement {
   const wrapper = document.createElement("div");
-  wrapper.style.cssText = "display:flex; align-items:center; gap:8px;";
+  wrapper.style.cssText = "display:flex; align-items:center; gap:var(--spacing-small);";
   const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   svg.setAttribute("viewBox", "0 0 24 24");
   svg.setAttribute("width", "20");
   svg.setAttribute("height", "20");
-  svg.style.cssText = "fill:#6b7280; flex-shrink:0;";
+  svg.style.cssText = "fill:var(--main-subtle); flex-shrink:0;";
   const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
   path.setAttribute("d", "M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z");
   svg.appendChild(path);
@@ -96,40 +96,43 @@ const STAR_FILLED_PATH = "M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9
 const STAR_OUTLINE_PATH =
   "M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z";
 
-function createStarSvg(filled: boolean): SVGSVGElement {
-  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  svg.setAttribute("viewBox", "0 0 24 24");
-  svg.setAttribute("width", "18");
-  svg.setAttribute("height", "18");
-  svg.style.fill = filled ? "#f59e0b" : "#d1d5db";
-  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-  path.setAttribute("d", filled ? STAR_FILLED_PATH : STAR_OUTLINE_PATH);
-  svg.appendChild(path);
-  return svg;
-}
-
 /** Creates a star rating toggle button (interactive DOM Node) */
 function createStarButton(filled: boolean): HTMLElement {
   const btn = document.createElement("button");
   btn.title = filled ? "Unstar" : "Star";
-  btn.style.cssText = "background:none; border:none; cursor:pointer; padding:2px; display:inline-flex; align-items:center;";
-  btn.appendChild(createStarSvg(filled));
+  btn.style.cssText = "background:none; border:none; cursor:pointer; padding:var(--spacing-0-5); display:inline-flex; align-items:center;";
+
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("viewBox", "0 0 24 24");
+  svg.setAttribute("width", "18");
+  svg.setAttribute("height", "18");
+  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  svg.appendChild(path);
+  btn.appendChild(svg);
+
+  let isFilled = filled;
+  const applyState = () => {
+    svg.style.fill = isFilled ? "var(--main-warning)" : "var(--main-disabled)";
+    path.setAttribute("d", isFilled ? STAR_FILLED_PATH : STAR_OUTLINE_PATH);
+    btn.title = isFilled ? "Unstar" : "Star";
+  };
+  applyState();
+
   btn.addEventListener("click", e => {
     e.stopPropagation();
-    const isFilled = btn.querySelector("svg")!.style.fill === "rgb(245, 158, 11)";
-    btn.replaceChildren(createStarSvg(!isFilled));
-    btn.title = isFilled ? "Star" : "Unstar";
+    isFilled = !isFilled;
+    applyState();
   });
   return btn;
 }
 
 const roleStyles: Record<string, { color: string; bg: string }> = {
-  Manager: { color: "#0d6832", bg: "#dcfce7" },
-  Senior: { color: "#1d4ed8", bg: "#dbeafe" },
-  Junior: { color: "#92400e", bg: "#fef3c7" },
-  Lead: { color: "#6d28d9", bg: "#ede9fe" },
-  Director: { color: "#9f1239", bg: "#ffe4e6" },
-  Intern: { color: "#475569", bg: "#f1f5f9" }
+  Manager: { color: "var(--main-positive)", bg: "var(--surface-positive-subtle)" },
+  Senior: { color: "var(--main-primary)", bg: "var(--surface-primary-subtle)" },
+  Junior: { color: "var(--main-warning)", bg: "var(--surface-warning-subtle)" },
+  Lead: { color: "var(--surface-info)", bg: "var(--surface-info-subtle)" },
+  Director: { color: "var(--main-negative)", bg: "var(--surface-negative-subtle)" },
+  Intern: { color: "var(--main-subtle)", bg: "var(--surface-hover)" }
 };
 
 function generateData(count: number): ZetaTableRow[] {
@@ -137,7 +140,7 @@ function generateData(count: number): ZetaTableRow[] {
   for (let i = 1; i <= count; i++) {
     const role = roles[i % roles.length];
     const isDisabled = i === 7;
-    const rs = roleStyles[role] || { color: "#333", bg: "#eee" };
+    const rs = roleStyles[role] || { color: "var(--main-default)", bg: "var(--surface-hover)" };
     data.push({
       id: i,
       name: createIconName(`Employee ${i}`),
@@ -152,12 +155,12 @@ function generateData(count: number): ZetaTableRow[] {
         i % 5 === 0
           ? (() => {
               const el = document.createElement("div");
-              el.style.cssText = "padding:12px; display:flex; gap:16px; align-items:center;";
+              el.style.cssText = "padding:var(--spacing-medium); display:flex; gap:var(--spacing-large); align-items:center;";
               const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
               svg.setAttribute("viewBox", "0 0 24 24");
               svg.setAttribute("width", "48");
               svg.setAttribute("height", "48");
-              svg.style.cssText = "fill:#6b7280; flex-shrink:0;";
+              svg.style.cssText = "fill:var(--main-subtle); flex-shrink:0;";
               const p = document.createElementNS("http://www.w3.org/2000/svg", "path");
               p.setAttribute("d", "M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z");
               svg.appendChild(p);
@@ -167,7 +170,7 @@ function generateData(count: number): ZetaTableRow[] {
               info.appendChild(strong);
               info.appendChild(document.createElement("br"));
               const desc = document.createElement("span");
-              desc.style.color = "#666";
+              desc.style.color = "var(--main-subtle)";
               desc.textContent = "This nested content is a DOM Node. Consumers can render anything here: icons, charts, forms, etc.";
               info.appendChild(desc);
               el.appendChild(svg);
@@ -179,14 +182,14 @@ function generateData(count: number): ZetaTableRow[] {
                 {
                   id: `${i}-1`,
                   task: "Sub-task 1",
-                  status: createStatusBadge("Done", "#0d6832", "#dcfce7"),
-                  priority: createStatusBadge("High", "#9f1239", "#ffe4e6")
+                  status: createStatusBadge("Done", "var(--main-positive)", "var(--surface-positive-subtle)"),
+                  priority: createStatusBadge("High", "var(--main-negative)", "var(--surface-negative-subtle)")
                 },
                 {
                   id: `${i}-2`,
                   task: "Sub-task 2",
-                  status: createStatusBadge("In Progress", "#1d4ed8", "#dbeafe"),
-                  priority: createStatusBadge("Medium", "#92400e", "#fef3c7")
+                  status: createStatusBadge("In Progress", "var(--main-primary)", "var(--surface-primary-subtle)"),
+                  priority: createStatusBadge("Medium", "var(--main-warning)", "var(--surface-warning-subtle)")
                 }
               ]
             : undefined,
@@ -461,12 +464,12 @@ export const TableAll: StoryObj<TableStory> = {
     const initialData = paginationType === "numbered" ? masterData.slice(0, initialPageSize) : [...masterData];
 
     return html`
-      <p style="margin-bottom:12px; font-size:13px; color:#6b7280;">
+      <p style="margin-bottom:var(--spacing-medium); font:var(--body-x-small); color:var(--main-subtle);">
         <strong>All features enabled:</strong> Global search, per-column search, column filter dropdown, sorting, pagination, checkbox selection, row click,
         expandable rows, kebab actions (per-row), refresh, export, column configure (show/hide + freeze), disabled rows, allowDisabledSelection. Use the
         <strong>Controls</strong> panel below to toggle features and adjust styling.
       </p>
-      <p style="margin-bottom:12px; font-size:12px; color:#9ca3af;">
+      <p style="margin-bottom:var(--spacing-medium); font:var(--body-x-small); color:var(--main-disabled)">
         <strong>CSS Variables:</strong> Override via inline style — e.g. <code>--table-header-height</code>, <code>--table-row-height</code>,
         <code>--table-row-bg</code>, <code>--table-row-hover-bg</code>, <code>--table-row-selected-bg</code>, <code>--table-header-bg</code>,
         <code>--table-header-text</code>, <code>--table-cell-padding</code>, <code>--table-cell-font-size</code>, <code>--table-max-height</code>,
@@ -553,7 +556,7 @@ export const InfiniteScrollWithAPI: StoryObj<TableStory> = {
     }
 
     const loadingEl = document.createElement("div");
-    loadingEl.style.cssText = "display:flex; align-items:center; justify-content:center; gap:8px; padding:12px;";
+    loadingEl.style.cssText = "display:flex; align-items:center; justify-content:center; gap:var(--spacing-small); padding:var(--spacing-medium);";
     const spinnerSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     spinnerSvg.setAttribute("width", "20");
     spinnerSvg.setAttribute("height", "20");
@@ -563,14 +566,14 @@ export const InfiniteScrollWithAPI: StoryObj<TableStory> = {
     circle.setAttribute("cx", "12");
     circle.setAttribute("cy", "12");
     circle.setAttribute("r", "10");
-    circle.setAttribute("stroke", "#0073e6");
+    circle.setAttribute("stroke", "var(--main-primary)");
     circle.setAttribute("stroke-width", "3");
     circle.setAttribute("fill", "none");
     circle.setAttribute("stroke-dasharray", "31.4 31.4");
     circle.setAttribute("stroke-linecap", "round");
     spinnerSvg.appendChild(circle);
     const loadingText = document.createElement("span");
-    loadingText.style.cssText = "color:#0073e6; font-size:13px; font-weight:500;";
+    loadingText.style.cssText = "color:var(--main-primary); font:var(--body-x-small); font-weight:var(--medium);";
     loadingText.textContent = "Fetching more records...";
     loadingEl.appendChild(spinnerSvg);
     loadingEl.appendChild(loadingText);
@@ -747,17 +750,17 @@ export const CustomStyling: StoryObj<TableStory> = {
     return html`
       <style>
         .custom-table .zeta-table-wrapper {
-          border-radius: 12px;
+          border-radius: var(--spacing-medium);
         }
         .custom-table .zeta-table-thead {
-          background: #1e293b;
+          background: var(--main-default);
         }
         .custom-table .zeta-table-th {
-          background: #1e293b;
-          color: #ffffff;
+          background: var(--main-default);
+          color: var(--state-default-enabled);
         }
         .custom-table .zeta-table-row:hover .zeta-table-td {
-          background: #f1f5f9;
+          background: var(--surface-hover);
         }
       </style>
       <zeta-table
@@ -778,14 +781,14 @@ export const CustomStyling: StoryObj<TableStory> = {
         @zeta-table-row-expand=${onExpand}
         @zeta-table-row-click=${onRowClick}
         style=${cssVarsStyle(args, {
-          "--table-header-bg": "#1e293b",
-          "--table-header-text": "#ffffff",
-          "--table-header-height": "48px",
-          "--table-row-height": "44px",
-          "--table-row-hover-bg": "#f1f5f9",
-          "--table-row-selected-bg": "#dbeafe",
-          "--table-row-active-bg": "#bfdbfe",
-          "--table-border-radius": "12px",
+          "--table-header-bg": "var(--main-default)",
+          "--table-header-text": "var(--state-default-enabled)",
+          "--table-header-height": "var(--spacing-8xl)",
+          "--table-row-height": "var(--spacing-7xl)",
+          "--table-row-hover-bg": "var(--surface-hover)",
+          "--table-row-selected-bg": "var(--surface-selected)",
+          "--table-row-active-bg": "var(--surface-selected-hover)",
+          "--table-border-radius": "var(--spacing-medium)",
           "--table-max-height": "400px"
         })}
       ></zeta-table>
@@ -911,7 +914,7 @@ export const PerRowActions: StoryObj<TableStory> = {
     };
 
     return html`
-      <p style="margin-bottom:12px; font-size:13px; color:#6b7280;">
+      <p style="margin-bottom:var(--spacing-medium); font:var(--body-x-small); color:var(--main-subtle);">
         <strong>Per-row _actions:</strong> Each row defines its own menu options via <code>_actions</code>. Row 5 (Eve) has <code>_actions: null</code> so no
         menu is shown. Row 6 has "Delete" disabled.
       </p>
@@ -1019,7 +1022,7 @@ export const GlobalAndColumnSearch: StoryObj<TableStory> = {
     };
 
     return html`
-      <p style="margin-bottom:12px; font-size:13px; color:#6b7280;">
+      <p style="margin-bottom:var(--spacing-medium); font:var(--body-x-small); color:var(--main-subtle);">
         <strong>Features demonstrated:</strong> Global search bar (top-left), per-column search inputs, column filter icons (header), kebab actions menu
         (per-row), refresh, export, column configure, pagination.
       </p>

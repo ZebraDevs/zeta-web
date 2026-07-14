@@ -1,18 +1,19 @@
 export default `<style>
   .table-demo {
     width: 100%;
-    padding: 16px;
+    padding: var(--spacing-large);
     box-sizing: border-box;
   }
   .table-demo h3 {
-    margin: 0 0 12px 0;
-    font-size: 16px;
-    color: var(--main-default, #1d1e23);
+    margin: 0 0 var(--spacing-medium) 0;
+    font: var(--title-medium);
+    font-weight: 600;
+    color: var(--main-default);
   }
   .table-demo p {
-    margin: 0 0 16px;
-    font-size: 13px;
-    color: var(--main-subtle, #6b7280);
+    margin: 0 0 var(--spacing-large);
+    font: var(--body-x-small);
+    color: var(--main-subtle);
   }
   zeta-table {
     --table-max-height: 480px;
