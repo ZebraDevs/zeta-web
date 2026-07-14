@@ -507,7 +507,7 @@ export class ZetaTable extends LitElement {
    *   filter panel) when clicking outside.
    */
   override connectedCallback() {
-    super.connectedCallback();
+    super.connectedCallback?.();
     if (!document.querySelector("style[data-zeta-table]")) {
       const style = document.createElement("style");
       style.setAttribute("data-zeta-table", "");
@@ -524,7 +524,7 @@ export class ZetaTable extends LitElement {
    * Cleans up all external listeners and observers to prevent memory leaks.
    */
   override disconnectedCallback() {
-    super.disconnectedCallback();
+    super.disconnectedCallback?.();
     document.removeEventListener("click", this._closeOverlaysOnOutsideClick);
     this._scrollContainer?.removeEventListener("scroll", this._handleScrollClose);
     this._destroyInfiniteScrollObserver();
@@ -931,7 +931,7 @@ export class ZetaTable extends LitElement {
    * Handles global (toolbar) search input changes.
    * Resets pagination to page 1 and delegates filtering to the consumer.
    */
-  private _handleGlobalSearch(e: InputEvent) {
+  private _handleGlobalSearch = (e: InputEvent) => {
     const value = (e.target as HTMLInputElement).value;
     this._globalSearchValue = value;
     if (this.paginationType === "numbered") {
@@ -947,7 +947,7 @@ export class ZetaTable extends LitElement {
         composed: true
       })
     );
-  }
+  };
 
   // ─── Row Selection ───
 
@@ -970,7 +970,7 @@ export class ZetaTable extends LitElement {
    * If all eligible rows are selected → deselects all. Otherwise → selects all.
    * Rows with _checkboxDisabled or disabled state (without allowDisabledSelection) are excluded.
    */
-  private _handleSelectAll() {
+  private _handleSelectAll = () => {
     const displayed = this._getDisplayedData().filter(row => !row._checkboxDisabled && (!this._isRowDisabled(row) || this.allowDisabledSelection));
     const allSelected = displayed.every(row => this._selectedRows.has(row.id));
     const newSet = new Set(this._selectedRows);
@@ -981,7 +981,7 @@ export class ZetaTable extends LitElement {
     }
     this._selectedRows = newSet;
     this._dispatchSelectionChange();
-  }
+  };
 
   /** Notifies the consumer of selection changes via both the callback and CustomEvent */
   private _dispatchSelectionChange() {
@@ -1085,7 +1085,7 @@ export class ZetaTable extends LitElement {
     // New width = starting width + drag delta, clamped to minimum
     const newWidth = Math.max(minWidth, this._resizeStartWidth + diff);
     // Immutable update triggers Lit reactive re-render
-    this._columnWidths = { ...this._columnWidths, [this._resizingColumn!]: newWidth };
+    this._columnWidths = { ...this._columnWidths, [this._resizingColumn]: newWidth };
   };
 
   /**
@@ -1143,7 +1143,7 @@ export class ZetaTable extends LitElement {
    */
   private _setupInfiniteScrollObserver() {
     this._destroyInfiniteScrollObserver();
-    this.updateComplete.then(() => {
+    void this.updateComplete.then(() => {
       const sentinel = this.querySelector(".zeta-table-infinite-sentinel");
       if (!sentinel || !this._scrollContainer) return;
       this._intersectionObserver = new IntersectionObserver(
@@ -1248,7 +1248,7 @@ export class ZetaTable extends LitElement {
    * Generates a CSV from visible columns and filtered/sorted data,
    * notifies the consumer, and triggers a browser download.
    */
-  private _handleExport() {
+  private _handleExport = () => {
     const visibleCols = this._getVisibleColumns();
     const data = this._getFilteredSortedData();
     const csvContent = this._generateCSV(visibleCols, data);
@@ -1263,10 +1263,10 @@ export class ZetaTable extends LitElement {
       })
     );
     this._downloadCSV(csvContent);
-  }
+  };
 
   /** Handles the refresh button click. Delegates data reload entirely to the consumer. */
-  private _handleRefresh() {
+  private _handleRefresh = () => {
     if (this.onRefresh) {
       this.onRefresh();
     }
@@ -1276,7 +1276,7 @@ export class ZetaTable extends LitElement {
         composed: true
       })
     );
-  }
+  };
 
   /** Generates a CSV string with proper escaping (double-quotes for values containing quotes) */
   private _generateCSV(cols: ZetaTableColumn[], data: ZetaTableRow[]): string {
@@ -1285,7 +1285,7 @@ export class ZetaTable extends LitElement {
       cols
         .map(c => {
           const val = row[c.field];
-          const str = val == null ? "" : String(val);
+          const str = val == null ? "" : (typeof val === "object" ? JSON.stringify(val) : String(val));
           return `"${str.replace(/"/g, '""')}"`;
         })
         .join(",")
@@ -1562,17 +1562,13 @@ export class ZetaTable extends LitElement {
 
   /** Renders <colgroup> to set initial column widths. Includes fixed-width cols for checkbox and expand columns. */
   private _renderColgroup(cols: ZetaTableColumn[]) {
-    return html`
-      <colgroup>
-        ${this.selectable ? html`<col style="width:44px" />` : nothing} ${this.expandable ? html`<col style="width:40px" />` : nothing}
-        ${cols.map(col => {
-          const w = this._columnWidths[col.field] ?? col.width;
-          if (w == null) return html`<col />`;
-          const cssWidth = typeof w === "number" ? `${w}px` : w;
-          return html`<col style="width:${cssWidth}" />`;
-        })}
-      </colgroup>
-    `;
+    // prettier-ignore
+    return html`<colgroup>${this.selectable ? html`<col style="width:44px">` : nothing}${this.expandable ? html`<col style="width:40px">` : nothing}${cols.map(col => {
+      const w = this._columnWidths[col.field] ?? col.width;
+      if (w == null) return html`<col>`;
+      const cssWidth = typeof w === "number" ? `${w}px` : w;
+      return html`<col style="width:${cssWidth}">`;
+    })}</colgroup>`;
   }
 
   /**
@@ -1830,7 +1826,7 @@ export class ZetaTable extends LitElement {
     const col = this.columns.find(c => c.field === this._filterPanelField);
     if (!col) return nothing;
 
-    const options = col.filterOptions || [...new Set(this.data.map(row => String(row[col.field] ?? "")).filter(v => v))];
+    const options = col.filterOptions || [...new Set(this.data.map(row => { const v = row[col.field]; return v == null ? "" : (typeof v === "object" ? JSON.stringify(v) : String(v)); }).filter(v => v))];
 
     return html`
       <div class="zeta-table-filter-panel"
@@ -1975,7 +1971,7 @@ export class ZetaTable extends LitElement {
       `;
     }
 
-    const cellValue = rawValue != null ? String(rawValue) : "";
+    const cellValue = rawValue != null ? (typeof rawValue === "object" ? JSON.stringify(rawValue) : String(rawValue)) : "";
     const tooltipEnabled = col.tooltip === true || col.tooltipOnEllipsisOnly !== false;
     const ellipsisOnly = col.tooltip !== true;
 
@@ -2055,7 +2051,7 @@ export class ZetaTable extends LitElement {
                         key => {
                           const val = child[key];
                           return html`<td style="padding:6px 12px; font-size:13px; border-bottom:1px solid var(--table-border-color);">
-                            ${val instanceof Node ? val : (val != null ? String(val) : "")}
+                            ${val instanceof Node ? val : (val != null ? (typeof val === "object" ? JSON.stringify(val) : String(val)) : "")}
                           </td>`;
                         }
                       )}

@@ -77,8 +77,34 @@ function createStatusBadge(text: string, color: string, bg: string): HTMLElement
 function createIconName(name: string): HTMLElement {
   const wrapper = document.createElement("div");
   wrapper.style.cssText = "display:flex; align-items:center; gap:8px;";
-  wrapper.innerHTML = `<svg viewBox="0 0 24 24" width="20" height="20" style="fill:#6b7280; flex-shrink:0;"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg><span>${name}</span>`;
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("viewBox", "0 0 24 24");
+  svg.setAttribute("width", "20");
+  svg.setAttribute("height", "20");
+  svg.style.cssText = "fill:#6b7280; flex-shrink:0;";
+  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  path.setAttribute("d", "M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z");
+  svg.appendChild(path);
+  const span = document.createElement("span");
+  span.textContent = name;
+  wrapper.appendChild(svg);
+  wrapper.appendChild(span);
   return wrapper;
+}
+
+const STAR_FILLED_PATH = "M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z";
+const STAR_OUTLINE_PATH = "M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z";
+
+function createStarSvg(filled: boolean): SVGSVGElement {
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("viewBox", "0 0 24 24");
+  svg.setAttribute("width", "18");
+  svg.setAttribute("height", "18");
+  svg.style.fill = filled ? "#f59e0b" : "#d1d5db";
+  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  path.setAttribute("d", filled ? STAR_FILLED_PATH : STAR_OUTLINE_PATH);
+  svg.appendChild(path);
+  return svg;
 }
 
 /** Creates a star rating toggle button (interactive DOM Node) */
@@ -86,15 +112,11 @@ function createStarButton(filled: boolean): HTMLElement {
   const btn = document.createElement("button");
   btn.title = filled ? "Unstar" : "Star";
   btn.style.cssText = "background:none; border:none; cursor:pointer; padding:2px; display:inline-flex; align-items:center;";
-  btn.innerHTML = filled
-    ? `<svg viewBox="0 0 24 24" width="18" height="18" style="fill:#f59e0b;"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>`
-    : `<svg viewBox="0 0 24 24" width="18" height="18" style="fill:#d1d5db;"><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"/></svg>`;
+  btn.appendChild(createStarSvg(filled));
   btn.addEventListener("click", (e) => {
     e.stopPropagation();
     const isFilled = btn.querySelector("svg")!.style.fill === "rgb(245, 158, 11)";
-    btn.innerHTML = isFilled
-      ? `<svg viewBox="0 0 24 24" width="18" height="18" style="fill:#d1d5db;"><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"/></svg>`
-      : `<svg viewBox="0 0 24 24" width="18" height="18" style="fill:#f59e0b;"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>`;
+    btn.replaceChildren(createStarSvg(!isFilled));
     btn.title = isFilled ? "Star" : "Unstar";
   });
   return btn;
@@ -130,8 +152,25 @@ function generateData(count: number): ZetaTableRow[] {
           ? (() => {
               const el = document.createElement("div");
               el.style.cssText = "padding:12px; display:flex; gap:16px; align-items:center;";
-              el.innerHTML = `<svg viewBox="0 0 24 24" width="48" height="48" style="fill:#6b7280; flex-shrink:0;"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                <div><strong>Employee ${i} — Custom View</strong><br/><span style="color:#666;">This nested content is a DOM Node. Consumers can render anything here: icons, charts, forms, etc.</span></div>`;
+              const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+              svg.setAttribute("viewBox", "0 0 24 24");
+              svg.setAttribute("width", "48");
+              svg.setAttribute("height", "48");
+              svg.style.cssText = "fill:#6b7280; flex-shrink:0;";
+              const p = document.createElementNS("http://www.w3.org/2000/svg", "path");
+              p.setAttribute("d", "M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z");
+              svg.appendChild(p);
+              const info = document.createElement("div");
+              const strong = document.createElement("strong");
+              strong.textContent = `Employee ${i} — Custom View`;
+              info.appendChild(strong);
+              info.appendChild(document.createElement("br"));
+              const desc = document.createElement("span");
+              desc.style.color = "#666";
+              desc.textContent = "This nested content is a DOM Node. Consumers can render anything here: icons, charts, forms, etc.";
+              info.appendChild(desc);
+              el.appendChild(svg);
+              el.appendChild(info);
               return el;
             })()
           : i % 3 === 0
@@ -495,14 +534,35 @@ export const InfiniteScrollWithAPI: StoryObj<TableStory> = {
       }, 2000);
     };
 
+    if (!document.querySelector("style[data-zeta-table-spin]")) {
+      const styleEl = document.createElement("style");
+      styleEl.setAttribute("data-zeta-table-spin", "");
+      styleEl.textContent = "@keyframes spin { to { transform: rotate(360deg); } }";
+      document.head.appendChild(styleEl);
+    }
+
     const loadingEl = document.createElement("div");
     loadingEl.style.cssText = "display:flex; align-items:center; justify-content:center; gap:8px; padding:12px;";
-    loadingEl.innerHTML = `
-      <svg width="20" height="20" viewBox="0 0 24 24" style="animation: spin 1s linear infinite;">
-        <circle cx="12" cy="12" r="10" stroke="#0073e6" stroke-width="3" fill="none" stroke-dasharray="31.4 31.4" stroke-linecap="round" />
-      </svg>
-      <span style="color:#0073e6; font-size:13px; font-weight:500;">Fetching more records...</span>
-    `;
+    const spinnerSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    spinnerSvg.setAttribute("width", "20");
+    spinnerSvg.setAttribute("height", "20");
+    spinnerSvg.setAttribute("viewBox", "0 0 24 24");
+    spinnerSvg.style.animation = "spin 1s linear infinite";
+    const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    circle.setAttribute("cx", "12");
+    circle.setAttribute("cy", "12");
+    circle.setAttribute("r", "10");
+    circle.setAttribute("stroke", "#0073e6");
+    circle.setAttribute("stroke-width", "3");
+    circle.setAttribute("fill", "none");
+    circle.setAttribute("stroke-dasharray", "31.4 31.4");
+    circle.setAttribute("stroke-linecap", "round");
+    spinnerSvg.appendChild(circle);
+    const loadingText = document.createElement("span");
+    loadingText.style.cssText = "color:#0073e6; font-size:13px; font-weight:500;";
+    loadingText.textContent = "Fetching more records...";
+    loadingEl.appendChild(spinnerSvg);
+    loadingEl.appendChild(loadingText);
 
     return html`
       <zeta-table
@@ -519,13 +579,6 @@ export const InfiniteScrollWithAPI: StoryObj<TableStory> = {
         .loadingContent=${loadingEl}
         style=${cssVarsStyle(args, { "--table-max-height": "500px" })}
       ></zeta-table>
-      <style>
-        @keyframes spin {
-          to {
-            transform: rotate(360deg);
-          }
-        }
-      </style>
     `;
   }
 };
