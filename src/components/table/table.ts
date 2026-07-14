@@ -1552,31 +1552,31 @@ export class ZetaTable extends LitElement {
                   <div class="zeta-table-column-panel-section">
                     <div class="zeta-table-column-panel-heading">Show / Hide</div>
                     ${this.columns.map(
-                    col => html`
-                      <label class="zeta-table-column-panel-item">
-                        <input
-                          type="checkbox"
-                          .checked=${this._visibleColumns.has(col.field)}
-                          ?disabled=${this._visibleColumns.has(col.field) && this._visibleColumns.size === 1}
-                          @change=${() => this._toggleColumnVisibility(col.field)}
-                        />
-                        ${col.title}
-                      </label>
-                    `
-                  )}
-                  </div>
-                  <div class="zeta-table-column-panel-section">
-                    <div class="zeta-table-column-panel-heading">Freeze</div>
-                    ${this.columns
-                    .filter(c => this._visibleColumns.has(c.field))
-                    .map(
                       col => html`
                         <label class="zeta-table-column-panel-item">
-                          <input type="checkbox" .checked=${this._frozenColumns.has(col.field)} @change=${() => this._toggleColumnFreeze(col.field)} />
+                          <input
+                            type="checkbox"
+                            .checked=${this._visibleColumns.has(col.field)}
+                            ?disabled=${this._visibleColumns.has(col.field) && this._visibleColumns.size === 1}
+                            @change=${() => this._toggleColumnVisibility(col.field)}
+                          />
                           ${col.title}
                         </label>
                       `
                     )}
+                  </div>
+                  <div class="zeta-table-column-panel-section">
+                    <div class="zeta-table-column-panel-heading">Freeze</div>
+                    ${this.columns
+                      .filter(c => this._visibleColumns.has(c.field))
+                      .map(
+                        col => html`
+                          <label class="zeta-table-column-panel-item">
+                            <input type="checkbox" .checked=${this._frozenColumns.has(col.field)} @change=${() => this._toggleColumnFreeze(col.field)} />
+                            ${col.title}
+                          </label>
+                        `
+                      )}
                   </div>
                 </div>
               `
@@ -1616,16 +1616,16 @@ export class ZetaTable extends LitElement {
             ? html`
                 <th class="zeta-table-th zeta-table-col-checkbox zeta-table-cell--frozen zeta-table-cell--frozen-start">
                   ${
-                  this.selectAll
-                    ? html`<input
-                        type="checkbox"
-                        .checked=${allSelected}
-                        .indeterminate=${someSelected && !allSelected}
-                        @change=${this._handleSelectAll}
-                        title="Select all"
-                      />`
-                    : nothing
-                }
+                    this.selectAll
+                      ? html`<input
+                          type="checkbox"
+                          .checked=${allSelected}
+                          .indeterminate=${someSelected && !allSelected}
+                          @change=${this._handleSelectAll}
+                          title="Select all"
+                        />`
+                      : nothing
+                  }
                 </th>
               `
             : nothing
@@ -1634,8 +1634,8 @@ export class ZetaTable extends LitElement {
           this.expandable
             ? html`<th
                 class="zeta-table-th zeta-table-col-expand zeta-table-cell--frozen ${
-                this.selectable ? "zeta-table-cell--frozen-after-checkbox" : "zeta-table-cell--frozen-start"
-              }"
+                  this.selectable ? "zeta-table-cell--frozen-after-checkbox" : "zeta-table-cell--frozen-start"
+                }"
               ></th>`
             : nothing
         }
@@ -1685,9 +1685,9 @@ export class ZetaTable extends LitElement {
                     class="zeta-table-header-icon-btn ${this._activeFilters[col.field]?.size ? "zeta-table-header-icon-btn--active" : ""}"
                     title="Filter"
                     @click=${(e: MouseEvent) => {
-                    e.stopPropagation();
-                    this._handleColumnFilter(col, e);
-                  }}
+                      e.stopPropagation();
+                      this._handleColumnFilter(col, e);
+                    }}
                   >
                     <zeta-icon class="zeta-table-filter-icon">filter_alt</zeta-icon>
                   </button>`
@@ -1706,9 +1706,9 @@ export class ZetaTable extends LitElement {
                 class="zeta-table-resize-handle ${this._resizingColumn === col.field ? "zeta-table-resize-handle--active" : ""}"
                 @mousedown=${(e: MouseEvent) => this._handleResizeStart(e, col.field)}
                 @dblclick=${(e: MouseEvent) => {
-                e.stopPropagation();
-                this._handleResizeDoubleClick(col.field);
-              }}
+                  e.stopPropagation();
+                  this._handleResizeDoubleClick(col.field);
+                }}
               ></div>`
             : nothing
         }
@@ -1760,8 +1760,8 @@ export class ZetaTable extends LitElement {
           this.expandable
             ? html`<th
                 class="zeta-table-th zeta-table-col-expand zeta-table-cell--frozen ${
-                this.selectable ? "zeta-table-cell--frozen-after-checkbox" : "zeta-table-cell--frozen-start"
-              }"
+                  this.selectable ? "zeta-table-cell--frozen-after-checkbox" : "zeta-table-cell--frozen-start"
+                }"
               ></th>`
             : nothing
         }
@@ -1889,9 +1889,9 @@ export class ZetaTable extends LitElement {
                     class="zeta-table-action-btn ${isOpen ? "zeta-table-action-btn--active" : ""}"
                     title="${this.actionsLabel}"
                     @click=${(e: MouseEvent) => {
-                    e.stopPropagation();
-                    this._toggleActionMenu(row.id, e);
-                  }}
+                      e.stopPropagation();
+                      this._toggleActionMenu(row.id, e);
+                    }}
                   >
                     <zeta-icon class="zeta-table-action-menu-icon">more_vertical</zeta-icon>
                   </button>
