@@ -1609,7 +1609,11 @@ export class ZetaTable extends LitElement {
             `
           : nothing}
         ${this.expandable
-          ? html`<th class="zeta-table-th zeta-table-col-expand zeta-table-cell--frozen ${this.selectable ? "zeta-table-cell--frozen-after-checkbox" : "zeta-table-cell--frozen-start"}"></th>`
+          ? html`<th
+              class="zeta-table-th zeta-table-col-expand zeta-table-cell--frozen ${this.selectable
+                ? "zeta-table-cell--frozen-after-checkbox"
+                : "zeta-table-cell--frozen-start"}"
+            ></th>`
           : nothing}
         ${cols.map((col, i) => this._renderHeaderCell(col, i))}
         ${this._showActionsColumn ? html`<th class="zeta-table-th zeta-table-col-actions">${this.actionsLabel}</th>` : nothing}
@@ -1689,12 +1693,24 @@ export class ZetaTable extends LitElement {
 
     return html`
       <span class="zeta-table-sort-icons">
-        <svg class="zeta-table-sort-arrow ${isAsc ? "zeta-table-sort-arrow--active" : ""}" viewBox="0 0 10 8"
-          @click=${(e: MouseEvent) => { e.stopPropagation(); this._handleSortArrowClick(field, "asc"); }}>
+        <svg
+          class="zeta-table-sort-arrow ${isAsc ? "zeta-table-sort-arrow--active" : ""}"
+          viewBox="0 0 10 8"
+          @click=${(e: MouseEvent) => {
+            e.stopPropagation();
+            this._handleSortArrowClick(field, "asc");
+          }}
+        >
           <polygon points="5,1 9,7 1,7" />
         </svg>
-        <svg class="zeta-table-sort-arrow ${isDesc ? "zeta-table-sort-arrow--active" : ""}" viewBox="0 0 10 8"
-          @click=${(e: MouseEvent) => { e.stopPropagation(); this._handleSortArrowClick(field, "desc"); }}>
+        <svg
+          class="zeta-table-sort-arrow ${isDesc ? "zeta-table-sort-arrow--active" : ""}"
+          viewBox="0 0 10 8"
+          @click=${(e: MouseEvent) => {
+            e.stopPropagation();
+            this._handleSortArrowClick(field, "desc");
+          }}
+        >
           <polygon points="5,7 1,1 9,1" />
         </svg>
       </span>
@@ -1711,7 +1727,11 @@ export class ZetaTable extends LitElement {
       <tr class="zeta-table-search-row">
         ${this.selectable ? html`<th class="zeta-table-th zeta-table-col-checkbox zeta-table-cell--frozen zeta-table-cell--frozen-start"></th>` : nothing}
         ${this.expandable
-          ? html`<th class="zeta-table-th zeta-table-col-expand zeta-table-cell--frozen ${this.selectable ? "zeta-table-cell--frozen-after-checkbox" : "zeta-table-cell--frozen-start"}"></th>`
+          ? html`<th
+              class="zeta-table-th zeta-table-col-expand zeta-table-cell--frozen ${this.selectable
+                ? "zeta-table-cell--frozen-after-checkbox"
+                : "zeta-table-cell--frozen-start"}"
+            ></th>`
           : nothing}
         ${cols.map((col, i) => {
           const isFrozen = this._isColumnFrozen(col);
@@ -1783,17 +1803,19 @@ export class ZetaTable extends LitElement {
         ${this.expandable
           ? html`
               <td class="zeta-table-td zeta-table-col-expand zeta-table-cell--frozen ${this.selectable ? "zeta-table-cell--frozen-after-checkbox" : "zeta-table-cell--frozen-start"}"
-                ${hasNested
-                  ? html`
-                      <button
-                        class="zeta-table-expand-btn ${isExpanded ? "zeta-table-expand-btn--expanded" : ""}"
-                        @click=${() => this._toggleExpand(row.id)}
-                        title="${isExpanded ? "Collapse" : "Expand"}"
-                      >
-                        <zeta-icon>chevron_right</zeta-icon>
-                      </button>
-                    `
-                  : nothing}
+                ${
+                  hasNested
+                    ? html`
+                        <button
+                          class="zeta-table-expand-btn ${isExpanded ? "zeta-table-expand-btn--expanded" : ""}"
+                          @click=${() => this._toggleExpand(row.id)}
+                          title="${isExpanded ? "Collapse" : "Expand"}"
+                        >
+                          <zeta-icon>chevron_right</zeta-icon>
+                        </button>
+                      `
+                    : nothing
+                }
               </td>
             `
           : nothing}
@@ -2073,9 +2095,7 @@ export class ZetaTable extends LitElement {
             <table class="zeta-table-nested-table">
               <thead>
                 <tr>
-                  ${nestedKeys.map(
-                    key => html`<th class="zeta-table-nested-th">${key}</th>`
-                  )}
+                  ${nestedKeys.map(key => html`<th class="zeta-table-nested-th">${key}</th>`)}
                 </tr>
               </thead>
               <tbody>
