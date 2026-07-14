@@ -337,19 +337,30 @@ export default css`
 
   .zeta-table-row--active .zeta-table-td {
     background: var(--table-row-active-bg);
-    box-shadow: inset 0 2px 0 0 #0073e6, inset 0 -2px 0 0 #0073e6;
+    box-shadow:
+      inset 0 2px 0 0 #0073e6,
+      inset 0 -2px 0 0 #0073e6;
   }
 
   .zeta-table-row--active .zeta-table-td:first-child {
-    box-shadow: inset 2px 0 0 0 #0073e6, inset 0 2px 0 0 #0073e6, inset 0 -2px 0 0 #0073e6;
+    box-shadow:
+      inset 2px 0 0 0 #0073e6,
+      inset 0 2px 0 0 #0073e6,
+      inset 0 -2px 0 0 #0073e6;
   }
 
   .zeta-table-row--active .zeta-table-td:last-child {
-    box-shadow: inset -2px 0 0 0 #0073e6, inset 0 2px 0 0 #0073e6, inset 0 -2px 0 0 #0073e6;
+    box-shadow:
+      inset -2px 0 0 0 #0073e6,
+      inset 0 2px 0 0 #0073e6,
+      inset 0 -2px 0 0 #0073e6;
   }
 
   .zeta-table-row--active .zeta-table-cell--frozen-last {
-    box-shadow: var(--table-frozen-shadow), inset 0 2px 0 0 #0073e6, inset 0 -2px 0 0 #0073e6;
+    box-shadow:
+      var(--table-frozen-shadow),
+      inset 0 2px 0 0 #0073e6,
+      inset 0 -2px 0 0 #0073e6;
   }
 
   .zeta-table-row--selected .zeta-table-td {
@@ -705,7 +716,10 @@ export default css`
     height: 50%;
     background: var(--table-border-color);
     border-radius: 1px;
-    transition: background 0.15s, height 0.15s, top 0.15s;
+    transition:
+      background 0.15s,
+      height 0.15s,
+      top 0.15s;
   }
 
   .zeta-table-resize-handle:hover::after,

@@ -93,7 +93,8 @@ function createIconName(name: string): HTMLElement {
 }
 
 const STAR_FILLED_PATH = "M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z";
-const STAR_OUTLINE_PATH = "M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z";
+const STAR_OUTLINE_PATH =
+  "M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z";
 
 function createStarSvg(filled: boolean): SVGSVGElement {
   const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -113,7 +114,7 @@ function createStarButton(filled: boolean): HTMLElement {
   btn.title = filled ? "Unstar" : "Star";
   btn.style.cssText = "background:none; border:none; cursor:pointer; padding:2px; display:inline-flex; align-items:center;";
   btn.appendChild(createStarSvg(filled));
-  btn.addEventListener("click", (e) => {
+  btn.addEventListener("click", e => {
     e.stopPropagation();
     const isFilled = btn.querySelector("svg")!.style.fill === "rgb(245, 158, 11)";
     btn.replaceChildren(createStarSvg(!isFilled));
@@ -175,8 +176,18 @@ function generateData(count: number): ZetaTableRow[] {
             })()
           : i % 3 === 0
             ? [
-                { id: `${i}-1`, task: "Sub-task 1", status: createStatusBadge("Done", "#0d6832", "#dcfce7"), priority: createStatusBadge("High", "#9f1239", "#ffe4e6") },
-                { id: `${i}-2`, task: "Sub-task 2", status: createStatusBadge("In Progress", "#1d4ed8", "#dbeafe"), priority: createStatusBadge("Medium", "#92400e", "#fef3c7") }
+                {
+                  id: `${i}-1`,
+                  task: "Sub-task 1",
+                  status: createStatusBadge("Done", "#0d6832", "#dcfce7"),
+                  priority: createStatusBadge("High", "#9f1239", "#ffe4e6")
+                },
+                {
+                  id: `${i}-2`,
+                  task: "Sub-task 2",
+                  status: createStatusBadge("In Progress", "#1d4ed8", "#dbeafe"),
+                  priority: createStatusBadge("Medium", "#92400e", "#fef3c7")
+                }
               ]
             : undefined,
       _disabled: isDisabled,

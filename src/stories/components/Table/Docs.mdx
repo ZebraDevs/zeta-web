@@ -540,7 +540,8 @@ Set via `ref` (React), `ViewChild` (Angular), `.prop` (Vue), or direct JS assign
       <td>number | string</td>
       <td>—</td>
       <td>
-        Initial column width. Number for pixels (e.g. <code>200</code>), string for any CSS unit (e.g. <code>"25%"</code>, <code>"12rem"</code>). Drag-resize converts to px.
+        Initial column width. Number for pixels (e.g. <code>200</code>), string for any CSS unit (e.g. <code>"25%"</code>, <code>"12rem"</code>). Drag-resize
+        converts to px.
       </td>
     </tr>
     <tr>
@@ -1207,7 +1208,8 @@ function StatusBadge({ status }: { status: string }) {
         padding: "2px 8px",
         borderRadius: "10px",
         fontSize: "12px"
-      }}>
+      }}
+    >
       {status}
     </span>
   );
@@ -1422,14 +1424,7 @@ const users = [
 
 ```vue
 <template>
-  <zeta-table
-    :columns.prop="columns"
-    :data.prop="tableData"
-    selectable
-    show-data-count
-    table-title="Users"
-    :style="{ '--table-row-height': '36px' }"
-  />
+  <zeta-table :columns.prop="columns" :data.prop="tableData" selectable show-data-count table-title="Users" :style="{ '--table-row-height': '36px' }" />
 </template>
 
 <script setup>
@@ -1491,7 +1486,7 @@ const badgeStyle = computed(() => ({
   color: props.status === "active" ? "#065f46" : "#991b1b",
   padding: "2px 8px",
   borderRadius: "10px",
-  fontSize: "12px",
+  fontSize: "12px"
 }));
 </script>
 ```
@@ -1500,12 +1495,13 @@ const badgeStyle = computed(() => ({
 
 ```javascript
 const tableData = computed(() =>
-  users.map((user) => {
+  users.map(user => {
     const badge = document.createElement("span");
     badge.textContent = user.status;
-    badge.style.cssText = user.status === "active"
-      ? "background:#d1fae5; color:#065f46; padding:2px 8px; border-radius:10px; font-size:12px;"
-      : "background:#fee2e2; color:#991b1b; padding:2px 8px; border-radius:10px; font-size:12px;";
+    badge.style.cssText =
+      user.status === "active"
+        ? "background:#d1fae5; color:#065f46; padding:2px 8px; border-radius:10px; font-size:12px;"
+        : "background:#fee2e2; color:#991b1b; padding:2px 8px; border-radius:10px; font-size:12px;";
 
     return { id: user.id, name: user.name, email: user.email, status: badge };
   })

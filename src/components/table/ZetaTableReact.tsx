@@ -2,13 +2,7 @@ import React, { forwardRef, useEffect, useImperativeHandle, useLayoutEffect, use
 import { createPortal } from "react-dom";
 
 // Import TypeScript interfaces and types from the Lit web component definition
-import type {
-  ZetaTableColumn,
-  ZetaTableRow,
-  ZetaTableAction,
-  PaginationType,
-  SortDirection
-} from "./table.js";
+import type { ZetaTableColumn, ZetaTableRow, ZetaTableAction, PaginationType, SortDirection } from "./table.js";
 
 // Side-effect import: registers the <zeta-table> custom element in the browser
 import "./table.js";
@@ -188,7 +182,7 @@ export const ZetaTableReact = forwardRef<HTMLElement, ZetaTableReactProps>(funct
     // Walk every row and cell. If a cell value is a React element, swap it
     // with a container <div> that will be portal-rendered. Plain values
     // (strings, numbers) pass through unchanged.
-    const processedData = data.map((row) => {
+    const processedData = data.map(row => {
       const rowId = row.id;
       const processedRow: Record<string, unknown> = {};
       for (const [key, value] of Object.entries(row)) {
@@ -306,15 +300,46 @@ export const ZetaTableReact = forwardRef<HTMLElement, ZetaTableReactProps>(funct
     // All props are listed as dependencies so the effect re-runs whenever
     // the consumer passes new values. This is the single source of truth
     // for syncing React props → Lit element properties.
-    columns, data, paginationType, loading, hasMoreData,
-    selectable, selectAll, selectedRows, expandable, exportable,
-    columnConfigure, showDataCount, tableTitle, pageSize, currentPage,
-    totalItems, actionsLabel, searchPlaceholder, refreshLabel, columnsLabel,
-    rowActions, disabledRows, allowDisabledSelection,
-    loadingContent, noDataContent, loadingContainer, noDataContainer,
-    onSortChange, onLoadMore, onRowAction, onRowClick, selectOnRowClick,
-    onSelectionChange, onPageChange, onExport, onRowExpand,
-    onColumnSearch, onColumnFilter, onTableSearch, onRefresh
+    columns,
+    data,
+    paginationType,
+    loading,
+    hasMoreData,
+    selectable,
+    selectAll,
+    selectedRows,
+    expandable,
+    exportable,
+    columnConfigure,
+    showDataCount,
+    tableTitle,
+    pageSize,
+    currentPage,
+    totalItems,
+    actionsLabel,
+    searchPlaceholder,
+    refreshLabel,
+    columnsLabel,
+    rowActions,
+    disabledRows,
+    allowDisabledSelection,
+    loadingContent,
+    noDataContent,
+    loadingContainer,
+    noDataContainer,
+    onSortChange,
+    onLoadMore,
+    onRowAction,
+    onRowClick,
+    selectOnRowClick,
+    onSelectionChange,
+    onPageChange,
+    onExport,
+    onRowExpand,
+    onColumnSearch,
+    onColumnFilter,
+    onTableSearch,
+    onRefresh
   ]);
 
   // Cleanup: clear the container cache when the component unmounts to
@@ -330,18 +355,13 @@ export const ZetaTableReact = forwardRef<HTMLElement, ZetaTableReactProps>(funct
       {/* Render the bare <zeta-table> custom element.
           Properties are set imperatively in useLayoutEffect above;
           only HTML-safe attributes (style, className, data-id) are set here. */}
-      <zeta-table
-        ref={tableRef}
-        style={style}
-        className={className}
-        data-id={dataId}
-      />
+      <zeta-table ref={tableRef} style={style} className={className} data-id={dataId} />
 
       {/* Render React elements into their container DOM nodes via portals.
           Each portal mounts a React element (e.g. <CollapsibleItems />) into
           the <div> that the Lit component received as a cell Node value.
           The key ensures React reconciles portals correctly across re-renders. */}
-      {portals.map((p) => createPortal(p.element, p.container, p.key))}
+      {portals.map(p => createPortal(p.element, p.container, p.key))}
     </>
   );
 });
