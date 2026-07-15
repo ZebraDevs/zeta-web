@@ -1588,11 +1588,9 @@ export class ZetaTable extends LitElement {
         <div class="zeta-table-header-content">
           ${
             isSortable
-              ? html`<button
-                  type="button"
-                  class="zeta-table-header-title zeta-table-header-title--sortable"
-                  @click=${() => this._handleSort(col.field)}
-                >${col.title}</button>`
+              ? html`<button type="button" class="zeta-table-header-title zeta-table-header-title--sortable" @click=${() => this._handleSort(col.field)}>
+                  ${col.title}
+                </button>`
               : html`<span class="zeta-table-header-title">${col.title}</span>`
           }
           <span class="zeta-table-header-icons">
@@ -1612,7 +1610,9 @@ export class ZetaTable extends LitElement {
             }
             ${
               isSortable
-                ? html`<button type="button" class="zeta-table-sort-btn" @click=${() => this._handleSort(col.field)}>${this._renderSortIcons(col.field)}</button>`
+                ? html`<button type="button" class="zeta-table-sort-btn" @click=${() => this._handleSort(col.field)}>
+                    ${this._renderSortIcons(col.field)}
+                  </button>`
                 : nothing
             }
           </span>
@@ -2065,9 +2065,7 @@ export class ZetaTable extends LitElement {
                     <tr>
                       ${nestedKeys.map(key => {
                         const val = child[key];
-                        return html`<td class="zeta-table-nested-td">
-                          ${val instanceof Node ? val : this._fieldToString(val)}
-                        </td>`;
+                        return html`<td class="zeta-table-nested-td">${val instanceof Node ? val : this._fieldToString(val)}</td>`;
                       })}
                     </tr>
                   `
