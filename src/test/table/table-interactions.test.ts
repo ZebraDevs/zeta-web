@@ -81,7 +81,8 @@ describe("zeta-table interactions", () => {
       const cb = el.querySelector(".zeta-table-tbody .zeta-table-col-checkbox input[type='checkbox']") as HTMLInputElement;
       setTimeout(() => cb.click());
       const ev = await oneEvent(el, "zeta-table-selection-change");
-      assert.include((ev as CustomEvent).detail.selectedIds, 1);
+      const selectedIds: (string | number)[] = ev.detail.selectedIds;
+      assert.include(selectedIds, 1);
     });
 
     it("select-all toggles all", async () => {
@@ -169,7 +170,7 @@ describe("zeta-table interactions", () => {
       const ev = await oneEvent(el, "zeta-table-column-search");
       assert.equal(f, "name");
       assert.equal(v, "test");
-      assert.equal((ev as CustomEvent).detail.field, "name");
+      assert.equal(ev.detail.field, "name");
     });
 
     it("disables search for disabled/non-filterable columns", async () => {
@@ -205,7 +206,7 @@ describe("zeta-table interactions", () => {
       });
       const ev = await oneEvent(el, "zeta-table-search");
       assert.equal(term, "Alice");
-      assert.equal((ev as CustomEvent).detail.value, "Alice");
+      assert.equal(ev.detail.value, "Alice");
     });
 
     it("opens/closes filter panel", async () => {

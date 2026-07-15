@@ -217,7 +217,7 @@ describe("zeta-table features", () => {
       const item = el.querySelector(".zeta-table-action-menu-item") as HTMLElement;
       setTimeout(() => item.click());
       const ev = await oneEvent(el, "zeta-table-action");
-      assert.equal((ev as CustomEvent).detail.actionKey, "edit");
+      assert.equal(ev.detail.actionKey, "edit");
       assert.equal(key, "edit");
     });
 

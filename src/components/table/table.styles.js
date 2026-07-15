@@ -539,8 +539,11 @@ export default css`
     cursor: default;
   }
 
-  .zeta-table-header-title--sortable {
+  button.zeta-table-header-title--sortable {
+    all: unset;
     cursor: pointer;
+    font: inherit;
+    color: inherit;
   }
 
   .zeta-table-header-title--sortable:hover {
@@ -587,6 +590,9 @@ export default css`
     cursor: pointer;
     padding: var(--spacing-0-5);
     border-radius: var(--radius-minimal);
+    background: none;
+    border: none;
+    color: inherit;
   }
 
   .zeta-table-sort-btn:hover {

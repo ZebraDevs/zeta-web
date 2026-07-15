@@ -5,106 +5,9 @@ import { classMap } from "lit/directives/class-map.js";
 import { styleMap } from "lit/directives/style-map.js";
 import styles from "./table.styles.js";
 import "../icon/icon.js";
+import type { ZetaTableColumn, SortState, PaginationType, ZetaTableAction, ZetaTableRow } from "./table.types.js";
 
-/**
- * Defines a single column in the table.
- * Each column maps to a `field` key in the row data objects.
- * Consumers pass an array of these to configure headers, sorting, filtering, freezing, and tooltips.
- */
-export interface ZetaTableColumn {
-  /** Data key — must match a property name in each ZetaTableRow object */
-  field: string;
-  /** Display text shown in the column header */
-  title: string;
-  /**
-   * Initial column width (overridden by user drag-resize).
-   * - **Number**: treated as pixels, e.g. `width: 200` → `200px`
-   * - **String**: used as-is as a CSS value, e.g. `width: "25%"`, `width: "12rem"`
-   *
-   * When the user drag-resizes a column, the width is converted to pixels regardless of the original unit.
-   */
-  width?: number | string;
-  /** Minimum width in pixels during resize (default: 60) */
-  minWidth?: number;
-  /** Enable sorting on this column (default: true) */
-  sortable?: boolean;
-  /** Enable filter input on this column (default: true) */
-  filterable?: boolean;
-  /** Predefined filter options for this column (shown in a dropdown when filter icon is clicked) */
-  filterOptions?: string[];
-  /** Freeze this column for horizontal scroll */
-  frozen?: boolean;
-  /** Column visibility (default: true) */
-  visible?: boolean;
-  /** Always show tooltip on hover regardless of overflow. When `true`, takes highest precedence. When `false` or unset, defers to `tooltipOnEllipsisOnly`. */
-  tooltip?: boolean;
-  /** Show tooltip only when content overflows/ellipsis is shown (default: true). Set to `false` to disable tooltip for this column. */
-  tooltipOnEllipsisOnly?: boolean;
-  /** Allow resizing this column (default: true) */
-  resizable?: boolean;
-  /** Disable all interaction on this column */
-  disabled?: boolean;
-}
-
-/** Sort direction: ascending, descending, or cleared (null = unsorted) */
-export type SortDirection = "asc" | "desc" | null;
-
-/**
- * Internal sort tracking. `clickCount` drives the 3-state cycle:
- * 1st click → asc, 2nd → desc, 3rd → reset to unsorted.
- */
-export interface SortState {
-  field: string;
-  direction: SortDirection;
-  clickCount: number;
-}
-
-/**
- * Pagination strategy:
- * - "none": all data rendered at once (no pagination)
- * - "numbered": traditional page navigation with prev/next and page numbers
- * - "infinite": auto-load more data via IntersectionObserver when user scrolls to the bottom
- */
-export type PaginationType = "none" | "numbered" | "infinite";
-
-/**
- * Defines a single item in the per-row action (kebab) menu.
- * Consumers provide these via `rowActions` (global fallback) or `row._actions` (per-row override).
- */
-export interface ZetaTableAction {
-  /** Unique key for this action — passed to onRowAction callback to identify which action was clicked */
-  key: string;
-  /** Display label shown in the menu dropdown */
-  label: string;
-  /** Optional icon (SVG string or emoji) rendered before the label */
-  icon?: string;
-  /** Whether this action is disabled for a specific row (checked at render time) */
-  disabled?: boolean;
-}
-
-/**
- * Represents a single row of data in the table.
- * Must have a unique `id`. All other keys map to column `field` values.
- * Supports special underscore-prefixed properties for row-level behavior.
- */
-export interface ZetaTableRow {
-  /** Unique identifier for this row — used for selection tracking, expansion, and action dispatch */
-  id: string | number;
-  /** Data fields — keys should match column `field` names. Values can be strings, numbers, or DOM Nodes (for custom cell rendering). */
-  [key: string]: unknown;
-  /**
-   * Nested content shown when the row is expanded.
-   * - `ZetaTableRow[]`: Array of child rows — columns are auto-derived from the first item's keys.
-   * - `Node`: A DOM element rendered as-is, allowing consumers to provide fully custom nested views (images, components, etc.).
-   */
-  _nested?: ZetaTableRow[] | Node;
-  /** Disable this row (grey out, no interaction unless allowDisabledSelection is set) */
-  _disabled?: boolean;
-  /** Disable only the checkbox for this row (row itself remains interactive) */
-  _checkboxDisabled?: boolean;
-  /** Per-row action menu items. Pass `null` to hide the kebab menu for this specific row, or omit to use the global `rowActions` fallback. */
-  _actions?: ZetaTableAction[] | null;
-}
+export type { ZetaTableColumn, SortDirection, SortState, PaginationType, ZetaTableAction, ZetaTableRow } from "./table.types.js";
 
 /**
  * A full-featured, highly configurable data table component.
@@ -1305,6 +1208,13 @@ export class ZetaTable extends LitElement {
     );
   };
 
+  /** Converts an unknown cell value to a display string. Uses JSON for objects, String() for primitives. */
+  private _fieldToString(val: unknown): string {
+    if (val == null) return "";
+    if (typeof val === "object") return JSON.stringify(val);
+    return String(val);
+  }
+
   /** Generates a CSV string with proper escaping (double-quotes for values containing quotes) */
   private _generateCSV(cols: ZetaTableColumn[], data: ZetaTableRow[]): string {
     const header = cols.map(c => `"${c.title.replace(/"/g, '""')}"`).join(",");
@@ -1312,7 +1222,7 @@ export class ZetaTable extends LitElement {
       cols
         .map(c => {
           const val = row[c.field];
-          const str = val == null ? "" : typeof val === "object" ? JSON.stringify(val) : String(val as string | number | boolean);
+          const str = this._fieldToString(val);
           return `"${str.replace(/"/g, '""')}"`;
         })
         .join(",")
@@ -1676,11 +1586,15 @@ export class ZetaTable extends LitElement {
     return html`
       <th class=${classMap(cellClasses)} style=${styleMap(cellStyles)}>
         <div class="zeta-table-header-content">
-          <span
-            class="zeta-table-header-title ${isSortable ? "zeta-table-header-title--sortable" : ""}"
-            @click=${isSortable ? () => this._handleSort(col.field) : nothing}
-            >${col.title}</span
-          >
+          ${
+            isSortable
+              ? html`<button
+                  type="button"
+                  class="zeta-table-header-title zeta-table-header-title--sortable"
+                  @click=${() => this._handleSort(col.field)}
+                >${col.title}</button>`
+              : html`<span class="zeta-table-header-title">${col.title}</span>`
+          }
           <span class="zeta-table-header-icons">
             ${
               isFilterable
@@ -1698,7 +1612,7 @@ export class ZetaTable extends LitElement {
             }
             ${
               isSortable
-                ? html`<span class="zeta-table-sort-btn" @click=${() => this._handleSort(col.field)}>${this._renderSortIcons(col.field)}</span>`
+                ? html`<button type="button" class="zeta-table-sort-btn" @click=${() => this._handleSort(col.field)}>${this._renderSortIcons(col.field)}</button>`
                 : nothing
             }
           </span>
@@ -1924,7 +1838,7 @@ export class ZetaTable extends LitElement {
         this.data
           .map(row => {
             const v = row[col.field];
-            return v == null ? "" : typeof v === "object" ? JSON.stringify(v) : String(v as string | number | boolean);
+            return this._fieldToString(v);
           })
           .filter(v => v)
       )
@@ -2074,7 +1988,7 @@ export class ZetaTable extends LitElement {
       `;
     }
 
-    const cellValue = rawValue != null ? (typeof rawValue === "object" ? JSON.stringify(rawValue) : String(rawValue as string | number | boolean)) : "";
+    const cellValue = this._fieldToString(rawValue);
     const tooltipEnabled = col.tooltip === true || col.tooltipOnEllipsisOnly !== false;
     const ellipsisOnly = col.tooltip !== true;
 
@@ -2152,7 +2066,7 @@ export class ZetaTable extends LitElement {
                       ${nestedKeys.map(key => {
                         const val = child[key];
                         return html`<td class="zeta-table-nested-td">
-                          ${val instanceof Node ? val : val != null ? (typeof val === "object" ? JSON.stringify(val) : String(val as string | number | boolean)) : ""}
+                          ${val instanceof Node ? val : this._fieldToString(val)}
                         </td>`;
                       })}
                     </tr>

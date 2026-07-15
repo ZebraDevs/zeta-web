@@ -46,7 +46,11 @@ export function cssVarsStyle(args: object, defaults?: Record<string, string>): s
   const vars: Record<string, string> = { ...defaults };
   for (const [key, value] of Object.entries(args as Record<string, unknown>)) {
     if (key.startsWith("--") && value != null && value !== "") {
-      vars[key] = typeof value === "object" ? JSON.stringify(value) : String(value);
+      if (typeof value === "object") {
+        vars[key] = JSON.stringify(value);
+      } else {
+        vars[key] = String(value);
+      }
     }
   }
   return Object.entries(vars)
