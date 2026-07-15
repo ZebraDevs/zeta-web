@@ -20,7 +20,7 @@ const rows3: ZetaTableRow[] = [
  * without modifying this function.
  */
 async function make(overrides: Partial<ZetaTable> = {}): Promise<ZetaTable> {
-  const el = (await fixture) < ZetaTable > html`<zeta-table></zeta-table>`;
+  const el = await fixture<ZetaTable>(html`<zeta-table></zeta-table>`);
   el.columns = (overrides.columns as ZetaTableColumn[]) ?? cols3;
   el.data = (overrides.data as ZetaTableRow[]) ?? rows3;
   const { columns: _c, data: _d, ...rest } = overrides;
@@ -124,7 +124,7 @@ describe("zeta-table features", () => {
         { field: "email", title: "Email" }
       ];
       const el = await make({ columns: cols });
-      const colEls = el.querySelectorAll < HTMLElement > "colgroup col:not(.zeta-table-col-checkbox-width):not(.zeta-table-col-expand-width)";
+      const colEls = el.querySelectorAll<HTMLElement>("colgroup col:not(.zeta-table-col-checkbox-width):not(.zeta-table-col-expand-width)");
       assert.include(colEls[0].style.width, "300px");
       assert.include(colEls[1].style.width, "25%");
       assert.equal(colEls[2].style.width, "");
@@ -151,7 +151,7 @@ describe("zeta-table features", () => {
       const el = await make({ selectable: true });
       el.selectedRows = [1, 2];
       await el.updateComplete;
-      const cbs = el.querySelectorAll < HTMLInputElement > ".zeta-table-tbody .zeta-table-col-checkbox input[type='checkbox']";
+      const cbs = el.querySelectorAll<HTMLInputElement>(".zeta-table-tbody .zeta-table-col-checkbox input[type='checkbox']");
       assert.isTrue(cbs[0]?.checked);
       assert.isTrue(cbs[1]?.checked);
       assert.isFalse(cbs[2]?.checked);

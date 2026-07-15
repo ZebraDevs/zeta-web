@@ -89,6 +89,15 @@ describe("zeta-table interactions", () => {
       const el = await make({ selectable: true, onSelectionChange: (s: (string | number)[]) => { ids = s; } });
       const sa = el.querySelector<HTMLInputElement>(".zeta-table-header-row .zeta-table-col-checkbox input[type='checkbox']")!;
       sa.click();
+      await el.updateComplete;
+      assert.equal(ids.length, 3);
+      sa.click();
+      await el.updateComplete;
+      assert.equal(ids.length, 0);
+    });
+
+    it("handles disabled rows and _checkboxDisabled", async () => {
+      const data: ZetaTableRow[] = [
         { id: 1, name: "A", age: 30, email: "a@t.com", _disabled: true },
         { id: 2, name: "B", age: 25, email: "b@t.com", _checkboxDisabled: true },
         { id: 3, name: "C", age: 35, email: "c@t.com" }
