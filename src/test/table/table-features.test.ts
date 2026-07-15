@@ -69,7 +69,12 @@ describe("zeta-table features", () => {
 
     it("fires callback and event on action click", async () => {
       let key = "";
-      const el = await make({ rowActions: actions, onRowAction: (k: string) => { key = k; } });
+      const el = await make({
+        rowActions: actions,
+        onRowAction: (k: string) => {
+          key = k;
+        }
+      });
       (el.querySelector(".zeta-table-action-btn") as HTMLElement).click();
       await el.updateComplete;
       const item = el.querySelector(".zeta-table-action-menu-item") as HTMLElement;
@@ -114,7 +119,14 @@ describe("zeta-table features", () => {
 
     it("shows page info and navigates", async () => {
       let p = 0;
-      const el = await make({ paginationType: "numbered", totalItems: 100, pageSize: 20, onPageChange: (pg: number) => { p = pg; } });
+      const el = await make({
+        paginationType: "numbered",
+        totalItems: 100,
+        pageSize: 20,
+        onPageChange: (pg: number) => {
+          p = pg;
+        }
+      });
       assert.include(el.querySelector(".zeta-table-page-info span")?.textContent, "Page 1 of 5");
       setTimeout(() => (el.querySelector("[title='Next page']") as HTMLElement).click());
       await oneEvent(el, "zeta-table-page-change");
@@ -123,7 +135,15 @@ describe("zeta-table features", () => {
 
     it("navigates to first and last page", async () => {
       let p = 0;
-      const el = await make({ paginationType: "numbered", totalItems: 100, pageSize: 20, currentPage: 3, onPageChange: (pg: number) => { p = pg; } });
+      const el = await make({
+        paginationType: "numbered",
+        totalItems: 100,
+        pageSize: 20,
+        currentPage: 3,
+        onPageChange: (pg: number) => {
+          p = pg;
+        }
+      });
       (el.querySelector("[title='First page']") as HTMLElement).click();
       await el.updateComplete;
       assert.equal(p, 1);
@@ -131,7 +151,15 @@ describe("zeta-table features", () => {
 
     it("navigates to last page", async () => {
       let p = 0;
-      const el = await make({ paginationType: "numbered", totalItems: 100, pageSize: 20, currentPage: 3, onPageChange: (pg: number) => { p = pg; } });
+      const el = await make({
+        paginationType: "numbered",
+        totalItems: 100,
+        pageSize: 20,
+        currentPage: 3,
+        onPageChange: (pg: number) => {
+          p = pg;
+        }
+      });
       (el.querySelector("[title='Last page']") as HTMLElement).click();
       await el.updateComplete;
       assert.equal(p, 5);
@@ -157,7 +185,15 @@ describe("zeta-table features", () => {
 
     it("resets page on size change", async () => {
       let p = 0;
-      const el = await make({ paginationType: "numbered", totalItems: 100, pageSize: 20, currentPage: 3, onPageChange: (pg: number) => { p = pg; } });
+      const el = await make({
+        paginationType: "numbered",
+        totalItems: 100,
+        pageSize: 20,
+        currentPage: 3,
+        onPageChange: (pg: number) => {
+          p = pg;
+        }
+      });
       const select = el.querySelector(".zeta-table-page-size-select") as HTMLSelectElement;
       select.value = "50";
       select.dispatchEvent(new Event("change", { bubbles: true }));
@@ -173,7 +209,15 @@ describe("zeta-table features", () => {
 
     it("does not navigate to invalid pages", async () => {
       let called = false;
-      const el = await make({ paginationType: "numbered", totalItems: 100, pageSize: 20, currentPage: 1, onPageChange: () => { called = true; } });
+      const el = await make({
+        paginationType: "numbered",
+        totalItems: 100,
+        pageSize: 20,
+        currentPage: 1,
+        onPageChange: () => {
+          called = true;
+        }
+      });
       (el.querySelector("[title='Previous page']") as HTMLButtonElement).click();
       await el.updateComplete;
       assert.isFalse(called);
@@ -191,7 +235,12 @@ describe("zeta-table features", () => {
   describe("Export", () => {
     it("renders export button and calls onExport callback", async () => {
       let exported: ZetaTableRow[] = [];
-      const el = await make({ exportable: true, onExport: (d: ZetaTableRow[]) => { exported = d; } });
+      const el = await make({
+        exportable: true,
+        onExport: (d: ZetaTableRow[]) => {
+          exported = d;
+        }
+      });
       expect(el.querySelector("[title='Export to CSV']")).to.exist;
       assert.equal(exported.length, 0);
     });
@@ -200,7 +249,11 @@ describe("zeta-table features", () => {
   describe("Refresh", () => {
     it("calls onRefresh and dispatches event", async () => {
       let refreshed = false;
-      const el = await make({ onRefresh: () => { refreshed = true; } });
+      const el = await make({
+        onRefresh: () => {
+          refreshed = true;
+        }
+      });
       setTimeout(() => (el.querySelector("[title='Refresh']") as HTMLElement).click());
       await oneEvent(el, "zeta-table-refresh");
       assert.isTrue(refreshed);
@@ -328,7 +381,10 @@ describe("zeta-table features", () => {
       el.currentPage = 3;
       await el.updateComplete;
       assert.include(el.querySelector(".zeta-table-page-info span")?.textContent, "Page 3");
-      el.columns = [{ field: "name", title: "Name" }, { field: "status", title: "Status" }];
+      el.columns = [
+        { field: "name", title: "Name" },
+        { field: "status", title: "Status" }
+      ];
       await el.updateComplete;
       assert.equal(el.querySelectorAll(".zeta-table-header-row .zeta-table-th").length, 2);
     });

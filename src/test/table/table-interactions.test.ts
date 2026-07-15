@@ -78,7 +78,12 @@ describe("zeta-table interactions", () => {
 
     it("toggles selection and dispatches event", async () => {
       let ids: (string | number)[] = [];
-      const el = await make({ selectable: true, onSelectionChange: (s: (string|number)[]) => { ids = s; } });
+      const el = await make({
+        selectable: true,
+        onSelectionChange: (s: (string | number)[]) => {
+          ids = s;
+        }
+      });
       const cb = el.querySelector(".zeta-table-tbody .zeta-table-col-checkbox input[type='checkbox']") as HTMLInputElement;
       setTimeout(() => cb.click());
       const ev = await oneEvent(el, "zeta-table-selection-change");
@@ -87,7 +92,12 @@ describe("zeta-table interactions", () => {
 
     it("select-all toggles all", async () => {
       let ids: (string | number)[] = [];
-      const el = await make({ selectable: true, onSelectionChange: (s: (string|number)[]) => { ids = s; } });
+      const el = await make({
+        selectable: true,
+        onSelectionChange: (s: (string | number)[]) => {
+          ids = s;
+        }
+      });
       const sa = el.querySelector(".zeta-table-header-row .zeta-table-col-checkbox input[type='checkbox']") as HTMLInputElement;
       sa.click();
       await el.updateComplete;
@@ -114,7 +124,11 @@ describe("zeta-table interactions", () => {
   describe("Sorting", () => {
     it("cycles sort asc -> desc -> null", async () => {
       const dirs: (string | null)[] = [];
-      const el = await make({ onSortChange: (_f: string, d: string | null) => { dirs.push(d); } });
+      const el = await make({
+        onSortChange: (_f: string, d: string | null) => {
+          dirs.push(d);
+        }
+      });
       const t = el.querySelector(".zeta-table-header-title--sortable") as HTMLElement;
       setTimeout(() => t.click());
       await oneEvent(el, "zeta-table-sort-change");
@@ -127,7 +141,11 @@ describe("zeta-table interactions", () => {
 
     it("sort arrow click and toggle", async () => {
       let dir: string | null = null;
-      const el = await make({ onSortChange: (_f: string, d: string | null) => { dir = d; } });
+      const el = await make({
+        onSortChange: (_f: string, d: string | null) => {
+          dir = d;
+        }
+      });
       const arrow = el.querySelector(".zeta-table-sort-arrow") as HTMLElement;
       arrow.dispatchEvent(new MouseEvent("click", { bubbles: true }));
       await el.updateComplete;
@@ -145,8 +163,14 @@ describe("zeta-table interactions", () => {
     });
 
     it("calls callback and dispatches event", async () => {
-      let f = "", v = "";
-      const el = await make({ onColumnSearch: (field: string, val: string) => { f = field; v = val; } });
+      let f = "",
+        v = "";
+      const el = await make({
+        onColumnSearch: (field: string, val: string) => {
+          f = field;
+          v = val;
+        }
+      });
       const input = el.querySelector(".zeta-table-search-input:not([disabled])") as HTMLInputElement;
       setTimeout(() => {
         input.value = "test";
@@ -181,7 +205,11 @@ describe("zeta-table interactions", () => {
   describe("Global Search", () => {
     it("calls callback and dispatches event", async () => {
       let term = "";
-      const el = await make({ onTableSearch: (v: string) => { term = v; } });
+      const el = await make({
+        onTableSearch: (v: string) => {
+          term = v;
+        }
+      });
       const input = el.querySelector(".zeta-table-global-search-input") as HTMLInputElement;
       setTimeout(() => {
         input.value = "Alice";
@@ -206,8 +234,14 @@ describe("zeta-table interactions", () => {
     });
 
     it("applies filter and dispatches event", async () => {
-      let f = "", vals: string[] = [];
-      const el = await make({ onColumnFilter: (field: string, v: string[]) => { f = field; vals = v; } });
+      let f = "",
+        vals: string[] = [];
+      const el = await make({
+        onColumnFilter: (field: string, v: string[]) => {
+          f = field;
+          vals = v;
+        }
+      });
       (el.querySelector(".zeta-table-header-icon-btn") as HTMLElement).click();
       await el.updateComplete;
       (el.querySelector(".zeta-table-filter-panel-item input[type='checkbox']") as HTMLInputElement).click();
@@ -220,7 +254,11 @@ describe("zeta-table interactions", () => {
 
     it("clears filter and removes active on empty apply", async () => {
       let vals: string[] = ["x"];
-      const el = await make({ onColumnFilter: (_f: string, v: string[]) => { vals = v; } });
+      const el = await make({
+        onColumnFilter: (_f: string, v: string[]) => {
+          vals = v;
+        }
+      });
       (el.querySelector(".zeta-table-header-icon-btn") as HTMLElement).click();
       await el.updateComplete;
       (el.querySelector(".zeta-table-filter-panel-btn--apply") as HTMLElement).click();
@@ -246,7 +284,9 @@ describe("zeta-table interactions", () => {
       const el = await make({ columns: [{ field: "name", title: "Name" }], data: [{ id: 1, name: "A" }], columnConfigure: true });
       (el.querySelector(".zeta-table-column-panel-wrapper .zeta-table-toolbar-btn") as HTMLElement).click();
       await el.updateComplete;
-      assert.isTrue((el.querySelector(".zeta-table-column-panel-section:first-child .zeta-table-column-panel-item input[type='checkbox']") as HTMLInputElement).disabled);
+      assert.isTrue(
+        (el.querySelector(".zeta-table-column-panel-section:first-child .zeta-table-column-panel-item input[type='checkbox']") as HTMLInputElement).disabled
+      );
     });
 
     it("toggles column freeze", async () => {
