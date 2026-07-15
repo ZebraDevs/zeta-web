@@ -1842,8 +1842,10 @@ export class ZetaTable extends LitElement {
         ${
           this.expandable
             ? html`
-              <td class="zeta-table-td zeta-table-col-expand zeta-table-cell--frozen ${this.selectable ? "zeta-table-cell--frozen-after-checkbox" : "zeta-table-cell--frozen-start"}">
-                ${
+                <td
+                  class="zeta-table-td zeta-table-col-expand zeta-table-cell--frozen ${this.selectable ? "zeta-table-cell--frozen-after-checkbox" : "zeta-table-cell--frozen-start"}"
+                >
+                  ${
                   hasNested
                     ? html`
                         <button
@@ -1856,8 +1858,8 @@ export class ZetaTable extends LitElement {
                       `
                     : nothing
                 }
-              </td>
-            `
+                </td>
+              `
             : nothing
         }
         ${cols.map((col, i) => this._renderDataCell(row, col, i))} ${this._showActionsColumn ? this._renderActionsCell(row) : nothing}

@@ -86,7 +86,12 @@ describe("zeta-table interactions", () => {
 
     it("select-all toggles all", async () => {
       let ids: (string | number)[] = [];
-      const el = await make({ selectable: true, onSelectionChange: (s: (string | number)[]) => { ids = s; } });
+      const el = await make({
+        selectable: true,
+        onSelectionChange: (s: (string | number)[]) => {
+          ids = s;
+        }
+      });
       const sa = el.querySelector<HTMLInputElement>(".zeta-table-header-row .zeta-table-col-checkbox input[type='checkbox']")!;
       sa.click();
       await el.updateComplete;
@@ -148,8 +153,14 @@ describe("zeta-table interactions", () => {
     });
 
     it("calls column search callback and dispatches event", async () => {
-      let f = "", v = "";
-      const el = await make({ onColumnSearch: (field: string, val: string) => { f = field; v = val; } });
+      let f = "",
+        v = "";
+      const el = await make({
+        onColumnSearch: (field: string, val: string) => {
+          f = field;
+          v = val;
+        }
+      });
       const input = el.querySelector(".zeta-table-search-input:not([disabled])") as HTMLInputElement;
       setTimeout(() => {
         input.value = "test";
