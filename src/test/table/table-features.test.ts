@@ -30,7 +30,7 @@ async function make(overrides: Partial<ZetaTable> = {}): Promise<ZetaTable> {
 }
 
 describe("zeta-table features", () => {
-  describe("Expandable Rows", () => {
+  describe("Content", () => {
     it("renders expand column when expandable", async () => {
       const el = await make({ expandable: true });
       expect(el.querySelector(".zeta-table-col-expand")).to.exist;
@@ -41,21 +41,151 @@ describe("zeta-table features", () => {
       const el = await make();
       expect(el.querySelector(".zeta-table-col-expand")).to.not.exist;
     });
-  });
-
-  describe("Row Actions", () => {
-    const actions: ZetaTableAction[] = [
-      { key: "edit", label: "Edit" },
-      { key: "delete", label: "Delete", icon: "🗑" }
-    ];
 
     it("renders actions column and kebab buttons", async () => {
+      const actions: ZetaTableAction[] = [
+        { key: "edit", label: "Edit" },
+        { key: "delete", label: "Delete", icon: "🗑" }
+      ];
       const el = await make({ rowActions: actions });
       expect(el.querySelector(".zeta-table-col-actions")).to.exist;
       assert.equal(el.querySelectorAll(".zeta-table-action-btn").length, rows3.length);
     });
 
+    it("renders disabled action items and icons", async () => {
+      const el = await make({ rowActions: [{ key: "d", label: "D", disabled: true, icon: "🗑" }] });
+      (el.querySelector(".zeta-table-action-btn") as HTMLElement).click();
+      await el.updateComplete;
+      expect(el.querySelector(".zeta-table-action-menu-item--disabled")).to.exist;
+      expect(el.querySelector(".zeta-table-action-icon")).to.exist;
+    });
+
+    it("renders custom actionsLabel", async () => {
+      const actions: ZetaTableAction[] = [{ key: "edit", label: "Edit" }];
+      const el = await make({ rowActions: actions, actionsLabel: "Menu" });
+      assert.include(el.querySelector("th.zeta-table-col-actions")?.textContent, "Menu");
+    });
+
+    it("renders footer for numbered pagination, not for none", async () => {
+      expect((await make({ paginationType: "numbered", totalItems: 50 })).querySelector(".zeta-table-footer")).to.exist;
+      expect((await make({ paginationType: "none" })).querySelector(".zeta-table-footer")).to.not.exist;
+    });
+
+    it("shows page info text", async () => {
+      const el = await make({ paginationType: "numbered", totalItems: 100, pageSize: 20 });
+      assert.include(el.querySelector(".zeta-table-page-info span")?.textContent, "Page 1 of 5");
+    });
+
+    it("renders page numbers, active button, ellipsis, and size select", async () => {
+      const el = await make({ paginationType: "numbered", totalItems: 100, pageSize: 20 });
+      expect(el.querySelectorAll(".zeta-table-page-btn:not([title])").length).to.be.greaterThan(0);
+      assert.equal(el.querySelector(".zeta-table-page-btn--active")?.textContent?.trim(), "1");
+      expect(el.querySelector(".zeta-table-page-size-select")).to.exist;
+      const el2 = await make({ paginationType: "numbered", totalItems: 500, pageSize: 10, currentPage: 15 });
+      expect(el2.querySelectorAll(".zeta-table-page-ellipsis").length).to.be.greaterThan(0);
+    });
+
+    it("disables nav at boundaries", async () => {
+      const el1 = await make({ paginationType: "numbered", totalItems: 100, currentPage: 1 });
+      assert.isTrue((el1.querySelector("[title='First page']") as HTMLButtonElement).disabled);
+      assert.isTrue((el1.querySelector("[title='Previous page']") as HTMLButtonElement).disabled);
+      const el2 = await make({ paginationType: "numbered", totalItems: 100, pageSize: 20, currentPage: 5 });
+      assert.isTrue((el2.querySelector("[title='Next page']") as HTMLButtonElement).disabled);
+      assert.isTrue((el2.querySelector("[title='Last page']") as HTMLButtonElement).disabled);
+    });
+
+    it("calculates pages from data.length without totalItems", async () => {
+      const data = Array.from({ length: 45 }, (_, i) => ({ id: i + 1, name: `U${i}`, age: 20 + i, email: `u${i}@t.com` }));
+      const el = await make({ data, paginationType: "numbered", pageSize: 10 });
+      assert.include(el.querySelector(".zeta-table-page-info span")?.textContent, "of 5");
+    });
+
+    it("renders sentinel and loading row for infinite scroll", async () => {
+      expect((await make({ paginationType: "infinite" })).querySelector(".zeta-table-infinite-sentinel")).to.exist;
+      expect((await make({ paginationType: "none" })).querySelector(".zeta-table-infinite-sentinel")).to.not.exist;
+      expect((await make({ paginationType: "infinite", loading: true })).querySelector(".zeta-table-loading-row")).to.exist;
+    });
+
+    it("renders export button", async () => {
+      const el = await make({ exportable: true, onExport: () => {} });
+      expect(el.querySelector("[title='Export to CSV']")).to.exist;
+    });
+
+    it("renders colgroup with checkbox and expand cols", async () => {
+      const el = await make({ selectable: true, expandable: true });
+      expect(el.querySelector("colgroup .zeta-table-col-checkbox-width")).to.exist;
+      expect(el.querySelector("colgroup .zeta-table-col-expand-width")).to.exist;
+    });
+
+    it("sets numeric, string, and no-width columns", async () => {
+      const cols: ZetaTableColumn[] = [
+        { field: "name", title: "Name", width: 300 },
+        { field: "age", title: "Age", width: "25%" },
+        { field: "email", title: "Email" }
+      ];
+      const el = await make({ columns: cols });
+      const colEls = el.querySelectorAll<HTMLElement>("colgroup col:not(.zeta-table-col-checkbox-width):not(.zeta-table-col-expand-width)");
+      assert.include(colEls[0].style.width, "300px");
+      assert.include(colEls[1].style.width, "25%");
+      assert.equal(colEls[2].style.width, "");
+    });
+
+    it("calculates correct colspan for no-data row", async () => {
+      const el = await make({ data: [], selectable: true, expandable: true });
+      assert.equal((el.querySelector(".zeta-table-no-data") as HTMLTableCellElement).colSpan, cols3.length + 2);
+    });
+
+    it("renders tooltip hidden by default", async () => {
+      const el = await make();
+      const tooltip = el.querySelector(".zeta-table-tooltip");
+      expect(tooltip).to.exist;
+      assert.isFalse(tooltip?.classList.contains("zeta-table-tooltip--visible"));
+    });
+
+    it("injects global styles", async () => {
+      await make();
+      expect(document.querySelector("style[data-zeta-table]")).to.exist;
+    });
+
+    it("syncs selectedRows and disabledRows", async () => {
+      const el = await make({ selectable: true });
+      el.selectedRows = [1, 2];
+      await el.updateComplete;
+      const cbs = el.querySelectorAll<HTMLInputElement>(".zeta-table-tbody .zeta-table-col-checkbox input[type='checkbox']");
+      assert.isTrue(cbs[0]?.checked);
+      assert.isTrue(cbs[1]?.checked);
+      assert.isFalse(cbs[2]?.checked);
+      el.disabledRows = [3];
+      await el.updateComplete;
+      assert.isTrue(el.querySelectorAll(".zeta-table-tbody .zeta-table-row")[2].classList.contains("zeta-table-row--disabled"));
+    });
+
+    it("syncs currentPage and rebuilds columns", async () => {
+      const el = await make({ paginationType: "numbered", totalItems: 100, pageSize: 20 });
+      el.currentPage = 3;
+      await el.updateComplete;
+      assert.include(el.querySelector(".zeta-table-page-info span")?.textContent, "Page 3");
+      el.columns = [{ field: "name", title: "Name" }, { field: "status", title: "Status" }];
+      await el.updateComplete;
+      assert.equal(el.querySelectorAll(".zeta-table-header-row .zeta-table-th").length, 2);
+    });
+
+    it("updates actions column on data/rowActions change", async () => {
+      const el = await make({ rowActions: [{ key: "e", label: "E" }] });
+      expect(el.querySelector(".zeta-table-col-actions")).to.exist;
+      el.rowActions = [];
+      el.data = [{ id: 1, name: "A", age: 30, email: "a@t.com" }];
+      await el.updateComplete;
+      expect(el.querySelector(".zeta-table-col-actions")).to.not.exist;
+    });
+  });
+
+  describe("Interaction", () => {
     it("opens/closes action menu", async () => {
+      const actions: ZetaTableAction[] = [
+        { key: "edit", label: "Edit" },
+        { key: "delete", label: "Delete", icon: "🗑" }
+      ];
       const el = await make({ rowActions: actions });
       const btn = el.querySelector(".zeta-table-action-btn") as HTMLElement;
       btn.click();
@@ -68,6 +198,10 @@ describe("zeta-table features", () => {
     });
 
     it("fires callback and event on action click", async () => {
+      const actions: ZetaTableAction[] = [
+        { key: "edit", label: "Edit" },
+        { key: "delete", label: "Delete", icon: "🗑" }
+      ];
       let key = "";
       const el = await make({ rowActions: actions, onRowAction: (k: string) => { key = k; } });
       (el.querySelector(".zeta-table-action-btn") as HTMLElement).click();
@@ -80,6 +214,10 @@ describe("zeta-table features", () => {
     });
 
     it("uses per-row _actions and hides for null", async () => {
+      const actions: ZetaTableAction[] = [
+        { key: "edit", label: "Edit" },
+        { key: "delete", label: "Delete", icon: "🗑" }
+      ];
       const data: ZetaTableRow[] = [
         { id: 1, name: "A", age: 30, email: "a@t.com", _actions: [{ key: "view", label: "View" }] },
         { id: 2, name: "B", age: 25, email: "b@t.com", _actions: null },
@@ -92,36 +230,15 @@ describe("zeta-table features", () => {
       assert.include(el.querySelector(".zeta-table-action-menu-item")?.textContent, "View");
     });
 
-    it("renders disabled items and icons", async () => {
-      const el = await make({ rowActions: [{ key: "d", label: "D", disabled: true, icon: "🗑" }] });
-      (el.querySelector(".zeta-table-action-btn") as HTMLElement).click();
-      await el.updateComplete;
-      expect(el.querySelector(".zeta-table-action-menu-item--disabled")).to.exist;
-      expect(el.querySelector(".zeta-table-action-icon")).to.exist;
-    });
-
-    it("renders custom actionsLabel", async () => {
-      const el = await make({ rowActions: actions, actionsLabel: "Menu" });
-      assert.include(el.querySelector("th.zeta-table-col-actions")?.textContent, "Menu");
-    });
-  });
-
-  describe("Pagination", () => {
-    it("renders footer for numbered, not for none", async () => {
-      expect((await make({ paginationType: "numbered", totalItems: 50 })).querySelector(".zeta-table-footer")).to.exist;
-      expect((await make({ paginationType: "none" })).querySelector(".zeta-table-footer")).to.not.exist;
-    });
-
-    it("shows page info and navigates", async () => {
+    it("navigates pages and fires callback", async () => {
       let p = 0;
       const el = await make({ paginationType: "numbered", totalItems: 100, pageSize: 20, onPageChange: (pg: number) => { p = pg; } });
-      assert.include(el.querySelector(".zeta-table-page-info span")?.textContent, "Page 1 of 5");
       setTimeout(() => (el.querySelector("[title='Next page']") as HTMLElement).click());
       await oneEvent(el, "zeta-table-page-change");
       assert.equal(p, 2);
     });
 
-    it("navigates to first and last page", async () => {
+    it("navigates to first page", async () => {
       let p = 0;
       const el = await make({ paginationType: "numbered", totalItems: 100, pageSize: 20, currentPage: 3, onPageChange: (pg: number) => { p = pg; } });
       (el.querySelector("[title='First page']") as HTMLElement).click();
@@ -137,24 +254,6 @@ describe("zeta-table features", () => {
       assert.equal(p, 5);
     });
 
-    it("disables nav at boundaries", async () => {
-      const el1 = await make({ paginationType: "numbered", totalItems: 100, currentPage: 1 });
-      assert.isTrue((el1.querySelector("[title='First page']") as HTMLButtonElement).disabled);
-      assert.isTrue((el1.querySelector("[title='Previous page']") as HTMLButtonElement).disabled);
-      const el2 = await make({ paginationType: "numbered", totalItems: 100, pageSize: 20, currentPage: 5 });
-      assert.isTrue((el2.querySelector("[title='Next page']") as HTMLButtonElement).disabled);
-      assert.isTrue((el2.querySelector("[title='Last page']") as HTMLButtonElement).disabled);
-    });
-
-    it("renders page numbers, active button, ellipsis, and size select", async () => {
-      const el = await make({ paginationType: "numbered", totalItems: 100, pageSize: 20 });
-      expect(el.querySelectorAll(".zeta-table-page-btn:not([title])").length).to.be.greaterThan(0);
-      assert.equal(el.querySelector(".zeta-table-page-btn--active")?.textContent?.trim(), "1");
-      expect(el.querySelector(".zeta-table-page-size-select")).to.exist;
-      const el2 = await make({ paginationType: "numbered", totalItems: 500, pageSize: 10, currentPage: 15 });
-      expect(el2.querySelectorAll(".zeta-table-page-ellipsis").length).to.be.greaterThan(0);
-    });
-
     it("resets page on size change", async () => {
       let p = 0;
       const el = await make({ paginationType: "numbered", totalItems: 100, pageSize: 20, currentPage: 3, onPageChange: (pg: number) => { p = pg; } });
@@ -165,12 +264,6 @@ describe("zeta-table features", () => {
       assert.equal(p, 1);
     });
 
-    it("calculates pages from data.length without totalItems", async () => {
-      const data = Array.from({ length: 45 }, (_, i) => ({ id: i + 1, name: `U${i}`, age: 20 + i, email: `u${i}@t.com` }));
-      const el = await make({ data, paginationType: "numbered", pageSize: 10 });
-      assert.include(el.querySelector(".zeta-table-page-info span")?.textContent, "of 5");
-    });
-
     it("does not navigate to invalid pages", async () => {
       let called = false;
       const el = await make({ paginationType: "numbered", totalItems: 100, pageSize: 20, currentPage: 1, onPageChange: () => { called = true; } });
@@ -178,26 +271,7 @@ describe("zeta-table features", () => {
       await el.updateComplete;
       assert.isFalse(called);
     });
-  });
 
-  describe("Infinite Scroll", () => {
-    it("renders sentinel and loading row", async () => {
-      expect((await make({ paginationType: "infinite" })).querySelector(".zeta-table-infinite-sentinel")).to.exist;
-      expect((await make({ paginationType: "none" })).querySelector(".zeta-table-infinite-sentinel")).to.not.exist;
-      expect((await make({ paginationType: "infinite", loading: true })).querySelector(".zeta-table-loading-row")).to.exist;
-    });
-  });
-
-  describe("Export", () => {
-    it("renders export button and calls onExport callback", async () => {
-      let exported: ZetaTableRow[] = [];
-      const el = await make({ exportable: true, onExport: (d: ZetaTableRow[]) => { exported = d; } });
-      expect(el.querySelector("[title='Export to CSV']")).to.exist;
-      assert.equal(exported.length, 0);
-    });
-  });
-
-  describe("Refresh", () => {
     it("calls onRefresh and dispatches event", async () => {
       let refreshed = false;
       const el = await make({ onRefresh: () => { refreshed = true; } });
@@ -205,62 +279,7 @@ describe("zeta-table features", () => {
       await oneEvent(el, "zeta-table-refresh");
       assert.isTrue(refreshed);
     });
-  });
 
-  describe("Frozen Columns", () => {
-    it("applies frozen and frozen-last classes", async () => {
-      const cols: ZetaTableColumn[] = [
-        { field: "name", title: "Name", frozen: true },
-        { field: "age", title: "Age" },
-        { field: "email", title: "Email" }
-      ];
-      const el = await make({ columns: cols });
-      expect(el.querySelectorAll(".zeta-table-header-row .zeta-table-cell--frozen").length).to.be.greaterThan(0);
-      assert.equal(el.querySelectorAll(".zeta-table-header-row .zeta-table-cell--frozen-last").length, 1);
-      expect(el.querySelectorAll(".zeta-table-tbody .zeta-table-cell--frozen").length).to.be.greaterThan(0);
-    });
-
-    it("handles multiple frozen columns with selectable", async () => {
-      const cols: ZetaTableColumn[] = [
-        { field: "name", title: "Name", frozen: true, width: 200 },
-        { field: "age", title: "Age", frozen: true, width: 100 },
-        { field: "email", title: "Email" }
-      ];
-      const el = await make({ columns: cols, selectable: true });
-      const frozenHeaders = el.querySelectorAll(".zeta-table-header-row .zeta-table-cell--frozen");
-      expect(frozenHeaders.length).to.be.greaterThanOrEqual(2);
-    });
-  });
-
-  describe("Colgroup", () => {
-    it("renders colgroup with checkbox and expand cols", async () => {
-      const el = await make({ selectable: true, expandable: true });
-      expect(el.querySelector("colgroup .zeta-table-col-checkbox-width")).to.exist;
-      expect(el.querySelector("colgroup .zeta-table-col-expand-width")).to.exist;
-    });
-
-    it("sets numeric, string, and no-width columns", async () => {
-      const cols: ZetaTableColumn[] = [
-        { field: "name", title: "Name", width: 300 },
-        { field: "age", title: "Age", width: "25%" },
-        { field: "email", title: "Email" }
-      ];
-      const el = await make({ columns: cols });
-      const colEls = el.querySelectorAll("colgroup col:not(.zeta-table-col-checkbox-width):not(.zeta-table-col-expand-width)") as NodeListOf<HTMLElement>;
-      assert.include(colEls[0].style.width, "300px");
-      assert.include(colEls[1].style.width, "25%");
-      assert.equal(colEls[2].style.width, "");
-    });
-  });
-
-  describe("Colspan", () => {
-    it("calculates correct colspan for no-data row", async () => {
-      const el = await make({ data: [], selectable: true, expandable: true });
-      assert.equal((el.querySelector(".zeta-table-no-data") as HTMLTableCellElement).colSpan, cols3.length + 2);
-    });
-  });
-
-  describe("Overlay and Scroll Close", () => {
     it("closes column panel on outside click", async () => {
       const el = await make({ columnConfigure: true });
       (el.querySelector(".zeta-table-column-panel-wrapper .zeta-table-toolbar-btn") as HTMLElement).click();
@@ -296,63 +315,38 @@ describe("zeta-table features", () => {
       await el.updateComplete;
       expect(el.querySelector(".zeta-table-filter-panel")).to.not.exist;
     });
-  });
-
-  describe("Lifecycle", () => {
-    it("injects global styles", async () => {
-      await make();
-      expect(document.querySelector("style[data-zeta-table]")).to.exist;
-    });
 
     it("cleans up on disconnect", async () => {
       const el = await make();
       el.remove();
       expect(true).to.be.true;
     });
-
-    it("syncs selectedRows and disabledRows", async () => {
-      const el = await make({ selectable: true });
-      el.selectedRows = [1, 2];
-      await el.updateComplete;
-      const cbs = el.querySelectorAll(".zeta-table-tbody .zeta-table-col-checkbox input[type='checkbox']") as NodeListOf<HTMLInputElement>;
-      assert.isTrue(cbs[0]?.checked);
-      assert.isTrue(cbs[1]?.checked);
-      assert.isFalse(cbs[2]?.checked);
-      el.disabledRows = [3];
-      await el.updateComplete;
-      assert.isTrue(el.querySelectorAll(".zeta-table-tbody .zeta-table-row")[2].classList.contains("zeta-table-row--disabled"));
-    });
-
-    it("syncs currentPage and rebuilds columns", async () => {
-      const el = await make({ paginationType: "numbered", totalItems: 100, pageSize: 20 });
-      el.currentPage = 3;
-      await el.updateComplete;
-      assert.include(el.querySelector(".zeta-table-page-info span")?.textContent, "Page 3");
-      el.columns = [{ field: "name", title: "Name" }, { field: "status", title: "Status" }];
-      await el.updateComplete;
-      assert.equal(el.querySelectorAll(".zeta-table-header-row .zeta-table-th").length, 2);
-    });
-
-    it("updates actions column on data/rowActions change", async () => {
-      const el = await make({ rowActions: [{ key: "e", label: "E" }] });
-      expect(el.querySelector(".zeta-table-col-actions")).to.exist;
-      el.rowActions = [];
-      el.data = [{ id: 1, name: "A", age: 30, email: "a@t.com" }];
-      await el.updateComplete;
-      expect(el.querySelector(".zeta-table-col-actions")).to.not.exist;
-    });
   });
 
-  describe("Tooltip", () => {
-    it("renders tooltip hidden by default", async () => {
-      const el = await make();
-      const tooltip = el.querySelector(".zeta-table-tooltip");
-      expect(tooltip).to.exist;
-      assert.isFalse(tooltip?.classList.contains("zeta-table-tooltip--visible"));
+  describe("Styling", () => {
+    it("applies frozen and frozen-last classes", async () => {
+      const cols: ZetaTableColumn[] = [
+        { field: "name", title: "Name", frozen: true },
+        { field: "age", title: "Age" },
+        { field: "email", title: "Email" }
+      ];
+      const el = await make({ columns: cols });
+      expect(el.querySelectorAll(".zeta-table-header-row .zeta-table-cell--frozen").length).to.be.greaterThan(0);
+      assert.equal(el.querySelectorAll(".zeta-table-header-row .zeta-table-cell--frozen-last").length, 1);
+      expect(el.querySelectorAll(".zeta-table-tbody .zeta-table-cell--frozen").length).to.be.greaterThan(0);
     });
-  });
 
-  describe("Disabled Rows", () => {
+    it("handles multiple frozen columns with selectable", async () => {
+      const cols: ZetaTableColumn[] = [
+        { field: "name", title: "Name", frozen: true, width: 200 },
+        { field: "age", title: "Age", frozen: true, width: 100 },
+        { field: "email", title: "Email" }
+      ];
+      const el = await make({ columns: cols, selectable: true });
+      const frozenHeaders = el.querySelectorAll(".zeta-table-header-row .zeta-table-cell--frozen");
+      expect(frozenHeaders.length).to.be.greaterThanOrEqual(2);
+    });
+
     it("applies disabled class for _disabled and disabledRows", async () => {
       const data: ZetaTableRow[] = [
         { id: 1, name: "A", age: 30, email: "a@t.com", _disabled: true },

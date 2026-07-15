@@ -29,8 +29,7 @@ export default `<style>
     select-all
     expandable
     exportable
-    column-chooser
-    row-clickable
+    column-configure
     show-data-count
     table-title="Summary"
     pagination-type="numbered"

@@ -199,10 +199,10 @@ export interface ZetaTableRow {
  * @fires zeta-table-sort-change - Column sort changes. Detail: { field, direction }
  * @fires zeta-table-column-search - Column search input changes. Detail: { field, value, searchValues }
  * @fires zeta-table-column-filter - Column filter applied. Detail: { field, selectedValues }
- * @fires zeta-table-search - Global search input changes. Detail: { searchTerm }
- * @fires zeta-table-page-change - Page changes (numbered). Detail: { page }
+ * @fires zeta-table-search - Global search input changes. Detail: { value }
+ * @fires zeta-table-page-change - Page changes (numbered). Detail: { page, pageSize }
  * @fires zeta-table-load-more - More data needed (infinite scroll)
- * @fires zeta-table-export - Export button clicked. Detail: { data }
+ * @fires zeta-table-export - Export button clicked. Detail: { csv, columns, data }
  * @fires zeta-table-row-expand - Row expanded/collapsed. Detail: { rowId, expanded }
  * @fires zeta-table-row-click - Row clicked. Detail: { row, rowIndex }
  * @fires zeta-table-refresh - Refresh button clicked
@@ -527,6 +527,8 @@ export class ZetaTable extends LitElement {
   override disconnectedCallback() {
     super.disconnectedCallback?.();
     document.removeEventListener("click", this._closeOverlaysOnOutsideClick);
+    document.removeEventListener("mousemove", this._handleResizeMove);
+    document.removeEventListener("mouseup", this._handleResizeEnd);
     this._scrollContainer?.removeEventListener("scroll", this._handleScrollClose);
     this._destroyInfiniteScrollObserver();
   }
@@ -1310,7 +1312,7 @@ export class ZetaTable extends LitElement {
       cols
         .map(c => {
           const val = row[c.field];
-          const str = val == null ? "" : typeof val === "object" ? JSON.stringify(val) : String(val);
+          const str = val == null ? "" : typeof val === "object" ? JSON.stringify(val) : String(val as string | number | boolean);
           return `"${str.replace(/"/g, '""')}"`;
         })
         .join(",")
@@ -1326,7 +1328,8 @@ export class ZetaTable extends LitElement {
     link.href = url;
     link.download = `table-export-${Date.now()}.csv`;
     link.click();
-    URL.revokeObjectURL(url);
+    // Delay revocation so the browser can initiate the download before the blob URL is freed
+    setTimeout(() => URL.revokeObjectURL(url), 100);
   }
 
   // ─── Data Processing Pipeline ───
@@ -1839,7 +1842,7 @@ export class ZetaTable extends LitElement {
         ${
           this.expandable
             ? html`
-              <td class="zeta-table-td zeta-table-col-expand zeta-table-cell--frozen ${this.selectable ? "zeta-table-cell--frozen-after-checkbox" : "zeta-table-cell--frozen-start"}"
+              <td class="zeta-table-td zeta-table-col-expand zeta-table-cell--frozen ${this.selectable ? "zeta-table-cell--frozen-after-checkbox" : "zeta-table-cell--frozen-start"}">
                 ${
                   hasNested
                     ? html`
@@ -1919,7 +1922,7 @@ export class ZetaTable extends LitElement {
         this.data
           .map(row => {
             const v = row[col.field];
-            return v == null ? "" : typeof v === "object" ? JSON.stringify(v) : String(v);
+            return v == null ? "" : typeof v === "object" ? JSON.stringify(v) : String(v as string | number | boolean);
           })
           .filter(v => v)
       )
@@ -2069,7 +2072,7 @@ export class ZetaTable extends LitElement {
       `;
     }
 
-    const cellValue = rawValue != null ? (typeof rawValue === "object" ? JSON.stringify(rawValue) : String(rawValue)) : "";
+    const cellValue = rawValue != null ? (typeof rawValue === "object" ? JSON.stringify(rawValue) : String(rawValue as string | number | boolean)) : "";
     const tooltipEnabled = col.tooltip === true || col.tooltipOnEllipsisOnly !== false;
     const ellipsisOnly = col.tooltip !== true;
 
@@ -2147,7 +2150,7 @@ export class ZetaTable extends LitElement {
                       ${nestedKeys.map(key => {
                         const val = child[key];
                         return html`<td class="zeta-table-nested-td">
-                          ${val instanceof Node ? val : val != null ? (typeof val === "object" ? JSON.stringify(val) : String(val)) : ""}
+                          ${val instanceof Node ? val : val != null ? (typeof val === "object" ? JSON.stringify(val) : String(val as string | number | boolean)) : ""}
                         </td>`;
                       })}
                     </tr>

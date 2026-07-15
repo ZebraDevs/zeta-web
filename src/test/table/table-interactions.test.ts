@@ -66,19 +66,18 @@ describe("zeta-table interactions", () => {
     });
   });
 
-  describe("Selection", () => {
+  describe("Interaction", () => {
     it("renders checkboxes and pre-selects rows", async () => {
       const el = await make({ selectable: true, selectedRows: [1, 3] });
       expect(el.querySelectorAll(".zeta-table-col-checkbox").length).to.be.greaterThan(0);
-      const cbs = el.querySelectorAll(".zeta-table-tbody .zeta-table-col-checkbox input[type='checkbox']") as NodeListOf<HTMLInputElement>;
+      const cbs = el.querySelectorAll<HTMLInputElement>(".zeta-table-tbody .zeta-table-col-checkbox input[type='checkbox']");
       assert.isTrue(cbs[0]?.checked);
       assert.isFalse(cbs[1]?.checked);
       assert.isTrue(cbs[2]?.checked);
     });
 
     it("toggles selection and dispatches event", async () => {
-      let ids: (string | number)[] = [];
-      const el = await make({ selectable: true, onSelectionChange: (s: (string|number)[]) => { ids = s; } });
+      const el = await make({ selectable: true, onSelectionChange: () => {} });
       const cb = el.querySelector(".zeta-table-tbody .zeta-table-col-checkbox input[type='checkbox']") as HTMLInputElement;
       setTimeout(() => cb.click());
       const ev = await oneEvent(el, "zeta-table-selection-change");
@@ -87,8 +86,8 @@ describe("zeta-table interactions", () => {
 
     it("select-all toggles all", async () => {
       let ids: (string | number)[] = [];
-      const el = await make({ selectable: true, onSelectionChange: (s: (string|number)[]) => { ids = s; } });
-      const sa = el.querySelector(".zeta-table-header-row .zeta-table-col-checkbox input[type='checkbox']") as HTMLInputElement;
+      const el = await make({ selectable: true, onSelectionChange: (s: (string | number)[]) => { ids = s; } });
+      const sa = el.querySelector<HTMLInputElement>(".zeta-table-header-row .zeta-table-col-checkbox input[type='checkbox']")!;
       sa.click();
       await el.updateComplete;
       assert.equal(ids.length, 3);
@@ -104,14 +103,12 @@ describe("zeta-table interactions", () => {
         { id: 3, name: "C", age: 35, email: "c@t.com" }
       ];
       const el = await make({ data, selectable: true });
-      const cbs = el.querySelectorAll(".zeta-table-tbody .zeta-table-col-checkbox input[type='checkbox']") as NodeListOf<HTMLInputElement>;
+      const cbs = el.querySelectorAll<HTMLInputElement>(".zeta-table-tbody .zeta-table-col-checkbox input[type='checkbox']");
       assert.isTrue(cbs[0]?.disabled);
       assert.isTrue(cbs[1]?.disabled);
       assert.isFalse(cbs[2]?.disabled);
     });
-  });
 
-  describe("Sorting", () => {
     it("cycles sort asc -> desc -> null", async () => {
       const dirs: (string | null)[] = [];
       const el = await make({ onSortChange: (_f: string, d: string | null) => { dirs.push(d); } });
@@ -136,15 +133,13 @@ describe("zeta-table interactions", () => {
       await el.updateComplete;
       assert.equal(dir, null);
     });
-  });
 
-  describe("Column Search", () => {
     it("renders search row only when onColumnSearch is provided", async () => {
       expect((await make()).querySelector(".zeta-table-search-row")).to.not.exist;
       expect((await make({ onColumnSearch: () => {} })).querySelector(".zeta-table-search-row")).to.exist;
     });
 
-    it("calls callback and dispatches event", async () => {
+    it("calls column search callback and dispatches event", async () => {
       let f = "", v = "";
       const el = await make({ onColumnSearch: (field: string, val: string) => { f = field; v = val; } });
       const input = el.querySelector(".zeta-table-search-input:not([disabled])") as HTMLInputElement;
@@ -168,7 +163,7 @@ describe("zeta-table interactions", () => {
       assert.equal(el.querySelectorAll(".zeta-table-search-input:not([disabled])").length, 1);
     });
 
-    it("resets page on search with numbered pagination", async () => {
+    it("resets page on column search with numbered pagination", async () => {
       const el = await make({ paginationType: "numbered", currentPage: 3, totalItems: 100, onColumnSearch: () => {} });
       const input = el.querySelector(".zeta-table-search-input:not([disabled])") as HTMLInputElement;
       input.value = "t";
@@ -176,10 +171,8 @@ describe("zeta-table interactions", () => {
       await el.updateComplete;
       assert.include(el.querySelector(".zeta-table-page-info span")?.textContent, "Page 1");
     });
-  });
 
-  describe("Global Search", () => {
-    it("calls callback and dispatches event", async () => {
+    it("calls global search callback and dispatches event", async () => {
       let term = "";
       const el = await make({ onTableSearch: (v: string) => { term = v; } });
       const input = el.querySelector(".zeta-table-global-search-input") as HTMLInputElement;
@@ -191,9 +184,7 @@ describe("zeta-table interactions", () => {
       assert.equal(term, "Alice");
       assert.equal((ev as CustomEvent).detail.value, "Alice");
     });
-  });
 
-  describe("Column Filter", () => {
     it("opens/closes filter panel", async () => {
       const el = await make({ onColumnFilter: () => {} });
       const btn = el.querySelector(".zeta-table-header-icon-btn") as HTMLElement;
@@ -227,10 +218,8 @@ describe("zeta-table interactions", () => {
       await el.updateComplete;
       assert.equal(vals.length, 0);
     });
-  });
 
-  describe("Column Configure", () => {
-    it("opens/closes panel and toggles visibility", async () => {
+    it("opens/closes column configure panel and toggles visibility", async () => {
       const el = await make({ columnConfigure: true });
       const btn = el.querySelector(".zeta-table-column-panel-wrapper .zeta-table-toolbar-btn") as HTMLElement;
       btn.click();
@@ -257,10 +246,8 @@ describe("zeta-table interactions", () => {
       await el.updateComplete;
       expect(el.querySelectorAll(".zeta-table-header-row .zeta-table-cell--frozen").length).to.be.greaterThan(0);
     });
-  });
 
-  describe("Column Resize", () => {
-    it("renders handles for resizable columns only", async () => {
+    it("renders resize handles for resizable columns only", async () => {
       const cols: ZetaTableColumn[] = [
         { field: "name", title: "Name", resizable: false },
         { field: "age", title: "Age" },
@@ -279,7 +266,7 @@ describe("zeta-table interactions", () => {
       await el.updateComplete;
       handle.dispatchEvent(new MouseEvent("dblclick", { bubbles: true }));
       await el.updateComplete;
-      const col = el.querySelector("colgroup col:not(.zeta-table-col-checkbox-width):not(.zeta-table-col-expand-width)") as HTMLElement;
+      const col = el.querySelector<HTMLElement>("colgroup col:not(.zeta-table-col-checkbox-width):not(.zeta-table-col-expand-width)")!;
       assert.include(col.style.width, "200px");
     });
 

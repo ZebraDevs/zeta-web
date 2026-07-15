@@ -506,7 +506,6 @@ export const TableAll: StoryObj<TableStory> = {
         .onExport=${handleExport}
         .onRowExpand=${handleRowExpand}
         @zeta-table-row-click=${onRowClick}
-        @zeta-table-action=${onAction}
         style=${cssVarsStyle(args, { "--table-max-height": "500px" })}
       ></zeta-table>
     `;
@@ -931,7 +930,6 @@ export const PerRowActions: StoryObj<TableStory> = {
         @zeta-table-sort-change=${onSortChange}
         @zeta-table-column-search=${onColumnSearch}
         @zeta-table-page-change=${onPageChange}
-        @zeta-table-action=${onAction}
         style=${cssVarsStyle(args, { "--table-max-height": "500px" })}
       ></zeta-table>
     `;
