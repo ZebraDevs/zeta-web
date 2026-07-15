@@ -1846,18 +1846,18 @@ export class ZetaTable extends LitElement {
                   class="zeta-table-td zeta-table-col-expand zeta-table-cell--frozen ${this.selectable ? "zeta-table-cell--frozen-after-checkbox" : "zeta-table-cell--frozen-start"}"
                 >
                   ${
-                  hasNested
-                    ? html`
-                        <button
-                          class="zeta-table-expand-btn ${isExpanded ? "zeta-table-expand-btn--expanded" : ""}"
-                          @click=${() => this._toggleExpand(row.id)}
-                          title="${isExpanded ? "Collapse" : "Expand"}"
-                        >
-                          <zeta-icon>chevron_right</zeta-icon>
-                        </button>
-                      `
-                    : nothing
-                }
+                    hasNested
+                      ? html`
+                          <button
+                            class="zeta-table-expand-btn ${isExpanded ? "zeta-table-expand-btn--expanded" : ""}"
+                            @click=${() => this._toggleExpand(row.id)}
+                            title="${isExpanded ? "Collapse" : "Expand"}"
+                          >
+                            <zeta-icon>chevron_right</zeta-icon>
+                          </button>
+                        `
+                      : nothing
+                  }
                 </td>
               `
             : nothing
