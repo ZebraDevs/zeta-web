@@ -1212,7 +1212,7 @@ export class ZetaTable extends LitElement {
   private _fieldToString(val: unknown): string {
     if (val == null) return "";
     if (typeof val === "object") return JSON.stringify(val);
-    return String(val);
+    return `${val as string | number | boolean | bigint}`;
   }
 
   /** Generates a CSV string with proper escaping (double-quotes for values containing quotes) */

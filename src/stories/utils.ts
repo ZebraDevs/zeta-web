@@ -49,7 +49,7 @@ export function cssVarsStyle(args: object, defaults?: Record<string, string>): s
       if (typeof value === "object") {
         vars[key] = JSON.stringify(value);
       } else {
-        vars[key] = String(value);
+        vars[key] = `${value as string | number | boolean | bigint}`;
       }
     }
   }
