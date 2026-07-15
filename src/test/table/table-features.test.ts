@@ -20,7 +20,7 @@ const rows3: ZetaTableRow[] = [
  * without modifying this function.
  */
 async function make(overrides: Partial<ZetaTable> = {}): Promise<ZetaTable> {
-  const el = await fixture<ZetaTable>(html`<zeta-table></zeta-table>`);
+  const el = (await fixture) < ZetaTable > html`<zeta-table></zeta-table>`;
   el.columns = (overrides.columns as ZetaTableColumn[]) ?? cols3;
   el.data = (overrides.data as ZetaTableRow[]) ?? rows3;
   const { columns: _c, data: _d, ...rest } = overrides;
@@ -124,7 +124,7 @@ describe("zeta-table features", () => {
         { field: "email", title: "Email" }
       ];
       const el = await make({ columns: cols });
-      const colEls = el.querySelectorAll<HTMLElement>("colgroup col:not(.zeta-table-col-checkbox-width):not(.zeta-table-col-expand-width)");
+      const colEls = el.querySelectorAll < HTMLElement > "colgroup col:not(.zeta-table-col-checkbox-width):not(.zeta-table-col-expand-width)";
       assert.include(colEls[0].style.width, "300px");
       assert.include(colEls[1].style.width, "25%");
       assert.equal(colEls[2].style.width, "");
@@ -151,7 +151,7 @@ describe("zeta-table features", () => {
       const el = await make({ selectable: true });
       el.selectedRows = [1, 2];
       await el.updateComplete;
-      const cbs = el.querySelectorAll<HTMLInputElement>(".zeta-table-tbody .zeta-table-col-checkbox input[type='checkbox']");
+      const cbs = el.querySelectorAll < HTMLInputElement > ".zeta-table-tbody .zeta-table-col-checkbox input[type='checkbox']";
       assert.isTrue(cbs[0]?.checked);
       assert.isTrue(cbs[1]?.checked);
       assert.isFalse(cbs[2]?.checked);
@@ -165,7 +165,10 @@ describe("zeta-table features", () => {
       el.currentPage = 3;
       await el.updateComplete;
       assert.include(el.querySelector(".zeta-table-page-info span")?.textContent, "Page 3");
-      el.columns = [{ field: "name", title: "Name" }, { field: "status", title: "Status" }];
+      el.columns = [
+        { field: "name", title: "Name" },
+        { field: "status", title: "Status" }
+      ];
       await el.updateComplete;
       assert.equal(el.querySelectorAll(".zeta-table-header-row .zeta-table-th").length, 2);
     });
@@ -203,7 +206,12 @@ describe("zeta-table features", () => {
         { key: "delete", label: "Delete", icon: "🗑" }
       ];
       let key = "";
-      const el = await make({ rowActions: actions, onRowAction: (k: string) => { key = k; } });
+      const el = await make({
+        rowActions: actions,
+        onRowAction: (k: string) => {
+          key = k;
+        }
+      });
       (el.querySelector(".zeta-table-action-btn") as HTMLElement).click();
       await el.updateComplete;
       const item = el.querySelector(".zeta-table-action-menu-item") as HTMLElement;
@@ -232,7 +240,14 @@ describe("zeta-table features", () => {
 
     it("navigates pages and fires callback", async () => {
       let p = 0;
-      const el = await make({ paginationType: "numbered", totalItems: 100, pageSize: 20, onPageChange: (pg: number) => { p = pg; } });
+      const el = await make({
+        paginationType: "numbered",
+        totalItems: 100,
+        pageSize: 20,
+        onPageChange: (pg: number) => {
+          p = pg;
+        }
+      });
       setTimeout(() => (el.querySelector("[title='Next page']") as HTMLElement).click());
       await oneEvent(el, "zeta-table-page-change");
       assert.equal(p, 2);
@@ -240,7 +255,15 @@ describe("zeta-table features", () => {
 
     it("navigates to first page", async () => {
       let p = 0;
-      const el = await make({ paginationType: "numbered", totalItems: 100, pageSize: 20, currentPage: 3, onPageChange: (pg: number) => { p = pg; } });
+      const el = await make({
+        paginationType: "numbered",
+        totalItems: 100,
+        pageSize: 20,
+        currentPage: 3,
+        onPageChange: (pg: number) => {
+          p = pg;
+        }
+      });
       (el.querySelector("[title='First page']") as HTMLElement).click();
       await el.updateComplete;
       assert.equal(p, 1);
@@ -248,7 +271,15 @@ describe("zeta-table features", () => {
 
     it("navigates to last page", async () => {
       let p = 0;
-      const el = await make({ paginationType: "numbered", totalItems: 100, pageSize: 20, currentPage: 3, onPageChange: (pg: number) => { p = pg; } });
+      const el = await make({
+        paginationType: "numbered",
+        totalItems: 100,
+        pageSize: 20,
+        currentPage: 3,
+        onPageChange: (pg: number) => {
+          p = pg;
+        }
+      });
       (el.querySelector("[title='Last page']") as HTMLElement).click();
       await el.updateComplete;
       assert.equal(p, 5);
@@ -256,7 +287,15 @@ describe("zeta-table features", () => {
 
     it("resets page on size change", async () => {
       let p = 0;
-      const el = await make({ paginationType: "numbered", totalItems: 100, pageSize: 20, currentPage: 3, onPageChange: (pg: number) => { p = pg; } });
+      const el = await make({
+        paginationType: "numbered",
+        totalItems: 100,
+        pageSize: 20,
+        currentPage: 3,
+        onPageChange: (pg: number) => {
+          p = pg;
+        }
+      });
       const select = el.querySelector(".zeta-table-page-size-select") as HTMLSelectElement;
       select.value = "50";
       select.dispatchEvent(new Event("change", { bubbles: true }));
@@ -266,7 +305,15 @@ describe("zeta-table features", () => {
 
     it("does not navigate to invalid pages", async () => {
       let called = false;
-      const el = await make({ paginationType: "numbered", totalItems: 100, pageSize: 20, currentPage: 1, onPageChange: () => { called = true; } });
+      const el = await make({
+        paginationType: "numbered",
+        totalItems: 100,
+        pageSize: 20,
+        currentPage: 1,
+        onPageChange: () => {
+          called = true;
+        }
+      });
       (el.querySelector("[title='Previous page']") as HTMLButtonElement).click();
       await el.updateComplete;
       assert.isFalse(called);
@@ -274,7 +321,11 @@ describe("zeta-table features", () => {
 
     it("calls onRefresh and dispatches event", async () => {
       let refreshed = false;
-      const el = await make({ onRefresh: () => { refreshed = true; } });
+      const el = await make({
+        onRefresh: () => {
+          refreshed = true;
+        }
+      });
       setTimeout(() => (el.querySelector("[title='Refresh']") as HTMLElement).click());
       await oneEvent(el, "zeta-table-refresh");
       assert.isTrue(refreshed);
