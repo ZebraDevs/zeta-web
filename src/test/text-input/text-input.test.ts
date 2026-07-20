@@ -127,6 +127,12 @@ describe("zeta-text-input", () => {
       const clearButton = el.shadowRoot?.querySelector(".cancel-icon");
       assert.notExists(clearButton, "Clear button should not exist");
     });
+
+    it("should not show clear button when showClearButton is true but value is empty", async () => {
+      const el = await setup({ showClearButton: true, value: "" });
+      const clearButton = el.shadowRoot?.querySelector(".cancel-icon");
+      assert.notExists(clearButton, "Clear button should not exist");
+    });
   });
 
   // describe("Dimensions", () => {});
@@ -370,7 +376,12 @@ describe("zeta-text-input", () => {
       const clearButton = el.shadowRoot?.querySelector(".cancel-icon");
       assert.exists(clearButton, "Clear button should exist");
 
+      const inputListener = oneEvent(el, "input");
+      const changeListener = oneEvent(el, "change");
+
       clearButton?.dispatchEvent(new Event("click", { bubbles: true, composed: true }));
+      await inputListener;
+      await changeListener;
       await expect(el.value).to.equal("");
     });
   });

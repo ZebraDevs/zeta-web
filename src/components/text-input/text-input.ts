@@ -62,7 +62,7 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
   /**
    * Displays a button to clear the text field when true.
    */
-  @property({ type: Boolean, reflect: true }) showClearButton = false;
+  @property({ type: Boolean }) showClearButton = false;
 
   /**
    * Label shown above text field.
@@ -120,14 +120,14 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
   increment() {
     if (this.type === "integer" && Number(this.value) !== this.max) {
       this.value = ((parseFloat(this.value) || 0) + 1).toString();
-      this.dispatchEvent(new Event("change", { bubbles: true, composed: true }));
+      this.dispatchEvent(new Event("change"));
     }
   }
 
   decrement() {
     if (this.type === "integer" && Number(this.value) !== this.min) {
       this.value = ((parseFloat(this.value) || 0) - 1).toString();
-      this.dispatchEvent(new Event("change", { bubbles: true, composed: true }));
+      this.dispatchEvent(new Event("change"));
     }
   }
 
@@ -193,14 +193,30 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
     `;
   }
 
+  private clearValue() {
+    this.value = "";
+    this.dispatchEvent(new InputEvent("input"));
+    this.dispatchEvent(new Event("change"));
+  }
+
+  private handleClearKeyDown(e: KeyboardEvent) {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      this.clearValue();
+    }
+  }
+
   private renderCloseIcon() {
     return this.showClearButton && this.value
       ? html`<zeta-icon
-          class="cancel-icon"
+          class="cancel-icon right ${this.type === "textarea" ? "cancel-icon-textarea" : ""}"
           @click=${() => {
-            this.value = "";
-            this.dispatchEvent(new Event("change", { bubbles: true, composed: true }));
+            this.clearValue();
           }}
+          @keydown=${this.handleClearKeyDown}
+          tabindex="0"
+          role="button"
+          aria-label="Clear input"
           >cancel</zeta-icon
         >`
       : nothing;

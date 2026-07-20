@@ -8,7 +8,19 @@ export default css`
   }
 
   .cancel-icon {
-    --icon-color: var(--main-default);
+    cursor: pointer;
+
+    &.cancel-icon-textarea {
+      align-self: flex-start;
+    }
+
+    &:hover {
+      --icon-color: var(--border-default);
+    }
+
+    &:active {
+      --icon-color: var(--main-default);
+    }
   }
 
   .hint-text {
