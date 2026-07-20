@@ -21,6 +21,7 @@ interface Props {
   min?: number;
   max?: number;
   rows?: number;
+  showClearButton?: boolean;
 }
 
 export async function setup({
@@ -39,7 +40,8 @@ export async function setup({
   value = undefined,
   min = undefined,
   max = undefined,
-  rows = undefined
+  rows = undefined,
+  showClearButton = false
 }: Props) {
   return await fixture<ZetaTextInput>(
     html`<zeta-text-input
@@ -59,6 +61,7 @@ export async function setup({
       min=${ifDefined(min)}
       max=${ifDefined(max)}
       rows=${ifDefined(rows)}
+      ?showClearButton=${showClearButton}
     ></zeta-text-input>`
   );
 }

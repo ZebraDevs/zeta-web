@@ -60,6 +60,11 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
   @property({ type: Number }) rows?: number;
 
   /**
+   * Displays a button to clear the text field when true.
+   */
+  @property({ type: Boolean, reflect: true }) showClearButton = false;
+
+  /**
    * Label shown above text field.
    *
    */
@@ -115,14 +120,14 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
   increment() {
     if (this.type === "integer" && Number(this.value) !== this.max) {
       this.value = ((parseFloat(this.value) || 0) + 1).toString();
-      this.dispatchEvent(new Event("change"));
+      this.dispatchEvent(new Event("change", { bubbles: true, composed: true }));
     }
   }
 
   decrement() {
     if (this.type === "integer" && Number(this.value) !== this.min) {
       this.value = ((parseFloat(this.value) || 0) - 1).toString();
-      this.dispatchEvent(new Event("change"));
+      this.dispatchEvent(new Event("change", { bubbles: true, composed: true }));
     }
   }
 
@@ -176,16 +181,29 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
       "text-area": this.type === "textarea"
     });
     return html`
-      <div class=${containerClass}>${this.renderLeftIcon()} ${this.renderPrefix()} ${super.render()} ${this.renderRightIcon()} ${this.renderSuffix()}</div>
-      ${
-        this.error || this.hintText
-          ? html`<div class="hint-text">
-              <zeta-icon .rounded=${this.rounded}>${this.error ? "error" : "info"}</zeta-icon>
-              <span id="hint-text">${this.error ? this.errorText : this.hintText}</span>
-            </div> `
-          : nothing
-      }
+      <div class=${containerClass}>
+        ${this.renderLeftIcon()} ${this.renderPrefix()} ${super.render()} ${this.renderRightIcon()} ${this.renderSuffix()} ${this.renderCloseIcon()}
+      </div>
+      ${this.error || this.hintText
+        ? html`<div class="hint-text">
+            <zeta-icon .rounded=${this.rounded}>${this.error ? "error" : "info"}</zeta-icon>
+            <span id="hint-text">${this.error ? this.errorText : this.hintText}</span>
+          </div> `
+        : nothing}
     `;
+  }
+
+  private renderCloseIcon() {
+    return this.showClearButton && this.value
+      ? html`<zeta-icon
+          class="cancel-icon"
+          @click=${() => {
+            this.value = "";
+            this.dispatchEvent(new Event("change", { bubbles: true, composed: true }));
+          }}
+          >cancel</zeta-icon
+        >`
+      : nothing;
   }
 
   private renderLeftIcon() {

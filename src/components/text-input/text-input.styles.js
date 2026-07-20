@@ -7,6 +7,10 @@ export default css`
     height: fit-content;
   }
 
+  .cancel-icon {
+    --icon-color: var(--main-default);
+  }
+
   .hint-text {
     --icon-size: 16px;
   }

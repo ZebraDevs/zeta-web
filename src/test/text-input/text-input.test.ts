@@ -115,6 +115,18 @@ describe("zeta-text-input", () => {
       const el = await setup({ type: "date" });
       assert.equal(el.shadowRoot?.querySelector("zeta-icon")?.textContent?.trim(), "calendar_3_day");
     });
+
+    it("should show clear button when showClearButton is true and value is not empty", async () => {
+      const el = await setup({ showClearButton: true, value: "Some text" });
+      const clearButton = el.shadowRoot?.querySelector(".cancel-icon");
+      assert.exists(clearButton, "Clear button should exist");
+    });
+
+    it("should not show clear button when showClearButton is false", async () => {
+      const el = await setup({ showClearButton: false, value: "Some text" });
+      const clearButton = el.shadowRoot?.querySelector(".cancel-icon");
+      assert.notExists(clearButton, "Clear button should not exist");
+    });
   });
 
   // describe("Dimensions", () => {});
@@ -351,6 +363,15 @@ describe("zeta-text-input", () => {
       await MouseActions.clickOutside(el);
 
       await expect(el.value).to.equal("50");
+    });
+
+    it("should clear the text input when the clear button is clicked", async () => {
+      const el = await setup({ showClearButton: true, value: "Some text" });
+      const clearButton = el.shadowRoot?.querySelector(".cancel-icon");
+      assert.exists(clearButton, "Clear button should exist");
+
+      clearButton?.dispatchEvent(new Event("click", { bubbles: true, composed: true }));
+      await expect(el.value).to.equal("");
     });
   });
 
