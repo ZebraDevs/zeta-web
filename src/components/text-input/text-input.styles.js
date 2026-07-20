@@ -21,6 +21,10 @@ export default css`
     &:active {
       --icon-color: var(--main-default);
     }
+
+    &:focus-visible {
+      outline: var(--border-size-medium) solid var(--border-primary);
+    }
   }
 
   .hint-text {
