@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.3.6...zeta-web-v1.4.0) (2026-07-21)
+
+
+### ✨ New Features
+
+* **UX-1578:** Add clear button to text input component ([#229](https://github.com/ZebraDevs/zeta-web/issues/229)) ([324655d](https://github.com/ZebraDevs/zeta-web/commit/324655d2a2f227646d8c6701eb4dd1f95b42cab8))
+
 ## [1.3.6](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.3.5...zeta-web-v1.3.6) (2026-07-01)
 
 
