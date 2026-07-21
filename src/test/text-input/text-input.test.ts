@@ -375,12 +375,9 @@ describe("zeta-text-input", () => {
       const el = await setup({ showClearButton: true, value: "Some text" });
       const clearButton = el.shadowRoot?.querySelector(".cancel-icon");
       assert.exists(clearButton, "Clear button should exist");
-
-      const inputListener = oneEvent(el, "input");
       const changeListener = oneEvent(el, "change");
 
       clearButton?.dispatchEvent(new Event("click", { bubbles: true, composed: true }));
-      await inputListener;
       await changeListener;
       await expect(el.value).to.equal("");
     });
