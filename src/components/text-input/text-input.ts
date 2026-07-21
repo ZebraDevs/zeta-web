@@ -188,12 +188,14 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
       <div class=${containerClass}>
         ${this.renderLeftIcon()} ${this.renderPrefix()} ${super.render()} ${this.renderRightIcon()} ${this.renderSuffix()} ${this.renderCloseIcon()}
       </div>
-      ${this.error || this.hintText
-        ? html`<div class="hint-text">
-            <zeta-icon .rounded=${this.rounded}>${this.error ? "error" : "info"}</zeta-icon>
-            <span id="hint-text">${this.error ? this.errorText : this.hintText}</span>
-          </div> `
-        : nothing}
+      ${
+        this.error || this.hintText
+          ? html`<div class="hint-text">
+              <zeta-icon .rounded=${this.rounded}>${this.error ? "error" : "info"}</zeta-icon>
+              <span id="hint-text">${this.error ? this.errorText : this.hintText}</span>
+            </div> `
+          : nothing
+      }
     `;
   }
 
