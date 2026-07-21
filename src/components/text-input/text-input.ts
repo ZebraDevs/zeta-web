@@ -61,6 +61,10 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
 
   /**
    * Displays a button to clear the text field when true.
+   * This will always display in the right most position and will push any trailing icon or suffix to the left.
+   * It will apply to all text field types and will push any type specific interactions to the left as well.
+   * For type `textarea`, the clear button will be displayed in the top right corner of the text area.
+   * The clear button will not be displayed if the text field is disabled or read-only.
    */
   @property({ type: Boolean }) showClearButton = false;
 
@@ -184,21 +188,21 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
       <div class=${containerClass}>
         ${this.renderLeftIcon()} ${this.renderPrefix()} ${super.render()} ${this.renderRightIcon()} ${this.renderSuffix()} ${this.renderCloseIcon()}
       </div>
-      ${
-        this.error || this.hintText
-          ? html`<div class="hint-text">
-              <zeta-icon .rounded=${this.rounded}>${this.error ? "error" : "info"}</zeta-icon>
-              <span id="hint-text">${this.error ? this.errorText : this.hintText}</span>
-            </div> `
-          : nothing
-      }
+      ${this.error || this.hintText
+        ? html`<div class="hint-text">
+            <zeta-icon .rounded=${this.rounded}>${this.error ? "error" : "info"}</zeta-icon>
+            <span id="hint-text">${this.error ? this.errorText : this.hintText}</span>
+          </div> `
+        : nothing}
     `;
   }
 
   private clearValue() {
+    if (this.disabled || this.readOnly) return;
     this.value = "";
-    this.dispatchEvent(new InputEvent("input"));
-    this.dispatchEvent(new Event("change"));
+    this.internals.setFormValue(this.value);
+    this._valueOnLastFocus = this.value;
+    this.dispatchEvent(new Event("change", { bubbles: true, composed: true }));
   }
 
   private handleClearKeyDown(e: KeyboardEvent) {
@@ -209,7 +213,7 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
   }
 
   private renderCloseIcon() {
-    return this.showClearButton && this.value
+    return this.showClearButton && !this.disabled && !this.readOnly && (this.value ?? "") !== ""
       ? html`<zeta-icon
           class="cancel-icon right ${this.type === "textarea" ? "cancel-icon-textarea" : ""}"
           @click=${() => {

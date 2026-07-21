@@ -9,17 +9,18 @@ export default css`
 
   .cancel-icon {
     cursor: pointer;
+    transition: all 0.1s ease-in-out;
 
     &.cancel-icon-textarea {
       align-self: flex-start;
     }
 
     &:hover {
-      --icon-color: var(--border-default);
+      --icon-color: var(--main-default);
     }
 
     &:active {
-      --icon-color: var(--main-default);
+      --icon-color: var(--state-inverse-selected);
     }
 
     &:focus-visible {
