@@ -51,6 +51,7 @@ declare abstract class FormFieldInterface {
   placeholder: string;
   min: number;
   max: number;
+  readOnly?: boolean;
   abstract handleChange(event: Event): void;
   handleInput(event: Event): void;
   handleFocus(event: FocusEvent): void;

@@ -7,6 +7,27 @@ export default css`
     height: fit-content;
   }
 
+  .cancel-icon {
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+
+    &.cancel-icon-textarea {
+      align-self: flex-start;
+    }
+
+    &:hover {
+      --icon-color: var(--main-default);
+    }
+
+    &:active {
+      --icon-color: var(--state-inverse-selected);
+    }
+
+    &:focus-visible {
+      outline: var(--border-size-medium) solid var(--border-primary);
+    }
+  }
+
   .hint-text {
     --icon-size: 16px;
   }
