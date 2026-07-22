@@ -361,11 +361,6 @@ export const TableAll: StoryObj<TableStory> = {
       table.totalItems = filteredData.length;
     }
 
-    const handleSelectOnRowClick = (rowData: unknown, rowIndex: number) => {
-      console.log("Row clicked & selected:", { rowIndex, rowData });
-      (onSelectOnRowClick as Function)?.();
-    };
-
     const handleRowAction = (actionKey: string, rowData: unknown, rowIndex: number) => {
       console.log("Row action:", { actionKey, rowIndex, rowData });
       (onAction as Function)?.();

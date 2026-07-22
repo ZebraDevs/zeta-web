@@ -936,7 +936,7 @@ All events are dispatched as `CustomEvent` with camelCase names and `bubbles: tr
       <td>
         <code>rowClick</code>
       </td>
-      <td>{"{ row, rowId, rowIndex }"}</td>
+      <td>{"{ row, rowIndex }"}</td>
       <td>
         Row clicked (requires <code>clickable-rows</code>)
       </td>
@@ -1176,7 +1176,7 @@ The `ZetaTableReact` wrapper from `@zebra-fed/zeta-web/react` provides:
 
 - Full prop/event typing via `@lit/react`
 - Automatic slotting of React elements passed as cell values
-- Works with React 16.8+ (hooks required)
+- Works with React 18+ (matches the published `peerDependencies`)
 - In React 19+, `onSortChange` maps to the `sortChange` event natively; the wrapper handles this for all versions.
 
 #### Plain text cells

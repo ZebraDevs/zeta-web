@@ -22,7 +22,7 @@ export default `<style>
 
 <div class="table-demo">
   <h3>Zeta Table - Full Featured Demo</h3>
-  <p>Sort (click header), filter, resize columns, double-click header to auto-fit, click rows, expand rows, export, show/hide columns.</p>
+  <p>Sort (click header), filter, resize columns, double-click resize handle to auto-fit, click rows, expand rows, export, show/hide columns.</p>
   <zeta-table
     id="demo-table"
     selectable
