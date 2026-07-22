@@ -34,8 +34,8 @@ const ZetaTableBase = createComponent({
     onColumnSearch: "columnSearch" as EventName<ColumnSearchEvent>,
     onColumnFilter: "columnFilter" as EventName<ColumnFilterEvent>,
     onTableSearch: "tableSearch" as EventName<TableSearchEvent>,
-    onTableRefresh: "tableRefresh" as EventName<TableRefreshEvent>,
-  },
+    onTableRefresh: "tableRefresh" as EventName<TableRefreshEvent>
+  }
 });
 
 type ZetaTableBaseProps = ComponentProps<typeof ZetaTableBase>;
