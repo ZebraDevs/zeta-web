@@ -35,7 +35,7 @@ describe("zeta-table additional coverage", () => {
       const row = shadow(el).querySelector(".zeta-table-tbody .zeta-table-row") as HTMLElement;
       setTimeout(() => row.click());
       const ev = await oneEvent(el, "rowClick");
-      assert.equal(ev.detail.rowId, 1);
+      assert.equal(ev.detail.row.id, 1);
       assert.equal(ev.detail.rowIndex, 0);
       assert.deepEqual(ev.detail.row, rows3[0]);
     });
@@ -67,7 +67,7 @@ describe("zeta-table additional coverage", () => {
       const row = shadow(el).querySelector(".zeta-table-tbody .zeta-table-row") as HTMLElement;
       setTimeout(() => row.click());
       const ev = await oneEvent(el, "rowClick");
-      assert.equal(ev.detail.rowId, 1);
+      assert.equal(ev.detail.row.id, 1);
     });
   });
 

@@ -30,7 +30,7 @@ export type { ZetaTableColumn, SortDirection, SortState, PaginationType, ZetaTab
  * - **Row Actions**: Per-row kebab menu with configurable items per row via `_actions`.
  * - **Tooltips**: Auto-shown on content overflow.
  * - **Localization**: All labels (`refreshLabel`, `columnsLabel`, `actionsLabel`, `searchPlaceholder`) are configurable.
- * - **Custom Styling**: Full theming via CSS custom properties and `::part()` selectors.
+ * - **Custom Styling**: Full theming via CSS custom properties (see `@cssproperty` list below).
  *
  * ## Usage
  * ```html
@@ -635,7 +635,7 @@ export class ZetaTable extends LitElement {
 
     this.dispatchEvent(
       new CustomEvent("rowClick", {
-        detail: { row, rowId: row.id, rowIndex },
+        detail: { row, rowIndex },
         bubbles: true,
         composed: true
       })

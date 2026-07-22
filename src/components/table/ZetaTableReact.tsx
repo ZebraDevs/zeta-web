@@ -8,7 +8,7 @@ export type { ZetaTableColumn, ZetaTableRow, ZetaTableAction, PaginationType, So
 type SortChangeEvent = CustomEvent<{ field: string; direction: SortDirection }>;
 type LoadMoreEvent = CustomEvent<{ currentCount: number }>;
 type RowActionEvent = CustomEvent<{ actionKey: string; row: ZetaTableRow; rowIndex: number }>;
-type RowClickEvent = CustomEvent<{ row: ZetaTableRow; rowId: string | number; rowIndex: number }>;
+type RowClickEvent = CustomEvent<{ row: ZetaTableRow; rowIndex: number }>;
 type SelectionChangeEvent = CustomEvent<{ selectedIds: (string | number)[] }>;
 type PageChangeEvent = CustomEvent<{ page: number; pageSize: number }>;
 type TableExportEvent = CustomEvent<{ csv: string; columns: ZetaTableColumn[]; data: ZetaTableRow[] }>;
@@ -29,12 +29,12 @@ const ZetaTableBase = createComponent({
     onRowClick: "rowClick" as EventName<RowClickEvent>,
     onSelectionChange: "selectionChange" as EventName<SelectionChangeEvent>,
     onPageChange: "pageChange" as EventName<PageChangeEvent>,
-    onExport: "tableExport" as EventName<TableExportEvent>,
+    onTableExport: "tableExport" as EventName<TableExportEvent>,
     onRowExpand: "rowExpand" as EventName<RowExpandEvent>,
     onColumnSearch: "columnSearch" as EventName<ColumnSearchEvent>,
     onColumnFilter: "columnFilter" as EventName<ColumnFilterEvent>,
     onTableSearch: "tableSearch" as EventName<TableSearchEvent>,
-    onRefresh: "tableRefresh" as EventName<TableRefreshEvent>,
+    onTableRefresh: "tableRefresh" as EventName<TableRefreshEvent>,
   },
 });
 
@@ -74,7 +74,7 @@ export const ZetaTableReact = React.forwardRef<ZetaTableElement, ZetaTableReactP
     });
 
     return (
-      <ZetaTableBase ref={ref} data={cleanData} loadingContent={loadingContent as unknown} noDataContent={noDataContent as unknown} {...rest}>
+      <ZetaTableBase ref={ref} data={cleanData} {...rest}>
         {loadingContent && <div slot="loading">{loadingContent}</div>}
         {noDataContent && <div slot="no-data">{noDataContent}</div>}
         {slots.map(({ field, rowIdx, element, key }) => (
