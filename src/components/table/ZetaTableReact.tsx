@@ -34,8 +34,8 @@ const ZetaTableBase = createComponent({
     onColumnSearch: "columnSearch" as EventName<ColumnSearchEvent>,
     onColumnFilter: "columnFilter" as EventName<ColumnFilterEvent>,
     onTableSearch: "tableSearch" as EventName<TableSearchEvent>,
-    onRefresh: "tableRefresh" as EventName<TableRefreshEvent>,
-  },
+    onRefresh: "tableRefresh" as EventName<TableRefreshEvent>
+  }
 });
 
 type ZetaTableBaseProps = ComponentProps<typeof ZetaTableBase>;
@@ -56,33 +56,34 @@ export interface ZetaTableReactProps extends Omit<ZetaTableBaseProps, "data" | "
  * and renders them as slotted children projected into Shadow DOM cells.
  * All other props are passed through to the base createComponent wrapper.
  */
-export const ZetaTableReact = React.forwardRef<ZetaTableElement, ZetaTableReactProps>(
-  function ZetaTableReact({ data, loadingContent, noDataContent, ...rest }, ref) {
-    const slots: { field: string; rowIdx: number; element: ReactNode; key: string }[] = [];
+export const ZetaTableReact = React.forwardRef<ZetaTableElement, ZetaTableReactProps>(function ZetaTableReact(
+  { data, loadingContent, noDataContent, ...rest },
+  ref
+) {
+  const slots: { field: string; rowIdx: number; element: ReactNode; key: string }[] = [];
 
-    const cleanData: ZetaTableRow[] = data.map((row, rowIdx) => {
-      const cleanRow: Record<string, unknown> = {};
-      for (const [field, value] of Object.entries(row)) {
-        if (isValidElement(value)) {
-          slots.push({ field, rowIdx, element: value, key: `${row.id ?? rowIdx}-${field}` });
-          cleanRow[field] = "";
-        } else {
-          cleanRow[field] = value;
-        }
+  const cleanData: ZetaTableRow[] = data.map((row, rowIdx) => {
+    const cleanRow: Record<string, unknown> = {};
+    for (const [field, value] of Object.entries(row)) {
+      if (isValidElement(value)) {
+        slots.push({ field, rowIdx, element: value, key: `${row.id ?? rowIdx}-${field}` });
+        cleanRow[field] = "";
+      } else {
+        cleanRow[field] = value;
       }
-      return cleanRow as ZetaTableRow;
-    });
+    }
+    return cleanRow as ZetaTableRow;
+  });
 
-    return (
-      <ZetaTableBase ref={ref} data={cleanData} loadingContent={loadingContent as unknown} noDataContent={noDataContent as unknown} {...rest}>
-        {loadingContent && <div slot="loading">{loadingContent}</div>}
-        {noDataContent && <div slot="no-data">{noDataContent}</div>}
-        {slots.map(({ field, rowIdx, element, key }) => (
-          <div slot={`cell-${field}-${rowIdx}`} key={key}>
-            {element}
-          </div>
-        ))}
-      </ZetaTableBase>
-    );
-  }
-);
+  return (
+    <ZetaTableBase ref={ref} data={cleanData} loadingContent={loadingContent as unknown} noDataContent={noDataContent as unknown} {...rest}>
+      {loadingContent && <div slot="loading">{loadingContent}</div>}
+      {noDataContent && <div slot="no-data">{noDataContent}</div>}
+      {slots.map(({ field, rowIdx, element, key }) => (
+        <div slot={`cell-${field}-${rowIdx}`} key={key}>
+          {element}
+        </div>
+      ))}
+    </ZetaTableBase>
+  );
+});

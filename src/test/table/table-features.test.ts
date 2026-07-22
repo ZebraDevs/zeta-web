@@ -258,7 +258,9 @@ describe("zeta-table features", () => {
     it("does not navigate to invalid pages", async () => {
       let called = false;
       const el = await make({ paginationType: "numbered", totalItems: 100, pageSize: 20, currentPage: 1 });
-      el.addEventListener("pageChange", () => { called = true; });
+      el.addEventListener("pageChange", () => {
+        called = true;
+      });
       (shadow(el).querySelector("[title='Previous page']") as HTMLButtonElement).click();
       await el.updateComplete;
       assert.isFalse(called);
