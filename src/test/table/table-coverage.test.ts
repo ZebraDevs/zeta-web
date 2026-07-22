@@ -43,7 +43,9 @@ describe("zeta-table additional coverage", () => {
     it("does not dispatch rowClick when clickableRows is false", async () => {
       let called = false;
       const el = await make();
-      el.addEventListener("rowClick", () => { called = true; });
+      el.addEventListener("rowClick", () => {
+        called = true;
+      });
       const row = shadow(el).querySelector(".zeta-table-tbody .zeta-table-row") as HTMLElement;
       row.click();
       await el.updateComplete;
@@ -54,7 +56,9 @@ describe("zeta-table additional coverage", () => {
       let called = false;
       const data: ZetaTableRow[] = [{ id: 1, name: "A", age: 30, email: "a@t.com", _disabled: true }];
       const el = await make({ data, clickableRows: true });
-      el.addEventListener("rowClick", () => { called = true; });
+      el.addEventListener("rowClick", () => {
+        called = true;
+      });
       const row = shadow(el).querySelector(".zeta-table-tbody .zeta-table-row") as HTMLElement;
       row.click();
       await el.updateComplete;
@@ -91,18 +95,14 @@ describe("zeta-table additional coverage", () => {
 
   describe("Row Expand", () => {
     it("renders expand toggle for expandable rows", async () => {
-      const data: ZetaTableRow[] = [
-        { id: 1, name: "Alice", age: 30, email: "alice@t.com", _nested: [{ id: 11, name: "Child", age: 5, email: "c@t.com" }] }
-      ];
+      const data: ZetaTableRow[] = [{ id: 1, name: "Alice", age: 30, email: "alice@t.com", _nested: [{ id: 11, name: "Child", age: 5, email: "c@t.com" }] }];
       const el = await make({ data, expandable: true });
       expect(shadow(el).querySelector(".zeta-table-col-expand")).to.exist;
       expect(shadow(el).querySelector(".zeta-table-expand-btn")).to.exist;
     });
 
     it("dispatches rowExpand event on toggle", async () => {
-      const data: ZetaTableRow[] = [
-        { id: 1, name: "Alice", age: 30, email: "alice@t.com", _nested: [{ id: 11, name: "Child", age: 5, email: "c@t.com" }] }
-      ];
+      const data: ZetaTableRow[] = [{ id: 1, name: "Alice", age: 30, email: "alice@t.com", _nested: [{ id: 11, name: "Child", age: 5, email: "c@t.com" }] }];
       const el = await make({ data, expandable: true });
       const btn = shadow(el).querySelector(".zeta-table-expand-btn") as HTMLElement;
       setTimeout(() => btn.click());
@@ -112,9 +112,7 @@ describe("zeta-table additional coverage", () => {
     });
 
     it("collapses on second click", async () => {
-      const data: ZetaTableRow[] = [
-        { id: 1, name: "Alice", age: 30, email: "alice@t.com", _nested: [{ id: 11, name: "Child", age: 5, email: "c@t.com" }] }
-      ];
+      const data: ZetaTableRow[] = [{ id: 1, name: "Alice", age: 30, email: "alice@t.com", _nested: [{ id: 11, name: "Child", age: 5, email: "c@t.com" }] }];
       const el = await make({ data, expandable: true });
       const btn = shadow(el).querySelector(".zeta-table-expand-btn") as HTMLElement;
       btn.click();
@@ -126,9 +124,7 @@ describe("zeta-table additional coverage", () => {
     });
 
     it("renders nested row content after expansion", async () => {
-      const data: ZetaTableRow[] = [
-        { id: 1, name: "Alice", age: 30, email: "alice@t.com", _nested: [{ id: 11, name: "Child", age: 5, email: "c@t.com" }] }
-      ];
+      const data: ZetaTableRow[] = [{ id: 1, name: "Alice", age: 30, email: "alice@t.com", _nested: [{ id: 11, name: "Child", age: 5, email: "c@t.com" }] }];
       const el = await make({ data, expandable: true });
       const btn = shadow(el).querySelector(".zeta-table-expand-btn") as HTMLElement;
       btn.click();
@@ -201,7 +197,9 @@ describe("zeta-table additional coverage", () => {
         { field: "age", title: "Age" }
       ];
       const el = await make({ columns: cols });
-      el.addEventListener("sortChange", () => { called = true; });
+      el.addEventListener("sortChange", () => {
+        called = true;
+      });
       const headers = shadow(el).querySelectorAll(".zeta-table-header-title");
       (headers[0] as HTMLElement).click();
       await el.updateComplete;

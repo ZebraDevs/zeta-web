@@ -206,7 +206,9 @@ describe("zeta-table interactions", () => {
       await el.updateComplete;
       expect(shadow(el).querySelector(".zeta-table-column-panel")).to.exist;
       const initial = shadow(el).querySelectorAll(".zeta-table-header-row .zeta-table-th").length;
-      (shadow(el).querySelector(".zeta-table-column-panel-section:first-child .zeta-table-column-panel-item input[type='checkbox']") as HTMLInputElement).click();
+      (
+        shadow(el).querySelector(".zeta-table-column-panel-section:first-child .zeta-table-column-panel-item input[type='checkbox']") as HTMLInputElement
+      ).click();
       await el.updateComplete;
       assert.equal(shadow(el).querySelectorAll(".zeta-table-header-row .zeta-table-th").length, initial - 1);
     });
@@ -216,7 +218,8 @@ describe("zeta-table interactions", () => {
       (shadow(el).querySelector(".zeta-table-column-panel-wrapper .zeta-table-toolbar-btn") as HTMLElement).click();
       await el.updateComplete;
       assert.isTrue(
-        (shadow(el).querySelector(".zeta-table-column-panel-section:first-child .zeta-table-column-panel-item input[type='checkbox']") as HTMLInputElement).disabled
+        (shadow(el).querySelector(".zeta-table-column-panel-section:first-child .zeta-table-column-panel-item input[type='checkbox']") as HTMLInputElement)
+          .disabled
       );
     });
 
@@ -224,7 +227,9 @@ describe("zeta-table interactions", () => {
       const el = await make({ columnConfigure: true });
       (shadow(el).querySelector(".zeta-table-column-panel-wrapper .zeta-table-toolbar-btn") as HTMLElement).click();
       await el.updateComplete;
-      (shadow(el).querySelector(".zeta-table-column-panel-section:last-child .zeta-table-column-panel-item input[type='checkbox']") as HTMLInputElement).click();
+      (
+        shadow(el).querySelector(".zeta-table-column-panel-section:last-child .zeta-table-column-panel-item input[type='checkbox']") as HTMLInputElement
+      ).click();
       await el.updateComplete;
       expect(shadow(el).querySelectorAll(".zeta-table-header-row .zeta-table-cell--frozen").length).to.be.greaterThan(0);
     });

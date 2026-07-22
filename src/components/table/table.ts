@@ -192,7 +192,6 @@ export class ZetaTable extends LitElement {
   @property({ attribute: false })
   rowActions: ZetaTableAction[] = [];
 
-
   /** Tooltip/label for the actions column header (supports localization) */
   @property({ type: String, attribute: "actions-label" })
   actionsLabel = "Actions";
@@ -270,7 +269,6 @@ export class ZetaTable extends LitElement {
   /** Whether there is more data to load (infinite scroll). Set to false when all data has been fetched. */
   @property({ type: Boolean, attribute: "has-more-data" })
   hasMoreData = true;
-
 
   /** IDs of rows that should be disabled */
   @property({ type: Array, attribute: "disabled-rows" })
@@ -1290,7 +1288,9 @@ export class ZetaTable extends LitElement {
               ${
                 this.paginationType === "infinite" && (this.loading || this._dataLengthWhenLoadingStarted >= 0)
                   ? html`<tr class="zeta-table-loading-row">
-                      <td colspan="${this._getTotalColspan(visibleCols)}" class="zeta-table-td"><slot name="loading">${this.loadingContent ?? "Loading more data..."}</slot></td>
+                      <td colspan="${this._getTotalColspan(visibleCols)}" class="zeta-table-td">
+                        <slot name="loading">${this.loadingContent ?? "Loading more data..."}</slot>
+                      </td>
                     </tr>`
                   : nothing
               }
