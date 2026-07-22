@@ -146,6 +146,7 @@
   "dependencies": {
     "@fontsource/ibm-plex-sans": "^5.2.8",
     "@lit/localize": "^0.12.2",
+    "@lit/react": "^1.0.8",
     "@zebra-fed/zeta-icons": "1.9.6",
     "lit": "^3.3.3"
   },

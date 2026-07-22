@@ -64,7 +64,7 @@ export type PaginationType = "none" | "numbered" | "infinite";
  * Consumers provide these via `rowActions` (global fallback) or `row._actions` (per-row override).
  */
 export interface ZetaTableAction {
-  /** Unique key for this action — passed to onRowAction callback to identify which action was clicked */
+  /** Unique key for this action — included in `rowAction` event detail to identify which action was clicked */
   key: string;
   /** Display label shown in the menu dropdown */
   label: string;

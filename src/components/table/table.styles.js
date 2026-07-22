@@ -1,9 +1,9 @@
 import { css } from "lit";
 export default css`
-  zeta-table {
+  :host {
     display: block;
     font-family: var(--type-family-regular);
-    font-size: var(--table-font-size, 14px);
+    font-size: var(--table-font-size, var(--body-small));
     color: var(--main-default);
 
     /* Layout */
@@ -15,8 +15,8 @@ export default css`
     /* Header */
     --table-header-bg: var(--surface-default);
     --table-header-text: var(--main-default);
-    --table-header-font-size: 12px;
-    --table-header-font-weight: 600;
+    --table-header-font-size: var(--label-small);
+    --table-header-font-weight: var(--medium);
     --table-header-height: var(--spacing-6xl);
     --table-header-border-bottom: var(--border-size-medium) solid var(--table-border-color);
 
@@ -32,7 +32,7 @@ export default css`
     --table-cell-padding-y: var(--spacing-2-5);
     --table-cell-padding-x: var(--spacing-medium);
     --table-cell-padding: var(--table-cell-padding-y) var(--table-cell-padding-x);
-    --table-cell-font-size: 14px;
+    --table-cell-font-size: var(--body-small);
 
     /* Frozen */
     --table-frozen-shadow: var(--elevation-2);
@@ -306,6 +306,10 @@ export default css`
     overflow: hidden;
     display: flex;
     align-items: center;
+  }
+
+  ::slotted([slot^="cell-"]) {
+    display: contents;
   }
 
   .zeta-table-cell-content {

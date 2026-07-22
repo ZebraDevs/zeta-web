@@ -60,21 +60,21 @@ A full-featured, highly configurable data table web component.
       <td>Column Search</td>
       <td>Per-column search inputs</td>
       <td>
-        <code>onColumnSearch</code> callback
+        <code>column-searchable</code> attribute
       </td>
     </tr>
     <tr>
       <td>Column Filter</td>
       <td>Dropdown with checkboxes (Clear/Apply)</td>
       <td>
-        <code>onColumnFilter</code> callback
+        <code>column-filterable</code> attribute
       </td>
     </tr>
     <tr>
       <td>Global Search</td>
       <td>Search bar in toolbar</td>
       <td>
-        <code>onTableSearch</code> callback
+        <code>searchable</code> attribute
       </td>
     </tr>
     <tr>
@@ -88,7 +88,14 @@ A full-featured, highly configurable data table web component.
       <td>Row Click</td>
       <td>Pointer cursor + highlight on click</td>
       <td>
-        <code>onRowClick</code> callback
+        <code>clickable-rows</code> attribute
+      </td>
+    </tr>
+    <tr>
+      <td>Select on Row Click</td>
+      <td>Clicking a row toggles its checkbox</td>
+      <td>
+        <code>select-on-row-click</code> attribute
       </td>
     </tr>
     <tr>
@@ -144,7 +151,7 @@ A full-featured, highly configurable data table web component.
       <td>Refresh</td>
       <td>Refresh button in toolbar</td>
       <td>
-        <code>onRefresh</code> callback
+        <code>refreshable</code> attribute
       </td>
     </tr>
     <tr>
@@ -223,6 +230,54 @@ A full-featured, highly configurable data table web component.
       <td>Array</td>
       <td>[]</td>
       <td>Initially selected row IDs</td>
+    </tr>
+    <tr>
+      <td>
+        <code>clickable-rows</code>
+      </td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>Make rows clickable (pointer cursor + highlight). Emits <code>rowClick</code> event.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>select-on-row-click</code>
+      </td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>Clicking a row toggles its checkbox selection</td>
+    </tr>
+    <tr>
+      <td>
+        <code>searchable</code>
+      </td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>Show global search bar in toolbar. Emits <code>tableSearch</code> event.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>column-searchable</code>
+      </td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>Show per-column search inputs. Emits <code>columnSearch</code> event.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>column-filterable</code>
+      </td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>Show filter dropdown on column headers. Emits <code>columnFilter</code> event.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>refreshable</code>
+      </td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>Show refresh button in toolbar. Emits <code>tableRefresh</code> event.</td>
     </tr>
     <tr>
       <td>
@@ -365,7 +420,7 @@ A full-featured, highly configurable data table web component.
 
 ## Properties (JS only)
 
-Set via `ref` (React), `ViewChild` (Angular), `.prop` (Vue), or direct JS assignment.
+Set via `.prop` syntax (Lit/Vue) or direct JS assignment.
 
 <table>
   <thead>
@@ -396,97 +451,6 @@ Set via `ref` (React), `ViewChild` (Angular), `.prop` (Vue), or direct JS assign
       </td>
       <td>ZetaTableAction[]</td>
       <td>Fallback action menu items</td>
-    </tr>
-    <tr>
-      <td>
-        <code>onRowClick</code>
-      </td>
-      <td>(row, rowIndex) =&gt; void</td>
-      <td>Row click callback</td>
-    </tr>
-    <tr>
-      <td>
-        <code>selectOnRowClick</code>
-      </td>
-      <td>(row, rowIndex) =&gt; void</td>
-      <td>Click toggles checkbox</td>
-    </tr>
-    <tr>
-      <td>
-        <code>onRowAction</code>
-      </td>
-      <td>(actionKey, row, rowIndex) =&gt; void</td>
-      <td>Row action callback</td>
-    </tr>
-    <tr>
-      <td>
-        <code>onSortChange</code>
-      </td>
-      <td>(field, direction) =&gt; void</td>
-      <td>Sort change callback</td>
-    </tr>
-    <tr>
-      <td>
-        <code>onSelectionChange</code>
-      </td>
-      <td>(selectedIds) =&gt; void</td>
-      <td>Selection change callback</td>
-    </tr>
-    <tr>
-      <td>
-        <code>onPageChange</code>
-      </td>
-      <td>(page, pageSize) =&gt; void</td>
-      <td>Page change callback</td>
-    </tr>
-    <tr>
-      <td>
-        <code>onLoadMore</code>
-      </td>
-      <td>(currentCount) =&gt; void</td>
-      <td>Load more callback</td>
-    </tr>
-    <tr>
-      <td>
-        <code>onColumnSearch</code>
-      </td>
-      <td>(field, value, allFilters) =&gt; void</td>
-      <td>Column search callback</td>
-    </tr>
-    <tr>
-      <td>
-        <code>onColumnFilter</code>
-      </td>
-      <td>(field, selectedValues, column) =&gt; void</td>
-      <td>Column filter callback</td>
-    </tr>
-    <tr>
-      <td>
-        <code>onTableSearch</code>
-      </td>
-      <td>(searchTerm) =&gt; void</td>
-      <td>Global search callback</td>
-    </tr>
-    <tr>
-      <td>
-        <code>onRefresh</code>
-      </td>
-      <td>() =&gt; void</td>
-      <td>Refresh callback</td>
-    </tr>
-    <tr>
-      <td>
-        <code>onExport</code>
-      </td>
-      <td>(data) =&gt; void</td>
-      <td>Export callback</td>
-    </tr>
-    <tr>
-      <td>
-        <code>onRowExpand</code>
-      </td>
-      <td>(rowId, expanded) =&gt; void</td>
-      <td>Row expand/collapse callback</td>
     </tr>
     <tr>
       <td>
@@ -682,6 +646,65 @@ Set via `ref` (React), `ViewChild` (Angular), `.prop` (Vue), or direct JS assign
     </tr>
   </tbody>
 </table>
+
+## Slots
+
+The table uses named slots to allow custom content projection into Shadow DOM.
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>{"cell-{field}-{rowIndex}"}</code>
+      </td>
+      <td>
+        Projects custom content into a specific data cell. For example, <code>cell-status-0</code> targets the "status" column of the first row.
+        When content is slotted, it replaces the default text rendering for that cell.
+        Used automatically by <code>ZetaTableReact</code> when React elements are passed as cell values.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>loading</code>
+      </td>
+      <td>Custom loading indicator shown during infinite scroll. Falls back to "Loading more data..." text.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>no-data</code>
+      </td>
+      <td>Custom empty state content shown when the table has no rows. Falls back to "No data available" text.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Slot usage (vanilla HTML)
+
+```html
+<zeta-table id="demo" pagination-type="infinite">
+  <!-- Custom loading spinner -->
+  <div slot="loading">
+    <my-spinner></my-spinner> Loading...
+  </div>
+
+  <!-- Custom empty state -->
+  <div slot="no-data">
+    <img src="empty.svg" alt="" />
+    <p>No records found</p>
+  </div>
+
+  <!-- Custom cell content for row 0, "status" column -->
+  <span slot="cell-status-0" style="color: green;">Active</span>
+</zeta-table>
+```
+
+---
 
 ## CSS Properties
 
@@ -888,13 +911,14 @@ Set via `ref` (React), `ViewChild` (Angular), `.prop` (Vue), or direct JS assign
 
 ## Events
 
-## Row Interaction
+All events are dispatched as `CustomEvent` with camelCase names and `bubbles: true, composed: true`.
+
+### Row Interaction
 
 <table>
   <thead>
     <tr>
-      <th>CustomEvent Name</th>
-      <th>Callback Method</th>
+      <th>Event Name</th>
       <th>Detail</th>
       <th>Description</th>
     </tr>
@@ -902,40 +926,28 @@ Set via `ref` (React), `ViewChild` (Angular), `.prop` (Vue), or direct JS assign
   <tbody>
     <tr>
       <td>
-        <code>zeta-table-row-click</code>
-      </td>
-      <td>
-        <code>onRowClick</code>
+        <code>rowClick</code>
       </td>
       <td>{"{ row, rowId, rowIndex }"}</td>
-      <td>Row clicked</td>
+      <td>Row clicked (requires <code>clickable-rows</code>)</td>
     </tr>
     <tr>
       <td>
-        <code>zeta-table-selection-change</code>
-      </td>
-      <td>
-        <code>onSelectionChange</code>
+        <code>selectionChange</code>
       </td>
       <td>{"{ selectedIds }"}</td>
       <td>Checkbox selection changed</td>
     </tr>
     <tr>
       <td>
-        <code>zeta-table-row-expand</code>
-      </td>
-      <td>
-        <code>onRowExpand</code>
+        <code>rowExpand</code>
       </td>
       <td>{"{ rowId, expanded }"}</td>
       <td>Row expanded/collapsed</td>
     </tr>
     <tr>
       <td>
-        <code>zeta-table-action</code>
-      </td>
-      <td>
-        <code>onRowAction</code>
+        <code>rowAction</code>
       </td>
       <td>{"{ actionKey, row, rowIndex }"}</td>
       <td>Row action menu item clicked</td>
@@ -943,13 +955,12 @@ Set via `ref` (React), `ViewChild` (Angular), `.prop` (Vue), or direct JS assign
   </tbody>
 </table>
 
-## Sorting & Filtering
+### Sorting & Filtering
 
 <table>
   <thead>
     <tr>
-      <th>CustomEvent Name</th>
-      <th>Callback Method</th>
+      <th>Event Name</th>
       <th>Detail</th>
       <th>Description</th>
     </tr>
@@ -957,54 +968,41 @@ Set via `ref` (React), `ViewChild` (Angular), `.prop` (Vue), or direct JS assign
   <tbody>
     <tr>
       <td>
-        <code>zeta-table-sort-change</code>
-      </td>
-      <td>
-        <code>onSortChange</code>
+        <code>sortChange</code>
       </td>
       <td>{"{ field, direction }"}</td>
       <td>Column sort changed</td>
     </tr>
     <tr>
       <td>
-        <code>zeta-table-column-filter</code>
-      </td>
-      <td>
-        <code>onColumnFilter</code>
+        <code>columnFilter</code>
       </td>
       <td>{"{ field, selectedValues }"}</td>
-      <td>Column filter applied</td>
+      <td>Column filter applied (requires <code>column-filterable</code>)</td>
     </tr>
     <tr>
       <td>
-        <code>zeta-table-column-search</code>
-      </td>
-      <td>
-        <code>onColumnSearch</code>
+        <code>columnSearch</code>
       </td>
       <td>{"{ field, value, searchValues }"}</td>
-      <td>Column search changed</td>
+      <td>Column search changed (requires <code>column-searchable</code>)</td>
     </tr>
     <tr>
       <td>
-        <code>zeta-table-search</code>
-      </td>
-      <td>
-        <code>onTableSearch</code>
+        <code>tableSearch</code>
       </td>
       <td>{"{ value }"}</td>
-      <td>Global search changed</td>
+      <td>Global search changed (requires <code>searchable</code>)</td>
     </tr>
   </tbody>
 </table>
 
-## Pagination & Data
+### Pagination & Data
 
 <table>
   <thead>
     <tr>
-      <th>CustomEvent Name</th>
-      <th>Callback Method</th>
+      <th>Event Name</th>
       <th>Detail</th>
       <th>Description</th>
     </tr>
@@ -1012,43 +1010,31 @@ Set via `ref` (React), `ViewChild` (Angular), `.prop` (Vue), or direct JS assign
   <tbody>
     <tr>
       <td>
-        <code>zeta-table-page-change</code>
-      </td>
-      <td>
-        <code>onPageChange</code>
+        <code>pageChange</code>
       </td>
       <td>{"{ page, pageSize }"}</td>
-      <td>Page changed</td>
+      <td>Page changed (numbered pagination)</td>
     </tr>
     <tr>
       <td>
-        <code>zeta-table-load-more</code>
-      </td>
-      <td>
-        <code>onLoadMore</code>
+        <code>loadMore</code>
       </td>
       <td>{"{ currentCount }"}</td>
       <td>More data needed (infinite scroll)</td>
     </tr>
     <tr>
       <td>
-        <code>zeta-table-export</code>
-      </td>
-      <td>
-        <code>onExport</code>
+        <code>tableExport</code>
       </td>
       <td>{"{ csv, columns, data }"}</td>
       <td>Export clicked</td>
     </tr>
     <tr>
       <td>
-        <code>zeta-table-refresh</code>
-      </td>
-      <td>
-        <code>onRefresh</code>
+        <code>tableRefresh</code>
       </td>
       <td>—</td>
-      <td>Refresh clicked</td>
+      <td>Refresh clicked (requires <code>refreshable</code>)</td>
     </tr>
   </tbody>
 </table>
@@ -1074,7 +1060,18 @@ import "@zebra-fed/zeta-web/index.css";
 ## Plain HTML / JavaScript
 
 ```html
-<zeta-table id="demo" selectable show-data-count table-title="Users" pagination-type="numbered" page-size="5" style="--table-row-height: 36px;"> </zeta-table>
+<zeta-table
+  id="demo"
+  selectable
+  searchable
+  refreshable
+  clickable-rows
+  show-data-count
+  table-title="Users"
+  pagination-type="numbered"
+  page-size="5"
+  style="--table-row-height: 36px;">
+</zeta-table>
 
 <script type="module">
   import "@zebra-fed/zeta-web/dist/components/table/table.js";
@@ -1093,8 +1090,16 @@ import "@zebra-fed/zeta-web/index.css";
     { id: 3, name: "Carol", email: "carol@acme.com", role: "Viewer" }
   ];
 
-  table.addEventListener("zeta-table-row-click", e => {
+  table.addEventListener("rowClick", e => {
     console.log("Clicked:", e.detail);
+  });
+
+  table.addEventListener("sortChange", e => {
+    console.log("Sort:", e.detail.field, e.detail.direction);
+  });
+
+  table.addEventListener("tableRefresh", () => {
+    console.log("Refresh triggered");
   });
 </script>
 ```
@@ -1107,7 +1112,7 @@ Row actions add a kebab menu (three-dot icon) as the last column. Each row defin
 
 ```typescript
 interface ZetaTableAction {
-  key: string; // Unique key passed to onRowAction callback
+  key: string; // Unique key included in rowAction event detail
   label: string; // Display label
   icon?: string; // Optional icon
   disabled?: boolean; // Disable for a specific row
@@ -1136,22 +1141,28 @@ table.data = [
   }
 ];
 
-table.onRowAction = (actionKey, row, rowIndex) => {
+table.addEventListener("rowAction", e => {
+  const { actionKey, row, rowIndex } = e.detail;
   console.log("Action:", actionKey, "on", row.name);
-};
+});
 ```
 
 ---
 
-## How to use in ReactJs
+## How to use in React
 
-> React &lt; 19 does not natively set JS object properties on custom elements — use a `ref`.
+### Using `ZetaTableReact` wrapper (recommended)
 
-### Plain text cells
+The `ZetaTableReact` wrapper from `@zebra-fed/zeta-web/react` provides:
+- Full prop/event typing via `@lit/react`
+- Automatic slotting of React elements passed as cell values
+- Works with React 16.8+ (hooks required)
+- In React 19+, `onSortChange` maps to the `sortChange` event natively; the wrapper handles this for all versions.
+
+#### Plain text cells
 
 ```tsx
-import { useRef, useEffect } from "react";
-import "@zebra-fed/zeta-web/dist/components/table/table.js";
+import { ZetaTableReact } from "@zebra-fed/zeta-web/react";
 
 const columns = [
   { field: "name", title: "Name", width: 180, sortable: true },
@@ -1166,35 +1177,30 @@ const users = [
 ];
 
 export function UsersTable() {
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    el.columns = columns;
-    el.data = users;
-  }, []);
-
   return (
-    <zeta-table
-      ref={ref}
+    <ZetaTableReact
+      columns={columns}
+      data={users}
       selectable
-      show-data-count
-      table-title="Users"
-      pagination-type="numbered"
-      page-size="5"
+      searchable
+      refreshable
+      clickableRows
+      showDataCount
+      tableTitle="Users"
+      paginationType="numbered"
+      pageSize={5}
+      onSortChange={(e) => console.log("Sort:", e.detail.field, e.detail.direction)}
+      onRowClick={(e) => console.log("Clicked:", e.detail.row)}
+      onTableRefresh={() => console.log("Refresh")}
       style={{ "--table-row-height": "36px" } as React.CSSProperties}
     />
   );
 }
 ```
 
-#### Custom elements in cells
+#### React components as cell values
 
-Use `ZetaTableReact` — a React wrapper that accepts JSX directly as cell values. It automatically renders React elements via portals, keeping them in the React tree (so context providers, state, event handlers all work).
-
-> `ZetaTableReact` handles all the `ref`, `useLayoutEffect`, and portal plumbing internally.
-> You just pass React components as cell values — no `document.createElement` needed.
+Pass React elements directly in `data` — the wrapper automatically handles slot-based rendering:
 
 ```tsx
 import { ZetaTableReact } from "@zebra-fed/zeta-web/react";
@@ -1208,8 +1214,7 @@ function StatusBadge({ status }: { status: string }) {
         padding: "2px 8px",
         borderRadius: "10px",
         fontSize: "12px"
-      }}
-    >
+      }}>
       {status}
     </span>
   );
@@ -1237,29 +1242,92 @@ export function UsersTable() {
       tableTitle="Users"
       paginationType="numbered"
       pageSize={5}
-      onRowAction={(key, row) => console.log("Action:", key, row)}
+      onRowAction={(e) => console.log("Action:", e.detail.actionKey, e.detail.row)}
       style={{ "--table-row-height": "36px" } as React.CSSProperties}
     />
   );
 }
 ```
 
-**Using `document.createElement` (without `ZetaTableReact`):**
+#### Event handler typing
 
-If you prefer using the raw `<zeta-table>` element with a `ref`, you can pass DOM nodes:
+All event handlers receive a typed `CustomEvent`:
 
 ```tsx
-const tableData = users.map(user => {
-  const badge = document.createElement("span");
-  badge.textContent = user.status;
-  badge.className = `badge badge-${user.status}`;
+import type { SortDirection } from "@zebra-fed/zeta-web/react";
 
-  return {
-    id: user.id,
-    name: user.name,
-    status: badge // renders as an HTML element, not text
-  };
-});
+const handleSortChange = (e: CustomEvent<{ field: string; direction: SortDirection }>) => {
+  const { field, direction } = e.detail;
+  // direction is "asc" | "desc" | null
+};
+
+const handleRowAction = (e: CustomEvent<{ actionKey: string; row: any; rowIndex: number }>) => {
+  const { actionKey, row } = e.detail;
+};
+
+const handleLoadMore = (e: CustomEvent<{ currentCount: number }>) => {
+  fetchNextPage();
+};
+```
+
+---
+
+### Without the wrapper (raw element + ref)
+
+For plain text data without React components in cells, you can use the raw element directly:
+
+**React 19+** — native custom element support:
+
+```tsx
+import "@zebra-fed/zeta-web/dist/components/table/table.js";
+
+export function UsersTable() {
+  return (
+    <zeta-table
+      columns={columns}
+      data={users}
+      selectable
+      onSortChange={(e) => console.log(e.detail)}
+      style={{ "--table-row-height": "36px" }}
+    />
+  );
+}
+```
+
+**React 18 and below** — use a ref:
+
+```tsx
+import { useRef, useEffect } from "react";
+import "@zebra-fed/zeta-web/dist/components/table/table.js";
+
+export function UsersTable() {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    el.columns = columns;
+    el.data = users;
+    el.addEventListener("sortChange", handleSort);
+    el.addEventListener("rowClick", handleRowClick);
+    return () => {
+      el.removeEventListener("sortChange", handleSort);
+      el.removeEventListener("rowClick", handleRowClick);
+    };
+  }, []);
+
+  return (
+    <zeta-table
+      ref={ref}
+      selectable
+      show-data-count
+      table-title="Users"
+      pagination-type="numbered"
+      page-size="5"
+      style={{ "--table-row-height": "36px" } as React.CSSProperties}
+    />
+  );
+}
 ```
 
 ---
@@ -1281,7 +1349,20 @@ export class AppModule {}
 
 ```html
 <!-- users-table.component.html -->
-<zeta-table #zetaTable selectable show-data-count table-title="Users" pagination-type="numbered" page-size="5" [style.--table-row-height]="'36px'">
+<zeta-table
+  #zetaTable
+  selectable
+  searchable
+  refreshable
+  clickable-rows
+  show-data-count
+  table-title="Users"
+  pagination-type="numbered"
+  page-size="5"
+  [style.--table-row-height]="'36px'"
+  (sortChange)="onSort($event)"
+  (rowClick)="onRowClick($event)"
+  (tableRefresh)="onRefresh()">
 </zeta-table>
 ```
 
@@ -1310,6 +1391,18 @@ export class UsersTableComponent implements AfterViewInit {
     table.columns = this.columns;
     table.data = this.users;
   }
+
+  onSort(e: CustomEvent) {
+    console.log("Sort:", e.detail.field, e.detail.direction);
+  }
+
+  onRowClick(e: CustomEvent) {
+    console.log("Clicked:", e.detail.row);
+  }
+
+  onRefresh() {
+    console.log("Refresh");
+  }
 }
 ```
 
@@ -1327,7 +1420,7 @@ private mapData(users: any[]): any[] {
     return {
       id: user.id,
       name: user.name,
-      status: badge,  // renders as an HTML element, not text
+      status: badge,
     };
   });
 }
@@ -1365,7 +1458,7 @@ private renderCell(component: Type<any>, data: any): HTMLElement {
   this.cellRefs.push(ref);
   const el = ref.location.nativeElement as HTMLElement;
   el.style.display = "contents";
-  return el;  // Angular component rendered inside the cell
+  return el;
 }
 ```
 
@@ -1394,12 +1487,17 @@ app.mount("#app");
     :columns.prop="columns"
     :data.prop="users"
     selectable
+    searchable
+    refreshable
+    clickable-rows
     show-data-count
     table-title="Users"
     pagination-type="numbered"
     page-size="5"
     :style="{ '--table-row-height': '36px' }"
-    @zeta-table-row-click="e => console.log('Clicked:', e.detail)"
+    @rowClick="e => console.log('Clicked:', e.detail)"
+    @sortChange="e => console.log('Sort:', e.detail)"
+    @tableRefresh="() => console.log('Refresh')"
   />
 </template>
 

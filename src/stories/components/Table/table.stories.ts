@@ -202,16 +202,15 @@ function generateData(count: number): ZetaTableRow[] {
 }
 
 type TableStory = ZetaTable & {
-  "onzeta-table-selection-change": () => void;
-  "onzeta-table-sort-change": () => void;
-  "onzeta-table-column-search": () => void;
-  "onzeta-table-page-change": () => void;
-  "onzeta-table-load-more": () => void;
-  "onzeta-table-export": () => void;
-  "onzeta-table-row-expand": () => void;
-  "onzeta-table-row-click": () => void;
-  "onzeta-table-select-on-row-click": () => void;
-  "onzeta-table-action": () => void;
+  onselectionchange: () => void;
+  onsortchange: () => void;
+  oncolumnsearch: () => void;
+  onpagechange: () => void;
+  onloadmore: () => void;
+  ontableexport: () => void;
+  onrowexpand: () => void;
+  onrowclick: () => void;
+  onrowaction: () => void;
 };
 
 const meta: Meta<TableStory> = {
@@ -234,16 +233,15 @@ const meta: Meta<TableStory> = {
     data: generateData(50),
     selectedRows: [1, 3],
     disabledRows: [7],
-    "onzeta-table-selection-change": fn(),
-    "onzeta-table-sort-change": fn(),
-    "onzeta-table-column-search": fn(),
-    "onzeta-table-page-change": fn(),
-    "onzeta-table-load-more": fn(),
-    "onzeta-table-export": fn(),
-    "onzeta-table-row-expand": fn(),
-    "onzeta-table-row-click": fn(),
-    "onzeta-table-select-on-row-click": fn(),
-    "onzeta-table-action": fn()
+    onselectionchange: fn(),
+    onsortchange: fn(),
+    oncolumnsearch: fn(),
+    onpagechange: fn(),
+    onloadmore: fn(),
+    ontableexport: fn(),
+    onrowexpand: fn(),
+    onrowclick: fn(),
+    onrowaction: fn()
   },
   argTypes: {
     selectable: { control: "boolean", description: "Show checkbox selection column" },
@@ -296,16 +294,15 @@ export default meta;
 export const TableAll: StoryObj<TableStory> = {
   render: args => {
     const {
-      "onzeta-table-selection-change": onSelChange,
-      "onzeta-table-sort-change": onSortChange,
-      "onzeta-table-column-search": onColumnSearch,
-      "onzeta-table-page-change": onPageChange,
-      "onzeta-table-load-more": onLoadMore,
-      "onzeta-table-export": onExport,
-      "onzeta-table-row-expand": onExpand,
-      "onzeta-table-row-click": onRowClick,
-      "onzeta-table-select-on-row-click": onSelectOnRowClick,
-      "onzeta-table-action": onAction,
+      onselectionchange: onSelChange,
+      onsortchange: onSortChange,
+      oncolumnsearch: onColumnSearch,
+      onpagechange: onPageChange,
+      onloadmore: onLoadMore,
+      ontableexport: onExport,
+      onrowexpand: onExpand,
+      onrowclick: onRowClick,
+      onrowaction: onAction,
       columns,
       data,
       selectedRows,
@@ -464,18 +461,6 @@ export const TableAll: StoryObj<TableStory> = {
     const initialData = paginationType === "numbered" ? masterData.slice(0, initialPageSize) : [...masterData];
 
     return html`
-      <p style="margin-bottom:var(--spacing-medium); font:var(--body-x-small); color:var(--main-subtle);">
-        <strong>All features enabled:</strong> Global search, per-column search, column filter dropdown, sorting, pagination, checkbox selection, row click,
-        expandable rows, kebab actions (per-row), refresh, export, column configure (show/hide + freeze), disabled rows, allowDisabledSelection. Use the
-        <strong>Controls</strong> panel below to toggle features and adjust styling.
-      </p>
-      <p style="margin-bottom:var(--spacing-medium); font:var(--body-x-small); color:var(--main-disabled)">
-        <strong>CSS Variables:</strong> Override via inline style — e.g. <code>--table-header-height</code>, <code>--table-row-height</code>,
-        <code>--table-row-bg</code>, <code>--table-row-hover-bg</code>, <code>--table-row-selected-bg</code>, <code>--table-header-bg</code>,
-        <code>--table-header-text</code>, <code>--table-cell-padding</code>, <code>--table-cell-font-size</code>, <code>--table-max-height</code>,
-        <code>--table-width</code>, <code>--table-border-color</code>, <code>--table-border-radius</code>, <code>--table-sort-active-color</code>,
-        <code>--table-frozen-shadow</code>.
-      </p>
       <zeta-table
         ${spread(rest)}
         .columns=${columns}
@@ -493,19 +478,24 @@ export const TableAll: StoryObj<TableStory> = {
         .columnConfigure=${columnConfigure || false}
         .paginationType=${paginationType || "none"}
         .pageSize=${pageSize || 10}
-        .selectOnRowClick=${handleSelectOnRowClick}
-        .onRowAction=${handleRowAction}
-        .onTableSearch=${handleTableSearch}
-        .onColumnSearch=${handleColumnSearch}
-        .onColumnFilter=${handleColumnFilter}
-        .onRefresh=${handleRefresh}
-        .onSortChange=${handleSortChange}
-        .onSelectionChange=${handleSelectionChange}
-        .onPageChange=${handlePageChange}
-        .onLoadMore=${handleLoadMore}
-        .onExport=${handleExport}
-        .onRowExpand=${handleRowExpand}
-        @zeta-table-row-click=${onRowClick}
+        select-on-row-click
+        clickable-rows
+        searchable
+        column-searchable
+        column-filterable
+        refreshable
+        @rowAction=${handleRowAction}
+        @tableSearch=${handleTableSearch}
+        @columnSearch=${handleColumnSearch}
+        @columnFilter=${handleColumnFilter}
+        @tableRefresh=${handleRefresh}
+        @sortChange=${handleSortChange}
+        @selectionChange=${handleSelectionChange}
+        @pageChange=${handlePageChange}
+        @loadMore=${handleLoadMore}
+        @tableExport=${handleExport}
+        @rowExpand=${handleRowExpand}
+        @rowClick=${onRowClick}
         style=${cssVarsStyle(args, { "--table-max-height": "500px" })}
       ></zeta-table>
     `;
@@ -530,19 +520,21 @@ export const InfiniteScrollWithAPI: StoryObj<TableStory> = {
     let isLoading = false;
     let hasMoreData = true;
 
-    const handleLoadMore = function (this: ZetaTable, currentCount: number) {
+    const handleLoadMore = function (e: CustomEvent) {
+      const table = e.target as ZetaTable;
+      const { currentCount } = e.detail;
       if (isLoading || !hasMoreData) return;
       isLoading = true;
-      this.loading = true;
+      table.loading = true;
 
       setTimeout(() => {
         const nextBatch = generateData(currentCount + 20).slice(currentCount);
         currentData = [...currentData, ...nextBatch];
         isLoading = false;
         hasMoreData = currentData.length < totalRecords;
-        this.data = [...currentData];
-        this.loading = false;
-        this.hasMoreData = hasMoreData;
+        table.data = [...currentData];
+        table.loading = false;
+        table.hasMoreData = hasMoreData;
         console.log(`Loaded ${currentData.length} of ${totalRecords} rows`);
       }, 2000);
     };
@@ -588,7 +580,7 @@ export const InfiniteScrollWithAPI: StoryObj<TableStory> = {
         .columns=${columns}
         .data=${currentData}
         .totalItems=${totalRecords}
-        .onLoadMore=${handleLoadMore}
+        @loadMore=${handleLoadMore}
         .loadingContent=${loadingEl}
         style=${cssVarsStyle(args, { "--table-max-height": "500px" })}
       ></zeta-table>
@@ -613,26 +605,28 @@ export const PaginationWithAPI: StoryObj<TableStory> = {
     const totalRecords = 55;
     const allData = generateData(totalRecords);
 
-    const handlePageChange = function (this: ZetaTable, page: number, pgSize: number) {
-      this.loading = true;
+    const handlePageChange = function (e: CustomEvent) {
+      const table = e.target as ZetaTable;
+      const { page, pageSize: pgSize } = e.detail;
+      table.loading = true;
 
       setTimeout(() => {
         const start = (page - 1) * pgSize;
         const pageData = allData.slice(start, start + pgSize);
-        this.data = pageData;
-        this.loading = false;
+        table.data = pageData;
+        table.loading = false;
         console.log(`Fetched page ${page}: rows ${start + 1}-${start + pageData.length} of ${totalRecords}`);
       }, 500);
     };
 
-    const handleRefresh = function (this: ZetaTable) {
-      this.loading = true;
+    const handleRefresh = function (e: CustomEvent) {
+      const table = e.target as ZetaTable;
+      table.loading = true;
       console.log("Refreshing data...");
 
-      const self = this;
       setTimeout(() => {
-        self.data = allData.slice(0, 10);
-        self.loading = false;
+        table.data = allData.slice(0, 10);
+        table.loading = false;
         console.log("Data refreshed!");
       }, 800);
     };
@@ -649,8 +643,9 @@ export const PaginationWithAPI: StoryObj<TableStory> = {
         .columns=${columns}
         .data=${allData.slice(0, 10)}
         .totalItems=${totalRecords}
-        .onRefresh=${handleRefresh}
-        .onPageChange=${handlePageChange}
+        refreshable
+        @tableRefresh=${handleRefresh}
+        @pageChange=${handlePageChange}
         style=${cssVarsStyle(args, { "--table-max-height": "500px" })}
       ></zeta-table>
     `;
@@ -681,14 +676,14 @@ export const DisabledRowsAndColumns: StoryObj<TableStory> = {
   },
   render: args => {
     const {
-      "onzeta-table-selection-change": onSelChange,
-      "onzeta-table-sort-change": onSortChange,
-      "onzeta-table-column-search": onColumnSearch,
-      "onzeta-table-page-change": onPageChange,
-      "onzeta-table-load-more": onLoadMore,
-      "onzeta-table-export": onExport,
-      "onzeta-table-row-expand": onExpand,
-      "onzeta-table-row-click": onRowClick,
+      onselectionchange: onSelChange,
+      onsortchange: onSortChange,
+      oncolumnsearch: onColumnSearch,
+      onpagechange: onPageChange,
+      onloadmore: onLoadMore,
+      ontableexport: onExport,
+      onrowexpand: onExpand,
+      onrowclick: onRowClick,
       columns,
       data,
       selectedRows,
@@ -706,14 +701,14 @@ export const DisabledRowsAndColumns: StoryObj<TableStory> = {
         .disabledRows=${disabledRows || []}
         .showDataCount=${showDataCount}
         .tableTitle=${tableTitle}
-        @zeta-table-selection-change=${onSelChange}
-        @zeta-table-sort-change=${onSortChange}
-        @zeta-table-column-search=${onColumnSearch}
-        @zeta-table-page-change=${onPageChange}
-        @zeta-table-load-more=${onLoadMore}
-        @zeta-table-export=${onExport}
-        @zeta-table-row-expand=${onExpand}
-        @zeta-table-row-click=${onRowClick}
+        @selectionChange=${onSelChange}
+        @sortChange=${onSortChange}
+        @columnSearch=${onColumnSearch}
+        @pageChange=${onPageChange}
+        @loadMore=${onLoadMore}
+        @tableExport=${onExport}
+        @rowExpand=${onExpand}
+        @rowClick=${onRowClick}
         style=${cssVarsStyle(args, { "--table-max-height": "450px" })}
       ></zeta-table>
     `;
@@ -730,14 +725,14 @@ export const CustomStyling: StoryObj<TableStory> = {
   },
   render: args => {
     const {
-      "onzeta-table-selection-change": onSelChange,
-      "onzeta-table-sort-change": onSortChange,
-      "onzeta-table-column-search": onColumnSearch,
-      "onzeta-table-page-change": onPageChange,
-      "onzeta-table-load-more": onLoadMore,
-      "onzeta-table-export": onExport,
-      "onzeta-table-row-expand": onExpand,
-      "onzeta-table-row-click": onRowClick,
+      onselectionchange: onSelChange,
+      onsortchange: onSortChange,
+      oncolumnsearch: onColumnSearch,
+      onpagechange: onPageChange,
+      onloadmore: onLoadMore,
+      ontableexport: onExport,
+      onrowexpand: onExpand,
+      onrowclick: onRowClick,
       columns,
       data,
       selectedRows,
@@ -771,14 +766,14 @@ export const CustomStyling: StoryObj<TableStory> = {
         .disabledRows=${disabledRows || []}
         .showDataCount=${showDataCount}
         .tableTitle=${"Styled Table"}
-        @zeta-table-selection-change=${onSelChange}
-        @zeta-table-sort-change=${onSortChange}
-        @zeta-table-column-search=${onColumnSearch}
-        @zeta-table-page-change=${onPageChange}
-        @zeta-table-load-more=${onLoadMore}
-        @zeta-table-export=${onExport}
-        @zeta-table-row-expand=${onExpand}
-        @zeta-table-row-click=${onRowClick}
+        @selectionChange=${onSelChange}
+        @sortChange=${onSortChange}
+        @columnSearch=${onColumnSearch}
+        @pageChange=${onPageChange}
+        @loadMore=${onLoadMore}
+        @tableExport=${onExport}
+        @rowExpand=${onExpand}
+        @rowClick=${onRowClick}
         style=${cssVarsStyle(args, {
           "--table-header-bg": "var(--main-default)",
           "--table-header-text": "var(--state-default-enabled)",
@@ -809,11 +804,11 @@ export const PerRowActions: StoryObj<TableStory> = {
   },
   render: args => {
     const {
-      "onzeta-table-selection-change": onSelChange,
-      "onzeta-table-sort-change": onSortChange,
-      "onzeta-table-column-search": onColumnSearch,
-      "onzeta-table-page-change": onPageChange,
-      "onzeta-table-action": onAction,
+      onselectionchange: onSelChange,
+      onsortchange: onSortChange,
+      oncolumnsearch: onColumnSearch,
+      onpagechange: onPageChange,
+      onrowaction: onAction,
       columns,
       selectedRows,
       disabledRows,
@@ -925,11 +920,11 @@ export const PerRowActions: StoryObj<TableStory> = {
         .disabledRows=${disabledRows || []}
         .showDataCount=${showDataCount}
         .tableTitle=${tableTitle}
-        .onRowAction=${handleRowAction}
-        @zeta-table-selection-change=${onSelChange}
-        @zeta-table-sort-change=${onSortChange}
-        @zeta-table-column-search=${onColumnSearch}
-        @zeta-table-page-change=${onPageChange}
+        @rowAction=${handleRowAction}
+        @selectionChange=${onSelChange}
+        @sortChange=${onSortChange}
+        @columnSearch=${onColumnSearch}
+        @pageChange=${onPageChange}
         style=${cssVarsStyle(args, { "--table-max-height": "500px" })}
       ></zeta-table>
     `;
@@ -950,9 +945,9 @@ export const GlobalAndColumnSearch: StoryObj<TableStory> = {
   },
   render: args => {
     const {
-      "onzeta-table-selection-change": onSelChange,
-      "onzeta-table-sort-change": onSortChange,
-      "onzeta-table-page-change": onPageChange,
+      onselectionchange: onSelChange,
+      onsortchange: onSortChange,
+      onpagechange: onPageChange,
       columns,
       selectedRows,
       disabledRows,
@@ -1033,15 +1028,19 @@ export const GlobalAndColumnSearch: StoryObj<TableStory> = {
         .disabledRows=${disabledRows || []}
         .showDataCount=${showDataCount}
         .tableTitle=${tableTitle}
-        .onTableSearch=${handleTableSearch}
-        .onColumnSearch=${handleColumnSearch}
-        .onColumnFilter=${handleColumnFilter}
-        .onRowAction=${handleRowAction}
-        .onRefresh=${handleRefresh}
+        searchable
+        column-searchable
+        column-filterable
+        refreshable
+        @tableSearch=${handleTableSearch}
+        @columnSearch=${handleColumnSearch}
+        @columnFilter=${handleColumnFilter}
+        @rowAction=${handleRowAction}
+        @tableRefresh=${handleRefresh}
         search-placeholder="Search all columns..."
-        @zeta-table-selection-change=${onSelChange}
-        @zeta-table-sort-change=${onSortChange}
-        @zeta-table-page-change=${onPageChange}
+        @selectionChange=${onSelChange}
+        @sortChange=${onSortChange}
+        @pageChange=${onPageChange}
         style=${cssVarsStyle(args, { "--table-max-height": "500px" })}
       ></zeta-table>
     `;

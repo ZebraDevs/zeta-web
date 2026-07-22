@@ -13,20 +13,20 @@ export type { ZetaTableColumn, SortDirection, SortState, PaginationType, ZetaTab
  * A full-featured, highly configurable data table component.
  *
  * ## Features
- * - **Sorting**: 3-state per-column sort indicator (asc → desc → none). Sorting is delegated to the consumer via `onSortChange`. Configurable per column via `sortable`.
- * - **Column Search**: Optional per-column search inputs. Enabled when `onColumnSearch` callback is provided.
- * - **Column Filter**: Optional per-column filter dropdown with checkboxes (Clear/Apply). Enabled when `onColumnFilter` is provided. Options via `filterOptions` on column or auto-populated from data.
- * - **Global Search**: Optional search bar in header. Enabled when `onTableSearch` callback is provided.
- * - **Selection**: Checkbox column with select-all. Optional `selectOnRowClick` for click-to-select.
- * - **Row Click**: Optional `onRowClick` callback. Rows show pointer cursor and highlight on click.
+ * - **Sorting**: 3-state per-column sort indicator (asc → desc → none). Sorting is delegated to the consumer via `sortChange` event. Configurable per column via `sortable`.
+ * - **Column Search**: Optional per-column search inputs. Enabled via `column-searchable` attribute.
+ * - **Column Filter**: Optional per-column filter dropdown with checkboxes (Clear/Apply). Enabled via `column-filterable` attribute. Options via `filterOptions` on column or auto-populated from data.
+ * - **Global Search**: Optional search bar in header. Enabled via `searchable` attribute.
+ * - **Selection**: Checkbox column with select-all. Optional `select-on-row-click` for click-to-select.
+ * - **Row Click**: Optional via `clickable-rows` attribute. Rows show pointer cursor and highlight on click.
  * - **Disabled Rows**: Rows can be disabled via `disabledRows` array or `_disabled` property. Use `allowDisabledSelection` to allow selection/actions on disabled rows.
  * - **Frozen Columns**: Columns can be frozen via `frozen` property or the column configure panel.
  * - **Column Resizing**: Drag to resize. Double-click header to auto-fit.
  * - **Column Configure**: Show/hide and freeze/unfreeze columns from a dropdown panel.
- * - **Pagination**: Numbered or infinite scroll. Consumer provides paged data via `onPageChange`/`onLoadMore` callbacks. Use `totalItems` to tell the table the full dataset size for page count calculation.
+ * - **Pagination**: Numbered or infinite scroll. Consumer listens to `pageChange`/`loadMore` events. Use `totalItems` to tell the table the full dataset size for page count calculation.
  * - **Nested Rows**: Expandable child rows via `_nested` property on row data.
  * - **Export**: CSV export of visible data.
- * - **Refresh**: Optional refresh button with consumer-controlled reload.
+ * - **Refresh**: Optional refresh button via `refreshable` attribute.
  * - **Row Actions**: Per-row kebab menu with configurable items per row via `_actions`.
  * - **Tooltips**: Auto-shown on content overflow.
  * - **Localization**: All labels (`refreshLabel`, `columnsLabel`, `actionsLabel`, `searchPlaceholder`) are configurable.
@@ -37,20 +37,25 @@ export type { ZetaTableColumn, SortDirection, SortState, PaginationType, ZetaTab
  * <zeta-table
  *   .columns=${columns}
  *   .data=${data}
- *   .onTableSearch=${handleSearch}
- *   .onColumnSearch=${handleColumnSearch}
- *   .onColumnFilter=${handleFilter}
- *   .onRefresh=${handleRefresh}
- *   .onRowClick=${handleRowClick}
- *   .onRowAction=${handleAction}
- *   .onSortChange=${handleSort}
- *   .onSelectionChange=${handleSelection}
- *   .onPageChange=${handlePageChange}
- *   .onLoadMore=${handleLoadMore}
- *   .onExport=${handleExport}
- *   .onRowExpand=${handleExpand}
+ *   searchable
+ *   column-searchable
+ *   column-filterable
+ *   refreshable
+ *   clickable-rows
  *   selectable
  *   select-all
+ *   @sortChange=${handleSort}
+ *   @selectionChange=${handleSelection}
+ *   @pageChange=${handlePageChange}
+ *   @loadMore=${handleLoadMore}
+ *   @tableExport=${handleExport}
+ *   @rowExpand=${handleExpand}
+ *   @rowClick=${handleRowClick}
+ *   @rowAction=${handleAction}
+ *   @columnSearch=${handleColumnSearch}
+ *   @columnFilter=${handleFilter}
+ *   @tableSearch=${handleSearch}
+ *   @tableRefresh=${handleRefresh}
  *   exportable
  *   column-configure
  *   show-data-count
@@ -98,18 +103,22 @@ export type { ZetaTableColumn, SortDirection, SortState, PaginationType, ZetaTab
  * ```
  *
  *
- * @fires zeta-table-selection-change - Row selection changes. Detail: { selectedIds: [] }
- * @fires zeta-table-sort-change - Column sort changes. Detail: { field, direction }
- * @fires zeta-table-column-search - Column search input changes. Detail: { field, value, searchValues }
- * @fires zeta-table-column-filter - Column filter applied. Detail: { field, selectedValues }
- * @fires zeta-table-search - Global search input changes. Detail: { value }
- * @fires zeta-table-page-change - Page changes (numbered). Detail: { page, pageSize }
- * @fires zeta-table-load-more - More data needed (infinite scroll)
- * @fires zeta-table-export - Export button clicked. Detail: { csv, columns, data }
- * @fires zeta-table-row-expand - Row expanded/collapsed. Detail: { rowId, expanded }
- * @fires zeta-table-row-click - Row clicked. Detail: { row, rowIndex }
- * @fires zeta-table-refresh - Refresh button clicked
- * @fires zeta-table-action - Row action clicked. Detail: { actionKey, row, rowIndex }
+ * @fires selectionChange - Row selection changes. Detail: { selectedIds: [] }
+ * @fires sortChange - Column sort changes. Detail: { field, direction }
+ * @fires columnSearch - Column search input changes. Detail: { field, value, searchValues }
+ * @fires columnFilter - Column filter applied. Detail: { field, selectedValues }
+ * @fires tableSearch - Global search input changes. Detail: { value }
+ * @fires pageChange - Page changes (numbered). Detail: { page, pageSize }
+ * @fires loadMore - More data needed (infinite scroll)
+ * @fires tableExport - Export button clicked. Detail: { csv, columns, data }
+ * @fires rowExpand - Row expanded/collapsed. Detail: { rowId, expanded }
+ * @fires rowClick - Row clicked. Detail: { row, rowIndex }
+ * @fires tableRefresh - Refresh button clicked
+ * @fires rowAction - Row action clicked. Detail: { actionKey, row, rowIndex }
+ *
+ * @slot cell-{field}-{rowIndex} - Projects custom content into a specific data cell. The slot name is composed of the column's `field` and the row's index (e.g. `cell-status-0`, `cell-name-2`). When content is slotted, it replaces the default text rendering for that cell.
+ * @slot loading - Custom loading indicator shown during infinite scroll. Falls back to "Loading more data..." text.
+ * @slot no-data - Custom empty state content shown when the table has no data. Falls back to "No data available" text.
  *
  * @cssproperty --table-width - Table width. Default: 100%
  * @cssproperty --table-max-height - Max height of scroll area. Default: none
@@ -139,13 +148,13 @@ export type { ZetaTableColumn, SortDirection, SortState, PaginationType, ZetaTab
  * @cssproperty --table-footer-bg - Footer background. Default: #fff
  * @cssproperty --table-data-count-bg - Data count badge background. Default: #e8f2ff
  * @cssproperty --table-data-count-color - Data count badge text color. Default: #0073e6
+ *
+ * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=948-13344
+ * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-table--docs
  */
 @customElement("zeta-table")
 export class ZetaTable extends LitElement {
-  /** Renders into Light DOM instead of Shadow DOM so global styles and consumer CSS can style table internals directly. */
-  override createRenderRoot() {
-    return this;
-  }
+  static override styles = [styles];
 
   /** Column definitions */
   @property({ type: Array })
@@ -167,13 +176,13 @@ export class ZetaTable extends LitElement {
   @property({ type: Array, attribute: "selected-rows" })
   selectedRows: (string | number)[] = [];
 
-  /** Row click callback - when provided, rows become clickable (pointer cursor + highlight on click) */
-  @property({ attribute: false })
-  onRowClick: ((rowData: ZetaTableRow, rowIndex: number) => void) | null = null;
+  /** When true, rows become clickable (pointer cursor + highlight on click). Emits `rowClick` event. */
+  @property({ type: Boolean, attribute: "clickable-rows" })
+  clickableRows = false;
 
-  /** When provided, clicking a row also toggles its checkbox selection. Behaves like onRowClick (pointer cursor + highlight). */
-  @property({ attribute: false })
-  selectOnRowClick: ((rowData: ZetaTableRow, rowIndex: number) => void) | null = null;
+  /** When true, clicking a row also toggles its checkbox selection. Emits `selectionChange` event. */
+  @property({ type: Boolean, attribute: "select-on-row-click" })
+  selectOnRowClick = false;
 
   /** Allow checkbox selection and action menu on disabled rows (useful for operations like bulk delete). Rows still appear visually disabled. */
   @property({ type: Boolean })
@@ -183,9 +192,6 @@ export class ZetaTable extends LitElement {
   @property({ attribute: false })
   rowActions: ZetaTableAction[] = [];
 
-  /** Callback when a row action is clicked. Receives the action key, row data, and row index. */
-  @property({ attribute: false })
-  onRowAction: ((actionKey: string, rowData: ZetaTableRow, rowIndex: number) => void) | null = null;
 
   /** Tooltip/label for the actions column header (supports localization) */
   @property({ type: String, attribute: "actions-label" })
@@ -225,25 +231,25 @@ export class ZetaTable extends LitElement {
   @property({ type: Boolean, reflect: true })
   exportable = false;
 
-  /** Column search/filter callback - when provided, shows search inputs on columns and delegates filtering to the consumer. Receives the field name and current search value. When not provided, search inputs are hidden. */
-  @property({ attribute: false })
-  onColumnSearch: ((field: string, value: string, allFilters: Record<string, string>) => void) | null = null;
+  /** When true, shows search inputs on columns. Emits `columnSearch` event. */
+  @property({ type: Boolean, attribute: "column-searchable" })
+  columnSearchable = false;
 
-  /** Column filter callback - when provided, shows a filter icon on each column header with a dropdown menu of filter options. Consumer receives the field, selected values, and column when a filter changes. */
-  @property({ attribute: false })
-  onColumnFilter: ((field: string, selectedValues: string[], column: ZetaTableColumn) => void) | null = null;
+  /** When true, shows a filter icon on each column header with a dropdown menu. Emits `columnFilter` event. */
+  @property({ type: Boolean, attribute: "column-filterable" })
+  columnFilterable = false;
 
-  /** Global search callback - when provided, shows a global search bar above the table. Consumer handles the search and updates data. */
-  @property({ attribute: false })
-  onTableSearch: ((searchTerm: string) => void) | null = null;
+  /** When true, shows a global search bar above the table. Emits `tableSearch` event. */
+  @property({ type: Boolean, attribute: "searchable" })
+  searchable = false;
 
   /** Placeholder text for the global search input (supports localization) */
   @property({ type: String, attribute: "search-placeholder" })
   searchPlaceholder = "Search...";
 
-  /** Refresh callback - when provided, shows a refresh icon button in the toolbar. Consumer handles the data reload. */
-  @property({ attribute: false })
-  onRefresh: (() => void) | null = null;
+  /** When true, shows a refresh icon button in the toolbar. Emits `tableRefresh` event. */
+  @property({ type: Boolean, attribute: "refreshable" })
+  refreshable = false;
 
   /** Tooltip/label for the refresh button (supports localization) */
   @property({ type: String, attribute: "refresh-label" })
@@ -265,29 +271,6 @@ export class ZetaTable extends LitElement {
   @property({ type: Boolean, attribute: "has-more-data" })
   hasMoreData = true;
 
-  /** Callback when infinite scroll needs more data. Receives current data count. */
-  @property({ attribute: false })
-  onLoadMore: ((currentCount: number) => void) | null = null;
-
-  /** Callback when sort state changes. Receives field and direction ('asc' | 'desc' | null). */
-  @property({ attribute: false })
-  onSortChange: ((field: string, direction: "asc" | "desc" | null) => void) | null = null;
-
-  /** Callback when row selection changes. Receives array of selected row IDs. */
-  @property({ attribute: false })
-  onSelectionChange: ((selectedIds: (string | number)[]) => void) | null = null;
-
-  /** Callback when page changes (numbered pagination). Receives page number and page size. */
-  @property({ attribute: false })
-  onPageChange: ((page: number, pageSize: number) => void) | null = null;
-
-  /** Callback when export is triggered. Receives the exported data rows. */
-  @property({ attribute: false })
-  onExport: ((data: ZetaTableRow[]) => void) | null = null;
-
-  /** Callback when a row is expanded/collapsed. Receives row ID and expanded state. */
-  @property({ attribute: false })
-  onRowExpand: ((rowId: string | number, expanded: boolean) => void) | null = null;
 
   /** IDs of rows that should be disabled */
   @property({ type: Array, attribute: "disabled-rows" })
@@ -367,7 +350,7 @@ export class ZetaTable extends LitElement {
 
   /** Getter for the scrollable container element (used for scroll listeners and IntersectionObserver root) */
   private get _scrollContainer(): HTMLElement | null {
-    return this.querySelector(".zeta-table-scroll");
+    return this.shadowRoot!.querySelector(".zeta-table-scroll");
   }
 
   /** Field name of the column currently being resized (null when not resizing) */
@@ -402,22 +385,12 @@ export class ZetaTable extends LitElement {
   /**
    * Lit lifecycle: called when the element is added to the DOM.
    *
-   * - Injects the component's CSS into <head> as a global <style> tag (Light DOM
-   *   requires global styles since there's no shadow root to scope them).
-   *   Uses a `data-zeta-table` attribute guard to prevent duplicate injection
-   *   when multiple <zeta-table> instances exist on the same page.
    * - Syncs public array props (selectedRows, disabledRows) into internal Sets for O(1) lookup.
    * - Registers a document-level click listener to close dropdowns (column panel, action menu,
    *   filter panel) when clicking outside.
    */
   override connectedCallback() {
     super.connectedCallback?.();
-    if (!document.querySelector("style[data-zeta-table]")) {
-      const style = document.createElement("style");
-      style.setAttribute("data-zeta-table", "");
-      style.textContent = styles.cssText;
-      document.head.appendChild(style);
-    }
     this._syncSelectedRows();
     this._syncDisabledRows();
     document.addEventListener("click", this._closeOverlaysOnOutsideClick);
@@ -586,14 +559,14 @@ export class ZetaTable extends LitElement {
     const path = e.composedPath();
 
     // Close column configure panel if click is outside its wrapper
-    const wrapper = this.querySelector(".zeta-table-column-panel-wrapper");
+    const wrapper = this.shadowRoot!.querySelector(".zeta-table-column-panel-wrapper");
     if (wrapper && !path.includes(wrapper)) {
       this._columnConfigureVisible = false;
     }
 
     // Close action menu if click is outside the menu and not on an action button
     if (this._actionMenuRowId !== null) {
-      const menu = this.querySelector(".zeta-table-action-menu--open");
+      const menu = this.shadowRoot!.querySelector(".zeta-table-action-menu--open");
       const clickedBtn = path.some(el => (el as Element).classList?.contains("zeta-table-action-btn"));
       if (!clickedBtn && (!menu || !path.includes(menu))) {
         this._actionMenuRowId = null;
@@ -602,7 +575,7 @@ export class ZetaTable extends LitElement {
 
     // Close filter panel if click is outside the panel and not on a filter icon button
     if (this._filterPanelField !== null) {
-      const panel = this.querySelector(".zeta-table-filter-panel");
+      const panel = this.shadowRoot!.querySelector(".zeta-table-filter-panel");
       const clickedFilterBtn = path.some(el => (el as Element).classList?.contains("zeta-table-header-icon-btn"));
       if (!clickedFilterBtn && (!panel || !path.includes(panel))) {
         this._filterPanelField = null;
@@ -630,9 +603,9 @@ export class ZetaTable extends LitElement {
     return !!row._disabled || this._disabledRows.has(row.id);
   }
 
-  /** Returns true if any row click handler is configured (onRowClick or selectOnRowClick) */
+  /** Returns true if rows are clickable (clickableRows or selectOnRowClick) */
   private _isClickable(): boolean {
-    return this.onRowClick != null || this.selectOnRowClick != null;
+    return this.clickableRows || this.selectOnRowClick;
   }
 
   // ─── Row Interaction Handlers ───
@@ -644,7 +617,7 @@ export class ZetaTable extends LitElement {
    * - Ignores clicks on <button> elements (action buttons handle themselves)
    * - Sets the active row for visual highlighting
    * - If selectOnRowClick is configured, toggles the row's checkbox selection
-   * - Dispatches both the callback and CustomEvent for framework-agnostic consumers
+   * - Dispatches `rowClick` CustomEvent
    */
   private _handleRowClick(row: ZetaTableRow, rowIndex: number, e: MouseEvent) {
     if (this._isRowDisabled(row) && !this.allowDisabledSelection) return;
@@ -658,15 +631,10 @@ export class ZetaTable extends LitElement {
 
     if (this.selectOnRowClick) {
       this._handleRowSelect(row);
-      this.selectOnRowClick(row, rowIndex);
-    }
-
-    if (this.onRowClick) {
-      this.onRowClick(row, rowIndex);
     }
 
     this.dispatchEvent(
-      new CustomEvent("zeta-table-row-click", {
+      new CustomEvent("rowClick", {
         detail: { row, rowId: row.id, rowIndex },
         bubbles: true,
         composed: true
@@ -680,7 +648,7 @@ export class ZetaTable extends LitElement {
    * Handles column header sort click.
    * Implements a 3-state UI cycle: unsorted → ascending → descending → unsorted.
    * Tracks click count per field to determine the current state in the cycle.
-   * Notifies the consumer via callback and CustomEvent — the consumer is responsible
+   * Dispatches `sortChange` event — the consumer is responsible
    * for sorting the data and updating the `data` property.
    */
   private _handleSort(field: string) {
@@ -721,11 +689,8 @@ export class ZetaTable extends LitElement {
   }
 
   private _emitSortChange() {
-    if (this.onSortChange) {
-      this.onSortChange(this._sortState.field, this._sortState.direction);
-    }
     this.dispatchEvent(
-      new CustomEvent("zeta-table-sort-change", {
+      new CustomEvent("sortChange", {
         detail: { field: this._sortState.field, direction: this._sortState.direction },
         bubbles: true,
         composed: true
@@ -787,15 +752,8 @@ export class ZetaTable extends LitElement {
 
     this._filterPanelField = null;
 
-    if (this.onColumnFilter) {
-      this.onColumnFilter(
-        field,
-        selectedValues,
-        this.columns.find(c => c.field === field)!
-      );
-    }
     this.dispatchEvent(
-      new CustomEvent("zeta-table-column-filter", {
+      new CustomEvent("columnFilter", {
         detail: { field, selectedValues },
         bubbles: true,
         composed: true
@@ -844,12 +802,8 @@ export class ZetaTable extends LitElement {
       this._currentPage = 1;
     }
 
-    if (this.onColumnSearch) {
-      this.onColumnSearch(field, value, { ...this._searchValues });
-    }
-
     this.dispatchEvent(
-      new CustomEvent("zeta-table-column-search", {
+      new CustomEvent("columnSearch", {
         detail: { field, value, searchValues: { ...this._searchValues } },
         bubbles: true,
         composed: true
@@ -867,11 +821,8 @@ export class ZetaTable extends LitElement {
     if (this.paginationType === "numbered") {
       this._currentPage = 1;
     }
-    if (this.onTableSearch) {
-      this.onTableSearch(value);
-    }
     this.dispatchEvent(
-      new CustomEvent("zeta-table-search", {
+      new CustomEvent("tableSearch", {
         detail: { value },
         bubbles: true,
         composed: true
@@ -916,11 +867,8 @@ export class ZetaTable extends LitElement {
   /** Notifies the consumer of selection changes via both the callback and CustomEvent */
   private _dispatchSelectionChange() {
     const selectedIds = [...this._selectedRows];
-    if (this.onSelectionChange) {
-      this.onSelectionChange(selectedIds);
-    }
     this.dispatchEvent(
-      new CustomEvent("zeta-table-selection-change", {
+      new CustomEvent("selectionChange", {
         detail: { selectedIds },
         bubbles: true,
         composed: true
@@ -1038,7 +986,7 @@ export class ZetaTable extends LitElement {
 
   // ─── Row Expand/Collapse ───
 
-  /** Toggles expansion of a row's nested sub-rows. Notifies the consumer via callback and CustomEvent. */
+  /** Toggles expansion of a row's nested sub-rows. Dispatches `rowExpand` event. */
   private _toggleExpand(rowId: string | number) {
     const newSet = new Set(this._expandedRows);
     if (newSet.has(rowId)) {
@@ -1048,11 +996,8 @@ export class ZetaTable extends LitElement {
     }
     this._expandedRows = newSet;
     const expanded = newSet.has(rowId);
-    if (this.onRowExpand) {
-      this.onRowExpand(rowId, expanded);
-    }
     this.dispatchEvent(
-      new CustomEvent("zeta-table-row-expand", {
+      new CustomEvent("rowExpand", {
         detail: { rowId, expanded },
         bubbles: true,
         composed: true
@@ -1065,7 +1010,7 @@ export class ZetaTable extends LitElement {
   /**
    * Creates an IntersectionObserver watching a sentinel <div> at the bottom of the table body.
    * When the sentinel enters the viewport (user has scrolled to the bottom),
-   * fires the `onLoadMore` callback and dispatches the `zeta-table-load-more` event
+   * dispatches the `loadMore` event
    * (only if not currently loading and hasMoreData is true).
    *
    * The observer uses the scroll container as its root (not the viewport) so it only
@@ -1074,17 +1019,14 @@ export class ZetaTable extends LitElement {
   private _setupInfiniteScrollObserver() {
     this._destroyInfiniteScrollObserver();
     void this.updateComplete.then(() => {
-      const sentinel = this.querySelector(".zeta-table-infinite-sentinel");
+      const sentinel = this.shadowRoot!.querySelector(".zeta-table-infinite-sentinel");
       if (!sentinel || !this._scrollContainer) return;
       this._intersectionObserver = new IntersectionObserver(
         entries => {
           const entry = entries[0];
           if (entry?.isIntersecting && !this.loading && this.hasMoreData) {
-            if (this.onLoadMore) {
-              this.onLoadMore(this.data.length);
-            }
             this.dispatchEvent(
-              new CustomEvent("zeta-table-load-more", {
+              new CustomEvent("loadMore", {
                 detail: { currentCount: this.data.length },
                 bubbles: true,
                 composed: true
@@ -1118,11 +1060,8 @@ export class ZetaTable extends LitElement {
     const totalPages = this._getTotalPages();
     if (page < 1 || page > totalPages) return;
     this._currentPage = page;
-    if (this.onPageChange) {
-      this.onPageChange(page, this.pageSize);
-    }
     this.dispatchEvent(
-      new CustomEvent("zeta-table-page-change", {
+      new CustomEvent("pageChange", {
         detail: { page, pageSize: this.pageSize },
         bubbles: true,
         composed: true
@@ -1182,11 +1121,8 @@ export class ZetaTable extends LitElement {
     const visibleCols = this._getVisibleColumns();
     const data = this._getFilteredSortedData();
     const csvContent = this._generateCSV(visibleCols, data);
-    if (this.onExport) {
-      this.onExport(data);
-    }
     this.dispatchEvent(
-      new CustomEvent("zeta-table-export", {
+      new CustomEvent("tableExport", {
         detail: { csv: csvContent, columns: visibleCols, data },
         bubbles: true,
         composed: true
@@ -1197,11 +1133,8 @@ export class ZetaTable extends LitElement {
 
   /** Handles the refresh button click. Delegates data reload entirely to the consumer. */
   private _handleRefresh = () => {
-    if (this.onRefresh) {
-      this.onRefresh();
-    }
     this.dispatchEvent(
-      new CustomEvent("zeta-table-refresh", {
+      new CustomEvent("tableRefresh", {
         bubbles: true,
         composed: true
       })
@@ -1260,7 +1193,7 @@ export class ZetaTable extends LitElement {
 
   /**
    * Returns the data as provided by the consumer.
-   * Sorting is fully delegated to the consumer via `onSortChange` callback / `zeta-table-sort-change` event.
+   * Sorting is fully delegated to the consumer via the `sortChange` event.
    * The consumer is responsible for sorting the data and updating the `data` property.
    */
   private _getFilteredSortedData(): ZetaTableRow[] {
@@ -1269,7 +1202,7 @@ export class ZetaTable extends LitElement {
 
   /**
    * Returns the data to render on screen.
-   * Pagination is fully delegated to the consumer via `onPageChange` callback / `zeta-table-page-change` event.
+   * Pagination is fully delegated to the consumer via the `pageChange` event.
    * The consumer is responsible for providing the correct page of data via the `data` property.
    */
   private _getDisplayedData(): ZetaTableRow[] {
@@ -1333,7 +1266,7 @@ export class ZetaTable extends LitElement {
   protected override render() {
     const visibleCols = this._getVisibleColumns();
     const displayedData = this._getDisplayedData();
-    const hasSearch = this.onColumnSearch !== null && visibleCols.some(c => c.filterable !== false && !c.disabled);
+    const hasSearch = this.columnSearchable && visibleCols.some(c => c.filterable !== false && !c.disabled);
 
     return html`
       <div class="zeta-table-wrapper">
@@ -1350,14 +1283,14 @@ export class ZetaTable extends LitElement {
                   ? displayedData.map((row, idx) => this._renderDataRow(row, visibleCols, idx))
                   : html`<tr class="zeta-table-row">
                       <td colspan="${this._getTotalColspan(visibleCols)}" class="zeta-table-td zeta-table-no-data">
-                        ${this.noDataContent ?? "No data available"}
+                        <slot name="no-data">${this.noDataContent ?? "No data available"}</slot>
                       </td>
                     </tr>`
               }
               ${
                 this.paginationType === "infinite" && (this.loading || this._dataLengthWhenLoadingStarted >= 0)
                   ? html`<tr class="zeta-table-loading-row">
-                      <td colspan="${this._getTotalColspan(visibleCols)}" class="zeta-table-td">${this.loadingContent ?? "Loading more data..."}</td>
+                      <td colspan="${this._getTotalColspan(visibleCols)}" class="zeta-table-td"><slot name="loading">${this.loadingContent ?? "Loading more data..."}</slot></td>
                     </tr>`
                   : nothing
               }
@@ -1381,7 +1314,7 @@ export class ZetaTable extends LitElement {
     const displayedCount = this._getDisplayedData().length;
     const totalData = this.totalItems >= 0 ? this.totalItems : this.data.length;
     const hasLeft = this.tableTitle || this.showDataCount || this._selectedRows.size > 0;
-    const hasRight = this.onTableSearch || this.onRefresh || this.exportable || this.columnConfigure;
+    const hasRight = this.searchable || this.refreshable || this.exportable || this.columnConfigure;
 
     if (!hasLeft && !hasRight) return nothing;
 
@@ -1400,7 +1333,7 @@ export class ZetaTable extends LitElement {
         </div>
         <div class="zeta-table-header-bar-right">
           ${
-            this.onTableSearch
+            this.searchable
               ? html`
                   <div class="zeta-table-global-search">
                     <zeta-icon class="zeta-table-global-search-icon">search</zeta-icon>
@@ -1416,7 +1349,7 @@ export class ZetaTable extends LitElement {
               : nothing
           }
           ${
-            this.onRefresh
+            this.refreshable
               ? html`
                   <button class="zeta-table-toolbar-btn zeta-table-toolbar-btn--icon" @click=${this._handleRefresh} title=${this.refreshLabel}>
                     <zeta-icon>refresh</zeta-icon>
@@ -1581,7 +1514,7 @@ export class ZetaTable extends LitElement {
     if (isFrozen) cellStyles.left = `${leftOffset}px`;
     if (isDisabled) cellStyles.opacity = "0.5";
 
-    const isFilterable = this.onColumnFilter !== null && col.filterable !== false;
+    const isFilterable = this.columnFilterable && col.filterable !== false;
 
     return html`
       <th class=${classMap(cellClasses)} style=${styleMap(cellStyles)}>
@@ -1666,7 +1599,7 @@ export class ZetaTable extends LitElement {
 
   /**
    * Renders the per-column search input row (second header row).
-   * Only shown when `onColumnSearch` callback is provided.
+   * Only shown when `columnSearchable` is true.
    * Each column gets a text input unless disabled or filterable=false.
    */
   private _renderSearchRow(cols: ZetaTableColumn[]) {
@@ -1776,7 +1709,7 @@ export class ZetaTable extends LitElement {
               `
             : nothing
         }
-        ${cols.map((col, i) => this._renderDataCell(row, col, i))} ${this._showActionsColumn ? this._renderActionsCell(row) : nothing}
+        ${cols.map((col, i) => this._renderDataCell(row, col, i, rowIndex))} ${this._showActionsColumn ? this._renderActionsCell(row) : nothing}
       </tr>
       ${isExpanded && hasNested ? this._renderNestedRows(row, cols) : nothing}
     `;
@@ -1942,11 +1875,8 @@ export class ZetaTable extends LitElement {
   /** Handles click on a specific action menu item. Closes the menu and notifies the consumer. */
   private _handleActionClick(actionKey: string, row: ZetaTableRow, rowIndex: number) {
     this._actionMenuRowId = null;
-    if (this.onRowAction) {
-      this.onRowAction(actionKey, row, rowIndex);
-    }
     this.dispatchEvent(
-      new CustomEvent("zeta-table-action", {
+      new CustomEvent("rowAction", {
         detail: { actionKey, row, rowIndex },
         bubbles: true,
         composed: true
@@ -1965,11 +1895,12 @@ export class ZetaTable extends LitElement {
    *
    * Applies frozen column positioning if the column is pinned.
    */
-  private _renderDataCell(row: ZetaTableRow, col: ZetaTableColumn, index: number) {
+  private _renderDataCell(row: ZetaTableRow, col: ZetaTableColumn, index: number, rowIndex: number) {
     const isFrozen = this._isColumnFrozen(col);
     const leftOffset = isFrozen ? this._getFrozenLeftOffset(index) : 0;
     const isLastFrozen = isFrozen && this._isLastFrozen(index);
     const rawValue = row[col.field];
+    const slotName = `cell-${col.field}-${rowIndex}`;
 
     const cellClasses: Record<string, boolean> = {
       "zeta-table-td": true,
@@ -1995,23 +1926,25 @@ export class ZetaTable extends LitElement {
     return html`
       <td class=${classMap(cellClasses)} style=${styleMap(cellStyles)}>
         <div class="zeta-table-cell-inner">
-          <span
-            class="zeta-table-cell-content"
-            @mouseenter=${tooltipEnabled ? (e: MouseEvent) => this._showTooltip(e, cellValue, ellipsisOnly) : nothing}
-            @mouseleave=${tooltipEnabled ? () => this._hideTooltip() : nothing}
-            @mousemove=${
-              tooltipEnabled
-                ? (e: MouseEvent) => {
-                    if (this._tooltipVisible) {
-                      this._tooltipX = e.clientX + 8;
-                      this._tooltipY = e.clientY - 30;
+          <slot name=${slotName}>
+            <span
+              class="zeta-table-cell-content"
+              @mouseenter=${tooltipEnabled ? (e: MouseEvent) => this._showTooltip(e, cellValue, ellipsisOnly) : nothing}
+              @mouseleave=${tooltipEnabled ? () => this._hideTooltip() : nothing}
+              @mousemove=${
+                tooltipEnabled
+                  ? (e: MouseEvent) => {
+                      if (this._tooltipVisible) {
+                        this._tooltipX = e.clientX + 8;
+                        this._tooltipY = e.clientY - 30;
+                      }
                     }
-                  }
-                : nothing
-            }
-          >
-            ${cellValue}
-          </span>
+                  : nothing
+              }
+            >
+              ${cellValue}
+            </span>
+          </slot>
         </div>
       </td>
     `;
