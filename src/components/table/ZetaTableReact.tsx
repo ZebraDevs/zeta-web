@@ -76,7 +76,7 @@ export const ZetaTableReact = React.forwardRef<ZetaTableElement, ZetaTableReactP
   });
 
   return (
-    <ZetaTableBase ref={ref} data={cleanData} loadingContent={loadingContent as unknown} noDataContent={noDataContent as unknown} {...rest}>
+    <ZetaTableBase ref={ref} data={cleanData} {...rest}>
       {loadingContent && <div slot="loading">{loadingContent}</div>}
       {noDataContent && <div slot="no-data">{noDataContent}</div>}
       {slots.map(({ field, rowIdx, element, key }) => (

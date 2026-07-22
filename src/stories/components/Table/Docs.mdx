@@ -22,7 +22,7 @@ A full-featured, highly configurable data table web component.
         <strong>Import</strong>
       </td>
       <td>
-        <code>{'import "@zebra-fed/zeta-web/dist/components/table/table.js"'}</code>
+        <code>{'import "@zebra-fed/zeta-web/components/table/table.js"'}</code>
       </td>
     </tr>
     <tr>
@@ -114,7 +114,7 @@ A full-featured, highly configurable data table web component.
     </tr>
     <tr>
       <td>Column Resizing</td>
-      <td>Drag to resize, double-click to auto-fit</td>
+      <td>Drag to resize, double-click resize handle to reset width</td>
       <td>
         <code>resizable</code> on column
       </td>
@@ -1093,7 +1093,7 @@ import "@zebra-fed/zeta-web/index.css";
 </zeta-table>
 
 <script type="module">
-  import "@zebra-fed/zeta-web/dist/components/table/table.js";
+  import "@zebra-fed/zeta-web/components/table/table.js";
 
   const table = document.getElementById("demo");
 
@@ -1300,7 +1300,7 @@ For plain text data without React components in cells, you can use the raw eleme
 **React 19+** — native custom element support:
 
 ```tsx
-import "@zebra-fed/zeta-web/dist/components/table/table.js";
+import "@zebra-fed/zeta-web/components/table/table.js";
 
 export function UsersTable() {
   return <zeta-table columns={columns} data={users} selectable onSortChange={e => console.log(e.detail)} style={{ "--table-row-height": "36px" }} />;
@@ -1311,7 +1311,7 @@ export function UsersTable() {
 
 ```tsx
 import { useRef, useEffect } from "react";
-import "@zebra-fed/zeta-web/dist/components/table/table.js";
+import "@zebra-fed/zeta-web/components/table/table.js";
 
 export function UsersTable() {
   const ref = useRef(null);
@@ -1352,7 +1352,7 @@ Add `CUSTOM_ELEMENTS_SCHEMA` to your module:
 ```typescript
 // app.module.ts
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
-import "@zebra-fed/zeta-web/dist/components/table/table.js";
+import "@zebra-fed/zeta-web/components/table/table.js";
 
 @NgModule({ schemas: [CUSTOM_ELEMENTS_SCHEMA] })
 export class AppModule {}
@@ -1486,7 +1486,7 @@ Use the `.prop` modifier to pass JS objects as properties:
 // main.ts
 import { createApp } from "vue";
 import "@zebra-fed/zeta-web/index.css";
-import "@zebra-fed/zeta-web/dist/components/table/table.js";
+import "@zebra-fed/zeta-web/components/table/table.js";
 
 const app = createApp(App);
 app.config.compilerOptions.isCustomElement = tag => tag.startsWith("zeta-");

@@ -21,7 +21,7 @@ export type { ZetaTableColumn, SortDirection, SortState, PaginationType, ZetaTab
  * - **Row Click**: Optional via `clickable-rows` attribute. Rows show pointer cursor and highlight on click.
  * - **Disabled Rows**: Rows can be disabled via `disabledRows` array or `_disabled` property. Use `allowDisabledSelection` to allow selection/actions on disabled rows.
  * - **Frozen Columns**: Columns can be frozen via `frozen` property or the column configure panel.
- * - **Column Resizing**: Drag to resize. Double-click header to auto-fit.
+ * - **Column Resizing**: Drag to resize. Double-click resize handle to reset width.
  * - **Column Configure**: Show/hide and freeze/unfreeze columns from a dropdown panel.
  * - **Pagination**: Numbered or infinite scroll. Consumer listens to `pageChange`/`loadMore` events. Use `totalItems` to tell the table the full dataset size for page count calculation.
  * - **Nested Rows**: Expandable child rows via `_nested` property on row data.

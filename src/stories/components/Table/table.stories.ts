@@ -361,12 +361,14 @@ export const TableAll: StoryObj<TableStory> = {
       table.totalItems = filteredData.length;
     }
 
-    const handleRowAction = (actionKey: string, rowData: unknown, rowIndex: number) => {
-      console.log("Row action:", { actionKey, rowIndex, rowData });
+    const handleRowAction = (e: CustomEvent<{ actionKey: string; row: unknown; rowIndex: number }>) => {
+      const { actionKey, row, rowIndex } = e.detail;
+      console.log("Row action:", { actionKey, rowIndex, row });
       (onAction as Function)?.();
     };
 
-    const handleSortChange = function (this: ZetaTable, field: string, direction: "asc" | "desc" | null) {
+    const handleSortChange = function (this: ZetaTable, e: CustomEvent<{ field: string; direction: "asc" | "desc" | null }>) {
+      const { field, direction } = e.detail;
       currentSort = { field, direction };
       currentPageNum = 1;
       updateTable(this);
@@ -374,34 +376,39 @@ export const TableAll: StoryObj<TableStory> = {
       (onSortChange as Function)?.();
     };
 
-    const handleSelectionChange = (selectedIds: (string | number)[]) => {
+    const handleSelectionChange = (e: CustomEvent<{ selectedIds: (string | number)[] }>) => {
+      const { selectedIds } = e.detail;
       console.log("Selection changed:", selectedIds);
       (onSelChange as Function)?.();
     };
 
-    const handlePageChange = function (this: ZetaTable, page: number, pgSize: number) {
+    const handlePageChange = function (this: ZetaTable, e: CustomEvent<{ page: number; pageSize: number }>) {
+      const { page, pageSize: pgSize } = e.detail;
       currentPageNum = page;
       updateTable(this);
       console.log("Page changed:", { page, pageSize: pgSize });
       (onPageChange as Function)?.();
     };
 
-    const handleLoadMore = (currentCount: number) => {
+    const handleLoadMore = (e: CustomEvent<{ currentCount: number }>) => {
+      const { currentCount } = e.detail;
       console.log("Load more requested, current count:", currentCount);
       (onLoadMore as Function)?.();
     };
 
-    const handleExport = (exportedData: ZetaTableRow[]) => {
-      console.log("Export triggered, rows:", exportedData.length);
+    const handleExport = (e: CustomEvent<{ csv: string; columns: ZetaTableColumn[]; data: ZetaTableRow[] }>) => {
+      console.log("Export triggered, rows:", e.detail.data.length);
       (onExport as Function)?.();
     };
 
-    const handleRowExpand = (rowId: string | number, expanded: boolean) => {
+    const handleRowExpand = (e: CustomEvent<{ rowId: string | number; expanded: boolean }>) => {
+      const { rowId, expanded } = e.detail;
       console.log("Row expand toggled:", { rowId, expanded });
       (onExpand as Function)?.();
     };
 
-    const handleTableSearch = function (this: ZetaTable, searchTerm: string) {
+    const handleTableSearch = function (this: ZetaTable, e: CustomEvent<{ value: string }>) {
+      const searchTerm = e.detail.value;
       if (!searchTerm.trim()) {
         filteredData = [...masterData];
       } else {
@@ -415,7 +422,8 @@ export const TableAll: StoryObj<TableStory> = {
       console.log("Global search:", searchTerm);
     };
 
-    const handleColumnSearch = function (this: ZetaTable, field: string, value: string, allSearchValues: Record<string, string>) {
+    const handleColumnSearch = function (this: ZetaTable, e: CustomEvent<{ field: string; value: string; searchValues: Record<string, string> }>) {
+      const { field, value, searchValues: allSearchValues } = e.detail;
       const filterKeys = Object.keys(allSearchValues);
       if (filterKeys.length === 0) {
         filteredData = [...masterData];
@@ -433,7 +441,8 @@ export const TableAll: StoryObj<TableStory> = {
       console.log("Column search:", { field, value, allSearchValues });
     };
 
-    const handleColumnFilter = function (this: ZetaTable, field: string, selectedValues: string[]) {
+    const handleColumnFilter = function (this: ZetaTable, e: CustomEvent<{ field: string; selectedValues: string[] }>) {
+      const { field, selectedValues } = e.detail;
       if (selectedValues.length === 0) {
         filteredData = [...masterData];
       } else {
@@ -897,8 +906,9 @@ export const PerRowActions: StoryObj<TableStory> = {
       }
     ];
 
-    const handleRowAction = (actionKey: string, rowData: unknown, rowIndex: number) => {
-      console.log("Row action:", { actionKey, rowIndex, rowData });
+    const handleRowAction = (e: CustomEvent<{ actionKey: string; row: unknown; rowIndex: number }>) => {
+      const { actionKey, row, rowIndex } = e.detail;
+      console.log("Row action:", { actionKey, rowIndex, row });
       (onAction as Function)?.();
     };
 
@@ -953,7 +963,8 @@ export const GlobalAndColumnSearch: StoryObj<TableStory> = {
 
     const allData = generateData(50);
 
-    const handleTableSearch = function (this: ZetaTable, searchTerm: string) {
+    const handleTableSearch = function (this: ZetaTable, e: CustomEvent<{ value: string }>) {
+      const searchTerm = e.detail.value;
       if (!searchTerm.trim()) {
         this.data = [...allData];
         this.totalItems = allData.length;
@@ -968,7 +979,8 @@ export const GlobalAndColumnSearch: StoryObj<TableStory> = {
       console.log(`Global search "${searchTerm}": ${this.data.length} results`);
     };
 
-    const handleColumnSearch = function (this: ZetaTable, field: string, value: string, allFilters: Record<string, string>) {
+    const handleColumnSearch = function (this: ZetaTable, e: CustomEvent<{ field: string; value: string; searchValues: Record<string, string> }>) {
+      const { field, value, searchValues: allFilters } = e.detail;
       const filterKeys = Object.keys(allFilters);
       if (filterKeys.length === 0) {
         this.data = [...allData];
@@ -987,7 +999,8 @@ export const GlobalAndColumnSearch: StoryObj<TableStory> = {
       console.log(`Column search "${field}=${value}": ${this.data.length} results`, allFilters);
     };
 
-    const handleColumnFilter = function (this: ZetaTable, field: string, selectedValues: string[]) {
+    const handleColumnFilter = function (this: ZetaTable, e: CustomEvent<{ field: string; selectedValues: string[] }>) {
+      const { field, selectedValues } = e.detail;
       if (selectedValues.length === 0) {
         this.data = [...allData];
         this.totalItems = allData.length;
@@ -999,8 +1012,9 @@ export const GlobalAndColumnSearch: StoryObj<TableStory> = {
       console.log("Column filter applied:", { field, selectedValues });
     };
 
-    const handleRowAction = (actionKey: string, rowData: unknown, rowIndex: number) => {
-      console.log("Action:", { actionKey, rowIndex, rowData });
+    const handleRowAction = (e: CustomEvent<{ actionKey: string; row: unknown; rowIndex: number }>) => {
+      const { actionKey, row, rowIndex } = e.detail;
+      console.log("Action:", { actionKey, rowIndex, row });
     };
 
     const handleRefresh = function (this: ZetaTable) {
