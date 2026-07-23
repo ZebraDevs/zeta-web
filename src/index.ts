@@ -73,6 +73,7 @@ import { ZetaSwitch } from "./components/switch/switch.js";
 import { ZetaSystemBanner } from "./components/system-banner/system-banner.js";
 import { ZetaTabBar } from "./components/tab-bar/tab-bar.js";
 import { ZetaTabItem } from "./components/tab-bar/tab-item/tab-item.js";
+import { ZetaTable } from "./components/table/table.js";
 import { ZetaTag } from "./components/badges/tag/tag.js";
 import { ZetaTextInput } from "./components/text-input/text-input.js";
 import { ZetaTileButton } from "./components/button/tile-button/tile-button.js";
@@ -154,6 +155,7 @@ export {
   ZetaSystemBanner,
   ZetaTabBar,
   ZetaTabItem,
+  ZetaTable,
   ZetaTag,
   ZetaTextInput,
   ZetaTileButton,

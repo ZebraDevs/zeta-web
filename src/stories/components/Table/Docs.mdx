@@ -1,0 +1,570 @@
+import { Canvas, Meta, Description, ArgTypes, Title } from "@storybook/blocks";
+import * as TableStories from "./table.stories";
+
+<Meta of={TableStories} title="Table" />
+
+<Title />
+<Description of="zeta-table" />
+
+## Component API
+
+<ArgTypes of="zeta-table" />
+
+---
+
+## All Features Enabled
+
+<Canvas of={TableStories.TableAll} />
+
+---
+
+## Usage
+
+### Installation
+
+```bash
+npm install @zebra-fed/zeta-web
+```
+
+Import global styles once in your app entry:
+
+```js
+import "@zebra-fed/zeta-web/index.css";
+```
+
+---
+
+## Plain HTML / JavaScript
+
+```html
+<zeta-table
+  id="demo"
+  selectable
+  searchable
+  refreshable
+  clickable-rows
+  show-data-count
+  table-title="Users"
+  pagination-type="numbered"
+  page-size="5"
+  style="--table-row-height: 36px;"
+>
+</zeta-table>
+
+<script type="module">
+  import "@zebra-fed/zeta-web/components/table/table.js";
+
+  const table = document.getElementById("demo");
+
+  table.columns = [
+    { field: "name", title: "Name", width: 180, sortable: true },
+    { field: "email", title: "Email", width: 220 },
+    { field: "role", title: "Role", width: 120 }
+  ];
+
+  table.data = [
+    { id: 1, name: "Alice", email: "alice@acme.com", role: "Admin" },
+    { id: 2, name: "Bob", email: "bob@acme.com", role: "Editor" },
+    { id: 3, name: "Carol", email: "carol@acme.com", role: "Viewer" }
+  ];
+
+  table.addEventListener("rowClick", e => {
+    console.log("Clicked:", e.detail);
+  });
+
+  table.addEventListener("sortChange", e => {
+    console.log("Sort:", e.detail.field, e.detail.direction);
+  });
+
+  table.addEventListener("tableRefresh", () => {
+    console.log("Refresh triggered");
+  });
+</script>
+```
+
+---
+
+## Row Actions Example
+
+Row actions add a kebab menu (three-dot icon) as the last column. Each row defines its own actions via `_actions`, or you can set a fallback via the `rowActions` property.
+
+```javascript
+table.data = [
+  {
+    id: 1,
+    name: "Alice",
+    role: "Admin",
+    _actions: [
+      { key: "edit", label: "Edit" },
+      { key: "delete", label: "Delete" }
+    ]
+  },
+  {
+    id: 2,
+    name: "Bob",
+    role: "Viewer",
+    _actions: [
+      { key: "edit", label: "Edit" },
+      { key: "delete", label: "Delete", disabled: true }
+    ]
+  }
+];
+
+table.addEventListener("rowAction", e => {
+  const { actionKey, row, rowIndex } = e.detail;
+  console.log("Action:", actionKey, "on", row.name);
+});
+```
+
+---
+
+## How to use in React
+
+### Using `ZetaTableReact` wrapper (recommended)
+
+The `ZetaTableReact` wrapper from `@zebra-fed/zeta-web/react` provides:
+
+- Full prop/event typing via `@lit/react`
+- Automatic slotting of React elements passed as cell values
+- Works with React 18+ (matches the published `peerDependencies`)
+- In React 19+, `onSortChange` maps to the `sortChange` event natively; the wrapper handles this for all versions.
+
+#### Plain text cells
+
+```tsx
+import { ZetaTableReact } from "@zebra-fed/zeta-web/react";
+
+const columns = [
+  { field: "name", title: "Name", width: 180, sortable: true },
+  { field: "email", title: "Email", width: 220 },
+  { field: "role", title: "Role", width: 120 }
+];
+
+const users = [
+  { id: 1, name: "Alice", email: "alice@acme.com", role: "Admin" },
+  { id: 2, name: "Bob", email: "bob@acme.com", role: "Editor" },
+  { id: 3, name: "Carol", email: "carol@acme.com", role: "Viewer" }
+];
+
+export function UsersTable() {
+  return (
+    <ZetaTableReact
+      columns={columns}
+      data={users}
+      selectable
+      searchable
+      refreshable
+      clickableRows
+      showDataCount
+      tableTitle="Users"
+      paginationType="numbered"
+      pageSize={5}
+      onSortChange={e => console.log("Sort:", e.detail.field, e.detail.direction)}
+      onRowClick={e => console.log("Clicked:", e.detail.row)}
+      onTableRefresh={() => console.log("Refresh")}
+      style={{ "--table-row-height": "36px" } as React.CSSProperties}
+    />
+  );
+}
+```
+
+#### React components as cell values
+
+Pass React elements directly in `data` — the wrapper automatically handles slot-based rendering:
+
+```tsx
+import { ZetaTableReact } from "@zebra-fed/zeta-web/react";
+
+function StatusBadge({ status }: { status: string }) {
+  return (
+    <span
+      style={{
+        background: status === "active" ? "#d1fae5" : "#fee2e2",
+        color: status === "active" ? "#065f46" : "#991b1b",
+        padding: "2px 8px",
+        borderRadius: "10px",
+        fontSize: "12px"
+      }}
+    >
+      {status}
+    </span>
+  );
+}
+
+const columns = [
+  { field: "name", title: "Name", width: 180, sortable: true },
+  { field: "email", title: "Email", width: 220 },
+  { field: "status", title: "Status", width: 120 }
+];
+
+export function UsersTable() {
+  const data = [
+    { id: 1, name: "Alice", email: "alice@acme.com", status: <StatusBadge status="active" /> },
+    { id: 2, name: "Bob", email: "bob@acme.com", status: <StatusBadge status="inactive" /> },
+    { id: 3, name: "Carol", email: "carol@acme.com", status: <StatusBadge status="active" /> }
+  ];
+
+  return (
+    <ZetaTableReact
+      columns={columns}
+      data={data}
+      selectable
+      showDataCount
+      tableTitle="Users"
+      paginationType="numbered"
+      pageSize={5}
+      onRowAction={e => console.log("Action:", e.detail.actionKey, e.detail.row)}
+      style={{ "--table-row-height": "36px" } as React.CSSProperties}
+    />
+  );
+}
+```
+
+#### Event handler typing
+
+All event handlers receive a typed `CustomEvent`:
+
+```tsx
+import type { SortDirection } from "@zebra-fed/zeta-web/react";
+
+const handleSortChange = (e: CustomEvent<{ field: string; direction: SortDirection }>) => {
+  const { field, direction } = e.detail;
+};
+
+const handleRowAction = (e: CustomEvent<{ actionKey: string; row: any; rowIndex: number }>) => {
+  const { actionKey, row } = e.detail;
+};
+
+const handleLoadMore = (e: CustomEvent<{ currentCount: number }>) => {
+  fetchNextPage();
+};
+```
+
+---
+
+### Without the wrapper (raw element + ref)
+
+For plain text data without React components in cells, you can use the raw element directly:
+
+**React 19+** — native custom element support:
+
+```tsx
+import "@zebra-fed/zeta-web/components/table/table.js";
+
+export function UsersTable() {
+  return <zeta-table columns={columns} data={users} selectable onSortChange={e => console.log(e.detail)} style={{ "--table-row-height": "36px" }} />;
+}
+```
+
+**React 18 and below** — use a ref:
+
+```tsx
+import { useRef, useEffect } from "react";
+import "@zebra-fed/zeta-web/components/table/table.js";
+
+export function UsersTable() {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    el.columns = columns;
+    el.data = users;
+    el.addEventListener("sortChange", handleSort);
+    el.addEventListener("rowClick", handleRowClick);
+    return () => {
+      el.removeEventListener("sortChange", handleSort);
+      el.removeEventListener("rowClick", handleRowClick);
+    };
+  }, []);
+
+  return (
+    <zeta-table
+      ref={ref}
+      selectable
+      show-data-count
+      table-title="Users"
+      pagination-type="numbered"
+      page-size="5"
+      style={{ "--table-row-height": "36px" } as React.CSSProperties}
+    />
+  );
+}
+```
+
+---
+
+## How to use in Angular
+
+Add `CUSTOM_ELEMENTS_SCHEMA` to your module:
+
+```typescript
+// app.module.ts
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
+import "@zebra-fed/zeta-web/components/table/table.js";
+
+@NgModule({ schemas: [CUSTOM_ELEMENTS_SCHEMA] })
+export class AppModule {}
+```
+
+### Plain text cells
+
+```html
+<!-- users-table.component.html -->
+<zeta-table
+  #zetaTable
+  selectable
+  searchable
+  refreshable
+  clickable-rows
+  show-data-count
+  table-title="Users"
+  pagination-type="numbered"
+  page-size="5"
+  [style.--table-row-height]="'36px'"
+  (sortChange)="onSort($event)"
+  (rowClick)="onRowClick($event)"
+  (tableRefresh)="onRefresh()"
+>
+</zeta-table>
+```
+
+```typescript
+// users-table.component.ts
+import { Component, ViewChild, ElementRef, AfterViewInit } from "@angular/core";
+
+@Component({ selector: "app-users-table", templateUrl: "./users-table.component.html" })
+export class UsersTableComponent implements AfterViewInit {
+  @ViewChild("zetaTable") tableRef!: ElementRef;
+
+  columns = [
+    { field: "name", title: "Name", width: 180, sortable: true },
+    { field: "email", title: "Email", width: 220 },
+    { field: "role", title: "Role", width: 120 }
+  ];
+
+  users = [
+    { id: 1, name: "Alice", email: "alice@acme.com", role: "Admin" },
+    { id: 2, name: "Bob", email: "bob@acme.com", role: "Editor" },
+    { id: 3, name: "Carol", email: "carol@acme.com", role: "Viewer" }
+  ];
+
+  ngAfterViewInit() {
+    const table = this.tableRef.nativeElement;
+    table.columns = this.columns;
+    table.data = this.users;
+  }
+
+  onSort(e: CustomEvent) {
+    console.log("Sort:", e.detail.field, e.detail.direction);
+  }
+
+  onRowClick(e: CustomEvent) {
+    console.log("Clicked:", e.detail.row);
+  }
+
+  onRefresh() {
+    console.log("Refresh");
+  }
+}
+```
+
+#### Custom elements in cells
+
+**Using `document.createElement`:**
+
+```typescript
+private mapData(users: any[]): any[] {
+  return users.map((user) => {
+    const badge = document.createElement("span");
+    badge.textContent = user.status;
+    badge.className = `badge badge-${user.status}`;
+
+    return {
+      id: user.id,
+      name: user.name,
+      status: badge,
+    };
+  });
+}
+```
+
+**Using Angular components (via `ViewContainerRef`):**
+
+```html
+<!-- Add a hidden host for dynamic components -->
+<ng-container #cellHost></ng-container>
+```
+
+```typescript
+import { ViewChild, ViewContainerRef, ComponentRef, Type } from "@angular/core";
+
+@ViewChild("cellHost", { read: ViewContainerRef }) cellHost!: ViewContainerRef;
+
+private cellRefs: ComponentRef<any>[] = [];
+
+private mapData(users: any[]): any[] {
+  this.cellRefs.forEach((ref) => ref.destroy());
+  this.cellRefs = [];
+
+  return users.map((user) => ({
+    id: user.id,
+    name: user.name,
+    status: this.renderCell(StatusBadgeComponent, { status: user.status }),
+  }));
+}
+
+private renderCell(component: Type<any>, data: any): HTMLElement {
+  const ref = this.cellHost.createComponent(component);
+  Object.assign(ref.instance, data);
+  ref.changeDetectorRef.detectChanges();
+  this.cellRefs.push(ref);
+  const el = ref.location.nativeElement as HTMLElement;
+  el.style.display = "contents";
+  return el;
+}
+```
+
+---
+
+### How to use in Vue 3
+
+Use the `.prop` modifier to pass JS objects as properties:
+
+```typescript
+// main.ts
+import { createApp } from "vue";
+import "@zebra-fed/zeta-web/index.css";
+import "@zebra-fed/zeta-web/components/table/table.js";
+
+const app = createApp(App);
+app.config.compilerOptions.isCustomElement = tag => tag.startsWith("zeta-");
+app.mount("#app");
+```
+
+#### Plain text cells
+
+```vue
+<template>
+  <zeta-table
+    :columns.prop="columns"
+    :data.prop="users"
+    selectable
+    searchable
+    refreshable
+    clickable-rows
+    show-data-count
+    table-title="Users"
+    pagination-type="numbered"
+    page-size="5"
+    :style="{ '--table-row-height': '36px' }"
+    @rowClick="e => console.log('Clicked:', e.detail)"
+    @sortChange="e => console.log('Sort:', e.detail)"
+    @tableRefresh="() => console.log('Refresh')"
+  />
+</template>
+
+<script setup>
+const columns = [
+  { field: "name", title: "Name", width: 180, sortable: true },
+  { field: "email", title: "Email", width: 220 },
+  { field: "role", title: "Role", width: 120 }
+];
+
+const users = [
+  { id: 1, name: "Alice", email: "alice@acme.com", role: "Admin" },
+  { id: 2, name: "Bob", email: "bob@acme.com", role: "Editor" },
+  { id: 3, name: "Carol", email: "carol@acme.com", role: "Viewer" }
+];
+</script>
+```
+
+#### Custom elements in cells
+
+**Using Vue components (via `render` + `h`):**
+
+```vue
+<template>
+  <zeta-table :columns.prop="columns" :data.prop="tableData" selectable show-data-count table-title="Users" :style="{ '--table-row-height': '36px' }" />
+</template>
+
+<script setup>
+import { computed, h, render, onUnmounted } from "vue";
+import StatusBadge from "./StatusBadge.vue";
+
+const columns = [
+  { field: "name", title: "Name", width: 180, sortable: true },
+  { field: "email", title: "Email", width: 220 },
+  { field: "status", title: "Status", width: 120 },
+];
+
+const users = [
+  { id: 1, name: "Alice", email: "alice@acme.com", status: "active" },
+  { id: 2, name: "Bob",   email: "bob@acme.com",   status: "inactive" },
+  { id: 3, name: "Carol", email: "carol@acme.com",  status: "active" },
+];
+
+const containers: HTMLElement[] = [];
+
+function renderVueComponent(component, props) {
+  const container = document.createElement("div");
+  container.style.display = "contents";
+  render(h(component, props), container);
+  containers.push(container);
+  return container;
+}
+
+const tableData = computed(() => {
+  containers.forEach((el) => render(null, el));
+  containers.length = 0;
+
+  return users.map((user) => ({
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    status: renderVueComponent(StatusBadge, { status: user.status }),
+  }));
+});
+
+onUnmounted(() => {
+  containers.forEach((el) => render(null, el));
+});
+</script>
+```
+
+```vue
+<!-- StatusBadge.vue -->
+<template>
+  <span :style="badgeStyle">{{ status }}</span>
+</template>
+
+<script setup>
+import { computed } from "vue";
+const props = defineProps({ status: String });
+
+const badgeStyle = computed(() => ({
+  background: props.status === "active" ? "#d1fae5" : "#fee2e2",
+  color: props.status === "active" ? "#065f46" : "#991b1b",
+  padding: "2px 8px",
+  borderRadius: "10px",
+  fontSize: "12px"
+}));
+</script>
+```
+
+**Using `document.createElement`:**
+
+```javascript
+const tableData = computed(() =>
+  users.map(user => {
+    const badge = document.createElement("span");
+    badge.textContent = user.status;
+    badge.style.cssText =
+      user.status === "active"
+        ? "background:#d1fae5; color:#065f46; padding:2px 8px; border-radius:10px; font-size:12px;"
+        : "background:#fee2e2; color:#991b1b; padding:2px 8px; border-radius:10px; font-size:12px;";
+
+    return { id: user.id, name: user.name, email: user.email, status: badge };
+  })
+);
+```
