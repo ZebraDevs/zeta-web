@@ -187,7 +187,7 @@ describe("zeta-table interactions", () => {
       setTimeout(() => (shadow(el).querySelector(".zeta-table-filter-panel-btn--apply") as HTMLElement).click());
       const ev = await oneEvent(el, "columnFilter");
       assert.equal(ev.detail.field, "name");
-      assert.isAbove(ev.detail.selectedValues.length, 0);
+      assert.isAbove((ev.detail.selectedValues as string[]).length, 0);
     });
 
     it("clears filter on empty apply", async () => {
