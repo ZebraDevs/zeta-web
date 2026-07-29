@@ -6,7 +6,8 @@ import "../../icon/icon.js";
 
 /**  Icon buttons are used to trigger actions with an icon.
  *
- * @cssproperty --icon-button-color the color of the button.
+ * @cssproperty --icon-button-color - (Deprecated: Use `--button-color` instead)
+ * 
  * @cssproperty --icon-button-icon-color the color of the icon.
  * @cssproperty --icon-button-icon-color-disabled the color of the icon when the button is disabled.
  * @slot {ZetaIconName} - The name of the icon. Full list of icons can be found at {@link https://design.zebra.com/icons Zeta Icons}.

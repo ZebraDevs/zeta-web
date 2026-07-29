@@ -45,4 +45,8 @@ export default css`
       height: var(--spacing-large);
     }
   }
+
+  :host([flavor]:not([disabled]):not(:hover):not(:active)) > button {
+    --flavor-background-color: var(--button-color);
+  }
 `;

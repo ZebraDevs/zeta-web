@@ -67,5 +67,15 @@ const meta: Meta<ZetaButton> = {
 export default meta;
 
 export const Button: StoryObj = {
-  render: args => html`<zeta-button ${spread(args)}>${args.slot}</zeta-button>`
+  render: ({ slot, ...args }) => {
+    return html`
+      <style>
+        :root {
+          ${args["--button-color"] && `--button-color: ${args["--button-color"]}`} ;
+        }
+      </style>
+      <zeta-button ${spread(args)}>${slot}</zeta-button>
+    `;
+  }
 };
+

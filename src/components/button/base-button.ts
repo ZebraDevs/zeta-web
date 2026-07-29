@@ -6,6 +6,9 @@ import styles from "./base-button.styles.js";
 import { ContourableThree } from "../../mixins/contourable-three.js";
 
 /**
+ * 
+ * @cssproperty --button-color the color of the button.
+ * 
  * @event {SubmitEvent} submit - Fired when the button is clicked and has the type submit
  */
 export class BaseButton extends ContourableThree(Size(Interactive(LitElement))) {
