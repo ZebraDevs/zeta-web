@@ -48,6 +48,7 @@ export default css`
 
   :host([flavor]:not([disabled]):not(:hover):not(:active)) > button {
     --flavor-background-color: var(--button-color);
+    --flavor-text-color: var(--button-text-color);
   }
       
   :host([disabled]) > button > zeta-icon,

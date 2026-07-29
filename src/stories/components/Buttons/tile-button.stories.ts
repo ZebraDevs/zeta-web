@@ -57,6 +57,7 @@ export const TileButton: StoryObj = {
       <style>
         :root {
           ${args["--button-color"] && `--button-color: ${args["--button-color"]}`} ;
+          ${args["--button-text-color"] && `--button-text-color: ${args["--button-text-color"]}`} ;
           ${args["--icon-button-icon-color"] && `--icon-button-icon-color: ${args["--icon-button-icon-color"]}`} ;
           ${args["--icon-button-icon-color-disabled"] && `--icon-button-icon-color-disabled: ${args["--icon-button-icon-color-disabled"]}`} ;
         }
