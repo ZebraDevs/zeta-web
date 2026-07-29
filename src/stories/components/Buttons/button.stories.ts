@@ -72,6 +72,8 @@ export const Button: StoryObj = {
       <style>
         :root {
           ${args["--button-color"] && `--button-color: ${args["--button-color"]}`} ;
+          ${args["--icon-button-icon-color"] && `--icon-button-icon-color: ${args["--icon-button-icon-color"]}`} ;
+          ${args["--icon-button-icon-color-disabled"] && `--icon-button-icon-color-disabled: ${args["--icon-button-icon-color-disabled"]}`} ;
         }
       </style>
       <zeta-button ${spread(args)}>${slot}</zeta-button>

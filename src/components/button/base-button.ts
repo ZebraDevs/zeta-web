@@ -8,7 +8,8 @@ import { ContourableThree } from "../../mixins/contourable-three.js";
 /**
  * 
  * @cssproperty --button-color the color of the button.
- * 
+ * @cssproperty --icon-button-icon-color the color of the icon.
+ * @cssproperty --icon-button-icon-color-disabled the color of the icon when the button is disabled.
  * @event {SubmitEvent} submit - Fired when the button is clicked and has the type submit
  */
 export class BaseButton extends ContourableThree(Size(Interactive(LitElement))) {
