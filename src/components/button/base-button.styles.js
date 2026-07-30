@@ -46,7 +46,7 @@ export default css`
     }
   }
 
-  :host([flavor]:not([disabled]):not(:hover):not(:active)) > button {
+  :host([flavor="custom"]:not([disabled]):not(:hover):not(:active)) > button {
     --flavor-background-color: var(--button-color);
     --flavor-text-color: var(--button-text-color);
   }
@@ -56,8 +56,8 @@ export default css`
     --icon-color: var(--icon-button-icon-color-disabled, var(--main-disabled));
   }
 
-  :host([flavor]:not([disabled])) > button > zeta-icon,
-  :host([flavor]:not([disabled])) ::slotted(zeta-icon) {
+  :host([flavor="custom"]:not([disabled])) > button > zeta-icon,
+  :host([flavor="custom"]:not([disabled])) ::slotted(zeta-icon) {
     --icon-color: var(--icon-button-icon-color, var(--state-default-enabled));
   }
 
@@ -65,16 +65,16 @@ export default css`
   :host([flavor="text"]:not([disabled])) > button > zeta-icon,
   :host([flavor="outline"]:not([disabled])) ::slotted(zeta-icon),
   :host([flavor="text"]:not([disabled])) ::slotted(zeta-icon) {
-    --icon-color: var(--icon-button-icon-color, var(--main-primary));
+    --icon-color: var(--main-primary);
   }
 
   :host([flavor="outline-subtle"]:not([disabled])) > button > zeta-icon,
   :host([flavor="outline-subtle"]:not([disabled])) ::slotted(zeta-icon) {
-    --icon-color: var(--icon-button-icon-color, var(--main-default));
+    --icon-color: var(--main-default);
   }
 
   :host([flavor="subtle"]:not([disabled])) > button > zeta-icon,
   :host([flavor="subtle"]:not([disabled])) ::slotted(zeta-icon) {
-    --icon-color: var(--icon-button-icon-color, var(--main-subtle));
+    --icon-color: var(--main-subtle);
   }
 `;

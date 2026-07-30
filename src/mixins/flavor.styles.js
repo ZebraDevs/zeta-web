@@ -68,6 +68,23 @@ export default css`
       }
     }
   }
+  :host([flavor="custom"]:not([disabled])) > :first-child {
+    background-color: var(--flavor-background-color, var(--state-primary-enabled));
+    color: var(--flavor-text-color , var(--state-default-enabled));
+    -webkit-tap-highlight-color: transparent;
+    &:active {
+      background-color: var(--state-negative-selected);
+    }
+
+    @media (hover: hover), (hover: none) and (pointer: fine) {
+      &:hover {
+        background-color: var(--state-primary-hover);
+      }
+      &:active {
+        background-color: var(--state-primary-selected);
+      }
+    }
+  }
   :host([flavor="outline"]:not([disabled])) > :first-child,
   :host([flavor="outline-subtle"]:not([disabled])) > :first-child,
   :host([flavor="text"]:not([disabled])) > :first-child,
