@@ -46,7 +46,7 @@ export default css`
     }
   }
 
-  :host([flavor="custom"]:not([disabled]):not(:hover):not(:active)) > button {
+  :host([flavor="custom"]:not([disabled])) > button {
     --flavor-background-color: var(--button-color);
     --flavor-text-color: var(--button-text-color);
   }

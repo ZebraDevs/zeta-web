@@ -73,15 +73,18 @@ export default css`
     color: var(--flavor-text-color , var(--state-default-enabled));
     -webkit-tap-highlight-color: transparent;
     &:active {
-      background-color: var(--state-negative-selected);
+      background-color: var(--flavor-background-color, var(--state-primary-enabled));
+      filter: brightness(0.85);
     }
 
     @media (hover: hover), (hover: none) and (pointer: fine) {
       &:hover {
-        background-color: var(--state-primary-hover);
+        background-color: var(--flavor-background-color, var(--state-primary-enabled));
+        filter: brightness(0.92);
       }
       &:active {
-        background-color: var(--state-primary-selected);
+        background-color: var(--flavor-background-color, var(--state-primary-enabled));
+        filter: brightness(0.82);
       }
     }
   }
