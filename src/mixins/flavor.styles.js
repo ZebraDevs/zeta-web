@@ -19,7 +19,7 @@ export default css`
   }
   :host([flavor="secondary"]:not([disabled])) > :first-child {
     background-color: var(--flavor-background-color, var(--state-secondary-enabled));
-    color: var(--flavor-text-color , var(--state-default-enabled));
+    color: var(--flavor-text-color, var(--state-default-enabled));
     -webkit-tap-highlight-color: transparent;
     &:active {
       background-color: var(--state-secondary-selected);
@@ -53,7 +53,7 @@ export default css`
   }
   :host([flavor="negative"]:not([disabled])) > :first-child {
     background-color: var(--flavor-background-color, var(--state-negative-enabled));
-    color: var(--flavor-text-color , var(--state-default-enabled));
+    color: var(--flavor-text-color, var(--state-default-enabled));
     -webkit-tap-highlight-color: transparent;
     &:active {
       background-color: var(--state-negative-selected);
@@ -70,21 +70,23 @@ export default css`
   }
   :host([flavor="custom"]:not([disabled])) > :first-child {
     background-color: var(--flavor-background-color, var(--state-primary-enabled));
-    color: var(--flavor-text-color , var(--state-default-enabled));
+    color: var(--flavor-text-color, var(--state-default-enabled));
     -webkit-tap-highlight-color: transparent;
     &:active {
-      background-color: var(--flavor-background-color, var(--state-primary-enabled));
-      filter: brightness(0.85);
+      background-color: var(--button-active-color, var(--flavor-background-color, var(--state-primary-enabled)));
+      /* If --button-active-color is set its color value is invalid for filter, resolving to none */
+      filter: var(--button-active-color, brightness(0.85));
     }
 
     @media (hover: hover), (hover: none) and (pointer: fine) {
       &:hover {
-        background-color: var(--flavor-background-color, var(--state-primary-enabled));
-        filter: brightness(0.92);
+        background-color: var(--button-hover-color, var(--flavor-background-color, var(--state-primary-enabled)));
+        /* If --button-hover-color is set its color value is invalid for filter, resolving to none */
+        filter: var(--button-hover-color, brightness(0.92));
       }
       &:active {
-        background-color: var(--flavor-background-color, var(--state-primary-enabled));
-        filter: brightness(0.82);
+        background-color: var(--button-active-color, var(--flavor-background-color, var(--state-primary-enabled)));
+        filter: var(--button-active-color, brightness(0.82));
       }
     }
   }
@@ -110,7 +112,7 @@ export default css`
     }
   }
   :host([flavor="outline"]:not([disabled])) > :first-child {
-    color: var(--flavor-text-color , var(--main-primary));
+    color: var(--flavor-text-color, var(--main-primary));
     box-shadow: 0 0 0 var(--border-size-small) var(--border-primary-main);
   }
   :host([flavor="outline-subtle"]:not([disabled])) > :first-child {

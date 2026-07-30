@@ -75,10 +75,11 @@ export const Button: StoryObj = {
           ${args["--button-text-color"] && `--button-text-color: ${args["--button-text-color"]}`} ;
           ${args["--icon-button-icon-color"] && `--icon-button-icon-color: ${args["--icon-button-icon-color"]}`} ;
           ${args["--icon-button-icon-color-disabled"] && `--icon-button-icon-color-disabled: ${args["--icon-button-icon-color-disabled"]}`} ;
+          ${args["--button-hover-color"] && `--button-hover-color: ${args["--button-hover-color"]}`} ;
+          ${args["--button-active-color"] && `--button-active-color: ${args["--button-active-color"]}`} ;
         }
       </style>
       <zeta-button ${spread(args)}>${slot}</zeta-button>
     `;
   }
 };
-
