@@ -71,6 +71,8 @@ export const IconButton: StoryObj = {
           ${args["--icon-button-color"] && `--icon-button-color: ${args["--icon-button-color"]}`} ;
           ${args["--icon-button-icon-color"] && `--icon-button-icon-color: ${args["--icon-button-icon-color"]}`} ;
           ${args["--icon-button-icon-color-disabled"] && `--icon-button-icon-color-disabled: ${args["--icon-button-icon-color-disabled"]}`} ;
+          ${args["--button-hover-color"] && `--button-hover-color: ${args["--button-hover-color"]}`} ;
+          ${args["--button-active-color"] && `--button-active-color: ${args["--button-active-color"]}`} ;
         }
       </style>
       <zeta-icon-button ${spread(args)}>${slot}</zeta-icon-button>
