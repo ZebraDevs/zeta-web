@@ -122,14 +122,14 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
 
   /* INTEGER MODE */
   increment() {
-    if (this.type === "integer" && Number(this.value) !== this.max) {
+    if (this.type === "integer" && (this.max === undefined || Number(this.value) < Number(this.max))) {
       this.value = ((parseFloat(this.value) || 0) + 1).toString();
       this.dispatchEvent(new Event("change"));
     }
   }
 
   decrement() {
-    if (this.type === "integer" && Number(this.value) !== this.min) {
+    if (this.type === "integer" && (this.min === undefined || Number(this.value) > Number(this.min))) {
       this.value = ((parseFloat(this.value) || 0) - 1).toString();
       this.dispatchEvent(new Event("change"));
     }

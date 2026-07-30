@@ -108,12 +108,14 @@ export class ZetaStepperInput extends FormField(Contourable(LitElement)) {
 
   private validateValue(value: string): string {
     const valueToNumber = Number(value);
+    const max = this.max !== undefined ? Number(this.max) : undefined;
+    const min = this.min !== undefined ? Number(this.min) : undefined;
     if (isNaN(valueToNumber) || valueToNumber === undefined) {
       value = "0";
-    } else if (this.max && valueToNumber >= this.max) {
-      value = this.max.toString();
-    } else if (this.min !== undefined && valueToNumber <= this.min) {
-      value = this.min.toString();
+    } else if (max !== undefined && isFinite(max) && valueToNumber >= max) {
+      value = String(max);
+    } else if (min !== undefined && isFinite(min) && valueToNumber <= min) {
+      value = String(min);
     } else {
       value = valueToNumber.toString();
     }
@@ -135,7 +137,7 @@ export class ZetaStepperInput extends FormField(Contourable(LitElement)) {
       <div>
         <div class="container">
           <zeta-icon-button
-            .disabled=${this.disabled || (this.min !== undefined && Number(this.value) <= this.min)}
+            .disabled=${this.disabled || (this.min !== undefined && isFinite(Number(this.min)) && Number(this.value) <= Number(this.min))}
             shape=${this.rounded ? "rounded" : "sharp"}
             size=${this.size}
             flavor="outline-subtle"
@@ -147,7 +149,7 @@ export class ZetaStepperInput extends FormField(Contourable(LitElement)) {
           </zeta-icon-button>
           <div class="input-container contourable-target">${super.render()}</div>
           <zeta-icon-button
-            .disabled=${this.disabled || (this.max !== undefined && Number(this.value) >= this.max)}
+            .disabled=${this.disabled || (this.max !== undefined && isFinite(Number(this.max)) && Number(this.value) >= Number(this.max))}
             shape=${this.rounded ? "rounded" : "sharp"}
             size=${this.size}
             @blur=${(e: FocusEvent) => this.handleBlur(e)}
