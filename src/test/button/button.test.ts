@@ -1,6 +1,5 @@
 import { fixture, html, expect, unsafeStatic, elementUpdated } from "@open-wc/testing";
 import type { ZetaButton } from "../../components/button/button.js";
-import { getCssVarValue } from "../utils.js";
 import "../../components/button/button.js";
 import "../../css/styles.css";
 import "../../generated/tokens/primitives.css";
