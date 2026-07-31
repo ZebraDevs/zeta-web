@@ -105,15 +105,7 @@ describe("zeta-button", () => {
     });
   });
 
-  // describe("Interaction", () => {});
-
-  // describe("Golden", () => {});
-
-  // describe("Performance", () => {});
-});
-
-describe("Styling", () => {
-  describe("Icon Color Mappings", () => {
+  describe("Styling", () => {
     it("should apply correct icon color for primary flavor", async () => {
       const button: ZetaButton = await fixture(html`<zeta-button flavor="primary" leadingIcon="add">Button</zeta-button>`);
       const icon = button.shadowRoot?.querySelector("zeta-icon");
@@ -146,9 +138,7 @@ describe("Styling", () => {
 
       expect(getComputedStyle(icon!).getPropertyValue("--icon-color").trim()).to.equal(testColor);
     });
-  });
 
-  describe("Custom Flavor Dynamic Color Variable Overrides", () => {
     it("should apply custom background and text color variables when enabled", async () => {
       const button: ZetaButton = await fixture(html`<zeta-button flavor="custom">Button</zeta-button>`);
       const buttonEl = button.shadowRoot?.querySelector("button");
@@ -201,6 +191,12 @@ describe("Styling", () => {
       expect(getComputedStyle(icon!).getPropertyValue("--icon-color").trim()).to.equal(testColor);
     });
   });
+
+  // describe("Interaction", () => {});
+
+  // describe("Golden", () => {});
+
+  // describe("Performance", () => {});
 });
 
 describe("zeta-button AS form reset control", () => {
