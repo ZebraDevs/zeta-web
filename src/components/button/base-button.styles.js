@@ -50,9 +50,14 @@ export default css`
     --flavor-background-color: var(--button-color);
     --flavor-text-color: var(--button-text-color);
   }
+
+  :host([flavor="custom"][disabled]) > button {
+    --flavor-disabled-background-color: var(--button-disabled-color);
+    --flavor-disabled-text-color: var(--button-disabled-text-color);
+  }
       
-  :host([disabled]) > button > zeta-icon,
-  :host([disabled]) ::slotted(zeta-icon) {
+  :host([flavor="custom"][disabled]) > button > zeta-icon,
+  :host([flavor="custom"][disabled]) ::slotted(zeta-icon) {
     --icon-color: var(--icon-button-icon-color-disabled, var(--main-disabled));
   }
 
@@ -77,4 +82,5 @@ export default css`
   :host([flavor="subtle"]:not([disabled])) ::slotted(zeta-icon) {
     --icon-color: var(--main-subtle);
   }
+    
 `;

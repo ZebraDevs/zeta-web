@@ -126,7 +126,13 @@ export default css`
     color: var(--flavor-text-color, var(--main-subtle));
   }
 
-  :host([disabled]) > * {
-    background: var(--flavor-disabled-background-color, var(--surface-disabled));
+  :host([disabled]) > :first-child {
+    background-color: var(--surface-disabled);
   }
+
+  :host([flavor="custom"][disabled]) > :first-child {
+    background-color: var(--flavor-disabled-background-color, var(--surface-disabled));
+    color: var(--flavor-disabled-text-color, var(--main-disabled));
+  }
+
 `;

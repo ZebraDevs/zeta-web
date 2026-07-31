@@ -10,9 +10,11 @@ import { ContourableThree } from "../../mixins/contourable-three.js";
  * @cssproperty --button-color the color of the custom button.
  * @cssproperty --button-text-color the color of text for the custom button.
  * @cssproperty --icon-button-icon-color the color of the icon for the custom button.
- * @cssproperty --icon-button-icon-color-disabled the color of the icon when the button is disabled.
- * @cssproperty --button-hover-color - Explicit hover background color for the custom flavor. When set, overrides the default brightness filter on hover.
- * @cssproperty --button-active-color - Explicit active/pressed background color for the custom flavor. When set, overrides the default brightness filter on press.
+ * @cssproperty --icon-button-icon-color-disabled the color of the icon when the custom button is disabled.
+ * @cssproperty --button-disabled-color the background color of the disabled custom button.
+ * @cssproperty --button-disabled-text-color the text color of the disabled custom button.
+ * @cssproperty --button-hover-color explicit hover background color for the custom button. When set, overrides the default brightness filter on hover.
+ * @cssproperty --button-active-color explicit active/pressed background color for the custom button. When set, overrides the default brightness filter on press.
  * @event {SubmitEvent} submit - Fired when the button is clicked and has the type submit
  */
 export class BaseButton extends ContourableThree(Size(Interactive(LitElement))) {
