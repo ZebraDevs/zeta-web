@@ -55,7 +55,7 @@ export default css`
     --flavor-disabled-background-color: var(--button-disabled-color);
     --flavor-disabled-text-color: var(--button-disabled-text-color);
   }
-      
+
   :host([flavor="custom"][disabled]) > button > zeta-icon,
   :host([flavor="custom"][disabled]) ::slotted(zeta-icon) {
     --icon-color: var(--icon-button-icon-color-disabled, var(--main-disabled));
@@ -91,5 +91,4 @@ export default css`
   :host([flavor="subtle"]:not([disabled])) ::slotted(zeta-icon) {
     --icon-color: var(--main-subtle);
   }
-    
 `;

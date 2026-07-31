@@ -134,5 +134,4 @@ export default css`
     background-color: var(--flavor-disabled-background-color, var(--surface-disabled));
     color: var(--flavor-disabled-text-color, var(--main-disabled));
   }
-
 `;

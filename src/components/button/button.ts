@@ -13,7 +13,7 @@ import type { ZetaIconName } from "@zebra-fed/zeta-icons";
 export type ButtonFlavor = Exclude<Flavor, "inverse">;
 
 /** Buttons are used to trigger actions.
- *  
+ *
  * @slot - Content shown on button; typically text.
  * @part button - The button element
  * @part icon - The icon element of the button, for buttons of type "icon".
@@ -47,7 +47,7 @@ export class ZetaButton extends Flavored(BaseButton) {
    * - `"text"` - Primary text only.
    * - `"subtle"` - White background with grey text. Same action colors as 'text' flavor.
    * - `"custom"` - Custom color background with custom color text.
-   * 
+   *
    * @remarks The value `"secondary"` is no longer supported and should not be used.
    */
   @property({ type: String, reflect: true }) flavor: ButtonFlavor = "primary";

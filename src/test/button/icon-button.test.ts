@@ -120,7 +120,7 @@ describe("Styling", () => {
     const icon: Element | null | undefined = iconButton.shadowRoot?.querySelector("zeta-icon");
     await expect(getComputedStyle(icon!).color).to.equal(getCssVarColorValue(icon!, "--main-primary"));
   });
-  
+
   it("should display correct icon color for text flavor", async () => {
     const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button flavor="text">${iconName}</zeta-icon-button>`);
     await elementUpdated(iconButton);
@@ -142,7 +142,6 @@ describe("Styling", () => {
     await expect(getComputedStyle(icon!).color).to.equal(getCssVarColorValue(icon!, "--main-subtle"));
   });
 
-  
   flavors.map(flavor => {
     it(`button should have correct background color for the ${flavor} flavor`, async () => {
       const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button>${iconName}</zeta-icon-button>`);

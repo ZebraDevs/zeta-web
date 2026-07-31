@@ -6,7 +6,7 @@ import styles from "./base-button.styles.js";
 import { ContourableThree } from "../../mixins/contourable-three.js";
 
 /**
- * 
+ *
  * @cssproperty --button-color the color of the custom button.
  * @cssproperty --button-text-color the color of text for the custom button.
  * @cssproperty --icon-button-icon-color the color of the icon for the custom button.
