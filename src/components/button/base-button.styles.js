@@ -73,6 +73,15 @@ export default css`
     --icon-color: var(--main-primary);
   }
 
+  :host([flavor="primary"]:not([disabled])) > button > zeta-icon,
+  :host([flavor="positive"]:not([disabled])) > button > zeta-icon,
+  :host([flavor="negative"]:not([disabled])) > button > zeta-icon,
+  :host([flavor="primary"]:not([disabled])) ::slotted(zeta-icon),
+  :host([flavor="positive"]:not([disabled])) ::slotted(zeta-icon),
+  :host([flavor="negative"]:not([disabled])) ::slotted(zeta-icon) {
+    --icon-color: var(--state-default-enabled);
+  }
+
   :host([flavor="outline-subtle"]:not([disabled])) > button > zeta-icon,
   :host([flavor="outline-subtle"]:not([disabled])) ::slotted(zeta-icon) {
     --icon-color: var(--main-default);
