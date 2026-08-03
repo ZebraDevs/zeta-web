@@ -19,38 +19,38 @@ const meta: Meta<ZetaTileButton> = {
     slot: "Button",
     type: undefined,
     value: "",
-    onclick: fn(),
+    onclick: fn()
   },
   parameters: {
     design: {
-      url: "https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=36355-10869",
+      url: "https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=36355-10869"
     },
     status: {
-      type: "ready",
+      type: "ready"
     },
     // Hide the CSS variables from the Controls panel
     controls: {
-      exclude: /^--/,
-    },
+      exclude: /^--/
+    }
   },
   argTypes: {
     shape: {
       options: ["sharp", "rounded"],
-      control: { type: "inline-radio" },
+      control: { type: "inline-radio" }
     },
     type: {
       options: ["button", "submit", "reset"],
       control: {
-        type: "select",
-      },
+        type: "select"
+      }
     },
     icon: {
       options: [null, ...ZetaIconNameList],
-      control: { type: "select" },
+      control: { type: "select" }
     },
     flavor: { table: { disable: true } },
-    size: { table: { disable: true } },
-  },
+    size: { table: { disable: true } }
+  }
 };
 
 export default meta;
@@ -58,5 +58,5 @@ export default meta;
 export const TileButton: StoryObj = {
   render: ({ slot, ...args }) => {
     return html`<zeta-tile-button ${spread(args)}>${slot}</zeta-tile-button>`;
-  },
+  }
 };

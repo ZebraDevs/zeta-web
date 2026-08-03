@@ -77,12 +77,13 @@ export class ZetaButton extends Flavored(BaseButton) {
         part="button"
         class="contourable-target"
       >
-        ${this._buttonType === "icon"
-        ? html`<zeta-icon part="icon" .rounded=${this.shape != "sharp"}><slot></slot></zeta-icon>`
-        : html`${leading}
+        ${
+          this._buttonType === "icon"
+            ? html`<zeta-icon part="icon" .rounded=${this.shape != "sharp"}><slot></slot></zeta-icon>`
+            : html`${leading}
                 <slot></slot>
                 ${trailing}`
-      }
+        }
       </button>
     `;
   }
