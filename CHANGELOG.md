@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.5.0](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.4.0...zeta-web-v1.5.0) (2026-08-03)
+## [1.4.1](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.4.0...zeta-web-v1.4.1) (2026-08-03)
 
 
 ### ✨ New Features
