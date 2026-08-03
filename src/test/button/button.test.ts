@@ -105,7 +105,92 @@ describe("zeta-button", () => {
     });
   });
 
-  // describe("Styling", () => {});
+  describe("Styling", () => {
+    it("should apply correct icon color for primary flavor", async () => {
+      const button: ZetaButton = await fixture(html`<zeta-button flavor="primary" leadingIcon="add">Button</zeta-button>`);
+      const icon = button.shadowRoot?.querySelector("zeta-icon");
+
+      const testColor = "rgb(255, 255, 255)";
+      button.style.setProperty("--state-default-enabled", testColor);
+      await elementUpdated(button);
+
+      expect(getComputedStyle(icon!).getPropertyValue("--icon-color").trim()).to.equal(testColor);
+    });
+
+    it("should apply correct icon color for outline flavor", async () => {
+      const button: ZetaButton = await fixture(html`<zeta-button flavor="outline" leadingIcon="add">Button</zeta-button>`);
+      const icon = button.shadowRoot?.querySelector("zeta-icon");
+
+      const testColor = "rgb(0, 0, 255)";
+      button.style.setProperty("--main-primary", testColor);
+      await elementUpdated(button);
+
+      expect(getComputedStyle(icon!).getPropertyValue("--icon-color").trim()).to.equal(testColor);
+    });
+
+    it("should apply correct icon color for subtle flavor", async () => {
+      const button: ZetaButton = await fixture(html`<zeta-button flavor="subtle" leadingIcon="add">Button</zeta-button>`);
+      const icon = button.shadowRoot?.querySelector("zeta-icon");
+
+      const testColor = "rgb(120, 120, 120)";
+      button.style.setProperty("--main-subtle", testColor);
+      await elementUpdated(button);
+
+      expect(getComputedStyle(icon!).getPropertyValue("--icon-color").trim()).to.equal(testColor);
+    });
+
+    it("should apply custom background and text color variables when enabled", async () => {
+      const button: ZetaButton = await fixture(html`<zeta-button flavor="custom">Button</zeta-button>`);
+      const buttonEl = button.shadowRoot?.querySelector("button");
+
+      const bgColor = "rgb(10, 20, 30)";
+      const textColor = "rgb(200, 210, 220)";
+
+      button.style.setProperty("--button-color", bgColor);
+      button.style.setProperty("--button-text-color", textColor);
+      await elementUpdated(button);
+
+      expect(getComputedStyle(buttonEl!).backgroundColor).to.equal(bgColor);
+      expect(getComputedStyle(buttonEl!).color).to.equal(textColor);
+    });
+
+    it("should apply custom background and text color variables when disabled", async () => {
+      const button: ZetaButton = await fixture(html`<zeta-button flavor="custom" disabled>Button</zeta-button>`);
+      const buttonEl = button.shadowRoot?.querySelector("button");
+
+      const bgColor = "rgb(40, 50, 60)";
+      const textColor = "rgb(140, 150, 160)";
+
+      button.style.setProperty("--button-disabled-color", bgColor);
+      button.style.setProperty("--button-disabled-text-color", textColor);
+      await elementUpdated(button);
+
+      expect(getComputedStyle(buttonEl!).backgroundColor).to.equal(bgColor);
+      expect(getComputedStyle(buttonEl!).color).to.equal(textColor);
+    });
+
+    it("should apply custom icon color variable when enabled via --icon-button-icon-color", async () => {
+      const button: ZetaButton = await fixture(html`<zeta-button flavor="custom" leadingIcon="add">Button</zeta-button>`);
+      const icon = button.shadowRoot?.querySelector("zeta-icon");
+
+      const testColor = "rgb(1, 2, 3)";
+      button.style.setProperty("--icon-button-icon-color", testColor);
+      await elementUpdated(button);
+
+      expect(getComputedStyle(icon!).getPropertyValue("--icon-color").trim()).to.equal(testColor);
+    });
+
+    it("should apply custom icon color variable when disabled via --icon-button-icon-color-disabled", async () => {
+      const button: ZetaButton = await fixture(html`<zeta-button flavor="custom" leadingIcon="add" disabled>Button</zeta-button>`);
+      const icon = button.shadowRoot?.querySelector("zeta-icon");
+
+      const testColor = "rgb(4, 5, 6)";
+      button.style.setProperty("--icon-button-icon-color-disabled", testColor);
+      await elementUpdated(button);
+
+      expect(getComputedStyle(icon!).getPropertyValue("--icon-color").trim()).to.equal(testColor);
+    });
+  });
 
   // describe("Interaction", () => {});
 

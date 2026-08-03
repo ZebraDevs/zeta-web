@@ -79,60 +79,66 @@ describe("zeta-icon-button", () => {
   });
 
   describe("Styling", () => {
-    it("should display correct icon color when disabled", async () => {
+    it("should display correct icon color when disabled by default", async () => {
       const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button>${iconName}</zeta-icon-button>`);
-
       iconButton.setAttribute("disabled", "true");
       await elementUpdated(iconButton);
-
       const icon: Element | null | undefined = iconButton.shadowRoot?.querySelector("zeta-icon");
       await expect(getComputedStyle(icon!).color).to.equal(getCssVarColorValue(icon!, "--main-disabled"));
     });
 
     it("should display correct icon color for primary flavor", async () => {
-      const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button>${iconName}</zeta-icon-button>`);
-
-      iconButton.setAttribute("flavor", "primary");
+      const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button flavor="primary">${iconName}</zeta-icon-button>`);
       await elementUpdated(iconButton);
+      const icon: Element | null | undefined = iconButton.shadowRoot?.querySelector("zeta-icon");
+      await expect(getComputedStyle(icon!).color).to.equal(getCssVarColorValue(icon!, "--state-default-enabled"));
+    });
 
+    it("should display correct icon color for positive flavor", async () => {
+      const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button flavor="positive">${iconName}</zeta-icon-button>`);
+      await elementUpdated(iconButton);
       const icon: Element | null | undefined = iconButton.shadowRoot?.querySelector("zeta-icon");
       await expect(getComputedStyle(icon!).color).to.equal(getCssVarColorValue(icon!, "--state-default-enabled"));
     });
 
     it("should display correct icon color for negative flavor", async () => {
-      const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button>${iconName}</zeta-icon-button>`);
-
-      iconButton.setAttribute("flavor", "negative");
+      const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button flavor="negative">${iconName}</zeta-icon-button>`);
       await elementUpdated(iconButton);
-
       const icon: Element | null | undefined = iconButton.shadowRoot?.querySelector("zeta-icon");
       await expect(getComputedStyle(icon!).color).to.equal(getCssVarColorValue(icon!, "--state-default-enabled"));
     });
 
-    it("should display correct icon color for text flavor", async () => {
-      const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button>${iconName}</zeta-icon-button>`);
-
-      iconButton.setAttribute("flavor", "text");
+    it("should display correct icon color for outline flavor", async () => {
+      const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button flavor="outline">${iconName}</zeta-icon-button>`);
       await elementUpdated(iconButton);
+      const icon: Element | null | undefined = iconButton.shadowRoot?.querySelector("zeta-icon");
+      await expect(getComputedStyle(icon!).color).to.equal(getCssVarColorValue(icon!, "--main-primary"));
+    });
 
+    it("should display correct icon color for text flavor", async () => {
+      const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button flavor="text">${iconName}</zeta-icon-button>`);
+      await elementUpdated(iconButton);
       const icon: Element | null | undefined = iconButton.shadowRoot?.querySelector("zeta-icon");
       await expect(getComputedStyle(icon!).color).to.equal(getCssVarColorValue(icon!, "--main-primary"));
     });
 
     it("should display correct icon color for outline-subtle flavor", async () => {
-      const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button>${iconName}</zeta-icon-button>`);
-
-      iconButton.setAttribute("flavor", "outline-subtle");
+      const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button flavor="outline-subtle">${iconName}</zeta-icon-button>`);
       await elementUpdated(iconButton);
-
       const icon: Element | null | undefined = iconButton.shadowRoot?.querySelector("zeta-icon");
       await expect(getComputedStyle(icon!).color).to.equal(getCssVarColorValue(icon!, "--main-default"));
+    });
+
+    it("should display correct icon color for subtle flavor", async () => {
+      const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button flavor="subtle">${iconName}</zeta-icon-button>`);
+      await elementUpdated(iconButton);
+      const icon: Element | null | undefined = iconButton.shadowRoot?.querySelector("zeta-icon");
+      await expect(getComputedStyle(icon!).color).to.equal(getCssVarColorValue(icon!, "--main-subtle"));
     });
 
     flavors.map(flavor => {
       it(`button should have correct background color for the ${flavor} flavor`, async () => {
         const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button>${iconName}</zeta-icon-button>`);
-
         iconButton.setAttribute("flavor", flavor);
         const button: Element | null | undefined = iconButton.shadowRoot?.querySelector("button");
         const buttonColor = getComputedStyle(button!).backgroundColor;
@@ -153,34 +159,41 @@ describe("zeta-icon-button", () => {
       });
     });
 
-    it("should render the button with the correct color when set by CSS Variable", async () => {
-      const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button>${iconName}</zeta-icon-button>`);
-
-      const testColor = "#BADA55";
-      iconButton.style.setProperty("--icon-button-color", testColor);
+    it("should render the custom button with the correct background color via --button-color", async () => {
+      const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button flavor="custom">${iconName}</zeta-icon-button>`);
+      const testColor = "#55b7da";
+      iconButton.style.setProperty("--button-color", testColor);
+      await elementUpdated(iconButton);
       const button: Element | null | undefined = iconButton.shadowRoot?.querySelector("button");
       const buttonColor = getComputedStyle(button!).backgroundColor;
       await expect(buttonColor).to.equal(toRGB(testColor));
     });
 
-    it("should render the icon with the correct color when set by CSS Variable", async () => {
-      const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button>${iconName}</zeta-icon-button>`);
+    it("should render the custom button with the correct background color when disabled via --button-disabled-color", async () => {
+      const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button flavor="custom" disabled>${iconName}</zeta-icon-button>`);
+      const testColor = "#8e275c";
+      iconButton.style.setProperty("--button-disabled-color", testColor);
+      await elementUpdated(iconButton);
+      const button: Element | null | undefined = iconButton.shadowRoot?.querySelector("button");
+      const buttonColor = getComputedStyle(button!).backgroundColor;
+      await expect(buttonColor).to.equal(toRGB(testColor));
+    });
 
-      const testColor = "#BADA55";
+    it("should render the custom icon with the correct color via --icon-button-icon-color", async () => {
+      const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button flavor="custom">${iconName}</zeta-icon-button>`);
+      const testColor = "#bed8e7";
       iconButton.style.setProperty("--icon-button-icon-color", testColor);
+      await elementUpdated(iconButton);
       const icon: Element | null | undefined = iconButton.shadowRoot?.querySelector("zeta-icon");
       const iconColor = getComputedStyle(icon!).color;
       await expect(iconColor).to.equal(toRGB(testColor));
     });
 
-    it("should render the icon with the correct color when disabled when set by CSS Variable", async () => {
-      const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button>${iconName}</zeta-icon-button>`);
-
-      const testColor = "#BADA55";
+    it("should render the custom icon with the correct color when disabled via --icon-button-icon-color-disabled", async () => {
+      const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button flavor="custom" disabled>${iconName}</zeta-icon-button>`);
+      const testColor = "#ec90bd";
       iconButton.style.setProperty("--icon-button-icon-color-disabled", testColor);
-      iconButton.setAttribute("disabled", "true");
       await elementUpdated(iconButton);
-
       const icon: Element | null | undefined = iconButton.shadowRoot?.querySelector("zeta-icon");
       const iconColor = getComputedStyle(icon!).color;
       await expect(iconColor).to.equal(toRGB(testColor));

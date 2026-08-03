@@ -6,6 +6,16 @@ import styles from "./base-button.styles.js";
 import { ContourableThree } from "../../mixins/contourable-three.js";
 
 /**
+ *
+ * @cssproperty --button-color - The background color of the button when flavor="custom".
+ * @cssproperty --button-text-color - The text color of the button when flavor="custom".
+ * @cssproperty --icon-button-icon-color - The color of the icon when flavor="custom".
+ * @cssproperty --icon-button-icon-color-disabled - The color of the icon when the button is disabled and flavor="custom".
+ * @cssproperty --button-disabled-color - The background color of the disabled button when flavor="custom".
+ * @cssproperty --button-disabled-text-color - The text color of the disabled button when flavor="custom".
+ * @cssproperty --button-hover-color - The background color on hover when flavor="custom" (overrides the default hover filter).
+ * @cssproperty --button-active-color - The background color on active/press when flavor="custom" (overrides the default press filter).
+ *
  * @event {SubmitEvent} submit - Fired when the button is clicked and has the type submit
  */
 export class BaseButton extends ContourableThree(Size(Interactive(LitElement))) {

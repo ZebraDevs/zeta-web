@@ -49,7 +49,7 @@ const meta: Meta<ZetaButton> = {
       }
     },
     flavor: {
-      options: ["primary", "positive", "negative", "outline", "outline-subtle", "text", "subtle"],
+      options: ["primary", "positive", "negative", "outline", "outline-subtle", "text", "subtle", "custom"],
       control: {
         type: "select"
       }
@@ -67,5 +67,21 @@ const meta: Meta<ZetaButton> = {
 export default meta;
 
 export const Button: StoryObj = {
-  render: args => html`<zeta-button ${spread(args)}>${args.slot}</zeta-button>`
+  render: ({ slot, ...args }) => {
+    return html`
+      <style>
+        :root {
+          ${args["--button-color"] && `--button-color: ${args["--button-color"]}`} ;
+          ${args["--button-text-color"] && `--button-text-color: ${args["--button-text-color"]}`} ;
+          ${args["--icon-button-icon-color"] && `--icon-button-icon-color: ${args["--icon-button-icon-color"]}`} ;
+          ${args["--icon-button-icon-color-disabled"] && `--icon-button-icon-color-disabled: ${args["--icon-button-icon-color-disabled"]}`} ;
+          ${args["--button-disabled-color"] && `--button-disabled-color: ${args["--button-disabled-color"]}`} ;
+          ${args["--button-disabled-text-color"] && `--button-disabled-text-color: ${args["--button-disabled-text-color"]}`} ;
+          ${args["--button-hover-color"] && `--button-hover-color: ${args["--button-hover-color"]}`} ;
+          ${args["--button-active-color"] && `--button-active-color: ${args["--button-active-color"]}`} ;
+        }
+      </style>
+      <zeta-button ${spread(args)}>${slot}</zeta-button>
+    `;
+  }
 };

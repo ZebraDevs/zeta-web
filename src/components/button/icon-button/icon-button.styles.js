@@ -29,7 +29,7 @@ export default css`
     height: var(--spacing-3xl);
   }
 
-  :host([flavor]:not([disabled]):not(:hover):not(:active)) > button {
-    --flavor-background-color: var(--icon-button-color);
+  :host([flavor="custom"]:not([disabled])) > button {
+    --flavor-background-color: var(--button-color, var(--icon-button-color));
   }
 `;
