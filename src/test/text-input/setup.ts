@@ -18,8 +18,8 @@ interface Props {
   name?: string;
   value?: string;
   type?: "text" | "date" | "textarea" | "password" | "time" | "number" | "integer";
-  min?: number;
-  max?: number;
+  min?: string | number;
+  max?: string | number;
   rows?: number;
   showClearButton?: boolean;
 }

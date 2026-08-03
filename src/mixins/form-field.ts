@@ -6,6 +6,19 @@ import { type AbstractConstructor } from "./utils.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 import { live } from "lit/directives/live.js";
 
+// Converts attribute strings to numbers when possible, preserving strings (e.g. date values) otherwise.
+const minMaxConverter = {
+  fromAttribute(value: string | null): string | number | undefined {
+    if (value === null || value === "") return undefined;
+    const num = Number(value);
+    return isNaN(num) ? value : num;
+  },
+  toAttribute(value: string | number | undefined): string | null {
+    if (value === undefined) return null;
+    return String(value);
+  }
+};
+
 // Retrieved on 2026/04/10 from https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input
 type GenericInputTypes =
   | "checkbox"
@@ -49,8 +62,8 @@ declare abstract class FormFieldInterface {
   input: HTMLInputElement;
   internals: ElementInternals;
   placeholder: string;
-  min: number;
-  max: number;
+  min?: string | number;
+  max?: string | number;
   readOnly?: boolean;
   abstract handleChange(event: Event): void;
   handleInput(event: Event): void;
@@ -143,11 +156,17 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
     /** Placeholder text shown when value is empty. */
     @property({ type: String, reflect: true }) placeholder?: string;
 
-    /** The minimum value for number inputs */
-    @property({ type: Number, reflect: true }) min?: number;
+    /** The minimum value for number/date/time inputs.
+     *
+     * For date / time inputs, this can be a string in the format of the input type (e.g., "2024-01-01" for date) or a number representing epoch milliseconds.
+     */
+    @property({ converter: minMaxConverter, reflect: true }) min?: string | number;
 
-    /** The maximum value for number inputs */
-    @property({ type: Number, reflect: true }) max?: number;
+    /** The maximum value for number/date/time inputs.
+     *
+     * For date / time inputs, this can be a string in the format of the input type (e.g., "2024-12-31" for date) or a number representing epoch milliseconds.
+     */
+    @property({ converter: minMaxConverter, reflect: true }) max?: string | number;
 
     /** Placeholder text shown when value is empty. */
     @property({ type: Boolean, reflect: true }) readOnly?: boolean;
@@ -254,9 +273,9 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
     private _handleInteger(event: InputEvent) {
       const input = event.target as HTMLInputElement;
       const cursor = input.selectionStart ?? 0;
-
+      const min = this.min !== undefined ? Number(this.min) : undefined;
       // Remove leading minus if min >= 0
-      if (this.min !== undefined && this.min >= 0) {
+      if (min !== undefined && isFinite(min) && min >= 0) {
         input.value = input.value.replace(/^-/, "");
       }
       // Remove non-integer characters except leading minus
@@ -276,15 +295,40 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
     }
 
     private _handleIntegerMinMax(input: HTMLInputElement) {
-      // Clamp to min/max if needed
-      if (this.min !== undefined && Number(input.value) < this.min) {
-        input.value = String(this.min);
-        this.value = String(this.min);
+      const min = this.min !== undefined ? Number(this.min) : undefined;
+      const max = this.max !== undefined ? Number(this.max) : undefined;
+      // Clamp to min/max if needed; skip if coerced value is NaN (e.g. min/max is a date string)
+      if (min !== undefined && isFinite(min) && Number(input.value) < min) {
+        input.value = String(min);
+        this.value = String(min);
       }
-      if (this.max !== undefined && Number(input.value) > this.max) {
-        input.value = String(this.max);
-        this.value = String(this.max);
+      if (max !== undefined && isFinite(max) && Number(input.value) > max) {
+        input.value = String(max);
+        this.value = String(max);
       }
+    }
+
+    /**
+     * Formats a `min`/`max` value for use as an HTML attribute.
+     *
+     * - `undefined` → omitted (no attribute set).
+     * - `string` → passed through as-is (e.g. `"2024-01-01"` for date inputs).
+     * - `number` on `date`/`time` inputs → interpreted as a UTC epoch-millisecond timestamp
+     *   and formatted to the string the browser expects (`YYYY-MM-DD`, `HH:MM`). **Note:**
+     *   formatting is always UTC — pass a string if you need a locale-specific boundary
+     *   (e.g. `new Date(ts).toLocaleDateString(...)`).
+     * - `number` on any other input type → stringified directly (e.g. `"100"` for `number`).
+     */
+    private _formatMinMax(value: string | number | undefined): string | undefined {
+      if (value === undefined) return undefined;
+      if (typeof value === "string") return value;
+      // Only interpret numeric values as epoch-ms timestamps for date/time types
+      if (this.type !== "date" && this.type !== "time") return String(value);
+      const date = new Date(value);
+      if (isNaN(date.getTime())) return String(value);
+      const pad = (n: number) => String(n).padStart(2, "0");
+      if (this.type === "date") return `${date.getUTCFullYear()}-${pad(date.getUTCMonth() + 1)}-${pad(date.getUTCDate())}`;
+      return `${pad(date.getUTCHours())}:${pad(date.getUTCMinutes())}`;
     }
 
     private _setValue(input: { checked?: boolean; value: string | null }) {
@@ -442,8 +486,8 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
             @focus=${this.handleFocus}
             @blur=${this.handleBlur}
             class="contourable-target"
-            min=${ifDefined(this.min)}
-            max=${ifDefined(this.max)}
+            min=${ifDefined(this._formatMinMax(this.min))}
+            max=${ifDefined(this._formatMinMax(this.max))}
           />`;
         case "range-selector":
           return html`<input
@@ -494,8 +538,8 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
             @change=${this._handleChange}
             @focus=${this.handleFocus}
             @blur=${this.handleBlur}
-            min=${ifDefined(this.min)}
-            max=${ifDefined(this.max)}
+            min=${ifDefined(this._formatMinMax(this.min))}
+            max=${ifDefined(this._formatMinMax(this.max))}
           /> `;
         case "integer":
           return html`<input
@@ -515,8 +559,8 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
             @change=${this._handleChange}
             @focus=${this.handleFocus}
             @blur=${this.handleBlur}
-            min=${ifDefined(this.min)}
-            max=${ifDefined(this.max)}
+            min=${ifDefined(this._formatMinMax(this.min))}
+            max=${ifDefined(this._formatMinMax(this.max))}
           /> `;
         default:
           return html`<input
@@ -536,8 +580,8 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
             @change=${this._handleChange}
             @focus=${this.handleFocus}
             @blur=${this.handleBlur}
-            min=${ifDefined(this.min)}
-            max=${ifDefined(this.max)}
+            min=${ifDefined(this._formatMinMax(this.min))}
+            max=${ifDefined(this._formatMinMax(this.max))}
           /> `;
 
         /*

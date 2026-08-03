@@ -64,7 +64,7 @@ describe("zeta-stepper-input", () => {
     });
     it("sets value to max value via input onchange", async () => {
       // prettier-ignore
-      const el = await fixture<ZetaStepperInput>(html` <zeta-stepper-input max=${5}></zeta-stepper-input>`);
+      const el = await fixture<ZetaStepperInput>(html`<zeta-stepper-input max=${5}></zeta-stepper-input>`);
       el.value = "6";
       await el.updateComplete;
       el.dispatchEvent(new InputEvent("input", { bubbles: true, composed: true }));
@@ -83,6 +83,72 @@ describe("zeta-stepper-input", () => {
       el?.dispatchEvent(new ZetaStepperChangeEvent({ value: el.value }).toEvent());
       await el.updateComplete;
       assert.equal(el.value, "-4");
+    });
+
+    it("should coerce numeric string attribute min/max to numbers", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaStepperInput>(html`<zeta-stepper-input min="5" max="10"></zeta-stepper-input>`);
+      assert.equal(el.min, 5);
+      assert.equal(el.max, 10);
+    });
+
+    it("should set min/max to undefined when attribute is absent", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaStepperInput>(html`<zeta-stepper-input></zeta-stepper-input>`);
+      assert.isUndefined(el.min);
+      assert.isUndefined(el.max);
+    });
+
+    it("should not clamp value when min is a non-numeric string", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaStepperInput>(html`<zeta-stepper-input value="2"></zeta-stepper-input>`);
+      el.min = "abc";
+      el.requestUpdate();
+      await el.updateComplete;
+      assert.equal(el.value, "2");
+    });
+
+    it("should not clamp value when max is a non-numeric string", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaStepperInput>(html`<zeta-stepper-input value="99"></zeta-stepper-input>`);
+      el.max = "abc";
+      el.requestUpdate();
+      await el.updateComplete;
+      assert.equal(el.value, "99");
+    });
+
+    it("should not disable decrement button when min is a non-numeric string", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaStepperInput>(html`<zeta-stepper-input value="0"></zeta-stepper-input>`);
+      el.min = "abc";
+      await el.updateComplete;
+      const decrementBtn = el.shadowRoot?.querySelector("zeta-icon-button");
+      assert.isFalse(decrementBtn?.disabled);
+    });
+
+    it("should not disable increment button when max is a non-numeric string", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaStepperInput>(html`<zeta-stepper-input value="0"></zeta-stepper-input>`);
+      el.max = "abc";
+      await el.updateComplete;
+      const incrementBtn = el.shadowRoot?.querySelectorAll("zeta-icon-button")[1];
+      assert.isFalse(incrementBtn?.disabled);
+    });
+
+    it("should disable decrement button when value equals numeric min", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaStepperInput>(html`<zeta-stepper-input min="0" value="0"></zeta-stepper-input>`);
+      await el.updateComplete;
+      const decrementBtn = el.shadowRoot?.querySelector("zeta-icon-button");
+      assert.isTrue(decrementBtn?.disabled);
+    });
+
+    it("should disable increment button when value equals numeric max", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaStepperInput>(html`<zeta-stepper-input max="10" value="10"></zeta-stepper-input>`);
+      await el.updateComplete;
+      const incrementBtn = el.shadowRoot?.querySelectorAll("zeta-icon-button")[1];
+      assert.isTrue(incrementBtn?.disabled);
     });
   });
 
