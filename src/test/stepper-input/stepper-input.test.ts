@@ -151,6 +151,66 @@ describe("zeta-stepper-input", () => {
     });
   });
 
+  describe("Min/Max property conversion", () => {
+    it("should coerce numeric string attribute min/max to numbers", async () => {
+      const el = await fixture<ZetaStepperInput>(html`<zeta-stepper-input min="5" max="10"></zeta-stepper-input>`);
+      assert.equal(el.min, 5);
+      assert.equal(el.max, 10);
+    });
+
+    it("should set min/max to undefined when attribute is absent", async () => {
+      const el = await fixture<ZetaStepperInput>(html`<zeta-stepper-input></zeta-stepper-input>`);
+      assert.isUndefined(el.min);
+      assert.isUndefined(el.max);
+    });
+
+    it("should not clamp value when min is a non-numeric string", async () => {
+      const el = await fixture<ZetaStepperInput>(html`<zeta-stepper-input value="2"></zeta-stepper-input>`);
+      el.min = "abc" as unknown as number;
+      el.requestUpdate();
+      await el.updateComplete;
+      assert.equal(el.value, "2");
+    });
+
+    it("should not clamp value when max is a non-numeric string", async () => {
+      const el = await fixture<ZetaStepperInput>(html`<zeta-stepper-input value="99"></zeta-stepper-input>`);
+      el.max = "abc" as unknown as number;
+      el.requestUpdate();
+      await el.updateComplete;
+      assert.equal(el.value, "99");
+    });
+
+    it("should not disable decrement button when min is a non-numeric string", async () => {
+      const el = await fixture<ZetaStepperInput>(html`<zeta-stepper-input value="0"></zeta-stepper-input>`);
+      el.min = "abc" as unknown as number;
+      await el.updateComplete;
+      const decrementBtn = el.shadowRoot?.querySelector("zeta-icon-button");
+      assert.isFalse(decrementBtn?.disabled);
+    });
+
+    it("should not disable increment button when max is a non-numeric string", async () => {
+      const el = await fixture<ZetaStepperInput>(html`<zeta-stepper-input value="0"></zeta-stepper-input>`);
+      el.max = "abc" as unknown as number;
+      await el.updateComplete;
+      const incrementBtn = el.shadowRoot?.querySelectorAll("zeta-icon-button")[1];
+      assert.isFalse(incrementBtn?.disabled);
+    });
+
+    it("should disable decrement button when value equals numeric min", async () => {
+      const el = await fixture<ZetaStepperInput>(html`<zeta-stepper-input min="0" value="0"></zeta-stepper-input>`);
+      await el.updateComplete;
+      const decrementBtn = el.shadowRoot?.querySelector("zeta-icon-button");
+      assert.isTrue(decrementBtn?.disabled);
+    });
+
+    it("should disable increment button when value equals numeric max", async () => {
+      const el = await fixture<ZetaStepperInput>(html`<zeta-stepper-input max="10" value="10"></zeta-stepper-input>`);
+      await el.updateComplete;
+      const incrementBtn = el.shadowRoot?.querySelectorAll("zeta-icon-button")[1];
+      assert.isTrue(incrementBtn?.disabled);
+    });
+  });
+
   // describe("Golden", () => {});
 
   // describe("Performance", () => {});
