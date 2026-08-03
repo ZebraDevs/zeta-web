@@ -62,8 +62,8 @@ declare abstract class FormFieldInterface {
   input: HTMLInputElement;
   internals: ElementInternals;
   placeholder: string;
-  min: string | number;
-  max: string | number;
+  min?: string | number;
+  max?: string | number;
   readOnly?: boolean;
   abstract handleChange(event: Event): void;
   handleInput(event: Event): void;
@@ -316,9 +316,9 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
       const date = new Date(value);
       if (isNaN(date.getTime())) return String(value);
       const pad = (n: number) => String(n).padStart(2, "0");
-      if (this.type === "date") return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
-      if (this.type === "time") return `${pad(date.getHours())}:${pad(date.getMinutes())}`;
-      return `${date.getFullYear()}-${pad(date.getMonth() + 1)}`;
+      if (this.type === "date") return `${date.getUTCFullYear()}-${pad(date.getUTCMonth() + 1)}-${pad(date.getUTCDate())}`;
+      if (this.type === "time") return `${pad(date.getUTCHours())}:${pad(date.getUTCMinutes())}`;
+      return `${date.getUTCFullYear()}-${pad(date.getUTCMonth() + 1)}`;
     }
 
     private _setValue(input: { checked?: boolean; value: string | null }) {
