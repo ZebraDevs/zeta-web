@@ -17,7 +17,7 @@ interface Props {
   errorText?: string;
   name?: string;
   value?: string;
-  type?: "text" | "date" | "textarea" | "password" | "time" | "number" | "integer" | "month";
+  type?: "text" | "date" | "textarea" | "password" | "time" | "number" | "integer";
   min?: string | number;
   max?: string | number;
   rows?: number;

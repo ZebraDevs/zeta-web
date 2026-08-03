@@ -308,17 +308,27 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
       }
     }
 
+    /**
+     * Formats a `min`/`max` value for use as an HTML attribute.
+     *
+     * - `undefined` → omitted (no attribute set).
+     * - `string` → passed through as-is (e.g. `"2024-01-01"` for date inputs).
+     * - `number` on `date`/`time` inputs → interpreted as a UTC epoch-millisecond timestamp
+     *   and formatted to the string the browser expects (`YYYY-MM-DD`, `HH:MM`). **Note:**
+     *   formatting is always UTC — pass a string if you need a locale-specific boundary
+     *   (e.g. `new Date(ts).toLocaleDateString(...)`).
+     * - `number` on any other input type → stringified directly (e.g. `"100"` for `number`).
+     */
     private _formatMinMax(value: string | number | undefined): string | undefined {
       if (value === undefined) return undefined;
       if (typeof value === "string") return value;
-      // Only interpret numeric values as epoch-ms timestamps for date-like types
-      if (this.type !== "date" && this.type !== "time" && this.type !== "month") return String(value);
+      // Only interpret numeric values as epoch-ms timestamps for date/time types
+      if (this.type !== "date" && this.type !== "time") return String(value);
       const date = new Date(value);
       if (isNaN(date.getTime())) return String(value);
       const pad = (n: number) => String(n).padStart(2, "0");
       if (this.type === "date") return `${date.getUTCFullYear()}-${pad(date.getUTCMonth() + 1)}-${pad(date.getUTCDate())}`;
-      if (this.type === "time") return `${pad(date.getUTCHours())}:${pad(date.getUTCMinutes())}`;
-      return `${date.getUTCFullYear()}-${pad(date.getUTCMonth() + 1)}`;
+      return `${pad(date.getUTCHours())}:${pad(date.getUTCMinutes())}`;
     }
 
     private _setValue(input: { checked?: boolean; value: string | null }) {

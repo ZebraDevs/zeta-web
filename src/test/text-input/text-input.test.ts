@@ -133,6 +133,98 @@ describe("zeta-text-input", () => {
       const clearButton = el.shadowRoot?.querySelector(".cancel-icon");
       assert.notExists(clearButton, "Clear button should not exist");
     });
+
+    it("should accept numeric min/max as numbers on integer type", async () => {
+      const el = await setup({ type: "integer", min: 5, max: 10 });
+      assert.equal(el.min, 5);
+      assert.equal(el.max, 10);
+    });
+
+    it("should coerce numeric string attribute min/max to numbers", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaTextInput>(html`<zeta-text-input type="integer" min="5" max="10"></zeta-text-input>`);
+      assert.equal(el.min, 5);
+      assert.equal(el.max, 10);
+    });
+
+    it("should preserve string min/max for date type", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaTextInput>(html`<zeta-text-input type="date" min="2024-01-01" max="2024-12-31"></zeta-text-input>`);
+      assert.equal(el.min, "2024-01-01");
+      assert.equal(el.max, "2024-12-31");
+    });
+
+    it("should set min/max to undefined when attribute is absent", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaTextInput>(html`<zeta-text-input type="integer"></zeta-text-input>`);
+      assert.isUndefined(el.min);
+      assert.isUndefined(el.max);
+    });
+
+    it("should pass numeric min/max as-is to input for number type", async () => {
+      const el = await setup({ type: "number", min: 1, max: 100 });
+      await el.updateComplete;
+      const input = el.shadowRoot?.querySelector("input");
+      assert.equal(input?.getAttribute("min"), "1");
+      assert.equal(input?.getAttribute("max"), "100");
+    });
+
+    it("should pass string min/max as-is to input for date type", async () => {
+      const el = await setup({ type: "date", min: "2024-01-01", max: "2024-12-31" });
+      await el.updateComplete;
+      const input = el.shadowRoot?.querySelector("input");
+      assert.equal(input?.getAttribute("min"), "2024-01-01");
+      assert.equal(input?.getAttribute("max"), "2024-12-31");
+    });
+
+    it("should format epoch timestamp as date string for date type", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaTextInput>(html`<zeta-text-input type="date"></zeta-text-input>`);
+      el.min = new Date("2024-06-15").getTime();
+      el.max = new Date("2024-12-31").getTime();
+      await el.updateComplete;
+      const input = el.shadowRoot?.querySelector("input");
+      assert.equal(input?.getAttribute("min"), "2024-06-15");
+      assert.equal(input?.getAttribute("max"), "2024-12-31");
+    });
+
+    it("should format epoch timestamp as time string for time type", async () => {
+      const epoch = Date.UTC(2024, 0, 1, 8, 30);
+      // prettier-ignore
+      const el = await fixture<ZetaTextInput>(html`<zeta-text-input type="time"></zeta-text-input>`);
+      el.min = epoch;
+      await el.updateComplete;
+      const input = el.shadowRoot?.querySelector("input");
+      assert.equal(input?.getAttribute("min"), "08:30");
+    });
+
+    it("should not format numeric min/max as timestamps for non-date types", async () => {
+      const el = await setup({ type: "number", min: 0, max: 100 });
+      await el.updateComplete;
+      const input = el.shadowRoot?.querySelector("input");
+      assert.equal(input?.getAttribute("min"), "0");
+      assert.equal(input?.getAttribute("max"), "100");
+    });
+
+    it("should not clamp integer input when min/max is a non-numeric string", async () => {
+      const el = await setup({ type: "integer", min: "abc" });
+
+      await MouseActions.click(el);
+      await KeyboardActions.type("5");
+      await MouseActions.clickOutside(el);
+
+      await expect(el.value).to.equal("5");
+    });
+
+    it("should not strip leading minus when integer min is a non-numeric string", async () => {
+      const el = await setup({ type: "integer", min: "abc" });
+
+      await MouseActions.click(el);
+      await KeyboardActions.type("-5");
+      await MouseActions.clickOutside(el);
+
+      await expect(el.value).to.equal("-5");
+    });
   });
 
   // describe("Dimensions", () => {});
@@ -382,7 +474,7 @@ describe("zeta-text-input", () => {
       await expect(el.value).to.equal("");
     });
 
-    /// Increment / Decrement tests
+    // Increment / Decrement tests
     it("should increment value when type is integer and no max set", async () => {
       const el = await setup({ type: "integer", value: "5" });
       el.increment();
@@ -483,104 +575,6 @@ describe("zeta-text-input", () => {
       el.decrement();
       await el.updateComplete;
       assert.isFalse(changed);
-    });
-  });
-
-  describe("Min/Max property conversion", () => {
-    it("should accept numeric min/max as numbers on integer type", async () => {
-      const el = await setup({ type: "integer", min: 5, max: 10 });
-      assert.equal(el.min, 5);
-      assert.equal(el.max, 10);
-    });
-
-    it("should coerce numeric string attribute min/max to numbers", async () => {
-      const el = await fixture<ZetaTextInput>(html`<zeta-text-input type="integer" min="5" max="10"></zeta-text-input>`);
-      assert.equal(el.min, 5);
-      assert.equal(el.max, 10);
-    });
-
-    it("should preserve string min/max for date type", async () => {
-      const el = await fixture<ZetaTextInput>(html`<zeta-text-input type="date" min="2024-01-01" max="2024-12-31"></zeta-text-input>`);
-      assert.equal(el.min, "2024-01-01");
-      assert.equal(el.max, "2024-12-31");
-    });
-
-    it("should set min/max to undefined when attribute is absent", async () => {
-      const el = await fixture<ZetaTextInput>(html`<zeta-text-input type="integer"></zeta-text-input>`);
-      assert.isUndefined(el.min);
-      assert.isUndefined(el.max);
-    });
-
-    it("should pass numeric min/max as-is to input for number type", async () => {
-      const el = await setup({ type: "number", min: 1, max: 100 });
-      await el.updateComplete;
-      const input = el.shadowRoot?.querySelector("input");
-      assert.equal(input?.getAttribute("min"), "1");
-      assert.equal(input?.getAttribute("max"), "100");
-    });
-
-    it("should pass string min/max as-is to input for date type", async () => {
-      const el = await setup({ type: "date", min: "2024-01-01", max: "2024-12-31" });
-      await el.updateComplete;
-      const input = el.shadowRoot?.querySelector("input");
-      assert.equal(input?.getAttribute("min"), "2024-01-01");
-      assert.equal(input?.getAttribute("max"), "2024-12-31");
-    });
-
-    it("should format epoch timestamp as date string for date type", async () => {
-      const el = await fixture<ZetaTextInput>(html`<zeta-text-input type="date"></zeta-text-input>`);
-      el.min = new Date("2024-06-15").getTime();
-      el.max = new Date("2024-12-31").getTime();
-      await el.updateComplete;
-      const input = el.shadowRoot?.querySelector("input");
-      assert.equal(input?.getAttribute("min"), "2024-06-15");
-      assert.equal(input?.getAttribute("max"), "2024-12-31");
-    });
-
-    it("should format epoch timestamp as time string for time type", async () => {
-      const epoch = Date.UTC(2024, 0, 1, 8, 30);
-      const el = await fixture<ZetaTextInput>(html`<zeta-text-input type="time"></zeta-text-input>`);
-      el.min = epoch;
-      await el.updateComplete;
-      const input = el.shadowRoot?.querySelector("input");
-      assert.equal(input?.getAttribute("min"), "08:30");
-    });
-
-    it("should format epoch timestamp as month string for month type", async () => {
-      const epoch = Date.UTC(2024, 5, 1);
-      const el = await fixture<ZetaTextInput>(html`<zeta-text-input type="month"></zeta-text-input>`);
-      el.min = epoch;
-      await el.updateComplete;
-      const input = el.shadowRoot?.querySelector("input");
-      assert.equal(input?.getAttribute("min"), "2024-06");
-    });
-
-    it("should not format numeric min/max as timestamps for non-date types", async () => {
-      const el = await setup({ type: "number", min: 0, max: 100 });
-      await el.updateComplete;
-      const input = el.shadowRoot?.querySelector("input");
-      assert.equal(input?.getAttribute("min"), "0");
-      assert.equal(input?.getAttribute("max"), "100");
-    });
-
-    it("should not clamp integer input when min/max is a non-numeric string", async () => {
-      const el = await setup({ type: "integer", min: "abc" as unknown as number });
-
-      await MouseActions.click(el);
-      await KeyboardActions.type("5");
-      await MouseActions.clickOutside(el);
-
-      await expect(el.value).to.equal("5");
-    });
-
-    it("should not strip leading minus when integer min is a non-numeric string", async () => {
-      const el = await setup({ type: "integer", min: "abc" as unknown as number });
-
-      await MouseActions.click(el);
-      await KeyboardActions.type("-5");
-      await MouseActions.clickOutside(el);
-
-      await expect(el.value).to.equal("-5");
     });
   });
 
