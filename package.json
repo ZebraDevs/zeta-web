@@ -68,13 +68,13 @@
   "devDependencies": {
     "@actions/core": "^1.11.1",
     "@custom-elements-manifest/analyzer": "^0.11.0",
-    "@eslint/js": "^9.39.4",
+    "@eslint/js": "^9.39.5",
     "@etchteam/storybook-addon-status": "^5.0.0",
-    "@figma/code-connect": "^1.4.8",
+    "@figma/code-connect": "^1.5.1",
     "@lit/localize-tools": "^0.8.2",
     "@open-wc/lit-helpers": "^0.7.0",
     "@open-wc/testing": "^4.0.0",
-    "@playwright/test": "^1.61.1",
+    "@playwright/test": "^1.62.1",
     "@remcovaes/web-test-runner-vite-plugin": "^1.4.1",
     "@storybook/addon-a11y": "^8.6.18",
     "@storybook/addon-actions": "^8.6.18",
@@ -90,11 +90,11 @@
     "@storybook/web-components": "^8.6.18",
     "@storybook/web-components-vite": "^8.6.18",
     "@types/jest": "^30.0.0",
-    "@types/node": "^22.20.0",
-    "@types/react": "^19.2.17",
-    "@typescript-eslint/eslint-plugin": "^8.62.1",
-    "@typescript-eslint/parser": "^8.62.1",
-    "@wc-toolkit/type-parser": "^1.2.1",
+    "@types/node": "^22.20.1",
+    "@types/react": "^19.2.18",
+    "@typescript-eslint/eslint-plugin": "^8.65.0",
+    "@typescript-eslint/parser": "^8.65.0",
+    "@wc-toolkit/type-parser": "^1.3.0",
     "@web/test-runner": "^0.20.2",
     "@web/test-runner-commands": "^0.9.0",
     "@web/test-runner-junit-reporter": "^0.8.0",
@@ -103,9 +103,9 @@
     "cem-plugin-better-lit-types": "^0.2.1",
     "cem-plugin-custom-jsdoc-tags": "^1.2.0",
     "custom-element-jsx-integration": "^1.6.0",
-    "dompurify": "^3.4.11",
+    "dompurify": "^3.4.12",
     "dts-minify": "^0.3.3",
-    "eslint": "^9.39.4",
+    "eslint": "^9.39.5",
     "eslint-config-prettier": "^10.1.8",
     "eslint-formatter-unix": "^9.0.1",
     "eslint-plugin-lit": "^2.3.1",
@@ -114,19 +114,19 @@
     "eslint-plugin-tsdoc": "^0.5.2",
     "eslint-plugin-wc": "^3.1.0",
     "lit-analyzer": "^2.0.3",
-    "prettier": "3.9.4",
-    "react": "^19.2.7",
-    "sinon": "^22.0.0",
+    "prettier": "3.9.6",
+    "react": "^19.2.8",
+    "sinon": "^22.1.0",
     "storybook": "^8.6.18",
     "ts-lit-plugin": "^2.0.2",
     "ts-morph": "^27.0.2",
-    "typedoc": "^0.28.19",
+    "typedoc": "^0.28.20",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.62.1",
+    "typescript-eslint": "^8.65.0",
     "vite": "^6.4.3"
   },
   "dependencies": {
-    "@fontsource/ibm-plex-sans": "^5.2.8",
+    "@fontsource/ibm-plex-sans": "^5.3.0",
     "@lit/localize": "^0.12.2",
     "@zebra-fed/zeta-icons": "1.9.6",
     "lit": "^3.3.3"
@@ -145,7 +145,8 @@
     "@isaacs/brace-expansion": "^5.0.1",
     "@xmldom/xmldom": "^0.8.13",
     "picomatch": "^4.0.2",
-    "undici": "^7.19.1"
+    "undici": "^7.28.0",
+    "js-yaml": "^4.3.0"
   },
   "browserslist": {
     "production": [
@@ -159,5 +160,5 @@
       "last 1 safari version"
     ]
   },
-  "packageManager": "yarn@4.17.0"
+  "packageManager": "yarn@4.18.0"
 }
