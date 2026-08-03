@@ -46,7 +46,7 @@ export class ZetaButton extends Flavored(BaseButton) {
    * - `"outline-subtle"` - Grey outline only.
    * - `"text"` - Primary text only.
    * - `"subtle"` - White background with grey text. Same action colors as 'text' flavor.
-   * - `"custom"` - Custom color background with custom color text.
+   * - `"custom"` - Custom color background with custom color icon and text applied using css properties.
    *
    * @remarks The value `"secondary"` is no longer supported and should not be used.
    */
@@ -77,13 +77,12 @@ export class ZetaButton extends Flavored(BaseButton) {
         part="button"
         class="contourable-target"
       >
-        ${
-          this._buttonType === "icon"
-            ? html`<zeta-icon part="icon" .rounded=${this.shape != "sharp"}><slot></slot></zeta-icon>`
-            : html`${leading}
+        ${this._buttonType === "icon"
+        ? html`<zeta-icon part="icon" .rounded=${this.shape != "sharp"}><slot></slot></zeta-icon>`
+        : html`${leading}
                 <slot></slot>
                 ${trailing}`
-        }
+      }
       </button>
     `;
   }
