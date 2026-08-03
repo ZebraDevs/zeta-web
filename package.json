@@ -145,7 +145,8 @@
     "@isaacs/brace-expansion": "^5.0.1",
     "@xmldom/xmldom": "^0.8.13",
     "picomatch": "^4.0.2",
-    "undici": "^7.19.1"
+    "undici": "^7.28.0",
+    "js-yaml": "^4.3.0"
   },
   "browserslist": {
     "production": [
