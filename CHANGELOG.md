@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.5.0](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.4.0...zeta-web-v1.5.0) (2026-08-03)
+
+
+### ✨ New Features
+
+* **UX-1538:** Button custom color overrides ([#232](https://github.com/ZebraDevs/zeta-web/issues/232)) ([56ead48](https://github.com/ZebraDevs/zeta-web/commit/56ead483a068a3c14bc179e05d0da11542868d74))
+
+
+### 🪲 Bug Fixes
+
+* Min / Max types on text input ([#231](https://github.com/ZebraDevs/zeta-web/issues/231)) ([2376786](https://github.com/ZebraDevs/zeta-web/commit/23767863a642c949be98c6cdd47e10e631fb8241))
+
+
+### 🧹 Miscellaneous Chores
+
+* **deps:** security dependency updates (PRs [#233](https://github.com/ZebraDevs/zeta-web/issues/233)–[#240](https://github.com/ZebraDevs/zeta-web/issues/240)) ([#241](https://github.com/ZebraDevs/zeta-web/issues/241)) ([f72eff4](https://github.com/ZebraDevs/zeta-web/commit/f72eff41b0163cf901a30e87ecb81506cd946c26))
+
 ## [1.4.0](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.3.6...zeta-web-v1.4.0) (2026-07-21)
 
 
