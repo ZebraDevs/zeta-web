@@ -322,7 +322,6 @@ describe("zeta-snackbar", () => {
       const snackbar = document.querySelector("zeta-snackbar");
       expect(snackbar).to.exist;
     });
-
   });
 
   // describe("Golden", () => {});
