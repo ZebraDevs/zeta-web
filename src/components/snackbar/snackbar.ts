@@ -30,6 +30,13 @@ export class ZetaSnackbar extends ContourableThree(Interactive(LitElement)) {
   @property({ type: Boolean }) hasCloseAction: boolean = false;
 
   /**
+   * Function to call when the close button is clicked.
+   * @type {Function}
+   * @default () => {}
+   */
+  @property() onClose?: () => void;
+
+  /**
    * Label of the action.
    */
   @property({ type: String }) actionLabel?: string;
@@ -56,15 +63,14 @@ export class ZetaSnackbar extends ContourableThree(Interactive(LitElement)) {
         </div>
         <div>
           ${this.actionLabel && this.actionClick ? html` <button id="action" @click=${this.actionClick}>${this.actionLabel}</button> ` : nothing}
-          ${
-            this.hasCloseAction
-              ? html`
-                  <button id="closeButton" @click=${() => this.remove()}>
+          ${this.hasCloseAction
+        ? html`
+                  <button id="closeButton" @click=${this.onClose ? this.onClose : () => this.remove()}>
                     <zeta-icon id="closeIcon" .rounded=${this.shape !== "sharp"}>${this.closeActionIcon ?? "cancel"}</zeta-icon>
                   </button>
                 `
-              : nothing
-          }
+        : nothing
+      }
         </div>
       </div>
     `;

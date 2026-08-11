@@ -269,6 +269,60 @@ describe("zeta-snackbar", () => {
       await MouseActions.click(subject.shadowRoot!.querySelector("#action") as HTMLElement, "left");
       await waitUntil(() => clicked, "Button Action fired", { timeout: 100 });
     });
+
+    it("calls the onClose function on mouse click and does not remove the element", async () => {
+      let closed = false;
+
+      subject.onClose = () => {
+        closed = true;
+      };
+      await subject.updateComplete;
+
+      const closeIcon = subject.shadowRoot!.querySelector("#closeIcon") as ZetaIcon;
+      await MouseActions.click(closeIcon, "left");
+
+      await waitUntil(() => closed, "onClose should be called", { timeout: 100 });
+
+      const snackbar = document.querySelector("zeta-snackbar");
+      expect(snackbar).to.exist;
+    });
+
+    it("calls the onClose function on enter pressed and does not remove the element", async () => {
+      let closed = false;
+
+      subject.onClose = () => {
+        closed = true;
+      };
+      await subject.updateComplete;
+
+      await sendKeys({ press: "Tab" });
+      await sendKeys({ press: "Tab" });
+      await sendKeys({ press: "Enter" });
+
+      await waitUntil(() => closed, "onClose should be called on Enter", { timeout: 200 });
+
+      const snackbar = document.querySelector("zeta-snackbar");
+      expect(snackbar).to.exist;
+    });
+
+    it("calls the onClose function on space pressed and does not remove the element", async () => {
+      let closed = false;
+
+      subject.onClose = () => {
+        closed = true;
+      };
+      await subject.updateComplete;
+
+      await sendKeys({ press: "Tab" });
+      await sendKeys({ press: "Tab" });
+      await sendKeys({ press: " " });
+
+      await waitUntil(() => closed, "onClose should be called on Space", { timeout: 200 });
+
+      const snackbar = document.querySelector("zeta-snackbar");
+      expect(snackbar).to.exist;
+    });
+
   });
 
   // describe("Golden", () => {});
