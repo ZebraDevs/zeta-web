@@ -33,7 +33,7 @@ export class ZetaSnackbar extends ContourableThree(Interactive(LitElement)) {
    * Optional function to call when the close button is clicked.
    * @type {Function}
    */
-  @property({attribute: false}) onClose?: () => void;
+  @property({ attribute: false }) onClose?: () => void;
 
   /**
    * Label of the action.
