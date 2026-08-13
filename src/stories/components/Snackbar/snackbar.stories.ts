@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
+import { fn } from "@storybook/test";
 import { html } from "lit";
 import "../../../components/icon/icon.js";
 import { ZetaSnackbar } from "../../../components/snackbar/snackbar.js";
@@ -19,7 +20,8 @@ const meta: Meta<ZetaSnackbar & { slotIcon: string }> = {
     hasCloseAction: true,
     actionLabel: "Action",
     status: "default",
-    actionClick: () => console.log("Action Clicked")
+    actionClick: fn(),
+    onclose: fn()
   },
   parameters: {
     design: {
@@ -59,7 +61,7 @@ export default meta;
 // canvas code block does not show props in snippit.
 export const Snackbar: StoryObj<ZetaSnackbar | any> = {
   render: args => html`
-    <zeta-snackbar ${spread(args)} .actionClick=${() => console.log("Action Clicked")}>
+    <zeta-snackbar ${spread(args)} .actionClick=${args.actionClick}>
       <zeta-icon slot="icon">${args.slotIcon}</zeta-icon>
       ${args.slot}
     </zeta-snackbar>
