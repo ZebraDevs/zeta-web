@@ -270,57 +270,54 @@ describe("zeta-snackbar", () => {
       await waitUntil(() => clicked, "Button Action fired", { timeout: 100 });
     });
 
-    it("calls the onClose function on mouse click and does not remove the element", async () => {
+    it("dispatches the close event on mouse click and removes the element", async () => {
       let closed = false;
 
-      subject.onClose = () => {
+      subject.addEventListener("close", () => {
         closed = true;
-      };
-      await subject.updateComplete;
+      });
 
       const closeIcon = subject.shadowRoot!.querySelector("#closeIcon") as ZetaIcon;
       await MouseActions.click(closeIcon, "left");
 
-      await waitUntil(() => closed, "onClose should be called", { timeout: 100 });
+      await waitUntil(() => closed, "close event should be dispatched", { timeout: 100 });
 
       const snackbar = document.querySelector("zeta-snackbar");
-      expect(snackbar).to.exist;
+      expect(snackbar).to.not.exist;
     });
 
-    it("calls the onClose function on enter pressed and does not remove the element", async () => {
+    it("dispatches the close event on enter pressed and removes the element", async () => {
       let closed = false;
 
-      subject.onClose = () => {
+      subject.addEventListener("close", () => {
         closed = true;
-      };
-      await subject.updateComplete;
+      });
 
       await sendKeys({ press: "Tab" });
       await sendKeys({ press: "Tab" });
       await sendKeys({ press: "Enter" });
 
-      await waitUntil(() => closed, "onClose should be called on Enter", { timeout: 200 });
+      await waitUntil(() => closed, "close event should be dispatched on Enter", { timeout: 200 });
 
       const snackbar = document.querySelector("zeta-snackbar");
-      expect(snackbar).to.exist;
+      expect(snackbar).to.not.exist;
     });
 
-    it("calls the onClose function on space pressed and does not remove the element", async () => {
+    it("dispatches the close event on space pressed and removes the element", async () => {
       let closed = false;
 
-      subject.onClose = () => {
+      subject.addEventListener("close", () => {
         closed = true;
-      };
-      await subject.updateComplete;
+      });
 
       await sendKeys({ press: "Tab" });
       await sendKeys({ press: "Tab" });
       await sendKeys({ press: " " });
 
-      await waitUntil(() => closed, "onClose should be called on Space", { timeout: 200 });
+      await waitUntil(() => closed, "close event should be dispatched on Space", { timeout: 200 });
 
       const snackbar = document.querySelector("zeta-snackbar");
-      expect(snackbar).to.exist;
+      expect(snackbar).to.not.exist;
     });
   });
 
