@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.4.2](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.4.1...zeta-web-v1.4.2) (2026-08-14)
+
+
+### ✨ New Features
+
+* **UX-1579:** Add close event to ZetaSnackbar ([#243](https://github.com/ZebraDevs/zeta-web/issues/243)) ([f6188a4](https://github.com/ZebraDevs/zeta-web/commit/f6188a408068eea41a4279321a5fc4e13c021cae))
+
+
+### 🧹 Miscellaneous Chores
+
+* release 1.4.2 ([0d78c29](https://github.com/ZebraDevs/zeta-web/commit/0d78c294e64803ae7766e21262b6146d4b09116c))
+
 ## [1.4.1](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.4.0...zeta-web-v1.4.1) (2026-08-03)
 
 
