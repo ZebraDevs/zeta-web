@@ -83,12 +83,14 @@ export class ZetaGlobalHeader extends Contourable(LitElement) {
   /**
    * Slot for menu items on the left side of the header.
    * Expects elements of type zeta-button or zeta-dropdown-menu-button.
+   * @internal
    */
   @queryAssignedElements({ slot: "menu-items" }) menuItems!: Array<Node>;
 
   /**
    * Slot for action items on the right side of the header.
    * Expects elements of type zeta-icon-button or zeta-action-menu-button.
+   * @internal
    */
   @queryAssignedElements({ slot: "action-items" }) actionItems!: Array<Node>;
 
