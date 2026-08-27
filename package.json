@@ -20,6 +20,7 @@
     "./events.js": "./dist/events.js",
     "./components/*": "./dist/components/*",
     "./custom-elements.json": "./custom-elements.json",
+    "./design-system-tokens/*": "design-system-tokens/*",
     "./index.css": "./dist/index.css",
     "./jsx.d.ts": "./dist/jsx.d.ts",
     "./primitives.css": "./dist/primitives.css",
@@ -63,6 +64,7 @@
     "pretest:package": "yarn pack --pack-destination ./test && cd test && yarn install && cd ..",
     "test:package": "cd test && yarn run dev",
     "test:watch": "web-test-runner \"src/test/**/*.test.ts\" --node-resolve --watch --config src/test/web-test-runner.config.*",
+    "test:file": "web-test-runner --node-resolve --config src/test/web-test-runner.config.*",
     "test": "web-test-runner \"src/test/**/*.test.ts\" --node-resolve --config src/test/web-test-runner.config.*"
   },
   "devDependencies": {
@@ -129,6 +131,7 @@
     "@fontsource/ibm-plex-sans": "^5.3.0",
     "@lit/localize": "^0.12.2",
     "@zebra-fed/zeta-icons": "1.9.6",
+    "design-system-tokens": "file:../zebra-design-system/packages/design-system-tokens/",
     "lit": "^3.3.3"
   },
   "overrides": {
