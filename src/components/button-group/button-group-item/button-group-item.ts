@@ -40,6 +40,9 @@ export class ZetaButtonGroupItem extends Contourable(Interactive(LitElement)) {
 
   @query("button") private readonly buttonElement!: HTMLElement | null;
 
+  /**
+   * @internal
+   */
   @queryAssignedElements({ slot: "icon", flatten: true }) icon?: Array<Node>;
   private addGap = true;
 

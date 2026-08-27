@@ -29,7 +29,14 @@ export class ZetaSystemBanner extends Contourable(LitElement) {
    */
   @property({ type: String }) text?: string;
 
+  /**
+   * @internal
+   */
   @queryAssignedElements({ slot: "leadingIcon", flatten: true }) leading?: Array<Node>;
+
+  /**
+   * @internal
+   */
   @queryAssignedElements({ slot: "trailingIcon", flatten: true }) trailing?: Array<Node>;
 
   static styles = [super.styles || [], styles];
