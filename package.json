@@ -143,7 +143,7 @@
     "react-router-dom": "^6.3.0",
     "react-router": "^6.3.0",
     "@isaacs/brace-expansion": "^5.0.1",
-    "@xmldom/xmldom": "^0.8.13",
+    "@xmldom/xmldom": "^0.8.15",
     "picomatch": "^4.0.2",
     "undici": "^7.28.0",
     "js-yaml": "^4.3.0"
