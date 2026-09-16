@@ -3,10 +3,15 @@
   "version": "1.4.2",
   "files": [
     "dist",
+    "bin",
+    "consumer-skills",
     "custom-elements.json",
     "assets",
     "LICENSE-3RD-PARTY"
   ],
+  "bin": {
+    "zeta-web": "./bin/zeta-web.js"
+  },
   "workspaces": {
     "packages": [
       "example"
