@@ -1,12 +1,12 @@
 ---
 name: init-zeta-react
-description: Use when the user wants to start a brand-new React project built on Zebra's zeta-web design system. Scaffolds a Vite + React 19 + TypeScript app, installs @zebra-fed/zeta-web and @zebra-fed/zeta-icons, wires up global styles, and installs zeta-web's own Claude Code skills so future work in the project follows correct zeta-web conventions.
+description: Use when the user wants to start a brand-new React project built on Zebra's zeta-web design system. Assumes zeta-web is already installed/available. Scaffolds a Vite + React 19 + TypeScript app, ensures @zebra-fed/zeta-icons is present, wires up global styles, and creates a working example component.
 usage: "Provide a project name (and optionally a short description). Example: /init-zeta-react my-app - a customer dashboard"
 ---
 
 # Initialize a New React + Zeta-Web Project
 
-This skill scaffolds a brand-new Vite + React 19 + TypeScript project pre-configured with Zebra's zeta-web design system and provides Claude Code with the skills to guide future development correctly.
+This skill scaffolds a brand-new Vite + React 19 + TypeScript project pre-configured with Zebra's zeta-web design system. It assumes `@zebra-fed/zeta-web` is already accessible to you (you wouldn't be running this skill otherwise), and focuses on app setup, ensuring zeta-icons is installed, and wiring everything correctly.
 
 ## 0. Parse the project name
 
@@ -26,17 +26,7 @@ cd <project-name>
 
 This creates a minimal React 19 + TypeScript + Vite setup with the JSX transform already configured correctly (standard `"jsx": "react-jsx"` in tsconfig.json).
 
-## 2. Initialize git
-
-Before installing dependencies, set up git so that `npx zeta-web init-skills` (step 8) can find the project root:
-
-```bash
-git init
-```
-
-The skills installer walks up the directory tree looking for `.git` or `.github`. Without this, it will fall back to the current directory with a warning, so initializing first ensures a clean run.
-
-## 3. Install dependencies
+## 2. Install dependencies
 
 First install the base Vite/React dependencies:
 
@@ -44,15 +34,17 @@ First install the base Vite/React dependencies:
 npm install
 ```
 
-Then add zeta-web and zeta-icons explicitly (even though zeta-icons is a transitive dependency of zeta-web, consuming apps import from it directly for types like `ZetaIconName`):
+Since you're running this skill, `@zebra-fed/zeta-web` is already accessible to you (either as a local checkout or installed). You may or may not have `@zebra-fed/zeta-icons` yet, so ensure it's present as an explicit dependency:
 
 ```bash
-npm install @zebra-fed/zeta-web @zebra-fed/zeta-icons
+npm install @zebra-fed/zeta-icons
 ```
+
+(zeta-icons is technically a transitive dependency of zeta-web, but consuming apps import from it directly for types like `ZetaIconName`, so it should be explicitly in your app's own `package.json`.)
 
 **Troubleshooting**: These packages are on Zebra's private Google Artifact Registry. If you see 401/403 errors, your npm/yarn credentials need refreshing — check `~/.npmrc` or `~/.yarnrc.yml` for an unexpired auth token and ask your team for registry setup help if needed.
 
-## 4. Confirm React version
+## 3. Confirm React version
 
 Open `package.json` and verify `react` is at least version 19:
 
@@ -71,7 +63,7 @@ npm install react@latest react-dom@latest
 
 If React is ≥19, proceed.
 
-## 5. Wire up global styles
+## 4. Wire up global styles
 
 Edit `src/main.tsx` and add the zeta-web global stylesheet import **before** rendering:
 
@@ -95,7 +87,7 @@ This loads all design tokens (colors, spacing, typography, elevation, etc.) and 
 
 Importing `@zebra-fed/zeta-icons/index.css` directly from this project's own `main.tsx` forces it to resolve through this project's own `node_modules` (always in-bounds for Vite), independent of how `zeta-web` itself is resolved. This matches the zeta-icons README's own documented usage ("the fonts... need to be imported via css") — treat it as an explicit dependency of the app, not something to rely on another package to load for you.
 
-## 6. JSX typing (usually automatic)
+## 5. JSX typing (usually automatic)
 
 As of zeta-web ≥0.5.3, `<zeta-*>` components are automatically typed in React JSX via the installed package's `jsx.d.ts` — no manual tsconfig merge needed. If TypeScript ever complains that a `zeta-*` component doesn't exist on `JSX.IntrinsicElements`, you can add this to your project's `src/vite-env.d.ts` or `tsconfig.json`:
 
@@ -111,21 +103,7 @@ declare module "react" {
 
 But this should not be necessary with current versions.
 
-## 7. Install zeta-web's AI guidance skills
-
-Run the zeta-web skills installer to copy pre-written guidance for working with zeta-web:
-
-```bash
-npx zeta-web init-skills
-```
-
-This copies two skills into `<project>/.claude/skills/`:
-- `use-zeta-react` — How to import, use components, handle events, use design tokens, and solve common gotchas
-- `use-zeta-react-discovery` — How to dynamically discover available components and tokens from the installed library
-
-Once the command finishes, run `/reload-skills` in Claude Code so the newly installed skills are recognized in the current session.
-
-## 8. Create a minimal working example
+## 6. Create a minimal working example
 
 Replace the boilerplate `src/App.tsx` with a real zeta-web component to prove the setup works:
 
@@ -150,7 +128,7 @@ This demonstrates:
 - Passing attributes (flavor="primary")
 - Using a design token for spacing (`--spacing-6`)
 
-## 9. Verify the project builds
+## 7. Verify the project builds
 
 Run the build to ensure TypeScript and Vite are both happy:
 
