@@ -15,6 +15,20 @@ Extract the project name from the prompt. It should be a valid directory name (l
 **Example input:** `/init-zeta-react my-app - a customer dashboard`  
 **Extracted name:** `my-app`
 
+## 0.5. Preserve .claude directory
+
+If a `.claude` directory exists in the current project root, back it up to a temporary location before scaffolding, since the next step will create a fresh project structure:
+
+```bash
+if [ -d ".claude" ]; then
+  TEMP_CLAUDE=$(mktemp -d)
+  cp -r .claude "$TEMP_CLAUDE"
+  echo "Backed up .claude to $TEMP_CLAUDE"
+fi
+```
+
+Save the `$TEMP_CLAUDE` path so you can restore it after scaffolding.
+
 ## 1. Scaffold the project
 
 Run the Vite React template to create a base project:
@@ -25,6 +39,17 @@ cd <project-name>
 ```
 
 This creates a minimal React 19 + TypeScript + Vite setup with the JSX transform already configured correctly (standard `"jsx": "react-jsx"` in tsconfig.json).
+
+### 1.5. Restore .claude directory
+
+If you backed up `.claude` in step 0.5, restore it now to the new project root:
+
+```bash
+if [ ! -z "$TEMP_CLAUDE" ] && [ -d "$TEMP_CLAUDE" ]; then
+  cp -r "$TEMP_CLAUDE/.claude" .
+  echo "Restored .claude to project root"
+fi
+```
 
 ## 2. Install dependencies
 
