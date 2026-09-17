@@ -9,9 +9,7 @@
     "assets",
     "LICENSE-3RD-PARTY"
   ],
-  "bin": {
-    "zeta-web": "./bin/zeta-web.js"
-  },
+  "bin": "./bin/zeta-web.js",
   "workspaces": {
     "packages": [
       "example"
