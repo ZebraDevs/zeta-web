@@ -68,7 +68,19 @@ Zeta Web Components can be directly used in many web frameworks including Angula
    <zeta-button>Hello world!</zeta-button>
    ```
 
-   ### Styles
+### Claude Code Skills
+
+After installing, you can set up Claude Code skills that teach AI agents how to use Zeta Web components in your project. To copy Zeta Web's Claude Code skills into your project, run:
+
+```bash
+npx zeta-web init-skills
+```
+
+This command will copy skills like `use-zeta-react` into your project's `.claude/skills/` directory. These skills provide AI agents with specific guidance on using Zeta Web components in your application.
+
+If you can't see the skills, ensure you run `/reload-skills` in Claude Code. 
+
+### Styles
 
 Zeta styles are composed of primitives (basic value swatches such as `color-red-10`, `spacing-4`) and semantic tokens (descriptive values like `surface-default`, `spacing-large`, `avatar-purple`). These are imported via `index.css`.
 
