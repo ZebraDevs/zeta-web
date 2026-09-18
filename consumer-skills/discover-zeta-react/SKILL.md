@@ -1,5 +1,5 @@
 ---
-name: use-zeta-react-discovery
+name: discover-zeta-react
 description: Dynamically discover available zeta-web components, design tokens, and their properties. Programmatically generated from component metadata—always current as the library grows.
 ---
 

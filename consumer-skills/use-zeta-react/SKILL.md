@@ -12,7 +12,7 @@ Zeta-web is a LIT-based web component library. Use components as lowercase HTML 
 
 ### Before You Code: Discover Available Components
 
-**→ Run [`/use-zeta-react-discovery`](../use-zeta-react-discovery/SKILL.md)** to see:
+**→ Run [`/discover-zeta-react`](../discover-zeta-react/SKILL.md)** to see:
 - All 79+ available components with properties, events, and slots
 - All design tokens (colors, spacing, radius, elevation, typography)
 - Exact metadata from `custom-elements.json`
