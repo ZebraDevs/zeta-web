@@ -15,6 +15,34 @@ To view examples of all the components in the library, you can pull this repo an
 
 You can also view the latest release at [Zeta](https://design.zebra.com/) or the latest commits to main [here](https://zeta-web-main.web.app/).
 
+## Quick Start: New React Project
+
+Starting a brand-new project? Scaffold a Vite + React 19 + TypeScript app pre-wired with Zeta Web in one command:
+
+  ```bash
+  npx zeta-web init-react my-app
+  ```
+
+  or
+
+  ```bash
+  npx zeta-web init-react my-app --pm=yarn --linter=eslint
+  ```
+
+You'll be asked three questions - project name , package manager (npm/yarn), and linter (eslint/oxlint) - (skipped if passed as an arguments, as above). Everything else runs automatically:
+
+- Scaffolds the Vite + React + TypeScript project
+- Installs dependencies, including `@zebra-fed/zeta-web` and `@zebra-fed/zeta-icons`
+- Wires the Zeta global styles into `main.tsx`
+- Replaces the default Vite boilerplate with a working example component styled using Zeta design tokens
+- Adds the `use-zeta-react` and `discover-zeta-react` Claude Code skills to `.claude/skills`
+- Configures the [CSS Variable Autocomplete](#css-variable-autocomplete) VSCode extension for Zeta's tokens
+- Verifies the project builds
+
+At the end, you'll be asked if you want to start the dev server right away.
+
+Already have a project? See [How to Use](#how-to-use) below to add Zeta Web manually.
+
 ## How to Use
 
 Zeta Web Components can be directly used in many web frameworks including Angular and React (from v19).
