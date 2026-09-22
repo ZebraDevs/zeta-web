@@ -47,7 +47,7 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
    * Enabled by default.
    * If disabled, the dropdown menu will size to fit its content.
    */
-  @property({ type: Boolean }) matchParentWidth: boolean = true;
+  @property({ type: Boolean, reflect: true }) matchParentWidth: boolean = false;
 
   /** Whether the button text should update to match the selected item. */
   @property({ type: Boolean }) buttonTextMatchesSelected: boolean = true;
