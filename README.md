@@ -35,7 +35,7 @@ You'll be asked three questions - project name , package manager (npm/yarn), and
 - Installs dependencies, including `@zebra-fed/zeta-web` and `@zebra-fed/zeta-icons`
 - Wires the Zeta global styles into `main.tsx`
 - Replaces the default Vite boilerplate with a working example component styled using Zeta design tokens
-- Adds the `use-zeta-react` and `discover-zeta-react` Claude Code skills to `.claude/skills`
+- Adds the `use-zeta-react` Claude Code skill to `.claude/skills`
 - Configures the [CSS Variable Autocomplete](#css-variable-autocomplete) VSCode extension for Zeta's tokens
 - Verifies the project builds
 

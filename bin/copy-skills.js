@@ -2,9 +2,12 @@
 
 import { fileURLToPath } from 'url';
 import { dirname, join, resolve, parse } from 'path';
-import { readdir, mkdir, copyFile, readFile } from 'fs/promises';
+import { readdir, mkdir, copyFile, readFile, rm } from 'fs/promises';
 import { existsSync } from 'fs';
 import readline from 'readline';
+
+// Skills that were merged/removed and should be cleaned up from consumers
+const REMOVED_SKILLS = ['discover-zeta-react'];
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -208,8 +211,23 @@ export async function copySkills() {
       copiedCount++;
     }
 
+    // Clean up skills that were merged/removed upstream
+    let removedCount = 0;
+    for (const name of REMOVED_SKILLS) {
+      const obsoletePath = join(skillsDestDir, name);
+      if (!existsSync(obsoletePath)) continue;
+
+      if (await askYesNo(`\nRemove obsolete skill "${name}"? (y/n): `)) {
+        await rm(obsoletePath, { recursive: true, force: true });
+        console.log(`✓ Removed obsolete skill ${name}`);
+        removedCount++;
+      } else {
+        console.log(`⊘ Skipped removing obsolete skill ${name}: user chose to keep it`);
+      }
+    }
+
     console.log(
-      `\n✓ Done: ${copiedCount} skill(s) processed, ${unchangedCount} unchanged, ${skippedCount} skipped.`
+      `\n✓ Done: ${copiedCount} skill(s) processed, ${unchangedCount} unchanged, ${skippedCount} skipped, ${removedCount} removed.`
     );
   } catch (error) {
     console.error('Error copying skills:', error.message);

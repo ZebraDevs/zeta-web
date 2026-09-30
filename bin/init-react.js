@@ -59,7 +59,7 @@ function getFlag(name, validValues) {
 }
 
 /**
- * Copy consumer skills (use-zeta-react, discover-zeta-react) straight into
+ * Copy consumer skills (use-zeta-react) straight into
  * the new project's .claude/skills - target is known exactly, so no need
  * for the git-root discovery that copy-skills.js does for existing projects.
  */
@@ -113,22 +113,19 @@ function runCommand(command, args, options = {}) {
  * Main scaffolding function
  */
 export async function initReact(projectNameArg = null) {
-  let projectName = projectNameArg || process.argv[2];
+  let projectName = projectNameArg;
 
   try {
     // The only 3 questions: name (if missing), package manager, linter.
-    if (!projectName) {
-      projectName = await prompt('Project name (lowercase, hyphens OK): ');
+    // Keep asking until the name is valid - blank/invalid names are never accepted.
+    while (!validateProjectName(projectName)) {
+      if (projectName) console.error(`Invalid project name "${projectName}". Use lowercase letters, numbers, and hyphens only.`);
+      projectName = await prompt('Project name (lowercase letters, numbers, hyphens): ');
     }
     const packageManager = getFlag('pm', ['npm', 'yarn'])
       || ((await prompt('Package manager? (npm/yarn) [npm]: ')) === 'yarn' ? 'yarn' : 'npm');
     const linter = getFlag('linter', ['eslint', 'oxlint'])
       || ((await prompt('Linter? (eslint/oxlint) [eslint]: ')) === 'oxlint' ? 'oxlint' : 'eslint');
-
-    if (!validateProjectName(projectName)) {
-      console.error(`Error: Invalid project name "${projectName}". Use lowercase letters, numbers, and hyphens only.`);
-      process.exit(1);
-    }
 
     const projectPath = resolve(process.cwd(), projectName);
 
@@ -310,7 +307,7 @@ export default App;
     // Copy Claude Code skills so AI agents already know zeta-web conventions
     console.log(`\n→ Adding Claude Code skills...`);
     await copySkillsToProject(projectPath);
-    console.log(`✓ Added use-zeta-react and discover-zeta-react skills to .claude/skills`);
+    console.log(`✓ Added use-zeta-react skill to .claude/skills`);
 
     // Point the CSS Variable Autocomplete VSCode extension at zeta-web's tokens
     console.log(`\n→ Configuring editor...`);
@@ -382,5 +379,5 @@ Then open http://localhost:5173 in your browser.
 // Run if executed directly
 const isRunDirectly = process.argv[1].includes('init-react');
 if (isRunDirectly) {
-  initReact();
+  initReact(process.argv.slice(2).find((a) => !a.startsWith('-')));
 }
