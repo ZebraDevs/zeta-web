@@ -20,13 +20,13 @@ You can also view the latest release at [Zeta](https://design.zebra.com/) or the
 Starting a brand-new project? Scaffold a Vite + React 19 + TypeScript app pre-wired with Zeta Web in one command:
 
   ```bash
-  npx zeta-web init-react my-app
+  npx @zebra-fed/zeta-web init-react my-app
   ```
 
   or
 
   ```bash
-  npx zeta-web init-react my-app --pm=yarn --linter=eslint
+  npx @zebra-fed/zeta-web init-react my-app --pm=yarn --linter=eslint
   ```
 
 You'll be asked three questions - project name , package manager (npm/yarn), and linter (eslint/oxlint) - (skipped if passed as an arguments, as above). Everything else runs automatically:
@@ -202,8 +202,8 @@ To use this, install it in VSCode, and add the following into .vscode/settings.j
 {
   ...
   "cssVariables.lookupFiles": [
-    "node_modules/@zebra-fed/zeta-web/primitives.css",
-    "node_modules/@zebra-fed/zeta-web/semantics.css",
+    "node_modules/@zebra-fed/zeta-web/dist/primitives.css",
+    "node_modules/@zebra-fed/zeta-web/dist/semantics.css",
     // Add other css files here
   ]
 }

@@ -36,13 +36,3 @@ export function tokens(filter) {
 
   console.log(rows.length ? rows.join('\n') : `No tokens matching "${filter}".`);
 }
-
-// Run if executed directly
-if (process.argv[1].includes('tokens.js')) {
-  try {
-    tokens(process.argv[2]);
-  } catch (error) {
-    console.error('Error:', error.message);
-    process.exit(1);
-  }
-}

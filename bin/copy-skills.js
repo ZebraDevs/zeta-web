@@ -6,8 +6,9 @@ import { readdir, mkdir, copyFile, readFile, rm } from 'fs/promises';
 import { existsSync } from 'fs';
 import readline from 'readline';
 
-// Skills that were merged/removed and should be cleaned up from consumers
-const REMOVED_SKILLS = ['discover-zeta-react'];
+// Every skill we ship carries this frontmatter line, so any skill in a consumer
+// project that has it but that we no longer ship is ours and obsolete.
+const SOURCE_MARKER = /^source: "@zebra-fed\/zeta-web"$/m;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -211,11 +212,17 @@ export async function copySkills() {
       copiedCount++;
     }
 
-    // Clean up skills that were merged/removed upstream
+    // Clean up our skills that were merged/removed upstream
     let removedCount = 0;
-    for (const name of REMOVED_SKILLS) {
+    const installed = await readdir(skillsDestDir).catch(() => []);
+    const obsolete = [];
+    for (const name of installed) {
+      if (validSkills.includes(name)) continue;
+      const content = await readFile(join(skillsDestDir, name, 'SKILL.md'), 'utf-8').catch(() => '');
+      if (SOURCE_MARKER.test(content)) obsolete.push(name);
+    }
+    for (const name of obsolete) {
       const obsoletePath = join(skillsDestDir, name);
-      if (!existsSync(obsoletePath)) continue;
 
       if (await askYesNo(`\nRemove obsolete skill "${name}"? (y/n): `)) {
         await rm(obsoletePath, { recursive: true, force: true });
@@ -233,10 +240,4 @@ export async function copySkills() {
     console.error('Error copying skills:', error.message);
     process.exit(1);
   }
-}
-
-// Run directly if executed as a script (cross-platform compatible)
-const isRunDirectly = process.argv[1].includes('copy-skills');
-if (isRunDirectly) {
-  copySkills();
 }

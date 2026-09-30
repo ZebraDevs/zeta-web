@@ -81,13 +81,3 @@ export function icons(search) {
   const matches = search ? names.filter((n) => n.includes(search)) : names;
   console.log(matches.length ? matches.join('\n') : `No icons matching "${search}".`);
 }
-
-// Run if executed directly
-if (process.argv[1].includes('components.js')) {
-  try {
-    components(process.argv[2]);
-  } catch (error) {
-    console.error('Error:', error.message);
-    process.exit(1);
-  }
-}

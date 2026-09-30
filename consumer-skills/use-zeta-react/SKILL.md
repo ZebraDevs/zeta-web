@@ -1,5 +1,6 @@
 ---
 name: use-zeta-react
+source: "@zebra-fed/zeta-web"
 description: Use before building any React component or page. Check whether it is, or can be composed from, zeta-web components, and teaches how to import, render, and handle events from zeta-web's web components in React.
 usage: "Requires a prompt describing what to build. Example: /use-zeta-react Build a search form with filters"
 ---

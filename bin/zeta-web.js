@@ -26,7 +26,7 @@ Commands:
   help              Show this help message
 
 Examples:
-  npx zeta-web init-react my-app
+  npx @zebra-fed/zeta-web init-react my-app
   npx zeta-web init-skills
   npx zeta-web components button
   npx zeta-web help

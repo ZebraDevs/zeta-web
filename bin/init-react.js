@@ -316,8 +316,8 @@ export default App;
       join(projectPath, '.vscode', 'settings.json'),
       JSON.stringify({
         'cssVariables.lookupFiles': [
-          'node_modules/@zebra-fed/zeta-web/primitives.css',
-          'node_modules/@zebra-fed/zeta-web/semantics.css'
+          'node_modules/@zebra-fed/zeta-web/dist/primitives.css',
+          'node_modules/@zebra-fed/zeta-web/dist/semantics.css'
         ]
       }, null, 2) + '\n'
     );
@@ -374,10 +374,4 @@ Then open http://localhost:5173 in your browser.
 
     process.exit(1);
   }
-}
-
-// Run if executed directly
-const isRunDirectly = process.argv[1].includes('init-react');
-if (isRunDirectly) {
-  initReact(process.argv.slice(2).find((a) => !a.startsWith('-')));
 }
