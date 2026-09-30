@@ -4510,6 +4510,8 @@ __metadata:
     typescript: "npm:^5.9.3"
     typescript-eslint: "npm:^8.70.0"
     vite: "npm:^6.4.3"
+  bin:
+    zeta-web: ./bin/zeta-web.js
   languageName: unknown
   linkType: soft
 
