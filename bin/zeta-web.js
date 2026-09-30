@@ -6,6 +6,7 @@
  */
 
 const command = process.argv[2];
+const wantsHelp = process.argv.slice(3).some((a) => a === '--help' || a === '-h');
 
 /**
  * Display help message
@@ -19,17 +20,54 @@ Usage:
 
 Commands:
   init-react        Scaffold a new Vite + React 19 + TypeScript project with zeta-web
+                    [--name=<project>] [--pm=npm|yarn] [--linter=eslint|oxlint]
   init-skills       Copy zeta-web consumer skills to your .claude/skills directory
   components [name] List components, or show one's import, attributes, events and slots
   icons [search]    List valid icon names, optionally filtered
   tokens [filter]   List semantic design tokens and their values, optionally filtered
-  help              Show this help message
+  help [command]    Show this help message, or help for a command
 
 Examples:
-  npx @zebra-fed/zeta-web init-react my-app
-  npx zeta-web init-skills
-  npx zeta-web components button
-  npx zeta-web help
+  npx @zebra-fed/zeta-web init-react --name=my-app
+  npx @zebra-fed/zeta-web init-skills
+  npx @zebra-fed/zeta-web components button
+  npx @zebra-fed/zeta-web help
+  npx @zebra-fed/zeta-web init-react --help
+`);
+}
+
+/**
+ * Display init-react help message
+ */
+function showInitReactHelp() {
+  console.log(`
+zeta-web init-react
+
+Scaffold a new Vite + React 19 + TypeScript project pre-wired with zeta-web.
+
+Usage:
+  npx @zebra-fed/zeta-web init-react [options]
+
+Options:
+  --name=<project>        Project directory name (lowercase letters, numbers, hyphens)
+  --pm=npm|yarn           Package manager (default: npm)
+  --linter=eslint|oxlint  Linter (default: eslint)
+  -h, --help              Show this help message
+
+Any option not passed is asked for interactively.
+
+What it does:
+  - Scaffolds the project with create-vite (react-ts template)
+  - Installs @zebra-fed/zeta-web and @zebra-fed/zeta-icons
+  - Wires zeta global styles into src/main.tsx
+  - Replaces the Vite boilerplate with an example App.tsx using zeta components
+  - Adds the use-zeta-react Claude Code skill to .claude/skills
+  - Configures .vscode/settings.json for CSS variable autocomplete
+  - Verifies the project builds, then offers to start the dev server
+
+Examples:
+  npx @zebra-fed/zeta-web init-react
+  npx @zebra-fed/zeta-web init-react --name=my-app --pm=yarn --linter=oxlint
 `);
 }
 
@@ -39,11 +77,14 @@ Examples:
 async function main() {
   switch (command) {
     case 'init-react': {
+      if (wantsHelp) {
+        showInitReactHelp();
+        break;
+      }
       try {
         // Dynamic import works cross-platform
         const { initReact } = await import('./init-react.js');
-        // Pass project name as argv[3] (argv[2] is 'init-react')
-        await initReact(process.argv.slice(3).find((a) => !a.startsWith('-')));
+        await initReact();
       } catch (error) {
         console.error('Error:', error.message);
         process.exit(1);
@@ -99,7 +140,8 @@ async function main() {
     case 'help':
     case '--help':
     case '-h':
-      showHelp();
+      if (process.argv[3] === 'init-react') showInitReactHelp();
+      else showHelp();
       break;
 
     case undefined:

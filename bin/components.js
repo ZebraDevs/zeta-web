@@ -50,7 +50,9 @@ export function components(name) {
 
   console.log('Attributes:');
   for (const m of el.members ?? []) {
-    if (m.kind === 'field' && m.attribute) console.log(`  ${m.attribute}: ${short(m.type?.text)} = ${m.default}`);
+    if (m.kind === 'field' && m.attribute) {
+      console.log(`  ${m.attribute}: ${short(m.type?.text)}${m.default === undefined ? '' : ` = ${m.default}`}`);
+    }
   }
 
   console.log('\nEvents:');

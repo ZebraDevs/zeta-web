@@ -19,17 +19,17 @@ You can also view the latest release at [Zeta](https://design.zebra.com/) or the
 
 Starting a brand-new project? Scaffold a Vite + React 19 + TypeScript app pre-wired with Zeta Web in one command:
 
-  ```bash
-  npx @zebra-fed/zeta-web init-react my-app
-  ```
+```bash
+npx @zebra-fed/zeta-web init-react
+```
 
-  or
+or
 
-  ```bash
-  npx @zebra-fed/zeta-web init-react my-app --pm=yarn --linter=eslint
-  ```
+```bash
+npx @zebra-fed/zeta-web init-react --name=my-app --pm=yarn --linter=eslint
+```
 
-You'll be asked three questions - project name , package manager (npm/yarn), and linter (eslint/oxlint) - (skipped if passed as an arguments, as above). Everything else runs automatically:
+You'll be asked three questions - project name, package manager (npm/yarn), and linter (eslint/oxlint) - each skipped if passed as a flag, as above. Run `npx @zebra-fed/zeta-web init-react --help` to see all options. Everything else runs automatically:
 
 - Scaffolds the Vite + React + TypeScript project
 - Installs dependencies, including `@zebra-fed/zeta-web` and `@zebra-fed/zeta-icons`
@@ -101,7 +101,7 @@ Zeta Web Components can be directly used in many web frameworks including Angula
 After installing, you can set up Claude Code skills that teach AI agents how to use Zeta Web components in your project. To copy Zeta Web's Claude Code skills into your project, run:
 
 ```bash
-npx zeta-web init-skills
+npx @zebra-fed/zeta-web init-skills
 ```
 
 This command will copy skills like `use-zeta-react` into your project's `.claude/skills/` directory. These skills provide AI agents with specific guidance on using Zeta Web components in your application.

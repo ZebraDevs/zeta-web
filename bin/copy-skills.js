@@ -35,27 +35,26 @@ function findProjectRoot(startDir = process.cwd()) {
   return startDir;
 }
 
-/**
- * Create readline interface for interactive prompts
- */
-function createReadlineInterface() {
-  return readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
+// One shared readline interface, read through its async line iterator: unlike
+// rl.question(), it buffers lines that arrive before the prompt is shown, so
+// piped input (e.g. in tests/CI) isn't lost.
+let rlInterface = null;
+let lines = null;
+
+async function prompt(question) {
+  if (!rlInterface) {
+    rlInterface = readline.createInterface({ input: process.stdin, output: process.stdout });
+    lines = rlInterface[Symbol.asyncIterator]();
+  }
+  process.stdout.write(question);
+  return (await lines.next()).value ?? '';
 }
 
 /**
  * Ask user yes/no question
  */
-function askYesNo(question) {
-  return new Promise((resolve) => {
-    const rl = createReadlineInterface();
-    rl.question(question, (answer) => {
-      rl.close();
-      resolve(answer.toLowerCase().startsWith('y'));
-    });
-  });
+async function askYesNo(question) {
+  return (await prompt(question)).toLowerCase().startsWith('y');
 }
 
 /**
@@ -67,31 +66,18 @@ async function selectSkillsToSkip(changedSkills) {
     console.log(`  ${index + 1}. ${skill}`);
   });
 
-  const rl = createReadlineInterface();
+  const answer = await prompt(
+    '\nEnter skill numbers to SKIP (comma-separated, e.g., "1,3"), or press Enter to skip none: '
+  );
 
-  return new Promise((resolve) => {
-    rl.question(
-      '\nEnter skill numbers to SKIP (comma-separated, e.g., "1,3"), or press Enter to skip none: ',
-      (answer) => {
-        rl.close();
-
-        if (!answer.trim()) {
-          resolve(new Set());
-        }
-
-        const skipSet = new Set(
-          answer
-            .split(',')
-            .map(n => n.trim())
-            .filter(n => n && !isNaN(n))
-            .map(n => changedSkills[parseInt(n) - 1])
-            .filter(Boolean)
-        );
-
-        resolve(skipSet);
-      }
-    );
-  });
+  return new Set(
+    answer
+      .split(',')
+      .map(n => n.trim())
+      .filter(n => n && !isNaN(n))
+      .map(n => changedSkills[parseInt(n) - 1])
+      .filter(Boolean)
+  );
 }
 
 /**
@@ -239,5 +225,7 @@ export async function copySkills() {
   } catch (error) {
     console.error('Error copying skills:', error.message);
     process.exit(1);
+  } finally {
+    rlInterface?.close();
   }
 }

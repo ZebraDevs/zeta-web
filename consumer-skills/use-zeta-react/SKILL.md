@@ -16,8 +16,8 @@ Before building any React component, check whether it could be a zeta component,
 Discover components with the CLI. It reads the installed package, so it is always current:
 
 ```bash
-npx zeta-web components          # list every component
-npx zeta-web components button   # import path, attributes, events, slots, CSS parts, form-associated?
+npx @zebra-fed/zeta-web components          # list every component
+npx @zebra-fed/zeta-web components button   # import path, attributes, events, slots, CSS parts, form-associated?
 ```
 
 Run the second command before using a component. It prints the exact import path and the component's API; don't guess attribute or event names.
@@ -48,7 +48,7 @@ Use the `slot` attribute for named slots. Content without a `slot` attribute goe
 </zeta-global-header>
 ```
 
-The default slot is not identical to React `children`. Check the component's `slots` in the manifest and test the rendered result.
+The default slot is not identical to React `children`. Check the slots listed by `npx @zebra-fed/zeta-web components <name>` and test the rendered result.
 
 ## Events
 
@@ -59,43 +59,52 @@ Built-in events such as `input` and `change` can be handled two ways:
 ```
 Both work. Prefer `onInput` where it works, since it gives types React is happy with. This is confirmed for form fields; test it on other components.
 
-Cast `event.target` to the component type to read its properties. Some components expose values on `event.detail` instead; check the component's `events` in the manifest.
+Cast `event.target` to the component type to read its properties. Some components expose values on `event.detail` instead; check the events listed by `npx @zebra-fed/zeta-web components <name>`.
 
 ## Refs
 
 Use refs only for imperative operations (e.g. `showModal()`, `updateComplete`). Prefer attributes for declarative control.
 ```tsx
-const dialogRef = useRef<HTMLDialogElement>(null);
+import "@zebra-fed/zeta-web/components/dialog/dialog.js";
+import type { ZetaDialog } from "@zebra-fed/zeta-web/components/dialog/dialog.js";
+
+const dialogRef = useRef<ZetaDialog>(null);
 
 useEffect(() => {
   if (isOpen) dialogRef.current?.showModal();
-  else dialogRef.current?.close();
+  else dialogRef.current?.hide();
 }, [isOpen]);
 
-<dialog ref={dialogRef}>Content</dialog>
+<zeta-dialog ref={dialogRef}>Content</zeta-dialog>
 ```
 
 To wait for a Lit render (e.g. dropdown positioning): `ref.current?.updateComplete.then(() => { ... })`.
 
 ## Styling
 
-Zeta components are pre-styled with design tokens; no CSS imports are needed. Style your own markup with whatever your app already uses.
+Zeta components are pre-styled with design tokens; they need no CSS imports. To use tokens in your own markup, import the global stylesheet once (e.g. in `main.tsx`):
+
+```tsx
+import "@zebra-fed/zeta-web/index.css";
+```
+
+Style your own markup with whatever your app already uses.
 
 Use semantic tokens (intent-based, theme-aware) for colors, spacing, radius, elevation and typography. Don't use primitive tokens (e.g. `--color-blue-60`, `--spacing-4`) or hex codes. Look up exact names and values instead of guessing:
 
 ```bash
-npx zeta-web tokens            # every semantic token with its value (colors show light/dark)
-npx zeta-web tokens spacing    # filter by substring, e.g. spacing, radius, surface, elevation, title
+npx @zebra-fed/zeta-web tokens            # every semantic token with its value (colors show light/dark)
+npx @zebra-fed/zeta-web tokens spacing    # filter by substring, e.g. spacing, radius, surface, elevation, title
 ```
 
-To tweak a single component, `npx zeta-web components <name>` also lists its CSS parts (`::part(...)`) and CSS custom properties.
+To tweak a single component, `npx @zebra-fed/zeta-web components <name>` also lists its CSS parts (`::part(...)`) and CSS custom properties.
 
 ## Icons
 
 Icon props (`leadingIcon`, `trailingIcon`, `<zeta-icon>`) only accept known names. Search instead of guessing:
 
 ```bash
-npx zeta-web icons settings    # filter by substring; omit the filter to list all
+npx @zebra-fed/zeta-web icons settings    # filter by substring; omit the filter to list all
 ```
 
 ## Forms
@@ -166,4 +175,4 @@ import emptyBoxUrl from "@zebra-fed/zeta-web/assets/illustrations/zdna/emptyBox.
 - **Components**: `@zebra-fed/zeta-web/components/<name>/<name>.js`
 - **Assets**: `@zebra-fed/zeta-web/assets/*`
 - **Types**: `@zebra-fed/zeta-web` (barrel) or component-specific imports
-- **JSX types**: `@zebra-fed/zeta-web/jsx.d.ts` (auto-included in tsconfig)
+- **JSX types**: `@zebra-fed/zeta-web/jsx.d.ts`. If TypeScript reports `Property 'zeta-*' does not exist on type 'JSX.IntrinsicElements'`, extend React's `JSX.IntrinsicElements` with its `CustomElements` type (see the zeta-web README)

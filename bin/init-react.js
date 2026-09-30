@@ -29,33 +29,39 @@ function checkRegistryAuth() {
   return result.status === 0;
 }
 
-// One shared readline interface for the whole run - creating a new interface
-// per prompt loses buffered input when stdin is piped (e.g. in tests/CI).
+// One shared readline interface per group of prompts, read through its async
+// line iterator: unlike rl.question(), it buffers lines that arrive before the
+// prompt is shown, so piped input (e.g. in tests/CI) isn't lost.
 let rlInterface = null;
+let lines = null;
 
-function prompt(question) {
+async function prompt(question) {
   if (!rlInterface) {
-    rlInterface = readline.createInterface({
-      input: process.stdin,
-      output: process.stdout
-    });
+    rlInterface = readline.createInterface({ input: process.stdin, output: process.stdout });
+    lines = rlInterface[Symbol.asyncIterator]();
   }
-  return new Promise((resolve) => {
-    rlInterface.question(question, (answer) => {
-      resolve(answer.trim().toLowerCase());
-    });
-  });
+  process.stdout.write(question);
+  return ((await lines.next()).value ?? '').trim().toLowerCase();
 }
 
 /**
- * Read a --name=value flag from argv, restricted to a set of valid values.
+ * Close the shared readline. It must not stay open while child processes run:
+ * on a TTY it holds stdin in raw mode, which swallows Ctrl-C.
+ */
+function closePrompt() {
+  rlInterface?.close();
+  rlInterface = null;
+}
+
+/**
+ * Read a --name=value flag from argv, optionally restricted to a set of valid values.
  * Skips the prompt for that question when present and valid.
  */
 function getFlag(name, validValues) {
   const arg = process.argv.find((a) => a.startsWith(`--${name}=`));
   if (!arg) return null;
-  const value = arg.split('=')[1];
-  return validValues.includes(value) ? value : null;
+  const value = arg.slice(name.length + 3);
+  return !validValues || validValues.includes(value) ? value : null;
 }
 
 /**
@@ -112,8 +118,8 @@ function runCommand(command, args, options = {}) {
 /**
  * Main scaffolding function
  */
-export async function initReact(projectNameArg = null) {
-  let projectName = projectNameArg;
+export async function initReact() {
+  let projectName = getFlag('name');
 
   try {
     // The only 3 questions: name (if missing), package manager, linter.
@@ -126,6 +132,7 @@ export async function initReact(projectNameArg = null) {
       || ((await prompt('Package manager? (npm/yarn) [npm]: ')) === 'yarn' ? 'yarn' : 'npm');
     const linter = getFlag('linter', ['eslint', 'oxlint'])
       || ((await prompt('Linter? (eslint/oxlint) [eslint]: ')) === 'oxlint' ? 'oxlint' : 'eslint');
+    closePrompt();
 
     const projectPath = resolve(process.cwd(), projectName);
 
@@ -340,8 +347,7 @@ place — you can debug and rebuild manually with "${packageManager} run build".
 
     // The one and only remaining question.
     const startNow = await prompt('\nStart now? (y/n) [n]: ');
-    rlInterface.close();
-    rlInterface = null;
+    closePrompt();
 
     if (startNow === 'y' || startNow === 'yes') {
       console.log(`\n→ Starting dev server...\n`);
@@ -360,7 +366,7 @@ Then open http://localhost:5173 in your browser.
 `);
     }
   } catch (error) {
-    if (rlInterface) rlInterface.close();
+    closePrompt();
     console.error(`\nError: ${error.message}`);
 
     // Cleanup on failure so a retry doesn't hit "directory already exists"
