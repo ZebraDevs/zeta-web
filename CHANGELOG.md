@@ -1,5 +1,33 @@
 # Changelog
 
+## [1.5.0](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.4.2...zeta-web-v1.5.0) (2026-10-07)
+
+
+### ✨ New Features
+
+* zeta react skills ([#257](https://github.com/ZebraDevs/zeta-web/issues/257)) ([c6fc6c0](https://github.com/ZebraDevs/zeta-web/commit/c6fc6c012df96168f2c4c7eca1b2061cd64aa6de))
+
+
+### 🪲 Bug Fixes
+
+* exclude internal DOM query properties from JSX type generation ([#246](https://github.com/ZebraDevs/zeta-web/issues/246)) ([f0c1ac8](https://github.com/ZebraDevs/zeta-web/commit/f0c1ac89b83692f21c7523a153ec9002976dcf5e))
+
+
+### ⛓️ Dependencies
+
+* Update deps from dependabot ([#255](https://github.com/ZebraDevs/zeta-web/issues/255)) ([3d2e84b](https://github.com/ZebraDevs/zeta-web/commit/3d2e84b81358db45d98349e5f189a382db4f7c08))
+
+
+### 🧹 Miscellaneous Chores
+
+* **deps:** bump joi from 17.13.3 to 17.13.7 ([#256](https://github.com/ZebraDevs/zeta-web/issues/256)) ([296ca9c](https://github.com/ZebraDevs/zeta-web/commit/296ca9c535a49caba6e7f1b1091b109c411ec950))
+
+
+### 👷 Continuous Integration
+
+* new-component claude skill ([#245](https://github.com/ZebraDevs/zeta-web/issues/245)) ([204a132](https://github.com/ZebraDevs/zeta-web/commit/204a1322c9e63af82fa8f8ce19209b1bc9e9bfb1))
+* **NO-TICKET:** add update-component claude skill ([#248](https://github.com/ZebraDevs/zeta-web/issues/248)) ([f2ba139](https://github.com/ZebraDevs/zeta-web/commit/f2ba1391da1c792ecfb48e9835c488030b624519))
+
 ## [1.4.2](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.4.1...zeta-web-v1.4.2) (2026-08-14)
 
 
