@@ -77,7 +77,7 @@
     "@lit/localize-tools": "^0.8.2",
     "@open-wc/lit-helpers": "^0.7.0",
     "@open-wc/testing": "^4.0.0",
-    "@playwright/test": "^1.63.0",
+    "@playwright/test": "^1.64.0",
     "@remcovaes/web-test-runner-vite-plugin": "^1.4.1",
     "@storybook/addon-a11y": "^8.6.18",
     "@storybook/addon-actions": "^8.6.18",
@@ -93,10 +93,10 @@
     "@storybook/web-components": "^8.6.18",
     "@storybook/web-components-vite": "^8.6.18",
     "@types/jest": "^30.0.0",
-    "@types/node": "^22.20.1",
-    "@types/react": "^19.2.18",
-    "@typescript-eslint/eslint-plugin": "^8.70.0",
-    "@typescript-eslint/parser": "^8.70.0",
+    "@types/node": "^22.20.5",
+    "@types/react": "^19.3.0",
+    "@typescript-eslint/eslint-plugin": "^8.71.1",
+    "@typescript-eslint/parser": "^8.71.1",
     "@wc-toolkit/type-parser": "^1.3.1",
     "@web/test-runner": "^0.20.2",
     "@web/test-runner-commands": "^0.9.0",
@@ -106,7 +106,7 @@
     "cem-plugin-better-lit-types": "^0.2.1",
     "cem-plugin-custom-jsdoc-tags": "^1.2.0",
     "custom-element-jsx-integration": "^1.6.0",
-    "dompurify": "^3.4.15",
+    "dompurify": "^3.4.16",
     "dts-minify": "^0.3.3",
     "eslint": "^9.39.5",
     "eslint-config-prettier": "^10.1.8",
@@ -114,19 +114,19 @@
     "eslint-plugin-lit": "^2.3.1",
     "eslint-plugin-lit-a11y": "^5.1.1",
     "eslint-plugin-storybook": "^0.12.0",
-    "eslint-plugin-tsdoc": "^0.5.2",
+    "eslint-plugin-tsdoc": "^0.5.4",
     "eslint-plugin-wc": "^3.1.0",
     "lit-analyzer": "^2.0.3",
-    "prettier": "3.9.6",
-    "react": "^19.2.8",
+    "prettier": "3.9.10",
+    "react": "^19.3.0",
     "sinon": "^22.1.0",
     "storybook": "^8.6.18",
     "ts-lit-plugin": "^2.0.2",
     "ts-morph": "^27.0.2",
     "typedoc": "^0.28.20",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.70.0",
-    "vite": "^6.4.3"
+    "typescript-eslint": "^8.71.1",
+    "vite": "^6.4.4"
   },
   "dependencies": {
     "@fontsource/ibm-plex-sans": "^5.3.0",
@@ -163,5 +163,5 @@
       "last 1 safari version"
     ]
   },
-  "packageManager": "yarn@4.18.0"
+  "packageManager": "yarn@4.18.1"
 }
