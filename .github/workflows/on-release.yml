@@ -3,9 +3,11 @@ name: CI - On Release
 on:
   release:
     types: [released]
+  workflow_dispatch: # TEMP: remove before merging
 
 jobs:
   deploy-website:
+    if: github.event_name == 'release' # TEMP: remove before merging
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
