@@ -34,12 +34,8 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 20
           # cache: "yarn" Removed due to https://github.com/actions/setup-node/issues/1027
-
-      # Trusted publishing needs npm >= 11.5.1; Node 22 bundles an older npm
-      - name: Update npm
-        run: npm install -g npm@latest
 
       - name: Install packages
         run: yarn install --immutable
@@ -48,4 +44,4 @@ jobs:
         run: yarn run build
 
       - name: Publish
-        run: npm publish
+        run: yarn npm publish
