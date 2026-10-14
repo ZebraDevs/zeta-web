@@ -52,7 +52,7 @@ const meta: Meta<ZetaDropdownMenuButton & { onopen: () => void }> = {
     open: false,
     direction: undefined,
     defaultText: "Select an option",
-    matchParentWidth: true,
+    matchParentWidth: false,
     buttonTextMatchesSelected: true,
     onclick: fn(),
     onchange: fn(),
