@@ -23,7 +23,7 @@ export type ZetaDropdownType = Extract<ZetaInputType, "text-dropdown" | "checkbo
  *
  * Zeta Dropdown Menu Button places a button that when clicked opens a dropdown menu containing the items passed into it through the items prop.
  *
- * @property {boolean} matchParentWidth - Whether the dropdown menu should match the width of its parent. Enabled by default. If disabled, the dropdown menu will size to fit its content.
+ * @property {boolean} matchParentWidth - Whether the dropdown menu should match the width of its parent. Disabled by default, so the dropdown menu sizes to fit its content. Set to true to match the width of the button.
  * @property {string} defaultText - The default text to display when no item is selected. Defaults to an empty string if nothing is set.
  * @property {boolean} buttonTextMatchesSelected - Whether the button text should update to match the selected item. Default is true. Only applicable for the text-dropdown type.
  * @property {boolean} open - Controls the state of the dropdown menu. Default is false.
@@ -44,8 +44,8 @@ export type ZetaDropdownType = Extract<ZetaInputType, "text-dropdown" | "checkbo
 export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(LitElement)))) {
   /**
    * Whether the dropdown menu should match the width of its parent.
-   * Enabled by default.
-   * If disabled, the dropdown menu will size to fit its content.
+   * Disabled by default, so the dropdown menu will size to fit its content.
+   * If enabled, the dropdown menu will match the width of the button.
    */
   @property({ type: Boolean, reflect: true }) matchParentWidth: boolean = false;
 
