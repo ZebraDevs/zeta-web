@@ -74,7 +74,7 @@ describe("zeta-dropdown-menu-button", () => {
 
   describe("Dimensions", () => {
     it("has the same width as the zeta droppable", async () => {
-      await subject.matchParentWidth = true;
+      subject.matchParentWidth = true;
       (subject.shadowRoot?.querySelector("zeta-button") as ZetaButton).click();
       await subject.updateComplete;
 
