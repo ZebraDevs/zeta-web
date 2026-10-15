@@ -1,0 +1,145 @@
+/**
+ * Legacy Token Compatibility Layer
+ * Maps old token names (@packages/zeta-web/src/generated/tokens/) to new ones (@packages/tokens/dist/css/)
+ * Auto-generated mapping based on hex value analysis.
+ * The comment out tokens are because they share the same name as their old counterpart. 
+ */
+
+:root {
+  /* Spacing tokens — same scale, just renamed */
+  --spacing-none: var(--space-none);
+  --spacing-minimum: var(--space-xs);
+  --spacing-small: var(--space-sm);
+  --spacing-medium: var(--space-md);
+  --spacing-large: var(--space-lg);
+  --spacing-xl: var(--space-lg);
+  --spacing-2xl: var(--space-xl);
+  --spacing-3xl: calc(var(--space-xl) + var(--space-xs));
+  --spacing-4xl: var(--space-2xl);
+  --spacing-5xl: calc(var(--space-2xl) + var(--space-xs));
+  --spacing-6xl: calc(var(--space-2xl) + var(--space-sm));
+  --spacing-7xl: calc(var(--space-2xl) + var(--space-md));
+  --spacing-8xl: calc(var(--space-2xl) + var(--space-lg));
+  --spacing-9xl: calc(var(--space-2xl) * 2);
+  --spacing-10xl: calc((var(--space-2xl) * 2) + var(--space-lg));
+  --spacing-11xl: calc(var(--space-2xl) * 3);
+
+  /* Color tokens — primary semantic mappings */
+  /* main/* tokens → new foreground/surface/interactive tokens */
+  --main-default: var(--foreground-primary);
+  --main-subtle: var(--foreground-secondary);
+  --main-primary: var(--interactive-ghost-foreground-default);
+  --main-secondary: var(--foreground-secondary);
+  --main-positive: var(--foreground-success);
+  --main-warning: var(--foreground-warning);
+  --main-negative: var(--foreground-error);
+  --main-info: var(--foreground-info);
+  --main-disabled: var(--foreground-disabled);
+  --main-light: var(--border-subtle);
+  --main-inverse: var(--surface-page);
+
+  /* border/* tokens → new border tokens */
+  /* --border-default: var(--border-default); */
+  --border-selected: var(--border-strong);
+  --border-hover: var(--border-strong);
+  /* --border-subtle: var(--border-subtle); */
+  --border-disabled: var(--border-subtle);
+  --border-pure: var(--border-inverse);
+  --border-primary-main: var(--border-focus);
+  --border-primary: var(--border-focus);
+  --border-secondary: var(--foreground-secondary);
+  --border-positive: var(--border-success);
+  /* --border-warning: var(--border-warning); */
+  --border-negative: var(--border-error);
+  /* --border-info: var(--border-info); */
+
+  /* surface/* tokens → new surface tokens (context-dependent, using defaults) */
+  --surface-default: var(--surface-section);
+  --surface-default-inverse: var(--surface-inverse);
+  --surface-hover: var(--surface-card);
+  --surface-selected: var(--surface-card);
+  --surface-selected-hover: var(--surface-card);
+  --surface-disabled: var(--border-subtle);
+  --surface-cool: var(--surface-card);
+  --surface-warm: var(--surface-card);
+  --surface-primary: var(--interactive-primary-background-default);
+  --surface-primary-subtle: var(--surface-card);
+  --surface-secondary: var(--interactive-secondary-background-default);
+  --surface-secondary-subtle: var(--surface-card);
+  --surface-positive: var(--interactive-positive-background-default);
+  --surface-positive-subtle: var(--surface-success);
+  /* --surface-warning: var(--surface-warning); */
+  --surface-warning-subtle: var(--surface-warning);
+  --surface-negative: var(--interactive-destructive-background-default);
+  --surface-negative-subtle: var(--surface-error);
+  /* --surface-info: var(--surface-info); */
+  --surface-info-subtle: var(--surface-info);
+
+  /* state/* tokens → new interactive/foreground tokens */
+  --state-disabled-disabled: var(--foreground-disabled);
+  --state-default-enabled: var(--foreground-primary);
+  --state-default-hover: var(--border-subtle);
+  --state-default-selected: var(--surface-card);
+  --state-default-focus: var(--foreground-primary);
+  --state-primary-enabled: var(--interactive-primary-foreground-default);
+  --state-primary-hover: var(--interactive-primary-foreground-default);
+  --state-primary-selected: var(--interactive-primary-foreground-default);
+  --state-primary-focus: var(--interactive-primary-foreground-default);
+  --state-negative-enabled: var(--interactive-destructive-foreground-default);
+  --state-negative-hover: var(--interactive-destructive-foreground-default);
+  --state-negative-selected: var(--interactive-destructive-foreground-default);
+  --state-negative-focus: var(--interactive-destructive-foreground-default);
+  --state-secondary-enabled: var(--interactive-secondary-foreground-default);
+  --state-secondary-hover: var(--interactive-secondary-foreground-default);
+  --state-secondary-selected: var(--interactive-secondary-foreground-default);
+  --state-secondary-focus: var(--interactive-secondary-foreground-default);
+  --state-info-enabled: var(--foreground-info);
+  --state-info-hover: var(--foreground-info);
+  --state-info-selected: var(--foreground-info);
+  --state-info-focus: var(--foreground-info);
+  --state-inverse-enabled: var(--surface-inverse);
+  --state-inverse-hover: var(--surface-inverse);
+  --state-inverse-selected: var(--surface-inverse);
+  --state-inverse-focus: var(--surface-inverse);
+  --state-positive-enabled: var(--foreground-success);
+  --state-positive-hover: var(--foreground-success);
+  --state-positive-selected: var(--foreground-success);
+  --state-positive-focus: var(--foreground-success);
+
+  /* chart/* tokens → new chart tokens */
+  --chart-1-primary: var(--chart-series-1);
+  --chart-1-secondary: var(--chart-series-1);
+  --chart-2-primary: var(--chart-series-2);
+  --chart-2-secondary: var(--chart-series-2);
+  --chart-3-primary: var(--chart-series-3);
+  --chart-3-secondary: var(--chart-series-3);
+  --chart-4-primary: var(--chart-series-4);
+  --chart-4-secondary: var(--chart-series-4);
+  --chart-5-primary: var(--chart-series-5);
+  --chart-5-secondary: var(--chart-series-5);
+  --chart-6-primary: var(--chart-series-6);
+  --chart-6-secondary: var(--chart-series-6);
+  --chart-7-primary: var(--chart-series-7);
+  --chart-7-secondary: var(--chart-series-7);
+  --chart-8-primary: var(--chart-series-8);
+  --chart-8-secondary: var(--chart-series-8);
+
+  /* avatar/* tokens → component-specific, no direct mapping */
+  --avatar-blue: var(--interactive-primary-background-default);
+  --avatar-green: var(--foreground-success);
+  --avatar-orange: var(--foreground-warning);
+  --avatar-pink: var(--foreground-error);
+  --avatar-purple: var(--foreground-info);
+  --avatar-teal: var(--interactive-secondary-background-default);
+  --avatar-yellow: var(--foreground-warning);
+
+  /* radius/* tokens — same scale */
+  /* --radius-none: var(--radius-none); */
+  --radius-minimal: var(--radius-sm);
+  --radius-rounded: var(--radius-md);
+  --radius-large: var(--radius-lg);
+  /* --radius-xl: var(--radius-xl); */
+  --radius-full: var(--radius-pill);
+}
+
+/* Dark mode overrides are auto-handled by the new token system's @media (prefers-color-scheme: dark) */
