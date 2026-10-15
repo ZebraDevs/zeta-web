@@ -23,6 +23,7 @@ describe("zeta-icon-button", () => {
   describe("Accessibility", () => {
     flavors.map(flavor => {
       it(`meets contrast requirements for the ${flavor} flavor`, async () => {
+        subject.setAttribute("flavor", flavor);
         await elementUpdated(subject);
         // Check color contrast between text and background
         const buttonEl = subject.shadowRoot?.querySelector("button");

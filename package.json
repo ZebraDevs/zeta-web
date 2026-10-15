@@ -65,7 +65,8 @@
     "test:count": "npx tsx scripts/test/test_counter.ts",
     "pretest:package": "yarn pack --pack-destination ./test && cd test && yarn install && cd ..",
     "test:package": "cd test && yarn run dev",
-    "test:watch": "web-test-runner \"src/test/**/*.test.ts\" --node-resolve --watch --config src/test/web-test-runner.config.*",
+    "test:file": "web-test-runner --node-resolve --config src/test/web-test-runner.config.*",
+    "test:watch":"web-test-runner \"src/test/**/*.test.ts\" --node-resolve --watch --config src/test/web-test-runner.config.*",
     "test": "web-test-runner \"src/test/**/*.test.ts\" --node-resolve --config src/test/web-test-runner.config.*"
   },
   "devDependencies": {

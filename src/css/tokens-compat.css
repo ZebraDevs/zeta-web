@@ -26,7 +26,7 @@
 
   /* Color tokens — primary semantic mappings */
   /* main/* tokens → new foreground/surface/interactive tokens */
-  --main-default: light-dark(var(--color-neutral-cool-90), var(--color-neutral-cool-20));
+  --main-default: light-dark(var(--color-neutral-pure-white), var(--color-neutral-pure-black));
   --main-subtle: light-dark(var(--color-neutral-cool-70), #bbc1cb);
   --main-primary: light-dark(var(--color-system-info-60), var(--color-system-info-50));
   --main-secondary: light-dark(var(--color-accent-2-60), var(--color-accent-2-50));
@@ -81,10 +81,10 @@
   --state-default-hover: light-dark(var(--color-neutral-cool-20), var(--color-neutral-cool-90));
   --state-default-selected: light-dark(var(--color-system-info-10), var(--color-system-info-100));
   --state-default-focus: light-dark(var(--color-pure-white), var(--color-neutral-warm-100));
-  --state-primary-enabled: light-dark(var(--color-system-info-60), var(--color-system-info-50));
-  --state-primary-hover: light-dark(var(--color-system-info-50), var(--color-system-info-60));
-  --state-primary-selected: light-dark(var(--color-system-info-70), var(--color-system-info-40));
-  --state-primary-focus: light-dark(var(--color-system-info-60), var(--color-system-info-50));
+  --state-primary-enabled: light-dark(var(--color-brand-main-60), var(--color-brand-main-60));
+  --state-primary-hover: light-dark(var(--color-brand-main-50), var(--color-brand-main-50));
+  --state-primary-selected: light-dark(var(--color-brand-main-70), var(--color-brand-main-40));
+  --state-primary-focus: light-dark(var(--color-brand-main-60), var(--color-brand-main-60));
   --state-negative-enabled: light-dark(var(--color-system-negative-60), var(--color-system-negative-50));
   --state-negative-hover: light-dark(var(--color-system-negative-50), var(--color-system-negative-60));
   --state-negative-selected: light-dark(var(--color-system-negative-70), var(--color-system-negative-40));
