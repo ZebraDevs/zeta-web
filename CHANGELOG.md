@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.1](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.5.0...zeta-web-v1.5.1) (2026-10-15)
+
+
+### 🧹 Miscellaneous Chores
+
+* **HMX-19527:** add export zeta bundle and documentation generation scripts ([#271](https://github.com/ZebraDevs/zeta-web/issues/271)) ([9362c97](https://github.com/ZebraDevs/zeta-web/commit/9362c974854b29519e3649c3331785097359f3cc))
+
 ## [1.5.0](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.4.2...zeta-web-v1.5.0) (2026-10-13)
 
 
