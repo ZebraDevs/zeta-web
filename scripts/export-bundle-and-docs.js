@@ -9,19 +9,10 @@ import { components } from '../bin/components.js';
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(scriptDir, '..');
 
+// fixed output location inside the repo (gitignored), not user-supplied, so the script can't write elsewhere
+const outputDir = path.join(root, 'generated');
+
 function outputDirs() {
-    const outputArg = process.argv[2];
-    if (!outputArg) {
-        console.error(`Usage: yarn export:bundle-and-docs <output-folder>`);
-        process.exit(1);
-    }
-
-    const outputDir = path.resolve(outputArg);
-    if (fs.existsSync(outputDir) && !fs.statSync(outputDir).isDirectory()) {
-        console.error(`Output path is not a folder: ${outputDir}`);
-        process.exit(1);
-    }
-
     const vendorDir = path.join(outputDir, 'vendor');
     const docsDir = path.join(outputDir, 'docs');
 

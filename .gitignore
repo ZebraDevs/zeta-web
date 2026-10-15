@@ -2,6 +2,7 @@
 /build
 /dist
 /output
+/generated
 .yarn/*
 !.yarn/cache
 !.yarn/patches
