@@ -1,4 +1,5 @@
 @import url("./generated/tokens/index.css");
 
 @import url("./css/styles.css");
+@import url("./css/styles.dark.css");
 @import url("./css/tokens-compat.css");

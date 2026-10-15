@@ -7,9 +7,13 @@ import { sendMouse, resetMouse, sendKeys /*, type SendKeysPayload*/ } from "@web
  * @returns The RGB representation of the color.
  */
 export const toRGB = (color: string) => {
-  const { style } = new Option();
-  style.color = color;
-  return style.color;
+  // Resolve on an attached element so light-dark() and var() collapse to a single rgb value.
+  const el = document.createElement("span");
+  el.style.color = color;
+  document.body.append(el);
+  const rgb = getComputedStyle(el).color;
+  el.remove();
+  return rgb;
 };
 
 /**

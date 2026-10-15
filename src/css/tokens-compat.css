@@ -12,134 +12,146 @@
   --spacing-small: var(--space-sm);
   --spacing-medium: var(--space-md);
   --spacing-large: var(--space-lg);
-  --spacing-xl: var(--space-lg);
+  --spacing-xl: var(--scale-8);
   --spacing-2xl: var(--space-xl);
-  --spacing-3xl: calc(var(--space-xl) + var(--space-xs));
+  --spacing-3xl: var(--scale-10);
   --spacing-4xl: var(--space-2xl);
-  --spacing-5xl: calc(var(--space-2xl) + var(--space-xs));
-  --spacing-6xl: calc(var(--space-2xl) + var(--space-sm));
-  --spacing-7xl: calc(var(--space-2xl) + var(--space-md));
-  --spacing-8xl: calc(var(--space-2xl) + var(--space-lg));
-  --spacing-9xl: calc(var(--space-2xl) * 2);
-  --spacing-10xl: calc((var(--space-2xl) * 2) + var(--space-lg));
-  --spacing-11xl: calc(var(--space-2xl) * 3);
+  --spacing-5xl: var(--scale-12);
+  --spacing-6xl: var(--scale-13);
+  --spacing-7xl: var(--scale-14);
+  --spacing-8xl: var(--scale-15);
+  --spacing-9xl: var(--scale-17);
+  --spacing-10xl: var(--scale-18);
+  --spacing-11xl: var(--scale-19);
 
   /* Color tokens — primary semantic mappings */
   /* main/* tokens → new foreground/surface/interactive tokens */
-  --main-default: var(--foreground-primary);
-  --main-subtle: var(--foreground-secondary);
-  --main-primary: var(--interactive-ghost-foreground-default);
-  --main-secondary: var(--foreground-secondary);
-  --main-positive: var(--foreground-success);
+  --main-default: light-dark(var(--color-neutral-cool-90), var(--color-neutral-cool-20));
+  --main-subtle: light-dark(var(--color-neutral-cool-70), #bbc1cb);
+  --main-primary: light-dark(var(--color-system-info-60), var(--color-system-info-50));
+  --main-secondary: light-dark(var(--color-accent-2-60), var(--color-accent-2-50));
+  --main-positive: light-dark(var(--color-system-positive-60), var(--color-system-positive-50));
   --main-warning: var(--foreground-warning);
-  --main-negative: var(--foreground-error);
-  --main-info: var(--foreground-info);
+  --main-negative: light-dark(var(--color-system-negative-60), var(--color-system-negative-50));
+  --main-info: light-dark(var(--color-accent-1-60), var(--color-accent-1-50));
   --main-disabled: var(--foreground-disabled);
   --main-light: var(--border-subtle);
   --main-inverse: var(--surface-page);
 
   /* border/* tokens → new border tokens */
   /* --border-default: var(--border-default); */
-  --border-selected: var(--border-strong);
-  --border-hover: var(--border-strong);
+  --border-selected: light-dark(var(--color-neutral-cool-90), var(--color-neutral-cool-20));
+  --border-hover: light-dark(var(--color-neutral-cool-90), var(--color-neutral-cool-20));
   /* --border-subtle: var(--border-subtle); */
-  --border-disabled: var(--border-subtle);
-  --border-pure: var(--border-inverse);
-  --border-primary-main: var(--border-focus);
-  --border-primary: var(--border-focus);
-  --border-secondary: var(--foreground-secondary);
-  --border-positive: var(--border-success);
+  --border-disabled: light-dark(var(--color-neutral-cool-20), var(--color-neutral-cool-90));
+  --border-pure: light-dark(var(--color-pure-white), var(--color-neutral-warm-100));
+  --border-primary-main: light-dark(var(--color-system-info-60), var(--color-system-info-50));
+  --border-primary: light-dark(var(--color-system-info-50), var(--color-system-info-60));
+  --border-secondary: light-dark(var(--color-accent-2-50), var(--color-accent-2-60));
+  --border-positive: light-dark(var(--color-system-positive-50), var(--color-system-positive-60));
   /* --border-warning: var(--border-warning); */
-  --border-negative: var(--border-error);
+  --border-negative: light-dark(var(--color-system-negative-50), var(--color-system-negative-60));
   /* --border-info: var(--border-info); */
 
   /* surface/* tokens → new surface tokens (context-dependent, using defaults) */
-  --surface-default: var(--surface-section);
-  --surface-default-inverse: var(--surface-inverse);
-  --surface-hover: var(--surface-card);
-  --surface-selected: var(--surface-card);
-  --surface-selected-hover: var(--surface-card);
+  --surface-default: light-dark(var(--color-pure-white), var(--color-neutral-warm-100));
+  --surface-default-inverse: light-dark(var(--color-neutral-warm-100), var(--color-neutral-warm-10));
+  --surface-hover: light-dark(var(--color-neutral-cool-20), var(--color-neutral-cool-90));
+  --surface-selected: light-dark(var(--color-system-info-10), var(--color-system-info-100));
+  --surface-selected-hover: light-dark(var(--color-system-info-20), var(--color-system-info-90));
   --surface-disabled: var(--border-subtle);
   --surface-cool: var(--surface-card);
-  --surface-warm: var(--surface-card);
-  --surface-primary: var(--interactive-primary-background-default);
-  --surface-primary-subtle: var(--surface-card);
-  --surface-secondary: var(--interactive-secondary-background-default);
-  --surface-secondary-subtle: var(--surface-card);
-  --surface-positive: var(--interactive-positive-background-default);
+  --surface-warm: light-dark(var(--color-neutral-warm-10), var(--color-neutral-warm-100));
+  --surface-primary: light-dark(var(--color-system-info-60), var(--color-system-info-50));
+  --surface-primary-subtle: light-dark(var(--color-system-info-10), var(--color-system-info-100));
+  --surface-secondary: light-dark(var(--color-accent-2-60), var(--color-accent-2-50));
+  --surface-secondary-subtle: light-dark(var(--color-accent-2-10), var(--color-accent-2-100));
+  --surface-positive: light-dark(var(--color-system-positive-60), var(--color-system-positive-50));
   --surface-positive-subtle: var(--surface-success);
   /* --surface-warning: var(--surface-warning); */
   --surface-warning-subtle: var(--surface-warning);
-  --surface-negative: var(--interactive-destructive-background-default);
+  --surface-negative: light-dark(var(--color-system-negative-60), var(--color-system-negative-50));
   --surface-negative-subtle: var(--surface-error);
   /* --surface-info: var(--surface-info); */
-  --surface-info-subtle: var(--surface-info);
+  --surface-info-subtle: light-dark(var(--color-accent-1-10), var(--color-accent-1-100));
 
   /* state/* tokens → new interactive/foreground tokens */
-  --state-disabled-disabled: var(--foreground-disabled);
-  --state-default-enabled: var(--foreground-primary);
-  --state-default-hover: var(--border-subtle);
-  --state-default-selected: var(--surface-card);
-  --state-default-focus: var(--foreground-primary);
-  --state-primary-enabled: var(--interactive-primary-foreground-default);
-  --state-primary-hover: var(--interactive-primary-foreground-default);
-  --state-primary-selected: var(--interactive-primary-foreground-default);
-  --state-primary-focus: var(--interactive-primary-foreground-default);
-  --state-negative-enabled: var(--interactive-destructive-foreground-default);
-  --state-negative-hover: var(--interactive-destructive-foreground-default);
-  --state-negative-selected: var(--interactive-destructive-foreground-default);
-  --state-negative-focus: var(--interactive-destructive-foreground-default);
-  --state-secondary-enabled: var(--interactive-secondary-foreground-default);
-  --state-secondary-hover: var(--interactive-secondary-foreground-default);
-  --state-secondary-selected: var(--interactive-secondary-foreground-default);
-  --state-secondary-focus: var(--interactive-secondary-foreground-default);
-  --state-info-enabled: var(--foreground-info);
-  --state-info-hover: var(--foreground-info);
-  --state-info-selected: var(--foreground-info);
-  --state-info-focus: var(--foreground-info);
-  --state-inverse-enabled: var(--surface-inverse);
+  --state-disabled-disabled: light-dark(var(--color-neutral-cool-30), var(--color-neutral-cool-80));
+  --state-default-enabled: light-dark(var(--color-pure-white), var(--color-neutral-warm-100));
+  --state-default-hover: light-dark(var(--color-neutral-cool-20), var(--color-neutral-cool-90));
+  --state-default-selected: light-dark(var(--color-system-info-10), var(--color-system-info-100));
+  --state-default-focus: light-dark(var(--color-pure-white), var(--color-neutral-warm-100));
+  --state-primary-enabled: light-dark(var(--color-system-info-60), var(--color-system-info-50));
+  --state-primary-hover: light-dark(var(--color-system-info-50), var(--color-system-info-60));
+  --state-primary-selected: light-dark(var(--color-system-info-70), var(--color-system-info-40));
+  --state-primary-focus: light-dark(var(--color-system-info-60), var(--color-system-info-50));
+  --state-negative-enabled: light-dark(var(--color-system-negative-60), var(--color-system-negative-50));
+  --state-negative-hover: light-dark(var(--color-system-negative-50), var(--color-system-negative-60));
+  --state-negative-selected: light-dark(var(--color-system-negative-70), var(--color-system-negative-40));
+  --state-negative-focus: light-dark(var(--color-system-negative-60), var(--color-system-negative-50));
+  --state-secondary-enabled: light-dark(var(--color-accent-2-40), var(--color-accent-2-70));
+  --state-secondary-hover: light-dark(var(--color-accent-2-30), var(--color-accent-2-80));
+  --state-secondary-selected: light-dark(var(--color-accent-2-50), var(--color-accent-2-60));
+  --state-secondary-focus: light-dark(var(--color-accent-2-40), var(--color-accent-2-70));
+  /* --state-info-enabled: unused; */
+  /* --state-info-hover: unused; */
+  /* --state-info-selected: unused; */
+  /* --state-info-focus: unused; */
+  --state-inverse-enabled: light-dark(var(--color-neutral-cool-100), var(--color-neutral-cool-10));
   --state-inverse-hover: var(--surface-inverse);
-  --state-inverse-selected: var(--surface-inverse);
-  --state-inverse-focus: var(--surface-inverse);
-  --state-positive-enabled: var(--foreground-success);
-  --state-positive-hover: var(--foreground-success);
-  --state-positive-selected: var(--foreground-success);
-  --state-positive-focus: var(--foreground-success);
+  --state-inverse-selected: light-dark(var(--color-neutral-cool-100), var(--color-neutral-cool-10));
+  --state-inverse-focus: light-dark(var(--color-neutral-cool-100), var(--color-neutral-cool-10));
+  --state-positive-enabled: light-dark(var(--color-system-positive-60), var(--color-system-positive-50));
+  --state-positive-hover: light-dark(var(--color-system-positive-50), var(--color-system-positive-60));
+  --state-positive-selected: light-dark(var(--color-system-positive-70), var(--color-system-positive-40));
+  --state-positive-focus: light-dark(var(--color-system-positive-60), var(--color-system-positive-50));
 
-  /* chart/* tokens → new chart tokens */
-  --chart-1-primary: var(--chart-series-1);
-  --chart-1-secondary: var(--chart-series-1);
-  --chart-2-primary: var(--chart-series-2);
-  --chart-2-secondary: var(--chart-series-2);
-  --chart-3-primary: var(--chart-series-3);
-  --chart-3-secondary: var(--chart-series-3);
-  --chart-4-primary: var(--chart-series-4);
-  --chart-4-secondary: var(--chart-series-4);
-  --chart-5-primary: var(--chart-series-5);
-  --chart-5-secondary: var(--chart-series-5);
+  /* chart/* tokens → old palette (new chart-series-* uses a different order) */
+  --chart-1-primary: light-dark(var(--color-system-info-60), var(--color-system-info-50));
+  --chart-1-secondary: light-dark(var(--color-system-info-40), var(--color-system-info-70));
+  --chart-2-primary: light-dark(var(--color-system-positive-60), var(--color-system-positive-50));
+  --chart-2-secondary: light-dark(var(--color-system-positive-40), var(--color-system-positive-70));
+  --chart-3-primary: light-dark(var(--color-system-warning-50), var(--color-system-warning-60));
+  --chart-3-secondary: light-dark(var(--color-system-warning-30), var(--color-system-warning-80));
+  --chart-4-primary: light-dark(var(--color-system-negative-60), var(--color-system-negative-50));
+  --chart-4-secondary: light-dark(var(--color-system-negative-40), var(--color-system-negative-70));
+  --chart-5-primary: light-dark(var(--color-accent-1-60), var(--color-accent-1-50));
+  --chart-5-secondary: light-dark(var(--color-accent-1-40), var(--color-accent-1-70));
   --chart-6-primary: var(--chart-series-6);
-  --chart-6-secondary: var(--chart-series-6);
-  --chart-7-primary: var(--chart-series-7);
-  --chart-7-secondary: var(--chart-series-7);
-  --chart-8-primary: var(--chart-series-8);
-  --chart-8-secondary: var(--chart-series-8);
+  --chart-6-secondary: light-dark(var(--color-accent-3-40), var(--color-accent-3-70));
+  --chart-7-primary: light-dark(var(--color-accent-4-60), var(--color-accent-4-50));
+  --chart-7-secondary: light-dark(var(--color-accent-4-40), var(--color-accent-4-70));
+  --chart-8-primary: light-dark(var(--color-neutral-cool-90), var(--color-neutral-cool-20));
+  --chart-8-secondary: light-dark(var(--color-neutral-cool-70), #bbc1cb);
 
-  /* avatar/* tokens → component-specific, no direct mapping */
-  --avatar-blue: var(--interactive-primary-background-default);
-  --avatar-green: var(--foreground-success);
-  --avatar-orange: var(--foreground-warning);
-  --avatar-pink: var(--foreground-error);
-  --avatar-purple: var(--foreground-info);
-  --avatar-teal: var(--interactive-secondary-background-default);
-  --avatar-yellow: var(--foreground-warning);
+  /* avatar/* tokens → primitives (no semantic equivalent) */
+  --avatar-blue: light-dark(var(--color-system-info-80), var(--color-system-info-30));
+  --avatar-green: light-dark(var(--color-system-positive-60), var(--color-system-positive-50));
+  --avatar-orange: light-dark(var(--color-system-warning-50), var(--color-system-warning-60));
+  --avatar-pink: light-dark(var(--color-accent-4-80), var(--color-accent-4-30));
+  --avatar-purple: light-dark(var(--color-accent-1-80), var(--color-accent-1-30));
+  --avatar-teal: light-dark(var(--color-accent-3-80), var(--color-accent-3-30));
+  --avatar-yellow: light-dark(var(--color-accent-2-50), var(--color-accent-2-60));
 
   /* radius/* tokens — same scale */
   /* --radius-none: var(--radius-none); */
   --radius-minimal: var(--radius-sm);
   --radius-rounded: var(--radius-md);
-  --radius-large: var(--radius-lg);
+  --radius-large: var(--scale-7);
   /* --radius-xl: var(--radius-xl); */
-  --radius-full: var(--radius-pill);
+  --radius-full: 360px;
+
+  /* Old primitives still referenced directly by components */
+  --spacing-0: var(--scale-0);
+  --spacing-1: var(--scale-3);
+  --spacing-2: var(--scale-5);
+  --spacing-3: var(--scale-6);
+  --spacing-4: var(--scale-7);
+  --color-cool-10: light-dark(var(--color-neutral-cool-10), var(--color-neutral-cool-100));
+  --color-cool-20: light-dark(var(--color-neutral-cool-20), var(--color-neutral-cool-90));
+  --color-cool-30: light-dark(var(--color-neutral-cool-30), var(--color-neutral-cool-80));
+  --color-cool-40: light-dark(var(--color-neutral-cool-40), var(--color-neutral-cool-70));
+  --color-cool-50: light-dark(var(--color-neutral-cool-50), var(--color-neutral-cool-60));
 }
 
-/* Dark mode overrides are auto-handled by the new token system's @media (prefers-color-scheme: dark) */
+/* Dark mode: light-dark() follows color-scheme set in tokens.css (data-mode / prefers-color-scheme). */
