@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+﻿#!/usr/bin/env node
 
 import { readFileSync } from 'fs';
 import { join, dirname } from 'path';
@@ -15,19 +15,24 @@ const elements = manifest.modules
 
 // Collapse huge unions (e.g. the ~800 icon names) to a short preview
 const short = (type = '', max = 80) =>
-  type.length > max ? `${type.slice(0, max)}… (${type.split('|').length} values)` : type;
+  type.length > max ? `${type.slice(0, max)}â€¦ (${type.split('|').length} values)` : type;
 
 const firstLine = (text = '') => {
   const s = text.split('\n')[0].split('. ')[0];
-  return s.length > 100 ? `${s.slice(0, 100)}…` : s;
+  return s.length > 100 ? `${s.slice(0, 100)}â€¦` : s;
 };
 
 /**
  * List all components, or print one component's import, attributes, events and slots.
+ *
+ * Options (all optional, the CLI uses the defaults):
+ * - log: function receiving each output line, instead of console.log
+ * - formatType: function to format attribute types, instead of truncating long unions
+ * - attributeDescriptions: also print each attribute's description
  */
-export function components(name) {
+export function components(name, { log = console.log, formatType = short, attributeDescriptions = false } = {}) {
   if (!name) {
-    for (const e of elements) console.log(`${e.tagName}  ${firstLine(e.description)}`);
+    for (const e of elements) log(`${e.tagName}  ${firstLine(e.description)}`);
     return;
   }
 
@@ -41,35 +46,36 @@ export function components(name) {
   // src/components/x/x.ts -> @zebra-fed/zeta-web/components/x/x.js (see package.json exports)
   const importPath = el.path.replace(/^src\//, '').replace(/\.ts$/, '.js');
 
-  console.log(`${el.tagName}\n${el.description ?? ''}\n`);
-  console.log(`import "@zebra-fed/zeta-web/${importPath}";\n`);
+  log(`${el.tagName}\n${el.description ?? ''}\n`);
+  log(`import "@zebra-fed/zeta-web/${importPath}";\n`);
 
   if (el.members?.some((m) => m.name === 'formAssociated' && m.static)) {
-    console.log('Form-associated: yes (drop-in for native form fields: name, value, required, <form> submit)\n');
+    log('Form-associated: yes (drop-in for native form fields: name, value, required, <form> submit)\n');
   }
 
-  console.log('Attributes:');
+  log('Attributes:');
   for (const m of el.members ?? []) {
     if (m.kind === 'field' && m.attribute) {
-      console.log(`  ${m.attribute}: ${short(m.type?.text)}${m.default === undefined ? '' : ` = ${m.default}`}`);
+      log(`  ${m.attribute}: ${formatType(m.type?.text)}${m.default === undefined ? '' : ` = ${m.default}`}`);
+      if (attributeDescriptions && m.description) log(`    ${m.description.trim().replace(/\n\s*/g, '\n    ')}`);
     }
   }
 
-  console.log('\nEvents:');
+  log('\nEvents:');
   for (const ev of el.events ?? []) {
-    console.log(`  ${ev.name} (${ev.type?.text ?? 'Event'}) ${ev.description ?? ''}`);
+    log(`  ${ev.name} (${ev.type?.text ?? 'Event'}) ${ev.description ?? ''}`);
   }
 
-  console.log('\nSlots:');
-  for (const s of el.slots ?? []) console.log(`  ${s.name || '(default)'}  ${s.description ?? ''}`);
+  log('\nSlots:');
+  for (const s of el.slots ?? []) log(`  ${s.name || '(default)'}  ${s.description ?? ''}`);
 
   if (el.cssParts?.length) {
-    console.log('\nCSS parts (::part(name)):');
-    for (const p of el.cssParts) console.log(`  ${p.name}  ${p.description ?? ''}`);
+    log('\nCSS parts (::part(name)):');
+    for (const p of el.cssParts) log(`  ${p.name}  ${p.description ?? ''}`);
   }
   if (el.cssProperties?.length) {
-    console.log('\nCSS custom properties:');
-    for (const p of el.cssProperties) console.log(`  ${p.name}  ${p.description ?? ''}`);
+    log('\nCSS custom properties:');
+    for (const p of el.cssProperties) log(`  ${p.name}  ${p.description ?? ''}`);
   }
 }
 
