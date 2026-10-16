@@ -131,9 +131,10 @@ describe("zeta-tile-button", () => {
 
     it("has the correct icon colour when disabled", async () => {
       const srZetaIcon = subject.shadowRoot?.querySelector("zeta-icon");
-      if (!srZetaIcon) return;
+      expect(srZetaIcon).to.exist;
       subject.setAttribute("disabled", "true");
       await elementUpdated(subject);
+      await new Promise(resolve => setTimeout(resolve, 50));
       await expect(getComputedStyle(srZetaIcon).color).to.equal(getCssVarColorValue(srZetaIcon, "--main-disabled"));
     });
 
