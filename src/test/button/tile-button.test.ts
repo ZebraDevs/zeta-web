@@ -134,7 +134,7 @@ describe("zeta-tile-button", () => {
       expect(srZetaIcon).to.exist;
       subject.setAttribute("disabled", "true");
       await elementUpdated(subject);
-      await new Promise(resolve => setTimeout(resolve, 50));
+      await new Promise(resolve => setTimeout(resolve, 350));
       await expect(getComputedStyle(srZetaIcon).color).to.equal(getCssVarColorValue(srZetaIcon, "--main-disabled"));
     });
 
