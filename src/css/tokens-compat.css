@@ -27,7 +27,7 @@
   /* Color tokens — primary semantic mappings */
   /* main/* tokens → new foreground/surface/interactive tokens */
   --main-default: light-dark(var(--color-neutral-cool-100), var(--color-neutral-cool-10));
-  --main-subtle: light-dark(var(--color-neutral-cool-70), var(--color-neutral-cool-90));
+  --main-subtle: light-dark(var(--color-neutral-cool-70), var(--color-neutral-cool-40));
   --main-primary: light-dark(var(--color-system-info-60), var(--color-system-info-50));
   --main-secondary: light-dark(var(--color-accent-2-60), var(--color-accent-2-50));
   --main-positive: light-dark(var(--color-system-positive-60), var(--color-system-positive-50));
