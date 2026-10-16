@@ -124,7 +124,7 @@ describe("zeta-tile-button", () => {
     it("has the correct background colour when disabled", async () => {
       const srButton = subject.shadowRoot?.querySelector("button");
       expect(srButton).to.exist;
-      subject.setAttribute("disabled", true);
+      subject.setAttribute("disabled", "true");
       await elementUpdated(subject);
       await expect(getComputedStyle(srButton!).backgroundColor).to.equal(getCssVarColorValue(srButton!, "--surface-disabled"));
     });
@@ -132,7 +132,7 @@ describe("zeta-tile-button", () => {
     it("has the correct icon colour when disabled", async () => {
       const srZetaIcon = subject.shadowRoot?.querySelector("zeta-icon");
       if (!srZetaIcon) return;
-      subject.setAttribute("disabled", true);
+      subject.setAttribute("disabled", "true");
       await elementUpdated(subject);
       await expect(getComputedStyle(srZetaIcon).color).to.equal(getCssVarColorValue(srZetaIcon, "--main-disabled"));
     });
@@ -140,7 +140,7 @@ describe("zeta-tile-button", () => {
     it("has the correct text colour when disabled", async () => {
       const srButton = subject.shadowRoot?.querySelector("button");
       expect(srButton).to.exist;
-      subject.setAttribute("disabled", true);
+      subject.setAttribute("disabled", "true");
       await elementUpdated(subject);
       await expect(getComputedStyle(srButton!).color).to.equal(getCssVarColorValue(srButton!, "--main-disabled"));
     });
