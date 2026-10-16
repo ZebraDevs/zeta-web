@@ -135,7 +135,7 @@ describe("zeta-tile-button", () => {
       subject.setAttribute("disabled", "true");
       await elementUpdated(subject);
       await new Promise(resolve => setTimeout(resolve, 350));
-      await expect(getComputedStyle(srZetaIcon).color).to.equal(getCssVarColorValue(srZetaIcon, "--main-disabled"));
+      await expect(getComputedStyle(srZetaIcon!).color).to.equal(getCssVarColorValue(srZetaIcon!, "--main-disabled"));
     });
 
     it("has the correct text colour when disabled", async () => {
