@@ -19,13 +19,6 @@ describe("zeta-tile-button", () => {
     subject = await createComponent();
   });
 
-  const createDisabledButton = async (subject: ZetaTileButton) => {
-    subject.remove();
-    await elementUpdated(subject);
-    subject = await createComponent(`<zeta-tile-button icon="star" disabled>Button</zeta-tile-button>`);
-    await elementUpdated(subject);
-  };
-
   describe("Accessibility", () => {
     it("meets aria requirements", async () => {
       await expect(subject).to.be.accessible();
@@ -129,23 +122,27 @@ describe("zeta-tile-button", () => {
     });
 
     it("has the correct background colour when disabled", async () => {
-      await createDisabledButton(subject);
       const srButton = subject.shadowRoot?.querySelector("button");
       expect(srButton).to.exist;
+      subject.setAttribute("disabled", "true");
+      await elementUpdated(subject);
       await expect(getComputedStyle(srButton!).backgroundColor).to.equal(getCssVarColorValue(srButton!, "--surface-disabled"));
     });
 
     it("has the correct icon colour when disabled", async () => {
-      await createDisabledButton(subject);
       const srZetaIcon = subject.shadowRoot?.querySelector("zeta-icon");
-      if (!srZetaIcon) return;
-      await expect(getComputedStyle(srZetaIcon).color).to.equal(getCssVarColorValue(srZetaIcon, "--main-disabled"));
+      expect(srZetaIcon).to.exist;
+      subject.setAttribute("disabled", "true");
+      await elementUpdated(subject);
+      await new Promise(resolve => setTimeout(resolve, 350));
+      await expect(getComputedStyle(srZetaIcon!).color).to.equal(getCssVarColorValue(srZetaIcon!, "--main-disabled"));
     });
 
     it("has the correct text colour when disabled", async () => {
-      await createDisabledButton(subject);
       const srButton = subject.shadowRoot?.querySelector("button");
       expect(srButton).to.exist;
+      subject.setAttribute("disabled", "true");
+      await elementUpdated(subject);
       await expect(getComputedStyle(srButton!).color).to.equal(getCssVarColorValue(srButton!, "--main-disabled"));
     });
   });

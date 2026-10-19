@@ -6,10 +6,15 @@ import { sendMouse, resetMouse, sendKeys /*, type SendKeysPayload*/ } from "@web
  * @param color - The color string to convert.
  * @returns The RGB representation of the color.
  */
-export const toRGB = (color: string) => {
-  const { style } = new Option();
-  style.color = color;
-  return style.color;
+export const toRGB = (color: string, context: Element = document.body) => {
+  // Resolve on an attached element so light-dark() and var() collapse to a single rgb value.
+  // Attach inside `context` so it inherits that element's color-scheme (e.g. data-mode="dark").
+  const el = document.createElement("span");
+  el.style.color = color;
+  context.append(el);
+  const rgb = getComputedStyle(el).color;
+  el.remove();
+  return rgb;
 };
 
 /**
@@ -29,7 +34,7 @@ export const getCssVarValue = (el: Element, cssVarName: string): string => {
  * @returns The RGB representation of the CSS variable color.
  */
 export const getCssVarColorValue = (el: Element, cssVarName: string): string => {
-  return toRGB(getCssVarValue(el, cssVarName));
+  return toRGB(getCssVarValue(el, cssVarName), el);
 };
 
 /**
