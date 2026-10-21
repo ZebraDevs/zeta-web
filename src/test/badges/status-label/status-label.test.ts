@@ -1,9 +1,7 @@
 import { fixture, html, expect, unsafeStatic, elementUpdated } from "@open-wc/testing";
 import type { ZetaStatusLabel } from "../../../components/badges/badges";
 import { contrastTest } from "../../accessibility-utils/accessibility-test-runner";
-import "../../../css/styles.css";
-import "../../../generated/tokens/primitives.css";
-import "../../../generated/tokens/semantics.css";
+import "../../../index.css";
 import "../../../components/badges/status-label/status-label";
 
 describe("zeta-status-label", () => {
@@ -29,23 +27,23 @@ describe("zeta-status-label", () => {
           await contrastTest(`Status Label ${status}`, fg, bg);
         }
       });
-      it("meets aria requirements", async () => {
-        await expect(subject).to.be.accessible();
-        await expect(subject).shadowDom.to.be.accessible();
+      it("meets aria requirements", () => {
+        expect(subject).to.be.accessible();
+        expect(subject).shadowDom.to.be.accessible();
       });
     });
   });
   describe("Content", () => {
-    it("sets default status to neutral", async () => {
-      await expect(subject.status).to.equal("neutral");
+    it("sets default status to neutral", () => {
+      expect(subject.status).to.equal("neutral");
     });
 
     ["info", "positive", "warning", "negative", "neutral"].forEach(status => {
       it(`can set status to ${status}`, async () => {
         subject.status = status as any;
         await elementUpdated(subject);
-        await expect(subject.status).to.equal(status);
-        await expect(subject.getAttribute("status")).to.equal(status);
+        expect(subject.status).to.equal(status);
+        expect(subject.getAttribute("status")).to.equal(status);
       });
     });
 
@@ -54,7 +52,7 @@ describe("zeta-status-label", () => {
       await elementUpdated(subject);
 
       const textPart = subject.shadowRoot?.querySelector("[part='text']");
-      await expect(textPart?.textContent).to.equal("Test Label");
+      expect(textPart?.textContent).to.equal("Test Label");
     });
 
     it("should be undefined by default", () => {
@@ -68,7 +66,7 @@ describe("zeta-status-label", () => {
       componentWithSlot.label = "Label Text";
       await elementUpdated(componentWithSlot);
       const textPart = componentWithSlot.shadowRoot?.querySelector("[part='text']");
-      await expect(textPart?.textContent).to.equal("Label Text");
+      expect(textPart?.textContent).to.equal("Label Text");
     });
 
     it("should be undefined by default", () => {
@@ -82,7 +80,7 @@ describe("zeta-status-label", () => {
 
       const icon = subject.shadowRoot?.querySelector("zeta-icon");
       expect(icon).to.exist;
-      await expect(icon?.textContent).to.equal("star");
+      expect(icon?.textContent).to.equal("star");
     });
 
     it("renders an indicator circle when icon is not set", async () => {
@@ -147,7 +145,7 @@ describe("zeta-status-label", () => {
       const componentWithSlot = await createComponent(`<zeta-status-label label="Label Text">Slotted Text</zeta-status-label>`);
 
       const textPart = componentWithSlot.shadowRoot?.querySelector("[part='text']");
-      await expect(textPart?.textContent).to.equal("Label Text");
+      expect(textPart?.textContent).to.equal("Label Text");
       expect(textPart?.textContent).to.not.include("Slotted Text");
     });
 
@@ -164,8 +162,8 @@ describe("zeta-status-label", () => {
       subject.icon = "star";
       await elementUpdated(subject);
 
-      await expect(subject.status).to.equal("positive");
-      await expect(subject.shadowRoot?.querySelector("[part='text']")?.textContent).to.equal("Success");
+      expect(subject.status).to.equal("positive");
+      expect(subject.shadowRoot?.querySelector("[part='text']")?.textContent).to.equal("Success");
       expect(subject.shadowRoot?.querySelector("zeta-icon")).to.exist;
     });
 
@@ -175,8 +173,8 @@ describe("zeta-status-label", () => {
       subject.showIcon = false;
       await elementUpdated(subject);
 
-      await expect(subject.status).to.equal("warning");
-      await expect(subject.shadowRoot?.querySelector("[part='text']")?.textContent).to.equal("Warning");
+      expect(subject.status).to.equal("warning");
+      expect(subject.shadowRoot?.querySelector("[part='text']")?.textContent).to.equal("Warning");
       expect(subject.shadowRoot?.querySelector("[part='icon-container']")).to.not.exist;
     });
   });
@@ -190,7 +188,7 @@ describe("zeta-status-label", () => {
       const renderedTotalHeight = subject.getBoundingClientRect().height;
 
       expect(renderedTotalWidth).to.be.within(70, 72); // Value should be 71, but use a range to account for browser / font rendering differences
-      await expect(renderedTotalHeight).to.equal(28);
+      expect(renderedTotalHeight).to.equal(28);
     });
     it("sets the default dimensions with icon correctly", async () => {
       subject.setAttribute("label", `Label`);
@@ -202,7 +200,7 @@ describe("zeta-status-label", () => {
       const renderedTotalHeight = subject.getBoundingClientRect().height;
 
       expect(renderedTotalWidth).to.be.within(82, 85); // Value should be 83, but use a range to account for browser / font rendering differences
-      await expect(renderedTotalHeight).to.equal(28);
+      expect(renderedTotalHeight).to.equal(28);
     });
   });
   // describe("Styling", () => {});
