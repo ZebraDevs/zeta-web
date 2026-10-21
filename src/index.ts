@@ -5,6 +5,7 @@ import { ZetaActionMenuButton } from "./components/action-menu/action-menu-butto
 import { ZetaAssistChip } from "./components/chips/assist-chip/assist-chip.js";
 import { ZetaAvatar } from "./components/avatar/avatar.js";
 import { ZetaAvatarRail } from "./components/avatar-rail/avatar-rail.js";
+import { ZetaAvatarStatusIndicator } from "./components/avatar/status-indicator/avatar-status-indicator.js";
 import { ZetaBottomSheet } from "./components/bottom-sheets/bottom-sheet.js";
 import { ZetaBreadcrumb } from "./components/breadcrumbs/breadcrumb.js";
 import { ZetaBreadcrumbItem } from "./components/breadcrumbs/breadcrumb-item/breadcrumb-item.js";
@@ -87,6 +88,7 @@ export {
   ZetaAssistChip,
   ZetaAvatar,
   ZetaAvatarRail,
+  ZetaAvatarStatusIndicator,
   ZetaBottomSheet,
   ZetaBreadcrumb,
   ZetaBreadcrumbItem,
