@@ -27,9 +27,9 @@ describe("zeta-label", () => {
           await contrastTest(`Label ${status}`, fg, bg);
         }
       });
-      it("meets aria requirements", async () => {
-        await expect(subject).to.be.accessible();
-        await expect(subject).shadowDom.to.be.accessible();
+      it("meets aria requirements", () => {
+        expect(subject).to.be.accessible();
+        expect(subject).shadowDom.to.be.accessible();
       });
     });
   });
@@ -44,8 +44,8 @@ describe("zeta-label", () => {
       const renderedTotalWidth = Math.ceil(subject.getBoundingClientRect().width);
       const renderedTotalHeight = subject.getBoundingClientRect().height;
 
-      await expect(renderedTotalWidth).to.equal(38);
-      await expect(renderedTotalHeight).to.equal(16);
+      expect(renderedTotalWidth).to.equal(38);
+      expect(renderedTotalHeight).to.equal(16);
     });
   });
   // describe("Styling", () => {});
