@@ -25,7 +25,7 @@ describe("zeta-icon", () => {
     });
   });
 
-  describe("Styling"", () => {
+  describe("Styling", () => {
     it("inherits colour from its parent", async () => {
       const wrap = await fixture<HTMLElement>(html`<div style="color: rgb(1, 2, 3)"><zeta-icon name="home"></zeta-icon></div>`);
       expect(getComputedStyle(wrap.firstElementChild!).color).to.equal("rgb(1, 2, 3)");
