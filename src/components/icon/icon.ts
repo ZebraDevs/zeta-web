@@ -1,7 +1,7 @@
 import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./icon.styles.js";
-import { Contourable } from "../../mixins/mixins.js";
+import { Contourable, Size } from "../../mixins/mixins.js";
 import type { ZetaIconName } from "@zebra-fed/zeta-icons";
 
 /**
@@ -39,15 +39,19 @@ import type { ZetaIconName } from "@zebra-fed/zeta-icons";
  * @slot {ZetaIconName} - Name of icon to be displayed. Full list of icons can be found at {@link https://design.zebra.com/icons Zeta Icons}. If this value and the name prop are both populated, the name prop will take precedence.
  */
 @customElement("zeta-icon")
-export class ZetaIcon extends Contourable(LitElement) {
+export class ZetaIcon extends Size(Contourable(LitElement)) {
   /** Name of icon to be displayed. Full list of icons can be found at {@link https://design.zebra.com/icons Zeta Icons}.
    *
    * If this value and the slot are both populated, this will take precedence.
    */
   @property({ type: String }) name: ZetaIconName;
 
+  /** Render the icon within a frame container */
+  @property({ type: Boolean, reflect: true }) framed: boolean = false;
+
   protected render() {
-    return html`${this.name ?? html`<slot @slotchange=${() => this.requestUpdate()}></slot>`}`;
+    const icon = html`${this.name ?? html`<slot @slotchange=${() => this.requestUpdate()}></slot>`}`;
+    return this.framed ? html`<div class="icon-frame">${icon}</div>` : icon;
   }
   static styles = [styles, super.styles || []];
 }
