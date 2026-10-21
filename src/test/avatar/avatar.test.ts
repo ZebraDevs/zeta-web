@@ -135,19 +135,6 @@ describe("zeta-avatar", () => {
   });
 
   describe("Styling", () => {
-    it("applies the colour to the avatar border", async () => {
-      const avatar: ZetaAvatar = await fixture(html`<zeta-avatar show-ring></zeta-avatar>`);
-      avatar.style.setProperty("--avatar-border-color", "rgb(255, 0, 0)");
-
-      const avatarDiv = avatar.shadowRoot?.querySelector(".avatar");
-      expect(avatarDiv).to.exist;
-
-      const style = getComputedStyle(avatarDiv!);
-      expect(style.borderColor).to.equal("rgb(255, 0, 0)");
-    });
-  });
-
-  describe("Styling", () => {
     // Ring weight is fixed per size tier per design spec, not a percentage of avatar size.
     const thinTiers: AvatarSize[] = ["xxxs", "xxs", "xs", "s", "m"];
     const heavyTiers: AvatarSize[] = ["l", "xl"];
@@ -164,6 +151,17 @@ describe("zeta-avatar", () => {
         const avatar: ZetaAvatar = await fixture(html`<zeta-avatar size=${size} show-ring></zeta-avatar>`);
         expect(getCssVarValue(avatar, "--border-width")).to.equal(getCssVarValue(avatar, "--stroke-heavy"));
       });
+    });
+
+    it("applies the colour to the avatar border", async () => {
+      const avatar: ZetaAvatar = await fixture(html`<zeta-avatar show-ring></zeta-avatar>`);
+      avatar.style.setProperty("--avatar-border-color", "rgb(255, 0, 0)");
+
+      const avatarDiv = avatar.shadowRoot?.querySelector(".avatar");
+      expect(avatarDiv).to.exist;
+
+      const style = getComputedStyle(avatarDiv!);
+      expect(style.borderColor).to.equal("rgb(255, 0, 0)");
     });
 
     it('fixes the ring width to "6px" at size "xxl" (not bound to a token)', async () => {
