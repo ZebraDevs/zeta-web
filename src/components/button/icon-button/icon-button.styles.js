@@ -7,26 +7,27 @@ export default css`
 
   :host > button {
     border: none;
-    --icon-size: var(--spacing-2xl);
+    padding: var(--space-xs);
   }
 
   :host([size="large"]) > button {
-    padding: var(--spacing-medium);
-    width: var(--spacing-8xl);
-    height: var(--spacing-8xl);
+    width: var(--control-lg);
+    height: var(--control-lg);
+  }
+
+  :host([size="large"]) > button > zeta-icon {
+    --icon-size: var(--control-icon-md);
   }
 
   :host > button,
   :host([size="medium"]) > button {
-    padding: var(--spacing-small);
-    width: var(--spacing-6xl);
-    height: var(--spacing-6xl);
+    width: var(--control-md);
+    height: var(--control-md);
   }
 
   :host([size="small"]) > button {
-    padding: var(--spacing-minimum);
-    width: var(--spacing-3xl);
-    height: var(--spacing-3xl);
+    width: var(--control-sm);
+    height: var(--control-sm);
   }
 
   :host([flavor="custom"]:not([disabled])) > button {
