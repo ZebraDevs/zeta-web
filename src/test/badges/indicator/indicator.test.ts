@@ -33,19 +33,19 @@ describe("zeta-indicator", () => {
             await contrastTest(`Indicator ${type} ${size}`, fg, bg);
           }
         });
-        it("meets aria requirements", async () => {
-          await expect(subject).to.be.accessible();
-          await expect(subject).shadowDom.to.be.accessible();
+        it("meets aria requirements", () => {
+          expect(subject).to.be.accessible();
+          expect(subject).shadowDom.to.be.accessible();
         });
       });
     });
   });
   describe("Content", () => {
-    it("sets the default properties correctly", async () => {
-      await expect(subject.type).to.equal("notification");
-      await expect(subject.size).to.equal("medium");
-      await expect(subject.icon).to.equal(undefined);
-      await expect(subject.value).to.equal(undefined);
+    it("sets the default properties correctly", () => {
+      expect(subject.type).to.equal("notification");
+      expect(subject.size).to.equal("medium");
+      expect(subject.icon).to.equal(undefined);
+      expect(subject.value).to.equal(undefined);
     });
   });
   describe("Dimensions", () => {
@@ -58,8 +58,8 @@ describe("zeta-indicator", () => {
       const renderedTotalWidth = subject.getBoundingClientRect().width;
       const renderedTotalHeight = subject.getBoundingClientRect().height;
 
-      await expect(renderedTotalWidth).to.equal(12);
-      await expect(renderedTotalHeight).to.equal(12);
+      expect(renderedTotalWidth).to.equal(12);
+      expect(renderedTotalHeight).to.equal(12);
     });
     it("icon, sets the medium dimensions correctly", async () => {
       subject.setAttribute("size", "medium");
@@ -70,8 +70,8 @@ describe("zeta-indicator", () => {
       const renderedTotalWidth = subject.getBoundingClientRect().width;
       const renderedTotalHeight = subject.getBoundingClientRect().height;
 
-      await expect(renderedTotalWidth).to.equal(16);
-      await expect(renderedTotalHeight).to.equal(16);
+      expect(renderedTotalWidth).to.equal(16);
+      expect(renderedTotalHeight).to.equal(16);
     });
     it("icon, sets the large dimensions correctly", async () => {
       subject.setAttribute("size", "large");
@@ -82,8 +82,8 @@ describe("zeta-indicator", () => {
       const renderedTotalWidth = subject.getBoundingClientRect().width;
       const renderedTotalHeight = subject.getBoundingClientRect().height;
 
-      await expect(renderedTotalWidth).to.equal(24);
-      await expect(renderedTotalHeight).to.equal(24);
+      expect(renderedTotalWidth).to.equal(24);
+      expect(renderedTotalHeight).to.equal(24);
     });
 
     it("notification, sets the small dimensions correctly", async () => {
@@ -95,8 +95,8 @@ describe("zeta-indicator", () => {
       const renderedTotalWidth = subject.getBoundingClientRect().width;
       const renderedTotalHeight = subject.getBoundingClientRect().height;
 
-      await expect(renderedTotalWidth).to.equal(12);
-      await expect(renderedTotalHeight).to.equal(12);
+      expect(renderedTotalWidth).to.equal(12);
+      expect(renderedTotalHeight).to.equal(12);
     });
     it("notification, sets the medium dimensions correctly", async () => {
       subject.setAttribute("size", "medium");
@@ -107,8 +107,8 @@ describe("zeta-indicator", () => {
       const renderedTotalWidth = subject.getBoundingClientRect().width;
       const renderedTotalHeight = subject.getBoundingClientRect().height;
 
-      await expect(renderedTotalWidth).to.equal(16);
-      await expect(renderedTotalHeight).to.equal(16);
+      expect(renderedTotalWidth).to.equal(16);
+      expect(renderedTotalHeight).to.equal(16);
     });
     it("notification, sets the large dimensions correctly", async () => {
       subject.setAttribute("size", "large");
@@ -119,8 +119,8 @@ describe("zeta-indicator", () => {
       const renderedTotalWidth = subject.getBoundingClientRect().width;
       const renderedTotalHeight = subject.getBoundingClientRect().height;
 
-      await expect(renderedTotalWidth).to.equal(28);
-      await expect(renderedTotalHeight).to.equal(16);
+      expect(renderedTotalWidth).to.equal(28);
+      expect(renderedTotalHeight).to.equal(16);
     });
   });
   describe("Styling", () => {
@@ -132,8 +132,8 @@ describe("zeta-indicator", () => {
       const renderedTotalWidth = subject.getBoundingClientRect().width;
       const renderedTotalHeight = subject.getBoundingClientRect().height;
 
-      await expect(renderedTotalWidth).to.equal(16);
-      await expect(renderedTotalHeight).to.equal(16);
+      expect(renderedTotalWidth).to.equal(16);
+      expect(renderedTotalHeight).to.equal(16);
     });
 
     it("notification, applies the correct style based on 2 digit", async () => {
@@ -151,11 +151,11 @@ describe("zeta-indicator", () => {
       const renderedTotalWidth99 = subject.getBoundingClientRect().width;
       const renderedTotalHeight99 = subject.getBoundingClientRect().height;
 
-      await expect(renderedTotalWidth10).to.equal(28);
-      await expect(renderedTotalHeight10).to.equal(16);
+      expect(renderedTotalWidth10).to.equal(28);
+      expect(renderedTotalHeight10).to.equal(16);
 
-      await expect(renderedTotalWidth99).to.equal(28);
-      await expect(renderedTotalHeight99).to.equal(16);
+      expect(renderedTotalWidth99).to.equal(28);
+      expect(renderedTotalHeight99).to.equal(16);
     });
 
     it("notification, applies the correct style based on 3+ digit", async () => {
@@ -166,12 +166,12 @@ describe("zeta-indicator", () => {
       const renderedTotalWidth = subject.getBoundingClientRect().width;
       const renderedTotalHeight = subject.getBoundingClientRect().height;
 
-      await expect(renderedTotalWidth).to.equal(28);
-      await expect(renderedTotalHeight).to.equal(16);
+      expect(renderedTotalWidth).to.equal(28);
+      expect(renderedTotalHeight).to.equal(16);
 
       const span = subject.shadowRoot?.querySelector("span");
-      await expect(span?.textContent).to.not.equal("100");
-      await expect(span?.textContent).to.equal("99+");
+      expect(span?.textContent).to.not.equal("100");
+      expect(span?.textContent).to.equal("99+");
     });
   });
   // describe("Interaction", () => {});
