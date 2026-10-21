@@ -1,9 +1,7 @@
 import { fixture, html, expect, unsafeStatic } from "@open-wc/testing";
 import type { ZetaPriorityPill } from "../../../components/badges/badges";
 import "../../../components/badges/priority-pill/priority-pill";
-import "../../../css/styles.css";
-import "../../../generated/tokens/primitives.css";
-import "../../../generated/tokens/semantics.css";
+import "../../../index.css";
 import { contrastTest } from "../../accessibility-utils/accessibility-test-runner";
 
 describe("zeta-priority-pill", () => {
@@ -36,9 +34,9 @@ describe("zeta-priority-pill", () => {
           await contrastTest(`Priority pill index ${status} / ${size}`, index!, index!);
           await contrastTest(`Priority pill label ${status} / ${size}`, label!, container!);
         });
-        it("meets aria requirements", async () => {
-          await expect(subject).to.be.accessible();
-          await expect(subject).shadowDom.to.be.accessible();
+        it("meets aria requirements", () => {
+          expect(subject).to.be.accessible();
+          expect(subject).shadowDom.to.be.accessible();
         });
       });
     });
@@ -56,8 +54,8 @@ describe("zeta-priority-pill", () => {
         expect(label).to.exist;
         expect(container).to.exist;
 
-        await expect(index?.textContent).to.equal(indexValue);
-        await expect(label?.textContent).to.equal(status.charAt(0).toUpperCase() + status.slice(1));
+        expect(index?.textContent).to.equal(indexValue);
+        expect(label?.textContent).to.equal(status.charAt(0).toUpperCase() + status.slice(1));
       });
     });
 
@@ -75,8 +73,8 @@ describe("zeta-priority-pill", () => {
       expect(label).to.exist;
       expect(container).to.exist;
 
-      await expect(index?.textContent).to.equal("5");
-      await expect(label?.textContent).to.equal("Custom Priority");
+      expect(index?.textContent).to.equal("5");
+      expect(label?.textContent).to.equal("Custom Priority");
     });
   });
   describe("Dimensions", () => {
@@ -88,8 +86,8 @@ describe("zeta-priority-pill", () => {
       const renderedTotalWidthBadge = subject.getBoundingClientRect().width;
       const renderedTotalHeightBadge = subject.getBoundingClientRect().height;
 
-      await expect(renderedTotalWidthBadge).to.equal(28);
-      await expect(renderedTotalHeightBadge).to.equal(28);
+      expect(renderedTotalWidthBadge).to.equal(28);
+      expect(renderedTotalHeightBadge).to.equal(28);
     });
     it("renders lozenge size large", async () => {
       subject.setAttribute("size", "large");
@@ -100,8 +98,8 @@ describe("zeta-priority-pill", () => {
       const renderedTotalWidthLozenge = Math.ceil(subject.getBoundingClientRect().width);
       const renderedTotalHeightLozenge = subject.getBoundingClientRect().height;
 
-      await expect(renderedTotalWidthLozenge).to.equal(79);
-      await expect(renderedTotalHeightLozenge).to.equal(28);
+      expect(renderedTotalWidthLozenge).to.equal(79);
+      expect(renderedTotalHeightLozenge).to.equal(28);
     });
     it("renders badge size small", async () => {
       subject.setAttribute("size", "small");
@@ -111,8 +109,8 @@ describe("zeta-priority-pill", () => {
       const renderedTotalWidthBadge = subject.getBoundingClientRect().width;
       const renderedTotalHeightBadge = subject.getBoundingClientRect().height;
 
-      await expect(renderedTotalWidthBadge).to.equal(20);
-      await expect(renderedTotalHeightBadge).to.equal(20);
+      expect(renderedTotalWidthBadge).to.equal(20);
+      expect(renderedTotalHeightBadge).to.equal(20);
     });
     it("renders lozenge size small", async () => {
       subject.setAttribute("size", "small");
@@ -123,8 +121,8 @@ describe("zeta-priority-pill", () => {
       const renderedTotalWidthLozenge = Math.ceil(subject.getBoundingClientRect().width);
       const renderedTotalHeightLozenge = subject.getBoundingClientRect().height;
 
-      await expect(renderedTotalWidthLozenge).to.equal(61);
-      await expect(renderedTotalHeightLozenge).to.equal(20);
+      expect(renderedTotalWidthLozenge).to.equal(61);
+      expect(renderedTotalHeightLozenge).to.equal(20);
     });
   });
   // describe("Styling", () => {});
