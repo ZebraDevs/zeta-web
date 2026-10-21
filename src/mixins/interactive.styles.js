@@ -9,25 +9,17 @@ export default css`
     cursor: pointer;
   }
 
-  /* :host(:not([disabled]):hover) .interactive-target {
-    background: var(--surface-hover);
-  } */
-
-  /* :host(:not([disabled]):active) .interactive-target {
-    background: var(--surface-selected);
-  } */
-
   :host([disabled]) > *,
   :host([disabled]) ::slotted(zeta-icon) {
     cursor: not-allowed;
-    --icon-color: var(--main-disabled);
-    color: var(--main-disabled);
+    --icon-color: var(--foreground-disabled);
+    color: var(--foreground-disabled);
   }
 
   :host(:focus-visible) .interactive-target,
   .interactive-target:focus-visible {
-    outline-width: var(--border-size-medium);
-    outline-color: var(--border-primary);
+    outline-width: var(--stroke-thick);
+    outline-color: var(--border-focus);
     outline-style: solid;
     z-index: 1;
   }
