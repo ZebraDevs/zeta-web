@@ -6,78 +6,82 @@ export default css`
     overflow: hidden;
 
     .container {
-      border-radius: var(--radius-full);
+      border-radius: var(--radius-pill);
       width: auto;
       display: flex;
       justify-content: center;
       align-items: center;
       font: var(--label-indicator);
-      color: var(--state-default-enabled);
+      color: var(--foreground-primary);
       aspect-ratio: 1 / 1;
-      border: var(--border-size-medium) solid var(--main-inverse);
+      border: var(--stroke-thick) solid var(--surface-page);
       overflow: hidden;
     }
   }
 
   :host([type="icon"]) .container {
-    background-color: var(--main-primary);
+    background-color: var(--interactive-ghost-foreground-default);
   }
 
   :host([type="notification"]) .container {
-    background-color: var(--main-negative);
-    border: var(--border-size-medium) solid var(--border-pure);
+    background-color: var(--interactive-destructive-background-default);
+    color: var(--interactive-destructive-foreground-default);
+    font-size: var(--indicator-medium-font-size);
+    line-height: var(--indicator-medium-line-height);
+    letter-spacing: var(--indicator-medium-letter-spacing);
+    border: var(--stroke-thick) solid var(--border-inverse);
   }
 
   :host([type="notification"]) .container.large {
-    height: calc(var(--spacing-large) - var(--border-size-medium));
-    width: calc(var(--spacing-3xl) - var(--border-size-medium));
+    height: calc(var(--space-lg) - var(--stroke-thick));
+    width: calc(calc(var(--space-xl) + var(--space-xs)) - var(--stroke-thick));
     border: none;
-    box-shadow: 0 0 0 var(--border-size-small) var(--border-pure);
-    margin: var(--border-size-small);
+    box-shadow: 0 0 0 var(--stroke-thin) var(--border-inverse);
+    margin: var(--stroke-thin);
     box-sizing: border-box;
     box-sizing: border-box;
-    padding: var(--spacing-none);
-    border-radius: var(--radius-minimal);
+    padding: 0 var(--space-xs);
+    border-radius: var(--radius-sm);
 
     span {
-      height: calc(var(--spacing-medium) + var(--border-size-small));
+      height: calc(var(--space-md) + var(--stroke-thin));
     }
   }
 
   :host .container.small {
-    width: var(--spacing-small);
-    height: var(--spacing-small);
+    width: var(--space-sm);
+    height: var(--space-sm);
 
     ::slotted(zeta-icon),
     zeta-icon {
-      --icon-size: var(--spacing-none);
+      --icon-size: var(--space-none);
     }
   }
 
   :host .container.medium {
-    width: var(--spacing-medium);
-    height: var(--spacing-medium);
-    line-height: var(--spacing-medium);
+    width: var(--space-md);
+    height: var(--space-md);
+    line-height: var(--space-md);
 
     ::slotted(zeta-icon),
     zeta-icon {
-      --icon-size: var(--spacing-small);
-      width: var(--spacing-small);
-      height: var(--spacing-small);
+      --icon-size: var(--space-sm);
+      width: var(--space-sm);
+      height: var(--space-sm);
       justify-content: center;
       align-items: center;
     }
   }
 
   :host([type="icon"]) .container.large {
-    width: var(--spacing-xl);
-    height: var(--spacing-xl);
+    width: var(--space-lg);
+    height: var(--space-lg);
 
     ::slotted(zeta-icon),
     zeta-icon {
-      --icon-size: var(--spacing-medium);
-      width: var(--spacing-medium);
-      height: var(--spacing-medium);
+      --icon-size: var(--space-md);
+      width: var(--space-md);
+      height: var(--space-md);
       justify-content: center;
       align-items: center;
     }
@@ -85,11 +89,11 @@ export default css`
 
   ::slotted(zeta-icon),
   :host zeta-icon {
-    --icon-color: var(--state-default-enabled);
-    color: var(--state-default-enabled);
+    --icon-color: var(--foreground-inverse);
+    color: var(--foreground-inverse);
   }
 
   :host([type="notification"]) .container.medium span {
-    padding-bottom: var(--border-size-small);
+    padding-bottom: var(--stroke-thin);
   }
 `;
