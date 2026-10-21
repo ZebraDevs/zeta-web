@@ -1,9 +1,7 @@
 import { fixture, html, expect, unsafeStatic, elementUpdated } from "@open-wc/testing";
 import type { ZetaButton } from "../../components/button/button.js";
 import "../../components/button/button.js";
-import "../../css/styles.css";
-import "../../generated/tokens/primitives.css";
-import "../../generated/tokens/semantics.css";
+import "../../index.css";
 import "@zebra-fed/zeta-icons/index.css";
 import { contrastTest } from "../accessibility-utils/accessibility-test-runner.js";
 
@@ -37,17 +35,59 @@ describe("zeta-button", () => {
             await contrastTest(`Button ${flavor} ${size}`, buttonEl, buttonEl);
           }
         });
-        it("meets aria requirements", async () => {
-          await expect(subject).to.be.accessible();
-          await expect(subject).shadowDom.to.be.accessible();
+        it("meets aria requirements", () => {
+          expect(subject).to.be.accessible();
+          expect(subject).shadowDom.to.be.accessible();
         });
       });
     });
   });
 
   describe("Content", () => {
-    it("should render the correct text within the button", async () => {
-      await expect(subject.lastChild?.nodeValue).to.equal(buttonText);
+    // Placed in Content because the Styling block is skipped.
+    it("applies gradient text for the text-gradient flavor", async () => {
+      const button: ZetaButton = await fixture(html`<zeta-button flavor="text-gradient">Button</zeta-button>`);
+      const slot = button.shadowRoot!.querySelector("button > slot")!;
+      expect(getComputedStyle(slot).backgroundClip).to.equal("text");
+      expect(getComputedStyle(button.shadowRoot!.querySelector("button")!).backgroundImage).to.equal("none");
+    });
+
+    it("should render the correct text within the button", () => {
+      expect(subject.lastChild?.nodeValue).to.equal(buttonText);
+    });
+
+    it("should render a leading icon when leadingIcon property is set", async () => {
+      subject.setAttribute("leadingIcon", "star");
+      await elementUpdated(subject);
+
+      const leadingIcon = subject.shadowRoot?.querySelector("zeta-icon:first-of-type");
+      expect(leadingIcon).to.exist;
+      expect(leadingIcon?.getAttribute("name")).to.equal("star");
+    });
+
+    it("should render a trailing icon when trailingIcon property is set", async () => {
+      subject.setAttribute("trailingIcon", "check");
+      await elementUpdated(subject);
+
+      const trailingIcon = subject.shadowRoot?.querySelector("zeta-icon:last-of-type");
+      expect(trailingIcon).to.exist;
+      expect(trailingIcon?.getAttribute("name")).to.equal("check");
+    });
+
+    it("should render both leading and trailing icons when both properties are set", async () => {
+      subject.setAttribute("leadingIcon", "star");
+      subject.setAttribute("trailingIcon", "check");
+      await elementUpdated(subject);
+
+      const icons = subject.shadowRoot?.querySelectorAll("zeta-icon");
+      expect(icons?.length).to.equal(2);
+      expect(icons?.[0].getAttribute("name")).to.equal("star");
+      expect(icons?.[1].getAttribute("name")).to.equal("check");
+    });
+
+    it("should not render icons when icon properties are not set", () => {
+      const icons = subject.shadowRoot?.querySelectorAll("zeta-icon");
+      expect(icons?.length).to.equal(0);
     });
   });
 
@@ -58,7 +98,7 @@ describe("zeta-button", () => {
 
       const buttonNoIcons = subject.getBoundingClientRect();
 
-      await expect(buttonNoIcons.height).to.equal(32);
+      expect(buttonNoIcons.height).to.equal(32);
       expect(Math.ceil(buttonNoIcons.width)).to.be.within(51, 57); // Should be 54, but allow tolerance for font rendering differences
 
       subject.setAttribute("leadingIcon", "star");
@@ -66,7 +106,7 @@ describe("zeta-button", () => {
       await elementUpdated(subject);
       const buttonWithIcons = subject.getBoundingClientRect();
 
-      await expect(buttonWithIcons.height).to.equal(32);
+      expect(buttonWithIcons.height).to.equal(32);
       expect(Math.ceil(buttonWithIcons.width)).to.be.within(91, 97); // Should be 94, but allow tolerance for font rendering differences
     });
     it("renders medium button with correct dimensions", async () => {
@@ -75,7 +115,7 @@ describe("zeta-button", () => {
 
       const buttonNoIcons = subject.getBoundingClientRect();
 
-      await expect(buttonNoIcons.height).to.equal(40);
+      expect(buttonNoIcons.height).to.equal(40);
       expect(Math.ceil(buttonNoIcons.width)).to.be.within(71, 77); // Should be 74, but allow tolerance for font rendering differences
 
       subject.setAttribute("leadingIcon", "star");
@@ -83,7 +123,7 @@ describe("zeta-button", () => {
       await elementUpdated(subject);
       const buttonWithIcons = subject.getBoundingClientRect();
 
-      await expect(buttonWithIcons.height).to.equal(40);
+      expect(buttonWithIcons.height).to.equal(40);
       expect(Math.ceil(buttonWithIcons.width)).to.be.within(127, 133); // Should be 130, but allow tolerance for font rendering differences
     });
     it("renders large button with correct dimensions", async () => {
@@ -92,7 +132,7 @@ describe("zeta-button", () => {
 
       const buttonNoIcons = subject.getBoundingClientRect();
 
-      await expect(buttonNoIcons.height).to.equal(48);
+      expect(buttonNoIcons.height).to.equal(48);
       expect(Math.ceil(buttonNoIcons.width)).to.be.within(79, 85); // Should be 82, but allow tolerance for font rendering differences
 
       subject.setAttribute("leadingIcon", "star");
@@ -100,7 +140,7 @@ describe("zeta-button", () => {
       await elementUpdated(subject);
       const buttonWithIcons = subject.getBoundingClientRect();
 
-      await expect(buttonWithIcons.height).to.equal(48);
+      expect(buttonWithIcons.height).to.equal(48);
       expect(Math.ceil(buttonWithIcons.width)).to.be.within(135, 141); // Should be 138, but allow tolerance for font rendering differences
     });
   });
@@ -192,7 +232,45 @@ describe("zeta-button", () => {
     });
   });
 
-  // describe("Interaction", () => {});
+  describe("Interaction", () => {
+    it("should call a click handler function when clicked", () => {
+      let clickCount = 0;
+      const clickHandler = () => {
+        clickCount++;
+      };
+
+      subject.addEventListener("click", clickHandler);
+      subject.click();
+
+      expect(clickCount).to.equal(1);
+    });
+
+    it("should pass the click event to the handler", () => {
+      let capturedEvent: Event | null = null;
+      const clickHandler = (event: Event) => {
+        capturedEvent = event;
+      };
+
+      subject.addEventListener("click", clickHandler);
+      subject.click();
+
+      expect(capturedEvent).to.not.be.null;
+      expect(capturedEvent!.type).to.equal("click");
+    });
+
+    it("should not call click handler when button is disabled", () => {
+      let clickCount = 0;
+      const clickHandler = () => {
+        clickCount++;
+      };
+
+      subject.disabled = true;
+      subject.addEventListener("click", clickHandler);
+      subject.click();
+
+      expect(clickCount).to.equal(0);
+    });
+  });
 
   // describe("Golden", () => {});
 
@@ -225,32 +303,32 @@ describe("zeta-button AS form reset control", () => {
   // describe("Styling", () => {});
 
   describe("Interaction", () => {
-    it("should reset forms", async () => {
+    it("should reset forms", () => {
       // debugger;
       expect(input?.value).to.be.empty;
       input.value = TEST_STRING;
-      await expect(input?.value).to.equal(TEST_STRING);
+      expect(input?.value).to.equal(TEST_STRING);
       button?.click();
       //console.log("loko at me", input?.value, form.querySelector("input[name='text-control']"), form.querySelector("input[name='text-control']").value)
-      await expect(input?.value).to.equal("");
+      expect(input?.value).to.equal("");
     });
 
-    it("should not reset forms if disabled via JS", async () => {
+    it("should not reset forms if disabled via JS", () => {
       expect(input?.value).to.be.empty;
       input.value = TEST_STRING;
-      await expect(input?.value).to.equal(TEST_STRING);
+      expect(input?.value).to.equal(TEST_STRING);
       button.disabled = true;
       button?.click();
-      await expect(input?.value).to.equal(TEST_STRING);
+      expect(input?.value).to.equal(TEST_STRING);
     });
 
-    it("should not reset forms if disabled via DOM", async () => {
+    it("should not reset forms if disabled via DOM", () => {
       expect(input?.value).to.be.empty;
       input.value = TEST_STRING;
-      await expect(input?.value).to.equal(TEST_STRING);
+      expect(input?.value).to.equal(TEST_STRING);
       button.setAttribute("disabled", "");
       button?.click();
-      await expect(input?.value).to.equal(TEST_STRING);
+      expect(input?.value).to.equal(TEST_STRING);
     });
   });
 
