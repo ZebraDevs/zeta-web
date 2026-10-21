@@ -5,31 +5,31 @@ export default css`
     display: inline-block;
   }
   :host([status="info"]) .container {
-    background: var(--main-info);
+    background: var(--foreground-info);
   }
 
   :host([status="positive"]) .container {
-    background: var(--main-positive);
+    background: var(--foreground-success);
   }
 
   :host([status="warning"]) .container {
-    background: var(--main-warning);
+    background: var(--foreground-warning);
   }
 
   :host([status="negative"]) .container {
-    background: var(--main-negative);
+    background: var(--foreground-error);
   }
 
   .container,
   :host([status="neutral"]) .container {
-    background: var(--main-light);
+    background: var(--border-subtle);
     .text {
-      color: var(--main-default);
+      color: var(--foreground-primary);
     }
   }
 
   :host(:not([status="neutral"])) .container .text {
-    color: var(--state-default-enabled);
+    color: var(--foreground-primary);
   }
 
   .container {
@@ -39,10 +39,10 @@ export default css`
     white-space: nowrap;
     width: fit-content;
 
-    min-width: var(--spacing-small);
-    min-height: var(--spacing-large);
+    min-width: var(--space-sm);
+    min-height: var(--space-lg);
     .text {
-      padding: var(--spacing-none) var(--spacing-minimum);
+      padding: var(--space-none) var(--space-xs);
       font: var(--label-small);
     }
   }
