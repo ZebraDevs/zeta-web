@@ -1,9 +1,7 @@
 import { fixture, html, elementUpdated, expect, unsafeStatic } from "@open-wc/testing";
 import type { ZetaTag } from "../../../components/badges/tag/tag.js";
 import "../../../components/badges/tag/tag.js";
-import "../../../css/styles.css";
-import "../../../generated/tokens/primitives.css";
-import "../../../generated/tokens/semantics.css";
+import "../../../index.css";
 import { contrastTest } from "../../accessibility-utils/accessibility-test-runner.js";
 import { getCssVarValue } from "../../utils.js";
 
@@ -27,34 +25,34 @@ describe("zeta-tag", () => {
       expect(element, "Element should exist").to.exist;
       await contrastTest("Tag", element!, element!);
     });
-    it("meets aria requirements", async () => {
-      await expect(subject).to.be.accessible();
-      await expect(subject).shadowDom.to.be.accessible();
+    it("meets aria requirements", () => {
+      expect(subject).to.be.accessible();
+      expect(subject).shadowDom.to.be.accessible();
     });
   });
 
   describe("Content", () => {
-    it("sets the default properties correctly", async () => {
-      await expect(subject.direction).to.equal("right");
-      await expect(subject.label).to.equal(undefined);
+    it("sets the default properties correctly", () => {
+      expect(subject.direction).to.equal("right");
+      expect(subject.label).to.equal(undefined);
     });
 
-    it("manages direction attribute correctly", async () => {
+    it("manages direction attribute correctly", () => {
       let pointValue = "left";
 
       subject.setAttribute("direction", pointValue);
-      await expect(subject.direction).to.equal(pointValue);
+      expect(subject.direction).to.equal(pointValue);
 
       pointValue = "right";
 
       subject.setAttribute("direction", pointValue);
-      await expect(subject.direction).to.equal(pointValue);
+      expect(subject.direction).to.equal(pointValue);
     });
 
-    it("manages label attribute correctly", async () => {
+    it("manages label attribute correctly", () => {
       const textValue = "Testing service";
       subject.setAttribute("label", textValue);
-      await expect(subject.label).to.equal(textValue);
+      expect(subject.label).to.equal(textValue);
     });
 
     it("renders the passed text into a span", async () => {
@@ -64,7 +62,7 @@ describe("zeta-tag", () => {
 
       const spanEl = subject.shadowRoot ? (subject.shadowRoot.querySelector("span") as HTMLSpanElement) : (subject.querySelector("span") as HTMLSpanElement);
 
-      await expect(spanEl.textContent).to.equal(textValue);
+      expect(spanEl.textContent).to.equal(textValue);
     });
   });
 
@@ -91,8 +89,8 @@ describe("zeta-tag", () => {
       await expect(rightRenderedTotalWidth).to.equal(expectedWidth);
       await expect(rightRenderedTotalHeight).to.equal(expectedHeight);
 
-      await expect(rightRenderedTotalWidth).to.equal(leftRenderedTotalWidth);
-      await expect(rightRenderedTotalHeight).to.equal(leftRenderedTotalHeight);
+      expect(rightRenderedTotalWidth).to.equal(leftRenderedTotalWidth);
+      expect(rightRenderedTotalHeight).to.equal(leftRenderedTotalHeight);
     });
   });
 
