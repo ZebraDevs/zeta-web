@@ -30,7 +30,7 @@ export const Contourable = <T extends Constructor<LitElement>>(superClass: T) =>
       (superClass as unknown as typeof LitElement).styles ?? [],
       css`
         :host([rounded]) {
-          --contour: var(--radius-minimal);
+          --contour: var(--radius-element-sm);
           --computed-icon-font: "zeta-icons-round";
         }
         :host([rounded="false"]) {
