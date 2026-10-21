@@ -4,13 +4,11 @@ import { customElement, property } from "lit/decorators.js";
 import { BaseButton } from "./base-button.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 import "../icon/icon.js";
-import { Flavored, type Flavor } from "../../mixins/flavor.js";
+import { Flavored, type ButtonFlavor } from "../../mixins/flavor.js";
 import styles from "./button.styles.js";
 import type { ZetaIconName } from "@zebra-fed/zeta-icons";
 
 //TODO text overflow broken
-
-export type ButtonFlavor = Exclude<Flavor, "inverse">;
 
 /** Buttons are used to trigger actions.
  *
@@ -46,6 +44,8 @@ export class ZetaButton extends Flavored(BaseButton) {
    * - `"outline-subtle"` - Grey outline only.
    * - `"text"` - Primary text only.
    * - `"subtle"` - White background with grey text. Same action colors as 'text' flavor.
+   * - `"gradient"` - Gradient background.
+   * - `"text-gradient"` - Gradient text and icons with no background.
    * - `"custom"` - Custom color background with custom color icon and text applied using css properties.
    *
    * @remarks The value `"secondary"` is no longer supported and should not be used.
@@ -79,7 +79,7 @@ export class ZetaButton extends Flavored(BaseButton) {
       >
         ${
           this._buttonType === "icon"
-            ? html`<zeta-icon part="icon" .rounded=${this.shape != "sharp"}><slot></slot></zeta-icon>`
+            ? html`<zeta-icon part="icon" .rounded=${this.shape != "sharp"} .size=${this.size}><slot></slot></zeta-icon>`
             : html`${leading}
                 <slot></slot>
                 ${trailing}`
