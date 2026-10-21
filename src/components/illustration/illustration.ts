@@ -70,7 +70,7 @@ export class ZetaIllustration extends LitElement {
   @property({ type: String }) alt?: string;
 
   /** The base path of zeta-web components. */
-  @property({ type: String }) basePath: string = "node_modules/@zebra-fed/zeta-web";
+  @property({ type: String }) basePath: string = "node_modules/@zebra-design-system/zeta-web";
 
   /** Overrides the source path of the illustration. */
   @property({ type: String }) src?: string;
