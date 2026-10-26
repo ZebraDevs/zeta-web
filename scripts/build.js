@@ -1,13 +1,17 @@
 // build.js
 import { execSync } from 'child_process';
-import { copyFileSync } from 'fs';
+import { cpSync, copyFileSync } from 'fs';
 
 try {
   execSync('tsc -P tsconfig.build.json', { stdio: 'inherit' });
   execSync('npx clean-css-cli ./src/index.css -o ./dist/index.css', { stdio: 'inherit' });
 
-  copyFileSync('src/generated/tokens/semantics.css', 'dist/semantics.css');
-  copyFileSync('src/generated/tokens/primitives.css', 'dist/primitives.css');
+  // New tokens: index.css + tokens.css + palette/, primitives/, size/, typography/ (skip legacy top-level files)
+  cpSync('src/generated/tokens', 'dist/tokens', {
+    recursive: true,
+    filter: (src) => !/tokens\/(?:primitives|semantics)[\w-]*\.css$/.test(src),
+  });
+  copyFileSync('custom-elements.json', 'dist/custom-elements.json');
 
   execSync('npx tsx scripts/add-declarations.ts --silent', { stdio: 'inherit' });
 } catch (err) {
