@@ -1,4 +1,4 @@
-import { customJSDocTagsPlugin } from "cem-plugin-custom-jsdoc-tags";
+import { jsDocTagsPlugin } from "@wc-toolkit/jsdoc-tags";
 import { getTsProgram, typeParserPlugin } from "@wc-toolkit/type-parser";
 import { JSXPluginWrapped } from './scripts/cem-plugin.js';
 
@@ -12,7 +12,7 @@ export default {
       .filter((sf) => globs.find((glob) => sf.fileName.includes(glob)));
   },
   plugins: [
-    customJSDocTagsPlugin({
+    jsDocTagsPlugin({
       tags: {
         figma: {
           isArray: true,
