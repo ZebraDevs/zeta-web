@@ -141,6 +141,10 @@
   /* --radius-xl: var(--radius-xl); */
   --radius-full: 360px;
 
+  /* border size - stroke */
+  --border-size-small: var(--stroke-thin); /* 1px */
+  --border-size-medium: var(--stroke-thick); /* 2px */
+
   /* Old primitives still referenced directly by components */
   --spacing-0: var(--scale-0);
   --spacing-1: var(--scale-3);
