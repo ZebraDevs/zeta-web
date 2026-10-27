@@ -8,7 +8,7 @@
 :root {
   /* Spacing tokens — same scale, just renamed */
   --spacing-none: var(--space-none);
-  --spacing-minimum: var(--space-xs);
+  --spacing-minimum: var(--space-xxs);
   --spacing-small: var(--space-sm);
   --spacing-medium: var(--space-md);
   --spacing-large: var(--space-lg);
