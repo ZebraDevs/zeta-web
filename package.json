@@ -7,7 +7,6 @@
     "consumer-skills",
     "custom-elements.json",
     "dist",
-    "assets",
     "LICENSE-3RD-PARTY"
   ],
   "bin": "./bin/zeta-web.js",
