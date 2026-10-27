@@ -6,6 +6,7 @@ import type { ZetaIcon } from "../../components/icon/icon.js";
 import type { ZetaIconIndicator } from "../../components/badges/indicators/indicators.js";
 import { getSlotText, getCssVarValue } from "../utils.js";
 import type { AvatarSize } from "../../components/avatar/avatar-size.js";
+import "../../index.css";
 
 describe("zeta-avatar", () => {
   // let subject: ZetaAvatar;
