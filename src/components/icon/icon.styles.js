@@ -14,9 +14,6 @@ export default [
     :host([size="small"]) {
       --icon-size: var(--control-icon-sm);
     }
-    :host([size="medium"]) {
-      --icon-size: var(--control-icon-md);
-    }
     :host([size="large"]) {
       --icon-size: var(--control-icon-lg);
     }
@@ -39,11 +36,11 @@ export default [
       font-feature-settings: "liga";
       user-select: none;
       color: var(--icon-color, inherit);
-      font-size: var(--icon-size);
-      line-height: var(--icon-size, 1);
+      font-size: var(--icon-size, var(--control-icon-md));
+      line-height: var(--icon-size, var(--control-icon-md));
       font-family: var(--icon-font, "zeta-icons-round");
-      width: var(--icon-size);
-      height: var(--icon-size);
+      width: var(--icon-size, var(--control-icon-md));
+      height: var(--icon-size, var(--control-icon-md));
       -webkit-text-stroke-width: var(--icon-border-width, 2px);
       -webkit-text-stroke-color: var(--icon-border-color, transparent);
       paint-order: stroke fill;
@@ -63,8 +60,8 @@ export default [
     }
 
     :host ::slotted(svg) {
-      width: var(--icon-size);
-      height: var(--icon-size);
+      width: var(--icon-size, var(--control-icon-md));
+      height: var(--icon-size, var(--control-icon-md));
       fill: var(--icon-color, currentColor);
     }
   `
