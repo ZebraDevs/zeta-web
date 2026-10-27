@@ -54,8 +54,15 @@ import "../../index.css";
 export class ZetaGlobalHeader extends Contourable(LitElement) {
   /**
    * Autoset the theme to dark mode for this component.
+   * @deprecated The 'data-theme' attribute is deprecated. The new tokens switch on `data-mode`, which this component now sets automatically.
    */
   @property({ type: String, attribute: "data-theme", reflect: true }) theme = "dark";
+
+  /**
+   * Autoset dark mode for the new tokens, which switch on `data-mode` instead of `data-theme`.
+   * @internal
+   */
+  @property({ type: String, attribute: "data-mode", reflect: true }) mode = "dark";
 
   /** The platform name text on the header.
    * @deprecated The 'platformName' property is deprecated. Please use the default slot to set the platform name instead.

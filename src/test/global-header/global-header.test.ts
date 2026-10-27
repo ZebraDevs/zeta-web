@@ -3,6 +3,7 @@ import sinon from "sinon";
 import type { ZetaGlobalHeader } from "../../components/global-header/global-header.js";
 import "../../components/global-header/global-header.js";
 import "../../index.css";
+import { getCssVarColorValue } from "../utils.js";
 import "../../components/global-header/global-header.styles.js";
 
 describe("zeta-global-header", () => {
@@ -143,12 +144,12 @@ describe("zeta-global-header", () => {
     it("has platform name with the correct color", () => {
       const platformName = subject.shadowRoot?.querySelector("#platform-name");
       expect(platformName).to.exist;
-      expect(platformName).to.have.style("color", "rgb(243, 246, 250)");
+      expect(getComputedStyle(platformName as Element).color).to.equal(getCssVarColorValue(platformName as Element, "--main-default"));
     });
     it("has name with the correct color", () => {
       const name = subject.shadowRoot?.querySelector("#name");
       expect(name).to.exist;
-      expect(name).to.have.style("color", "rgb(243, 246, 250)");
+      expect(getComputedStyle(name as Element).color).to.equal(getCssVarColorValue(name as Element, "--main-default"));
     });
   });
 
