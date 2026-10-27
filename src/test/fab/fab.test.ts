@@ -87,18 +87,25 @@ describe("zeta-fab", () => {
     it("renders a small fab", async () => {
       const el = subject.shadowRoot?.querySelector("button");
       const height = getComputedStyle(el!).height;
-      const expectedHeight = parseInt(getCssVarValue(el!, "--spacing-medium")) * 2 + 24 + "px";
+      const icon = subject.shadowRoot?.querySelector("zeta-icon");
+      const iconHeight = parseFloat(getComputedStyle(icon!).height);
+      const expectedHeight = parseInt(getCssVarValue(el!, "--spacing-medium")) * 2 + iconHeight + "px";
       await expect(subject.size).to.equal("small");
       await expect(height).to.equal(expectedHeight);
+      const width = getComputedStyle(el!).width;
+      await expect(height).to.equal(width);
     });
 
     it("renders a large fab", async () => {
       const fab: ZetaFab = await fixture(html`<zeta-fab size="large">barcode</zeta-fab>`);
-
       const el = fab.shadowRoot?.querySelector("button");
       const height = getComputedStyle(el!).height;
-      const expectedHeight = parseInt(getCssVarValue(el!, "--spacing-xl")) * 2 + 36 + "px";
+      const icon = fab.shadowRoot?.querySelector("zeta-icon");
+      const iconHeight = parseFloat(getComputedStyle(icon!).height);
+      const expectedHeight = parseInt(getCssVarValue(el!, "--spacing-xl")) * 2 + iconHeight + "px";
       await expect(height).to.equal(expectedHeight);
+      const width = getComputedStyle(el!).width;
+      await expect(height).to.equal(width);
     });
   });
 
