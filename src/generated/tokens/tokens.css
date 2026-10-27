@@ -46,6 +46,9 @@
   --scale-neg-1: -1px;
   --scale-neg-2: -2px;
   --scale-neg-3: -4px;
+  --scale-neg-4: -6px;
+  --scale-neg-5: -8px;
+  --scale-neg-6: -12px;
   --color-neutral-cool-10: #f8fbff;
   --color-neutral-cool-20: #f3f6fa;
   --color-neutral-cool-30: #e0e3e9;
@@ -321,9 +324,9 @@
   --fill-inverse-sunken: light-dark(var(--color-neutral-cool-80), var(--color-neutral-cool-30));
   --fill-inverse-elevated: light-dark(var(--color-neutral-cool-100), var(--color-neutral-cool-10));
   --fill-disabled: light-dark(var(--color-neutral-cool-30), var(--color-neutral-cool-80));
-  --fill-transparent-emphasis: light-dark(var(--color-alpha-dark-5), rgba(0, 0, 0, 0.050980392156862744));
-  --fill-transparent-elevate: light-dark(var(--color-alpha-dark-10), rgba(0, 0, 0, 0.14901960784313725));
-  --fill-transparent-obsure: light-dark(var(--color-alpha-dark-30), rgba(0, 0, 0, 0.45098039215686275));
+  --fill-transparent-emphasis: light-dark(var(--color-alpha-dark-5), var(--color-alpha-light-5));
+  --fill-transparent-elevate: light-dark(var(--color-alpha-dark-10), var(--color-alpha-light-10));
+  --fill-transparent-obsure: light-dark(var(--color-alpha-dark-30), var(--color-alpha-light-30));
   --ink-high: light-dark(var(--color-neutral-cool-100), var(--color-neutral-cool-10)); /** High-emphasis text/icon color (theme.color.content.high) */
   --ink-medium: light-dark(var(--color-neutral-cool-70), var(--color-neutral-cool-40)); /** Medium-emphasis text/icon color (theme.color.content.medium) */
   --ink-low: light-dark(var(--color-neutral-cool-60), var(--color-neutral-cool-50)); /** Low-emphasis text/icon color (theme.color.content.low) */
@@ -335,6 +338,8 @@
   --ink-link: light-dark(var(--color-brand-main-60), var(--color-brand-main-50)); /** Hyperlink text color (theme.color.content.link) */
   --ink-brand: light-dark(var(--color-brand-main-70), var(--color-brand-main-40)); /** Hyperlink text color (theme.color.content.link) */
   --ink-selection: light-dark(var(--color-neutral-cool-100), var(--color-neutral-cool-10)); /** Text color within a selection (theme.color.selection.text) */
+  --ink-always-white: var(--color-pure-white); /** White that does not change with mode. Source for foreground/on-strong. */
+  --ink-always-blank: var(--color-neutral-cool-100); /** Near-black that does not change with mode. Source for foreground/on-light. */
   --status-success-default: var(--color-system-positive-60); /** Success color (theme.color.success.default) */
   --status-success-faint: light-dark(
     var(--color-system-positive-10),
@@ -378,6 +383,14 @@
   --status-ghost-deep: light-dark(var(--color-alpha-dark-10), var(--color-alpha-light-10)); /** Info solid/strong emphasis (theme.color.info.strong) */
   --status-ghost-subtle: light-dark(var(--color-alpha-dark-0), var(--color-alpha-light-0));
   --status-ghost-strong: light-dark(var(--color-alpha-dark-20), var(--color-alpha-light-20));
+  --status-neutral-default: light-dark(var(--color-neutral-cool-60), var(--color-neutral-warm-60)); /** Neutral color (theme.color.neutral.default) */
+  --status-neutral-faint: light-dark(var(--color-neutral-cool-10), var(--color-neutral-warm-100)); /** Neutral background tint (theme.color.neutral.subtle) */
+  --status-neutral-deep: light-dark(
+    var(--color-neutral-cool-80),
+    var(--color-neutral-warm-30)
+  ); /** Neutral solid/strong emphasis (theme.color.neutral.strong) */
+  --status-neutral-subtle: light-dark(var(--color-neutral-cool-50), var(--color-neutral-warm-60));
+  --status-neutral-strong: light-dark(var(--color-neutral-cool-70), var(--color-neutral-warm-40));
   --line-selection: light-dark(var(--color-brand-main-60), var(--color-brand-main-50)); /** Selected item border/outline (theme.color.selection.border) */
   --line-focus: light-dark(var(--color-brand-main-50), var(--color-brand-main-60)); /** Selected item border/outline (theme.color.selection.border) */
   --line-default: light-dark(var(--color-neutral-cool-40), var(--color-neutral-cool-70));
@@ -407,8 +420,6 @@
 }
 
 :where(:root, [data-primitives], [data-palette]) {
-  --shadow-soft: var(--fill-transparent-emphasis); /** Soft, diffuse drop shadow for subtle elevation, e.g. cards */
-  --shadow-hard: var(--fill-transparent-elevate); /** Crisp, high-contrast drop shadow for elements needing strong separation, e.g. dropdowns */
   --surface-page: var(--fill-canvas); /** Default background color of the page or app canvas */
   --surface-section: var(--fill-default); /** Background for a section or panel that groups related content */
   --surface-card: var(--fill-elevated); /** Background of card components */
@@ -423,6 +434,7 @@
   --surface-warning: var(--status-warning-faint); /** Background for containers communicating a warning state */
   --surface-error: var(--status-error-faint); /** Background for containers communicating an error state */
   --surface-info: var(--status-info-faint); /** Background for containers communicating neutral information */
+  --surface-track: var(--fill-sunken); /** Background for containers communicating neutral information */
   --surface-gradient-start: var(--gradient-default-start); /** Starting color stop for surfaces using a gradient fill */
   --surface-gradient-end: var(--gradient-default-end); /** Ending color stop for surfaces using a gradient fill */
   --foreground-primary: var(--ink-high); /** The default color for body text and primary icons, used as the highest-emphasis content color. */
@@ -436,6 +448,10 @@
   --foreground-warning: var(--status-warning-default); /** Text/icon color that communicates a warning */
   --foreground-error: var(--status-error-default); /** Text/icon color that communicates an error, paired with feedback/error tokens */
   --foreground-info: var(--status-info-default); /** Text/icon color that communicates neutral information */
+  --foreground-on-strong: var(
+    --ink-always-white
+  ); /** Text/icon color on strong, saturated fills (feedback background/strong, selected controls). White in every mode. */
+  --foreground-on-light: var(--ink-always-blank); /** Text/icon color on fills that stay light in every mode. Near-black in every mode. */
   --foreground-gradient-start: var(--gradient-default-start); /** Starting color stop for text/icons using a gradient treatment */
   --foreground-gradient-end: var(--gradient-default-end); /** Ending color stop for text/icons using a gradient treatment */
   --border-default: var(--line-default); /** Default border color for inputs, cards, and dividers at rest */
@@ -574,9 +590,7 @@
   --interactive-subtle-background-disabled: var(--fill-disabled); /** Disabled state for a subtle interactive element. */
   --interactive-subtle-foreground-default: var(--ink-link); /** Default-state text/icon color on a subtle interactive element&#39;s background. */
   --interactive-subtle-foreground-disabled: var(--ink-disabled); /** Disabled-state text/icon color on a subtle interactive element&#39;s background. */
-  --interactive-selection-background-default: var(
-    --fill-default
-  ); /** Default state for a neutral, general-purpose interactive element with no semantic meaning. */
+  --interactive-selection-background-default: var(--ink-low); /** Default state for a neutral, general-purpose interactive element with no semantic meaning. */
   --interactive-selection-background-hover: var(--fill-hover); /** Hover state for a neutral interactive element. */
   --interactive-selection-background-pressed: var(--brand-primary-default); /** Pressed state for a neutral interactive element. */
   --interactive-selection-background-focused: var(--fill-default); /** Focused state for a neutral interactive element. */
@@ -602,6 +616,9 @@
   --feedback-info-background-subtle: var(--status-info-faint); /** Background fill for informational alerts, banners, and inline messages */
   --feedback-info-background-strong: var(--status-info-default); /** Background fill for informational alerts, banners, and inline messages */
   --feedback-info-foreground: var(--status-info-default); /** Icon/text color used inside informational alerts and messages */
+  --feedback-neutral-background-subtle: var(--status-neutral-faint); /** Background fill for neutral (no-status) badges, labels and inline messages */
+  --feedback-neutral-background-strong: var(--status-neutral-default); /** Solid fill for high-emphasis neutral badges and labels */
+  --feedback-neutral-foreground: var(--ink-medium); /** Icon/text color used inside neutral badges, labels and messages */
   --focus-ring: var(--line-focus); /** Soft glow/ring drawn just outside the focus outline, reinforcing keyboard focus */
   --focus-outline: var(--line-focus); /** Solid outline drawn directly around an element on keyboard focus, for accessibility */
   --chart-series-1: var(--data-1); /** 1st color in the categorical data-series palette, assigned in order across multiple series. */
@@ -625,12 +642,16 @@
   --selection-background: var(--fill-selection); /** Highlight background applied to selected text or selected list/table items */
   --selection-border: var(--line-selection); /** Border drawn around a selected item, e.g. a selected card or table row */
   --selection-text: var(--ink-selection); /** Text color applied to selected or highlighted text */
+  --shadow-soft: var(--fill-transparent-emphasis); /** Soft, diffuse drop shadow for subtle elevation, e.g. cards */
+  --shadow-hard: var(--fill-transparent-elevate); /** Crisp, high-contrast drop shadow for elements needing strong separation, e.g. dropdowns */
   --border-transparent: var(--interactive-ghost-background-default); /** Border color for elements conveying neutral, informational context */
 }
 
 :where(:root, [data-primitives], [data-size]) {
   --radius-pill: 9999px; /** Literal value, not a scale reference (fully rounded) */
   --shape: sharp;
+  --animations-spring: 250ms cubic-bezier(0.34, 1.36, 0.64, 1); /** Spring motion shared by Switch and Segmented Control: 250ms on cubic-bezier(0.34, 1.36, 0.64, 1), a slight overshoot that settles. Duration and easing together, for transition timing: transition: transform var(--animations-spring). Turn it off under prefers-reduced-motion. */
+  --animations-smooth: 250ms ease-in-out; /** Smooth motion for opening and closing: ease-in-out over 250ms. Used by every element in Navigation Rail (collapse/expand, sub menu open/close). Duration and curve in one value; use directly in a CSS transition. */
   --space-page: var(--scale-7); /** = 16px, source: scale/6 */
   --space-section: var(--scale-9); /** = 24px, source: scale/8 */
   --space-card: var(--scale-6); /** = 16px, source: scale/6 */
@@ -643,9 +664,11 @@
   --space-xl: var(--scale-9); /** = 24px, source: scale/8 */
   --space-2xl: var(--scale-11); /** = 32px, source: scale/10 */
   --space-none: var(--scale-0); /** = 32px, source: scale/10 */
-  --space-neg-xs: var(--scale-neg-1); /** = 32px, source: scale/10 */
-  --space-neg-sm: var(--scale-neg-2); /** = 32px, source: scale/10 */
-  --space-neg-md: var(--scale-neg-3); /** = 32px, source: scale/10 */
+  --space-neg-xs: var(--scale-neg-1); /** = -1px, source: scale/-1 */
+  --space-neg-sm: var(--scale-neg-2); /** = -2px, source: scale/-2 */
+  --space-neg-md: var(--scale-neg-3); /** = -4px, source: scale/-3 */
+  --space-neg-lg: var(--scale-neg-5); /** = -8px, source: scale/-5 */
+  --space-neg-xl: var(--scale-neg-6); /** = -12px, source: scale/-6 */
   --control-target-min: var(--scale-13); /** = 44px, source: scale/13 */
   --control-xs: var(--scale-9); /** = 40px, source: scale/12 */
   --control-sm: var(--scale-12); /** = 40px, source: scale/12 */
