@@ -5,7 +5,6 @@
     "dist",
     "bin",
     "consumer-skills",
-    "custom-elements.json",
     "assets",
     "LICENSE-3RD-PARTY"
   ],
@@ -22,11 +21,10 @@
     "./assets/*": "./assets/*",
     "./events.js": "./dist/events.js",
     "./components/*": "./dist/components/*",
-    "./custom-elements.json": "./custom-elements.json",
+    "./custom-elements.json": "./dist/custom-elements.json",
     "./index.css": "./dist/index.css",
     "./jsx.d.ts": "./dist/jsx.d.ts",
-    "./primitives.css": "./dist/primitives.css",
-    "./semantics.css": "./dist/semantics.css"
+    "./tokens/*": "./dist/tokens/*"
   },
   "description": "Zebra Zeta Design System - Web Components",
   "repository": {
@@ -65,6 +63,7 @@
     "test:count": "npx tsx scripts/test/test_counter.ts",
     "pretest:package": "yarn pack --pack-destination ./test && cd test && yarn install && cd ..",
     "test:package": "cd test && yarn run dev",
+    "test:file": "web-test-runner --node-resolve --config src/test/web-test-runner.config.*",
     "test:watch": "web-test-runner \"src/test/**/*.test.ts\" --node-resolve --watch --config src/test/web-test-runner.config.*",
     "test": "web-test-runner \"src/test/**/*.test.ts\" --node-resolve --config src/test/web-test-runner.config.*"
   },

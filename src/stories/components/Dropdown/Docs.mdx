@@ -27,6 +27,8 @@ Pass an array of objects to the `items` property. Each object must have a `label
 
 Use the `type` prop to define the type of dropdown menu button. The options are `text-dropdown`, `dropdown-radio`, and `dropdown-checkbox`. The default is `text-dropdown`. The `dropdown-checkbox` type allows for multiple items to be selected. The `dropdown-radio` type allows for only one item to be selected.
 
+By default, the dropdown menu sizes to fit its content. Set the `matchParentWidth` prop (or the `matchparentwidth` attribute) to make the menu match the width of the button. In earlier versions this defaulted to `true`, so add it to keep the previous behaviour.
+
 Get the data from the dropdown menu button by wrapping it in a form and listening for the submit event. Use the `FormData` constructor to get the data from the form.
 
 As you use the dropdown menu button, think about whether you'd rather put the dropdown menu items in a prop or in a slot. Please let the development team know for future reference.

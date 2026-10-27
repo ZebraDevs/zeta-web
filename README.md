@@ -116,11 +116,29 @@ To learn more about Zeta theme, see [tokens](https://design.zebra.com/docs/Theme
 
 If you only need the styles, simply import `index.css`. Importing `index.css` is not necessary if you are using the Zeta components, as they include the styles automatically.
 
-By default, if the user has set `prefers-color-scheme` or `prefers-contrast`, this will be respected - serving light or dark; regular or high contrast tokens.
+By default the default theme is used, and light or dark follows the user's `prefers-color-scheme`.
 
-To override a theme, you can add `data-theme: light | dark` or `data-contrast: less | more` attributes to any element. This will cause any child element to respect that value.
+Every layer of the theme is chosen with a data attribute, on `<html>` or on any element (children respect it):
 
-> Note: If you want to apply `data-theme` or `data-contrast` within the shadow dom, you will need to inject the styles again.
+| Attribute | Values | Notes |
+| --- | --- | --- |
+| `data-mode` | `light` \| `dark` | Omit to follow the OS. |
+| `data-primitives` | `default` \| `target` | Raw values. Set it on `<html>`; setting it on a subtree resets that subtree's palette, size and typography to default, so restate them. |
+| `data-palette` | `default` \| `companion` \| `target` | Brand colors. |
+| `data-size` | `default` \| `condensed` | Spacing, controls and radii. |
+| `data-typography` | `default` \| `condensed` | Type scale. |
+
+```html
+<html data-palette="companion" data-size="condensed" data-mode="dark">
+  <section data-palette="target" data-mode="light">...</section>
+</html>
+```
+
+`data-palette`, `data-size`, `data-typography` and `data-mode` are independent of each other and nest freely. A value with no extension for that layer falls back to default, and `default` restores the base inside a subtree. Dark mode uses CSS `light-dark()` (Chrome 123+, Safari 17.5+, Firefox 120+).
+
+To add your own brand, load a file like `[data-palette="acme"] { --brand-primary-default: ...; }` after `index.css`. It may only override variable names that already exist in `tokens.css`.
+
+> Note: If you want to apply these attributes within the shadow dom, you will need to inject the styles again.
 
 ```ts How to inject Zeta index.css in a new custom lit element.
 // Importing styles into Lit
@@ -132,11 +150,11 @@ export class A extends LitElement {
   static styles = [unsafeCSS(zeta.default)];
 
   // (Optionally) apply the data-* attribute to the whole element.
-  @property({ attribute: "data-theme", reflect: true }) theme = "dark";
-  @property({ attribute: "data-contrast", reflect: true }) contrast = "more";
+  @property({ attribute: "data-mode", reflect: true }) mode = "dark";
+  @property({ attribute: "data-palette", reflect: true }) palette = "companion";
 
   protected override render() {
-    return html`<div data-theme="dark" data-contrast="more">
+    return html`<div data-mode="dark" data-palette="companion">
       // Or you can apply the data-* attributes to individual children
     </div>`;
   }

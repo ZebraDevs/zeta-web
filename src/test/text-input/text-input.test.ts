@@ -242,25 +242,13 @@ describe("zeta-text-input", () => {
       assert.equal(getComputedStyle(text!).color, getCssVarColorValue(text!, "--main-negative"));
     });
 
-    const rgbToHex = (r: number, g: number, b: number) =>
-      "#" +
-      [r, g, b]
-        .map(x => {
-          const hex = x.toString(16);
-          return hex.length === 1 ? "0" + hex : hex;
-        })
-        .join("");
-
     it("should set disabled color to icon when field is disabled", async () => {
       const el = await setup({ disabled: true, leadingIcon: "star" });
       const x = el.shadowRoot?.querySelector("zeta-icon");
       expect(x).to.exist;
       assert.equal(x!.textContent?.trim(), "star");
 
-      const rgbColor = window.getComputedStyle(x!).color.split("(")[1].split(")")[0].split(",");
-      const hexColor = rgbToHex(Number.parseInt(rgbColor[0]), Number.parseInt(rgbColor[1]), Number.parseInt(rgbColor[2]));
-
-      return await expect(hexColor).to.equal(getComputedStyle(el).getPropertyValue("--main-disabled"));
+      return await expect(getComputedStyle(x!).color).to.equal(getCssVarColorValue(el, "--main-disabled"));
     });
 
     it("should default to 2 rows when type is textarea and rows is not specified", async () => {
