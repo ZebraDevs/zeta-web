@@ -1,0 +1,37 @@
+/**
+ * condensed size extension - overrides only. Use with data-size="condensed".
+ * This file is auto-generated. Do not edit directly.
+ */
+
+@media (min-width: 1200px) {
+  [data-size="condensed"] {
+    --control-icon-lg: var(--scale-7);
+    --control-icon-md: var(--scale-6);
+    --control-icon-sm: var(--scale-5);
+    --control-icon-xxs: var(--scale-4);
+    --control-lg: var(--scale-13);
+    --control-md: var(--scale-11);
+    --control-sm: var(--scale-10);
+    --control-target-min: var(--scale-11);
+    --control-xs: var(--scale-8);
+    --radius-container: var(--scale-5);
+    --radius-element-md: var(--scale-3);
+    --radius-element-sm: var(--scale-2);
+    --radius-lg: var(--scale-4);
+    --radius-md: var(--scale-3);
+    --radius-sm: var(--scale-2);
+    --radius-xl: var(--scale-5);
+    --radius-xs: var(--scale-1);
+    --space-2xl: var(--scale-9);
+    --space-2xs: var(--scale-1);
+    --space-card: var(--scale-5);
+    --space-gutter: var(--scale-5);
+    --space-lg: var(--scale-6);
+    --space-md: var(--scale-5);
+    --space-page: var(--scale-5);
+    --space-section: var(--scale-7);
+    --space-sm: var(--scale-4);
+    --space-xl: var(--scale-7);
+    --space-xxs: var(--scale-2);
+  }
+}
