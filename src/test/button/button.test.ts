@@ -64,7 +64,7 @@ describe("zeta-button", () => {
       { name: "leading and trailing icons", attrs: { leadingIcon: "star", trailingIcon: "check" }, expected: ["star", "check"] }
     ].forEach(({ name, attrs, expected }) => {
       it(`should render ${name}`, async () => {
-        Object.entries(attrs).forEach(([attr, value]) => subject.setAttribute(attr, value));
+        Object.entries(attrs as Record<string, string>).forEach(([attr, value]) => subject.setAttribute(attr, value));
         await elementUpdated(subject);
 
         const icons = [...subject.shadowRoot!.querySelectorAll("zeta-icon")].map(icon => icon.getAttribute("name"));
@@ -163,7 +163,9 @@ describe("zeta-button", () => {
         subject.click();
 
         expect(events.length).to.equal(expected);
-        events.forEach(e => expect(e.type).to.equal("click"));
+        events.forEach(e => {
+          expect(e.type).to.equal("click");
+        });
       });
     });
   });

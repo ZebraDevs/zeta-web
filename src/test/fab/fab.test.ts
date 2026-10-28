@@ -84,7 +84,7 @@ describe("zeta-fab", () => {
   });
 
   describe("Dimensions", () => {
-    it("renders a small fab", () => {
+    it("renders a small fab", async () => {
       const el = subject.shadowRoot?.querySelector("button");
       const height = getComputedStyle(el!).height;
       const icon = subject.shadowRoot?.querySelector("zeta-icon");
