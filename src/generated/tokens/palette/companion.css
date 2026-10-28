@@ -1,0 +1,18 @@
+/**
+ * companion palette extension - overrides only. Use with data-palette="companion".
+ * This file is auto-generated. Do not edit directly.
+ */
+
+[data-palette="companion"] {
+  --brand-primary-default: var(--color-accent-1-60);
+  --brand-primary-faint: light-dark(var(--color-accent-1-10), var(--color-accent-1-100));
+  --brand-primary-subtle: var(--color-accent-1-50);
+  --brand-primary-strong: var(--color-accent-1-70);
+  --brand-primary-deep: var(--color-accent-1-80);
+  --brand-primary-muted: light-dark(var(--color-accent-1-20), var(--color-accent-1-90));
+  --fill-selection: light-dark(var(--color-accent-1-20), var(--color-accent-1-90));
+  --ink-link: light-dark(var(--color-accent-1-60), var(--color-accent-1-50));
+  --ink-brand: light-dark(var(--color-accent-1-70), var(--color-accent-1-40));
+  --line-selection: light-dark(var(--color-accent-1-60), var(--color-accent-1-50));
+  --line-focus: light-dark(var(--color-accent-1-50), var(--color-accent-1-60));
+}
