@@ -49,7 +49,7 @@ A numeric value with a button on either side to decrease or increase it. The val
 
 **Do:**
 
-- Use Large on a touch surface where the buttons need to be easy to hit without precision.
+- Reach for Large on a touch surface where the buttons need to be easy to hit without precision.
 - Turn Hint on to explain a constraint on the value, such as a minimum or a maximum.
 
 **Don't:**
