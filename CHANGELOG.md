@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.2](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.5.1...zeta-web-v1.5.2) (2026-10-28)
+
+
+### ⛓️ Dependencies
+
+* Pin react to stop d.z breaking ([bd6c96e](https://github.com/ZebraDevs/zeta-web/commit/bd6c96e4456e4f441b3995fbdf846426a16b0e97))
+
 ## [1.5.1](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.5.0...zeta-web-v1.5.1) (2026-10-26)
 
 
