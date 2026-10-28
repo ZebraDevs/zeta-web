@@ -1,10 +1,13 @@
 import { fixture, html, expect, unsafeStatic, elementUpdated } from "@open-wc/testing";
 import type { ZetaTileButton } from "../../components/button/tile-button/tile-button.js";
+import type { ZetaIconName } from "@zebra-fed/zeta-icons";
 import "../../components/button/tile-button/tile-button.js";
 
 import "../../index.css";
-import { getCssVarColorValue, getSlotText, KeyboardActions, MouseActions } from "../utils.js";
+import { getCssVarColorValue, getCssVarValue, getSlotText, KeyboardActions, MouseActions } from "../utils.js";
 import { contrastTest } from "../accessibility-utils/accessibility-test-runner.js";
+
+const longText = "12345678910111213";
 
 describe("zeta-tile-button", () => {
   let subject: ZetaTileButton;
@@ -25,147 +28,132 @@ describe("zeta-tile-button", () => {
     });
 
     it("meets contrast requirements for outline-subtle flavor", async () => {
-      const srButton = subject.shadowRoot?.querySelector("button");
-      expect(srButton).to.exist;
-      await contrastTest(`Button outline-subtle`, srButton!, srButton!);
+      const srButton = subject.shadowRoot!.querySelector("button")!;
+      await contrastTest(`Button outline-subtle`, srButton, srButton);
     });
   });
 
   describe("Content", () => {
-    it("renders an icon", () => {
-      const icon = subject.shadowRoot?.querySelector("zeta-icon");
-      expect(icon?.name).to.equal("star");
+    [
+      { name: "renders an icon", icon: "add", expected: "add" },
+      { name: "renders a default icon if none is provided", icon: undefined, expected: "star" }
+    ].forEach(({ name, icon, expected }) => {
+      it(name, async () => {
+        subject.icon = icon as ZetaIconName | undefined;
+        await elementUpdated(subject);
+        expect(subject.shadowRoot!.querySelector("zeta-icon")!.name).to.equal(expected);
+      });
     });
 
-    it("renders a default icon if none is provided", async () => {
-      subject.icon = undefined;
-      await elementUpdated(subject);
-      const icon = subject.shadowRoot?.querySelector("zeta-icon");
-      expect(icon?.name).to.equal("star");
-    });
-
-    it("renders a label", () => {
-      expect(getSlotText(subject)).to.equal("Button");
-    });
-
-    it("text stays empty when no text is given", async () => {
-      subject.slot = "";
-      await elementUpdated(subject);
-      expect(subject.slot).to.equal("");
+    [
+      { name: "renders a label", text: "Button" },
+      { name: "text stays empty when no text is given", text: "" }
+    ].forEach(({ name, text }) => {
+      it(name, async () => {
+        subject.textContent = text;
+        await elementUpdated(subject);
+        expect(getSlotText(subject)).to.equal(text);
+      });
     });
 
     it("truncates the label when text is longer than button width", async () => {
-      subject.textContent = "12345678910111213";
+      subject.textContent = longText;
       await elementUpdated(subject);
-      const srTextSpan = subject.shadowRoot?.querySelector(".button-text");
-      expect(srTextSpan).to.exist;
-      expect((srTextSpan as HTMLElement).offsetWidth).to.be.lessThan((srTextSpan as HTMLElement).scrollWidth);
-      expect(getComputedStyle(srTextSpan as HTMLElement).textOverflow).to.equal("ellipsis");
-      expect(getComputedStyle(srTextSpan as HTMLElement).overflow).to.equal("hidden");
+      const srTextSpan = subject.shadowRoot!.querySelector<HTMLElement>(".button-text")!;
+      expect(srTextSpan.offsetWidth).to.be.lessThan(srTextSpan.scrollWidth);
+      expect(getComputedStyle(srTextSpan).textOverflow).to.equal("ellipsis");
+      expect(getComputedStyle(srTextSpan).overflow).to.equal("hidden");
     });
   });
 
   describe("Dimensions", () => {
-    it("if characters in title equal less than 80px, width should == 80px", async () => {
-      subject.textContent = "1";
-      await elementUpdated(subject);
-      const srButton = subject.shadowRoot?.querySelector("button");
-      expect(srButton).to.exist;
-      expect(getComputedStyle(srButton!).width).to.equal("80px");
-    });
-
-    it("button stays the same size if text is longer than button width", async () => {
-      subject.textContent = "12345678910111213";
-      await elementUpdated(subject);
-      const srButton = subject.shadowRoot?.querySelector("button");
-      expect(srButton).to.exist;
-      expect(getComputedStyle(srButton!).width).to.equal("80px");
-    });
-
-    it("height should == 80px regardless of title.length", async () => {
-      subject.slot = "";
-      await elementUpdated(subject);
-      const srButton = subject.shadowRoot?.querySelector("button");
-      expect(srButton).to.exist;
-      expect(getComputedStyle(srButton!).height).to.equal("80px");
-      subject.slot = "12345678910111213";
-      await elementUpdated(subject);
-      expect(getComputedStyle(srButton!).height).to.equal("80px");
+    [
+      { name: "short text", text: "1" },
+      { name: "text longer than the button width", text: longText },
+      { name: "no text", text: "" }
+    ].forEach(({ name, text }) => {
+      it(`is a fixed square size with ${name}`, async () => {
+        subject.textContent = text;
+        await elementUpdated(subject);
+        const srButton = subject.shadowRoot!.querySelector("button")!;
+        // Tile size is (2 * --space-2xl) + --space-lg
+        const expected = `${2 * parseFloat(getCssVarValue(srButton, "--space-2xl")) + parseFloat(getCssVarValue(srButton, "--space-lg"))}px`;
+        expect(getComputedStyle(srButton).width).to.equal(expected);
+        expect(getComputedStyle(srButton).height).to.equal(expected);
+      });
     });
   });
 
   describe("Styling", () => {
-    it("has a white background", () => {
-      const srButton = subject.shadowRoot?.querySelector("button");
-      expect(srButton).to.exist;
-      expect(getComputedStyle(srButton!).backgroundColor).to.equal(getCssVarColorValue(srButton!, "--state-default-enabled"));
-    });
+    const borderColor = (el: Element) => getComputedStyle(el).boxShadow.match(/rgb[a]?\([^)]+\)/)?.[0] ?? "rgb(0,0,0)";
 
-    it("has black text", () => {
-      const srButton = subject.shadowRoot?.querySelector("button");
-      expect(srButton).to.exist;
-      expect(getComputedStyle(srButton!).color).to.equal(getCssVarColorValue(srButton!, "--main-default"));
-    });
-
-    it("has a black icon", () => {
-      const srZetaIcon = subject.shadowRoot?.querySelector("zeta-icon");
-      if (!srZetaIcon) return;
-      expect(getComputedStyle(srZetaIcon).color).to.equal(getCssVarColorValue(srZetaIcon, "--main-default"));
-    });
-
-    it("has border-default border", () => {
-      const srButton = subject.shadowRoot?.querySelector("button");
-      expect(srButton).to.exist;
-      const buttonBorderColor = getComputedStyle(srButton!).boxShadow.match(/rgb[a]?\([^)]+\)/)?.[0] ?? "rgb(0,0,0)";
-      expect(buttonBorderColor).to.equal(getCssVarColorValue(srButton!, "--border-default"));
-    });
-
-    it("has the correct background colour when disabled", async () => {
-      const srButton = subject.shadowRoot?.querySelector("button");
-      expect(srButton).to.exist;
-      subject.setAttribute("disabled", "true");
-      await elementUpdated(subject);
-      await expect(getComputedStyle(srButton!).backgroundColor).to.equal(getCssVarColorValue(srButton!, "--surface-disabled"));
-    });
-
-    it("has the correct icon colour when disabled", async () => {
-      const srZetaIcon = subject.shadowRoot?.querySelector("zeta-icon");
-      expect(srZetaIcon).to.exist;
-      subject.setAttribute("disabled", "true");
-      await elementUpdated(subject);
-      await new Promise(resolve => setTimeout(resolve, 350));
-      await expect(getComputedStyle(srZetaIcon!).color).to.equal(getCssVarColorValue(srZetaIcon!, "--main-disabled"));
-    });
-
-    it("has the correct text colour when disabled", async () => {
-      const srButton = subject.shadowRoot?.querySelector("button");
-      expect(srButton).to.exist;
-      subject.setAttribute("disabled", "true");
-      await elementUpdated(subject);
-      await expect(getComputedStyle(srButton!).color).to.equal(getCssVarColorValue(srButton!, "--main-disabled"));
+    [
+      {
+        name: "background",
+        part: "button",
+        disabled: false,
+        token: "--interactive-neutral-background-default",
+        read: (el: Element) => getComputedStyle(el).backgroundColor
+      },
+      { name: "text", part: "button", disabled: false, token: "--interactive-neutral-foreground-default", read: (el: Element) => getComputedStyle(el).color },
+      {
+        name: "icon",
+        part: "zeta-icon",
+        disabled: false,
+        token: "--interactive-neutral-foreground-default",
+        read: (el: Element) => getComputedStyle(el).color
+      },
+      { name: "border", part: "button", disabled: false, token: "--interactive-neutral-border-default", read: borderColor },
+      {
+        name: "background",
+        part: "button",
+        disabled: true,
+        token: "--interactive-neutral-background-disabled",
+        read: (el: Element) => getComputedStyle(el).backgroundColor
+      },
+      { name: "text", part: "button", disabled: true, token: "--interactive-neutral-foreground-disabled", read: (el: Element) => getComputedStyle(el).color },
+      { name: "icon", part: "zeta-icon", disabled: true, token: "--interactive-neutral-foreground-disabled", read: (el: Element) => getComputedStyle(el).color }
+    ].forEach(({ name, part, disabled, token, read }) => {
+      it(`has ${token} ${name} colour when ${disabled ? "disabled" : "enabled"}`, async () => {
+        const el = subject.shadowRoot!.querySelector(part)!;
+        if (disabled) {
+          subject.setAttribute("disabled", "true");
+          await elementUpdated(subject);
+          // Wait for the colour transition to finish
+          await new Promise(resolve => setTimeout(resolve, 350));
+        }
+        expect(read(el)).to.equal(getCssVarColorValue(el, token));
+      });
     });
   });
 
   describe("Interaction", () => {
     it("calls onClick when clicked", async () => {
-      const eventSpy = sinon.spy();
-      subject.addEventListener("click", eventSpy);
+      let clicks = 0;
+      subject.addEventListener("click", () => clicks++);
       await MouseActions.click(subject);
-      expect(eventSpy).to.have.been.calledOnce;
+      expect(clicks).to.equal(1);
     });
 
-    it("has the correct style when hovered", async () => {
-      const srButton = subject.shadowRoot?.querySelector("button");
-      expect(srButton).to.exist;
-      await MouseActions.hover(srButton!);
-      expect(getComputedStyle(srButton!).backgroundColor).to.equal(getCssVarColorValue(srButton!, "--surface-hover"));
-    });
-
-    it("has the correct style when focused", async () => {
-      const srButton = subject.shadowRoot?.querySelector("button");
-      expect(srButton).to.exist;
-      await KeyboardActions.press("Tab");
-      await expect(getComputedStyle(srButton!).outlineColor).to.equal(getCssVarColorValue(srButton!, "--border-focus"));
+    [
+      {
+        name: "hovered",
+        token: "--interactive-neutral-background-hover",
+        act: (el: HTMLElement) => MouseActions.hover(el),
+        read: (el: Element) => getComputedStyle(el).backgroundColor
+      },
+      {
+        name: "focused",
+        token: "--border-focus",
+        act: () => KeyboardActions.press("Tab"),
+        read: (el: Element) => getComputedStyle(el).outlineColor
+      }
+    ].forEach(({ name, token, act, read }) => {
+      it(`has the correct style when ${name}`, async () => {
+        const srButton = subject.shadowRoot!.querySelector("button")!;
+        await act(srButton);
+        expect(read(srButton)).to.equal(getCssVarColorValue(srButton, token));
+      });
     });
   });
 
