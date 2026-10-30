@@ -3,6 +3,7 @@ import type { ZetaLabel } from "../../../components/badges/badges";
 import "../../../components/badges/label/label";
 import { contrastTest } from "../../accessibility-utils/accessibility-test-runner";
 import "../../../css/styles.css";
+import { getCssVarValue } from "../../utils";
 
 describe("zeta-label", () => {
   let subject: ZetaLabel;
@@ -44,8 +45,8 @@ describe("zeta-label", () => {
       const renderedTotalWidth = Math.ceil(subject.getBoundingClientRect().width);
       const renderedTotalHeight = subject.getBoundingClientRect().height;
 
-      await expect(renderedTotalWidth).to.equal(38);
-      await expect(renderedTotalHeight).to.equal(16);
+      await expect(renderedTotalWidth).to.equal(30 + 2 * parseInt(getCssVarValue(subject, "--spacing-minimum"))); // 30 = rendered text width
+      await expect(renderedTotalHeight).to.equal(parseInt(getCssVarValue(subject, "--spacing-large")));
     });
   });
   // describe("Styling", () => {});

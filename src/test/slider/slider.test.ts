@@ -2,7 +2,7 @@ import { fixture, html, unsafeStatic, expect } from "@open-wc/testing";
 import type { ZetaSlider } from "../../components/slider/slider.js";
 import "../../components/slider/slider.js";
 import "../../index.css";
-import { getCssVarColorValue } from "../utils.js";
+import { getCssVarColorValue, getCssVarValue } from "../utils.js";
 
 describe("zeta-slider", () => {
   let subject: ZetaSlider;
@@ -59,7 +59,7 @@ describe("zeta-slider", () => {
     it("sets the track height correctly", async () => {
       const track = subject.shadowRoot?.querySelector(".track");
 
-      await expect(track?.clientHeight).to.equal(4);
+      await expect(track?.clientHeight).to.equal(parseInt(getCssVarValue(track!, "--spacing-minimum")));
     });
 
     it("sets the handle width and height correctly", async () => {
