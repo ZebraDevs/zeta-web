@@ -10,16 +10,23 @@ const spread = spreadGenerator(ZetaIcon);
 const meta: Meta<ZetaIcon> = {
   component: "zeta-icon",
   title: "Assets/Icon",
-  args: { rounded: true },
+  args: { rounded: true, size: "medium", framed: false },
   argTypes: {
     name: {
       options: ZetaIconNameList,
       control: { type: "select" }
+    },
+    size: {
+      options: ["small", "medium", "large"],
+      control: { type: "select" }
+    },
+    framed: {
+      control: { type: "boolean" }
     }
   },
   parameters: {
     design: {
-      url: "https://www.figma.com/file/VQ7Aa3rDYB7mgpToI3bZ4D/%F0%9F%A6%93-ZDS---Assets?type=design&node-id=240-6&mode=design"
+      url: "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2046-15010&m=dev"
     },
     status: {
       type: "ready"
@@ -31,14 +38,14 @@ export default meta;
 export const Icon: StoryObj = {
   argTypes: { slot: { table: { disable: true } } },
   args: { name: "alarm" },
-  render: ({ slot, ...args }) =>
+  render: ({ slot, size, ...args }) =>
     html` <style>
         :root {
           ${args["--icon-color"] && `--icon-color: ${args["--icon-color"]}`} ;
           ${args["--icon-size"] && `--icon-size: ${args["--icon-size"]}`} ;
         }
       </style>
-      <zeta-icon ${spread(args)}> </zeta-icon>`
+      <zeta-icon ${spread(args)} size="${size || "medium"}"> </zeta-icon>`
 };
 
 export const SVGIcon: StoryObj = {
@@ -70,4 +77,54 @@ export const SVGIcon: StoryObj = {
       </style>
       <zeta-icon ${spread(args)}>${unsafeSVG(clean)}</zeta-icon>`;
   }
+};
+
+export const Sizes: StoryObj = {
+  argTypes: {
+    name: { table: { disable: true } },
+    slot: { table: { disable: true } },
+    size: { table: { disable: true } },
+    framed: { table: { disable: true } }
+  },
+  render: () => html`
+    <div style="display: flex; gap: 24px; align-items: center;">
+      <div style="display: flex; flex-direction: column; gap: 8px; align-items: center;">
+        <span style="font-size: 12px; color: var(--text-secondary);">Small</span>
+        <zeta-icon name="alarm" size="small"></zeta-icon>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px; align-items: center;">
+        <span style="font-size: 12px; color: var(--text-secondary);">Medium</span>
+        <zeta-icon name="alarm" size="medium"></zeta-icon>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px; align-items: center;">
+        <span style="font-size: 12px; color: var(--text-secondary);">Large</span>
+        <zeta-icon name="alarm" size="large"></zeta-icon>
+      </div>
+    </div>
+  `
+};
+
+export const Framed: StoryObj = {
+  argTypes: {
+    name: { table: { disable: true } },
+    slot: { table: { disable: true } },
+    size: { table: { disable: true } },
+    framed: { table: { disable: true } }
+  },
+  render: () => html`
+    <div style="display: flex; gap: 24px; align-items: center;">
+      <div style="display: flex; flex-direction: column; gap: 8px; align-items: center;">
+        <span style="font-size: 12px; color: var(--text-secondary);">Small Framed</span>
+        <zeta-icon name="alarm" size="small" framed></zeta-icon>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px; align-items: center;">
+        <span style="font-size: 12px; color: var(--text-secondary);">Medium Framed</span>
+        <zeta-icon name="alarm" size="medium" framed></zeta-icon>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px; align-items: center;">
+        <span style="font-size: 12px; color: var(--text-secondary);">Large Framed</span>
+        <zeta-icon name="alarm" size="large" framed></zeta-icon>
+      </div>
+    </div>
+  `
 };

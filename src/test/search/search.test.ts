@@ -1,7 +1,7 @@
 import { assert, fixture, expect, html } from "@open-wc/testing";
 import type { ZetaIcon } from "../../components/icon/icon.js";
 import { ZetaSearch } from "../../components/search/search.js";
-import { MouseActions, getCssVarColorValue } from "../utils.js";
+import { MouseActions, getCssVarColorValue, getCssVarValue } from "../utils.js";
 import "../../components/search/search.js";
 import "../../index.css";
 
@@ -67,7 +67,7 @@ describe("zeta-search", () => {
       // prettier-ignore
       const el = await fixture<ZetaSearch>(html` <zeta-search></zeta-search> `);
       const icon = el.shadowRoot?.querySelectorAll("zeta-icon")[0] as ZetaIcon;
-      await expect(getComputedStyle(icon).fontSize).to.equal("20px");
+      await expect(getComputedStyle(icon).fontSize).to.equal(parseInt(getCssVarValue(icon, "--spacing-xl")) + "px");
     });
 
     it("should set correct small icon size", async () => {
@@ -76,7 +76,7 @@ describe("zeta-search", () => {
       el.size = "small";
       await el.updateComplete;
       const icon = el.shadowRoot?.querySelectorAll("zeta-icon")[0] as ZetaIcon;
-      await expect(getComputedStyle(icon).fontSize).to.equal("16px");
+      await expect(getComputedStyle(icon).fontSize).to.equal(parseInt(getCssVarValue(icon, "--spacing-large")) + "px");
     });
 
     it("should set correct large icon size", async () => {
@@ -85,7 +85,7 @@ describe("zeta-search", () => {
       el.size = "large";
       await el.updateComplete;
       const icon = el.shadowRoot?.querySelectorAll("zeta-icon")[0] as ZetaIcon;
-      await expect(getComputedStyle(icon).fontSize).to.equal("24px");
+      await expect(getComputedStyle(icon).fontSize).to.equal(parseInt(getCssVarValue(icon, "--spacing-2xl")) + "px");
     });
   });
 
