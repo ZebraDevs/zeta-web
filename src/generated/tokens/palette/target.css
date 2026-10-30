@@ -4,21 +4,22 @@
  */
 
 [data-palette="target"] {
+  --brand-primary-deep: var(--color-extend-4-80);
   --brand-primary-default: var(--color-extend-4-60);
   --brand-primary-faint: light-dark(var(--color-extend-4-10), var(--color-extend-4-100));
-  --brand-primary-subtle: light-dark(var(--color-extend-4-50), var(--color-extend-4-70));
-  --brand-primary-deep: light-dark(var(--color-extend-4-70), var(--color-extend-4-40));
   --brand-primary-muted: light-dark(var(--color-extend-4-20), var(--color-extend-4-90));
-  --brand-primary-on: var(--color-neutral-warm-10);
+  --brand-primary-strong: var(--color-extend-4-70);
+  --brand-primary-subtle: light-dark(var(--color-extend-4-50), var(--color-extend-4-70));
   --brand-secondary-default: light-dark(var(--color-extend-3-60), var(--color-extend-3-50));
   --brand-secondary-faint: light-dark(var(--color-extend-3-10), var(--color-extend-3-100));
+  --brand-secondary-strong: light-dark(var(--color-extend-3-70), var(--color-extend-3-40));
   --brand-secondary-subtle: light-dark(var(--color-extend-3-50), var(--color-extend-3-60));
-  --brand-secondary-deep: light-dark(var(--color-extend-3-70), var(--color-extend-3-40));
-  --ink-link: light-dark(var(--color-extend-4-60), var(--color-extend-4-50));
-  --ink-brand: light-dark(var(--color-extend-4-70), var(--color-extend-4-40));
-  --line-selection: light-dark(var(--color-extend-4-60), var(--color-extend-4-50));
-  --line-focus: var(--color-accent-1-60);
-  --gradient-default-start: light-dark(var(--color-extend-3-80), var(--color-extend-3-70));
+  --gradient-default-start: var(--color-extend-3-80);
+  --gradient-strong-end: light-dark(var(--color-extend-4-80), var(--color-extend-4-30));
   --gradient-strong-start: light-dark(var(--color-extend-3-90), var(--color-extend-3-50));
   --gradient-subtle-start: light-dark(var(--color-extend-3-70), var(--color-extend-3-80));
+  --ink-brand: light-dark(var(--color-extend-4-70), var(--color-extend-4-30));
+  --ink-link: light-dark(var(--color-extend-4-60), var(--color-extend-4-50));
+  --line-focus: var(--color-accent-1-60);
+  --line-selection: light-dark(var(--color-extend-4-60), var(--color-extend-4-50));
 }

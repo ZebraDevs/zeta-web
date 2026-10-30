@@ -4,9 +4,15 @@
  */
 
 [data-palette="companion"] {
+  --brand-primary-deep: var(--color-accent-1-80);
   --brand-primary-default: var(--color-accent-1-60);
   --brand-primary-faint: light-dark(var(--color-accent-1-10), var(--color-accent-1-100));
-  --brand-primary-subtle: var(--color-accent-1-50);
-  --brand-primary-deep: light-dark(var(--color-accent-1-70), var(--color-accent-1-40));
   --brand-primary-muted: light-dark(var(--color-accent-1-20), var(--color-accent-1-90));
+  --brand-primary-strong: var(--color-accent-1-70);
+  --brand-primary-subtle: var(--color-accent-1-50);
+  --fill-selection: light-dark(var(--color-accent-1-20), var(--color-accent-1-90));
+  --ink-brand: light-dark(var(--color-accent-1-70), var(--color-accent-1-40));
+  --ink-link: light-dark(var(--color-accent-1-60), var(--color-accent-1-50));
+  --line-focus: light-dark(var(--color-accent-1-50), var(--color-accent-1-60));
+  --line-selection: light-dark(var(--color-accent-1-60), var(--color-accent-1-50));
 }

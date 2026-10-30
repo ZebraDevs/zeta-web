@@ -5,6 +5,7 @@ import "../../../css/styles.css";
 import "../../../generated/tokens/primitives.css";
 import "../../../generated/tokens/semantics.css";
 import { contrastTest } from "../../accessibility-utils/accessibility-test-runner.js";
+import { getCssVarValue } from "../../utils.js";
 
 describe("zeta-tag", () => {
   let subject: ZetaTag;
@@ -69,22 +70,26 @@ describe("zeta-tag", () => {
 
   describe("Dimensions", () => {
     it("sets the default dimensions correctly", async () => {
+      const expectedHeight = parseInt(getCssVarValue(subject, "--spacing-2xl")) + 2 * parseInt(getCssVarValue(subject, "--spacing-minimum"));
+      const textWidth = 26; // rendered width of "Tag"; font-dependent
+      const pointWidth = 12; // fixed svg width in tag.ts
+      const expectedWidth = textWidth + 2 * parseInt(getCssVarValue(subject, "--spacing-small")) + pointWidth;
       subject.setAttribute("direction", "left");
       subject.setAttribute("label", "Tag");
       await elementUpdated(subject);
       const leftRenderedTotalWidth = Math.ceil(subject.getBoundingClientRect().width);
       const leftRenderedTotalHeight = subject.getBoundingClientRect().height;
 
-      await expect(leftRenderedTotalWidth).to.equal(54);
-      await expect(leftRenderedTotalHeight).to.equal(32);
+      await expect(leftRenderedTotalWidth).to.equal(expectedWidth);
+      await expect(leftRenderedTotalHeight).to.equal(expectedHeight);
 
       subject.setAttribute("direction", "right");
       await elementUpdated(subject);
       const rightRenderedTotalWidth = Math.ceil(subject.getBoundingClientRect().width);
       const rightRenderedTotalHeight = subject.getBoundingClientRect().height;
 
-      await expect(rightRenderedTotalWidth).to.equal(54);
-      await expect(rightRenderedTotalHeight).to.equal(32);
+      await expect(rightRenderedTotalWidth).to.equal(expectedWidth);
+      await expect(rightRenderedTotalHeight).to.equal(expectedHeight);
 
       await expect(rightRenderedTotalWidth).to.equal(leftRenderedTotalWidth);
       await expect(rightRenderedTotalHeight).to.equal(leftRenderedTotalHeight);
