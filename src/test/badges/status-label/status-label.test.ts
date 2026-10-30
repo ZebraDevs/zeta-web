@@ -167,11 +167,7 @@ describe("zeta-status-label", () => {
 
         // border + container padding + leading box + text padding + text, each side
         const expectedWidth =
-          px("--stroke-thin") * 2 +
-          px("--space-xxs") * 2 +
-          (c.showIcon ? px("--control-icon-sm") : 0) +
-          px("--space-xxs") * 2 +
-          LABEL_TEXT_WIDTH;
+          px("--stroke-thin") * 2 + px("--space-xxs") * 2 + (c.showIcon ? px("--control-icon-sm") : 0) + px("--space-xxs") * 2 + LABEL_TEXT_WIDTH;
         const rect = subject.getBoundingClientRect();
 
         // Use a range to account for browser / font rendering differences
@@ -237,9 +233,7 @@ describe("zeta-status-label", () => {
         await elementUpdated(subject);
 
         expect(getComputedStyle(subject.shadowRoot!.querySelector("svg circle")!).fill).to.equal(getCssVarColorValue(subject, c.dot));
-        expect(getComputedStyle(subject.shadowRoot!.querySelector("[part='text']")!).color).to.equal(
-          getCssVarColorValue(subject, "--foreground-primary")
-        );
+        expect(getComputedStyle(subject.shadowRoot!.querySelector("[part='text']")!).color).to.equal(getCssVarColorValue(subject, "--foreground-primary"));
       });
     });
     it("pads the container --space-2xs vertical and --space-xxs horizontal", () => {

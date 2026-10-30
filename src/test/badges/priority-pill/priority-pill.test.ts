@@ -102,10 +102,42 @@ describe("zeta-priority-pill", () => {
       paddingEnd: string;
       textPadding: string;
     }[] = [
-      { size: "large", type: "badge", circle: "--control-icon-md", padding: "--space-xxs", gap: "--space-xxs", paddingEnd: "--space-sm", textPadding: "--space-xxs" },
-      { size: "large", type: "lozenge", circle: "--control-icon-md", padding: "--space-xxs", gap: "--space-xxs", paddingEnd: "--space-sm", textPadding: "--space-xxs" },
-      { size: "small", type: "badge", circle: "--control-icon-sm", padding: "--space-2xs", gap: "--space-xxs", paddingEnd: "--space-sm", textPadding: "--space-2xs" },
-      { size: "small", type: "lozenge", circle: "--control-icon-sm", padding: "--space-2xs", gap: "--space-xxs", paddingEnd: "--space-sm", textPadding: "--space-2xs" }
+      {
+        size: "large",
+        type: "badge",
+        circle: "--control-icon-md",
+        padding: "--space-xxs",
+        gap: "--space-xxs",
+        paddingEnd: "--space-sm",
+        textPadding: "--space-xxs"
+      },
+      {
+        size: "large",
+        type: "lozenge",
+        circle: "--control-icon-md",
+        padding: "--space-xxs",
+        gap: "--space-xxs",
+        paddingEnd: "--space-sm",
+        textPadding: "--space-xxs"
+      },
+      {
+        size: "small",
+        type: "badge",
+        circle: "--control-icon-sm",
+        padding: "--space-2xs",
+        gap: "--space-xxs",
+        paddingEnd: "--space-sm",
+        textPadding: "--space-2xs"
+      },
+      {
+        size: "small",
+        type: "lozenge",
+        circle: "--control-icon-sm",
+        padding: "--space-2xs",
+        gap: "--space-xxs",
+        paddingEnd: "--space-sm",
+        textPadding: "--space-2xs"
+      }
     ];
     cases.forEach(c => {
       it(`renders ${c.type} size ${c.size}`, async () => {
