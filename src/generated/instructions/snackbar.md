@@ -8,15 +8,15 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ### Overview
 
-A brief message about something the app just did, carrying at most one action. Variant chooses between a contextual pill, where Flavour sets the tint, the leading glyph and the controls together, and a plain standard bar with a filled action button. Reach for it where the message is worth noticing and not worth interrupting for, and for Dialog where the person has to answer before carrying on.
+A brief message about something the app just did, carrying at most one action. Variant chooses between a contextual pill, where Flavour sets the tint, the leading glyph and the controls together, and a plain standard bar with a filled action button. Use it where the message is worth noticing and not worth interrupting for, and for Dialog where the person has to answer before carrying on.
 
 ### Property Breakdown
 
 | Property    | Type       | Default | Description                                                                                                                                                                     |
 | ----------- | ---------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Message     | text       | Message | The line the snackbar exists to deliver. One short sentence, because the bar holds a single line at a fixed width and anything longer runs past the edge rather than wrapping.  |
-| Variant     | contextual | true    | A pill that takes its tint, its glyph and its controls from Flavour. Reach for it where the message is about something specific that just happened.                             |
-| Variant     | standard   | -       | The plain bar, dark and softly squared, with a filled action button. It carries no flavour colour, so reach for it where the message needs no status attached to it.            |
+| Variant     | contextual | true    | A pill that takes its tint, its glyph and its controls from Flavour. Use it where the message is about something specific that just happened.                                   |
+| Variant     | standard   | -       | The plain bar, dark and softly squared, with a filled action button. It carries no flavour colour, so use it where the message needs no status attached to it.                  |
 | Flavour     | info       | -       | Something worth knowing with nothing to do about it. An Info glyph on the info tint, carrying only a close.                                                                     |
 | Flavour     | positive   | -       | Something finished successfully. A Check Circle on the success tint, close only.                                                                                                |
 | Flavour     | warning    | -       | Something needs attention without having failed. A Warning glyph on the warning tint, close only.                                                                               |
@@ -79,7 +79,7 @@ A brief message about something the app just did, carrying at most one action. V
 **Don't:**
 
 - Don't turn the close off on a bar with no action and no timer. That leaves a person with a message and no way to clear it.
-- Don't reach for deletion just to get an error tint. It promises an Undo, and offering one the product cannot honour is worse than a plain error.
+- Don't use deletion just to get an error tint. It promises an Undo, and offering one the product cannot honour is worse than a plain error.
 
 ### Accessibility & Content Guidelines
 

@@ -21,7 +21,7 @@ A single entry in a notification list, carrying who or what it came from, a titl
 | Show Attachment        | true  | true    | Show the attached file's name and icon. Turn it on only when a file is genuinely attached, because the row is not a placeholder and reads as a broken link when empty. |
 | Show Attachment        | false | -       | No attachment row, and the card shortens to match.                                                                                                                     |
 | Show Actions           | true  | true    | Show the action slot. It is the only place an entry offers something to do, so switching it off makes the item read-only.                                              |
-| Show Actions           | false | -       | No action row. Reach for this on entries that are purely informational.                                                                                                |
+| Show Actions           | false | -       | No action row. Use this on entries that are purely informational.                                                                                                      |
 | Show Urgency Indicator | true  | true    | Flag the entry as needing attention before the rest. Reserve it, because an indicator on every item in a list signals nothing.                                         |
 | Show Urgency Indicator | false | -       | The ordinary case, and what most entries in a list should use.                                                                                                         |
 
@@ -116,7 +116,7 @@ A single entry in a notification list, carrying who or what it came from, a titl
 
 | Layer                                                                   | Field          | Raw     | Token                                      |
 | ----------------------------------------------------------------------- | -------------- | ------- | ------------------------------------------ |
-| Notification Item                                                       | fill[0]        | #f8fbff | surface.card                               |
+| Notification Item                                                       | fill[0]        | #ffffff | surface.card                               |
 | Notification Item                                                       | stroke[0]      | #ced2db | border.default                             |
 | Notification Item                                                       | cornerRadius   | 8       | radius.md                                  |
 | Notification Item                                                       | strokeWeight   | 0       | stroke.base                                |

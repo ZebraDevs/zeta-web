@@ -8,7 +8,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ### Overview
 
-The bar at the top of a screen, carrying a back affordance, the screen's title and one action. It holds a single slot on the right, so it suits a screen with exactly one primary action rather than a toolbar of several. Reach for Top App Bar when the screen needs more than one action or a different leading control.
+The bar at the top of a screen, carrying a back affordance, the screen's title and one action. It holds a single slot on the right, so it suits a screen with exactly one primary action rather than a toolbar of several. Use Top App Bar when the screen needs more than one action or a different leading control.
 
 ### Property Breakdown
 

@@ -12,14 +12,14 @@ A vertically stacked list of disclosure rows sharing one container, for a page t
 
 ### Property Breakdown
 
-| Property   | Type  | Default | Description                                                                                                                                                                                                                 |
-| ---------- | ----- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Selectable | true  | true    | Rows carry a leading control and can be ticked, so the list doubles as a chooser. Reach for it when someone has to mark items, not merely read them. It is the same row component either way, with the selection turned on. |
-| Selectable | false | -       | Rows disclose content only, with the caret trailing the title. The right choice for content reveal, an FAQ or a settings group where nothing is being chosen.                                                               |
-| rounded    | false | true    | Match the contour of the surface the list sits on rather than deciding per instance. Only the outer container responds, so on a long list the difference shows at the first and last rows and nowhere else.                 |
-| rounded    | true  | -       | The rounded pairing, for surfaces built from rounded controls. The nested row buttons inherits the rounding.                                                                                                                |
-| In Card    | true  | true    | Treat the list as one bounded object, set apart from what surrounds it. This also turns the row dividers on, so the choice governs the internal rhythm as much as the outer edge.                                           |
-| In Card    | false | -       | Let the list sit directly on the page and take its separation from the surrounding layout. Dividers disappears with the outline, so rows run together and the container has to supply the breathing room.                   |
+| Property   | Type  | Default | Description                                                                                                                                                                                                           |
+| ---------- | ----- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Selectable | true  | true    | Rows carry a leading control and can be ticked, so the list doubles as a chooser. Use it when someone has to mark items, not merely read them. It is the same row component either way, with the selection turned on. |
+| Selectable | false | -       | Rows disclose content only, with the caret trailing the title. The right choice for content reveal, an FAQ or a settings group where nothing is being chosen.                                                         |
+| rounded    | false | true    | Match the contour of the surface the list sits on rather than deciding per instance. Only the outer container responds, so on a long list the difference shows at the first and last rows and nowhere else.           |
+| rounded    | true  | -       | The rounded pairing, for surfaces built from rounded controls. The nested row buttons inherits the rounding.                                                                                                          |
+| In Card    | true  | true    | Treat the list as one bounded object, set apart from what surrounds it. This also turns the row dividers on, so the choice governs the internal rhythm as much as the outer edge.                                     |
+| In Card    | false | -       | Let the list sit directly on the page and take its separation from the surrounding layout. Dividers disappears with the outline, so rows run together and the container has to supply the breathing room.             |
 
 ### States & Triggers
 

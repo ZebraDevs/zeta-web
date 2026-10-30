@@ -8,7 +8,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ### Overview
 
-A row of related actions sharing one bordered surface, where each carries equal weight rather than one leading. The group owns the fill, the outline and the rules between items, and the items themselves are Figma-only wrappers around the subtle Button. Reach for a single Button when one action is clearly the primary one.
+A row of related actions sharing one bordered surface, where each carries equal weight rather than one leading. The group owns the fill, the outline and the rules between items, and the items themselves are Figma-only wrappers around the subtle Button. Use a single Button when one action is clearly the primary one.
 
 ### Property Breakdown
 
@@ -40,7 +40,7 @@ A row of related actions sharing one bordered surface, where each carries equal 
 | Property          | Type                                        | Description                                                                                                                                                                                                                                                                                                                                                   |
 | ----------------- | ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Items Slot        | Figma only, one slot per Size               | Small, Medium and large each have their own slot so a designer can drop an item in without resetting that button's Size every time. The split exists for authoring and is not a property of the component. Content placed in one slot does not carry across when Size changes, and the large slot is named in lower case where the other two are capitalised. |
-| Group buttons     | Figma only, fixed wrappers outside the slot | One wrapper before the slot and one after, placed directly in each variant. They hold a Button and its trailing divider for authoring and are not components to reach for on their own. Only the subtle Button belongs inside, so swapping in another flavour breaks the single surface the group is built on.                                                |
+| Group buttons     | Figma only, fixed wrappers outside the slot | One wrapper before the slot and one after, placed directly in each variant. They hold a Button and its trailing divider for authoring and are not components to use on their own. Only the subtle Button belongs inside, so swapping in another flavour breaks the single surface the group is built on.                                                      |
 | Button properties | split between the group and the consumer    | Size, Shape and Flavour belong to the group and are not set per item, or the row stops reading as one control. The label and the icons are the consumer's. The trailing icon ships as Expand More and the leading as Verified, and either can be swapped where the action calls for something else.                                                           |
 
 ### Anatomy

@@ -79,11 +79,11 @@ A single row inside a Dropdown Menu, with a leading element, a label and an opti
 
 ### Behavior & Motion Intent
 
-| Type       | Description                                                                                                                               |
-| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| Motion     | Figma stores no timing and no transition is modelled. Every state change is colour or opacity only, with no movement, scale or elevation. |
-| Focus ring | Drawn inside the row's own bounds rather than outside, so it never overlaps the neighbouring row or the panel's padding.                  |
-| Reflow     | The row fills the width of the menu that holds it and its height is fixed, so a longer label reflows the menu rather than the row.        |
+| Type       | Description                                                                                                                        |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| Motion     | No transition is defined. Every state change is colour or opacity only, with no movement, scale or elevation.                      |
+| Focus ring | Drawn inside the row's own bounds rather than outside, so it never overlaps the neighbouring row or the panel's padding.           |
+| Reflow     | The row fills the width of the menu that holds it and its height is fixed, so a longer label reflows the menu rather than the row. |
 
 ### Content & Slot
 
@@ -91,7 +91,7 @@ A single row inside a Dropdown Menu, with a leading element, a label and an opti
 | ------------- | --------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Label         | text property                                       | The option's name. No truncation and no wrapping, the menu widens instead.                                                                                                                          |
 | Leading Icon  | exposed nested Icon, Types Icon, radio and checkbox | Pinned to Size=small with Framed off and left exposed, so the glyph is set per instance from the menu. See the Icon Metadata frame. It arrives holding Verified, which suits almost no real option. |
-| Leading Slot  | slot, Type custom only                              | Replaces the leading Icon when Type is custom. It carries no suggested components and ships empty, so it stays blank until something is placed in it.                                               |
+| Leading Slot  | slot, Type custom only                              | Replaces the leading Icon when Type is custom. It carries no suggested components and is empty by default, so it stays blank until something is placed in it.                                       |
 | Trailing Icon | exposed nested Icon                                 | Hidden until Trailing Icon is turned on, then a 16px glyph at the trailing edge. Also pinned to Size=small with Framed off and left exposed.                                                        |
 
 ### Anatomy
@@ -105,7 +105,7 @@ A single row inside a Dropdown Menu, with a leading element, a label and an opti
 
 **Do:**
 
-- Set the leading glyph on every row. It ships holding Verified, which says nothing about the option the row represents.
+- Set the leading glyph on every row. It holds Verified by default, which says nothing about the option the row represents.
 - Match Rounded to the menu panel that holds the row, rather than choosing it row by row.
 
 **Don't:**
@@ -186,7 +186,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ### Overview
 
-The surface a dropdown opens onto, a floating panel holding a list of Menu Item rows. It brings its own menu surface and elevation, so it needs nothing behind it. Two built-in rows sit above a slot that takes the rest, and Rounded is the only visual choice it offers. Place it through the Dropdown Template so its position relative to a trigger comes from a property rather than from nudging it by hand.
+The surface a dropdown opens onto, a floating panel holding a list of Menu Item rows. It brings its own menu surface and elevation, so it needs nothing behind it. Two built-in rows sit above a slot that takes the rest. Rounded sets the corner treatment and Compact tightens the inset for a menu with little room to spare. Place it through the Dropdown Template so its position relative to a trigger comes from a property rather than from nudging it by hand.
 
 ### Property Breakdown
 
@@ -194,6 +194,8 @@ The surface a dropdown opens onto, a floating panel holding a list of Menu Item 
 | ---------- | ----- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Rounded    | false | true    | Square corners, for a panel sitting against surfaces and inputs that are also square. The rows inside square off with it.                                                     |
 | Rounded    | true  | -       | Softened corners, for a panel that should read as a floating object rather than part of the surface beneath. The rows round with it, so panel and contents stay in agreement. |
+| Compact    | false | true    | The default inset. Use it unless the menu has to fit a rail that cannot spare the room.                                                                                       |
+| Compact    | true  | -       | Tightens the inset for a cramped rail. A long list then reads as one dense block.                                                                                             |
 | More Items | true  | true    | Shows the slot below the two built-in rows, which is where the rest of the menu goes.                                                                                         |
 | More Items | false | -       | Hides the slot along with everything placed in it, leaving only the two built-in rows. Fine for a deliberately short menu, but it will also hide content someone else added.  |
 
@@ -205,20 +207,20 @@ The surface a dropdown opens onto, a floating panel holding a list of Menu Item 
 
 ### Behavior & Motion Intent
 
-| Type      | Description                                                                                                                                                                                            |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Motion    | Figma stores no timing and the panel models no transition. Opening and closing is driven by the Dropdown Template's Open property, which is a variant switch rather than something that animates here. |
-| Elevation | The panel carries the Shadow/medium style, two stacked drop shadows. That is the only thing separating it from the surface beneath, and it does not change with any property.                          |
-| Reflow    | Both axes hug their content, so the panel grows with the number and width of the rows placed in it. A long label widens the whole menu rather than wrapping inside a row.                              |
+| Type      | Description                                                                                                                                                                   |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Motion    | No transition is defined. Opening and closing is driven by the Dropdown Template's Open property, which is a variant switch rather than something that animates here.         |
+| Elevation | The panel carries the Shadow/medium style, two stacked drop shadows. That is the only thing separating it from the surface beneath, and it does not change with any property. |
+| Reflow    | Both axes hug their content, so the panel grows with the number and width of the rows placed in it. A long label widens the whole menu rather than wrapping inside a row.     |
 
 ### Content & Slot
 
-| Property              | Type                   | Description                                                                                                                                                                                                                                                         |
-| --------------------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Slot Container        | slot, holds Menu Item  | Where the rest of the menu goes, below the two built-in rows. It ships holding two Menu Item instances. See the Menu Item Metadata frame. Each Rounded variant stores this slot's content separately, so switching Rounded leaves behind whatever was placed in it. |
-| Built-in rows         | fixed nested instances | Two Menu Item instances above the slot, pinned to the menu's own Rounded value. Neither is a slot, so changing them means overriding the nested instance.                                                                                                           |
-| Leading icon on a row | exposed nested Icon    | Every Menu Item leaves its leading Icon exposed, so the glyph is reachable from the menu without detaching. See the Icon Metadata frame.                                                                                                                            |
-| Row count             | not constrained        | Nothing caps how many rows the slot holds. The panel neither scrolls nor limits its height, so a menu long enough to run past the viewport is a design decision rather than one the component prevents.                                                             |
+| Property              | Type                   | Description                                                                                                                                                                                                                                                                                                   |
+| --------------------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Slot Container        | slot, holds Menu Item  | Where the rest of the menu goes, below the two built-in rows. It takes two Menu Item instances by default. See the Menu Item Metadata frame. Figma only: the default variant stores its slot content separately from the other three, so content placed there does not carry when Rounded or Compact changes. |
+| Built-in rows         | fixed nested instances | Two Menu Item instances above the slot, pinned to the menu's own Rounded value. Neither is a slot, so changing them means overriding the nested instance.                                                                                                                                                     |
+| Leading icon on a row | exposed nested Icon    | Every Menu Item leaves its leading Icon exposed, so the glyph is reachable from the menu without detaching. See the Icon Metadata frame.                                                                                                                                                                      |
+| Row count             | not constrained        | Nothing caps how many rows the slot holds. The panel neither scrolls nor limits its height, so a menu long enough to run past the viewport is a design decision rather than one the component prevents.                                                                                                       |
 
 ### Anatomy
 
@@ -247,14 +249,14 @@ The surface a dropdown opens onto, a floating panel holding a list of Menu Item 
 
 ### Layout & Theming Intents
 
-| Property  | Type              | Description                                                                                                                                                                                    |
-| --------- | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Size      | Hug on both axes  | 213×196px as drawn, growing with whatever is placed inside. There is no fixed width, so the longest row sets the panel width.                                                                  |
-| Padding   | Fixed             | 12px (space/card) on all four sides.                                                                                                                                                           |
-| Gap       | Fixed             | 4px (space/xs) between rows, both in the built-in stack and inside the slot. The panel's own item spacing is 2px (space/2xs) but it holds a single content frame, so that spacing never shows. |
-| Radius    | Fixed per Rounded | radius/none when Rounded is false, radius/element-md when true. The rows inside take radius/none and radius/sm respectively, a lighter step than the panel itself.                             |
-| Elevation | Fixed             | The Shadow/medium effect style, two stacked drop shadows. Applied to the panel only and unchanged by any property.                                                                             |
-| Colour    | Theming           | The panel is surface/menu and binds nothing else. Every other colour in the menu comes from the rows.                                                                                          |
+| Property  | Type              | Description                                                                                                                                                                                                                   |
+| --------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Size      | Hug on both axes  | 213×196px at the default density and 201×184px when Compact is true, growing with whatever is placed inside. There is no fixed width, so the longest row sets the panel width.                                                |
+| Padding   | Fixed             | 12px (space/card) on all four sides, dropping to 6px (space/xs) when Compact is true.                                                                                                                                         |
+| Gap       | Fixed             | 4px (space/xxs) between rows, both in the built-in stack and inside the slot. The panel's own item spacing is 2px (space/2xs), or none when Compact is true, but it holds a single content frame so that spacing never shows. |
+| Radius    | Fixed per Rounded | radius/none when Rounded is false, radius/element-md when true. The rows inside take radius/none and radius/sm respectively, a lighter step than the panel itself.                                                            |
+| Elevation | Fixed             | The Shadow/medium effect style, two stacked drop shadows. Applied to the panel only and unchanged by any property.                                                                                                            |
+| Colour    | Theming           | The panel is surface/menu and binds nothing else. Every other colour in the menu comes from the rows.                                                                                                                         |
 
 ### Layer structure
 
@@ -264,7 +266,7 @@ The surface a dropdown opens onto, a floating panel holding a list of Menu Item 
     - Dropdown Menu/Content/Menu Item[2] (INSTANCE)
     - Dropdown Menu/Content/Slot Container (SLOT)
 
-### Resolved tokens (default variant: Rounded=false)
+### Resolved tokens (default variant: Rounded=false, Compact=false)
 
 | Layer                                | Field          | Raw       | Token                                |
 | ------------------------------------ | -------------- | --------- | ------------------------------------ |
@@ -296,11 +298,16 @@ The surface a dropdown opens onto, a floating panel holding a list of Menu Item 
 
 ### Token changes by property
 
-| Property | Value | Layer                              | Field        | Token             |
-| -------- | ----- | ---------------------------------- | ------------ | ----------------- |
-| Rounded  | true  | Dropdown Menu                      | cornerRadius | radius.element-md |
-| Rounded  | true  | Dropdown Menu/Content/Menu Item[1] | cornerRadius | radius.sm         |
-| Rounded  | true  | Dropdown Menu/Content/Menu Item[2] | cornerRadius | radius.sm         |
+| Property | Value | Layer                              | Field          | Token             |
+| -------- | ----- | ---------------------------------- | -------------- | ----------------- |
+| Rounded  | true  | Dropdown Menu                      | cornerRadius   | radius.element-md |
+| Rounded  | true  | Dropdown Menu/Content/Menu Item[1] | cornerRadius   | radius.sm         |
+| Rounded  | true  | Dropdown Menu/Content/Menu Item[2] | cornerRadius   | radius.sm         |
+| Compact  | true  | Dropdown Menu                      | itemSpacing    | —                 |
+| Compact  | true  | Dropdown Menu                      | padding.left   | space.xs          |
+| Compact  | true  | Dropdown Menu                      | padding.right  | space.xs          |
+| Compact  | true  | Dropdown Menu                      | padding.top    | space.xs          |
+| Compact  | true  | Dropdown Menu                      | padding.bottom | space.xs          |
 
 ## Dropdown Template (documentation only)
 
@@ -345,7 +352,7 @@ A pattern rather than a component, pairing a trigger with a Dropdown Menu and pl
 
 | Property           | Type                 | Description                                                                                                                                                                               |
 | ------------------ | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Bounds             | Hug the trigger only | 76×36px as drawn, the size of its trigger. The menu is absolutely positioned and sits outside those bounds, so a layout containing this pattern reserves no space for the open menu.      |
+| Bounds             | Hug the trigger only | 76×36px, the size of its trigger. The menu is absolutely positioned and sits outside those bounds, so a layout containing this pattern reserves no space for the open menu.               |
 | Offset             | Fixed                | The menu clears the trigger by 8px on whichever side Position selects.                                                                                                                    |
 | Alignment          | Fixed per Align      | Align pins opposite edges together. With Position bottom or top the menu's leading or trailing edge lines up with the trigger's, with Position left or right its top or bottom edge does. |
 | Fill and elevation | None on the template | The template paints nothing of its own. The surface and the shadow both belong to the menu.                                                                                               |

@@ -198,7 +198,7 @@ A ring that reports an ongoing process where a bar will not fit, beside an icon 
 **Don't:**
 
 - Don't read the arc as a value. It is identical in every variant, so a screen with several rings will show them all at the same apparent progress.
-- Don't reach for Upload at xsmall or xxsmall. The property is offered at those sizes but the control is not built, so turning it on does nothing.
+- Don't use Upload at xsmall or xxsmall. The property is offered at those sizes but the control is not built, so turning it on does nothing.
 
 ### Accessibility & Content Guidelines
 

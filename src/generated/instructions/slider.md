@@ -95,7 +95,7 @@ A control for choosing a value along a range by dragging a thumb. State, Stepped
 
 **Do:**
 
-- Reach for it where the range matters more than the exact figure. A value that has to be precise is quicker to type than to drag.
+- Use it where the range matters more than the exact figure. A value that has to be precise is quicker to type than to drag.
 - Turn steps on whenever only certain values are valid, so the dots say where the thumb can land.
 
 **Don't:**

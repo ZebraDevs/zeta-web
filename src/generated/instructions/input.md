@@ -592,7 +592,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ### Overview
 
-The full field assembly, a label above, the field itself and a hint below, stacked and spaced as one unit. Type chooses which of the five field types sits in the middle, and the label and the hint can each be turned off. Reach for it wherever a field needs a name or supporting text, and reach for Input Field on its own where it needs neither.
+The full field assembly, a label above, the field itself and a hint below, stacked and spaced as one unit. Type chooses which of the five field types sits in the middle, and the label and the hint can each be turned off. Use it wherever a field needs a name or supporting text, and use Input Field on its own where it needs neither.
 
 ### Property Breakdown
 
@@ -604,8 +604,8 @@ The full field assembly, a label above, the field itself and a hint below, stack
 | Show Hint                | true         | true    | Keeps the supporting line below the field. This is where a validation message lands, so leaving it on reserves the space before it is needed.                                                                                                                                           |
 | Show Hint                | false        | -       | Drops the line and shortens the stack. A field that can fail validation then has nowhere to put the reason, and turning the line back on later moves everything below it.                                                                                                               |
 | Label / Type             | default      | true    | The plain name with nothing after it.                                                                                                                                                                                                                                                   |
-| Label / Type             | optional     | -       | Reach for it where most of the form is required, so the exception is the thing being marked.                                                                                                                                                                                            |
-| Label / Type             | required     | -       | Adds an asterisk after the name. Reach for it only where submission genuinely fails without a value.                                                                                                                                                                                    |
+| Label / Type             | optional     | -       | Use it where most of the form is required, so the exception is the thing being marked.                                                                                                                                                                                                  |
+| Label / Type             | required     | -       | Adds an asterisk after the name. Use it only where submission genuinely fails without a value.                                                                                                                                                                                          |
 | Label / Disabled         | false        | true    | The name at full strength.                                                                                                                                                                                                                                                              |
 | Label / Disabled         | true         | -       | Dims the name to sit with a disabled field. It does not disable anything, so it has to be set alongside the field's own State rather than instead of it.                                                                                                                                |
 | Label / Show Information | false        | true    | No information icon, which is what an Input arrives with.                                                                                                                                                                                                                               |
@@ -774,7 +774,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ### Overview
 
-The text entry control on its own, without a label or hint around it. One model covers five input types, Text, Number, Password, Date and Time, which share the same Size, Shape, State and Flavour and differ only in their placeholder and in the control sitting at the trailing edge. Reach for it directly when a field needs no label or supporting text, and reach for Input when it does.
+The text entry control on its own, without a label or hint around it. One model covers five input types, Text, Number, Password, Date and Time, which share the same Size, Shape, State and Flavour and differ only in their placeholder and in the control sitting at the trailing edge. Use it directly when a field needs no label or supporting text, and use Input when it does.
 
 ### Property Breakdown
 
@@ -795,7 +795,7 @@ The text entry control on its own, without a label or hint around it. One model 
 | State       | typing    | -       | A value is being entered. This is the only state that offers a way to clear the field, so it is not interchangeable with filled.                                   |
 | State       | filled    | -       | A committed value. The field is at rest again but the text stays at full strength, which is what separates it from enabled.                                        |
 | State       | invalid   | -       | The value failed validation. The border carries the signal and nothing else does, so pairing it with a Hint set to error is what makes the problem readable.       |
-| State       | read-only | -       | The value is shown but cannot be changed. Reach for it where a person still needs to read or copy the value, and reach for disabled where they do not.             |
+| State       | read-only | -       | The value is shown but cannot be changed. Use it where a person still needs to read or copy the value, and use disabled where they do not.                         |
 | State       | disabled  | -       | The field cannot be used and is out of the tab order. Both the surface and the border drop away, so it reads as out of play rather than merely empty.              |
 | Size        | medium    | true    | The default, for surfaces and toolbars where the field sits alongside other controls.                                                                              |
 | Size        | large     | -       | For a field that is the main thing on its surface.                                                                                                                 |
@@ -804,7 +804,7 @@ The text entry control on its own, without a label or hint around it. One model 
 | Flavour     | gradient  | -       | For a unique interaction highlight, such as an AI companion field. It marks the field as special, so using it on an ordinary field spends that signal for nothing. |
 | Flavour     | ghost     | -       | No visible border at rest, for a field sitting on a surface that already bounds it. On an unbounded surface it stops reading as a field at all.                    |
 | hasLeading  | false     | true    | No leading icon, which is where the field starts. The text begins at the padding edge and takes the full width.                                                    |
-| hasLeading  | true      | -       | Adds an icon ahead of the text. Reach for it where the icon says something the placeholder cannot, and leave it off where it would only repeat the label above.    |
+| hasLeading  | true      | -       | Adds an icon ahead of the text. Use it where the icon says something the placeholder cannot, and leave it off where it would only repeat the label above.          |
 | hasTrailing | false     | true    | No optional trailing control. The types that define themselves by a control, password, date and time, carry it intrinsically and expose no toggle at all.          |
 | hasTrailing | true      | -       | Adds a trailing control to text or number, the two types that leave the position open.                                                                             |
 
@@ -854,7 +854,7 @@ The text entry control on its own, without a label or hint around it. One model 
 
 **Don't:**
 
-- Don't reach for disabled where a person still needs to read the value. read-only keeps it legible and selectable, disabled puts it out of reach and out of the tab order.
+- Don't use disabled where a person still needs to read the value. read-only keeps it legible and selectable, disabled puts it out of reach and out of the tab order.
 - Don't lean on the placeholder as the label. It clears the moment typing starts, so whatever it was carrying disappears exactly when it is needed.
 
 ### Accessibility & Content Guidelines

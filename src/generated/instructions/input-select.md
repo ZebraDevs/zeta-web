@@ -98,7 +98,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ### Overview
 
-The full select assembly: a label above, a Select Field in the middle and a hint below, stacked and spaced as one unit. The Open property switches the assembly between its closed state and its open state, which reveals the dropdown menu overlapping the region below. The label and hint can each be turned off. Reach for it wherever a dropdown needs a name or supporting text, and reach for Select Field on its own where it needs neither.
+The full select assembly: a label above, a Select Field in the middle and a hint below, stacked and spaced as one unit. The Open property switches the assembly between its closed state and its open state, which reveals the dropdown menu overlapping the region below. The label and hint can each be turned off. Use it wherever a dropdown needs a name or supporting text, and use Select Field on its own where it needs neither.
 
 ### Property Breakdown
 
@@ -244,7 +244,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ### Overview
 
-The select control on its own, without a label or hint around it. One model covers the select interaction pattern, with Size, Shape, State and Flavour that differ only in border, surface, text strength and chevron orientation. Reach for it directly when a field needs no label or supporting text, and reach for Select when it does.
+The select control on its own, without a label or hint around it. One model covers the select interaction pattern, with Size, Shape, State and Flavour that differ only in border, surface, text strength and chevron orientation. Use it directly when a field needs no label or supporting text, and use Select when it does.
 
 ### Property Breakdown
 
@@ -262,7 +262,7 @@ The select control on its own, without a label or hint around it. One model cove
 | State      | open      | -       | The field is expanded and the chevron points up. The border stays at focus weight and the popup is shown.                                                          |
 | State      | filled    | -       | A committed value. The field is at rest again but the text stays at full strength, which is what separates it from enabled.                                        |
 | State      | invalid   | -       | The value failed validation. The border carries the signal and nothing else does, so pairing it with a Hint set to error is what makes the problem readable.       |
-| State      | read-only | -       | The value is shown but cannot be changed. Reach for it where a person still needs to read or copy the value, and reach for disabled where they do not.             |
+| State      | read-only | -       | The value is shown but cannot be changed. Use it where a person still needs to read or copy the value, and use disabled where they do not.                         |
 | State      | disabled  | -       | The field cannot be used and is out of the tab order. Both the surface and the border drop away, so it reads as out of play rather than merely empty.              |
 | Flavour    | default   | true    | A bordered field on a neutral surface, and the right choice inside a form.                                                                                         |
 | Flavour    | gradient  | -       | For a unique interaction highlight, such as an AI companion field. It marks the field as special, so using it on an ordinary field spends that signal for nothing. |
@@ -314,7 +314,7 @@ The select control on its own, without a label or hint around it. One model cove
 
 **Don't:**
 
-- Don't reach for disabled where a person still needs to read the value. read-only keeps it legible and selectable, disabled puts it out of reach and out of the tab order.
+- Don't use disabled where a person still needs to read the value. read-only keeps it legible and selectable, disabled puts it out of reach and out of the tab order.
 - Don't lean on the placeholder as the label. It clears the moment typing starts, so whatever it was carrying disappears exactly when it is needed.
 
 ### Accessibility & Content Guidelines

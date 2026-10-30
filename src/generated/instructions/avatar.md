@@ -36,7 +36,7 @@ A visual representation of a user or entity, shown as a photo, initials, or icon
 | Status      | On Shift      | -       | Working a scheduled shift, for rota-based contexts. Outside a shift-based product it reads as a second word for Available and dilutes both.                                                                                                                                         |
 | Status      | Offline       | -       | Not reachable. It is the one state drawn as a hollow badge rather than a filled one, so it stays tellable apart when colour is unreliable.                                                                                                                                          |
 | Status      | Close         | -       | Not a presence state. It is a dismiss mark that happens to live in the same component, and Avatar already uses it for the top-right badge. Setting the bottom-right Status to Close puts two dismiss marks on one avatar.                                                           |
-| Status      | Icon          | -       | Hands the glyph over to the Custom Icon property for a meaning outside the presence set. Everything a viewer has learned from the other seven states stops applying, so reach for it rarely.                                                                                        |
+| Status      | Icon          | -       | Hands the glyph over to the Custom Icon property for a meaning outside the presence set. Everything a viewer has learned from the other seven states stops applying, so use it rarely.                                                                                              |
 | Custom Icon | instance swap | Star    | Takes effect only while Status is Icon, where it replaces the built-in glyph. The suggested list holds just the Star set, though any component can be swapped in. A custom glyph carries none of the shared meaning the named states have, so it needs a text equivalent beside it. |
 
 ### States & Triggers
@@ -229,7 +229,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ### Overview
 
-Shows a group of people as overlapping avatars, with an optional counter standing in for everyone who did not fit. Up to four avatars are carried, the first two always and the last two by choice, and Size moves the whole rail together rather than any single avatar. Reach for it where the group matters more than the individuals, and for a single Avatar where one person is the subject.
+Shows a group of people as overlapping avatars, with an optional counter standing in for everyone who did not fit. Up to four avatars are carried, the first two always and the last two by choice, and Size moves the whole rail together rather than any single avatar. Use it where the group matters more than the individuals, and for a single Avatar where one person is the subject.
 
 ### Property Breakdown
 
@@ -243,9 +243,9 @@ Shows a group of people as overlapping avatars, with an optional counter standin
 | Size           | large    | -       | For emphasis in a card header, where the group is the subject of the block.                                                                                                                                                                                                                                          |
 | Size           | xlarge   | -       | For a prominent group on a detail page.                                                                                                                                                                                                                                                                              |
 | Size           | xxlarge  | -       | For a header where the people are the main content rather than a supporting detail.                                                                                                                                                                                                                                  |
-| Size           | xxxlarge | -       | The largest step, for a full width header. The rail grows quickly at this end, so check it still fits its column before reaching for it.                                                                                                                                                                             |
+| Size           | xxxlarge | -       | The largest step, for a full width header. The rail grows quickly at this end, so check it still fits its column before using it.                                                                                                                                                                                    |
 | Stacking       | start    | true    | The first avatar sits above the ones after it, so the group reads left to right with the earliest person shown whole.                                                                                                                                                                                                |
-| Stacking       | end      | -       | Reverses it, so the last position is the one shown whole. Reach for it where the counter should sit on top of the stack rather than beneath it.                                                                                                                                                                      |
+| Stacking       | end      | -       | Reverses it, so the last position is the one shown whole. Use it where the counter should sit on top of the stack rather than beneath it.                                                                                                                                                                            |
 | Show Overflow  | true     | true    | Keeps the counter at the end, standing in for everyone not shown. In code it appears only when there are more avatars than Max.                                                                                                                                                                                      |
 | Show Overflow  | false    | -       | Drops it. Only safe where the rail shows the whole group, because without the counter a trimmed group reads as complete.                                                                                                                                                                                             |
 | Max            | 2 to 4   | 4       | Code only. How many avatars the rail shows, with the first two always present. Figma has no Max property and sets the same thing with Show Avatar 3 and Show Avatar 4. Everyone past Max is counted into the overflow, as the avatars passed in less Max, so a group of six at Max 4 reads +2 and at Max 3 reads +3. |
@@ -291,7 +291,7 @@ Shows a group of people as overlapping avatars, with an optional counter standin
 
 **Don't:**
 
-- Don't reach for the rail to show one person. A single Avatar is the component for that, and a rail of one has an overlap that never happens.
+- Don't use the rail to show one person. A single Avatar is the component for that, and a rail of one has an overlap that never happens.
 
 ### Accessibility & Content Guidelines
 

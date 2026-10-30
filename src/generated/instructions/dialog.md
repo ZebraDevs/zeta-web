@@ -55,7 +55,7 @@ A modal message that interrupts the current task until the user responds or dism
 **Don't:**
 
 - Don't rely on Flavour to recolour anything beyond the header icon. Every value binds that icon to the same colour token, so the body and the footer's buttons need their own styling if the message calls for it.
-- Don't reach for the custom Actions value for a plain one, two or three button footer. The fixed presets already set each button's role and position, the custom slots exist for content that does not fit them.
+- Don't use the custom Actions value for a plain one, two or three button footer. The fixed presets already set each button's role and position, the custom slots exist for content that does not fit them.
 
 ### Accessibility & Content Guidelines
 

@@ -8,7 +8,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ### Overview
 
-A short floating message that names what an adjacent control does. Point decides which edge the arrow sits on, which is how the bubble anchors to its trigger from any of four sides. It holds one run of text and nothing else, so for status that stays on screen and sits inline, reach for Status Label instead.
+A short floating message that names what an adjacent control does. Point decides which edge the arrow sits on, which is how the bubble anchors to its trigger from any of four sides. It holds one run of text and nothing else, so for status that stays on screen and sits inline, use Status Label instead.
 
 ### Property Breakdown
 

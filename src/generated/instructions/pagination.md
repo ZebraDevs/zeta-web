@@ -49,7 +49,7 @@ A horizontal bar of page controls, first/previous/next/last jump buttons, a row 
 **Don't:**
 
 - Don’t expect page number content set in the slot to survive switching Outline or Rounded. Each combination owns its own separate slot, re-enter it after changing either.
-- Don’t reach for the Main Slot 1 property with key 4489:15, it isn’t wired to any variant. Use whichever Main Slot property your current Outline/Rounded combination actually shows.
+- Don’t use the Main Slot 1 property with key 4489:15, it isn’t wired to any variant. Use whichever Main Slot property your current Outline/Rounded combination actually shows.
 
 ### Accessibility & Content Guidelines
 

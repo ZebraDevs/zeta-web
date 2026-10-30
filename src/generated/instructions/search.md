@@ -79,7 +79,7 @@ A single-line input for typing a query, with a magnifier leading it and a traili
 
 **Don't:**
 
-- Don't reach for gradient on an ordinary search field. It marks a distinct interaction such as an AI companion, and spreading it across a view drains the meaning it carries.
+- Don't use gradient on an ordinary search field. It marks a distinct interaction such as an AI companion, and spreading it across a view drains the meaning it carries.
 - Don't treat typing as a style. It is the only state carrying a clear control, so choosing it changes what the field offers.
 
 ### Accessibility & Content Guidelines

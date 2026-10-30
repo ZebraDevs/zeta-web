@@ -8,23 +8,23 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ### Overview
 
-A square control for turning a single option on or off, with an optional label beside it. Checked carries three values rather than two, so a checkbox that summarises a set of others can say indeterminate instead of guessing between on and off. Reach for it wherever options are independent of each other, and reach for Radio Button where exactly one of a set has to win.
+A square control for turning a single option on or off, with an optional label beside it. Checked carries three values rather than two, so a checkbox that summarises a set of others can say indeterminate instead of guessing between on and off. Use it wherever options are independent of each other, and use Radio Button where exactly one of a set has to win.
 
 ### Property Breakdown
 
-| Property | Type          | Default | Description                                                                                                                                                                                        |
-| -------- | ------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| hasLabel | true          | true    | Shows the label beside the control. Keep it on, because the box carries no name and the target beside it is the part most people aim at.                                                           |
-| hasLabel | false         | -       | Leaves the control as the target alone. Only safe where something else already names the option, such as a column header in a table of rows.                                                       |
-| Checked  | false         | true    | The option is off. The box carries a border and no fill, which is the only state with nothing inside it.                                                                                           |
-| Checked  | true          | -       | The option is on, shown by a check mark on a filled box.                                                                                                                                           |
-| Checked  | indeterminate | -       | Some of what this control stands for is on and some is off. Reach for it on a parent that summarises other checkboxes, never as a third value a person can choose, because nothing cycles into it. |
-| State    | enabled       | true    | Resting and interactive.                                                                                                                                                                           |
-| State    | hover         | -       | Pointer over the control. The border answers, and the fill answers too once checked.                                                                                                               |
-| State    | focus         | -       | Keyboard focus. A second ring is drawn at the box's own size, so the control stays exactly where it was.                                                                                           |
-| State    | disabled      | -       | Not interactive. The mark stays visible, so a disabled checkbox still reports its value rather than hiding it.                                                                                     |
-| Size     | large         | true    | The default, and the right choice wherever the checkbox stands on its own.                                                                                                                         |
-| Size     | medium        | -       | For dense lists and table rows. The target does not shrink with it, so the control is no harder to hit.                                                                                            |
+| Property | Type          | Default | Description                                                                                                                                                                                  |
+| -------- | ------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| hasLabel | true          | true    | Shows the label beside the control. Keep it on, because the box carries no name and the target beside it is the part most people aim at.                                                     |
+| hasLabel | false         | -       | Leaves the control as the target alone. Only safe where something else already names the option, such as a column header in a table of rows.                                                 |
+| Checked  | false         | true    | The option is off. The box carries a border and no fill, which is the only state with nothing inside it.                                                                                     |
+| Checked  | true          | -       | The option is on, shown by a check mark on a filled box.                                                                                                                                     |
+| Checked  | indeterminate | -       | Some of what this control stands for is on and some is off. Use it on a parent that summarises other checkboxes, never as a third value a person can choose, because nothing cycles into it. |
+| State    | enabled       | true    | Resting and interactive.                                                                                                                                                                     |
+| State    | hover         | -       | Pointer over the control. The border answers, and the fill answers too once checked.                                                                                                         |
+| State    | focus         | -       | Keyboard focus. A second ring is drawn at the box's own size, so the control stays exactly where it was.                                                                                     |
+| State    | disabled      | -       | Not interactive. The mark stays visible, so a disabled checkbox still reports its value rather than hiding it.                                                                               |
+| Size     | large         | true    | The default, and the right choice wherever the checkbox stands on its own.                                                                                                                   |
+| Size     | medium        | -       | For dense lists and table rows. The target does not shrink with it, so the control is no harder to hit.                                                                                      |
 
 ### States & Triggers
 
@@ -65,7 +65,7 @@ A square control for turning a single option on or off, with an optional label b
 
 **Don't:**
 
-- Don't reach for Checkbox where only one option may win. That is Radio Button, and a row of checkboxes gives a person no way to see the constraint before breaking it.
+- Don't use Checkbox where only one option may win. That is Radio Button, and a row of checkboxes gives a person no way to see the constraint before breaking it.
 - Don't offer indeterminate as a third value someone can select. Nothing cycles into it. It is set from the state of the things underneath it and read back, never chosen.
 
 ### Accessibility & Content Guidelines

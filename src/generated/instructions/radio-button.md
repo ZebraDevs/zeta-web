@@ -63,7 +63,7 @@ A circular control for choosing exactly one option from a set, with an optional 
 **Don't:**
 
 - Don’t leave more than one Radio Button in the same group Checked at once, the control is built for a single choice.
-- Don’t reach for Radio Button for a single standalone yes or no choice, Checkbox or Switch fits that better.
+- Don’t use Radio Button for a single standalone yes or no choice, Checkbox or Switch fits that better.
 
 ### Accessibility & Content Guidelines
 

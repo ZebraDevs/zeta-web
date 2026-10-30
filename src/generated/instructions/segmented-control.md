@@ -8,7 +8,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ### Overview
 
-A row of mutually exclusive options sharing one track, where exactly one is active at a time. It ships with three segments, two placed directly and a third in a slot, so changing the count means working inside the instance. Reach for Tab Bar when the choice moves between views rather than switching a mode within one.
+A row of mutually exclusive options sharing one track, where exactly one is active at a time. It ships with three segments, two placed directly and a third in a slot, so changing the count means working inside the instance. Use Tab Bar when the choice moves between views rather than switching a mode within one.
 
 ### Property Breakdown
 
@@ -179,7 +179,7 @@ One option inside a Segmented Control, carrying a label, an icon, or both. It is
 **Don't:**
 
 - Don't rely on hover to show what is chosen. Hover and active share a label colour, and only the fill tells them apart.
-- Don't reach for icon only without naming the options elsewhere. The glyph is a locked Star in every variant as drawn.
+- Don't use icon only without naming the options elsewhere. The glyph is a locked Star in every variant as drawn.
 
 ### Accessibility & Content Guidelines
 

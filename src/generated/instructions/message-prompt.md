@@ -169,7 +169,7 @@ The composer for a message prompt. One State property moves it between typing, d
 
 | Layer                                       | Field          | Raw       | Token                                   |
 | ------------------------------------------- | -------------- | --------- | --------------------------------------- |
-| Message Input                               | fill[0]        | #f8fbff   | surface.card                            |
+| Message Input                               | fill[0]        | #ffffff   | surface.card                            |
 | Message Input                               | stroke[0]      | #ced2db   | border.default                          |
 | Message Input                               | cornerRadius   | 12        | radius.container                        |
 | Message Input                               | strokeWeight   | 1         | stroke.thin                             |

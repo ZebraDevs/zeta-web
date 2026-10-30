@@ -12,12 +12,12 @@ Marks that something is waiting on whatever it is pinned to, optionally with a c
 
 ### Property Breakdown
 
-| Property | Type   | Default | Description                                                                                                                                         |
-| -------- | ------ | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Value    | text   | 2       | The count shown inside the indicator. Carried at large and medium, and dropped entirely at small.                                                   |
-| Size     | large  | true    | The widest form, for a count that may run to more than one digit.                                                                                   |
-| Size     | medium | -       | A fixed square holding a single digit. Reach for it where space is tight but the number still matters.                                              |
-| Size     | small  | -       | A plain dot with no count. It says something is new without saying how much, so reaching for it where the number matters loses the number silently. |
+| Property | Type   | Default | Description                                                                                                                                  |
+| -------- | ------ | ------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| Value    | text   | 2       | The count shown inside the indicator. Carried at large and medium, and dropped entirely at small.                                            |
+| Size     | large  | true    | The widest form, for a count that may run to more than one digit.                                                                            |
+| Size     | medium | -       | A fixed square holding a single digit. Use it where space is tight but the number still matters.                                             |
+| Size     | small  | -       | A plain dot with no count. It says something is new without saying how much, so using it where the number matters loses the number silently. |
 
 ### States & Triggers
 
@@ -49,12 +49,12 @@ Marks that something is waiting on whatever it is pinned to, optionally with a c
 
 **Do:**
 
-- Reach for small where the fact that something is new is the whole message. It is the only form that makes no claim about quantity.
+- Use small where the fact that something is new is the whole message. It is the only form that makes no claim about quantity.
 - Keep the count short. Only large grows with its text, so a long number is clipped at the other two sizes rather than accommodated.
 
 **Don't:**
 
-- Don't reach for it to mean anything other than items waiting. It has one fixed colour, so it cannot carry a second meaning alongside the first.
+- Don't use it to mean anything other than items waiting. It has one fixed colour, so it cannot carry a second meaning alongside the first.
 - Don't put a count on small. It carries no text, so the number disappears with nothing to show it went.
 
 ### Accessibility & Content Guidelines
@@ -117,13 +117,13 @@ Reports a read-only state on an item, such as Active or Overdue. Status sets the
 | Property    | Type      | Default | Description                                                                                                                                                                                 |
 | ----------- | --------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Label       | text      | Label   | The state being reported. Keep it to the state itself and two words at most, because the component hugs its text and a sentence becomes a wide block inside a narrow column.                |
-| Status      | neutral   | true    | No particular standing. Reach for it where a row needs a state shown but none of the four meanings apply, not as a resting value for a status that simply has not changed yet.              |
+| Status      | neutral   | true    | No particular standing. Use it where a row needs a state shown but none of the four meanings apply, not as a resting value for a status that simply has not changed yet.                    |
 | Status      | info      | -       | Supporting information carrying no judgement. Nothing is wrong and nothing has succeeded e.g ongoing.                                                                                       |
-| Status      | positive  | -       | A finished or healthy state. Reach for it on completion rather than on progress, or there is nothing left to mark the end with.                                                             |
+| Status      | positive  | -       | A finished or healthy state. Use it on completion rather than on progress, or there is nothing left to mark the end with.                                                                   |
 | Status      | warning   | -       | Something needs attention but nothing has failed. Using it for a failure understates the problem to anyone scanning a column of these.                                                      |
 | Status      | negative  | -       | A failed or blocking state. The strongest of the five, so spending it on a recoverable problem leaves nothing in reserve for a real one.                                                    |
 | Leading     | indicator | true    | A dot in the status colour. The quietest of the three and the right choice where the label already names the state.                                                                         |
-| Leading     | icon      | -       | A glyph fixed per status, Info for neutral and info, then Check Circle, Warning and Error. Reach for it where the status has to read without the label being read.                          |
+| Leading     | icon      | -       | A glyph fixed per status, Info for neutral and info, then Check Circle, Warning and Error. Use it where the status has to read without the label being read.                                |
 | Leading     | none      | -       | Text only. The fill and the border still carry the status, so this is the form that leans hardest on colour alone.                                                                          |
 | Shape       | rounded   | true    | Match the contour of the surface the label sits on.                                                                                                                                         |
 | Shape       | sharp     | -       | The square-cornered pair, for dense surfaces built from square corners such as a table cell.                                                                                                |
@@ -164,12 +164,12 @@ Reports a read-only state on an item, such as Active or Overdue. Status sets the
 **Do:**
 
 - Keep the label to the state itself, such as Active or Overdue. The component hugs its text, so a sentence turns into a wide block in a narrow column.
-- Reach for Leading=icon where the status has to survive greyscale. The dot and the fill are colour alone, the glyph differs in shape as well.
+- Use Leading=icon where the status has to survive greyscale. The dot and the fill are colour alone, the glyph differs in shape as well.
 
 **Don't:**
 
-- Don't reach for a status label where a person chooses or filters by the value. That is Chip. The only thing this offers is a dismiss, and only when Discardable is on.
-- Don't reach for neutral to mean normal. It is the absence of a status, and spending it that way leaves no way to say that nothing is known.
+- Don't use a status label where a person chooses or filters by the value. That is Chip. The only thing this offers is a dismiss, and only when Discardable is on.
+- Don't use neutral to mean normal. It is the absence of a status, and spending it that way leaves no way to say that nothing is known.
 
 ### Accessibility & Content Guidelines
 
@@ -385,24 +385,24 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ### Overview
 
-Shows where an item sits on a four step scale, from low to urgent. Level sets the fill, the circle and the glyph together, Variant decides whether the name appears beside the circle or the circle stands alone, and Leading swaps the glyph for a rank number. Reach for it where items compete for attention and the order between them is the point.
+Shows where an item sits on a four step scale, from low to urgent. Level sets the fill, the circle and the glyph together, Variant decides whether the name appears beside the circle or the circle stands alone, and Leading swaps the glyph for a rank number. Use it where items compete for attention and the order between them is the point.
 
 ### Property Breakdown
 
-| Property        | Type    | Default | Description                                                                                                                                                                         |
-| --------------- | ------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Label           | text    | Label   | The priority name, such as Low or Urgent. Carried on lozenge only, so switching to badge removes it rather than shortening it.                                                      |
-| Priority Number | text    | 4       | The rank shown inside the circle when Leading is number. One or two characters, because the circle is a fixed square and does not grow with the value.                              |
-| Level           | low     | true    | The bottom of the scale, drawn in a neutral rather than a feedback colour so it reads as ordinary rather than as something going well.                                              |
-| Level           | medium  | -       | The middle of the scale. It takes the info colour, the one level that does not escalate the surface it sits on.                                                                     |
-| Level           | high    | -       | Ahead of the rest but not at the top. Reaching for it on a true emergency leaves nothing above it.                                                                                  |
-| Level           | urgent  | -       | The top of the scale. The strongest colour in the set, so spending it broadly flattens the very scale it exists to express.                                                         |
-| Variant         | lozenge | true    | Circle and label together. Reach for it wherever a reader may not already know the scale, because the label is the only part that names the level outright.                         |
-| Variant         | badge   | -       | The circle alone. Reach for it in a dense list or pinned to another object, and only where the colour and the glyph are already understood.                                         |
-| Size            | large   | true    | The default, for a row with room for the name.                                                                                                                                      |
-| Size            | small   | -       | For dense lists. It reduces the text as well as the box, so a long name gets harder to read rather than merely tighter.                                                             |
-| Leading         | icon    | true    | A direction glyph in the circle, down for low, a dash for medium, up for high and the priority mark for urgent. It says which way the level points without the label being read.    |
-| Leading         | number  | -       | A rank number in the circle in place of the glyph. Reach for it where the exact position in a queue matters, and note that it removes the only cue to direction that is not colour. |
+| Property        | Type    | Default | Description                                                                                                                                                                      |
+| --------------- | ------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Label           | text    | Label   | The priority name, such as Low or Urgent. Carried on lozenge only, so switching to badge removes it rather than shortening it.                                                   |
+| Priority Number | text    | 4       | The rank shown inside the circle when Leading is number. One or two characters, because the circle is a fixed square and does not grow with the value.                           |
+| Level           | low     | true    | The bottom of the scale, drawn in a neutral rather than a feedback colour so it reads as ordinary rather than as something going well.                                           |
+| Level           | medium  | -       | The middle of the scale. It takes the info colour, the one level that does not escalate the surface it sits on.                                                                  |
+| Level           | high    | -       | Ahead of the rest but not at the top. Using it on a true emergency leaves nothing above it.                                                                                      |
+| Level           | urgent  | -       | The top of the scale. The strongest colour in the set, so spending it broadly flattens the very scale it exists to express.                                                      |
+| Variant         | lozenge | true    | Circle and label together. Use it wherever a reader may not already know the scale, because the label is the only part that names the level outright.                            |
+| Variant         | badge   | -       | The circle alone. Use it in a dense list or pinned to another object, and only where the colour and the glyph are already understood.                                            |
+| Size            | large   | true    | The default, for a row with room for the name.                                                                                                                                   |
+| Size            | small   | -       | For dense lists. It reduces the text as well as the box, so a long name gets harder to read rather than merely tighter.                                                          |
+| Leading         | icon    | true    | A direction glyph in the circle, down for low, a dash for medium, up for high and the priority mark for urgent. It says which way the level points without the label being read. |
+| Leading         | number  | -       | A rank number in the circle in place of the glyph. Use it where the exact position in a queue matters, and note that it removes the only cue to direction that is not colour.    |
 
 ### States & Triggers
 
@@ -437,7 +437,7 @@ Shows where an item sits on a four step scale, from low to urgent. Level sets th
 
 **Do:**
 
-- Reach for lozenge wherever a reader may not already know the scale. The label is the only part that names the level without prior knowledge of the colours.
+- Use lozenge wherever a reader may not already know the scale. The label is the only part that names the level without prior knowledge of the colours.
 - Keep Leading=icon where direction matters more than exact position. The glyph changes shape per level, so it survives greyscale in a way the fill does not.
 
 **Don't:**
@@ -578,7 +578,7 @@ A small circular marker carrying a fixed glyph, sized to sit beside text or on i
 **Don't:**
 
 - Don't expect the glyph to change. It carries one meaning, and a different one needs a different component.
-- Don't reach for it where a count matters. Notification Indicator carries a number, this carries none.
+- Don't use it where a count matters. Notification Indicator carries a number, this carries none.
 
 ### Accessibility & Content Guidelines
 

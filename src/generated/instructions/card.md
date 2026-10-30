@@ -8,7 +8,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ### Overview
 
-The empty card shell, three stacked slots inside a bordered surface. It decides the surface, the border, the corner treatment and the fact that content is clipped to the frame, and nothing else. Header and Footer can each be switched off, Body is always present. Reach for a Card Template when you want a card already assembled, and for this when you are composing one yourself.
+The empty card shell, three stacked slots inside a bordered surface. It decides the surface, the border, the corner treatment and the fact that content is clipped to the frame, and nothing else. Header and Footer can each be switched off, Body is always present. Use a Card Template when you want a card already assembled, and for this when you are composing one yourself.
 
 ### Property Breakdown
 
@@ -93,13 +93,13 @@ The empty card shell, three stacked slots inside a bordered surface. It decides 
 
 | Layer            | Field        | Raw     | Token          |
 | ---------------- | ------------ | ------- | -------------- |
-| Card base        | fill[0]      | #f8fbff | surface.card   |
+| Card base        | fill[0]      | #ffffff | surface.card   |
 | Card base        | stroke[0]    | #ced2db | border.default |
 | Card base        | cornerRadius | 0       | radius.none    |
 | Card base        | strokeWeight | 1       | stroke.thin    |
-| Card base/Header | fill[0]      | #f8fbff | surface.card   |
-| Card base/Body   | fill[0]      | #f8fbff | surface.card   |
-| Card base/Footer | fill[0]      | #f8fbff | surface.card   |
+| Card base/Header | fill[0]      | #ffffff | surface.card   |
+| Card base/Body   | fill[0]      | #ffffff | surface.card   |
+| Card base/Footer | fill[0]      | #ffffff | surface.card   |
 
 ### Token changes by property
 
@@ -167,7 +167,7 @@ A card whose body opens and closes behind a header that is always visible. The h
 **Don't:**
 
 - Don't lay a column out against the collapsed height. Expanding roughly triples the card, so everything below it moves a long way.
-- Don't reach for this when the content is always visible. Card base is the shell for a card that does not open and close, and it has a real footer slot.
+- Don't use this when the content is always visible. Card base is the shell for a card that does not open and close, and it has a real footer slot.
 
 ### Accessibility & Content Guidelines
 
@@ -201,7 +201,7 @@ A card whose body opens and closes behind a header that is always visible. The h
 
 | Layer                              | Field          | Raw       | Token                                |
 | ---------------------------------- | -------------- | --------- | ------------------------------------ |
-| Collapsible Card                   | fill[0]        | #f8fbff   | surface.card                         |
+| Collapsible Card                   | fill[0]        | #ffffff   | surface.card                         |
 | Collapsible Card                   | cornerRadius   | 0         | radius.none                          |
 | Collapsible Card/_Container header | fill[0]        | #0c0d0e00 | interactive.ghost.background.default |
 | Collapsible Card/_Container header | itemSpacing    | 8         | space.sm                             |
@@ -424,7 +424,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 | Layer             | Field        | Raw     | Token          |
 | ----------------- | ------------ | ------- | -------------- |
-| Default/Card base | fill[0]      | #f8fbff | surface.card   |
+| Default/Card base | fill[0]      | #ffffff | surface.card   |
 | Default/Card base | stroke[0]    | #ced2db | border.default |
 | Default/Card base | cornerRadius | 0       | radius.none    |
 | Default/Card base | strokeWeight | 1       | stroke.thin    |
@@ -448,7 +448,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 | Layer                        | Field        | Raw                                               | Token                                                                               |
 | ---------------------------- | ------------ | ------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| Collapsible/Collapsible Card | fill[0]      | #f8fbff                                           | surface.card                                                                        |
+| Collapsible/Collapsible Card | fill[0]      | #ffffff                                           | surface.card                                                                        |
 | Collapsible/Collapsible Card | stroke[0]    | linear-gradient(129deg, #43008f 0%, #1a2154 100%) | linear-gradient(129deg, foreground.gradient.start 0%, foreground.gradient.end 100%) |
 | Collapsible/Collapsible Card | cornerRadius | 0                                                 | radius.none                                                                         |
 | Collapsible/Collapsible Card | strokeWeight | 2                                                 | stroke.thick                                                                        |

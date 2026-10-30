@@ -8,7 +8,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ### Overview
 
-Represents a person, entity or value someone has entered or picked, such as a recipient on a message, so it can be reviewed and removed without retyping. It belongs inside input and selection fields. Reach for a filter chip to narrow content, or an assist chip to offer an action.
+Represents a person, entity or value someone has entered or picked, such as a recipient on a message, so it can be reviewed and removed without retyping. It belongs inside input and selection fields. Use a filter chip to narrow content, or an assist chip to offer an action.
 
 ### Property Breakdown
 
@@ -134,7 +134,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ### Overview
 
-Lets someone narrow a set of content by switching criteria on and off, such as categories in a list of results. Use them in groups where more than one can be on at once. Reach for an assist chip when the control triggers an action rather than a filter.
+Lets someone narrow a set of content by switching criteria on and off, such as categories in a list of results. Use them in groups where more than one can be on at once. Use an assist chip when the control triggers an action rather than a filter.
 
 ### Property Breakdown
 
@@ -270,7 +270,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ### Overview
 
-Offers a contextual action, or stands for an item someone can discard, such as an attached file. Five colours borrow the status tokens to mark a state or a kind of item, with PDFs in red, spreadsheets in green and documents in blue, and in code foreground, background and border each take an override beyond those five. The label is the only content a consumer writes, and one colour should hold for every chip of the same kind. Reach for a button when the action is the primary next step, and a filter chip when it narrows content.
+Offers a contextual action, or stands for an item someone can discard, such as an attached file. Five colours borrow the status tokens to mark a state or a kind of item, with PDFs in red, spreadsheets in green and documents in blue, and in code foreground, background and border each take an override beyond those five. The label is the only content a consumer writes, and one colour should hold for every chip of the same kind. Use a button when the action is the primary next step, and a filter chip when it narrows content.
 
 ### Property Breakdown
 
@@ -342,7 +342,7 @@ Offers a contextual action, or stands for an item someone can discard, such as a
 
 **Don't:**
 
-- Don't reach for an assist chip when the action is the main one on the screen. That is a button.
+- Don't use an assist chip when the action is the main one on the screen. That is a button.
 - Don't use State=selected to mean an action has stuck. A chip that stays selected is usually a filter chip in disguise.
 
 ### Accessibility & Content Guidelines
