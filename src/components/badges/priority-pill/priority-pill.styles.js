@@ -1,75 +1,85 @@
 import { css } from "lit";
 export default css`
   :host {
-    --priority-pill-index-text-color: var(--foreground-inverse);
-    --priority-pill-text-color: var(--foreground-primary);
+    --_background: var(--foreground-secondary);
+    --_foreground: var(--foreground-inverse);
     width: fit-content;
-    height: calc(var(--space-xl) + var(--space-xs));
     display: inline-block;
   }
 
   .container {
     display: flex;
-    display: inline-flex;
     align-items: center;
-    background: var(--priority-pill-background-color, var(--surface-card));
+    gap: var(--space-xxs);
+    padding: var(--space-xxs) var(--space-sm) var(--space-xxs) var(--space-xxs);
+    background: var(--priority-pill-background-color, var(--_background));
     white-space: nowrap;
-    line-height: var(--space-lg);
     font: var(--body-small);
-    color: var(--priority-pill-text-color, var(--foreground-primary));
+    color: var(--priority-pill-text-color, var(--_foreground));
 
     > .number {
       display: flex;
-      width: calc(var(--space-xl) + var(--space-xs));
-      height: calc(var(--space-xl) + var(--space-xs));
+      flex-shrink: 0;
+      box-sizing: border-box;
+      width: var(--control-icon-md);
+      height: var(--control-icon-md);
       padding: 0;
       justify-content: center;
       align-items: center;
       text-align: center;
-      background: var(--priority-pill-index-background-color, var(--interactive-ghost-foreground-default));
-      color: var(--priority-pill-index-text-color, var(--foreground-primary));
+      font: var(--indicator-medium);
+      background: var(--priority-pill-index-background-color, var(--priority-pill-text-color, var(--_foreground)));
+      color: var(--priority-pill-index-text-color, var(--priority-pill-background-color, var(--_background)));
     }
 
     > .text {
-      padding: calc(var(--space-xs) - var(--stroke-thin)) var(--space-sm);
+      padding-right: var(--space-xxs);
     }
   }
 
-  :host([rounded]) > .container,
-  :host([rounded]) > .container > .number {
+  :host .container.contourable-target,
+  :host .container > .number {
     border-radius: var(--radius-pill);
   }
 
   :host([status="urgent"]) {
-    --priority-pill-index-background-color: var(--foreground-error);
-    --priority-pill-background-color: var(--surface-error);
+    --_background: var(--feedback-error-background-strong);
+    --_foreground: var(--interactive-destructive-foreground-default);
   }
   :host([status="high"]) {
-    --priority-pill-index-background-color: var(--foreground-warning);
-    --priority-pill-background-color: var(--surface-warning);
+    --_background: var(--feedback-warning-background-strong);
+    --_foreground: var(--foreground-inverse);
   }
   :host([status="medium"]) {
-    --priority-pill-index-background-color: var(--interactive-ghost-foreground-default);
-    --priority-pill-background-color: var(--surface-card);
+    --_background: var(--feedback-info-background-strong);
+    --_foreground: var(--interactive-primary-foreground-default);
   }
   :host([status="low"]) {
-    --priority-pill-index-background-color: var(--foreground-success);
-    --priority-pill-background-color: var(--surface-success);
+    --_background: var(--foreground-secondary);
+    --_foreground: var(--foreground-inverse);
   }
+
   :host([size="small"]) {
-    height: var(--space-lg);
     > .container {
-      display: flex;
+      padding: var(--space-2xs) var(--space-sm) var(--space-2xs) var(--space-2xs);
     }
 
     .number {
-      font: var(--medium) 10px/14px var(--type-family-regular);
-      width: var(--space-lg);
-      height: var(--space-lg);
+      width: var(--control-icon-sm);
+      height: var(--control-icon-sm);
     }
 
     .text {
-      font: var(--regular) 10px/13px var(--type-family-regular);
+      font: var(--indicator-small);
+      padding-right: var(--space-2xs);
     }
+  }
+
+  :host([type="badge"]) > .container {
+    gap: 0;
+    padding-right: var(--space-xxs);
+  }
+  :host([type="badge"][size="small"]) > .container {
+    padding-right: var(--space-2xs);
   }
 `;
