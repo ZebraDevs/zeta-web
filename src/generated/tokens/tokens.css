@@ -243,8 +243,8 @@
   --scale-container-1: 600px;
   --scale-container-2: 840px;
   --scale-container-3: 1200px;
-  --text-font-family-ibm-plex-sans: 'IBM Plex Sans', sans-serif;
-  --text-font-family-zebra-sans: 'Zebra Sans', sans-serif;
+  --text-font-family-ibm-plex-sans: "IBM Plex Sans", sans-serif;
+  --text-font-family-zebra-sans: "Zebra Sans", sans-serif;
   --text-font-size-10: 10px;
   --text-font-size-12: 12px;
   --text-font-size-14: 14px;
@@ -292,7 +292,10 @@
   --brand-primary-strong: var(--color-brand-main-70);
   --brand-primary-subtle: var(--color-brand-main-50);
   --brand-secondary-deep: var(--color-brand-alternative-80);
-  --brand-secondary-default: light-dark(var(--color-brand-alternative-60), var(--color-brand-alternative-50)); /** Secondary brand color (theme.color.brand.secondary) */
+  --brand-secondary-default: light-dark(
+    var(--color-brand-alternative-60),
+    var(--color-brand-alternative-50)
+  ); /** Secondary brand color (theme.color.brand.secondary) */
   --brand-secondary-faint: light-dark(var(--color-brand-alternative-10), var(--color-brand-alternative-100));
   --brand-secondary-on: var(--color-pure-white); /** Foreground on top of Brand/Secondary (theme.color.brand.onSecondary) */
   --brand-secondary-strong: var(--color-brand-alternative-70);
@@ -319,15 +322,24 @@
   --fill-canvas: light-dark(var(--color-neutral-cool-20), var(--color-neutral-cool-90)); /** App/page base background (theme.color.surface.canvas) */
   --fill-default: light-dark(var(--color-pure-white), var(--color-neutral-cool-100)); /** Standard component/card background (theme.color.surface.default) */
   --fill-disabled: light-dark(var(--color-neutral-cool-30), var(--color-neutral-cool-80));
-  --fill-elevated: light-dark(var(--color-pure-white), var(--color-neutral-cool-100)); /** Raised surface background, pair with elevation shadow (theme.color.surface.elevated) */
+  --fill-elevated: light-dark(
+    var(--color-pure-white),
+    var(--color-neutral-cool-100)
+  ); /** Raised surface background, pair with elevation shadow (theme.color.surface.elevated) */
   --fill-hover: light-dark(var(--color-neutral-cool-70), var(--color-neutral-cool-40));
-  --fill-inverse: light-dark(var(--color-neutral-cool-90), var(--color-neutral-cool-20)); /** Inverted (dark) surface, e.g. tooltips (theme.color.surface.inverse) */
+  --fill-inverse: light-dark(
+    var(--color-neutral-cool-90),
+    var(--color-neutral-cool-20)
+  ); /** Inverted (dark) surface, e.g. tooltips (theme.color.surface.inverse) */
   --fill-inverse-elevated: light-dark(var(--color-neutral-cool-100), var(--color-neutral-cool-10));
   --fill-inverse-sunken: light-dark(var(--color-neutral-cool-80), var(--color-neutral-cool-30));
   --fill-overlay: light-dark(var(--color-pure-white), var(--color-neutral-cool-80)); /** Modal/popover panel background (theme.color.surface.overlay) */
   --fill-scrim: var(--color-alpha-dark-60); /** Backdrop behind modals; apply opacity at usage since this alias is fully opaque (theme.color.surface.scrim) */
   --fill-selection: light-dark(var(--color-brand-main-20), var(--color-brand-main-90)); /** Selected item/text background (theme.color.selection.background) */
-  --fill-sunken: light-dark(var(--color-neutral-cool-30), var(--color-neutral-cool-80)); /** Recessed background, e.g. inputs/wells (theme.color.surface.sunken) */
+  --fill-sunken: light-dark(
+    var(--color-neutral-cool-30),
+    var(--color-neutral-cool-80)
+  ); /** Recessed background, e.g. inputs/wells (theme.color.surface.sunken) */
   --fill-transparent-elevate: light-dark(var(--color-alpha-dark-10), var(--color-alpha-light-10));
   --fill-transparent-emphasis: light-dark(var(--color-alpha-dark-5), var(--color-alpha-light-5));
   --fill-transparent-obsure: light-dark(var(--color-alpha-dark-30), var(--color-alpha-light-30));
@@ -342,7 +354,10 @@
   --ink-brand: light-dark(var(--color-brand-main-70), var(--color-brand-main-40)); /** Hyperlink text color (theme.color.content.link) */
   --ink-disabled: light-dark(var(--color-neutral-cool-50), var(--color-neutral-cool-60)); /** Disabled-state text/icon color (theme.color.content.disabled) */
   --ink-high: light-dark(var(--color-neutral-cool-100), var(--color-pure-white)); /** High-emphasis text/icon color (theme.color.content.high) */
-  --ink-inverse: light-dark(var(--color-pure-white), var(--color-neutral-cool-100)); /** Text/icon color on inverse/dark surfaces (theme.color.content.inverse) */
+  --ink-inverse: light-dark(
+    var(--color-pure-white),
+    var(--color-neutral-cool-100)
+  ); /** Text/icon color on inverse/dark surfaces (theme.color.content.inverse) */
   --ink-link: light-dark(var(--color-brand-main-60), var(--color-brand-main-50)); /** Hyperlink text color (theme.color.content.link) */
   --ink-low: light-dark(var(--color-neutral-cool-60), var(--color-neutral-cool-50)); /** Low-emphasis text/icon color (theme.color.content.low) */
   --ink-medium: light-dark(var(--color-neutral-cool-70), var(--color-neutral-cool-40)); /** Medium-emphasis text/icon color (theme.color.content.medium) */
@@ -369,21 +384,36 @@
   --status-info-faint: light-dark(var(--color-system-info-10), var(--color-system-info-100)); /** Info background tint (theme.color.info.subtle) */
   --status-info-strong: var(--color-system-info-70);
   --status-info-subtle: light-dark(var(--color-system-info-50), var(--color-system-info-60));
-  --status-neutral-deep: light-dark(var(--color-neutral-cool-80), var(--color-neutral-warm-30)); /** Neutral solid/strong emphasis (theme.color.neutral.strong) */
+  --status-neutral-deep: light-dark(
+    var(--color-neutral-cool-80),
+    var(--color-neutral-warm-30)
+  ); /** Neutral solid/strong emphasis (theme.color.neutral.strong) */
   --status-neutral-default: light-dark(var(--color-neutral-cool-60), var(--color-neutral-warm-60)); /** Neutral color (theme.color.neutral.default) */
   --status-neutral-faint: light-dark(var(--color-neutral-cool-10), var(--color-neutral-warm-100)); /** Neutral background tint (theme.color.neutral.subtle) */
   --status-neutral-strong: light-dark(var(--color-neutral-cool-70), var(--color-neutral-warm-40));
   --status-neutral-subtle: light-dark(var(--color-neutral-cool-50), var(--color-neutral-warm-60));
   --status-success-deep: var(--color-system-positive-80); /** Success solid/strong emphasis (theme.color.success.strong) */
   --status-success-default: var(--color-system-positive-60); /** Success color (theme.color.success.default) */
-  --status-success-faint: light-dark(var(--color-system-positive-10), var(--color-system-positive-100)); /** Success background tint (theme.color.success.subtle) */
+  --status-success-faint: light-dark(
+    var(--color-system-positive-10),
+    var(--color-system-positive-100)
+  ); /** Success background tint (theme.color.success.subtle) */
   --status-success-strong: var(--color-system-positive-70);
   --status-success-subtle: light-dark(var(--color-system-positive-50), var(--color-system-positive-70));
   --status-warning-deep: light-dark(var(--color-system-warning-80), var(--color-system-warning-40)); /** Warning color (theme.color.warning.default) */
   --status-warning-default: light-dark(var(--color-system-warning-60), var(--color-system-warning-50)); /** Warning color (theme.color.warning.default) */
-  --status-warning-faint: light-dark(var(--color-system-warning-10), var(--color-system-warning-100)); /** Warning background tint (theme.color.warning.subtle) */
-  --status-warning-strong: light-dark(var(--color-system-warning-70), var(--color-system-warning-40)); /** Warning background tint (theme.color.warning.subtle) */
-  --status-warning-subtle: light-dark(var(--color-system-warning-50), var(--color-system-warning-70)); /** Warning background tint (theme.color.warning.subtle) */
+  --status-warning-faint: light-dark(
+    var(--color-system-warning-10),
+    var(--color-system-warning-100)
+  ); /** Warning background tint (theme.color.warning.subtle) */
+  --status-warning-strong: light-dark(
+    var(--color-system-warning-70),
+    var(--color-system-warning-40)
+  ); /** Warning background tint (theme.color.warning.subtle) */
+  --status-warning-subtle: light-dark(
+    var(--color-system-warning-50),
+    var(--color-system-warning-70)
+  ); /** Warning background tint (theme.color.warning.subtle) */
 }
 
 :where(:root, [data-primitives], [data-palette]) {
@@ -443,13 +473,17 @@
   --foreground-inverse: var(--ink-inverse); /** Text/icon color for use on dark or inverse-colored surfaces */
   --foreground-link: var(--ink-link); /** Color for hyperlinks and other clickable inline text */
   --foreground-on-light: var(--ink-always-blank); /** Text/icon color on fills that stay light in every mode. Near-black in every mode. */
-  --foreground-on-strong: var(--ink-always-white); /** Text/icon color on strong, saturated fills (feedback background/strong, selected controls). White in every mode. */
+  --foreground-on-strong: var(
+    --ink-always-white
+  ); /** Text/icon color on strong, saturated fills (feedback background/strong, selected controls). White in every mode. */
   --foreground-primary: var(--ink-high); /** The default color for body text and primary icons, used as the highest-emphasis content color. */
   --foreground-secondary: var(--ink-medium); /** Lower-emphasis text/icon color, e.g. captions or supporting copy */
   --foreground-success: var(--status-success-default); /** Text/icon color that communicates success */
   --foreground-tertiary: var(--ink-low); /** Lowest-emphasis text/icon color, e.g. placeholders or metadata */
   --foreground-warning: var(--status-warning-default); /** Text/icon color that communicates a warning */
-  --interactive-destructive-background-default: var(--status-error-default); /** Default state for a destructive interactive element, signaling a harmful or irreversible action such as Delete. */
+  --interactive-destructive-background-default: var(
+    --status-error-default
+  ); /** Default state for a destructive interactive element, signaling a harmful or irreversible action such as Delete. */
   --interactive-destructive-background-disabled: var(--fill-disabled); /** Disabled state for a destructive interactive element. */
   --interactive-destructive-background-focused: var(--status-error-default); /** Focused state for a destructive interactive element. */
   --interactive-destructive-background-hover: var(--status-error-strong); /** Hover state for a destructive interactive element. */
@@ -459,9 +493,15 @@
   --interactive-destructive-border-disabled: var(--line-subtle); /** Disabled-state border for a destructive interactive element. */
   --interactive-destructive-border-hover: var(--status-error-strong); /** Hover-state border for a destructive interactive element. */
   --interactive-destructive-border-pressed: var(--status-error-deep); /** Pressed-state border for a destructive interactive element. */
-  --interactive-destructive-foreground-default: var(--brand-primary-on); /** Default-state text/icon color on a destructive interactive element&#39;s background. */
-  --interactive-destructive-foreground-disabled: var(--ink-disabled); /** Disabled-state text/icon color on a destructive interactive element&#39;s background. */
-  --interactive-ghost-background-default: var(--status-ghost-default); /** Default state for a ghost interactive element, minimal in styling with no fill, for low-emphasis actions. */
+  --interactive-destructive-foreground-default: var(
+    --brand-primary-on
+  ); /** Default-state text/icon color on a destructive interactive element&#39;s background. */
+  --interactive-destructive-foreground-disabled: var(
+    --ink-disabled
+  ); /** Disabled-state text/icon color on a destructive interactive element&#39;s background. */
+  --interactive-ghost-background-default: var(
+    --status-ghost-default
+  ); /** Default state for a ghost interactive element, minimal in styling with no fill, for low-emphasis actions. */
   --interactive-ghost-background-disabled: var(--status-ghost-default); /** Disabled state for a ghost interactive element. */
   --interactive-ghost-background-focused: var(--status-ghost-default); /** Focused state for a ghost interactive element. */
   --interactive-ghost-background-hover: var(--status-ghost-faint); /** Hover state for a ghost interactive element. */
@@ -484,8 +524,12 @@
   --interactive-inverse-border-hover: var(--fill-inverse-sunken); /** Hover-state border for an inverse-surface interactive element. */
   --interactive-inverse-border-pressed: var(--fill-inverse-elevated); /** Pressed-state border for an inverse-surface interactive element. */
   --interactive-inverse-foreground-default: var(--ink-inverse); /** Default-state text/icon color on an inverse-surface interactive element&#39;s background. */
-  --interactive-inverse-foreground-disabled: var(--ink-disabled); /** Disabled-state text/icon color on an inverse-surface interactive element&#39;s background. */
-  --interactive-neutral-background-default: var(--fill-default); /** Default state for a neutral, general-purpose interactive element with no semantic meaning. */
+  --interactive-inverse-foreground-disabled: var(
+    --ink-disabled
+  ); /** Disabled-state text/icon color on an inverse-surface interactive element&#39;s background. */
+  --interactive-neutral-background-default: var(
+    --fill-default
+  ); /** Default state for a neutral, general-purpose interactive element with no semantic meaning. */
   --interactive-neutral-background-disabled: var(--fill-disabled); /** Disabled state for a neutral interactive element. */
   --interactive-neutral-background-focused: var(--fill-default); /** Focused state for a neutral interactive element. */
   --interactive-neutral-background-hover: var(--fill-canvas); /** Hover state for a neutral interactive element. */
@@ -497,19 +541,29 @@
   --interactive-neutral-border-pressed: var(--line-strong); /** Pressed-state border for a neutral interactive element. */
   --interactive-neutral-foreground-default: var(--ink-high); /** Default-state text/icon color on a neutral interactive element&#39;s background. */
   --interactive-neutral-foreground-disabled: var(--ink-disabled); /** Disabled-state text/icon color on a neutral interactive element&#39;s background. */
-  --interactive-positive-background-default: var(--status-success-default); /** Default state for a high-emphasis interactive element used for a positive confirmation action, such as Approve, Confirm, or Complete. */
+  --interactive-positive-background-default: var(
+    --status-success-default
+  ); /** Default state for a high-emphasis interactive element used for a positive confirmation action, such as Approve, Confirm, or Complete. */
   --interactive-positive-background-disabled: var(--fill-disabled); /** Disabled state for a high-emphasis positive-confirmation interactive element. */
   --interactive-positive-background-focused: var(--status-success-default); /** Focused state for a high-emphasis positive-confirmation interactive element. */
   --interactive-positive-background-hover: var(--status-success-strong); /** Hover state for a high-emphasis positive-confirmation interactive element. */
   --interactive-positive-background-pressed: var(--status-success-deep); /** Pressed state for a high-emphasis positive-confirmation interactive element. */
   --interactive-positive-background-selected: var(--status-success-deep); /** Selected state for a high-emphasis positive-confirmation interactive element. */
-  --interactive-positive-border-default: var(--status-success-default); /** Default-state border for a high-emphasis positive-confirmation interactive element. */
+  --interactive-positive-border-default: var(
+    --status-success-default
+  ); /** Default-state border for a high-emphasis positive-confirmation interactive element. */
   --interactive-positive-border-disabled: var(--line-subtle); /** Disabled-state border for a high-emphasis positive-confirmation interactive element. */
   --interactive-positive-border-hover: var(--status-success-strong); /** Hover-state border for a high-emphasis positive-confirmation interactive element. */
   --interactive-positive-border-pressed: var(--status-success-deep); /** Pressed-state border for a high-emphasis positive-confirmation interactive element. */
-  --interactive-positive-foreground-default: var(--brand-primary-on); /** Default-state text/icon color on a high-emphasis positive-confirmation interactive element&#39;s background. */
-  --interactive-positive-foreground-disabled: var(--ink-disabled); /** Disabled-state text/icon color on a high-emphasis positive-confirmation interactive element&#39;s background. */
-  --interactive-primary-background-default: var(--brand-primary-default); /** Default state for the primary interactive element, the main and highest-emphasis action or control on a screen. */
+  --interactive-positive-foreground-default: var(
+    --brand-primary-on
+  ); /** Default-state text/icon color on a high-emphasis positive-confirmation interactive element&#39;s background. */
+  --interactive-positive-foreground-disabled: var(
+    --ink-disabled
+  ); /** Disabled-state text/icon color on a high-emphasis positive-confirmation interactive element&#39;s background. */
+  --interactive-primary-background-default: var(
+    --brand-primary-default
+  ); /** Default state for the primary interactive element, the main and highest-emphasis action or control on a screen. */
   --interactive-primary-background-disabled: var(--fill-disabled); /** Disabled state for the primary interactive element. */
   --interactive-primary-background-focused: var(--brand-primary-default); /** Focused state for the primary interactive element. */
   --interactive-primary-background-hover: var(--brand-primary-strong); /** Hover state for the primary interactive element. */
@@ -521,7 +575,9 @@
   --interactive-primary-border-pressed: var(--brand-primary-deep); /** Pressed-state border for the primary interactive element. */
   --interactive-primary-foreground-default: var(--brand-primary-on); /** Default-state text/icon color on the primary interactive element&#39;s background. */
   --interactive-primary-foreground-disabled: var(--ink-disabled); /** Disabled-state text/icon color on the primary interactive element&#39;s background. */
-  --interactive-secondary-background-default: var(--brand-secondary-default); /** Default state for a secondary interactive element, an alternative and less prominent action alongside primary. */
+  --interactive-secondary-background-default: var(
+    --brand-secondary-default
+  ); /** Default state for a secondary interactive element, an alternative and less prominent action alongside primary. */
   --interactive-secondary-background-disabled: var(--fill-disabled); /** Disabled state for a secondary interactive element. */
   --interactive-secondary-background-focused: var(--brand-secondary-default); /** Focused state for a secondary interactive element. */
   --interactive-secondary-background-hover: var(--brand-secondary-strong); /** Hover state for a secondary interactive element. */
@@ -531,7 +587,9 @@
   --interactive-secondary-border-disabled: var(--line-subtle); /** Disabled-state border for a secondary interactive element. */
   --interactive-secondary-border-hover: var(--brand-secondary-strong); /** Hover-state border for a secondary interactive element. */
   --interactive-secondary-border-pressed: var(--brand-secondary-deep); /** Pressed-state border for a secondary interactive element. */
-  --interactive-secondary-foreground-default: var(--brand-secondary-on); /** Default-state text/icon color on a secondary interactive element&#39;s background. */
+  --interactive-secondary-foreground-default: var(
+    --brand-secondary-on
+  ); /** Default-state text/icon color on a secondary interactive element&#39;s background. */
   --interactive-secondary-foreground-disabled: var(--ink-disabled); /** Disabled-state text/icon color on a secondary interactive element&#39;s background. */
   --interactive-selection-background-default: var(--ink-low); /** Default state for a neutral, general-purpose interactive element with no semantic meaning. */
   --interactive-selection-background-disabled: var(--fill-disabled); /** Disabled state for a neutral interactive element. */
@@ -545,7 +603,9 @@
   --interactive-selection-border-pressed: var(--line-selection); /** Pressed-state border for a neutral interactive element. */
   --interactive-selection-foreground-default: var(--ink-high); /** Default-state text/icon color on a neutral interactive element&#39;s background. */
   --interactive-selection-foreground-disabled: var(--ink-disabled); /** Disabled-state text/icon color on a neutral interactive element&#39;s background. */
-  --interactive-subtle-background-default: var(--brand-primary-faint); /** Default state for a subtle interactive element, quieter in emphasis than secondary. */
+  --interactive-subtle-background-default: var(
+    --brand-primary-faint
+  ); /** Default state for a subtle interactive element, quieter in emphasis than secondary. */
   --interactive-subtle-background-disabled: var(--fill-disabled); /** Disabled state for a subtle interactive element. */
   --interactive-subtle-background-focused: var(--brand-primary-faint); /** Focused state for a subtle interactive element. */
   --interactive-subtle-background-hover: var(--brand-primary-muted); /** Hover state for a subtle interactive element. */
@@ -770,7 +830,8 @@
   --heading-large: var(--heading-large-font-weight) var(--heading-large-font-size)/var(--heading-large-line-height) var(--heading-large-font-family);
   --heading-medium: var(--heading-medium-font-weight) var(--heading-medium-font-size)/var(--heading-medium-line-height) var(--heading-medium-font-family);
   --heading-small: var(--heading-small-font-weight) var(--heading-small-font-size)/var(--heading-small-line-height) var(--heading-small-font-family);
-  --indicator-medium: var(--indicator-medium-font-weight) var(--indicator-medium-font-size)/var(--indicator-medium-line-height) var(--indicator-medium-font-family);
+  --indicator-medium: var(--indicator-medium-font-weight) var(--indicator-medium-font-size)/var(--indicator-medium-line-height)
+    var(--indicator-medium-font-family);
   --indicator-small: var(--indicator-small-font-weight) var(--indicator-small-font-size)/var(--indicator-small-line-height) var(--indicator-small-font-family);
   --label-large: var(--label-large-font-weight) var(--label-large-font-size)/var(--label-large-line-height) var(--label-large-font-family);
   --label-medium: var(--label-medium-font-weight) var(--label-medium-font-size)/var(--label-medium-line-height) var(--label-medium-font-family);
