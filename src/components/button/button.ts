@@ -46,6 +46,8 @@ export class ZetaButton extends Flavored(BaseButton) {
    * - `"subtle"` - White background with grey text. Same action colors as 'text' flavor.
    * - `"gradient"` - Gradient background.
    * - `"text-gradient"` - Gradient text and icons with no background.
+   * - `"contrast"` - (Experimental) Strongest neutral against the page: near-black background in light mode, near-white in dark.
+   * - `"outline-contrast"` - (Experimental) Near-black outline and text in light mode, near-white in dark. Pairs with `"contrast"`.
    * - `"custom"` - Custom color background with custom color icon and text applied using css properties.
    *
    * @remarks The value `"secondary"` is no longer supported and should not be used.

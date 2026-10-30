@@ -3,12 +3,12 @@ import type { ZetaButton } from "../../components/button/button.js";
 import "../../components/button/button.js";
 import "../../index.css";
 import "@zebra-fed/zeta-icons/index.css";
-import { getCssVarValue } from "../utils.js";
+import { getCssVarColorValue, getCssVarValue } from "../utils.js";
 import { contrastTest } from "../accessibility-utils/accessibility-test-runner.js";
 
 const buttonText = "Button";
 const sizes = ["small", "medium", "large"];
-const flavors = ["primary", "positive", "negative", "outline", "outline-subtle", "text", "subtle"];
+const flavors = ["primary", "positive", "negative", "outline", "outline-subtle", "text", "subtle", "contrast", "outline-contrast"];
 
 const px = (el: Element, token: string) => parseFloat(getCssVarValue(el, token));
 
@@ -33,7 +33,9 @@ describe("zeta-button", () => {
           await elementUpdated(subject);
 
           const buttonEl = subject.shadowRoot!.querySelector("button")!;
-          await contrastTest(`Button ${flavor} ${size}`, buttonEl, buttonEl);
+          // outline-contrast has a transparent fill, so measure it against the surface it sits on.
+          subject.parentElement!.style.backgroundColor = "var(--fill-default)";
+          await contrastTest(`Button ${flavor} ${size}`, buttonEl, flavor === "outline-contrast" ? subject.parentElement! : buttonEl);
         });
       });
     });
@@ -103,6 +105,23 @@ describe("zeta-button", () => {
         expect(buttonWithIcons.width).to.be.closeTo(expectedWidth + 2 * (px(subject, "--control-icon-md") + px(subject, gap)), 1);
       });
     });
+
+    ["small", "medium", "large"].forEach(size => {
+      [
+        { name: "no icons", attrs: "" },
+        { name: "icons on both sides", attrs: 'leadingIcon="star" trailingIcon="star"' }
+      ].forEach(({ name, attrs }) => {
+        it(`text-gradient is the same size as primary at ${size} with ${name}`, async () => {
+          const primary = await createComponent(`<zeta-button size="${size}" ${attrs}>${buttonText}</zeta-button>`);
+          const gradient = await createComponent(`<zeta-button flavor="text-gradient" size="${size}" ${attrs}>${buttonText}</zeta-button>`);
+
+          const expected = primary.getBoundingClientRect();
+          const actual = gradient.getBoundingClientRect();
+          expect(actual.width).to.be.closeTo(expected.width, 0.5);
+          expect(actual.height).to.equal(expected.height);
+        });
+      });
+    });
   });
 
   describe("Styling", () => {
@@ -121,6 +140,17 @@ describe("zeta-button", () => {
     ].forEach(({ flavor, token }) => {
       it(`should apply ${token} as the icon color for ${flavor} flavor`, () =>
         iconColor(`<zeta-button flavor="${flavor}" leadingIcon="add">${buttonText}</zeta-button>`, token));
+    });
+
+    [
+      { flavor: "contrast", token: "--interactive-inverse-background-default" },
+      { flavor: "outline-contrast", token: "--interactive-ghost-background-default" }
+    ].forEach(({ flavor, token }) => {
+      it(`should use ${token} as the background for the ${flavor} flavor`, async () => {
+        const button = await createComponent(`<zeta-button flavor="${flavor}">${buttonText}</zeta-button>`);
+        const buttonEl = button.shadowRoot!.querySelector("button")!;
+        expect(getComputedStyle(buttonEl).backgroundColor).to.equal(getCssVarColorValue(button, token));
+      });
     });
 
     [

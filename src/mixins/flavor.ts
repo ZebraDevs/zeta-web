@@ -4,7 +4,7 @@ import { property } from "lit/decorators.js";
 import styles from "./flavor.styles.js";
 
 export type Flavor =
-  "primary" | "positive" | "negative" | "outline" | "outline-subtle" | "text" | "inverse" | "subtle" | "gradient" | "text-gradient" | "custom";
+  "primary" | "positive" | "negative" | "outline" | "outline-subtle" | "text" | "inverse" | "subtle" | "gradient" | "text-gradient" | "contrast" | "outline-contrast" | "custom";
 
 export type ButtonFlavor = Exclude<Flavor, "inverse" | "ghost" | "default">;
 export type FabFlavor = Extract<Flavor, "primary" | "secondary" | "inverse">;
@@ -43,6 +43,8 @@ export const Flavored = <T extends Constructor<LitElement>>(superClass: T) => {
      * * subtle - white background with grey text. Same action colors as 'text' flavor.
      * * gradient - gradient background.
      * * text-gradient - gradient text/icon with no background.
+     * * contrast - (Experimental) near-black background in light mode, near-white in dark. Only supported by buttons.
+     * * outline-contrast - (Experimental) near-black outline and text in light mode, near-white in dark. Only supported by buttons.
      * * custom - custom color background with custom color text/icon.
      *
      * @remarks The value `"secondary"` is no longer supported and should not be used.
