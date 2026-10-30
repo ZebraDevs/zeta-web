@@ -323,7 +323,7 @@
   --fill-default: light-dark(var(--color-pure-white), var(--color-neutral-cool-100)); /** Standard component/card background (theme.color.surface.default) */
   --fill-disabled: light-dark(var(--color-neutral-cool-30), var(--color-neutral-cool-80));
   --fill-elevated: light-dark(
-    var(--color-pure-white),
+    var(--color-neutral-cool-10),
     var(--color-neutral-cool-100)
   ); /** Raised surface background, pair with elevation shadow (theme.color.surface.elevated) */
   --fill-hover: light-dark(var(--color-neutral-cool-70), var(--color-neutral-cool-40));
