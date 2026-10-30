@@ -65,6 +65,7 @@
     "storybook": "cem analyze && storybook dev -p 6006",
     "test:count": "npx tsx scripts/test/test_counter.ts",
     "test:package": "cd test && yarn run dev",
+    "test:file": "web-test-runner --node-resolve --config src/test/web-test-runner.config.*",
     "test:watch": "web-test-runner \"src/test/**/*.test.ts\" --node-resolve --watch --config src/test/web-test-runner.config.*",
     "test": "web-test-runner \"src/test/**/*.test.ts\" --node-resolve --config src/test/web-test-runner.config.*"
   },
