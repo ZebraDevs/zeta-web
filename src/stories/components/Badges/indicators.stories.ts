@@ -42,7 +42,7 @@ export const IconIndicator: StoryObj = {
     text: { table: { disable: true } }
   },
   args: {
-    icon: "alarm"
+    icon: "clock"
   },
   render: args => html` <zeta-icon-indicator ${spread(args)}> </zeta-icon-indicator>`
 };

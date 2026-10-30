@@ -10,17 +10,23 @@ export default css`
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    gap: var(--space-sm);
+    box-sizing: border-box;
+    height: var(--scale-10);
     border-radius: var(--radius-none);
-    padding: var(--stroke-thin) calc(var(--space-sm) - var(--stroke-thin));
+    padding: var(--space-2xs) var(--space-xxs);
     border: var(--stroke-thin) solid;
 
     > [part="icon-container"] {
-      max-height: var(--space-lg);
-      --icon-size: var(--space-lg);
+      width: var(--control-icon-sm);
+      height: var(--control-icon-sm);
+      --icon-size: var(--control-icon-sm);
       zeta-icon {
-        width: var(--space-lg);
-        height: var(--space-lg);
+        width: var(--control-icon-sm);
+        height: var(--control-icon-sm);
+      }
+      svg {
+        width: var(--control-icon-xxs);
+        height: var(--control-icon-xxs);
       }
     }
     > [part="icon-container"],
@@ -31,8 +37,8 @@ export default css`
     }
     > [part="text"] {
       color: var(--foreground-primary);
-      font: var(--body-medium);
-      height: var(--space-xl);
+      font: var(--body-small);
+      padding: 0 var(--space-xxs);
     }
   }
   :host([rounded]) > [part="container"] {
@@ -43,35 +49,35 @@ export default css`
   :host([status="neutral"]) > [part="container"],
   :host([status="neutral"]) > [part="container"] svg {
     border-color: var(--border-default);
-    background: var(--border-subtle);
-    fill: var(--foreground-secondary);
-    --icon-color: var(--foreground-secondary);
+    background: var(--feedback-neutral-background-subtle);
+    fill: var(--foreground-primary);
+    --icon-color: var(--foreground-primary);
   }
   :host([status="info"]) > [part="container"],
   :host([status="info"]) > [part="container"] svg {
     border-color: var(--border-info);
-    background: var(--surface-info);
+    background: var(--feedback-info-background-subtle);
     fill: var(--foreground-info);
     --icon-color: var(--foreground-info);
   }
   :host([status="positive"]) > [part="container"],
   :host([status="positive"]) > [part="container"] svg {
     border-color: var(--border-success);
-    background: var(--surface-success);
+    background: var(--feedback-success-background-subtle);
     fill: var(--foreground-success);
     --icon-color: var(--foreground-success);
   }
   :host([status="warning"]) > [part="container"],
   :host([status="warning"]) > [part="container"] svg {
     border-color: var(--border-warning);
-    background: var(--surface-warning);
+    background: var(--feedback-warning-background-subtle);
     fill: var(--foreground-warning);
     --icon-color: var(--foreground-warning);
   }
   :host([status="negative"]) > [part="container"],
   :host([status="negative"]) > [part="container"] svg {
     border-color: var(--border-error);
-    background: var(--surface-error);
+    background: var(--feedback-error-background-subtle);
     fill: var(--foreground-error);
     --icon-color: var(--foreground-error);
   }

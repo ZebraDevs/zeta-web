@@ -7,8 +7,8 @@ import { Contourable } from "../../../mixins/mixins.js";
  *
  * @slot - Main text of the priority pill.
  *
- * @cssproperty --priority-pill-index-background-color - Color of the index character.
- * @cssproperty --priority-pill-index-text-color - Background color of the index.
+ * @cssproperty --priority-pill-index-background-color - Background color of the index circle.
+ * @cssproperty --priority-pill-index-text-color - Color of the index character.
  * @cssproperty --priority-pill-text-color - Color of the text.
  * @cssproperty --priority-pill-background-color - Background color of the pill.
  *
@@ -43,7 +43,7 @@ export class ZetaPriorityPill extends Contourable(LitElement) {
   /** Type of the priority pill
    *
    * Lozenge shows the whole badge, including the text, while badge only shows the index character.  */
-  @property({ type: String }) type: "badge" | "lozenge" = "lozenge";
+  @property({ type: String, reflect: true }) type: "badge" | "lozenge" = "lozenge";
 
   static styles = [styles, super.styles ?? []];
 

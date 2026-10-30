@@ -28,6 +28,16 @@ export const getCssVarValue = (el: Element, cssVarName: string): string => {
 };
 
 /**
+ * Retrieves the numeric pixel value of a CSS length variable from an element.
+ * @param el - The element to get the CSS variable value from.
+ * @param cssVarName - The name of the CSS variable, e.g. `--space-xxs`.
+ * @returns The value in px as a number.
+ */
+export const getCssVarPxValue = (el: Element, cssVarName: string): number => {
+  return parseFloat(getCssVarValue(el, cssVarName));
+};
+
+/**
  * Retrieves the RGB representation of a CSS variable color from an element.
  * @param el - The element to get the CSS variable color from.
  * @param cssVarName - The name of the CSS variable.

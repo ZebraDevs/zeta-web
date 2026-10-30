@@ -21,6 +21,7 @@ import "../../icon/icon.js";
 export class ZetaIndicator extends Size(Contourable(LitElement)) {
   /**
    * Icon to be shown on icon type indicator.
+   * Defaults to a clock glyph when unset and nothing is slotted.
    *
    * Full list of icons can be found at {@link https://design.zebra.com/icons Zeta Icons}.
    */
@@ -42,8 +43,10 @@ export class ZetaIndicator extends Size(Contourable(LitElement)) {
   static styles = [super.styles ?? [], styles];
 
   private getBody(value?: string | number) {
-    if (this.type == "icon" && this.icon) {
-      return html`<zeta-icon .name=${this.icon} .rounded=${this.rounded}></zeta-icon> `;
+    if (this.type == "icon") {
+      return this.icon
+        ? html`<zeta-icon .name=${this.icon} .rounded=${this.rounded}></zeta-icon> `
+        : html`<slot><zeta-icon name="clock" .rounded=${this.rounded}></zeta-icon></slot>`;
     } else if (this.type === "notification" && value) {
       return html`<span>${value}</span>`;
     }
@@ -55,20 +58,23 @@ export class ZetaIndicator extends Size(Contourable(LitElement)) {
 
     let value: number | string | undefined = this.value;
 
+    // Small notification is a dot with no count.
+    const isDot = this.type === "notification" && this.size === "small";
+
     if (this.type === "notification" && this.value && !isNaN(Number(this.value))) {
       const num = Math.abs(this.value);
       if (num > 99) {
         value = "99+";
       }
-      if (num > 9) {
+      if (num > 9 && !isDot) {
         enforcedSize = "large";
       }
     }
-    return html`<div class="container ${enforcedSize}">${this.size !== "small" ? this.getBody(value) : ""}</div> `;
+    return html`<div class="container ${enforcedSize}">${isDot ? "" : this.getBody(value)}</div> `;
   }
 }
 
-/** Indicator with error red background, and an icon foreground. */
+/** Indicator with a secondary foreground background, and an icon foreground. */
 @customElement("zeta-icon-indicator")
 export class ZetaIconIndicator extends ZetaIndicator {
   constructor() {
@@ -77,7 +83,7 @@ export class ZetaIconIndicator extends ZetaIndicator {
   }
 }
 
-/** Indicator with primary blue background and text / number foreground. */
+/** Indicator with destructive red background and text / number foreground. */
 @customElement("zeta-notification-indicator")
 export class ZetaNotificationIndicator extends ZetaIndicator {
   constructor() {
