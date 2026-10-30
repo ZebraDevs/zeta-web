@@ -1,6 +1,6 @@
 import { fixture, html, expect, elementUpdated, unsafeStatic } from "@open-wc/testing";
 import type { ZetaIconButton } from "../../components/button/icon-button/icon-button.js";
-import { getCssVarColorValue, toRGB, getSlotText } from "../utils.js";
+import { getCssVarColorValue, getCssVarValue, toRGB, getSlotText } from "../utils.js";
 import "../../components/button/icon-button/icon-button.js";
 import "../../index.css";
 import { contrastTest } from "../accessibility-utils/accessibility-test-runner.js";
@@ -21,183 +21,89 @@ describe("zeta-icon-button", () => {
   });
 
   describe("Accessibility", () => {
-    flavors.map(flavor => {
+    flavors.forEach(flavor => {
       it(`meets contrast requirements for the ${flavor} flavor`, async () => {
         subject.setAttribute("flavor", flavor);
         await elementUpdated(subject);
-        // Check color contrast between text and background
-        const buttonEl = subject.shadowRoot?.querySelector("button");
-        if (buttonEl) {
-          await contrastTest(`Button ${flavor} `, buttonEl, buttonEl);
-        }
+
+        const buttonEl = subject.shadowRoot!.querySelector("button")!;
+        await contrastTest(`Button ${flavor} `, buttonEl, buttonEl);
       });
-      it(`meets aria requirements for the ${flavor} flavor`, async () => {
-        await expect(subject).to.be.accessible();
-        await expect(subject).shadowDom.to.be.accessible();
-      });
+    });
+
+    it("meets aria requirements", async () => {
+      await expect(subject).to.be.accessible();
+      await expect(subject).shadowDom.to.be.accessible();
     });
   });
 
   describe("Content", () => {
-    it("should render the correct icon", async () => {
-      const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button>${iconName}</zeta-icon-button>`);
-
-      await expect(getSlotText(iconButton.shadowRoot!.querySelector("zeta-icon")!)).to.equal(iconName);
+    it("should render the correct icon", () => {
+      expect(getSlotText(subject.shadowRoot!.querySelector("zeta-icon")!)).to.equal(iconName);
     });
   });
 
   describe("Dimensions", () => {
-    it("renders small button with correct dimensions", async () => {
-      subject.setAttribute("icon", "star");
-      subject.setAttribute("size", "small");
-      await elementUpdated(subject);
+    [
+      { size: "small", token: "--control-sm" },
+      { size: "medium", token: "--control-md" },
+      { size: "large", token: "--control-lg" }
+    ].forEach(({ size, token }) => {
+      it(`renders ${size} button with correct dimensions`, async () => {
+        subject.setAttribute("size", size);
+        await elementUpdated(subject);
 
-      const iconButton = subject.getBoundingClientRect();
-
-      await expect(iconButton.height).to.equal(28);
-      await expect(iconButton.width).to.equal(28);
-    });
-    it("renders medium button with correct dimensions", async () => {
-      subject.setAttribute("icon", "star");
-      subject.setAttribute("size", "medium");
-      await elementUpdated(subject);
-
-      const iconButton = subject.getBoundingClientRect();
-
-      await expect(iconButton.height).to.equal(40);
-      await expect(iconButton.width).to.equal(40);
-    });
-    it("renders large button with correct dimensions", async () => {
-      subject.setAttribute("icon", "star");
-      subject.setAttribute("size", "large");
-      await elementUpdated(subject);
-
-      const iconButton = subject.getBoundingClientRect();
-
-      await expect(iconButton.height).to.equal(48);
-      await expect(iconButton.width).to.equal(48);
+        const expected = parseFloat(getCssVarValue(subject, token));
+        const iconButton = subject.getBoundingClientRect();
+        expect(iconButton.height).to.equal(expected);
+        expect(iconButton.width).to.equal(expected);
+      });
     });
   });
 
   describe("Styling", () => {
-    it("should display correct icon color when disabled by default", async () => {
-      const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button>${iconName}</zeta-icon-button>`);
-      iconButton.setAttribute("disabled", "true");
-      await elementUpdated(iconButton);
-      const icon: Element | null | undefined = iconButton.shadowRoot?.querySelector("zeta-icon");
-      await expect(getComputedStyle(icon!).color).to.equal(getCssVarColorValue(icon!, "--main-disabled"));
-    });
+    [
+      { flavor: "primary", attrs: "disabled", icon: "--interactive-primary-foreground-disabled" },
+      { flavor: "primary", attrs: "", icon: "--interactive-primary-foreground-default", background: "--interactive-primary-background-default" },
+      { flavor: "positive", attrs: "", icon: "--interactive-primary-foreground-default", background: "--interactive-positive-background-default" },
+      { flavor: "negative", attrs: "", icon: "--interactive-primary-foreground-default", background: "--interactive-destructive-background-default" },
+      { flavor: "outline", attrs: "", icon: "--interactive-ghost-foreground-default", background: "--interactive-neutral-background-default" },
+      { flavor: "text", attrs: "", icon: "--interactive-ghost-foreground-default", background: "--interactive-neutral-background-default" },
+      { flavor: "outline-subtle", attrs: "", icon: "--interactive-neutral-foreground-default", background: "--interactive-neutral-background-default" },
+      { flavor: "subtle", attrs: "", icon: "--interactive-neutral-foreground-default", background: "--interactive-neutral-background-default" }
+    ].forEach(({ flavor, attrs, icon, background }) => {
+      const state = attrs || "enabled";
 
-    it("should display correct icon color for primary flavor", async () => {
-      const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button flavor="primary">${iconName}</zeta-icon-button>`);
-      await elementUpdated(iconButton);
-      const icon: Element | null | undefined = iconButton.shadowRoot?.querySelector("zeta-icon");
-      await expect(getComputedStyle(icon!).color).to.equal(getCssVarColorValue(icon!, "--state-default-enabled"));
-    });
-
-    it("should display correct icon color for positive flavor", async () => {
-      const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button flavor="positive">${iconName}</zeta-icon-button>`);
-      await elementUpdated(iconButton);
-      const icon: Element | null | undefined = iconButton.shadowRoot?.querySelector("zeta-icon");
-      await expect(getComputedStyle(icon!).color).to.equal(getCssVarColorValue(icon!, "--state-default-enabled"));
-    });
-
-    it("should display correct icon color for negative flavor", async () => {
-      const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button flavor="negative">${iconName}</zeta-icon-button>`);
-      await elementUpdated(iconButton);
-      const icon: Element | null | undefined = iconButton.shadowRoot?.querySelector("zeta-icon");
-      await expect(getComputedStyle(icon!).color).to.equal(getCssVarColorValue(icon!, "--state-default-enabled"));
-    });
-
-    it("should display correct icon color for outline flavor", async () => {
-      const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button flavor="outline">${iconName}</zeta-icon-button>`);
-      await elementUpdated(iconButton);
-      const icon: Element | null | undefined = iconButton.shadowRoot?.querySelector("zeta-icon");
-      await expect(getComputedStyle(icon!).color).to.equal(getCssVarColorValue(icon!, "--main-primary"));
-    });
-
-    it("should display correct icon color for text flavor", async () => {
-      const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button flavor="text">${iconName}</zeta-icon-button>`);
-      await elementUpdated(iconButton);
-      const icon: Element | null | undefined = iconButton.shadowRoot?.querySelector("zeta-icon");
-      await expect(getComputedStyle(icon!).color).to.equal(getCssVarColorValue(icon!, "--main-primary"));
-    });
-
-    it("should display correct icon color for outline-subtle flavor", async () => {
-      const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button flavor="outline-subtle">${iconName}</zeta-icon-button>`);
-      await elementUpdated(iconButton);
-      const icon: Element | null | undefined = iconButton.shadowRoot?.querySelector("zeta-icon");
-      await expect(getComputedStyle(icon!).color).to.equal(getCssVarColorValue(icon!, "--main-default"));
-    });
-
-    it("should display correct icon color for subtle flavor", async () => {
-      const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button flavor="subtle">${iconName}</zeta-icon-button>`);
-      await elementUpdated(iconButton);
-      const icon: Element | null | undefined = iconButton.shadowRoot?.querySelector("zeta-icon");
-      await expect(getComputedStyle(icon!).color).to.equal(getCssVarColorValue(icon!, "--main-subtle"));
-    });
-
-    flavors.map(flavor => {
-      it(`button should have correct background color for the ${flavor} flavor`, async () => {
-        const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button>${iconName}</zeta-icon-button>`);
-        iconButton.setAttribute("flavor", flavor);
-        const button: Element | null | undefined = iconButton.shadowRoot?.querySelector("button");
-        const buttonColor = getComputedStyle(button!).backgroundColor;
-        let finalFlavor;
-        switch (flavor) {
-          case "outline":
-          case "outline-subtle":
-          case "text":
-          case "basic":
-          case "basic-negative":
-          case "subtle":
-            finalFlavor = "--surface-default";
-            break;
-          default:
-            finalFlavor = `--state-${flavor}-enabled`;
-        }
-        await expect(buttonColor).to.equal(getCssVarColorValue(button!, finalFlavor));
+      it(`should display ${icon} as the icon color for ${flavor} flavor when ${state}`, async () => {
+        const iconButton = await createComponent(`<zeta-icon-button flavor="${flavor}" ${attrs}>${iconName}</zeta-icon-button>`);
+        const iconEl = iconButton.shadowRoot!.querySelector("zeta-icon")!;
+        expect(getComputedStyle(iconEl).color).to.equal(getCssVarColorValue(iconEl, icon));
       });
+
+      if (background) {
+        it(`button should have ${background} as the background color for the ${flavor} flavor`, async () => {
+          const iconButton = await createComponent(`<zeta-icon-button flavor="${flavor}">${iconName}</zeta-icon-button>`);
+          const buttonEl = iconButton.shadowRoot!.querySelector("button")!;
+          expect(getComputedStyle(buttonEl).backgroundColor).to.equal(getCssVarColorValue(buttonEl, background));
+        });
+      }
     });
 
-    it("should render the custom button with the correct background color via --button-color", async () => {
-      const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button flavor="custom">${iconName}</zeta-icon-button>`);
-      const testColor = "#55b7da";
-      iconButton.style.setProperty("--button-color", testColor);
-      await elementUpdated(iconButton);
-      const button: Element | null | undefined = iconButton.shadowRoot?.querySelector("button");
-      const buttonColor = getComputedStyle(button!).backgroundColor;
-      await expect(buttonColor).to.equal(toRGB(testColor));
-    });
+    [
+      { attrs: "", token: "--button-color", part: "button", property: "backgroundColor" },
+      { attrs: "disabled", token: "--button-disabled-color", part: "button", property: "backgroundColor" },
+      { attrs: "", token: "--icon-button-icon-color", part: "zeta-icon", property: "color" },
+      { attrs: "disabled", token: "--icon-button-icon-color-disabled", part: "zeta-icon", property: "color" }
+    ].forEach(({ attrs, token, part, property }) => {
+      it(`should render the custom ${part} with the correct ${property} ${attrs ? "when disabled " : ""}via ${token}`, async () => {
+        const iconButton = await createComponent(`<zeta-icon-button flavor="custom" ${attrs}>${iconName}</zeta-icon-button>`);
+        const testColor = "#55b7da";
+        iconButton.style.setProperty(token, testColor);
+        await elementUpdated(iconButton);
 
-    it("should render the custom button with the correct background color when disabled via --button-disabled-color", async () => {
-      const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button flavor="custom" disabled>${iconName}</zeta-icon-button>`);
-      const testColor = "#8e275c";
-      iconButton.style.setProperty("--button-disabled-color", testColor);
-      await elementUpdated(iconButton);
-      const button: Element | null | undefined = iconButton.shadowRoot?.querySelector("button");
-      const buttonColor = getComputedStyle(button!).backgroundColor;
-      await expect(buttonColor).to.equal(toRGB(testColor));
-    });
-
-    it("should render the custom icon with the correct color via --icon-button-icon-color", async () => {
-      const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button flavor="custom">${iconName}</zeta-icon-button>`);
-      const testColor = "#bed8e7";
-      iconButton.style.setProperty("--icon-button-icon-color", testColor);
-      await elementUpdated(iconButton);
-      const icon: Element | null | undefined = iconButton.shadowRoot?.querySelector("zeta-icon");
-      const iconColor = getComputedStyle(icon!).color;
-      await expect(iconColor).to.equal(toRGB(testColor));
-    });
-
-    it("should render the custom icon with the correct color when disabled via --icon-button-icon-color-disabled", async () => {
-      const iconButton: ZetaIconButton = await fixture(html`<zeta-icon-button flavor="custom" disabled>${iconName}</zeta-icon-button>`);
-      const testColor = "#ec90bd";
-      iconButton.style.setProperty("--icon-button-icon-color-disabled", testColor);
-      await elementUpdated(iconButton);
-      const icon: Element | null | undefined = iconButton.shadowRoot?.querySelector("zeta-icon");
-      const iconColor = getComputedStyle(icon!).color;
-      await expect(iconColor).to.equal(toRGB(testColor));
+        const el = iconButton.shadowRoot!.querySelector(part)!;
+        expect(getComputedStyle(el)[property as "color" | "backgroundColor"]).to.equal(toRGB(testColor));
+      });
     });
   });
 
@@ -211,18 +117,17 @@ describe("zeta-icon-button", () => {
 describe("zeta-icon-button AS form reset control", () => {
   const TEST_STRING = "test string";
   let button: ZetaIconButton;
-  let form: HTMLFormElement;
   let input: HTMLInputElement;
 
   beforeEach(async () => {
-    form = await fixture(
+    const form = await fixture<HTMLFormElement>(
       html`<form>
         <input type="text" name="text-control" />
         <zeta-icon-button type="reset">reset</zeta-icon-button>
       </form>`
     );
-    input = form.querySelector("input[name='text-control']") as HTMLInputElement;
-    button = form.querySelector("zeta-icon-button[type='reset']") as ZetaIconButton;
+    input = form.querySelector("input[name='text-control']")!;
+    button = form.querySelector("zeta-icon-button[type='reset']")!;
   });
 
   // describe("Accessibility", () => {});
@@ -234,30 +139,18 @@ describe("zeta-icon-button AS form reset control", () => {
   // describe("Styling", () => {});
 
   describe("Interaction", () => {
-    it("should reset forms", async () => {
-      expect(input?.value).to.be.empty;
-      input.value = TEST_STRING;
-      await expect(input?.value).to.equal(TEST_STRING);
-      button?.click();
-      await expect(input?.value).to.equal("");
-    });
-
-    it("should not reset forms if disabled via JS", async () => {
-      expect(input?.value).to.be.empty;
-      input.value = TEST_STRING;
-      await expect(input?.value).to.equal(TEST_STRING);
-      button.disabled = true;
-      button?.click();
-      await expect(input?.value).to.equal(TEST_STRING);
-    });
-
-    it("should not reset forms if disabled via DOM", async () => {
-      expect(input?.value).to.be.empty;
-      input.value = TEST_STRING;
-      await expect(input?.value).to.equal(TEST_STRING);
-      button.setAttribute("disabled", "");
-      button?.click();
-      await expect(input?.value).to.equal(TEST_STRING);
+    [
+      { name: "should reset forms", disable: () => {}, expected: "" },
+      { name: "should not reset forms if disabled via JS", disable: () => (button.disabled = true), expected: TEST_STRING },
+      { name: "should not reset forms if disabled via DOM", disable: () => button.setAttribute("disabled", ""), expected: TEST_STRING }
+    ].forEach(({ name, disable, expected }) => {
+      it(name, () => {
+        expect(input.value).to.be.empty;
+        input.value = TEST_STRING;
+        disable();
+        button.click();
+        expect(input.value).to.equal(expected);
+      });
     });
   });
 
