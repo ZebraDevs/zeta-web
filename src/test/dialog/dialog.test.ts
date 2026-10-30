@@ -4,7 +4,7 @@ import "../../components/dialog/dialog.js";
 import { contrastTest } from "../accessibility-utils/accessibility-test-runner.js";
 import "../../index.css";
 import sinon from "sinon";
-import { MouseActions } from "../utils.js";
+import { MouseActions, getCssVarColorValue } from "../utils.js";
 
 const flavors = ["default", "info", "success", "warning", "error"];
 const confirmButtonFlavors = ["primary", "positive", "negative"];
@@ -235,7 +235,7 @@ describe("zeta-dialog", () => {
     it("has the --main-default font colour", async () => {
       const dialog = subject.shadowRoot?.querySelector("dialog");
       expect(dialog).to.exist;
-      await expect(getComputedStyle(dialog!).color).to.equal("rgb(29, 30, 35)");
+      await expect(getComputedStyle(dialog!).color).to.equal(getCssVarColorValue(dialog!, "--main-default"));
     });
 
     it("has the border-default border colour", async () => {
@@ -252,15 +252,15 @@ describe("zeta-dialog", () => {
         const icon = subject.shadowRoot?.querySelector("zeta-icon");
         expect(icon).to.exist;
         if (flavor === "success") {
-          await expect(getComputedStyle(icon!).color).to.equal("rgb(0, 134, 79)");
+          await expect(getComputedStyle(icon!).color).to.equal(getCssVarColorValue(subject!, "--main-positive"));
         } else if (flavor === "error") {
-          await expect(getComputedStyle(icon!).color).to.equal("rgb(215, 0, 21)");
+          await expect(getComputedStyle(icon!).color).to.equal(getCssVarColorValue(subject!, "--main-negative"));
         } else if (flavor === "warning") {
-          await expect(getComputedStyle(icon!).color).to.equal("rgb(174, 101, 0)");
+          await expect(getComputedStyle(icon!).color).to.equal(getCssVarColorValue(subject!, "--main-warning"));
         } else if (flavor === "info") {
-          await expect(getComputedStyle(icon!).color).to.equal("rgb(126, 12, 255)");
+          await expect(getComputedStyle(icon!).color).to.equal(getCssVarColorValue(subject!, "--main-info"));
         } else if (flavor === "default") {
-          await expect(getComputedStyle(icon!).color).to.equal("rgb(29, 30, 35)");
+          await expect(getComputedStyle(icon!).color).to.equal(getCssVarColorValue(subject!, "--main-default"));
         }
       }
     });
@@ -272,11 +272,11 @@ describe("zeta-dialog", () => {
         subject.confirmButtonFlavor = flavor as "primary" | "positive" | "negative";
         await elementUpdated(subject);
         if (flavor === "primary") {
-          await expect(getComputedStyle(buttonEl!).backgroundColor).to.equal("rgb(0, 115, 230)");
+          await expect(getComputedStyle(buttonEl!).backgroundColor).to.equal(getCssVarColorValue(buttonEl!, "--state-primary-enabled"));
         } else if (flavor === "positive") {
-          await expect(getComputedStyle(buttonEl!).backgroundColor).to.equal("rgb(0, 134, 79)");
+          await expect(getComputedStyle(buttonEl!).backgroundColor).to.equal(getCssVarColorValue(buttonEl!, "--state-positive-enabled"));
         } else if (flavor === "negative") {
-          await expect(getComputedStyle(buttonEl!).backgroundColor).to.equal("rgb(215, 0, 21)");
+          await expect(getComputedStyle(buttonEl!).backgroundColor).to.equal(getCssVarColorValue(buttonEl!, "--state-negative-enabled"));
         }
       }
     });
@@ -284,7 +284,7 @@ describe("zeta-dialog", () => {
     it("has primary button flavour by default", async () => {
       const buttonEl = subject.querySelector('zeta-button[slot="confirm"]')?.shadowRoot?.querySelector("button");
       expect(buttonEl).to.exist;
-      await expect(getComputedStyle(buttonEl!).backgroundColor).to.equal("rgb(0, 115, 230)");
+      await expect(getComputedStyle(buttonEl!).backgroundColor).to.equal(getCssVarColorValue(buttonEl!, "--state-primary-enabled"));
     });
 
     it("has the correct background colour when confirm button is hovered for each flavor", async () => {
@@ -295,11 +295,11 @@ describe("zeta-dialog", () => {
         await MouseActions.hover(buttonEl!);
         await elementUpdated(subject);
         if (flavor === "primary") {
-          await expect(getComputedStyle(buttonEl!).backgroundColor).to.equal("rgb(89, 159, 229)");
+          await expect(getComputedStyle(buttonEl!).backgroundColor).to.equal(getCssVarColorValue(buttonEl!, "--state-primary-hover"));
         } else if (flavor === "positive") {
-          await expect(getComputedStyle(buttonEl!).backgroundColor).to.equal("rgb(103, 183, 150)");
+          await expect(getComputedStyle(buttonEl!).backgroundColor).to.equal(getCssVarColorValue(buttonEl!, "--state-positive-hover"));
         } else if (flavor === "negative") {
-          await expect(getComputedStyle(buttonEl!).backgroundColor).to.equal("rgb(243, 97, 112)");
+          await expect(getComputedStyle(buttonEl!).backgroundColor).to.equal(getCssVarColorValue(buttonEl!, "--state-negative-hover"));
         }
       }
     });
