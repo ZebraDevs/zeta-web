@@ -49,7 +49,7 @@ const meta: Meta<ZetaButton> = {
       }
     },
     flavor: {
-      options: ["primary", "positive", "negative", "outline", "outline-subtle", "text", "subtle", "gradient", "text-gradient", "custom"],
+      options: ["primary", "positive", "negative", "outline", "outline-subtle", "text", "subtle", "gradient", "text-gradient", "contrast", "outline-contrast", "custom"],
       control: {
         type: "select"
       }

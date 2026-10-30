@@ -5,7 +5,7 @@ import "../../components/button/icon-button/icon-button.js";
 import "../../index.css";
 import { contrastTest } from "../accessibility-utils/accessibility-test-runner.js";
 
-const flavors = ["primary", "positive", "negative", "outline", "outline-subtle", "text", "subtle"];
+const flavors = ["primary", "positive", "negative", "outline", "outline-subtle", "text", "subtle", "contrast", "outline-contrast"];
 const iconName = "star";
 
 describe("zeta-icon-button", () => {
@@ -27,7 +27,9 @@ describe("zeta-icon-button", () => {
         await elementUpdated(subject);
 
         const buttonEl = subject.shadowRoot!.querySelector("button")!;
-        await contrastTest(`Button ${flavor} `, buttonEl, buttonEl);
+        // outline-contrast has a transparent fill, so measure it against the surface it sits on.
+        subject.parentElement!.style.backgroundColor = "var(--fill-default)";
+        await contrastTest(`Button ${flavor} `, buttonEl, flavor === "outline-contrast" ? subject.parentElement! : buttonEl);
       });
     });
 
