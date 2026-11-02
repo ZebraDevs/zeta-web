@@ -4,11 +4,11 @@ export default css`
     display: block;
     width: fit-content;
     height: fit-content;
-    --progress-circle-color: var(--main-primary);
+    --progress-circle-color: var(--border-info);
   }
   .cancel zeta-icon {
     --icon-size: 20px;
-    --icon-color: var(--main-default);
+    --icon-color: var(--foreground-primary);
   }
 
   svg.loading {
@@ -31,16 +31,24 @@ export default css`
   }
 
   .percentage {
-    font: var(--label-small);
-    color: var(--main-default);
+    font: var(--indicator-medium);
+    color: var(--foreground-primary);
   }
 
+  /* Hidden but focusable so keyboard users can reach it; shown on hover/focus. */
   .cancel {
-    display: none;
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    pointer-events: none;
     justify-content: center;
     align-items: center;
-    background-color: var(--surface-hover);
-    border-radius: var(--radius-full);
+    background-color: var(--interactive-ghost-background-hover);
+    border: var(--stroke-base) solid var(--interactive-neutral-border-default);
+    border-radius: var(--radius-pill);
     cursor: pointer;
   }
 
@@ -51,6 +59,17 @@ export default css`
     justify-content: center;
   }
 
+  .uploading:focus-within {
+    .percentage {
+      display: none;
+    }
+
+    .cancel {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+
   @media (hover: hover), (hover: none) and (pointer: fine) {
     .uploading:hover {
       .percentage {
@@ -58,7 +77,8 @@ export default css`
       }
 
       .cancel {
-        display: flex;
+        opacity: 1;
+        pointer-events: auto;
       }
     }
   }

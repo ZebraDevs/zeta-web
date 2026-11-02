@@ -1,6 +1,6 @@
 import { customElement, property } from "lit/decorators.js";
 import { Contourable } from "../../../mixins/mixins.js";
-import { html, LitElement, nothing } from "lit";
+import { html, LitElement, nothing, type PropertyValues } from "lit";
 import styles from "./progress-circle.styles.js";
 import "../../icon/icon.js";
 import { ZetaCancelUploadEvent } from "../../../events.js";
@@ -12,7 +12,7 @@ import { styleMap } from "lit/directives/style-map.js";
  *
  * @cssproperty --progress-circle-color The color of the progress circle.
  *
- * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-22&node-type=canvas&m=dev
+ * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=4416-77&m=dev
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-progress--docs
  */
 @customElement("zeta-progress-circle")
@@ -33,6 +33,9 @@ export class ZetaProgressCircle extends Contourable(LitElement) {
   /** The type of the progress circle. */
   @property({ type: String }) type: "default" | "upload" = "default";
 
+  /** Hides the unfilled track behind the arc. */
+  @property({ type: Boolean, reflect: true, attribute: "hide-track" }) hideTrack?: boolean;
+
   set progress(value: number) {
     if (value <= 0 || !value) {
       this.progressValue = 0;
@@ -48,7 +51,8 @@ export class ZetaProgressCircle extends Contourable(LitElement) {
   }
 
   private progressValue = 0;
-  private readonly strokeWidth = 3;
+  private spin?: Animation;
+  private readonly strokeWidth = 4; // matches --stroke-heavy (SVG geometry needs a number)
 
   private getStrokeDasharray = () => {
     if (this.indeterminate) return 2 * 3.14 * (this.size / 2.5 - this.strokeWidth);
@@ -76,15 +80,13 @@ export class ZetaProgressCircle extends Contourable(LitElement) {
               this.size > 24
                 ? html`<span
                     class="percentage"
-                    style=${styleMap({
-                      fontSize: `${this.size / 4}px`
-                    })}
                   >
                     ${this.progress}%
                   </span>`
                 : nothing
             }
-            <div
+            <button
+              aria-label="Cancel upload"
               @click=${() => {
                 this.dispatchEvent(new ZetaCancelUploadEvent().toEvent());
               }}
@@ -93,27 +95,40 @@ export class ZetaProgressCircle extends Contourable(LitElement) {
               })}
               class="cancel"
             >
-              <zeta-icon size=${this.size / 2}>close</zeta-icon>
-            </div>
+              <zeta-icon>close</zeta-icon>
+            </button>
           </div>
         `
       : nothing;
   };
 
+  protected updated(changed: PropertyValues<this>) {
+    if (!changed.has("indeterminate")) return;
+    this.spin?.cancel();
+    this.spin = this.indeterminate
+      ? this.animate([{ transform: "rotate(0)" }, { transform: "rotate(360deg)" }], { duration: 1500, iterations: Infinity })
+      : undefined;
+  }
+
   protected render() {
     const r = this.size / 2 - this.strokeWidth;
     const cx = this.size / 2;
     const cy = this.size / 2;
-    const trackColor = this.type == "upload" ? "var(--main-light)" : "transparent";
+    const trackColor = this.hideTrack ? "transparent" : "var(--border-subtle)";
 
-    if (this.indeterminate)
-      this.animate([{ transform: "rotate(0)" }, { transform: "rotate(360deg)" }], {
-        duration: 1500,
-        iterations: Infinity
-      });
     return html`
       <div class="container">
-        <svg width="${this.size}" height="${this.size}" viewBox="0 0 ${this.size} ${this.size}" style="transform:rotate(-90deg)">
+        <svg
+          width="${this.size}"
+          height="${this.size}"
+          viewBox="0 0 ${this.size} ${this.size}"
+          style="transform:rotate(-90deg)"
+          role="progressbar"
+          aria-label=${this.type == "upload" ? "Upload progress" : "Progress"}
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow=${this.indeterminate ? nothing : this.progress}
+        >
           <circle r=${r} cx=${cx} cy=${cy} fill="transparent" stroke="${trackColor}" stroke-width="${this.strokeWidth}px"></circle>
           <circle
             r=${r}
