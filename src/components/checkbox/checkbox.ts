@@ -4,6 +4,7 @@ import styles from "./checkbox.styles.js";
 import "../icon/icon.js";
 import { LitElement } from "lit";
 import type { ZetaInputType } from "../../mixins/form-field.js";
+import type { SizeType } from "../../mixins/size.js";
 
 // TODO: When should change event fire? Does not seem to fire at all? Unless it needs to be in a form?
 
@@ -38,6 +39,14 @@ export class ZetaCheckbox extends BaseToggleFormElement {
   override type: Extract<ZetaInputType, "checkbox"> = "checkbox";
 
   override value = "on";
+
+  /**
+   * Size of the checkbox box. Valid values are `large` (default, 24px box) and `small` (16px box, for dense lists and table rows).
+   * The label and the 40px touch target do not change with size.
+   *
+   * `medium` is accepted for backward compatibility but renders as `large`.
+   */
+  @property({ type: String, reflect: true }) override size: SizeType = "large";
 
   /**
    * Whether the order of the checkbox and its label should be reversed.
