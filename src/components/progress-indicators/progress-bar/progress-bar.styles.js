@@ -2,42 +2,69 @@ import { css } from "lit";
 export default css`
   :host {
     display: flex;
-    --thin-size: var(--spacing-small);
-    --medium-size: var(--spacing-large);
-    --progress-bar-color: var(--main-primary);
+    --thin-size: var(--space-sm);
+    --medium-size: var(--space-lg);
+    --progress-bar-color: var(--foreground-link);
   }
 
   .progress-bar {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-large);
+    gap: var(--space-lg);
     width: 100%;
   }
 
   .wrapper {
     display: flex;
-    gap: var(--spacing-large);
+    gap: var(--space-lg);
     width: 100%;
   }
 
+  .details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-md);
+  }
+
+  .details[hidden] {
+    display: none;
+  }
+
   label {
-    font: var(--title-medium);
+    font: var(--label-medium);
+    font-size: var(--label-medium-font-size);
+    line-height: var(--label-medium-line-height);
+    letter-spacing: var(--label-medium-letter-spacing);
+    color: var(--foreground-secondary);
   }
 
-  :host([size="thin"]) .wrapper {
-    height: var(--thin-size);
-  }
-
-  :host([size="medium"]) .wrapper {
+  /* Large is the default; 'medium' is a deprecated alias for it. */
+  .wrapper {
     height: var(--medium-size);
   }
 
+  /* 'thin' is a deprecated alias for 'small'. */
+  :host([size="thin"]) .wrapper,
+  :host([size="small"]) .wrapper {
+    height: var(--thin-size);
+  }
+
+  .wrapper {
+    border-radius: var(--radius-none);
+  }
+
   :host([rounded]) .wrapper {
-    border-radius: var(--radius-large);
+    border-radius: var(--radius-md);
+  }
+
+  :host([rounded][size="thin"]) .wrapper,
+  :host([rounded][size="small"]) .wrapper {
+    border-radius: var(--radius-sm);
   }
 
   .track {
-    background-color: var(--surface);
+    background-color: var(--surface-track);
     display: flex;
     position: relative;
     border-radius: inherit;
@@ -46,21 +73,26 @@ export default css`
 
   :host([buffering]) .track,
   .buffering-dot {
-    background-color: var(--surface-disabled);
+    background-color: var(--border-subtle);
+  }
+
+  :host([hide-track]) .track {
+    background-color: transparent;
   }
 
   .buffering-dot {
-    border-radius: var(--radius-xxl);
+    border-radius: var(--radius-pill);
     height: 100%;
     display: flex;
   }
 
-  :host([size="thin"]) .buffering-dot {
-    width: var(--thin-size);
+  .buffering-dot {
+    width: var(--medium-size);
   }
 
-  :host([size="medium"]) .buffering-dot {
-    width: var(--medium-size);
+  :host([size="thin"]) .buffering-dot,
+  :host([size="small"]) .buffering-dot {
+    width: var(--thin-size);
   }
 
   .bar {

@@ -7,9 +7,6 @@ import { fn } from "@storybook/test";
 const spread = spreadGenerator(ZetaProgressCircle);
 
 type ProgressCircleStory = ZetaProgressCircle & {
-  slot: string;
-  subtitle: string;
-  leading: string;
   oncancelupload: () => void;
   "--progress-circle-color"?: string;
 };
@@ -22,7 +19,8 @@ const meta: Meta<ProgressCircleStory> = {
     rounded: false,
     type: "default",
     oncancelupload: fn(),
-    indeterminate: false
+    indeterminate: false,
+    hideTrack: false
   },
   argTypes: {
     size: {
@@ -40,7 +38,7 @@ const meta: Meta<ProgressCircleStory> = {
   },
   parameters: {
     design: {
-      url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=900-10416&mode=design&t=DUHsS5bjWB5UW1iG-4"
+      url: "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=4416-77&m=dev"
     },
     status: {
       type: "ready"
@@ -59,7 +57,7 @@ export const ProgressCircle: StoryObj<ProgressCircleStory> = {
           }
         </style>`
       }
-      <zeta-progress-circle @cancel-upload=${oncancelupload} ${spread(args)}></zeta-progress-circle>
+      <zeta-progress-circle @cancelUpload=${oncancelupload} ${spread(args)}></zeta-progress-circle>
     `;
   }
 };
