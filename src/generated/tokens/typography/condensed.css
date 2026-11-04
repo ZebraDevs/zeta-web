@@ -1,0 +1,48 @@
+/**
+ * condensed typography extension - overrides only. Use with data-typography="condensed".
+ * This file is auto-generated. Do not edit directly.
+ */
+
+[data-typography="condensed"] {
+  --label-large-font-size: var(--text-font-size-14);
+  --label-large-line-height: var(--text-line-height-18);
+  --label-medium-font-size: var(--text-font-size-12);
+  --label-medium-line-height: var(--text-line-height-16);
+  --label-small-font-size: var(--text-font-size-10);
+  --label-small-line-height: var(--text-line-height-14);
+}
+
+@media (min-width: 1200px) {
+  [data-typography="condensed"] {
+    --body-large-font-size: var(--text-font-size-18);
+    --body-large-line-height: var(--text-line-height-20);
+    --body-medium-font-size: var(--text-font-size-14);
+    --body-medium-line-height: var(--text-line-height-16);
+    --body-small-font-size: var(--text-font-size-12);
+    --body-small-line-height: var(--text-line-height-14);
+    --body-xsmall-font-size: var(--text-font-size-10);
+    --body-xsmall-line-height: var(--text-line-height-12);
+    --display-large-font-size: var(--text-font-size-48);
+    --display-large-line-height: var(--text-line-height-52);
+    --display-medium-font-size: var(--text-font-size-40);
+    --display-medium-line-height: var(--text-line-height-48);
+    --display-small-font-size: var(--text-font-size-32);
+    --display-small-line-height: var(--text-line-height-36);
+    --heading-large-font-size: var(--text-font-size-28);
+    --heading-large-line-height: var(--text-line-height-32);
+    --heading-medium-font-size: var(--text-font-size-24);
+    --heading-medium-line-height: var(--text-line-height-28);
+    --heading-small-font-size: var(--text-font-size-20);
+    --heading-small-line-height: var(--text-line-height-24);
+    --indicator-medium-font-size: var(--text-font-size-10);
+    --indicator-medium-line-height: var(--text-line-height-12);
+    --label-large-line-height: var(--text-line-height-16);
+    --label-medium-line-height: var(--text-line-height-14);
+    --label-small-line-height: var(--text-line-height-12);
+    --title-large-font-size: var(--text-font-size-18);
+    --title-medium-font-size: var(--text-font-size-14);
+    --title-medium-line-height: var(--text-line-height-16);
+    --title-small-font-size: var(--text-font-size-10);
+    --title-small-line-height: var(--text-line-height-12);
+  }
+}
