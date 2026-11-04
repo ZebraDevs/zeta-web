@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaAssistChip } from "../../../components/chips/assist-chip/assist-chip.js";
 import { html } from "lit";
 import { ZetaIconNameList } from "@zebra-fed/zeta-icons";
+import { dragReorder } from "./drag-reorder.js";
 
 const meta: Meta<ZetaAssistChip> = {
   component: "zeta-assist-chip",
@@ -9,13 +10,19 @@ const meta: Meta<ZetaAssistChip> = {
   args: {
     rounded: true,
     disabled: false,
+    draggable: false,
     icon: "star",
+    color: "neutral",
     slot: "Label"
   },
   argTypes: {
     icon: {
       options: ZetaIconNameList,
       control: "select"
+    },
+    color: {
+      options: ["neutral", "green", "orange", "blue", "red"],
+      control: "inline-radio"
     }
   },
   parameters: {
@@ -31,5 +38,22 @@ const meta: Meta<ZetaAssistChip> = {
 export default meta;
 
 export const AssistChip: StoryObj<ZetaAssistChip> = {
-  render: args => html`<zeta-assist-chip ?rounded=${args.rounded} ?disabled=${args.disabled} .icon=${args.icon}>${args.slot}</zeta-assist-chip>`
+  render: args => html`<zeta-assist-chip ?rounded=${args.rounded} ?disabled=${args.disabled} ?draggable=${args.draggable} .icon=${args.icon} color=${args.color}>${args.slot}</zeta-assist-chip>`
+};
+
+/** Drag the attachments to reorder them. The chips only provide the drag source; the reordering here is handled by the story, as an app would. */
+export const DraggableAssistChips: StoryObj<ZetaAssistChip> = {
+  render: args => {
+    const reorder = dragReorder("zeta-assist-chip");
+    const attachments = [
+      { label: "Report.pdf", color: "red" },
+      { label: "Budget.xlsx", color: "green" },
+      { label: "Notes.docx", color: "blue" }
+    ] as const;
+    return html`<div style="display: flex; gap: 8px; flex-wrap: wrap" @dragstart=${reorder.dragstart} @dragover=${reorder.dragover} @drop=${reorder.drop}>
+      ${attachments.map(
+        ({ label, color }) => html`<zeta-assist-chip draggable ?rounded=${args.rounded} .icon=${args.icon} color=${color}>${label}</zeta-assist-chip>`
+      )}
+    </div>`;
+  }
 };
