@@ -23,7 +23,8 @@
     --radius-xl: var(--scale-5);
     --radius-xs: var(--scale-1);
     --space-2xl: var(--scale-9);
-    --space-2xs: var(--scale-1);
+    --space-2xs: var(--scale-2);
+    --space-3xs: var(--scale-1);
     --space-card: var(--scale-5);
     --space-gutter: var(--scale-5);
     --space-lg: var(--scale-6);
@@ -32,6 +33,5 @@
     --space-section: var(--scale-7);
     --space-sm: var(--scale-4);
     --space-xl: var(--scale-7);
-    --space-xxs: var(--scale-2);
   }
 }
