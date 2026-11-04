@@ -140,7 +140,6 @@
     "@xmldom/xmldom": "^0.8.15",
     "js-yaml": "^4.3.0",
     "picomatch": "^4.0.2",
-    "playwright": "1.64.1",
     "react-dom": "19.3.1",
     "react-router-dom": "^6.3.0",
     "react-router": "^6.3.0",
