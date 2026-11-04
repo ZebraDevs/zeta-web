@@ -4,7 +4,19 @@ import { property } from "lit/decorators.js";
 import styles from "./flavor.styles.js";
 
 export type Flavor =
-  "primary" | "positive" | "negative" | "outline" | "outline-subtle" | "text" | "inverse" | "subtle" | "gradient" | "text-gradient" | "contrast" | "outline-contrast" | "custom";
+  | "primary"
+  | "positive"
+  | "negative"
+  | "outline"
+  | "outline-subtle"
+  | "text"
+  | "inverse"
+  | "subtle"
+  | "gradient"
+  | "text-gradient"
+  | "contrast"
+  | "outline-contrast"
+  | "custom";
 
 export type ButtonFlavor = Exclude<Flavor, "inverse" | "ghost" | "default">;
 export type FabFlavor = Extract<Flavor, "primary" | "secondary" | "inverse">;
