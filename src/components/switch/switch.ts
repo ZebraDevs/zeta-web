@@ -82,20 +82,8 @@ export class ZetaSwitch extends BaseToggleFormElement {
         tabindex="${this.disabled ? "-1" : this.tabIndex}"
       >
         <div part="thumb"></div>
-        ${
-          this.activeIcon &&
-          html`
-            <zeta-icon part="icon active" .rounded=${this.rounded}> ${this.activeIcon} </zeta-icon>
-          `
-        }
-        ${
-          this.inactiveIcon &&
-          html`
-            <zeta-icon part="icon inactive" .rounded=${this.rounded}>
-              ${this.inactiveIcon}
-            </zeta-icon>
-          `
-        }
+        ${this.activeIcon && html` <zeta-icon part="icon active" .rounded=${this.rounded}> ${this.activeIcon} </zeta-icon> `}
+        ${this.inactiveIcon && html` <zeta-icon part="icon inactive" .rounded=${this.rounded}> ${this.inactiveIcon} </zeta-icon> `}
       </div>
       ${super.render()}
     `;
