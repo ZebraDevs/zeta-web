@@ -51,7 +51,7 @@ describe("zeta-filter-chip", () => {
       expect(subject.hasAttribute("draggable")).to.be.false;
     });
 
-    it("reflects draggable as draggable=\"true\"", async () => {
+    it('reflects draggable as draggable="true"', async () => {
       subject.draggable = true;
       await elementUpdated(subject);
       expect(subject.getAttribute("draggable")).to.equal("true");

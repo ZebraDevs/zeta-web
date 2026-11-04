@@ -29,7 +29,9 @@ export default meta;
 
 export const FilterChip: StoryObj<ZetaFilterChip> = {
   render: ({ slot, onchange, ...args }) =>
-    html`<zeta-filter-chip ?disabled=${args.disabled} ?draggable=${args.draggable} @change=${onchange} ?rounded=${args.rounded} ?active=${args.active}> ${slot} </zeta-filter-chip>`
+    html`<zeta-filter-chip ?disabled=${args.disabled} ?draggable=${args.draggable} @change=${onchange} ?rounded=${args.rounded} ?active=${args.active}>
+      ${slot}
+    </zeta-filter-chip>`
 };
 
 /** Drag the chips to reorder them. The chips only provide the drag source; the reordering here is handled by the story, as an app would. The disabled chip can't be dragged. */
