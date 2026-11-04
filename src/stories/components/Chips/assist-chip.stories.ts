@@ -38,7 +38,10 @@ const meta: Meta<ZetaAssistChip> = {
 export default meta;
 
 export const AssistChip: StoryObj<ZetaAssistChip> = {
-  render: args => html`<zeta-assist-chip ?rounded=${args.rounded} ?disabled=${args.disabled} ?draggable=${args.draggable} .icon=${args.icon} color=${args.color}>${args.slot}</zeta-assist-chip>`
+  render: args =>
+    html`<zeta-assist-chip ?rounded=${args.rounded} ?disabled=${args.disabled} ?draggable=${args.draggable} .icon=${args.icon} color=${args.color}
+      >${args.slot}</zeta-assist-chip
+    >`
 };
 
 /** Drag the attachments to reorder them. The chips only provide the drag source; the reordering here is handled by the story, as an app would. */
