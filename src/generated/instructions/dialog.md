@@ -143,6 +143,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | _Dialog Header/Title/Dialog Title | fontSize | 20 | title.large.font size |
 | _Dialog Header/Title/Dialog Title | lineHeight | 24 | title.large.line height |
 | _Dialog Header/Title/Dialog Title | letterSpacing | 0 | title.large.letter spacing |
+| _Dialog Header/Icon | fill[0] | #0c0d0e | foreground.primary |
 
 ## _Dialog Footer
 

@@ -74,6 +74,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | State | typing | Input / Text/Input Text/Cursor | fontSize | body.medium.font size |
 | State | typing | Input / Text/Input Text/Cursor | lineHeight | body.medium.line height |
 | State | typing | Input / Text/Input Text/Cursor | letterSpacing | body.medium.letter spacing |
+| State | typing | Input / Text/Clear | fill[0] | foreground.primary |
 | State | filled | Input / Text/Input Text/Placeholder | fill[0] | — |
 | State | filled | Input / Text/Input Text/Placeholder | fontSize | — |
 | State | filled | Input / Text/Input Text/Placeholder | lineHeight | — |
@@ -150,6 +151,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Input / Number/Input Text/0 | fontSize | 16 | body.medium.font size |
 | Input / Number/Input Text/0 | lineHeight | 24 | body.medium.line height |
 | Input / Number/Input Text/0 | letterSpacing | 0 | body.medium.letter spacing |
+| Input / Number/Trailing-Icon | fill[0] | #0c0d0e | foreground.primary |
 
 ### Token changes by property
 
@@ -179,6 +181,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | State | typing | Input / Number/Input Text/0 | fontSize | — |
 | State | typing | Input / Number/Input Text/0 | lineHeight | — |
 | State | typing | Input / Number/Input Text/0 | letterSpacing | — |
+| State | typing | Input / Number/Trailing-Icon | fill[0] | — |
 | State | typing | Input / Number/Input Text/3 | fill[0] | foreground.primary |
 | State | typing | Input / Number/Input Text/3 | fontSize | body.medium.font size |
 | State | typing | Input / Number/Input Text/3 | lineHeight | body.medium.line height |
@@ -187,6 +190,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | State | typing | Input / Number/Input Text/Cursor | fontSize | body.medium.font size |
 | State | typing | Input / Number/Input Text/Cursor | lineHeight | body.medium.line height |
 | State | typing | Input / Number/Input Text/Cursor | letterSpacing | body.medium.letter spacing |
+| State | typing | Input / Number/Clear | fill[0] | foreground.primary |
 | State | filled | Input / Number/Input Text/0 | fill[0] | — |
 | State | filled | Input / Number/Input Text/0 | fontSize | — |
 | State | filled | Input / Number/Input Text/0 | lineHeight | — |
@@ -219,6 +223,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | State | disabled | Input / Number/Input Text/0 | fontSize | — |
 | State | disabled | Input / Number/Input Text/0 | lineHeight | — |
 | State | disabled | Input / Number/Input Text/0 | letterSpacing | — |
+| State | disabled | Input / Number/Trailing-Icon | fill[0] | foreground.disabled |
 | State | disabled | Input / Number/Input Text/3 | fill[0] | foreground.disabled |
 | State | disabled | Input / Number/Input Text/3 | fontSize | body.medium.font size |
 | State | disabled | Input / Number/Input Text/3 | lineHeight | body.medium.line height |
@@ -266,6 +271,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Input / Password/Input Text/Password | fontSize | 16 | body.medium.font size |
 | Input / Password/Input Text/Password | lineHeight | 24 | body.medium.line height |
 | Input / Password/Input Text/Password | letterSpacing | 0 | body.medium.letter spacing |
+| Input / Password/Reveal | fill[0] | #0c0d0e | foreground.primary |
 
 ### Token changes by property
 
@@ -295,6 +301,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | State | typing | Input / Password/Input Text/Password | fontSize | — |
 | State | typing | Input / Password/Input Text/Password | lineHeight | — |
 | State | typing | Input / Password/Input Text/Password | letterSpacing | — |
+| State | typing | Input / Password/Reveal | fill[0] | — |
 | State | typing | Input / Password/Input Text/•••••••• | fill[0] | foreground.primary |
 | State | typing | Input / Password/Input Text/•••••••• | fontSize | body.medium.font size |
 | State | typing | Input / Password/Input Text/•••••••• | lineHeight | body.medium.line height |
@@ -304,9 +311,11 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | State | typing | Input / Password/Input Text/Cursor | lineHeight | body.medium.line height |
 | State | typing | Input / Password/Input Text/Cursor | letterSpacing | body.medium.letter spacing |
 | State | typing | Input / Password/Trailing | itemSpacing | space.sm |
+| State | typing | Input / Password/Trailing/Clear | fill[0] | foreground.primary |
 | State | typing | Input / Password/Trailing/Divider | width | stroke.thin |
 | State | typing | Input / Password/Trailing/Divider | height | control.icon-md |
 | State | typing | Input / Password/Trailing/Divider | cornerRadius | radius.none |
+| State | typing | Input / Password/Trailing/Reveal | fill[0] | foreground.primary |
 | State | filled | Input / Password/Input Text/Password | fill[0] | — |
 | State | filled | Input / Password/Input Text/Password | fontSize | — |
 | State | filled | Input / Password/Input Text/Password | lineHeight | — |
@@ -339,6 +348,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | State | disabled | Input / Password/Input Text/Password | fontSize | — |
 | State | disabled | Input / Password/Input Text/Password | lineHeight | — |
 | State | disabled | Input / Password/Input Text/Password | letterSpacing | — |
+| State | disabled | Input / Password/Reveal | fill[0] | foreground.disabled |
 | State | disabled | Input / Password/Input Text/•••••••• | fill[0] | foreground.disabled |
 | State | disabled | Input / Password/Input Text/•••••••• | fontSize | body.medium.font size |
 | State | disabled | Input / Password/Input Text/•••••••• | lineHeight | body.medium.line height |
@@ -385,6 +395,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Input / Date/Input Text/mm/dd/yyyy | fontSize | 16 | body.medium.font size |
 | Input / Date/Input Text/mm/dd/yyyy | lineHeight | 24 | body.medium.line height |
 | Input / Date/Input Text/mm/dd/yyyy | letterSpacing | 0 | body.medium.letter spacing |
+| Input / Date/Picker | fill[0] | #0c0d0e | foreground.primary |
 
 ### Token changes by property
 
@@ -414,6 +425,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | State | typing | Input / Date/Input Text/mm/dd/yyyy | fontSize | — |
 | State | typing | Input / Date/Input Text/mm/dd/yyyy | lineHeight | — |
 | State | typing | Input / Date/Input Text/mm/dd/yyyy | letterSpacing | — |
+| State | typing | Input / Date/Picker | fill[0] | — |
 | State | typing | Input / Date/Input Text/10/14/2026 | fill[0] | foreground.primary |
 | State | typing | Input / Date/Input Text/10/14/2026 | fontSize | body.medium.font size |
 | State | typing | Input / Date/Input Text/10/14/2026 | lineHeight | body.medium.line height |
@@ -423,9 +435,11 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | State | typing | Input / Date/Input Text/Cursor | lineHeight | body.medium.line height |
 | State | typing | Input / Date/Input Text/Cursor | letterSpacing | body.medium.letter spacing |
 | State | typing | Input / Date/Trailing | itemSpacing | space.sm |
+| State | typing | Input / Date/Trailing/Clear | fill[0] | foreground.primary |
 | State | typing | Input / Date/Trailing/Divider | width | stroke.thin |
 | State | typing | Input / Date/Trailing/Divider | height | control.icon-md |
 | State | typing | Input / Date/Trailing/Divider | cornerRadius | radius.none |
+| State | typing | Input / Date/Trailing/Picker | fill[0] | foreground.primary |
 | State | filled | Input / Date/Input Text/mm/dd/yyyy | fill[0] | — |
 | State | filled | Input / Date/Input Text/mm/dd/yyyy | fontSize | — |
 | State | filled | Input / Date/Input Text/mm/dd/yyyy | lineHeight | — |
@@ -458,6 +472,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | State | disabled | Input / Date/Input Text/mm/dd/yyyy | fontSize | — |
 | State | disabled | Input / Date/Input Text/mm/dd/yyyy | lineHeight | — |
 | State | disabled | Input / Date/Input Text/mm/dd/yyyy | letterSpacing | — |
+| State | disabled | Input / Date/Picker | fill[0] | foreground.disabled |
 | State | disabled | Input / Date/Input Text/10/14/2026 | fill[0] | foreground.disabled |
 | State | disabled | Input / Date/Input Text/10/14/2026 | fontSize | body.medium.font size |
 | State | disabled | Input / Date/Input Text/10/14/2026 | lineHeight | body.medium.line height |
@@ -504,6 +519,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Input / Time/Input Text/--:-- -- | fontSize | 16 | body.medium.font size |
 | Input / Time/Input Text/--:-- -- | lineHeight | 24 | body.medium.line height |
 | Input / Time/Input Text/--:-- -- | letterSpacing | 0 | body.medium.letter spacing |
+| Input / Time/Picker | fill[0] | #0c0d0e | foreground.primary |
 
 ### Token changes by property
 
@@ -533,6 +549,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | State | typing | Input / Time/Input Text/--:-- -- | fontSize | — |
 | State | typing | Input / Time/Input Text/--:-- -- | lineHeight | — |
 | State | typing | Input / Time/Input Text/--:-- -- | letterSpacing | — |
+| State | typing | Input / Time/Picker | fill[0] | — |
 | State | typing | Input / Time/Input Text/09:30 AM | fill[0] | foreground.primary |
 | State | typing | Input / Time/Input Text/09:30 AM | fontSize | body.medium.font size |
 | State | typing | Input / Time/Input Text/09:30 AM | lineHeight | body.medium.line height |
@@ -542,9 +559,11 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | State | typing | Input / Time/Input Text/Cursor | lineHeight | body.medium.line height |
 | State | typing | Input / Time/Input Text/Cursor | letterSpacing | body.medium.letter spacing |
 | State | typing | Input / Time/Trailing | itemSpacing | space.sm |
+| State | typing | Input / Time/Trailing/Clear | fill[0] | foreground.primary |
 | State | typing | Input / Time/Trailing/Divider | width | stroke.thin |
 | State | typing | Input / Time/Trailing/Divider | height | control.icon-md |
 | State | typing | Input / Time/Trailing/Divider | cornerRadius | radius.none |
+| State | typing | Input / Time/Trailing/Picker | fill[0] | foreground.primary |
 | State | filled | Input / Time/Input Text/--:-- -- | fill[0] | — |
 | State | filled | Input / Time/Input Text/--:-- -- | fontSize | — |
 | State | filled | Input / Time/Input Text/--:-- -- | lineHeight | — |
@@ -577,6 +596,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | State | disabled | Input / Time/Input Text/--:-- -- | fontSize | — |
 | State | disabled | Input / Time/Input Text/--:-- -- | lineHeight | — |
 | State | disabled | Input / Time/Input Text/--:-- -- | letterSpacing | — |
+| State | disabled | Input / Time/Picker | fill[0] | foreground.disabled |
 | State | disabled | Input / Time/Input Text/09:30 AM | fill[0] | foreground.disabled |
 | State | disabled | Input / Time/Input Text/09:30 AM | fontSize | body.medium.font size |
 | State | disabled | Input / Time/Input Text/09:30 AM | lineHeight | body.medium.line height |
@@ -724,6 +744,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Input Label/Field name | fontSize | 14 | label.medium.font size |
 | Input Label/Field name | lineHeight | 20 | label.medium.line height |
 | Input Label/Field name | letterSpacing | 0 | label.medium.letter spacing |
+| Input Label/Icon | fill[0] | #0c0d0e | foreground.primary |
 
 ### Token changes by property
 
@@ -738,6 +759,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Type | optional | Input Label/(optional) | lineHeight | body.small.line height |
 | Type | optional | Input Label/(optional) | letterSpacing | body.small.letter spacing |
 | Disabled | true | Input Label/Field name | fill[0] | foreground.disabled |
+| Disabled | true | Input Label/Icon | fill[0] | foreground.disabled |
 
 ## Input Hint
 
@@ -754,6 +776,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Layer | Field | Raw | Token |
 | --- | --- | --- | --- |
 | Input Hint | itemSpacing | 4 | space.2xs |
+| Input Hint/Icon | fill[0] | #0c0d0e | foreground.primary |
 | Input Hint/Default hint message | fill[0] | #545963 | foreground.secondary |
 | Input Hint/Default hint message | fontSize | 12 | body.xsmall.font size |
 | Input Hint/Default hint message | lineHeight | 16 | body.xsmall.line height |
@@ -763,7 +786,9 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 | Property | Value | Layer | Field | Token |
 | --- | --- | --- | --- | --- |
+| Type | error | Input Hint/Icon | fill[0] | foreground.error |
 | Type | error | Input Hint/Default hint message | fill[0] | foreground.error |
+| Type | disabled | Input Hint/Icon | fill[0] | foreground.disabled |
 | Type | disabled | Input Hint/Default hint message | fill[0] | foreground.disabled |
 
 ## Input Field (documentation only)

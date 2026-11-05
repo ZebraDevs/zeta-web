@@ -203,6 +203,7 @@ A single destination inside a Navigation Bar, shown as an icon above a label wit
 | Navigation Item | padding.top | 8 | space.sm |
 | Navigation Item | padding.bottom | 8 | space.sm |
 | Navigation Item/Indicator | itemSpacing | 10 | — |
+| Navigation Item/Indicator/Icon | fill[0] | #0c0d0e | foreground.primary |
 | Navigation Item/Label | fill[0] | #0c0d0e | foreground.primary |
 | Navigation Item/Label | fontSize | 14 | — |
 | Navigation Item/Label | lineHeight | 20 | — |
@@ -212,7 +213,9 @@ A single destination inside a Navigation Bar, shown as an icon above a label wit
 
 | Property | Value | Layer | Field | Token |
 | --- | --- | --- | --- | --- |
+| Active | true | Navigation Item/Indicator/Icon | fill[0] | interactive.ghost.foreground.default |
 | Active | true | Navigation Item/Label | fill[0] | interactive.subtle.foreground.default |
+| Disabled | true | Navigation Item/Indicator/Icon | fill[0] | foreground.disabled |
 | Disabled | true | Navigation Item/Label | fill[0] | interactive.subtle.foreground.disabled |
 
 ## Notification Indicator

@@ -238,6 +238,7 @@ Reports a read-only state on an item, such as Active or Overdue. Status sets the
 | Status | negative | Status Label/Leading/Status indicator | fill[0] | foreground.error |
 | Leading | icon | Status Label/Leading | width | — |
 | Leading | icon | Status Label/Leading | height | — |
+| Leading | icon | Status Label/Leading | fill[0] | foreground.primary |
 | Leading | icon | Status Label/Leading/Status indicator | width | — |
 | Leading | icon | Status Label/Leading/Status indicator | height | — |
 | Leading | icon | Status Label/Leading/Status indicator | fill[0] | — |
@@ -480,6 +481,7 @@ Shows where an item sits on a four step scale, from low to urgent. Level sets th
 | Priority Pill/Circle | height | 20 | control.icon-md |
 | Priority Pill/Circle | fill[0] | #ffffff | foreground.inverse |
 | Priority Pill/Circle | cornerRadius | 9999 | radius.pill |
+| Priority Pill/Circle/Glyph | fill[0] | #545963 | foreground.secondary |
 | Priority Pill/Label container | padding.right | 4 | space.2xs |
 | Priority Pill/Label container/Label | fill[0] | #ffffff | foreground.inverse |
 | Priority Pill/Label container/Label | fontSize | 14 | body.small.font size |
@@ -492,10 +494,13 @@ Shows where an item sits on a four step scale, from low to urgent. Level sets th
 | --- | --- | --- | --- | --- |
 | Level | medium | Priority Pill | fill[0] | feedback.info.background.strong |
 | Level | medium | Priority Pill/Circle | fill[0] | interactive.primary.foreground.default |
+| Level | medium | Priority Pill/Circle/Glyph | fill[0] | feedback.info.background.strong |
 | Level | medium | Priority Pill/Label container/Label | fill[0] | interactive.primary.foreground.default |
 | Level | high | Priority Pill | fill[0] | feedback.warning.background.strong |
+| Level | high | Priority Pill/Circle/Glyph | fill[0] | feedback.warning.background.strong |
 | Level | urgent | Priority Pill | fill[0] | feedback.error.background.strong |
 | Level | urgent | Priority Pill/Circle | fill[0] | interactive.destructive.foreground.default |
+| Level | urgent | Priority Pill/Circle/Glyph | fill[0] | feedback.error.background.strong |
 | Level | urgent | Priority Pill/Label container/Label | fill[0] | interactive.destructive.foreground.default |
 | Variant | badge | Priority Pill | itemSpacing | — |
 | Variant | badge | Priority Pill | padding.right | space.2xs |
@@ -513,6 +518,7 @@ Shows where an item sits on a four step scale, from low to urgent. Level sets th
 | Size | small | Priority Pill/Label container/Label | fontSize | indicator.small.font size |
 | Size | small | Priority Pill/Label container/Label | lineHeight | indicator.small.line height |
 | Size | small | Priority Pill/Label container/Label | letterSpacing | indicator.small.letter spacing |
+| Leading | number | Priority Pill/Circle/Glyph | fill[0] | — |
 | Leading | number | Priority Pill/Circle/Rank | fill[0] | foreground.secondary |
 | Leading | number | Priority Pill/Circle/Rank | fontSize | indicator.medium.font size |
 | Leading | number | Priority Pill/Circle/Rank | lineHeight | indicator.medium.line height |
@@ -600,6 +606,7 @@ A small circular marker carrying a fixed glyph, sized to sit beside text or on i
 | Icon Indicator | height | 16 | control.icon-sm |
 | Icon Indicator | fill[0] | #545963 | foreground.secondary |
 | Icon Indicator | cornerRadius | 9999 | radius.pill |
+| Icon Indicator/Icon | fill[0] | #ffffff | foreground.on-strong |
 
 ### Token changes by property
 

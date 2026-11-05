@@ -119,6 +119,7 @@ A full-width message pinned to the top of a mobile screen, carrying a status col
 | System Banner (Mobile)/Container | padding.top | 8 | space.sm |
 | System Banner (Mobile)/Container | padding.bottom | 8 | space.sm |
 | System Banner (Mobile)/Container/Status Icon | height | 40 | control.target-min |
+| System Banner (Mobile)/Container/Status Icon | fill[0] | #ffffff | foreground.primary |
 | System Banner (Mobile)/Container/Content | itemSpacing | 8 | space.sm |
 | System Banner (Mobile)/Container/Content | padding.top | 8 | space.sm |
 | System Banner (Mobile)/Container/Content | padding.bottom | 8 | space.sm |
@@ -280,6 +281,7 @@ A full-width message pinned to the top of a desktop view, carrying a status colo
 | System Banner (Desktop)/Container/Icon Container | width | 36 | control.sm |
 | System Banner (Desktop)/Container/Icon Container | height | 36 | control.sm |
 | System Banner (Desktop)/Container/Icon Container | itemSpacing | 10 | — |
+| System Banner (Desktop)/Container/Icon Container/Status Icon | fill[0] | #ffffff | foreground.primary |
 | System Banner (Desktop)/Container/Content | itemSpacing | 16 | space.lg |
 | System Banner (Desktop)/Container/Content/Text | itemSpacing | 12 | space.card |
 | System Banner (Desktop)/Container/Content/Text | padding.top | 8 | space.sm |

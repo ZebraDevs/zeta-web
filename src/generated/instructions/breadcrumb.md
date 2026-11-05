@@ -136,6 +136,7 @@ Shows where a page sits in the hierarchy, as a trail of links ending on the curr
 | Collapsed | true | Breadcrumb/Overflow/Overflow Button | padding.right | space.2xs |
 | Collapsed | true | Breadcrumb/Overflow/Overflow Button | padding.top | space.2xs |
 | Collapsed | true | Breadcrumb/Overflow/Overflow Button | padding.bottom | space.2xs |
+| Collapsed | true | Breadcrumb/Overflow/Separator | fill[0] | foreground.primary |
 
 ## _Breadcrumb Item
 
@@ -160,6 +161,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | _Breadcrumb Item/Crumb/Label | fontSize | 16 | body.medium.font size |
 | _Breadcrumb Item/Crumb/Label | lineHeight | 24 | body.medium.line height |
 | _Breadcrumb Item/Crumb/Label | letterSpacing | 0 | body.medium.letter spacing |
+| _Breadcrumb Item/Separator | fill[0] | #0c0d0e | foreground.primary |
 
 ### Token changes by property
 

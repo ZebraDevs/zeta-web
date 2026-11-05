@@ -233,6 +233,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Status | complete | Step Card/Sharp/Indicator/Number | fontSize | — |
 | Status | complete | Step Card/Sharp/Indicator/Number | lineHeight | — |
 | Status | complete | Step Card/Sharp/Indicator/Number | letterSpacing | — |
+| Status | complete | Step Card/Sharp/Indicator/Icon | fill[0] | foreground.on-strong |
 | Status | partial | Step Card/Sharp/Indicator | fill[0] | feedback.success.background.subtle |
 | Status | partial | Step Card/Sharp/Indicator | stroke[0] | border.success |
 | Status | active | Step Card/Sharp | fill[0] | surface.brand |
@@ -249,6 +250,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Status | error | Step Card/Sharp/Indicator/Number | lineHeight | — |
 | Status | error | Step Card/Sharp/Indicator/Number | letterSpacing | — |
 | Status | error | Step Card/Sharp/Text/Label | fill[0] | foreground.error |
+| Status | error | Step Card/Sharp/Indicator/Icon | fill[0] | foreground.on-strong |
 | Status | disabled | Step Card/Sharp | stroke[0] | border.subtle |
 | Status | disabled | Step Card/Sharp/Indicator | fill[0] | border.subtle |
 | Status | disabled | Step Card/Sharp/Indicator | stroke[0] | border.subtle |
@@ -311,6 +313,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Status | complete | Step Card/Round/Indicator/Number | fontSize | — |
 | Status | complete | Step Card/Round/Indicator/Number | lineHeight | — |
 | Status | complete | Step Card/Round/Indicator/Number | letterSpacing | — |
+| Status | complete | Step Card/Round/Indicator/Icon | fill[0] | foreground.on-strong |
 | Status | partial | Step Card/Round/Indicator | fill[0] | feedback.success.background.subtle |
 | Status | partial | Step Card/Round/Indicator | stroke[0] | border.success |
 | Status | active | Step Card/Round | fill[0] | surface.brand |
@@ -327,6 +330,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Status | error | Step Card/Round/Indicator/Number | lineHeight | — |
 | Status | error | Step Card/Round/Indicator/Number | letterSpacing | — |
 | Status | error | Step Card/Round/Text/Label | fill[0] | foreground.error |
+| Status | error | Step Card/Round/Indicator/Icon | fill[0] | foreground.on-strong |
 | Status | disabled | Step Card/Round | stroke[0] | border.subtle |
 | Status | disabled | Step Card/Round/Indicator | fill[0] | border.subtle |
 | Status | disabled | Step Card/Round/Indicator | stroke[0] | border.subtle |
@@ -393,6 +397,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Status | complete | Step / Horizontal/Head/Indicator/Number | lineHeight | — |
 | Status | complete | Step / Horizontal/Head/Indicator/Number | letterSpacing | — |
 | Status | complete | Step / Horizontal/Track/Line | stroke[0] | border.success |
+| Status | complete | Step / Horizontal/Head/Indicator/Icon | fill[0] | foreground.on-strong |
 | Status | active | Step / Horizontal/Head/Indicator | fill[0] | interactive.primary.background.default |
 | Status | active | Step / Horizontal/Head/Indicator | stroke[0] | interactive.primary.background.default |
 | Status | active | Step / Horizontal/Head/Indicator/Number | fill[0] | interactive.primary.foreground.default |
@@ -407,6 +412,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Status | error | Step / Horizontal/Head/Indicator/Number | lineHeight | — |
 | Status | error | Step / Horizontal/Head/Indicator/Number | letterSpacing | — |
 | Status | error | Step / Horizontal/Head/Text/Label | fill[0] | foreground.error |
+| Status | error | Step / Horizontal/Head/Indicator/Icon | fill[0] | foreground.on-strong |
 | Status | disabled | Step / Horizontal/Head/Indicator | fill[0] | border.subtle |
 | Status | disabled | Step / Horizontal/Head/Indicator | stroke[0] | border.subtle |
 | Status | disabled | Step / Horizontal/Head/Indicator/Number | fill[0] | foreground.disabled |
@@ -466,6 +472,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Status | complete | Step / Vertical/Rail/Indicator/Number | lineHeight | — |
 | Status | complete | Step / Vertical/Rail/Indicator/Number | letterSpacing | — |
 | Status | complete | Step / Vertical/Rail/Line | stroke[0] | border.success |
+| Status | complete | Step / Vertical/Rail/Indicator/Icon | fill[0] | foreground.on-strong |
 | Status | active | Step / Vertical/Rail/Indicator | fill[0] | interactive.primary.background.default |
 | Status | active | Step / Vertical/Rail/Indicator | stroke[0] | interactive.primary.background.default |
 | Status | active | Step / Vertical/Rail/Indicator/Number | fill[0] | interactive.primary.foreground.default |
@@ -480,6 +487,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Status | error | Step / Vertical/Rail/Indicator/Number | lineHeight | — |
 | Status | error | Step / Vertical/Rail/Indicator/Number | letterSpacing | — |
 | Status | error | Step / Vertical/Text/Label | fill[0] | foreground.error |
+| Status | error | Step / Vertical/Rail/Indicator/Icon | fill[0] | foreground.on-strong |
 | Status | disabled | Step / Vertical/Rail/Indicator | fill[0] | border.subtle |
 | Status | disabled | Step / Vertical/Rail/Indicator | stroke[0] | border.subtle |
 | Status | disabled | Step / Vertical/Rail/Indicator/Number | fill[0] | foreground.disabled |

@@ -530,6 +530,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | _controls sharp no-outline | padding.right | 8 | space.sm |
 | _controls sharp no-outline | padding.top | 8 | space.sm |
 | _controls sharp no-outline | padding.bottom | 8 | space.sm |
+| _controls sharp no-outline/Icon | fill[0] | #0c0d0e | foreground.primary |
 
 ### Token changes by property
 
@@ -542,6 +543,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | State | focused | _controls sharp no-outline | strokeWeight | stroke.thick |
 | State | disabled | _controls sharp no-outline | fill[0] | interactive.neutral.background.disabled |
 | State | disabled | _controls sharp no-outline | stroke[0] | interactive.neutral.border.disabled |
+| State | disabled | _controls sharp no-outline/Icon | fill[0] | foreground.disabled |
 
 ## _controls sharp outline
 
@@ -565,6 +567,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | _controls sharp outline | padding.right | 8 | space.sm |
 | _controls sharp outline | padding.top | 8 | space.sm |
 | _controls sharp outline | padding.bottom | 8 | space.sm |
+| _controls sharp outline/Icon | fill[0] | #0c0d0e | foreground.primary |
 
 ### Token changes by property
 
@@ -578,6 +581,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | State | focused | _controls sharp outline | strokeWeight | stroke.thick |
 | State | disabled | _controls sharp outline | fill[0] | interactive.neutral.background.disabled |
 | State | disabled | _controls sharp outline | stroke[0] | interactive.neutral.border.disabled |
+| State | disabled | _controls sharp outline/Icon | fill[0] | foreground.disabled |
 
 ## _controls round no-outline
 
@@ -601,6 +605,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | _controls round no-outline | padding.right | 8 | space.sm |
 | _controls round no-outline | padding.top | 8 | space.sm |
 | _controls round no-outline | padding.bottom | 8 | space.sm |
+| _controls round no-outline/Icon | fill[0] | #0c0d0e | foreground.primary |
 
 ### Token changes by property
 
@@ -613,6 +618,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | State | focused | _controls round no-outline | strokeWeight | stroke.thick |
 | State | disabled | _controls round no-outline | fill[0] | interactive.neutral.background.disabled |
 | State | disabled | _controls round no-outline | stroke[0] | interactive.neutral.border.disabled |
+| State | disabled | _controls round no-outline/Icon | fill[0] | foreground.disabled |
 
 ## _controls round outline
 
@@ -636,6 +642,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | _controls round outline | padding.right | 8 | space.sm |
 | _controls round outline | padding.top | 8 | space.sm |
 | _controls round outline | padding.bottom | 8 | space.sm |
+| _controls round outline/Icon | fill[0] | #0c0d0e | foreground.primary |
 
 ### Token changes by property
 
@@ -649,3 +656,4 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | State | focused | _controls round outline | strokeWeight | stroke.thick |
 | State | disabled | _controls round outline | fill[0] | interactive.neutral.background.disabled |
 | State | disabled | _controls round outline | stroke[0] | interactive.neutral.border.disabled |
+| State | disabled | _controls round outline/Icon | fill[0] | foreground.disabled |

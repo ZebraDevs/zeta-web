@@ -314,6 +314,7 @@ Triggers an action from a single glyph, with no text label. Square at every size
 | Icon Button | padding.right | 4 | space.2xs |
 | Icon Button | padding.top | 4 | space.2xs |
 | Icon Button | padding.bottom | 4 | space.2xs |
+| Icon Button/Icon | fill[0] | #ffffff | interactive.primary.foreground.default |
 
 ### Token changes by property
 
@@ -327,26 +328,35 @@ Triggers an action from a single glyph, with no text label. Square at every size
 | Shape | full | Icon Button | cornerRadius | radius.pill |
 | Flavour | positive | Icon Button | fill[0] | interactive.positive.background.default |
 | Flavour | positive | Icon Button | stroke[0] | interactive.positive.border.default |
+| Flavour | positive | Icon Button/Icon | fill[0] | interactive.positive.foreground.default |
 | Flavour | negative | Icon Button | fill[0] | interactive.destructive.background.default |
 | Flavour | negative | Icon Button | stroke[0] | interactive.destructive.border.default |
+| Flavour | negative | Icon Button/Icon | fill[0] | interactive.destructive.foreground.default |
 | Flavour | subtle | Icon Button | fill[0] | interactive.ghost.background.default |
 | Flavour | subtle | Icon Button | stroke[0] | interactive.neutral.border.default |
+| Flavour | subtle | Icon Button/Icon | fill[0] | foreground.primary |
 | Flavour | text | Icon Button | fill[0] | interactive.ghost.background.default |
 | Flavour | text | Icon Button | stroke[0] | interactive.ghost.border.default |
+| Flavour | text | Icon Button/Icon | fill[0] | interactive.ghost.foreground.default |
 | Flavour | outline-subtle | Icon Button | fill[0] | interactive.ghost.background.default |
 | Flavour | outline-subtle | Icon Button | stroke[0] | interactive.neutral.border.default |
 | Flavour | outline-subtle | Icon Button | strokeWeight | stroke.thin |
+| Flavour | outline-subtle | Icon Button/Icon | fill[0] | interactive.neutral.foreground.default |
 | Flavour | outline | Icon Button | fill[0] | interactive.neutral.background.default |
 | Flavour | outline | Icon Button | stroke[0] | interactive.ghost.border.default |
 | Flavour | outline | Icon Button | strokeWeight | stroke.thin |
+| Flavour | outline | Icon Button/Icon | fill[0] | interactive.ghost.foreground.default |
 | Flavour | gradient | Icon Button | fill[0] | linear-gradient(135deg, surface.gradient.start 0%, surface.gradient.end 87%) |
 | Flavour | text-gradient | Icon Button | fill[0] | interactive.ghost.background.default |
 | Flavour | text-gradient | Icon Button | stroke[0] | interactive.ghost.border.default |
+| Flavour | text-gradient | Icon Button/Icon | fill[0] | linear-gradient(129deg, foreground.gradient.start 0%, foreground.gradient.end 100%) |
 | Flavour | contrast | Icon Button | fill[0] | interactive.inverse.background.default |
 | Flavour | contrast | Icon Button | stroke[0] | interactive.inverse.border.default |
+| Flavour | contrast | Icon Button/Icon | fill[0] | interactive.inverse.foreground.default |
 | Flavour | outline-contrast | Icon Button | fill[0] | interactive.ghost.background.default |
 | Flavour | outline-contrast | Icon Button | stroke[0] | interactive.inverse.border.default |
 | Flavour | outline-contrast | Icon Button | strokeWeight | stroke.thin |
+| Flavour | outline-contrast | Icon Button/Icon | fill[0] | foreground.primary |
 | State | hover | Icon Button | fill[0] | interactive.primary.background.hover |
 | State | hover | Icon Button | stroke[0] | interactive.primary.border.hover |
 | State | pressed | Icon Button | fill[0] | interactive.primary.background.pressed |
@@ -356,3 +366,4 @@ Triggers an action from a single glyph, with no text label. Square at every size
 | State | focus | Icon Button | strokeWeight | stroke.thick |
 | Disabled | true | Icon Button | fill[0] | interactive.primary.background.disabled |
 | Disabled | true | Icon Button | stroke[0] | interactive.primary.border.disabled |
+| Disabled | true | Icon Button/Icon | fill[0] | interactive.primary.foreground.disabled |

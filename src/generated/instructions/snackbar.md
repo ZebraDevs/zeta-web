@@ -128,6 +128,7 @@ A brief message about something the app just did, carrying at most one action. V
 | Snackbar/Content | itemSpacing | 12 | space.md |
 | Snackbar/Content | padding.top | 8 | space.sm |
 | Snackbar/Content | padding.bottom | 8 | space.sm |
+| Snackbar/Content/Icon | fill[0] | #0c0d0e | foreground.primary |
 | Snackbar/Content/Message | fill[0] | #0c0d0e | foreground.primary |
 | Snackbar/Content/Message | fontSize | 16 | body.medium.font size |
 | Snackbar/Content/Message | lineHeight | 24 | body.medium.line height |
@@ -182,6 +183,7 @@ A brief message about something the app just did, carrying at most one action. V
 | Flavour | view | Snackbar/Controls/Action | padding.top | space.2xs |
 | Flavour | view | Snackbar/Controls/Action | padding.bottom | space.2xs |
 | Flavour | action | Snackbar | fill[0] | surface.popover |
+| Flavour | action | Snackbar/Content/Icon | fill[0] | — |
 | Flavour | action | Snackbar/Controls | itemSpacing | — |
 | Flavour | action | Snackbar/Controls/Close | width | — |
 | Flavour | action | Snackbar/Controls/Close | height | — |
@@ -203,5 +205,6 @@ A brief message about something the app just did, carrying at most one action. V
 | Flavour | action | Snackbar/Action | padding.top | space.2xs |
 | Flavour | action | Snackbar/Action | padding.bottom | space.2xs |
 | Flavour | default | Snackbar | fill[0] | surface.popover |
+| Flavour | default | Snackbar/Content/Icon | fill[0] | — |
 | Shape | sharp | Snackbar | cornerRadius | radius.none |
 | Shape | sharp | Snackbar/Controls/Close | cornerRadius | radius.none |

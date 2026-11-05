@@ -213,6 +213,7 @@ One option inside a Segmented Control, carrying a label, an icon, or both. It is
 | _Segmented item | padding.right | 16 | space.lg |
 | _Segmented item | padding.top | 4 | space.2xs |
 | _Segmented item | padding.bottom | 4 | space.2xs |
+| _Segmented item/Icon | fill[0] | #545963 | foreground.secondary |
 | _Segmented item/Item | fill[0] | #545963 | foreground.secondary |
 | _Segmented item/Item | fontSize | 14 | label.medium.font size |
 | _Segmented item/Item | lineHeight | 20 | label.medium.line height |
@@ -224,10 +225,13 @@ One option inside a Segmented Control, carrying a label, an icon, or both. It is
 | --- | --- | --- | --- | --- |
 | Rounded | false | _Segmented item | cornerRadius | radius.none |
 | State | active | _Segmented item | fill[0] | interactive.neutral.background.focused |
+| State | active | _Segmented item/Icon | fill[0] | foreground.primary |
 | State | active | _Segmented item/Item | fill[0] | foreground.primary |
+| State | hover | _Segmented item/Icon | fill[0] | foreground.primary |
 | State | hover | _Segmented item/Item | fill[0] | foreground.primary |
 | Flavour | text only | _Segmented item | itemSpacing | space.sm |
 | Flavour | text only | _Segmented item | padding.left | space.lg |
+| Flavour | text only | _Segmented item/Icon | fill[0] | — |
 | Flavour | icon only | _Segmented item | itemSpacing | space.sm |
 | Flavour | icon only | _Segmented item | padding.left | space.lg |
 | Flavour | icon only | _Segmented item/Item | fill[0] | — |

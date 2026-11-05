@@ -274,6 +274,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | State | typing | Input / Phone/Input Text/Value/Cursor | lineHeight | body.medium.line height |
 | State | typing | Input / Phone/Input Text/Value/Cursor | letterSpacing | body.medium.letter spacing |
 | State | typing | Input / Phone/Trailing | itemSpacing | space.sm |
+| State | typing | Input / Phone/Trailing/Clear | fill[0] | foreground.primary |
 | State | filled | Input / Phone/Input Text/Number | fill[0] | foreground.primary |
 | State | invalid | Input / Phone | fill[0] | feedback.error.background.subtle |
 | State | invalid | Input / Phone | stroke[0] | border.error |
@@ -311,6 +312,8 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | _Phone Country | itemSpacing | 4 | space.2xs |
 | _Phone Country | padding.left | 8 | space.sm |
 | _Phone Country | padding.right | 8 | space.sm |
+| _Phone Country/Flag | fill[0] | #0c0d0e | foreground.primary |
+| _Phone Country/Chevron | fill[0] | #0c0d0e | foreground.primary |
 
 ### Token changes by property
 
@@ -327,6 +330,8 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | State | open | _Phone Country | fill[0] | interactive.neutral.background.selected |
 | State | disabled | _Phone Country | fill[0] | interactive.neutral.background.disabled |
 | State | disabled | _Phone Country | stroke[0] | interactive.neutral.border.disabled |
+| State | disabled | _Phone Country/Flag | fill[0] | foreground.disabled |
+| State | disabled | _Phone Country/Chevron | fill[0] | foreground.disabled |
 | Flavour | gradient | _Phone Country | stroke[0] | foreground.gradient.start |
 | Flavour | ghost | _Phone Country | fill[0] | — |
 | Flavour | ghost | _Phone Country | stroke[0] | interactive.ghost.border.default |

@@ -26,6 +26,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Tab Item | padding.right | 16 | space.gutter |
 | Tab Item | padding.top | 12 | space.md |
 | Tab Item | padding.bottom | 12 | space.md |
+| Tab Item/Icon | fill[0] | #545963 | foreground.secondary |
 | Tab Item/Tab Item | fill[0] | #545963 | foreground.secondary |
 | Tab Item/Tab Item | fontSize | 14 | — |
 | Tab Item/Tab Item | lineHeight | 20 | — |

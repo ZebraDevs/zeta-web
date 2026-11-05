@@ -162,6 +162,7 @@ A single row inside a Dropdown Menu, with a leading element, a label and an opti
 | Menu Item | padding.right | 12 | space.md |
 | Menu Item | padding.top | 4 | space.2xs |
 | Menu Item | padding.bottom | 4 | space.2xs |
+| Menu Item/Leading Icon | fill[0] | #0c0d0e | interactive.neutral.foreground.default |
 | Menu Item/Label | padding.left | 4 | space.2xs |
 | Menu Item/Label | padding.right | 24 | space.xl |
 | Menu Item/Label/Label | fill[0] | #0c0d0e | interactive.neutral.foreground.default |
@@ -175,6 +176,7 @@ A single row inside a Dropdown Menu, with a leading element, a label and an opti
 | --- | --- | --- | --- | --- |
 | State | hover | Menu Item | fill[0] | interactive.ghost.background.hover |
 | State | selected | Menu Item | fill[0] | interactive.ghost.background.selected |
+| State | selected | Menu Item/Leading Icon | fill[0] | foreground.primary |
 | State | selected | Menu Item/Label/Label | fill[0] | foreground.primary |
 | State | focus | Menu Item | fill[0] | interactive.ghost.background.focused |
 | State | focus | Menu Item | stroke[0] | border.focus |
@@ -183,12 +185,16 @@ A single row inside a Dropdown Menu, with a leading element, a label and an opti
 | State | selected focus | Menu Item | stroke[0] | border.focus |
 | State | selected focus | Menu Item | strokeWeight | stroke.thin |
 | State | disabled | Menu Item | fill[0] | interactive.ghost.background.disabled |
+| State | disabled | Menu Item/Leading Icon | fill[0] | interactive.neutral.foreground.disabled |
 | State | disabled | Menu Item/Label/Label | fill[0] | interactive.neutral.foreground.disabled |
 | Type | checkbox | Menu Item | itemSpacing | — |
 | Type | checkbox | Menu Item | padding.left | — |
+| Type | checkbox | Menu Item/Leading Icon | fill[0] | — |
 | Type | radio | Menu Item | itemSpacing | — |
 | Type | radio | Menu Item | padding.left | — |
+| Type | radio | Menu Item/Leading Icon | fill[0] | — |
 | Type | radio | Menu Item/Leading Icon | cornerRadius | radius.none |
+| Type | custom | Menu Item/Leading Icon | fill[0] | — |
 | Rounded | true | Menu Item | cornerRadius | radius.sm |
 
 ## Dropdown Menu

@@ -32,7 +32,10 @@ A vertical navigation column for the edge of a desktop view, made of a narrow ic
 | Shape | sharp | - | Square corners (radius/none) on everything inside the rail. |
 | Inverse | false | true | Code only. The rail always shows in dark mode, whatever the page's mode. Everything inside it follows the rail, and brand extensions still apply. |
 | Inverse | true | - | Shows the rail in light mode instead, still regardless of the page's mode. |
-| Rail Max Width | none | true | Code only. The wide rail is 200px. |
+| Rail Width | 200px | true | Code only. The wide rail's width; Figma's 200px is the default. |
+| Rail Width | length | - | The project sets the wide rail's width. |
+| Rail Width | fill | - | The wide rail takes the width of its container. |
+| Rail Max Width | none | true | Code only. No cap; the wide rail follows Rail Width. |
 | Rail Max Width | length | - | Caps the wide rail's width. Labels that no longer fit end in an ellipsis. The narrow rail is not affected. |
 | Sub Menu Max Width | none | true | Code only. The sub menu sizes to its content, never narrower than 240px. |
 | Sub Menu Max Width | length | - | Caps the sub menu's width. Rows that no longer fit end in an ellipsis. A cap below 240px also lowers the 240px minimum. |
@@ -65,7 +68,7 @@ A vertical navigation column for the edge of a desktop view, made of a narrow ic
 | Footer Slot | slot, holds Navigation Rail Item | Destinations pinned to the bottom, above the two fixed footer items. It ships holding a Divider and three items, and the same content is shared by every variant. |
 | Sub Menu Slot | slot, holds Sub Menu Item and Collapsible Menu Item | The second-level list inside the panel. It ships holding one Collapsible Menu Item and four Sub Menu Items, and its content is shared by every variant. See the Sub Menu Item Metadata frame. |
 | Sub Menu Header | exposed nested instance | The panel's title bar, carrying a back affordance, an editable title and a trailing slot of its own holding a Button. The rail leaves the instance exposed, so all of that is reachable without detaching. The shape of all sub elements are inherited from the main rail component. |
-| Header and header action | fixed nested instances | The header is a Navigation Header showing an avatar. The action below it is an Icon Button in the narrow rail and a Button in the wide one. Neither is a slot, so changing them means overriding the nested instance. |
+| Header and header action | fixed nested instances | The header is a Navigation Header showing an avatar. The action below it is an Icon Button in the narrow rail and a Button in the wide one. Neither is a slot, so changing them means overriding the nested instance. The header's Icon Button shows Settings by default; its icon and action can be set to whatever is needed. |
 
 ### Anatomy
 
@@ -96,7 +99,7 @@ A vertical navigation column for the edge of a desktop view, made of a narrow ic
 
 | Property | Type | Description |
 | --- | --- | --- |
-| Width | Hug | The narrow rail is 72px and the wide rail 200px; Rail Max Width can cap the wide rail. The sub menu sizes to its content: as wide as its widest top-level row or its header, never narrower than 240px, and all rows share that width. A Collapsible Menu Item never makes it wider. Sub Menu Max Width can cap it. Figma draws the sub menu at a fixed 240px; build it to size to its content. |
+| Width | Hug | The narrow rail is 72px. The wide rail is 200px by default; Rail Width sets it or fills the container, and Rail Max Width can cap it. The sub menu sizes to its content: as wide as its widest top-level row or its header, never narrower than 240px, and all rows share that width. A Collapsible Menu Item never makes it wider. Sub Menu Max Width can cap it. Figma draws the sub menu at a fixed 240px; build it to size to its content. |
 | Height | Fill | Fills its parent, drawn at 991px. The icon rail and the panel both fill it, and the menu list absorbs the space left between the header block and the footer. |
 | Rail padding | Fixed | 12px on all four sides of the icon rail, space/md left and right and space/card top and bottom, with a 12px (space/md) gap between the header, the action, the menu list and the footer. |
 | Item spacing | Fixed | 4px (space/xs) between items in both the menu list and the footer. The Menu Slot adds 4px (space/xs) of horizontal padding of its own. |
@@ -347,14 +350,17 @@ A single destination in a Navigation Rail, shown as a glyph in a square target o
 | Navigation Rail Item | padding.top | 8 | space.sm |
 | Navigation Rail Item | padding.bottom | 8 | space.sm |
 | Navigation Rail Item/Indicator | itemSpacing | 10 | — |
+| Navigation Rail Item/Indicator/Icon | fill[0] | #0c0d0e | interactive.neutral.foreground.default |
 
 ### Token changes by property
 
 | Property | Value | Layer | Field | Token |
 | --- | --- | --- | --- | --- |
 | State | hover | Navigation Rail Item | fill[0] | interactive.ghost.background.hover |
+| State | selected | Navigation Rail Item/Indicator/Icon | fill[0] | interactive.ghost.foreground.default |
 | State | active | Navigation Rail Item | fill[0] | interactive.ghost.background.pressed |
 | Disabled | true | Navigation Rail Item | fill[0] | — |
+| Disabled | true | Navigation Rail Item/Indicator/Icon | fill[0] | foreground.disabled |
 | Expanded | true | Navigation Rail Item | padding.left | space.lg |
 | Expanded | true | Navigation Rail Item | padding.right | space.lg |
 | Expanded | true | Navigation Rail Item | itemSpacing | space.lg |
@@ -487,6 +493,7 @@ A row in the Navigation Rail's sub menu panel, with a leading glyph, a label, an
 | Sub Menu Item | padding.top | 4 | space.2xs |
 | Sub Menu Item | padding.bottom | 4 | space.2xs |
 | Sub Menu Item/Icon and Title | itemSpacing | 12 | space.md |
+| Sub Menu Item/Icon and Title/Icon | fill[0] | #0c0d0e | foreground.primary |
 | Sub Menu Item/Icon and Title/Page Title | itemSpacing | 8 | space.sm |
 | Sub Menu Item/Icon and Title/Page Title/Title | fill[0] | #0c0d0e | foreground.primary |
 | Sub Menu Item/Icon and Title/Page Title/Title | fontSize | 14 | label.medium.font size |
@@ -500,11 +507,14 @@ A row in the Navigation Rail's sub menu panel, with a leading glyph, a label, an
 | Property | Value | Layer | Field | Token |
 | --- | --- | --- | --- | --- |
 | State | selected | Sub Menu Item | fill[0] | interactive.ghost.background.selected |
+| State | selected | Sub Menu Item/Icon and Title/Icon | fill[0] | interactive.ghost.foreground.default |
 | State | selected | Sub Menu Item/Icon and Title/Page Title/Title | fill[0] | interactive.ghost.foreground.default |
 | State | default | Sub Menu Item | fill[0] | — |
 | State | active | Sub Menu Item | fill[0] | interactive.ghost.background.pressed |
+| State | active | Sub Menu Item/Icon and Title/Icon | fill[0] | interactive.neutral.foreground.default |
 | State | active | Sub Menu Item/Icon and Title/Page Title/Title | fill[0] | interactive.neutral.foreground.default |
 | Nested | true | Sub Menu Item | padding.left | space.xl |
+| Nested | true | Sub Menu Item/Icon and Title/Icon | fill[0] | foreground.secondary |
 | Nested | true | Sub Menu Item/Icon and Title/Page Title/Title | fill[0] | foreground.secondary |
 | Nested | true | Sub Menu Item/Icon and Title/Page Title/Title | fontSize | indicator.medium.font size |
 | Nested | true | Sub Menu Item/Icon and Title/Page Title/Title | lineHeight | indicator.medium.line height |
@@ -570,6 +580,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Type | logo | Navigation Header/Logo with Title | padding.left | space.2xs |
 | Type | logo | Navigation Header/Logo with Title | padding.right | space.2xs |
 | Type | logo | Navigation Header/Logo with Title/Icon | height | control.target-min |
+| Type | logo | Navigation Header/Logo with Title/Icon | fill[0] | foreground.primary |
 | Type | logo | Navigation Header/Logo with Title/Page Title | itemSpacing | space.sm |
 | Type | logo | Navigation Header/Logo with Title/Page Title/Title | fill[0] | foreground.primary |
 | Type | logo | Navigation Header/Logo with Title/Page Title/Title | fontSize | label.medium.font size |
@@ -621,6 +632,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Sub Menu Header | padding.left | 16 | space.lg |
 | Sub Menu Header | padding.right | 16 | space.lg |
 | Sub Menu Header/Icon and Title | itemSpacing | 12 | space.md |
+| Sub Menu Header/Icon and Title/Icon | fill[0] | #0c0d0e | foreground.primary |
 | Sub Menu Header/Icon and Title/Page Title | itemSpacing | 8 | space.sm |
 | Sub Menu Header/Icon and Title/Page Title/Title | fill[0] | #0c0d0e | foreground.primary |
 | Sub Menu Header/Icon and Title/Page Title/Title | fontSize | 14 | label.medium.font size |
@@ -633,6 +645,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Property | Value | Layer | Field | Token |
 | --- | --- | --- | --- | --- |
 | Type | sub page | Sub Menu Header/Icon and Title | itemSpacing | space.sm |
+| Type | sub page | Sub Menu Header/Icon and Title/Icon | fill[0] | — |
 | Type | sub page | Sub Menu Header/Icon and Title/Icon Button | width | control.sm |
 | Type | sub page | Sub Menu Header/Icon and Title/Icon Button | height | control.sm |
 | Type | sub page | Sub Menu Header/Icon and Title/Icon Button | fill[0] | interactive.ghost.background.default |
@@ -658,6 +671,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Layer | Field | Raw | Token |
 | --- | --- | --- | --- |
 | Caret Indicator | itemSpacing | 10 | — |
+| Caret Indicator/Icon | fill[0] | #0c0d0e | interactive.neutral.foreground.default |
 
 ## Collapsible Menu Item
 

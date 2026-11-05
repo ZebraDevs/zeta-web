@@ -47,7 +47,7 @@ Represents a person, entity or value someone has entered or picked, such as a re
 | Property | Type | Description |
 | --- | --- | --- |
 | Label | text property | Plain text set per instance, defaulting to Label. The only text the chip takes. |
-| Avatar | nested instance, toggled by Show Avatar | An Avatar at Size=xxxsmall with its own Status, Ring and Close all switched off, so only the face or initials shows. Its visibility is the one child property the chip surfaces. |
+| Avatar | nested instance, toggled by Show Avatar | An Avatar at Size=xxxsmall with its own Status, Ring and Close all switched off, so only the face or initials shows. Its visibility is the one child property the chip surfaces. Its swatch colour stays changeable on every chip, by token name or colour value. |
 | Remove control | fixed nested Icon | An Icon at Size=small swapped to Close. There is no property to hide it, so every input chip shows a remove affordance whether or not the value can be removed. |
 
 ### Anatomy
@@ -111,6 +111,7 @@ Represents a person, entity or value someone has entered or picked, such as a re
 | Input Chip/Label | fontSize | 14 | label.medium.font size |
 | Input Chip/Label | lineHeight | 20 | label.medium.line height |
 | Input Chip/Label | letterSpacing | 0 | label.medium.letter spacing |
+| Input Chip/Remove Icon | fill[0] | #0c0d0e | interactive.neutral.foreground.default |
 
 ### Token changes by property
 
@@ -124,6 +125,7 @@ Represents a person, entity or value someone has entered or picked, such as a re
 | disabled | true | Input Chip | stroke[0] | — |
 | disabled | true | Input Chip | strokeWeight | — |
 | disabled | true | Input Chip/Label | fill[0] | interactive.neutral.foreground.disabled |
+| disabled | true | Input Chip/Remove Icon | fill[0] | interactive.neutral.foreground.disabled |
 | Rounded | false | Input Chip | cornerRadius | radius.none |
 
 ## Filter Chip
@@ -259,6 +261,7 @@ Lets someone narrow a set of content by switching criteria on and off, such as c
 | active | true | Filter Chip | padding.top | space.2xs |
 | active | true | Filter Chip | padding.bottom | space.2xs |
 | active | true | Filter Chip/Label | fill[0] | interactive.inverse.foreground.default |
+| active | true | Filter Chip/Selected Icon | fill[0] | interactive.inverse.foreground.default |
 
 ## Assist Chip
 
@@ -385,12 +388,14 @@ Offers a contextual action, or stands for an item someone can discard, such as a
 | Assist Chip | padding.bottom | 6 | space.xs |
 | Assist Chip/Leading Icon | width | 12 | control.icon-xs |
 | Assist Chip/Leading Icon | height | 12 | control.icon-xs |
+| Assist Chip/Leading Icon | fill[0] | #0c0d0e | interactive.neutral.foreground.default |
 | Assist Chip/Label | padding.left | 4 | space.2xs |
 | Assist Chip/Label | padding.right | 4 | space.2xs |
 | Assist Chip/Label/Label | fill[0] | #0c0d0e | interactive.neutral.foreground.default |
 | Assist Chip/Label/Label | fontSize | 12 | indicator.medium.font size |
 | Assist Chip/Label/Label | lineHeight | 14 | indicator.medium.line height |
 | Assist Chip/Label/Label | letterSpacing | 0 | indicator.medium.letter spacing |
+| Assist Chip/Discardable | fill[0] | #0c0d0e | interactive.neutral.foreground.default |
 
 ### Token changes by property
 
@@ -405,13 +410,23 @@ Offers a contextual action, or stands for an item someone can discard, such as a
 | disabled | true | Assist Chip | fill[0] | interactive.neutral.background.disabled |
 | disabled | true | Assist Chip | stroke[0] | — |
 | disabled | true | Assist Chip | strokeWeight | — |
+| disabled | true | Assist Chip/Leading Icon | fill[0] | interactive.neutral.foreground.disabled |
 | disabled | true | Assist Chip/Label/Label | fill[0] | interactive.neutral.foreground.disabled |
+| disabled | true | Assist Chip/Discardable | fill[0] | interactive.neutral.foreground.disabled |
 | Rounded | false | Assist Chip | cornerRadius | radius.none |
 | Color | green | Assist Chip | stroke[0] | border.success |
+| Color | green | Assist Chip/Leading Icon | fill[0] | feedback.success.foreground |
 | Color | green | Assist Chip/Label/Label | fill[0] | feedback.success.foreground |
+| Color | green | Assist Chip/Discardable | fill[0] | feedback.success.foreground |
 | Color | orange | Assist Chip | stroke[0] | border.warning |
+| Color | orange | Assist Chip/Leading Icon | fill[0] | feedback.warning.foreground |
 | Color | orange | Assist Chip/Label/Label | fill[0] | feedback.warning.foreground |
+| Color | orange | Assist Chip/Discardable | fill[0] | feedback.warning.foreground |
 | Color | blue | Assist Chip | stroke[0] | border.info |
+| Color | blue | Assist Chip/Leading Icon | fill[0] | feedback.info.foreground |
 | Color | blue | Assist Chip/Label/Label | fill[0] | feedback.info.foreground |
+| Color | blue | Assist Chip/Discardable | fill[0] | feedback.info.foreground |
 | Color | red | Assist Chip | stroke[0] | border.error |
+| Color | red | Assist Chip/Leading Icon | fill[0] | feedback.error.foreground |
 | Color | red | Assist Chip/Label/Label | fill[0] | feedback.error.foreground |
+| Color | red | Assist Chip/Discardable | fill[0] | feedback.error.foreground |

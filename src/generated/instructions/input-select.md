@@ -35,6 +35,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Input / Select/Input Text/Placeholder | fontSize | 16 | body.medium.font size |
 | Input / Select/Input Text/Placeholder | lineHeight | 24 | body.medium.line height |
 | Input / Select/Input Text/Placeholder | letterSpacing | 0 | body.medium.letter spacing |
+| Input / Select/Chevron | fill[0] | #0c0d0e | foreground.primary |
 
 ### Token changes by property
 
@@ -83,6 +84,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | State | disabled | Input / Select/Input Text/Placeholder | fontSize | — |
 | State | disabled | Input / Select/Input Text/Placeholder | lineHeight | — |
 | State | disabled | Input / Select/Input Text/Placeholder | letterSpacing | — |
+| State | disabled | Input / Select/Chevron | fill[0] | foreground.disabled |
 | State | disabled | Input / Select/Input Text/Value | fill[0] | foreground.disabled |
 | State | disabled | Input / Select/Input Text/Value | fontSize | body.medium.font size |
 | State | disabled | Input / Select/Input Text/Value | lineHeight | body.medium.line height |

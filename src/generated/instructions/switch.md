@@ -112,6 +112,8 @@ The thumb increases it’s width to 1.3 before settling back to it’s original 
 | Switch/Icons | padding.right | 4 | space.2xs |
 | Switch/Icons | padding.top | 4 | space.2xs |
 | Switch/Icons | padding.bottom | 4 | space.2xs |
+| Switch/Icons/On Icon | fill[0] | #ffffff | foreground.inverse |
+| Switch/Icons/Off Icon | fill[0] | #ffffff | foreground.inverse |
 | Switch/Thumb | height | 24 | control.xs |
 | Switch/Thumb | fill[0] | #ffffff | interactive.primary.foreground.default |
 | Switch/Thumb | cornerRadius | 9999 | radius.pill |
@@ -121,6 +123,8 @@ The thumb increases it’s width to 1.3 before settling back to it’s original 
 | Property | Value | Layer | Field | Token |
 | --- | --- | --- | --- | --- |
 | State | disabled | Switch/Track | fill[0] | interactive.selection.background.disabled |
+| State | disabled | Switch/Icons/On Icon | fill[0] | foreground.disabled |
+| State | disabled | Switch/Icons/Off Icon | fill[0] | foreground.disabled |
 | State | disabled | Switch/Thumb | fill[0] | interactive.primary.foreground.disabled |
 | State | focus | Switch | stroke[0] | border.focus |
 | State | focus | Switch | strokeWeight | stroke.thick |

@@ -119,8 +119,10 @@ A square control for turning a single option on or off, with an optional label b
 | --- | --- | --- | --- | --- |
 | Checked | true | Checkbox/Target/Box | stroke[0] | interactive.selection.border.pressed |
 | Checked | true | Checkbox/Target/Box | fill[0] | interactive.selection.background.pressed |
+| Checked | true | Checkbox/Target/Box/Mark | fill[0] | foreground.on-strong |
 | Checked | indeterminate | Checkbox/Target/Box | stroke[0] | interactive.selection.border.pressed |
 | Checked | indeterminate | Checkbox/Target/Box | fill[0] | interactive.selection.background.pressed |
+| Checked | indeterminate | Checkbox/Target/Box/Mark | fill[0] | foreground.on-strong |
 | State | hover | Checkbox/Target/Box | stroke[0] | interactive.selection.border.hover |
 | State | focus | Checkbox/Target/Box | width | — |
 | State | focus | Checkbox/Target/Box | height | — |

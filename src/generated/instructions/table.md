@@ -247,12 +247,15 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | _Label/Label/Label | fontSize | 14 | label.medium.font size |
 | _Label/Label/Label | lineHeight | 20 | label.medium.line height |
 | _Label/Label/Label | letterSpacing | 0 | label.medium.letter spacing |
+| _Label/Trailing Icon | fill[0] | #0c0d0e | foreground.primary |
 
 ### Token changes by property
 
 | Property | Value | Layer | Field | Token |
 | --- | --- | --- | --- | --- |
 | State | disabled | _Label/Label/Label | fill[0] | foreground.disabled |
+| State | disabled | _Label/Trailing Icon | fill[0] | foreground.disabled |
+| Filtered | true | _Label/Trailing Icon | fill[0] | foreground.cursor |
 
 ## _Data Cell
 

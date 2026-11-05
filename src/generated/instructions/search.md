@@ -124,6 +124,7 @@ A single-line input for typing a query, with a magnifier leading it and a traili
 | Search | padding.right | 12 | space.md |
 | Search | padding.top | 8 | space.sm |
 | Search | padding.bottom | 8 | space.sm |
+| Search/Search-Icon | fill[0] | #0c0d0e | foreground.primary |
 | Search/Input Text | itemSpacing | 2 | space.3xs |
 | Search/Input Text | padding.left | 4 | space.2xs |
 | Search/Input Text | padding.right | 4 | space.2xs |
@@ -131,6 +132,7 @@ A single-line input for typing a query, with a magnifier leading it and a traili
 | Search/Input Text/Text | fontSize | 16 | body.medium.font size |
 | Search/Input Text/Text | lineHeight | 24 | body.medium.line height |
 | Search/Input Text/Text | letterSpacing | 0 | body.medium.letter spacing |
+| Search/Trailing-Icon | fill[0] | #0c0d0e | foreground.primary |
 
 ### Token changes by property
 
@@ -158,6 +160,7 @@ A single-line input for typing a query, with a magnifier leading it and a traili
 | State | typing | Search | stroke[0] | border.focus |
 | State | typing | Search | height | control.lg |
 | State | typing | Search/Input Text/Text | fill[0] | foreground.primary |
+| State | typing | Search/Trailing-Icon | fill[0] | — |
 | State | typing | Search/Input Text/Cursor | fill[0] | foreground.cursor |
 | State | typing | Search/Input Text/Cursor | fontSize | body.medium.font size |
 | State | typing | Search/Input Text/Cursor | lineHeight | body.medium.line height |
@@ -168,6 +171,8 @@ A single-line input for typing a query, with a magnifier leading it and a traili
 | State | disabled | Search | fill[0] | interactive.neutral.background.disabled |
 | State | disabled | Search | stroke[0] | interactive.neutral.border.disabled |
 | State | disabled | Search | height | control.lg |
+| State | disabled | Search/Search-Icon | fill[0] | interactive.neutral.foreground.disabled |
+| State | disabled | Search/Trailing-Icon | fill[0] | interactive.neutral.foreground.disabled |
 | Size | medium | Search | height | control.md |
 | Size | small | Search | height | control.sm |
 | Size | small | Search/Input Text/Text | fontSize | body.small.font size |
@@ -196,8 +201,10 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Layer | Field | Raw | Token |
 | --- | --- | --- | --- |
 | Trailing | itemSpacing | 8 | space.sm |
+| Trailing/Cancel-Icon | fill[0] | #0c0d0e | interactive.neutral.foreground.default |
 | Trailing/Divider | width | 1 | stroke.thin |
 | Trailing/Divider | cornerRadius | 0 | radius.none |
+| Trailing/Trailing-Icon | fill[0] | #0c0d0e | interactive.neutral.foreground.default |
 
 ### Token changes by property
 
@@ -206,6 +213,8 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | hasIcon | false | Trailing | itemSpacing | — |
 | hasIcon | false | Trailing/Divider | width | — |
 | hasIcon | false | Trailing/Divider | cornerRadius | — |
+| hasIcon | false | Trailing/Trailing-Icon | fill[0] | — |
 | hasCancel | false | Trailing | itemSpacing | — |
+| hasCancel | false | Trailing/Cancel-Icon | fill[0] | — |
 | hasCancel | false | Trailing/Divider | width | — |
 | hasCancel | false | Trailing/Divider | cornerRadius | — |

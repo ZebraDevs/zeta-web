@@ -513,6 +513,7 @@ One tile of the grid arrangement inside a bottom sheet: an icon above a short la
 | Grid Menu Item | padding.top | 16 | space.lg |
 | Grid Menu Item | padding.bottom | 16 | space.lg |
 | Grid Menu Item/Indicator | itemSpacing | 10 | — |
+| Grid Menu Item/Indicator/Icon | fill[0] | #0c0d0e | foreground.primary |
 | Grid Menu Item/Label | fill[0] | #0c0d0e | foreground.primary |
 | Grid Menu Item/Label | fontSize | 14 | label.medium.font size |
 | Grid Menu Item/Label | lineHeight | 20 | label.medium.line height |
@@ -522,7 +523,9 @@ One tile of the grid arrangement inside a bottom sheet: an icon above a short la
 
 | Property | Value | Layer | Field | Token |
 | --- | --- | --- | --- | --- |
+| Active | true | Grid Menu Item/Indicator/Icon | fill[0] | interactive.ghost.foreground.default |
 | Active | true | Grid Menu Item/Label | fill[0] | interactive.subtle.foreground.default |
+| Disabled | true | Grid Menu Item/Indicator/Icon | fill[0] | foreground.disabled |
 | Disabled | true | Grid Menu Item/Label | fill[0] | interactive.subtle.foreground.disabled |
 | State | hover | Grid Menu Item | fill[0] | interactive.ghost.background.hover |
 | State | pressed | Grid Menu Item | fill[0] | interactive.ghost.background.pressed |

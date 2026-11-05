@@ -56,7 +56,7 @@ A visual representation of a user or entity, shown as a photo, initials, or icon
 | Property | Type | Description |
 | --- | --- | --- |
 | Content type | fixed per instance | Initials, photo, or icon. Not an exposed property, swap the nested Avatar Type instance directly to change it. |
-| Swatch color | fixed per instance, 7 options | Background color behind initials or an icon (purple, blue, sea, yellow, orange, green, burgundy, using chart/series tokens). Not used behind a photo. Swap the nested Swatch instance directly. |
+| Swatch color | fixed per instance, 7 options | Background color behind initials or an icon (purple, blue, sea, yellow, orange, green, burgundy, using chart/series tokens). Not used behind a photo. Swap the nested Swatch instance directly. Code also takes any token name or colour value. |
 | Photo | instance swap, 40 named options | Used only when Content type is photo, fills the circle. In Figma swap the nested Photo instance to any of the named photos in _Avatar Photos. In code any image can be passed as an image property. |
 | Status | exposed nested instance, 8 states | Holds one of eight states from the _Status Indicator component, each drawn with its own glyph from the Assets library. The instance is exposed, so the state is set from Avatar's own properties panel without detaching. Only rendered while Show Status is true. |
 | Custom Icon | instance swap, any component | The glyph used while Status is Icon. Any component can be swapped in and the suggested list holds only the Star set, so nothing constrains it to a presence-shaped mark. |
@@ -188,6 +188,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Type | Icon | _Avatar Type/AA | fontSize | — |
 | Type | Icon | _Avatar Type/AA | lineHeight | — |
 | Type | Icon | _Avatar Type/AA | letterSpacing | — |
+| Type | Icon | _Avatar Type/Icon | fill[0] | foreground.inverse |
 
 ## _Status Indicator
 
@@ -207,6 +208,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | --- | --- | --- | --- |
 | _Status Indicator/Fill | fill[0] | #00864f | chart.positive |
 | _Status Indicator/Void | fill[0] | #ffffff | foreground.inverse |
+| _Status Indicator/Icon | fill[0] | #ffffff | foreground.inverse |
 
 ### Token changes by property
 
@@ -218,8 +220,10 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Status | On Shift | _Status Indicator/Fill | fill[0] | chart.series.1 |
 | Status | Offline | _Status Indicator/Fill | fill[0] | foreground.inverse |
 | Status | Offline | _Status Indicator/Void | fill[0] | foreground.secondary |
+| Status | Offline | _Status Indicator/Icon | fill[0] | foreground.secondary |
 | Status | Close | _Status Indicator/Fill | fill[0] | chart.series.12 |
 | Status | Icon | _Status Indicator/Fill | fill[0] | chart.series.1 |
+| Status | Icon | _Status Indicator/Icon | fill[0] | — |
 
 ## Avatar Rail
 

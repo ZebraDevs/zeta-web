@@ -153,6 +153,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Layer | Field | Raw | Token |
 | --- | --- | --- | --- |
 | _Hint text | itemSpacing | 4 | space.2xs |
+| _Hint text/Icon | fill[0] | #0c0d0e | foreground.primary |
 | _Hint text/Hint text | fill[0] | #545963 | foreground.secondary |
 | _Hint text/Hint text | fontSize | 12 | body.xsmall.font size |
 | _Hint text/Hint text | lineHeight | 16 | body.xsmall.line height |
@@ -162,6 +163,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 | Property | Value | Layer | Field | Token |
 | --- | --- | --- | --- | --- |
+| Message | error | _Hint text/Icon | fill[0] | foreground.error |
 | Message | error | _Hint text/Hint text | fill[0] | — |
 | Message | error | _Hint text/Hint text | fontSize | — |
 | Message | error | _Hint text/Hint text | lineHeight | — |

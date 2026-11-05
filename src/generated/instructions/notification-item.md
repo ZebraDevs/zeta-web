@@ -157,6 +157,7 @@ A single entry in a notification list, carrying who or what it came from, a titl
 | Notification Item/Content/Message/Body | lineHeight | 18 | body.small.line height |
 | Notification Item/Content/Message/Body | letterSpacing | 0 | body.small.letter spacing |
 | Notification Item/Content/Attachment | itemSpacing | 4 | space.2xs |
+| Notification Item/Content/Attachment/Attachment Icon | fill[0] | #1f69ff | foreground.link |
 | Notification Item/Content/Attachment/Attachment Icon | itemSpacing | 4 | space.2xs |
 | Notification Item/Content/Attachment/Attachment Filename | fill[0] | #1f69ff | foreground.link |
 | Notification Item/Content/Attachment/Attachment Filename | fontSize | 12 | label.small.font size |
@@ -203,4 +204,5 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Property | Value | Layer | Field | Token |
 | --- | --- | --- | --- | --- |
 | Flavour | icon | _Leading Visual | stroke[0] | border.default |
+| Flavour | icon | _Leading Visual/Icon | fill[0] | foreground.secondary |
 | Flavour | image | _Leading Visual | width | — |

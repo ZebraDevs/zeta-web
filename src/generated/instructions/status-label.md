@@ -63,6 +63,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Leading | icon | Status Label/Leading icon | padding.right | — |
 | Leading | icon | Status Label/Leading icon | padding.top | — |
 | Leading | icon | Status Label/Leading icon | padding.bottom | — |
+| Leading | icon | Status Label/Leading icon | fill[0] | foreground.primary |
 | Leading | icon | Status Label/Leading icon/Status indicator | height | — |
 | Leading | icon | Status Label/Leading icon/Status indicator | fill[0] | — |
 | Rounded | true | Status Label | cornerRadius | radius.pill |

@@ -185,6 +185,7 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 | Property | Value | Layer | Field | Token |
 | --- | --- | --- | --- | --- |
 | Selected | true | _Accordion Header Selectable/Selected | height | control.target-min |
+| Selected | true | _Accordion Header Selectable/Selected | fill[0] | interactive.neutral.foreground.default |
 | State | hover | _Accordion Header Selectable | fill[0] | interactive.ghost.background.hover |
 
 ## _Accordion Item
