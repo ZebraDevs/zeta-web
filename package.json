@@ -132,7 +132,7 @@
   "dependencies": {
     "@fontsource/ibm-plex-sans": "^5.3.0",
     "@lit/localize": "^0.12.2",
-    "@zebra-fed/zeta-icons": "1.9.8",
+    "@zebra-fed/zeta-icons": "1.9.9",
     "lit": "^3.3.3"
   },
   "resolutions": {
@@ -140,6 +140,7 @@
     "@xmldom/xmldom": "^0.8.15",
     "js-yaml": "^4.3.0",
     "picomatch": "^4.0.2",
+    "playwright": "1.64.1",
     "react-dom": "19.3.1",
     "react-router-dom": "^6.3.0",
     "react-router": "^6.3.0",
