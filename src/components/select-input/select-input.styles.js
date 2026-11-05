@@ -156,7 +156,7 @@ export default css`
     position: relative;
   }
 
-  .options {
+  [part="options"] {
     display: none;
     background-color: var(--surface-default);
     width: 100%;
@@ -169,11 +169,11 @@ export default css`
     position: absolute;
   }
 
-  :host([rounded]) .options {
+  :host([rounded]) [part="options"] {
     border-radius: var(--radius-minimal);
   }
 
-  :host([open]) .options {
+  :host([open]) [part="options"] {
     display: block;
   }
 `;

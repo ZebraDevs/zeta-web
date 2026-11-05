@@ -30,6 +30,7 @@ import type { ZetaOptionClickEventDetail } from "../../events.js";
  * @event {FocusEvent} blur - Fired when the select input loses focus.
  *
  * @part input-text - The text of the selected option or placeholder.
+ * @part options - The dropdown options.
  *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-39&m=dev
  * @storybook https://design.zebra.com/web/storybook/index.html?path=/docs/components-select-input--docs
@@ -122,7 +123,7 @@ export class ZetaSelectInput extends FormField(Size(Contourable(Interactive(LitE
     super.updated(changedProperties);
     if (this.fixedDropdown && changedProperties.has("open")) {
       // prettier-ignore
-      const options = this.shadowRoot?.querySelector<HTMLElement>(".options");
+      const options = this.shadowRoot?.querySelector<HTMLElement>(`[part="options"]`);
       if (this.open) {
         // prettier-ignore
         const input = this.shadowRoot?.querySelector<HTMLElement>(".input");
@@ -150,7 +151,7 @@ export class ZetaSelectInput extends FormField(Size(Contourable(Interactive(LitE
   updateSelectedOption = () => (this._selectedOption = Array.from(this.optionsNodeList).find(option => option.selected || option.value === this.value));
 
   updateOptionsWidth = (): void => {
-    const optionsDiv = this.shadowRoot?.querySelector(".options");
+    const optionsDiv = this.shadowRoot?.querySelector(`[part="options"]`);
     (optionsDiv as HTMLElement).style.maxHeight = `${this.optionsDialogHeight}px`;
   };
 
@@ -271,7 +272,7 @@ export class ZetaSelectInput extends FormField(Size(Contourable(Interactive(LitE
           >
             ${this.renderInputContent()}
           </div>
-          <div class="options">
+          <div part="options">
             <slot class="contourable-target" @slotchange=${this.handleSlotChange}></slot>
           </div>
         </div>
