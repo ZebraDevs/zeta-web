@@ -1,56 +1,52 @@
 ---
 name: new-component
-description: Use when the user wants to create a new zeta-web component and gives a Figma design link (or asks to build/implement a component "from Figma"). Guides pulling design context out of Figma and building a component that matches this repo's conventions — file layout, base classes/mixins, TSDoc tags, design-token styling, Storybook story + Docs.mdx, Figma Code Connect mapping, and the required test structure.
+description: Use when the user wants to create a new zeta-web component and gives a Figma design link (or asks to build/implement a component "from Figma"). Guides pulling design context out of Figma and building a component that matches this repo's conventions — file layout, base classes/mixins, TSDoc tags, new Zebra Design System token styling, Storybook story + Docs.mdx, Figma Code Connect mapping, and the required test structure.
 ---
 
 # Create a new zeta-web component
 
-`zeta-web` is a Lit web component library (`@zebra-fed/zeta-web`). Every component must match existing conventions closely — reviewers check this against `CONTRIBUTING.md` and existing components. Read that file (`CONTRIBUTING.md` at repo root) if anything below is ambiguous.
+`zeta-web` is a Lit web component library. Every component must match existing conventions closely — reviewers check against `CONTRIBUTING.md` and existing components. Read `CONTRIBUTING.md` if anything below is ambiguous.
+
+The repo is mid-migration from legacy Zeta tokens to the new **Zebra Design System** tokens. New components use **only new tokens**. Copy patterns from already-migrated components — `divider` (smallest complete example), `badges/label`, `chips/*`, `avatar`, `button`, `progress/*` — not from unmigrated ones that still use `--main-*` / `--surface-default` / `--state-*` / `--spacing-*`.
 
 ## 0. Pull the design context first
 
-The prompt will include a Figma link. Before writing any code:
-
-1. Load the `figma-design-to-code` skill and use `get_design_context` (and `get_screenshot` / `get_variable_defs` as needed) on the given node to get props, variants, states, and layout.
-2. Note every variant/enum shown in Figma (e.g. size, flavor/type, shape, disabled/status) — these become `@property` values later and Figma Code Connect enum mappings.
-3. Note any tokens/variables used for color, spacing, radius — these must map to this repo's design tokens (see step 4), never hardcoded values.
+1. Load the `figma-design-to-code` skill and use `get_design_context` (and `get_screenshot` / `get_variable_defs`) on the given node to get props, variants, states, and layout. New designs live in **The Zebra Design System** file (`hvRmnZZOZrmTW0wf8hbrt5`).
+2. Note every variant/enum (size, flavor/type, shape, status, disabled…) — these become `@property` values and Code Connect enum mappings.
+3. Note every variable used for color, spacing, radius, stroke, typography — these map 1:1 to tokens in `src/generated/tokens/tokens.css` (step 4).
 
 ## 1. Decide before writing: does this need new code?
 
-- **Check `src/mixins/`** for behavior that already exists — don't reimplement it:
-  - `flavor.ts` — `Flavored()` mixin: primary/positive/negative/outline/outline-subtle/text/inverse/subtle/custom color variants.
-  - `contour.ts` — `ContourableElement` / `Contourable()`: rounded vs sharp shape.
+- **Check `src/mixins/`** (all exported from `mixins.ts`) — don't reimplement:
+  - `flavor.ts` — `Flavored()` plus the `Flavor` union and per-component subsets (`ButtonFlavor`, `FabFlavor`, …). Add a new subset type there if your component supports only some flavors.
+  - `contour.ts` — `Contourable()`: rounded vs sharp. `contourable-three.ts` — `ContourableThree()`: full/rounded/sharp `shape`.
   - `size.ts` — `Size()`: small/medium/large.
-  - `interactive.ts` / `interactive.styles.js`, `tertiary-interactive.styles.js` — hover/press/focus states.
-  - `form-field.ts` — form-associated field behavior (validation, form reset/submit participation).
-  - `popup.ts`, `navigate.ts`, `breakpoints.styles.js` — overlay positioning, routing, responsive breakpoints.
-  - Compose mixins the same way `button.ts` does: `class ZetaButton extends Flavored(BaseButton)`.
-- **Check if this is a variant of an existing component family** (e.g. a new chip type belongs under `src/components/chips/<new-chip>/`, extending `base-chips/base-chip.ts`) rather than a fully standalone component.
-- Only write a new mixin/base class if the behavior is genuinely shared across multiple components — for a single component, put logic directly in the component class.
+  - `interactive.ts` / `interactive.styles.js` — focus outline (`--border-focus`, `--stroke-thick`) and disabled cursor/colour.
+  - `form-field.ts` — form-associated field behaviour.
+  - `popup.ts`, `navigate.ts`, `breakpoints.styles.js` — overlays, routing, responsive breakpoints.
+  - Compose like `button.ts`: `class ZetaButton extends Flavored(BaseButton)`; `icon.ts`: `extends Size(Contourable(LitElement))`.
+- **Is it part of an existing family?** (e.g. a new chip → `src/components/chips/<new-chip>/` extending `base-chips/base-chip.ts` or `draggable-chip.ts`.) Shared family behaviour goes in the family base class.
+- Only write a new mixin/base class if the behaviour is genuinely shared across multiple components.
 
 ## 2. File layout
 
-For a standalone component named e.g. `foo-bar`:
-
 ```
-src/components/foo-bar/foo-bar.ts            # component class
-src/components/foo-bar/foo-bar.styles.js      # css, colocated
-src/stories/components/<Group>/foo-bar.stories.ts   # Storybook story (grouped by family, e.g. "Buttons")
-src/stories/components/<Group>/Docs.mdx       # Storybook docs page (create if the group doesn't have one)
-src/test/foo-bar/foo-bar.test.ts              # tests
-src/figma/foo-bar.figma.ts                    # Code Connect mapping
+src/components/foo-bar/foo-bar.ts                  # component class
+src/components/foo-bar/foo-bar.styles.js           # css, colocated
+src/stories/components/<Group>/foo-bar.stories.ts  # story (grouped by family, e.g. "Buttons")
+src/stories/components/<Group>/Docs.mdx            # docs page (create if the group has none)
+src/test/foo-bar/foo-bar.test.ts                   # tests
+src/figma/foo-bar.figma.ts                         # Code Connect mapping (optional)
 ```
 
-For a sub-component of a family (e.g. a new button type), follow the existing family's nesting, e.g. `src/components/button/foo-bar/foo-bar.ts`, test dir `src/test/button/foo-bar.test.ts`, story alongside siblings in `src/stories/components/Buttons/foo-bar.stories.ts`.
+Sub-components follow the family's nesting, e.g. `src/components/avatar/status-indicator/avatar-status-indicator.ts`, test `src/test/avatar/avatar-status-indicator.test.ts`, story alongside siblings.
 
-Do **not** hand-edit `src/index.ts` — it is auto-generated by `node scripts/make-index.js` (run via `yarn prebuild`) from `src/components/**` and `custom-elements.json`. Regenerate it (or just run `yarn build`) once the component exists instead of adding an import/export by hand.
-
-The `yarn create` script (`scripts/makeWebComponentTemplate.js`) exists but is stale — it writes a `.css` file and a `test/` path that don't match current conventions (`.styles.js`, `src/test/...`). Prefer writing the files directly following the templates below and the nearest existing component as a reference (e.g. `src/components/button/button.ts` and `src/test/button/button.test.ts`).
+Don't hand-edit `src/index.ts` — it's generated by `node scripts/make-index.js` (run in `yarn prebuild`). Don't use `yarn create` (`scripts/makeWebComponentTemplate.js`) — it's stale.
 
 ## 3. Component file (`foo-bar.ts`)
 
 ```ts
-import { html } from "lit";
+import { html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import styles from "./foo-bar.styles.js";
 
@@ -58,20 +54,20 @@ import styles from "./foo-bar.styles.js";
  * One-line summary of what the component is/does.
  *
  * @slot - Describe default slot content.
- * @cssproperty --foo-bar-color - Describe any custom CSS property.
+ * @cssproperty --foo-bar-color - Describe any public CSS custom property.
  * @part part-name - Describe any exposed shadow part.
  * @event zeta-foo-bar-change - Describe any custom event fired.
- * @figma <link to the Figma node used>
- * @storybook <link to hosted storybook, or omit and let a reviewer add it>
+ * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=<node>
+ * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-<group>--docs
  */
 @customElement("zeta-foo-bar")
-export class ZetaFooBar extends /* Flavored/Contourable/Size(...)( */ LitElement /* ) */ {
-  /** Document every property — purpose, and enumerate valid values with @remarks or a list. */
+export class ZetaFooBar extends /* Flavored/Contourable/Size( */ LitElement /* ) */ {
+  /** Purpose. Valid values are `a` and `b`.
+   *
+   * @defaultValue `"a"` */
   @property({ type: String, reflect: true }) variant: "a" | "b" = "a";
 
-  static get styles() {
-    return [super.styles ?? [], styles];
-  }
+  static styles = [styles, super.styles ?? []];
 
   protected render() {
     return html`<div part="root"><slot></slot></div>`;
@@ -85,11 +81,10 @@ declare global {
 }
 ```
 
-Rules the CEM analyzer and TSDoc lint enforce:
-- Real `@figma` and `@storybook` JSDoc tags on the class doc comment (custom CEM plugin, see `custom-elements-manifest.config.js`) — not optional decoration, they're extracted into `custom-elements.json` docs.
-- Every public `@property` needs its own doc comment explaining valid values.
-- `eslint-plugin-wc`, `eslint-plugin-lit`, `eslint-plugin-lit-a11y`, and `tsdoc` all run in `yarn lint` — no unused vars (prefix intentionally-unused with `_`), no closed shadow roots, no constructor params/attributes.
-- Keep lines ≤120 characters.
+- `@figma` and `@storybook` are real tags (custom CEM plugin, `custom-elements-manifest.config.js`) extracted into `custom-elements.json`.
+- Every public `@property` gets its own doc comment explaining valid values.
+- Accessibility is part of the component, not an afterthought: set the right `role`/`aria-*` (e.g. divider sets `role="separator"` + `aria-orientation`; filter-chip sets `aria-pressed`; progress sets `progressbar` aria).
+- `yarn lint` runs `eslint-plugin-wc`, `eslint-plugin-lit`, `eslint-plugin-lit-a11y`, and `tsdoc` — no unused vars (prefix with `_`), no closed shadow roots, no constructor params. Lines ≤120 chars.
 
 ## 4. Styles file (`foo-bar.styles.js`)
 
@@ -97,16 +92,32 @@ Rules the CEM analyzer and TSDoc lint enforce:
 import { css } from "lit";
 export default css`
   :host {
-    --_foo-bar-color: var(--foo-bar-color, var(--color-and-effects-brand-primary));
+    display: inline-block;
+    --_foo-bar-background: var(--foo-bar-color, var(--interactive-neutral-background-default));
+    --_foo-bar-foreground: var(--interactive-neutral-foreground-default);
+  }
+  :host([variant="b"]) {
+    --_foo-bar-background: var(--interactive-primary-background-default);
+    --_foo-bar-foreground: var(--interactive-primary-foreground-default);
   }
   [part="root"] {
+    background-color: var(--_foo-bar-background);
+    color: var(--_foo-bar-foreground);
+    padding: var(--space-sm) var(--space-md);
     border-radius: var(--radius-element-sm);
+    box-shadow: inset 0 0 0 var(--stroke-thin) var(--border-default);
+    font: var(--label-medium);
   }
 `;
 ```
 
-- Use design tokens (`--color-*`, `--radius-*`, `--spacing-*` etc. from `design-system-tokens` / `src/generated/tokens/`) for every color, spacing, and radius value — never hardcode a hex/px value. Match whatever variables `get_variable_defs` showed in the Figma design.
-- Expose customization points as CSS custom properties with a token fallback (`var(--public-name, var(--token-fallback))`), matching the `@cssproperty` tags documented on the class.
+- Only new tokens. Look names up in `src/generated/tokens/tokens.css`; never guess (e.g. there is no `--space-xxs` — it's `--space-2xs`/`--space-3xs`). Main families:
+  - Colour: `--foreground-*`, `--surface-*`, `--border-*`, `--interactive-<palette>-<background|foreground|border>-<state>` (palettes: primary, secondary, positive, destructive, neutral, ghost, inverse, selection; states: default, hover, focused, pressed, selected, disabled), `--feedback-{info,success,warning,error}-*`.
+  - Size: `--space-*`, `--radius-{none,sm,element-sm,md,pill}`, `--stroke-thin/thick`, component tokens like `--control-*`.
+  - Type: `--label-*`, `--indicator-*`, `--body-*`, `--title-*`, etc.
+- Never a hardcoded hex/px. Never use the legacy aliases in `src/css/tokens-compat.css` (`--main-*`, `--state-*`, `--spacing-*`, `--radius-minimal`, `--border-size-*`…).
+- Variant styling: set private `--_foo-bar-*` vars per `:host([…])` selector, consume them once (pattern from `base-chip.styles.js`, `label.styles.js`).
+- Public customization points get a `@cssproperty` tag and a token fallback: `var(--foo-bar-color, var(--token))`.
 
 ## 5. Storybook story + docs
 
@@ -114,58 +125,76 @@ export default css`
 
 ```ts
 import type { Meta, StoryObj } from "@storybook/web-components";
-import type { ZetaFooBar } from "../../../components/foo-bar/foo-bar.js";
-import "../../../components/foo-bar/foo-bar.js";
+import { html } from "lit";
+import type { ZetaFooBar } from "../../../components/foo-bar/foo-bar";
+import "../../../components/foo-bar/foo-bar";
 
 const meta: Meta<ZetaFooBar> = {
   component: "zeta-foo-bar",
-  args: {},
-  argTypes: {}
+  title: "Components/FooBar",
+  args: { variant: "a" },
+  argTypes: { variant: { options: ["a", "b"] } },
+  parameters: {
+    design: { url: "<figma node url>" },
+    status: { type: "ready" }
+  }
 };
 export default meta;
 
-export const FooBar: StoryObj<ZetaFooBar> = {};
+export const FooBar: StoryObj<ZetaFooBar> = {
+  render: ({ variant }) => html`<zeta-foo-bar variant=${variant}>Label</zeta-foo-bar>`
+};
 ```
 
-- Fill in every `args`/`argTypes` entry — this is what reviewers check for "fully documented" stories.
-- If the family already has a `Docs.mdx` (e.g. `src/stories/components/Buttons/Docs.mdx`), add a `<Canvas of={.../>` + `<Description>` + `<ArgTypes>` section for the new component there. Otherwise create one following that same `@storybook/blocks` pattern (`Canvas`, `Meta`, `Description`, `ArgTypes`, `Title`).
-- The story should visually match the Figma design (same variants/states covered).
+- Fill in every `args`/`argTypes` entry. Cover every variant/state shown in Figma.
+- `Docs.mdx` (add a section to the family's existing one, or create like `src/stories/components/Divider/Docs.mdx`):
 
-## 6. Figma Code Connect (`src/figma/foo-bar.figma.ts`)
+```mdx
+import { Canvas, Meta, Description, ArgTypes, Title } from "@storybook/blocks";
+import * as FooBar from "./foo-bar.stories";
+
+<Meta of={FooBar} title="FooBar" />
+<Title />
+
+# FooBar
+
+<Description of="zeta-foo-bar" />
+<Canvas of={FooBar.FooBar} />
+<ArgTypes of="zeta-foo-bar" />
+```
+
+## 6. Figma Code Connect (`src/figma/foo-bar.figma.ts`) — optional
+
+Recent components haven't added one; do it only if asked or the family already has one.
 
 ```ts
 import figma, { html } from "@figma/code-connect/html";
 import "../components/foo-bar/foo-bar";
 
-figma.connect("<figma node url given in the prompt>", {
+figma.connect("<figma node url>", {
   props: {
     slot: figma.string("Label"),
-    variant: figma.enum("Type", { A: "a", B: "b" }),
-    disabled: figma.enum("Status", { Disabled: true })
+    variant: figma.enum("Type", { A: "a", B: "b" })
   },
-  example: props => html`<zeta-foo-bar variant=${props.variant} disabled=${props.disabled}>${props.slot}</zeta-foo-bar>`
+  example: props => html`<zeta-foo-bar variant=${props.variant}>${props.slot}</zeta-foo-bar>`
 });
 ```
 
-Map every Figma variant property you noted in step 0 to the matching component property/enum value — see `src/figma/button.figma.ts` for a full multi-variant example.
-
 ## 7. Tests (`src/test/foo-bar/foo-bar.test.ts`)
 
-An ESLint rule (`scripts/enforce-testing-structure.js`) enforces this shape exactly — violations fail `yarn lint`:
+`scripts/enforce-testing-structure.js` enforces, via `yarn lint`:
 
-- Root `describe` name **must** start with `"zeta-"` (e.g. `"zeta-foo-bar"`).
-- Every nested `describe` name **must** be one of exactly: `Accessibility`, `Content`, `Dimensions`, `Styling`, `Interaction`, `Golden`, `Performance` (see `scripts/assets/web.test.categories.json`). No unique custom category names.
-- No duplicate nested `describe` names at the same level.
-- Every `it(...)` must live inside one of those category `describe` blocks — not directly under the root.
-- Include an empty `// describe("Category", () => {});` comment for categories you didn't write tests for (matches existing files' style).
+- Root `describe` starts with `"zeta-"` (e.g. `"zeta-foo-bar"`).
+- Nested `describe`s are exactly one of `Accessibility`, `Content`, `Dimensions`, `Styling`, `Interaction`, `Golden`, `Performance` — no custom names, no duplicates.
+- Every `it(...)` sits inside one of those blocks.
+- Leave a `// describe("Category", () => {});` comment for unused categories.
 
 ```ts
 import { fixture, html, expect, unsafeStatic, elementUpdated } from "@open-wc/testing";
 import type { ZetaFooBar } from "../../components/foo-bar/foo-bar.js";
 import "../../components/foo-bar/foo-bar.js";
-import "../../css/styles.css";
-import "../../generated/tokens/primitives.css";
-import "../../generated/tokens/semantics.css";
+import "../../index.css";
+import { getCssVarColorValue, getCssVarPxValue } from "../utils.js";
 
 describe("zeta-foo-bar", () => {
   let subject: ZetaFooBar;
@@ -185,26 +214,42 @@ describe("zeta-foo-bar", () => {
     });
   });
 
+  describe("Styling", () => {
+    it("uses the neutral palette by default", () => {
+      const root = subject.shadowRoot!.querySelector("[part=root]")!;
+      expect(getComputedStyle(root).backgroundColor).to.equal(
+        getCssVarColorValue(root, "--interactive-neutral-background-default")
+      );
+    });
+  });
+
+  describe("Dimensions", () => {
+    it("uses medium inline padding", () => {
+      const root = subject.shadowRoot!.querySelector("[part=root]")!;
+      expect(parseFloat(getComputedStyle(root).paddingLeft)).to.equal(getCssVarPxValue(root, "--space-md"));
+    });
+  });
+
   // describe("Content", () => {});
-  // describe("Dimensions", () => {});
-  // describe("Styling", () => {});
   // describe("Interaction", () => {});
   // describe("Golden", () => {});
   // describe("Performance", () => {});
 });
 ```
 
-- If the component renders text against a colored background, add a contrast check using `contrastTest` from `src/test/accessibility-utils/accessibility-test-runner.js` (see `Accessibility` block in `src/test/button/button.test.ts`) for every flavor/variant combination.
-- Cover every variant/state shown in the Figma design with at least one test in the relevant category.
+- Import `"../../index.css"` (loads new tokens + compat layer) — not the legacy `generated/tokens/primitives.css` / `semantics.css`.
+- Assert against tokens via `getCssVarColorValue` / `getCssVarPxValue` (`src/test/utils.ts`), not literal colours/px. Call `disableShadowDOMTransitions(subject)` before checking colours after a state change.
+- Text on a coloured background: add `contrastTest` (`src/test/accessibility-utils/accessibility-test-runner.js`) for every flavor/variant — it runs light/dark × normal/high-contrast via `data-mode`/`data-contrast`.
+- Cover every Figma variant/state with at least one test, plus the aria attributes you set.
 
 ## 8. Verify before calling it done
 
 ```
-yarn analyze          # regenerate custom-elements.json (also part of prebuild)
-node scripts/make-index.js   # regenerate src/index.ts (or just `yarn build`)
-yarn lint              # eslint, incl. testing-structure and doc-tag rules
+yarn analyze                # regenerate custom-elements.json
+node scripts/make-index.js  # regenerate src/index.ts (or just `yarn build`)
+yarn lint                   # eslint, incl. testing-structure and doc-tag rules
 yarn lint:lit-analyzer
-yarn test              # web-test-runner
+yarn test                   # web-test-runner
 ```
 
 Or just run `yarn check`, which does all of the above plus `yarn docs`.
