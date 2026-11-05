@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.5.2](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.5.1...zeta-web-v1.5.2) (2026-11-05)
+
+
+### 👀 Reverts
+
+* remove stray src/generated/instructions/test.md ([15346bf](https://github.com/ZebraDevs/zeta-web/commit/15346bf9fa4a445695d0f14b1614c902748f304e))
+* undo playwright 1.64.1 dedupe ([#299](https://github.com/ZebraDevs/zeta-web/issues/299)) ([7092ecf](https://github.com/ZebraDevs/zeta-web/commit/7092ecfefe0fb82f979c9659e908ecd7a46b3e10))
+
+
+### ⛓️ Dependencies
+
+* dedupe playwright to 1.64.1 for ubuntu 26.04 support ([#299](https://github.com/ZebraDevs/zeta-web/issues/299)) ([6ec46a9](https://github.com/ZebraDevs/zeta-web/commit/6ec46a9b797f80c640c0c42fefc96fc8deca1369))
+* Pin react to stop d.z breaking ([bd6c96e](https://github.com/ZebraDevs/zeta-web/commit/bd6c96e4456e4f441b3995fbdf846426a16b0e97))
+
+
+### 🧹 Miscellaneous Chores
+
+* Add a part to select input options ([#300](https://github.com/ZebraDevs/zeta-web/issues/300)) ([ac3568e](https://github.com/ZebraDevs/zeta-web/commit/ac3568e8736f09e9d50bb80c8e218b37fa63c89e))
+
 ## [1.5.1](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.5.0...zeta-web-v1.5.1) (2026-10-26)
 
 
