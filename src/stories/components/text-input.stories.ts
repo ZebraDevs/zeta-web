@@ -20,6 +20,7 @@ const meta: Meta<InputStory> = {
     disabled: false,
     errorText: "Error!",
     rounded: true,
+    flavor: "default",
     required: false,
     prefix: "",
     suffix: "",
@@ -51,11 +52,19 @@ const meta: Meta<InputStory> = {
     size: {
       options: ["small", "medium", "large"],
       control: { type: "inline-radio" }
+    },
+    shape: {
+      options: [undefined, "sharp", "rounded", "full"],
+      control: { type: "inline-radio" }
+    },
+    flavor: {
+      options: ["default", "gradient", "ghost"],
+      control: { type: "inline-radio" }
     }
   },
   parameters: {
     design: {
-      url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=23116-92946&mode=design&t=DUHsS5bjWB5UW1iG-4"
+      url: "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=6288-997"
     },
     status: {
       type: "ready"

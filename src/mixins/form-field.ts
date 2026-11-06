@@ -120,6 +120,12 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
       return this.type === "checkbox" || this.type === "radio";
     }
 
+    /** ARIA checked state; an indeterminate checkbox is exposed as "mixed" rather than true/false. Switches have no mixed state. */
+    private get ariaCheckedState(): "true" | "false" | "mixed" {
+      if (this.type === "checkbox" && this.indeterminate && this.internals.role !== "switch") return "mixed";
+      return this.checked ? "true" : "false";
+    }
+
     /** Whether inputted text is automatically capitalized and how. Only takes effect on non-keyboard entry */
     @property({ type: String }) autoCapitalize?: "none" | "off" | "sentences" | "on" | "words" | "characters";
     //TODO the enclosing form should override this with its own same attribute. this needs testing.
@@ -189,6 +195,10 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
           this.internals.setFormValue(null);
         }
       }
+      // Keep the host's aria-checked in sync after connect, not just on first connect.
+      if (this.isCheckable && (changedProperties.has("checked") || changedProperties.has("indeterminate"))) {
+        this.ariaChecked = this.ariaCheckedState;
+      }
     }
 
     public checkValidity(): boolean {
@@ -228,7 +238,7 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
       // Removed the below line as it violates accessability rules https://dequeuniversity.com/rules/axe/4.8/nested-interactive?application=axeAPI
       // if (this.internals.role) this.role = this.internals.role;
       if (this.isCheckable) {
-        this.ariaChecked = String(this.checked);
+        this.ariaChecked = this.ariaCheckedState;
       }
     }
 
@@ -420,7 +430,7 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
             aria-required=${this.required ? "true" : "false"}
             value=${ifDefined(live(this.value))}
             .checked=${live(this.checked !== undefined ? this.checked : false)}
-            aria-checked=${this.checked ? "true" : "false"}
+            aria-checked=${this.ariaCheckedState}
             .indeterminate=${live(this.indeterminate)}
             @input=${this._handleInput}
             @change=${this._handleChange}
