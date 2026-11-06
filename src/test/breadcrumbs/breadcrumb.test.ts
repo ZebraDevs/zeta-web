@@ -27,8 +27,7 @@ describe("zeta-breadcrumb", () => {
   };
 
   // Items stay in the light DOM; the visible ones are those assigned to the shadow slots
-  const visibleItems = (el: ZetaBreadcrumb) =>
-    [...el.shadowRoot!.querySelectorAll("slot")].flatMap(slot => slot.assignedElements()) as HTMLElement[];
+  const visibleItems = (el: ZetaBreadcrumb) => [...el.shadowRoot!.querySelectorAll("slot")].flatMap(slot => slot.assignedElements()) as HTMLElement[];
 
   beforeEach(async () => {
     subject = await createComponent();
