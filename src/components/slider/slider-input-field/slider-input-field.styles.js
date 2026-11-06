@@ -3,16 +3,16 @@ export default css`
   :host {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-minimum);
+    gap: var(--space-2xs);
   }
 
   :host([disabled]) {
-    color: var(--main-disabled);
+    color: var(--foreground-disabled);
   }
 
   .slider-input-container {
     display: flex;
-    gap: var(--spacing-large);
+    gap: var(--space-gutter);
   }
 
   .slider-input-container.center {
@@ -20,42 +20,67 @@ export default css`
   }
 
   label {
-    margin-left: var(--spacing-small);
+    margin-left: var(--space-sm);
+    font: var(--label-medium);
+    color: var(--foreground-primary);
   }
 
   label.range-selector-label {
     margin-left: 0;
-    margin-bottom: var(--spacing-minimum);
+    margin-bottom: var(--space-2xs);
+  }
+
+  :host([disabled]) label {
+    color: var(--foreground-disabled);
   }
 
   .slider-container {
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: var(--space-lg);
+    padding-top: var(--space-sm);
+  }
+
+  /* Range selector centres the slider between its inputs, so drop the top offset used to align with the range labels. */
+  .slider-input-container.center .slider-container {
+    padding-top: 0;
   }
 
   .range-label-container {
     display: flex;
     justify-content: space-between;
-    padding-right: var(--spacing-minimum);
-    padding-left: var(--spacing-small);
-    padding-bottom: var(--spacing-minimum);
+    padding-right: var(--space-2xs);
+    padding-left: var(--space-sm);
   }
 
   .range-label-container > p {
-    margin: var(--spacing-small) 0;
-    line-height: var(--spacing-2xl);
+    margin: 0;
+    font: var(--indicator-medium);
+    color: var(--foreground-secondary);
+  }
+
+  :host([disabled]) .range-label-container > p {
+    color: var(--foreground-disabled);
   }
 
   /*TODO refactor to shared input styles*/
   input {
-    width: 56px;
-    height: 48px;
-    border: var(--border-default) var(--border-size-small) solid;
+    box-sizing: border-box;
+    /* 56px content area, plus padding and border */
+    width: calc(56px + 2 * var(--space-md) + 2 * var(--stroke-thin));
+    height: var(--control-md);
+    padding: 0 var(--space-md);
+    border: var(--stroke-thin) solid var(--interactive-neutral-border-default);
+    background-color: var(--interactive-neutral-background-default);
     text-align: center;
     font: var(--body-medium);
-    color: var(--main-subtle);
+    color: var(--foreground-primary);
+  }
+
+  input:focus-visible {
+    outline: var(--stroke-thick) solid var(--border-focus);
+    outline-offset: calc(-1 * var(--stroke-thick));
   }
 
   input::-webkit-outer-spin-button,
@@ -70,15 +95,12 @@ export default css`
   }
 
   :host([disabled]) input {
-    color: var(--main-disabled);
-    border-color: var(--border-disabled);
-    background-color: var(--surface-disabled);
+    color: var(--foreground-disabled);
+    border-color: var(--interactive-neutral-border-disabled);
+    background-color: var(--interactive-neutral-background-disabled);
   }
 
-  :host([error]:not([disabled])) {
-    input {
-      background-color: var(--surface-negative-subtle);
-      border: var(--border-size-small) var(--border-negative) solid;
-    }
+  :host([error]:not([disabled])) input {
+    border-color: var(--border-error);
   }
 `;
