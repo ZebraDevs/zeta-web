@@ -3,7 +3,7 @@ import { ZetaStepperInput } from "../../components/stepper-input/stepper-input.j
 import "../../components/stepper-input/stepper-input.js";
 import "../../index.css";
 import { ZetaStepperChangeEvent } from "../../events.js";
-import { KeyboardActions } from "../utils.js";
+import { getCssVarColorValue, getCssVarPxValue, KeyboardActions } from "../utils.js";
 
 describe("zeta-stepper-input", () => {
   // describe("Accessibility", () => {});
@@ -150,11 +150,101 @@ describe("zeta-stepper-input", () => {
       const incrementBtn = el.shadowRoot?.querySelectorAll("zeta-icon-button")[1];
       assert.isTrue(incrementBtn?.disabled);
     });
+
+    it("should not render hint text when disabled", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaStepperInput>(html`<zeta-stepper-input hintText="hint" disabled></zeta-stepper-input>`);
+      assert.notExists(el.shadowRoot?.querySelector(".hint-text"));
+      el.disabled = false;
+      await el.updateComplete;
+      assert.exists(el.shadowRoot?.querySelector(".hint-text"));
+    });
+
+    it("should use primary flavor buttons only when disabled", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaStepperInput>(html`<zeta-stepper-input></zeta-stepper-input>`);
+      const buttons = () => Array.from(el.shadowRoot!.querySelectorAll("zeta-icon-button"));
+      buttons().forEach(b => assert.equal(b.flavor, "outline-subtle"));
+      el.disabled = true;
+      await el.updateComplete;
+      buttons().forEach(b => assert.equal(b.flavor, "primary"));
+    });
   });
 
-  // describe("Dimensions", () => {});
+  describe("Dimensions", () => {
+    it("should size the value field height from the control tokens", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaStepperInput>(html`<zeta-stepper-input></zeta-stepper-input>`);
+      const field = el.shadowRoot!.querySelector(".input-container")!;
+      assert.equal(field.getBoundingClientRect().height, getCssVarPxValue(el, "--control-md"));
+      el.size = "large";
+      await el.updateComplete;
+      assert.equal(field.getBoundingClientRect().height, getCssVarPxValue(el, "--control-lg"));
+    });
 
-  // describe("Styling", () => {});
+    it("should keep the value field width fixed across sizes", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaStepperInput>(html`<zeta-stepper-input></zeta-stepper-input>`);
+      const field = el.shadowRoot!.querySelector(".input-container")!;
+      const expected = getCssVarPxValue(el, "--scale-15") + 2 * getCssVarPxValue(el, "--space-md");
+      assert.equal(field.getBoundingClientRect().width, expected);
+      el.size = "large";
+      await el.updateComplete;
+      assert.equal(field.getBoundingClientRect().width, expected);
+    });
+
+    it("should keep the value field height when disabled", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaStepperInput>(html`<zeta-stepper-input disabled></zeta-stepper-input>`);
+      const field = el.shadowRoot!.querySelector(".input-container")!;
+      assert.equal(field.getBoundingClientRect().height, getCssVarPxValue(el, "--control-md"));
+    });
+  });
+
+  describe("Styling", () => {
+    it("should use neutral tokens for the value field at rest", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaStepperInput>(html`<zeta-stepper-input></zeta-stepper-input>`);
+      const style = getComputedStyle(el.shadowRoot!.querySelector(".input-container")!);
+      assert.equal(style.borderTopColor, getCssVarColorValue(el, "--interactive-neutral-border-default"));
+      assert.equal(style.backgroundColor, getCssVarColorValue(el, "--interactive-neutral-background-default"));
+      assert.equal(style.borderTopWidth, `${getCssVarPxValue(el, "--stroke-thin")}px`);
+    });
+
+    it("should use disabled tokens for the value field when disabled", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaStepperInput>(html`<zeta-stepper-input disabled></zeta-stepper-input>`);
+      const style = getComputedStyle(el.shadowRoot!.querySelector(".input-container")!);
+      assert.equal(style.borderTopColor, getCssVarColorValue(el, "--interactive-neutral-border-disabled"));
+      assert.equal(style.backgroundColor, getCssVarColorValue(el, "--interactive-neutral-background-disabled"));
+    });
+
+    it("should set the value field radius from rounded", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaStepperInput>(html`<zeta-stepper-input .rounded=${false}></zeta-stepper-input>`);
+      const field = el.shadowRoot!.querySelector(".input-container")!;
+      assert.equal(getComputedStyle(field).borderTopLeftRadius, "0px");
+      el.rounded = true;
+      await el.updateComplete;
+      assert.equal(getComputedStyle(field).borderTopLeftRadius, `${getCssVarPxValue(el, "--radius-sm")}px`);
+    });
+
+    it("should render hint text with secondary color and a primary icon", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaStepperInput>(html`<zeta-stepper-input hintText="hint"></zeta-stepper-input>`);
+      const hint = el.shadowRoot!.querySelector(".hint-text")!;
+      assert.equal(getComputedStyle(hint).color, getCssVarColorValue(el, "--foreground-secondary"));
+      assert.equal(getComputedStyle(hint.querySelector("zeta-icon")!).color, getCssVarColorValue(el, "--foreground-primary"));
+    });
+
+    it("should render error text with error color", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaStepperInput>(html`<zeta-stepper-input error errorText="error"></zeta-stepper-input>`);
+      const hint = el.shadowRoot!.querySelector(".hint-text")!;
+      assert.equal(getComputedStyle(hint).color, getCssVarColorValue(el, "--foreground-error"));
+      assert.equal(getComputedStyle(hint.querySelector("zeta-icon")!).color, getCssVarColorValue(el, "--foreground-error"));
+    });
+  });
 
   describe("Interaction", () => {
     it("responds correctly to focus event", async () => {
