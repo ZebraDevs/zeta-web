@@ -41,9 +41,9 @@ describe("zeta-fab", () => {
           await contrastTest(`Button ${flavor} `, buttonEl, buttonEl);
         }
       });
-      it("meets aria requirements", async () => {
-        await expect(subject).to.be.accessible();
-        await expect(subject).shadowDom.to.be.accessible();
+      it("meets aria requirements", () => {
+        expect(subject).to.be.accessible();
+        expect(subject).shadowDom.to.be.accessible();
       });
     });
   });
@@ -69,15 +69,15 @@ describe("zeta-fab", () => {
       await subject.updateComplete;
       const labelExtentedFab = subject.shadowRoot?.querySelector("button .label");
       const labelDefault = subject.shadowRoot?.querySelector(":host > .label");
-      await expect(subject.extended).to.equal(true);
+      expect(subject.extended).to.equal(true);
       expect(labelExtentedFab).to.exist;
       expect(labelDefault).to.not.exist;
     });
 
-    it("renders a default fab", async () => {
+    it("renders a default fab", () => {
       const labelExtentedFab = subject.shadowRoot?.querySelector("button .label");
       const labelDefault = subject.shadowRoot?.querySelector(":host > .label");
-      await expect(subject.extended).to.equal(false);
+      expect(subject.extended).to.equal(false);
       expect(labelExtentedFab).to.not.exist;
       expect(labelDefault).to.exist;
     });
@@ -116,8 +116,8 @@ describe("zeta-fab", () => {
       const el = fab.shadowRoot?.querySelector("button");
       const borderRadius = getComputedStyle(el!).borderRadius;
       const expectedBorderRadius = getCssVarValue(el!, "--radius-full");
-      await expect(fab.shape).to.equal("full");
-      await expect(borderRadius).to.equal(expectedBorderRadius);
+      expect(fab.shape).to.equal("full");
+      expect(borderRadius).to.equal(expectedBorderRadius);
     });
 
     it("renders a rounded small fab", async () => {
@@ -128,8 +128,8 @@ describe("zeta-fab", () => {
       await fab.updateComplete;
       const borderRadius = getComputedStyle(el!).borderRadius;
       const expectedBorderRadius = getCssVarValue(el!, "--radius-rounded");
-      await expect(fab.shape).to.equal("rounded");
-      await expect(borderRadius).to.equal(expectedBorderRadius);
+      expect(fab.shape).to.equal("rounded");
+      expect(borderRadius).to.equal(expectedBorderRadius);
     });
 
     it("renders a rounded large fab", async () => {
@@ -140,9 +140,9 @@ describe("zeta-fab", () => {
       await fab.updateComplete;
       const borderRadius = getComputedStyle(el!).borderRadius;
       const expectedBorderRadius = getCssVarValue(el!, "--radius-large");
-      await expect(fab.shape).to.equal("rounded");
-      await expect(fab.size).to.equal("large");
-      await expect(borderRadius).to.equal(expectedBorderRadius);
+      expect(fab.shape).to.equal("rounded");
+      expect(fab.size).to.equal("large");
+      expect(borderRadius).to.equal(expectedBorderRadius);
     });
 
     it("renders a non-rounded fab", async () => {
@@ -153,8 +153,8 @@ describe("zeta-fab", () => {
       await fab.updateComplete;
       const borderRadius = getComputedStyle(el!).borderRadius;
       const expectedBorderRadius = getCssVarValue(el!, "--radius-none");
-      await expect(fab.shape).to.equal("sharp");
-      await expect(borderRadius).to.equal(expectedBorderRadius);
+      expect(fab.shape).to.equal("sharp");
+      expect(borderRadius).to.equal(expectedBorderRadius);
     });
 
     it("renders small and large rounded fabs with difererent border radii", async () => {
@@ -170,10 +170,10 @@ describe("zeta-fab", () => {
       const expectedSmallBorderRadius = getCssVarValue(smallEl!, "--radius-rounded");
       const expectedLargeBorderRadius = getCssVarValue(largeEl!, "--radius-large");
 
-      await expect(smallFab.shape).to.equal("rounded");
-      await expect(largeFab.shape).to.equal("rounded");
-      await expect(smallBorderRadius).to.equal(expectedSmallBorderRadius);
-      await expect(largeBorderRadius).to.equal(expectedLargeBorderRadius);
+      expect(smallFab.shape).to.equal("rounded");
+      expect(largeFab.shape).to.equal("rounded");
+      expect(smallBorderRadius).to.equal(expectedSmallBorderRadius);
+      expect(largeBorderRadius).to.equal(expectedLargeBorderRadius);
     });
   });
 
