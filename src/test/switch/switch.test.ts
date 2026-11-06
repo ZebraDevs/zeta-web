@@ -1,5 +1,5 @@
 import { fixture, html, expect, assert } from "@open-wc/testing";
-import { getIconColor, MouseActions, getCssVarColorValue } from "../utils.js";
+import { getIconColor, MouseActions, getCssVarColorValue, getCssVarPxValue } from "../utils.js";
 import type { ZetaIcon } from "../../components/icon/icon.js";
 import { ZetaSwitch } from "../../components/switch/switch.js";
 import "../../components/switch/switch.js";
@@ -11,7 +11,14 @@ describe("zeta-switch", () => {
     subject = await fixture(html`<zeta-switch activeIcon="microphone" inactiveIcon="microphone_off"></zeta-switch>`);
   });
 
-  // describe("Accessibility", () => {});
+  describe("Accessibility", () => {
+    it("never exposes aria-checked as mixed, even when indeterminate", async () => {
+      subject.indeterminate = true;
+      await subject.updateComplete;
+      expect(subject.getAttribute("aria-checked")).to.equal("false");
+      expect(subject.shadowRoot?.querySelector("input")?.getAttribute("aria-checked")).to.equal("false");
+    });
+  });
 
   describe("Content", () => {
     it("creates from document.createElement", function () {
@@ -37,7 +44,37 @@ describe("zeta-switch", () => {
     });
   });
 
-  // describe("Dimensions", () => {});
+  describe("Dimensions", () => {
+    const part = (name: string) => subject.shadowRoot!.querySelector(`[part="${name}"]`) as HTMLElement;
+
+    it("renders a 64x32 track with a control-xs thumb inset by space-xxs", () => {
+      const track = part("track").getBoundingClientRect();
+      const thumb = part("thumb").getBoundingClientRect();
+      const pad = getCssVarPxValue(subject, "--space-xxs");
+      expect(track.width).to.equal(64);
+      expect(track.height).to.equal(32);
+      expect(thumb.width).to.equal(getCssVarPxValue(subject, "--control-xs"));
+      expect(thumb.left - track.left).to.equal(pad);
+      expect(thumb.top - track.top).to.equal(pad);
+    });
+
+    it("renders control-icon-md icons centred on the thumb's two rest positions", () => {
+      const track = part("track").getBoundingClientRect();
+      const active = part("icon active").getBoundingClientRect();
+      const inactive = part("icon inactive").getBoundingClientRect();
+      expect(active.width).to.equal(getCssVarPxValue(subject, "--control-icon-md"));
+      expect(active.left - track.left).to.equal(6);
+      expect(track.right - inactive.right).to.equal(6);
+      expect(active.top - track.top).to.equal(6);
+    });
+
+    it("moves the thumb 32px when checked", async () => {
+      const el: ZetaSwitch = await fixture(html`<zeta-switch checked></zeta-switch>`);
+      const track = el.shadowRoot!.querySelector('[part="track"]')!.getBoundingClientRect();
+      const thumb = el.shadowRoot!.querySelector('[part="thumb"]')!.getBoundingClientRect();
+      expect(thumb.left - track.left).to.equal(36);
+    });
+  });
 
   describe("Styling", () => {
     let subject: ZetaSwitch;
@@ -53,17 +90,30 @@ describe("zeta-switch", () => {
       activeIcon = subject.shadowRoot?.querySelector('zeta-icon[part="icon active"]');
       inactiveIcon = subject.shadowRoot?.querySelector('zeta-icon[part="icon inactive"]');
     });
-    it("activeIcon color", async () => {
-      await expect(getComputedStyle(activeIcon!).color).to.equal(getCssVarColorValue(activeIcon!, "--main-inverse"));
+    it("activeIcon color", () => {
+      expect(getComputedStyle(activeIcon!).color).to.equal(getCssVarColorValue(activeIcon!, "--interactive-primary-foreground-default"));
     });
-    it("inactiveIcon color", async () => {
-      await expect(getComputedStyle(inactiveIcon!).color).to.equal(getCssVarColorValue(inactiveIcon!, "--main-inverse"));
+    it("inactiveIcon color", () => {
+      expect(getComputedStyle(inactiveIcon!).color).to.equal(getCssVarColorValue(inactiveIcon!, "--interactive-primary-foreground-default"));
     });
-    it("track backgroundColor", async () => {
-      await expect(getComputedStyle(track!).backgroundColor).to.equal(getCssVarColorValue(track!, "--main-disabled"));
+    it("track backgroundColor", () => {
+      expect(getComputedStyle(track!).backgroundColor).to.equal(getCssVarColorValue(track!, "--interactive-selection-background-default"));
     });
-    it("thumb backgroundColor", async () => {
-      await expect(getComputedStyle(thumb!).backgroundColor).to.equal(getCssVarColorValue(thumb!, "--main-inverse"));
+    it("thumb backgroundColor", () => {
+      expect(getComputedStyle(thumb!).backgroundColor).to.equal(getCssVarColorValue(thumb!, "--interactive-primary-foreground-default"));
+    });
+    it("checked track uses the pressed selection background, thumb unchanged", async () => {
+      const el: ZetaSwitch = await fixture(html`<zeta-switch checked></zeta-switch>`);
+      const t = el.shadowRoot!.querySelector('[part="track"]')!;
+      const th = el.shadowRoot!.querySelector('[part="thumb"]')!;
+      expect(getComputedStyle(t).backgroundColor).to.equal(getCssVarColorValue(t, "--interactive-selection-background-pressed"));
+      expect(getComputedStyle(th).backgroundColor).to.equal(getCssVarColorValue(th, "--interactive-primary-foreground-default"));
+    });
+    it("draws the focus border inside the track", () => {
+      const t = track!;
+      t.focus();
+      const style = getComputedStyle(t);
+      expect(style.outlineOffset).to.equal(`-${getCssVarPxValue(t, "--stroke-thick")}px`);
     });
   });
 
@@ -104,24 +154,24 @@ describe("zeta-switch disabled", () => {
       inactiveIcon = subject.shadowRoot?.querySelector('zeta-icon[part="icon inactive"]');
     });
     it("inactiveIcon color, :hover color", async () => {
-      await expect(getIconColor(inactiveIcon!)).to.equal(getCssVarColorValue(inactiveIcon!, "--main-disabled"));
+      expect(getIconColor(inactiveIcon!)).to.equal(getCssVarColorValue(inactiveIcon!, "--interactive-primary-foreground-disabled"));
       await MouseActions.hover(subject);
-      await expect(getIconColor(inactiveIcon!)).to.equal(getCssVarColorValue(inactiveIcon!, "--main-disabled"));
+      expect(getIconColor(inactiveIcon!)).to.equal(getCssVarColorValue(inactiveIcon!, "--interactive-primary-foreground-disabled"));
     });
     it("activeIcon color, :hover color", async () => {
-      await expect(getIconColor(activeIcon!)).to.equal(getCssVarColorValue(activeIcon!, "--main-disabled"));
+      expect(getIconColor(activeIcon!)).to.equal(getCssVarColorValue(activeIcon!, "--interactive-primary-foreground-disabled"));
       await MouseActions.hover(subject);
-      await expect(getIconColor(activeIcon!)).to.equal(getCssVarColorValue(activeIcon!, "--main-disabled"));
+      expect(getIconColor(activeIcon!)).to.equal(getCssVarColorValue(activeIcon!, "--interactive-primary-foreground-disabled"));
     });
     it("track backgroundColor, :hover backgroundColor", async () => {
-      await expect(getComputedStyle(track!).backgroundColor).to.equal(getCssVarColorValue(track!, "--surface-disabled"));
+      expect(getComputedStyle(track!).backgroundColor).to.equal(getCssVarColorValue(track!, "--interactive-selection-background-disabled"));
       await MouseActions.hover(subject);
-      await expect(getComputedStyle(track!).backgroundColor).to.equal(getCssVarColorValue(track!, "--surface-disabled"));
+      expect(getComputedStyle(track!).backgroundColor).to.equal(getCssVarColorValue(track!, "--interactive-selection-background-disabled"));
     });
     it("thumb backgroundColor, :hover backgroundColor", async () => {
-      await expect(getComputedStyle(thumb!).backgroundColor).to.equal(getCssVarColorValue(thumb!, "--main-disabled"));
+      expect(getComputedStyle(thumb!).backgroundColor).to.equal(getCssVarColorValue(thumb!, "--interactive-primary-foreground-disabled"));
       await MouseActions.hover(subject);
-      await expect(getComputedStyle(thumb!).backgroundColor).to.equal(getCssVarColorValue(thumb!, "--main-disabled"));
+      expect(getComputedStyle(thumb!).backgroundColor).to.equal(getCssVarColorValue(thumb!, "--interactive-primary-foreground-disabled"));
     });
   });
 });
@@ -140,15 +190,15 @@ describe("zeta-switch:hover", () => {
 
     it("track backgroundColor", async () => {
       await MouseActions.hover(subject);
-      await expect(getComputedStyle(track!).backgroundColor).to.equal(getCssVarColorValue(track!, "--main-disabled"));
+      expect(getComputedStyle(track!).backgroundColor).to.equal(getCssVarColorValue(track!, "--interactive-selection-background-default"));
       await MouseActions.reset();
-      await expect(getComputedStyle(track!).backgroundColor).to.equal(getCssVarColorValue(track!, "--main-disabled"));
+      expect(getComputedStyle(track!).backgroundColor).to.equal(getCssVarColorValue(track!, "--interactive-selection-background-default"));
     });
     it("thumb backgroundColor", async () => {
       await MouseActions.hover(subject);
-      await expect(getComputedStyle(thumb!).backgroundColor).to.equal(getCssVarColorValue(track!, "--main-inverse"));
+      expect(getComputedStyle(thumb!).backgroundColor).to.equal(getCssVarColorValue(track!, "--interactive-primary-foreground-default"));
       await MouseActions.reset();
-      await expect(getComputedStyle(thumb!).backgroundColor).to.equal(getCssVarColorValue(track!, "--main-inverse"));
+      expect(getComputedStyle(thumb!).backgroundColor).to.equal(getCssVarColorValue(track!, "--interactive-primary-foreground-default"));
     });
   });
 });
