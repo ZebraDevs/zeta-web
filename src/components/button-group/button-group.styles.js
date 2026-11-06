@@ -11,23 +11,24 @@ export default css`
   }
 
   /*  Handle sizes for group buttons */
+  :host([size="small"]),
   :host([size="medium"]) {
-    --group-item-padding: var(--spacing-medium);
+    --group-item-padding: var(--space-md);
   }
 
   :host([size="large"]) {
-    --group-item-padding: var(--spacing-large);
+    --group-item-padding: var(--space-lg);
   }
 
   :host([rounded]) {
     /*  Round start of first button */
     ::slotted(zeta-button-group-item:first-child) {
-      --group-item-left-radius: var(--radius-minimal);
+      --group-item-left-radius: var(--radius-sm);
     }
 
     /*  Round end of last button */
     ::slotted(zeta-button-group-item:last-child) {
-      --group-item-right-radius: var(--radius-minimal);
+      --group-item-right-radius: var(--radius-sm);
     }
   }
   /*  Remove double border between buttons */
