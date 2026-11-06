@@ -28,7 +28,7 @@ const meta: Meta<ZetaButtonGroupItem> = {
       }
     },
     size: {
-      options: ["medium", "large"],
+      options: ["small", "medium", "large"],
       control: {
         type: "select"
       }
@@ -53,7 +53,7 @@ const meta: Meta<ZetaButtonGroupItem> = {
   },
   parameters: {
     design: {
-      url: "https://www.figma.com/file/zzzpriTQpJKlW4gB5Fn3bF/Design-System-Sprint-3?type=design&node-id=23116-95148&mode=design&t=C1QjqPlEoal6a5PI-4"
+      url: "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=5763-1646"
     },
     status: {
       type: "inProgress"
