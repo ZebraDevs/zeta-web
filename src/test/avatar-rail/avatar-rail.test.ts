@@ -56,9 +56,7 @@ describe("zeta-avatar-rail", () => {
 
   describe("Dimensions", () => {
     it("spaces avatars with the --space-sm token", async () => {
-      const rail = await fixture<ZetaAvatarRail>(
-        html`<zeta-avatar-rail><zeta-avatar>AB</zeta-avatar><zeta-avatar>CD</zeta-avatar></zeta-avatar-rail>`
-      );
+      const rail = await fixture<ZetaAvatarRail>(html`<zeta-avatar-rail><zeta-avatar>AB</zeta-avatar><zeta-avatar>CD</zeta-avatar></zeta-avatar-rail>`);
       expect(parseFloat(getComputedStyle(rail).columnGap)).to.equal(getCssVarPxValue(rail, "--space-sm"));
     });
   });
