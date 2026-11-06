@@ -166,7 +166,7 @@ describe("zeta-tile-button", () => {
       const srButton = subject.shadowRoot?.querySelector("button");
       expect(srButton).to.exist;
       await KeyboardActions.press("Tab");
-      await expect(getComputedStyle(srButton!).outlineColor).to.equal(getCssVarColorValue(srButton!, "--border-primary"));
+      await expect(getComputedStyle(srButton!).outlineColor).to.equal(getCssVarColorValue(srButton!, "--border-focus"));
     });
   });
 

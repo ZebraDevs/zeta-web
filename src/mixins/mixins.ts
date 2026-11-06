@@ -5,3 +5,5 @@ export * from "./popup.js";
 export * from "./size.js";
 export * from "./contour.js";
 export * from "./navigate.js";
+export * from "./contourable-three.js";
+export * from "./form-field.js";

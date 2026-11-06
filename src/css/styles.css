@@ -1,11 +1,11 @@
 /* All tokens defined here are used in code but not from figma */
 :root,
 :host {
-  color: var(--main-default);
+  color: var(--foreground-primary);
   font-family: var(--type-family-regular);
 
   /* Colors */
-  --surface-overlay: rgba(0, 0, 0, 0.3);
+  --surface-overlay: light-dark(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7));
   --surface-basic: transparent;
 
   --type-family-regular: "IBM Plex Sans", sans-serif;
@@ -17,10 +17,6 @@
   --spacing-3-5: 14px;
   --spacing-4-5: 18px;
   --spacing-20: 80px;
-
-  /* Border size */
-  --border-size-small: 1px;
-  --border-size-medium: 2px;
 
   /* Box shadows */
   --elevation-1: 0 0.5px 2px 0 rgba(96, 104, 112, 0.16), 0 0 1px 0 rgba(40, 51, 61, 0.08);
@@ -34,29 +30,6 @@
   --medium: 500;
   --regular: 400;
   --light: 300;
-
-  /* Font */
-  --display-large: var(--light) 3.25rem/3.75rem var(--type-family-regular);
-  --display-medium: var(--light) 2.75rem/3.25rem var(--type-family-regular);
-  --display-small: var(--light) 2.25rem/2.5rem var(--type-family-regular);
-
-  --headline-large: var(--medium) 2rem/2.25rem var(--type-family-regular);
-  --headline-medium: var(--medium) 1.75rem/2rem var(--type-family-regular);
-  --headline-small: var(--medium) 1.5rem/1.75rem var(--type-family-regular);
-
-  --title-large: var(--medium) 1.25rem/1.5rem var(--type-family-regular);
-  --title-medium: var(--medium) 1rem/1.25rem var(--type-family-regular);
-  --title-small: var(--medium) 0.75rem/1rem var(--type-family-regular);
-
-  --body-large: var(--regular) 1.25rem/1.5rem var(--type-family-regular);
-  --body-medium: var(--regular) 1rem/1.5rem var(--type-family-regular);
-  --body-small: var(--regular) 0.875rem/1.125rem var(--type-family-regular);
-  --body-x-small: var(--regular) 0.75rem/1rem var(--type-family-regular);
-
-  --label-large: var(--medium) 1rem/1.5rem var(--type-family-regular);
-  --label-medium: var(--medium) 0.875rem/1.25rem var(--type-family-regular);
-  --label-small: var(--medium) 0.75rem/1rem var(--type-family-regular);
-  --label-indicator: var(--medium) 0.75rem/0.875rem var(--type-family-regular);
 
   --h1: var(--headline-large);
   --h2: var(--headline-medium);

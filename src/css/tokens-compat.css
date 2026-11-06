@@ -8,7 +8,7 @@
 :root {
   /* Spacing tokens — same scale, just renamed */
   --spacing-none: var(--space-none);
-  --spacing-minimum: var(--space-xs);
+  --spacing-minimum: var(--space-xxs);
   --spacing-small: var(--space-sm);
   --spacing-medium: var(--space-md);
   --spacing-large: var(--space-lg);
@@ -139,7 +139,11 @@
   --radius-rounded: var(--radius-md);
   --radius-large: var(--scale-7);
   /* --radius-xl: var(--radius-xl); */
-  --radius-full: 360px;
+  --radius-full: var(--radius-pill);
+
+  /* border size - stroke */
+  --border-size-small: var(--stroke-thin); /* 1px */
+  --border-size-medium: var(--stroke-thick); /* 2px */
 
   /* Old primitives still referenced directly by components */
   --spacing-0: var(--scale-0);

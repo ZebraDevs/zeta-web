@@ -295,11 +295,11 @@ describe("zeta-dialog", () => {
         await MouseActions.hover(buttonEl!);
         await elementUpdated(subject);
         if (flavor === "primary") {
-          await expect(getComputedStyle(buttonEl!).backgroundColor).to.equal(getCssVarColorValue(buttonEl!, "--state-primary-hover"));
+          await expect(getComputedStyle(buttonEl!).backgroundColor).to.equal(getCssVarColorValue(buttonEl!, "--interactive-primary-background-hover"));
         } else if (flavor === "positive") {
-          await expect(getComputedStyle(buttonEl!).backgroundColor).to.equal(getCssVarColorValue(buttonEl!, "--state-positive-hover"));
+          await expect(getComputedStyle(buttonEl!).backgroundColor).to.equal(getCssVarColorValue(buttonEl!, "--interactive-positive-background-hover"));
         } else if (flavor === "negative") {
-          await expect(getComputedStyle(buttonEl!).backgroundColor).to.equal(getCssVarColorValue(buttonEl!, "--state-negative-hover"));
+          await expect(getComputedStyle(buttonEl!).backgroundColor).to.equal(getCssVarColorValue(buttonEl!, "--interactive-destructive-background-hover"));
         }
       }
     });
