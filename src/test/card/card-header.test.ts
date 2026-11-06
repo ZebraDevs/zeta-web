@@ -3,6 +3,7 @@ import type { ZetaCardHeader } from "../../components/card/card-header/card-head
 import "../../components/card/card-header/card-header.js";
 import "../../components/avatar/avatar.js";
 import "../../components/button/icon-button/icon-button.js";
+import "../../index.css";
 
 describe("zeta-card-header", () => {
   let subject: ZetaCardHeader;
@@ -28,8 +29,8 @@ describe("zeta-card-header", () => {
   });
 
   describe("Accessibility", () => {
-    it("meets accessability requirements", async () => {
-      await expect(subject).shadowDom.to.be.accessible();
+    it("meets accessability requirements", () => {
+      expect(subject).shadowDom.to.be.accessible();
     });
   });
 
@@ -41,11 +42,11 @@ describe("zeta-card-header", () => {
       void expect(headerElement?.textContent).to.equal(headingText);
     });
 
-    it("sets the subheading correctly", async () => {
+    it("sets the subheading correctly", () => {
       const subHeaderElement = subject.shadowRoot?.querySelector("h2");
 
       expect(subHeaderElement).to.not.be.undefined;
-      await expect(subHeaderElement?.textContent).to.equal(subHeadingText);
+      expect(subHeaderElement?.textContent).to.equal(subHeadingText);
     });
 
     it("sets the leading content correctly", () => {
