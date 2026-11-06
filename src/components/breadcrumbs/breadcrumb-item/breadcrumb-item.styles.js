@@ -9,36 +9,42 @@ export default css`
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
-    color: var(--main-subtle);
+    color: var(--foreground-secondary);
+  }
+
+  a:focus-visible {
+    outline: var(--stroke-thick) solid var(--border-focus);
+    outline-offset: var(--stroke-thin);
   }
 
   @media (hover: hover), (hover: none) and (pointer: fine) {
     a:hover ::slotted([slot="icon"]) {
-      --icon-color: var(--main-primary);
+      --icon-color: var(--foreground-link);
     }
   }
 
   a:active ::slotted([slot="icon"]) {
-    --icon-color: var(--main-default);
+    --icon-color: var(--foreground-primary);
   }
 
   @media (hover: hover), (hover: none) and (pointer: fine) {
     a:hover {
-      color: var(--main-primary);
+      color: var(--foreground-link);
     }
   }
 
   a:active {
-    color: var(--main-default);
+    color: var(--foreground-primary);
   }
 
   ::slotted([slot="icon"]) {
-    --icon-color: var(--main-subtle);
-    margin-right: var(--spacing-small);
+    --icon-color: var(--foreground-secondary);
+    --icon-size: var(--control-icon-md);
+    margin-right: var(--space-sm);
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 20px;
-    height: 20px;
+    width: var(--control-icon-md);
+    height: var(--control-icon-md);
   }
 `;
