@@ -1,75 +1,85 @@
 import { css } from "lit";
 export default css`
   :host {
-    --priority-pill-index-text-color: var(--state-default-enabled);
-    --priority-pill-text-color: var(--main-default);
+    --_background: var(--foreground-secondary);
+    --_foreground: var(--foreground-inverse);
     width: fit-content;
-    height: var(--spacing-3xl);
     display: inline-block;
   }
 
   .container {
     display: flex;
-    display: inline-flex;
     align-items: center;
-    background: var(--priority-pill-background-color, var(--surface-primary-subtle));
+    gap: var(--space-xxs);
+    padding: var(--space-xxs) var(--space-sm) var(--space-xxs) var(--space-xxs);
+    background: var(--priority-pill-background-color, var(--_background));
     white-space: nowrap;
-    line-height: var(--spacing-xl);
     font: var(--body-small);
-    color: var(--priority-pill-text-color, var(--main-default));
+    color: var(--priority-pill-text-color, var(--_foreground));
 
     > .number {
       display: flex;
-      width: var(--spacing-3xl);
-      height: var(--spacing-3xl);
+      flex-shrink: 0;
+      box-sizing: border-box;
+      width: var(--control-icon-md);
+      height: var(--control-icon-md);
       padding: 0;
       justify-content: center;
       align-items: center;
       text-align: center;
-      background: var(--priority-pill-index-background-color, var(--main-primary));
-      color: var(--priority-pill-index-text-color, var(--state-default-enabled));
+      font: var(--indicator-medium);
+      background: var(--priority-pill-index-background-color, var(--priority-pill-text-color, var(--_foreground)));
+      color: var(--priority-pill-index-text-color, var(--priority-pill-background-color, var(--_background)));
     }
 
     > .text {
-      padding: calc(var(--spacing-minimum) - var(--border-size-small)) var(--spacing-small);
+      padding-right: var(--space-xxs);
     }
   }
 
-  :host([rounded]) > .container,
-  :host([rounded]) > .container > .number {
-    border-radius: var(--radius-full);
+  :host .container.contourable-target,
+  :host .container > .number {
+    border-radius: var(--radius-pill);
   }
 
   :host([status="urgent"]) {
-    --priority-pill-index-background-color: var(--main-negative);
-    --priority-pill-background-color: var(--surface-negative-subtle);
+    --_background: var(--feedback-error-background-strong);
+    --_foreground: var(--interactive-destructive-foreground-default);
   }
   :host([status="high"]) {
-    --priority-pill-index-background-color: var(--main-warning);
-    --priority-pill-background-color: var(--surface-warning-subtle);
+    --_background: var(--feedback-warning-background-strong);
+    --_foreground: var(--foreground-inverse);
   }
   :host([status="medium"]) {
-    --priority-pill-index-background-color: var(--main-primary);
-    --priority-pill-background-color: var(--surface-primary-subtle);
+    --_background: var(--feedback-info-background-strong);
+    --_foreground: var(--interactive-primary-foreground-default);
   }
   :host([status="low"]) {
-    --priority-pill-index-background-color: var(--main-positive);
-    --priority-pill-background-color: var(--surface-positive-subtle);
+    --_background: var(--foreground-secondary);
+    --_foreground: var(--foreground-inverse);
   }
+
   :host([size="small"]) {
-    height: var(--spacing-xl);
     > .container {
-      display: flex;
+      padding: var(--space-2xs) var(--space-sm) var(--space-2xs) var(--space-2xs);
     }
 
     .number {
-      font: var(--medium) 10px/14px var(--type-family-regular);
-      width: var(--spacing-xl);
-      height: var(--spacing-xl);
+      width: var(--control-icon-sm);
+      height: var(--control-icon-sm);
     }
 
     .text {
-      font: var(--regular) 10px/13px var(--type-family-regular);
+      font: var(--indicator-small);
+      padding-right: var(--space-2xs);
     }
+  }
+
+  :host([type="badge"]) > .container {
+    gap: 0;
+    padding-right: var(--space-xxs);
+  }
+  :host([type="badge"][size="small"]) > .container {
+    padding-right: var(--space-2xs);
   }
 `;
