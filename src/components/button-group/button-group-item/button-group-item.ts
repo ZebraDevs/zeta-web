@@ -13,7 +13,7 @@ import "../../icon/icon.js";
  * @slot {zeta-icon} icon - Icon to display on leading side of button. Full list of icons can be found at https://design.zebra.com/icons
  * @part button - The button element.
  *
- * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-45&node-type=canvas&m=dev
+ * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=5763-1646
  * @storybook https://design.zebra.com/web/storybook/index.html?path=/docs/components-button-group--docs
  */
 @customElement("zeta-button-group-item")
@@ -28,12 +28,25 @@ export class ZetaButtonGroupItem extends Contourable(Interactive(LitElement)) {
   //TODO: Does this even work in a form?
   @property({ type: String }) name?: string;
 
-  /** Size of button. */
-  @property({ type: String, reflect: true }) size: "medium" | "large" = "medium";
+  /**
+   * Size of button. Overwritten by the parent `zeta-button-group`'s `size`.
+   *
+   * Valid values: `"small"` (36px), `"medium"` (40px), `"large"` (48px).
+   *
+   * @defaultValue "medium"
+   */
+  @property({ type: String, reflect: true }) size: "small" | "medium" | "large" = "medium";
 
   /** Whether to show the dropdown icon. */
   @property({ type: Boolean, reflect: true }) showDropdown?: boolean = false;
 
+  /**
+   * Colour of the button.
+   *
+   * Valid values: `"default"` (neutral surface), `"inverse"` (inverse surface).
+   *
+   * @defaultValue "default"
+   */
   @property({ type: String, reflect: true }) flavor?: "default" | "inverse" = "default";
 
   @property() override onclick: ((this: GlobalEventHandlers, ev: MouseEvent) => unknown) | null = null;
