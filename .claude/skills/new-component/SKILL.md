@@ -7,7 +7,7 @@ description: Use when the user wants to create a new zeta-web component and give
 
 `zeta-web` is a Lit web component library. Every component must match existing conventions closely — reviewers check against `CONTRIBUTING.md` and existing components. Read `CONTRIBUTING.md` if anything below is ambiguous.
 
-The repo is mid-migration from legacy Zeta tokens to the new **Zebra Design System** tokens. New components use **only new tokens**. Copy patterns from already-migrated components — `divider` (smallest complete example), `badges/label`, `chips/*`, `avatar`, `button`, `progress/*` — not from unmigrated ones that still use `--main-*` / `--surface-default` / `--state-*` / `--spacing-*`.
+The repo is mid-migration from legacy Zeta tokens to the new **Zebra Design System** tokens. New components use **only new tokens**. Migration happens on feature branches off `feat/zebra-design-system`, so which components are migrated depends on your branch. Check before copying: a component whose styles still use `--main-*` / `--surface-default` / `--state-*` / `--spacing-*` is unmigrated, so don't copy its styling. If nothing on your branch is migrated yet, work from `src/generated/tokens/tokens.css` and the mapping table in the `update-component` skill.
 
 ## 0. Pull the design context first
 
@@ -83,8 +83,8 @@ declare global {
 
 - `@figma` and `@storybook` are real tags (custom CEM plugin, `custom-elements-manifest.config.js`) extracted into `custom-elements.json`.
 - Every public `@property` gets its own doc comment explaining valid values.
-- Accessibility is part of the component, not an afterthought: set the right `role`/`aria-*` (e.g. divider sets `role="separator"` + `aria-orientation`; filter-chip sets `aria-pressed`; progress sets `progressbar` aria).
-- `yarn lint` runs `eslint-plugin-wc`, `eslint-plugin-lit`, `eslint-plugin-lit-a11y`, and `tsdoc` — no unused vars (prefix with `_`), no closed shadow roots, no constructor params. Lines ≤120 chars.
+- Accessibility is part of the component, not an afterthought: set the right `role`/`aria-*` (e.g. a separator sets `role="separator"` + `aria-orientation`; a toggle chip sets `aria-pressed`; a progress bar sets `role="progressbar"` + `aria-valuenow`/`min`/`max`).
+- `yarn lint` enforces the `eslint-plugin-wc` and `eslint-plugin-lit` rules (`lit-a11y` and `tsdoc` are loaded but have no rules enabled): no unused vars (prefix with `_`), no closed shadow roots, no constructor params. Prettier wraps at 160 chars (`src/.prettierrc`).
 
 ## 4. Styles file (`foo-bar.styles.js`)
 

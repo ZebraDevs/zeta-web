@@ -82,7 +82,7 @@ To wait for a Lit render (e.g. dropdown positioning): `ref.current?.updateComple
 
 ## Styling
 
-Zeta components are pre-styled with design tokens; they need no CSS imports. To use tokens in your own markup, import the global stylesheet once (e.g. in `main.tsx`):
+Zeta components are styled with design tokens defined in the global stylesheet. Importing the full package (`@zebra-fed/zeta-web`) loads it for you. If you import individual components, or want to use tokens in your own markup, import it once (e.g. in `main.tsx`):
 
 ```tsx
 import "@zebra-fed/zeta-web/index.css";

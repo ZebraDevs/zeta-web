@@ -2,7 +2,7 @@ This guide outlines the process and expectations for contributors looking to enh
 
 These components are open source, and we warmly welcome contributions from the community. All collaborators are expected to adhere to [Zebra's contributing guidelines](https://github.com/ZebraDevs/About/blob/master/CONTRIBUTING.md) and agree to the [Contributor Covenant Code of Conduct](https://github.com/ZebraDevs/About/blob/master/Code_of_Conduct.md).
 
-Contributions to the Zeta libraries are encouraged; however, new components _must_ be defined in the [Figma designs](https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components) before proceeding.
+Contributions to the Zeta libraries are encouraged; however, new components _must_ be defined in the [Figma designs](https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System) before proceeding.
 
 ## Component creation and contribution process {/* #component-creation-web */}
 
@@ -17,13 +17,13 @@ For both Zeta libraries, the process for component creation follows the same ste
 
    We want the designs to be the source of truth for this repository, so new components will only be accepted if they align with the design files. New components should use all tokens matching the design and avoid hardcoded values for color, spacing, or radius, ensuring that changes to these fundamental tokens are reflected consistently throughout the library.
 
-4. **Integration and Testing**: The newly developed component should be integrated into the example app (such as Storybook or Widgetbook). This step involves writing comprehensive tests to assess the component’s functionality and quality. It is crucial to address any lint or static analysis issues, rather than ignoring them, to maintain code quality. Additionally, ensure that code lines do not exceed 120 characters to enhance readability and maintainability throughout the project. This practice helps maintain a consistent coding style that is easy for all team members to follow and review.
+4. **Integration and Testing**: The newly developed component should be integrated into the example app (such as Storybook or Widgetbook). This step involves writing comprehensive tests to assess the component’s functionality and quality. It is crucial to address any lint or static analysis issues, rather than ignoring them, to maintain code quality. Additionally, ensure that code lines do not exceed 160 characters (Prettier's `printWidth` in `src/.prettierrc`; run `yarn prettier`) to enhance readability and maintainability throughout the project. This practice helps maintain a consistent coding style that is easy for all team members to follow and review.
 
 5. **Commit Guidelines**: When committing changes, adhere to the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#specification) guidelines to ensure accurate release note generation. For a full list of the commit keywords we support, see the `release-please-config.json` file in the repository. We recommend using Git Rebase (rather than merging BASE) to keep your branch updated, facilitating easier merges without complex branching.
 
 6. **Pull Request submission**: Once the component is ready, submit a PR. This can be done from a fork or a branch within the repository. Ensure your branch is fully up-to-date with the target branch, typically `main`. However, if requested by the authors, you might need to merge into `develop`, especially if the PR includes breaking changes that shouldn’t be released immediately.
 
-   When creating the PR, the title should follow the format keyword(ticket number): description. For example, `feat(UX-101): Create button`. This ensures consistency with our versioning and release processes.
+   When creating the PR, the title should follow the format keyword(scope): description, where the scope is the component or area changed. For example, `feat(button-group): add small size`. Put the ticket number in the branch name, e.g. `feat/ux-1607-button-group`. This ensures consistency with our versioning and release processes.
 
    In the PR description, any changes that should be included in the changelog or release notes should be clearly outlined at the top. Use the same conventional commit formatting for these entries. This section can span multiple lines if needed, providing a detailed overview of significant changes, features, or bug fixes. Additional information or context can be included below this section. Furthermore, supplementary details or clarifications can also be added as comments on the PR itself, ensuring that all relevant information is easily accessible for reviewers.
 
@@ -39,11 +39,11 @@ Before contributing code to the project, it is essential to be well-acquainted w
 
 For a better developer experience, we recommend [`ts-lit-plugin`](https://www.npmjs.com/package/ts-lit-plugin)' this typescript plugin adds type checking and code completion for components built with Lit.
 
-When contributing new code to Zeta Web, ensure that you do not edit files that are automatically generated. Currently that is `primitives.css` and `semantics.css`, but we hope to utilize automation in the future to generate code directly from figma designs.
+When contributing new code to Zeta Web, ensure that you do not edit files that are automatically generated. These are everything under `src/generated/` (tokens, locales, component instructions), `src/index.ts` (generated by `yarn prebuild`), and `custom-elements.json`.
 
 ### Creating a new component {/* #creating-a-new-component-web */}
 
-When creating a new component, it’s crucial first to determine if your component can extend an existing class, such as `Rounded` or `Flavor`, to leverage reusable functionality and maintain consistency across the project. Start by creating two files: `component.ts` and `component.styles.js`. In `component.ts`, you’ll define the structure and logic of your component using TypeScript. Import the necessary elements from Lit and your styles from `component.styles.js`. The component should be annotated with TSDoc to provide comprehensive documentation, including details about supported slots, custom CSS properties, parts, events, and links to associated Figma designs and Storybook instances. Use the @customElement decorator to register your component, and extend it from the base class, such as `Rounded(LitElement)`. Define properties with appropriate decorators and implement the render method to output your component’s template.
+When creating a new component, it’s crucial first to determine if your component can extend an existing class, such as the `Contourable` or `Flavored` mixins in `src/mixins/`, to leverage reusable functionality and maintain consistency across the project. Start by creating two files: `component.ts` and `component.styles.js`. In `component.ts`, you’ll define the structure and logic of your component using TypeScript. Import the necessary elements from Lit and your styles from `component.styles.js`. The component should be annotated with TSDoc to provide comprehensive documentation, including details about supported slots, custom CSS properties, parts, events, and links to associated Figma designs and Storybook instances. Use the @customElement decorator to register your component, and extend it from the base class, such as `Contourable(LitElement)`. Define properties with appropriate decorators and implement the render method to output your component’s template.
 
 In `component.styles.js`, define your component’s styles using Lit’s `css` function. This file should include custom CSS variables and styling for slots and parts, ensuring the component’s visual aspects are well-defined and customizable. By following this structured approach, you can create a robust, documented, and visually consistent component ready for integration into the broader project.
 
@@ -64,13 +64,11 @@ import styles from "./component.styles.js";
  * @storybook - Provide the link to the hosted storybook instance
  **/
 @customElement("zeta-component")
-export class ZetaComponent extends Rounded(LitElement) {
+export class ZetaComponent extends Contourable(LitElement) {
   /** Provide detailed documentation for all properties **/
   @property({ type: String, reflect: true }) property: string = "property";
 
-  static get styles() {
-    return [super.styles ?? [], styles];
-  }
+  static styles = [super.styles ?? [], styles];
 
   protected render() {
     return html``;

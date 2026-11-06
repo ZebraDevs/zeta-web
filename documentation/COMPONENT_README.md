@@ -24,7 +24,7 @@ export class ZetaX extends Contourable(LitElement) {
   @property({ type: Y, reflect: true }) y;
 
   /** Combine y styles with any super- styles */
-  static styles = [styles, super.styles || []];
+  static styles = [super.styles ?? [], styles];
 
   protected render() {
     return html`<div part="c">
@@ -45,7 +45,7 @@ declare global {
 We have a number of mixins that can be used to mix in extra functionality
 
 - Contourable - adds rounded (boolean) prop, and styles either the parent or any nodes with class `.contourable-target`
-- ContourableThree - adds rounded (sharp | rounded | full) prop, and styles either the parent or any nodes with class `.contourable-target`
+- ContourableThree - adds shape (sharp | rounded | full) prop, and styles either the parent or any nodes with class `.contourable-target`
 - Flavored - adds flavor prop and respected styles.
 - FormField - adds form field logic
 - Interactive - adds styles for interactive component, applied either to the parent or any nodes with class `.interactive-target`.
@@ -79,7 +79,7 @@ When creating a component which will have different styles on hover, it is highl
 
 @media (hover: hover), (hover: none) and (pointer: fine) {
   .navigation-profile:hover {
-    background-color: var(--state-inverse-hover) !important;
+    background-color: var(--interactive-inverse-background-hover) !important;
   }
 }
 ```
@@ -92,26 +92,15 @@ Regarding the webkit tap highlight color: on mobile, taps are automatically styl
 
 ### Export the component {/* #export-the-component-web */}
 
-`src/index.ts`
+`src/index.ts` is generated: `yarn prebuild` (run by `yarn build`) analyzes the components into `custom-elements.json`, and `scripts/make-index.js` then imports and exports every class it finds except those named `Base*`. Do not edit it by hand.
 
-```ts
-// ...
-import { ZetaX } from "./components/x/x.js";
-// ...
-export {
-  ZetaX,
-  //   ...
-};
-// ...
-```
-
-Only export the main component from the component file (for example, ZetaX). Avoid exporting internal helper classes, private widgets, or subcomponents that are not intended for public use. Exporting only the main component keeps the public API clean and prevents users from relying on internal implementation details, which may change without notice. This approach also reduces confusion and makes it easier for users to discover and use the intended component.
+Keep internal helper classes out of the public API: name shared base classes `Base*` so they are skipped.
 
 ### Create the \*book file {/* #create-the-book-file-web */}
 
 We use storybook for web and should typically include a single story. This story should demonstrate every variant of the component. If this is not feasible, you may create multiple stories.
 
-`src/stories/components/x/x.stories.ts`
+`src/stories/components/X/x.stories.ts` (folder named in Title Case, optionally with a `Docs.mdx`)
 
 ```ts
 ...
@@ -134,7 +123,7 @@ const meta: Meta<ZetaX> = {
   },
   parameters: {
     design: {
-      url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?x",
+      url: "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=x",
     },
     status: {type: "ready" },
   },
@@ -154,15 +143,15 @@ Learn more about [Storybook](https://storybook.js.org/docs).
 
 This file should contain a simple example of how to use the component. If possible, replicate the default version of the component shown in Figma. This example will also be used for demonstrating the component on design.zebra.com/docs/components/x. This file must be structured as shown in the example below:
 
-`example/public/components/X.html`
+`example/public/components/X.js` (or `Family/X.js` for component families)
 
-```html
-<style>
+```js
+export default `<style>
     /* Optional styling for the example */
-<style>
+</style>
 <zeta-x>
-    /* ... */
-</zeta-x>
+    <!-- ... -->
+</zeta-x>`;
 ```
 
 ### Link example page {/* #link-example-page-web */}

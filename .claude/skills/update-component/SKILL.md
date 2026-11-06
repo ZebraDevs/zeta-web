@@ -9,7 +9,7 @@ description: Use when the user wants to update or maintain an existing zeta-web 
 
 ## The repo is mid-migration
 
-Components are being moved one at a time from the legacy Zeta tokens to the new **Zebra Design System** tokens (work branches off `feat/zebra-design-system`; already migrated: icon, divider, avatar, button/icon-button/tile-button/fab, badges, checkbox/radio/switch, progress, chips). A component still using legacy tokens is *not yet migrated* — don't migrate it as a side effect of an unrelated change, unless asked.
+Components are being moved one at a time from the legacy Zeta tokens to the new **Zebra Design System** tokens (work branches off `feat/zebra-design-system`, so which components are migrated depends on your branch; grep the component's `*.styles.js` for the legacy names in the table below). A component still using legacy tokens is *not yet migrated* — don't migrate it as a side effect of an unrelated change, unless asked.
 
 | Legacy (avoid in new/changed CSS) | New (use these) |
 |---|---|
@@ -47,7 +47,7 @@ Read the existing `.ts` and `.styles.js` first — match its current patterns (m
 - **IMPORTANT**: Backward compatible only — never remove or rename an existing prop, slot, part, event, or public CSS custom property, never narrow a type union or change a default. Add new props/variants alongside the old ones and deprecate in the doc comment (`@deprecated` + guidance) instead of deleting.
 - **New prop/variant**: add an `@property` with its own doc comment listing valid values (and `@defaultValue` where useful), and extend the type union. Don't add a second way of doing something an existing mixin in `src/mixins/` handles (`Flavored`, `Contourable`, `ContourableThree`, `Size`, `Interactive`, `FormField`, …).
 - **Flavors**: types live in `src/mixins/flavor.ts`. Per-component flavor subsets are exported from there (`ButtonFlavor`, `FabFlavor`, `TileButtonFlavor`, …) — add/extend one there rather than declaring a local union in the component.
-- **Styles**: use new tokens (table above), never a hardcoded hex/px. For variant-driven styling, follow the private-variable pattern used in migrated components: set `--_foo-*` vars on `:host` / `:host([variant=…])`, consume them once in the element rules (see `base-chip.styles.js`, `label.styles.js`). If you add a public customization point, document it with `@cssproperty` and give it a token fallback: `var(--foo-bar-x, var(--token))`.
+- **Styles**: use new tokens (table above), never a hardcoded hex/px. For variant-driven styling, use the private-variable pattern: set `--_foo-*` vars on `:host` / `:host([variant=…])` and consume them once in the element rules (e.g. `:host([flavor="primary"]) { --_foo-bg: var(--interactive-primary-background-default); } .container { background: var(--_foo-bg); }`). If you add a public customization point, document it with `@cssproperty` and give it a token fallback: `var(--foo-bar-x, var(--token))`.
 - **Bug fix/behavior change**: keep it scoped to the affected component/mixin; don't refactor unrelated code.
 - **Shared behavior across a family** goes in that family's base class (e.g. `chips/base-chips/draggable-chip.ts` extending `BaseChip`), not copy-pasted into each member.
 - **Accessibility**: when a state is visual-only (active, pressed, orientation), expose it to AT too (`aria-pressed`, `role`/`aria-orientation`, `progressbar` aria, etc.).

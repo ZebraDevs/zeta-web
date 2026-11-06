@@ -65,14 +65,14 @@ Zeta Web Components can be directly used in many web frameworks including Angula
    or in HTML,
 
    ```html
-   <link rel="stylesheet" href="./node_modules/@zebra-fed/zeta-web/dist/style.css" />
+   <link rel="stylesheet" href="./node_modules/@zebra-fed/zeta-web/dist/index.css" />
    ```
 
 3. Import the desired Zeta Web Component, or the full package into your app:
 
    ```js
    // Individual button component
-   import "@zebra-fed/zeta-web/dist/components/button/button.js";
+   import "@zebra-fed/zeta-web/components/button/button.js";
 
    // or full package
    import "@zebra-fed/zeta-web";
@@ -85,8 +85,10 @@ Zeta Web Components can be directly used in many web frameworks including Angula
    <script type="module" src="./node_modules/@zebra-fed/zeta-web/dist/components/button/button.js"></script>
 
    <!-- or full package-->
-   <script type="module" src="./node_modules/@zebra-fed/zeta-web/"></script>
+   <script type="module" src="./node_modules/@zebra-fed/zeta-web/dist/index.js"></script>
    ```
+
+   These files import `lit` and CSS by bare specifier, so they need a bundler or dev server (e.g. Vite) to resolve them. For a page with no build step, generate a single classic-script bundle (fonts and icons inlined) from this repo with `node scripts/export-bundle-and-docs.js`. It writes `generated/vendor/zeta-web.bundle.js`.
 
    To reduce bloat, we recommend only importing the components you will actually use into your project.
 
@@ -110,11 +112,11 @@ If you can't see the skills, ensure you run `/reload-skills` in Claude Code.
 
 ### Styles
 
-Zeta styles are composed of primitives (basic value swatches such as `color-red-10`, `spacing-4`) and semantic tokens (descriptive values like `surface-default`, `spacing-large`, `avatar-purple`). These are imported via `index.css`.
+Zeta styles are composed of primitives (basic value swatches such as `--color-accent-1-10`, `--scale-5`) and semantic tokens (descriptive values like `--space-sm`, `--radius-pill`, `--interactive-primary-background-default`). These are imported via `index.css`, which also maps the legacy token names (`--surface-default`, `--spacing-large`, …) onto the new ones.
 
 To learn more about Zeta theme, see [tokens](https://design.zebra.com/docs/Theme/tokens).
 
-If you only need the styles, simply import `index.css`. Importing `index.css` is not necessary if you are using the Zeta components, as they include the styles automatically.
+If you only need the styles, simply import `index.css`. Importing the full package (`@zebra-fed/zeta-web`) loads `index.css` for you. If you import individual components, import `index.css` yourself, because the components rely on its tokens.
 
 By default the default theme is used, and light or dark follows the user's `prefers-color-scheme`.
 
@@ -127,6 +129,7 @@ Every layer of the theme is chosen with a data attribute, on `<html>` or on any 
 | `data-palette` | `default` \| `companion` \| `target` | Brand colors. |
 | `data-size` | `default` \| `condensed` | Spacing, controls and radii. |
 | `data-typography` | `default` \| `condensed` | Type scale. |
+| `data-contrast` | `aa` \| `aaa` | Omit for AA. `less`/`more` are legacy aliases. |
 
 ```html
 <html data-palette="companion" data-size="condensed" data-mode="dark">
@@ -220,16 +223,13 @@ To use this, install it in VSCode, and add the following into .vscode/settings.j
 {
   ...
   "cssVariables.lookupFiles": [
-    "node_modules/@zebra-fed/zeta-web/dist/primitives.css",
-    "node_modules/@zebra-fed/zeta-web/dist/semantics.css",
+    "node_modules/@zebra-fed/zeta-web/dist/index.css",
     // Add other css files here
   ]
 }
 ```
 
-This configuration will show light mode / regular contrast tokens on hover.
-
-> **Note:** The primitives.css file and semantics.css files should **not** be used in your app as these only contain a subset of the styles; rather import **index.css**, as this contains all rules.
+> **Note:** `dist/primitives.css` and `dist/semantics.css` contain only the legacy tokens. Don't use them in your app; import **index.css**, which contains all rules.
 
 ## Licensing
 
