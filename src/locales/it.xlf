@@ -20,6 +20,15 @@
 <trans-unit id="s315b443e51bb6303">
   <source>Voice search</source>
 </trans-unit>
+<trans-unit id="seb4eae68d45315b7">
+  <source>Minimum</source>
+</trans-unit>
+<trans-unit id="s00decbd8fed4f501">
+  <source>Maximum</source>
+</trans-unit>
+<trans-unit id="s0043cbab8a7a7cfc">
+  <source>Slider</source>
+</trans-unit>
 </body>
 </file>
 </xliff>
