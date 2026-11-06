@@ -1,7 +1,7 @@
 import { assert, fixture, expect, html } from "@open-wc/testing";
 import type { ZetaIcon } from "../../components/icon/icon.js";
 import { ZetaSearch } from "../../components/search/search.js";
-import { MouseActions, getCssVarColorValue, getCssVarValue } from "../utils.js";
+import { MouseActions, getCssVarColorValue, getCssVarPxValue } from "../utils.js";
 import "../../components/search/search.js";
 import "../../index.css";
 
@@ -63,29 +63,28 @@ describe("zeta-search", () => {
   });
 
   describe("Dimensions", () => {
-    it("should set correct default icon size", async () => {
+    it("should use the control-icon-md icon size at every size", async () => {
       // prettier-ignore
       const el = await fixture<ZetaSearch>(html` <zeta-search></zeta-search> `);
       const icon = el.shadowRoot?.querySelectorAll("zeta-icon")[0] as ZetaIcon;
-      await expect(getComputedStyle(icon).fontSize).to.equal(parseInt(getCssVarValue(icon, "--spacing-xl")) + "px");
+      for (const size of ["small", "medium", "large"] as const) {
+        el.size = size;
+        await el.updateComplete;
+        expect(getComputedStyle(icon).fontSize).to.equal(`${getCssVarPxValue(icon, "--control-icon-md")}px`);
+      }
     });
 
-    it("should set correct small icon size", async () => {
+    it("should size the field height from the control tokens", async () => {
       // prettier-ignore
       const el = await fixture<ZetaSearch>(html` <zeta-search></zeta-search> `);
+      const form = el.shadowRoot!.querySelector("form")!;
+      expect(form.getBoundingClientRect().height).to.equal(getCssVarPxValue(el, "--control-md"));
       el.size = "small";
       await el.updateComplete;
-      const icon = el.shadowRoot?.querySelectorAll("zeta-icon")[0] as ZetaIcon;
-      await expect(getComputedStyle(icon).fontSize).to.equal(parseInt(getCssVarValue(icon, "--spacing-large")) + "px");
-    });
-
-    it("should set correct large icon size", async () => {
-      // prettier-ignore
-      const el = await fixture<ZetaSearch>(html` <zeta-search></zeta-search> `);
+      expect(form.getBoundingClientRect().height).to.equal(getCssVarPxValue(el, "--control-sm"));
       el.size = "large";
       await el.updateComplete;
-      const icon = el.shadowRoot?.querySelectorAll("zeta-icon")[0] as ZetaIcon;
-      await expect(getComputedStyle(icon).fontSize).to.equal(parseInt(getCssVarValue(icon, "--spacing-2xl")) + "px");
+      expect(form.getBoundingClientRect().height).to.equal(getCssVarPxValue(el, "--control-lg"));
     });
   });
 
@@ -96,7 +95,77 @@ describe("zeta-search", () => {
       el.disabled = true;
       await el.updateComplete;
       const icon = el.shadowRoot?.querySelectorAll("zeta-icon")[0] as ZetaIcon;
-      await expect(getComputedStyle(icon).color).to.equal(getCssVarColorValue(icon, "--main-disabled"));
+      await expect(getComputedStyle(icon).color).to.equal(getCssVarColorValue(icon, "--interactive-neutral-foreground-disabled"));
+    });
+
+    it("should colour the leading icon foreground-primary and trailing icons interactive-neutral-foreground-default", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaSearch>(html` <zeta-search value="query"></zeta-search> `);
+      const [leading, cancel] = el.shadowRoot!.querySelectorAll("zeta-icon");
+      expect(getComputedStyle(leading).color).to.equal(getCssVarColorValue(el, "--foreground-primary"));
+      expect(getComputedStyle(cancel).color).to.equal(getCssVarColorValue(el, "--interactive-neutral-foreground-default"));
+    });
+
+    it("should use neutral tokens for the field at rest", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaSearch>(html` <zeta-search></zeta-search> `);
+      const style = getComputedStyle(el.shadowRoot!.querySelector("form")!);
+      expect(style.borderTopColor).to.equal(getCssVarColorValue(el, "--interactive-neutral-border-default"));
+      expect(style.borderTopWidth).to.equal(`${getCssVarPxValue(el, "--stroke-thin")}px`);
+      expect(style.backgroundColor).to.equal(getCssVarColorValue(el, "--interactive-neutral-background-default"));
+      expect(style.paddingLeft).to.equal(`${getCssVarPxValue(el, "--space-md")}px`);
+    });
+
+    it("should use the text and cursor tokens", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaSearch>(html` <zeta-search></zeta-search> `);
+      const input = el.shadowRoot!.querySelector("input")!;
+      expect(getComputedStyle(input).color).to.equal(getCssVarColorValue(el, "--foreground-primary"));
+      expect(getComputedStyle(input).caretColor).to.equal(getCssVarColorValue(el, "--foreground-cursor"));
+    });
+
+    it("should draw the focus outline with border-focus at stroke-thick", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaSearch>(html` <zeta-search></zeta-search> `);
+      el.focus();
+      const style = getComputedStyle(el.shadowRoot!.querySelector("form")!);
+      expect(style.outlineColor).to.equal(getCssVarColorValue(el, "--border-focus"));
+      expect(style.outlineWidth).to.equal(`${getCssVarPxValue(el, "--stroke-thick")}px`);
+    });
+
+    it("should use disabled tokens for the field when disabled", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaSearch>(html` <zeta-search disabled></zeta-search> `);
+      const style = getComputedStyle(el.shadowRoot!.querySelector("form")!);
+      expect(style.borderTopColor).to.equal(getCssVarColorValue(el, "--interactive-neutral-border-disabled"));
+      expect(style.backgroundColor).to.equal(getCssVarColorValue(el, "--interactive-neutral-background-disabled"));
+    });
+
+    it("should draw a gradient border when flavor is gradient", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaSearch>(html` <zeta-search flavor="gradient"></zeta-search> `);
+      const style = getComputedStyle(el.shadowRoot!.querySelector("form")!);
+      expect(style.borderTopColor).to.equal("rgba(0, 0, 0, 0)");
+      expect(style.backgroundImage).to.include("linear-gradient");
+    });
+
+    it("should have no visible border when flavor is ghost, and optionally no focus outline", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaSearch>(html` <zeta-search flavor="ghost"></zeta-search> `);
+      const form = el.shadowRoot!.querySelector("form")!;
+      expect(getComputedStyle(form).borderTopWidth).to.equal(`${getCssVarPxValue(el, "--stroke-base")}px`);
+      expect(getComputedStyle(form).backgroundColor).to.equal(getCssVarColorValue(el, "--interactive-ghost-background-default"));
+      el.focus();
+      expect(getComputedStyle(form).outlineStyle).to.equal("solid");
+      el.hideFocusOutline = true;
+      await el.updateComplete;
+      expect(getComputedStyle(form).outlineStyle).to.equal("none");
+    });
+
+    it("should keep the --search-border-color override", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaSearch>(html` <zeta-search style="--search-border-color: transparent"></zeta-search> `);
+      expect(getComputedStyle(el.shadowRoot!.querySelector("form")!).borderTopColor).to.equal("rgba(0, 0, 0, 0)");
     });
   });
 
@@ -108,6 +177,19 @@ describe("zeta-search", () => {
       await el.updateComplete;
       const icon = el.shadowRoot?.querySelectorAll("zeta-icon")[1] as ZetaIcon;
       icon.click();
+      await el.updateComplete;
+      assert.equal(el.value, "");
+    });
+
+    it("renders the clear control as a named button only when there is a value", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaSearch>(html` <zeta-search></zeta-search> `);
+      expect(el.shadowRoot!.querySelector('button[aria-label="Clear search"]')).not.to.exist;
+      el.value = "query";
+      await el.updateComplete;
+      const button = el.shadowRoot!.querySelector('button[aria-label="Clear search"]') as HTMLButtonElement;
+      expect(button).to.exist;
+      button.click();
       await el.updateComplete;
       assert.equal(el.value, "");
     });
