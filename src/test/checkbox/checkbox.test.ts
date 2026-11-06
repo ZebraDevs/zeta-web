@@ -133,9 +133,7 @@ describe("zeta-checkbox", () => {
         subject[state] = true;
         await elementUpdated(subject);
         expect(getComputedStyle(box()).borderColor).to.equal(getCssVarColorValue(subject, "--interactive-selection-border-pressed"));
-        expect(getComputedStyle(box()).backgroundColor).to.equal(
-          getCssVarColorValue(subject, "--interactive-selection-background-pressed")
-        );
+        expect(getComputedStyle(box()).backgroundColor).to.equal(getCssVarColorValue(subject, "--interactive-selection-background-pressed"));
       });
     }
 
@@ -144,9 +142,7 @@ describe("zeta-checkbox", () => {
       subject.disabled = true;
       await elementUpdated(subject);
       expect(getComputedStyle(box()).borderColor).to.equal(getCssVarColorValue(subject, "--interactive-selection-border-disabled"));
-      expect(getComputedStyle(box()).backgroundColor).to.equal(
-        getCssVarColorValue(subject, "--interactive-selection-background-disabled")
-      );
+      expect(getComputedStyle(box()).backgroundColor).to.equal(getCssVarColorValue(subject, "--interactive-selection-background-disabled"));
       const icon = subject.shadowRoot!.querySelector("[part=icon]") as HTMLElement;
       expect(getComputedStyle(icon).display).to.not.equal("none");
     });

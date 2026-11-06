@@ -76,15 +76,7 @@ export class ZetaProgressCircle extends Contourable(LitElement) {
               height: `${this.size}px`
             })}
           >
-            ${
-              this.size > 24
-                ? html`<span
-                    class="percentage"
-                  >
-                    ${this.progress}%
-                  </span>`
-                : nothing
-            }
+            ${this.size > 24 ? html`<span class="percentage"> ${this.progress}% </span>` : nothing}
             <button
               aria-label="Cancel upload"
               @click=${() => {

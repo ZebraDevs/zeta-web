@@ -107,9 +107,7 @@ describe("zeta-radio-button", () => {
       subject.checked = true;
       await elementUpdated(subject);
       expect(getComputedStyle(ring()).borderColor).to.equal(getCssVarColorValue(subject, "--interactive-selection-border-pressed"));
-      expect(getComputedStyle(dot()).backgroundColor).to.equal(
-        getCssVarColorValue(subject, "--interactive-selection-background-pressed")
-      );
+      expect(getComputedStyle(dot()).backgroundColor).to.equal(getCssVarColorValue(subject, "--interactive-selection-background-pressed"));
     });
 
     it("disabled checked ring and fill use disabled selection tokens", async () => {
@@ -117,9 +115,7 @@ describe("zeta-radio-button", () => {
       subject.disabled = true;
       await elementUpdated(subject);
       expect(getComputedStyle(ring()).borderColor).to.equal(getCssVarColorValue(subject, "--interactive-selection-border-disabled"));
-      expect(getComputedStyle(dot()).backgroundColor).to.equal(
-        getCssVarColorValue(subject, "--interactive-selection-background-disabled")
-      );
+      expect(getComputedStyle(dot()).backgroundColor).to.equal(getCssVarColorValue(subject, "--interactive-selection-background-disabled"));
     });
 
     it("label uses label-medium at every size", async () => {
