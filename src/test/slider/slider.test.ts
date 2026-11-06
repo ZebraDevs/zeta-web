@@ -108,6 +108,28 @@ describe("zeta-slider", () => {
       expect(getComputedStyle(handleL).paddingTop).to.not.equal("0px");
     });
 
+    it("starts and ends the range fill at the thumb centres, not the handle box edges", async () => {
+      subject.type = "range";
+      await subject.updateComplete;
+      const handleL = subject.shadowRoot?.querySelector("#handle-l") as HTMLElement;
+      const handleR = subject.shadowRoot?.querySelector("#handle-r") as HTMLElement;
+      const selected = subject.shadowRoot?.querySelector(".selected-area") as HTMLElement;
+      const centre = (el: HTMLElement) => el.getBoundingClientRect().left + el.getBoundingClientRect().width / 2;
+
+      const assertFillMatchesThumbs = () => {
+        const fill = selected.getBoundingClientRect();
+        expect(fill.left).to.be.closeTo(centre(handleL), 0.5);
+        expect(fill.right).to.be.closeTo(centre(handleR), 0.5);
+      };
+
+      assertFillMatchesThumbs();
+
+      handleL.focus();
+      await sendKeys({ press: "ArrowRight" });
+      await subject.updateComplete;
+      assertFillMatchesThumbs();
+    });
+
     it("sets the correct margin on the slider", () => {
       const slider = subject.shadowRoot?.querySelector(".slider") as HTMLElement;
       const half = getCssVarPxValue(slider, "--control-icon-md") / 2;

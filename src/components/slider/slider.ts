@@ -242,7 +242,8 @@ export class ZetaSlider extends Contourable(LitElement) {
   // Updates the size of the area between the handles
   private updateSelectedArea = () => {
     if (this.type == "range") {
-      this.selectedArea.style.left = this.leftHandle.style.left;
+      // Start at the handle's centre, not its box edge: the box is wider than the visible thumb
+      this.selectedArea.style.left = `${this.getHandleProgress(this.leftHandle)}%`;
       this.selectedArea.style.right = `${100 - this.getHandleProgress(this.rightHandle)}%`;
     } else {
       this.selectedArea.style.right = `${100 - this.getHandleProgress(this.leftHandle)}%`;
