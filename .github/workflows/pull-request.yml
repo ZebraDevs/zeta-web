@@ -1,5 +1,12 @@
 name: CI - Pull Request
-on: pull_request_target
+# Runs on `pull_request` (not `pull_request_target`): this workflow checks out and executes PR code, which must
+# never happen with the elevated token/secrets of `pull_request_target`.
+# Same-repo PRs get a write token + secrets; fork PRs get a read-only token, so jobs that write or deploy are skipped.
+on: pull_request
+
+permissions:
+  contents: write # generate-localizations / code-quality push fixes to the PR branch
+  pull-requests: write # code-quality comments on the PR
 
 # Pull Request Runs on the same branch will be cancelled
 concurrency:
@@ -9,6 +16,8 @@ concurrency:
 jobs:
   generate-localizations:
     name: Generate localizations.
+    # Needs to push to the PR branch, which fork PRs can't do. Dependent jobs below are skipped / adapt accordingly.
+    if: github.event.pull_request.head.repo.full_name == github.repository
     timeout-minutes: 20
     runs-on: ubuntu-latest
     steps:
@@ -57,13 +66,16 @@ jobs:
   code-quality:
     name: Check the code quality
     needs: [generate-localizations]
+    # generate-localizations is skipped for fork PRs; still run quality checks there.
+    if: ${{ !cancelled() && needs.generate-localizations.result != 'failure' }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          ref: ${{ github.head_ref }}
+          # Same-repo: check out the branch so fixes can be pushed. Fork: default (merge commit), nothing is pushed.
+          ref: ${{ github.event.pull_request.head.repo.full_name == github.repository && github.head_ref || '' }}
 
       - name: Setup node
         uses: actions/setup-node@v4
@@ -82,6 +94,9 @@ jobs:
         uses: ZebraDevs/web-components-code-quality@a9ead66559ba1d72fdc71f0112f97082d6f2725b
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          # Fork PRs have a read-only token: no pushing fixes or commenting.
+          run-code-formatting: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+          create-comment: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
           test-results-path: "src/test/test-results.xml"
           eslint-config-path: "src/eslint.config.mjs"
           test-config-path: "src/test/web-test-runner.config.js"
@@ -90,6 +105,7 @@ jobs:
   deploy-preview:
     timeout-minutes: 20
     name: Deploy preview version of the storybook on firebase
+    # Skipped for fork PRs (no secrets) because generate-localizations is skipped.
     needs: [generate-localizations]
     runs-on: ubuntu-latest
     steps:
