@@ -1,0 +1,11 @@
+/**
+ * Zeta tokens - default theme + every extension.
+ * This file is auto-generated. Do not edit directly.
+ */
+
+@import url("./tokens.css");
+@import url("./palette/companion.css");
+@import url("./palette/target.css");
+@import url("./primitives/target.css");
+@import url("./size/condensed.css");
+@import url("./typography/condensed.css");
