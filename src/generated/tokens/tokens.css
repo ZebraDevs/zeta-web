@@ -244,8 +244,8 @@
   --scale-container-1: 600px;
   --scale-container-2: 840px;
   --scale-container-3: 1200px;
-  --text-font-family-ibm-plex-sans: 'IBM Plex Sans', sans-serif;
-  --text-font-family-zebra-sans: 'Zebra Sans', sans-serif;
+  --text-font-family-ibm-plex-sans: "IBM Plex Sans", sans-serif;
+  --text-font-family-zebra-sans: "Zebra Sans", sans-serif;
   --text-font-size-10: 10px;
   --text-font-size-12: 12px;
   --text-font-size-14: 14px;
@@ -287,13 +287,19 @@
   --aa-status-ghost-tint: light-dark(rgba(31, 105, 255, 0.10196078431372549), rgba(141, 192, 255, 0.10196078431372549));
   --aa-brand-primary-deep: var(--color-brand-main-80);
   --aa-brand-primary-default: var(--color-brand-main-60); /** Primary brand color (theme.color.brand.primary) */
-  --aa-brand-primary-faint: light-dark(var(--color-brand-main-10), var(--color-brand-main-100)); /** Light brand tint for backgrounds (theme.color.brand.subtle) */
+  --aa-brand-primary-faint: light-dark(
+    var(--color-brand-main-10),
+    var(--color-brand-main-100)
+  ); /** Light brand tint for backgrounds (theme.color.brand.subtle) */
   --aa-brand-primary-muted: light-dark(var(--color-brand-main-20), var(--color-brand-main-90)); /** Muted/softened brand tone (theme.color.brand.muted) */
   --aa-brand-primary-on: var(--color-pure-white); /** Text and icons on primary, positive and destructive fills. */
   --aa-brand-primary-strong: var(--color-brand-main-70);
   --aa-brand-primary-subtle: var(--color-brand-main-50);
   --aa-brand-secondary-deep: var(--color-brand-alternative-80);
-  --aa-brand-secondary-default: light-dark(var(--color-brand-alternative-60), var(--color-brand-alternative-50)); /** Secondary brand color (theme.color.brand.secondary) */
+  --aa-brand-secondary-default: light-dark(
+    var(--color-brand-alternative-60),
+    var(--color-brand-alternative-50)
+  ); /** Secondary brand color (theme.color.brand.secondary) */
   --aa-brand-secondary-faint: light-dark(var(--color-brand-alternative-10), var(--color-brand-alternative-100));
   --aa-brand-secondary-on: var(--color-pure-white); /** Foreground on top of Brand/Secondary (theme.color.brand.onSecondary) */
   --aa-brand-secondary-strong: var(--color-brand-alternative-70);
@@ -320,16 +326,33 @@
   --aa-fill-canvas: light-dark(var(--color-neutral-cool-20), var(--color-neutral-cool-90)); /** App/page base background (theme.color.surface.canvas) */
   --aa-fill-default: light-dark(var(--color-pure-white), var(--color-neutral-cool-100)); /** Standard component/card background (theme.color.surface.default) */
   --aa-fill-disabled: light-dark(var(--color-neutral-cool-30), var(--color-neutral-cool-80));
-  --aa-fill-elevated: light-dark(var(--color-pure-white), var(--color-neutral-cool-100)); /** Raised surface background, pair with elevation shadow (theme.color.surface.elevated) */
-  --aa-fill-faint: light-dark(var(--color-neutral-cool-20), var(--color-neutral-cool-90)); /** Recessed background, e.g. inputs/wells (theme.color.surface.sunken) */
+  --aa-fill-elevated: light-dark(
+    var(--color-pure-white),
+    var(--color-neutral-cool-100)
+  ); /** Raised surface background, pair with elevation shadow (theme.color.surface.elevated) */
+  --aa-fill-faint: light-dark(
+    var(--color-neutral-cool-20),
+    var(--color-neutral-cool-90)
+  ); /** Recessed background, e.g. inputs/wells (theme.color.surface.sunken) */
   --aa-fill-hover: light-dark(var(--color-neutral-cool-70), var(--color-neutral-cool-40));
-  --aa-fill-inverse: light-dark(var(--color-neutral-cool-90), var(--color-neutral-cool-20)); /** Inverted (dark) surface, e.g. tooltips (theme.color.surface.inverse) */
+  --aa-fill-inverse: light-dark(
+    var(--color-neutral-cool-90),
+    var(--color-neutral-cool-20)
+  ); /** Inverted (dark) surface, e.g. tooltips (theme.color.surface.inverse) */
   --aa-fill-inverse-elevated: light-dark(var(--color-neutral-cool-100), var(--color-neutral-cool-10));
   --aa-fill-inverse-sunken: light-dark(var(--color-neutral-cool-80), var(--color-neutral-cool-30));
   --aa-fill-overlay: light-dark(var(--color-pure-white), var(--color-neutral-cool-80)); /** Modal/popover panel background (theme.color.surface.overlay) */
-  --aa-fill-scrim: var(--color-alpha-dark-60); /** Backdrop behind modals; apply opacity at usage since this alias is fully opaque (theme.color.surface.scrim) */
-  --aa-fill-selection: light-dark(var(--color-brand-main-20), var(--color-brand-main-90)); /** Selected item/text background (theme.color.selection.background) */
-  --aa-fill-sunken: light-dark(var(--color-neutral-cool-30), var(--color-neutral-cool-80)); /** Recessed background, e.g. inputs/wells (theme.color.surface.sunken) */
+  --aa-fill-scrim: var(
+    --color-alpha-dark-60
+  ); /** Backdrop behind modals; apply opacity at usage since this alias is fully opaque (theme.color.surface.scrim) */
+  --aa-fill-selection: light-dark(
+    var(--color-brand-main-20),
+    var(--color-brand-main-90)
+  ); /** Selected item/text background (theme.color.selection.background) */
+  --aa-fill-sunken: light-dark(
+    var(--color-neutral-cool-30),
+    var(--color-neutral-cool-80)
+  ); /** Recessed background, e.g. inputs/wells (theme.color.surface.sunken) */
   --aa-fill-transparent: var(--color-alpha-light-0);
   --aa-fill-transparent-elevate: light-dark(var(--color-alpha-dark-10), var(--color-alpha-light-10));
   --aa-fill-transparent-emphasis: light-dark(var(--color-alpha-dark-5), var(--color-alpha-light-5));
@@ -343,9 +366,15 @@
   --aa-ink-always-blank: var(--color-neutral-cool-100); /** Near-black that does not change with mode. Source for foreground/on-light. */
   --aa-ink-always-white: var(--color-pure-white); /** White that does not change with mode. Source for foreground/on-strong. */
   --aa-ink-brand: light-dark(var(--color-brand-main-70), var(--color-brand-main-40)); /** Ghost button text and input cursors. */
-  --aa-ink-disabled: light-dark(var(--color-neutral-cool-50), var(--color-neutral-cool-60)); /** Disabled-state text/icon color (theme.color.content.disabled) */
+  --aa-ink-disabled: light-dark(
+    var(--color-neutral-cool-50),
+    var(--color-neutral-cool-60)
+  ); /** Disabled-state text/icon color (theme.color.content.disabled) */
   --aa-ink-high: light-dark(var(--color-neutral-cool-100), var(--color-pure-white)); /** High-emphasis text/icon color (theme.color.content.high) */
-  --aa-ink-inverse: light-dark(var(--color-pure-white), var(--color-neutral-cool-100)); /** Text/icon color on inverse/dark surfaces (theme.color.content.inverse) */
+  --aa-ink-inverse: light-dark(
+    var(--color-pure-white),
+    var(--color-neutral-cool-100)
+  ); /** Text/icon color on inverse/dark surfaces (theme.color.content.inverse) */
   --aa-ink-link: light-dark(var(--color-brand-main-60), var(--color-brand-main-50)); /** Text links and subtle button text. */
   --aa-ink-low: light-dark(var(--color-neutral-cool-60), var(--color-neutral-cool-50)); /** Low-emphasis text/icon color (theme.color.content.low) */
   --aa-ink-medium: light-dark(var(--color-neutral-cool-70), var(--color-neutral-cool-40)); /** Medium-emphasis text/icon color (theme.color.content.medium) */
@@ -359,7 +388,10 @@
   --aa-line-subtle: light-dark(var(--color-neutral-cool-30), var(--color-neutral-cool-80));
   --aa-status-error-deep: var(--color-system-negative-80); /** Error solid/strong emphasis (theme.color.error.strong) */
   --aa-status-error-default: var(--color-system-negative-60); /** Error color (theme.color.error.default) */
-  --aa-status-error-faint: light-dark(var(--color-system-negative-10), var(--color-system-negative-100)); /** Error background tint (theme.color.error.subtle) */
+  --aa-status-error-faint: light-dark(
+    var(--color-system-negative-10),
+    var(--color-system-negative-100)
+  ); /** Error background tint (theme.color.error.subtle) */
   --aa-status-error-strong: var(--color-system-negative-70);
   --aa-status-error-subtle: var(--color-system-negative-50);
   --aa-status-ghost-deep: light-dark(var(--color-alpha-dark-10), var(--color-alpha-light-10)); /** Ghost button when pressed. */
@@ -372,14 +404,23 @@
   --aa-status-info-faint: light-dark(var(--color-system-info-10), var(--color-system-info-100)); /** Backgrounds of info messages and containers. */
   --aa-status-info-strong: var(--color-system-info-70);
   --aa-status-info-subtle: light-dark(var(--color-system-info-50), var(--color-system-info-60));
-  --aa-status-neutral-deep: light-dark(var(--color-neutral-cool-80), var(--color-neutral-warm-30)); /** Neutral solid/strong emphasis (theme.color.neutral.strong) */
+  --aa-status-neutral-deep: light-dark(
+    var(--color-neutral-cool-80),
+    var(--color-neutral-warm-30)
+  ); /** Neutral solid/strong emphasis (theme.color.neutral.strong) */
   --aa-status-neutral-default: light-dark(var(--color-neutral-cool-60), var(--color-neutral-warm-60)); /** Neutral color (theme.color.neutral.default) */
-  --aa-status-neutral-faint: light-dark(var(--color-neutral-cool-10), var(--color-neutral-warm-100)); /** Neutral background tint (theme.color.neutral.subtle) */
+  --aa-status-neutral-faint: light-dark(
+    var(--color-neutral-cool-10),
+    var(--color-neutral-warm-100)
+  ); /** Neutral background tint (theme.color.neutral.subtle) */
   --aa-status-neutral-strong: light-dark(var(--color-neutral-cool-70), var(--color-neutral-warm-40));
   --aa-status-neutral-subtle: light-dark(var(--color-neutral-cool-50), var(--color-neutral-warm-60));
   --aa-status-success-deep: var(--color-system-positive-80); /** Success solid/strong emphasis (theme.color.success.strong) */
   --aa-status-success-default: var(--color-system-positive-60); /** Success color (theme.color.success.default) */
-  --aa-status-success-faint: light-dark(var(--color-system-positive-10), var(--color-system-positive-100)); /** Success background tint (theme.color.success.subtle) */
+  --aa-status-success-faint: light-dark(
+    var(--color-system-positive-10),
+    var(--color-system-positive-100)
+  ); /** Success background tint (theme.color.success.subtle) */
   --aa-status-success-strong: var(--color-system-positive-70);
   --aa-status-success-subtle: light-dark(var(--color-system-positive-50), var(--color-system-positive-70));
   --aa-status-warning-deep: light-dark(var(--color-system-warning-80), var(--color-system-warning-40)); /** Highest emphasis warning elements. */
@@ -390,15 +431,24 @@
   --aaa-status-ghost-tint: light-dark(rgba(0, 63, 189, 0.10196078431372549), rgba(141, 192, 255, 0.10196078431372549));
   --aaa-brand-primary-deep: light-dark(var(--color-brand-main-100), var(--color-brand-main-10));
   --aaa-brand-primary-default: light-dark(var(--color-brand-main-80), var(--color-brand-main-30)); /** Primary brand color (theme.color.brand.primary) */
-  --aaa-brand-primary-faint: light-dark(var(--color-brand-main-10), var(--color-brand-main-100)); /** Light brand tint for backgrounds (theme.color.brand.subtle) */
+  --aaa-brand-primary-faint: light-dark(
+    var(--color-brand-main-10),
+    var(--color-brand-main-100)
+  ); /** Light brand tint for backgrounds (theme.color.brand.subtle) */
   --aaa-brand-primary-muted: light-dark(var(--color-brand-main-20), var(--color-brand-main-90)); /** Muted/softened brand tone (theme.color.brand.muted) */
   --aaa-brand-primary-on: light-dark(var(--color-pure-white), var(--color-neutral-cool-100)); /** Text and icons on primary, positive and destructive fills. */
   --aaa-brand-primary-strong: light-dark(var(--color-brand-main-90), var(--color-brand-main-20));
   --aaa-brand-primary-subtle: light-dark(var(--color-brand-main-30), var(--color-brand-main-90));
   --aaa-brand-secondary-deep: light-dark(var(--color-brand-alternative-100), var(--color-brand-alternative-10));
-  --aaa-brand-secondary-default: light-dark(var(--color-brand-alternative-90), var(--color-brand-alternative-30)); /** Secondary brand color (theme.color.brand.secondary) */
+  --aaa-brand-secondary-default: light-dark(
+    var(--color-brand-alternative-90),
+    var(--color-brand-alternative-30)
+  ); /** Secondary brand color (theme.color.brand.secondary) */
   --aaa-brand-secondary-faint: light-dark(var(--color-brand-alternative-10), var(--color-brand-alternative-100));
-  --aaa-brand-secondary-on: light-dark(var(--color-pure-white), var(--color-neutral-cool-100)); /** Foreground on top of Brand/Secondary (theme.color.brand.onSecondary) */
+  --aaa-brand-secondary-on: light-dark(
+    var(--color-pure-white),
+    var(--color-neutral-cool-100)
+  ); /** Foreground on top of Brand/Secondary (theme.color.brand.onSecondary) */
   --aaa-brand-secondary-strong: light-dark(var(--color-brand-alternative-100), var(--color-brand-alternative-20));
   --aaa-brand-secondary-subtle: light-dark(var(--color-brand-alternative-30), var(--color-brand-alternative-90));
   --aaa-brand-tertiary-deep: light-dark(var(--color-accent-5-100), var(--color-accent-5-20)); /** Highest emphasis tertiary brand fills. */
@@ -421,18 +471,38 @@
   --aaa-data-12: light-dark(var(--color-extend-1-80), var(--color-extend-1-30));
   --aaa-data-neutral: light-dark(var(--color-neutral-cool-80), var(--color-neutral-cool-40));
   --aaa-fill-canvas: light-dark(var(--color-neutral-cool-20), var(--color-neutral-cool-90)); /** App/page base background (theme.color.surface.canvas) */
-  --aaa-fill-default: light-dark(var(--color-pure-white), var(--color-neutral-cool-100)); /** Standard component/card background (theme.color.surface.default) */
+  --aaa-fill-default: light-dark(
+    var(--color-pure-white),
+    var(--color-neutral-cool-100)
+  ); /** Standard component/card background (theme.color.surface.default) */
   --aaa-fill-disabled: light-dark(var(--color-neutral-cool-30), var(--color-neutral-cool-80));
-  --aaa-fill-elevated: light-dark(var(--color-pure-white), var(--color-neutral-cool-100)); /** Raised surface background, pair with elevation shadow (theme.color.surface.elevated) */
-  --aaa-fill-faint: light-dark(var(--color-neutral-cool-20), var(--color-neutral-cool-90)); /** Recessed background, e.g. inputs/wells (theme.color.surface.sunken) */
+  --aaa-fill-elevated: light-dark(
+    var(--color-pure-white),
+    var(--color-neutral-cool-100)
+  ); /** Raised surface background, pair with elevation shadow (theme.color.surface.elevated) */
+  --aaa-fill-faint: light-dark(
+    var(--color-neutral-cool-20),
+    var(--color-neutral-cool-90)
+  ); /** Recessed background, e.g. inputs/wells (theme.color.surface.sunken) */
   --aaa-fill-hover: light-dark(var(--color-neutral-cool-70), var(--color-neutral-cool-40));
-  --aaa-fill-inverse: light-dark(var(--color-neutral-cool-90), var(--color-neutral-cool-20)); /** Inverted (dark) surface, e.g. tooltips (theme.color.surface.inverse) */
+  --aaa-fill-inverse: light-dark(
+    var(--color-neutral-cool-90),
+    var(--color-neutral-cool-20)
+  ); /** Inverted (dark) surface, e.g. tooltips (theme.color.surface.inverse) */
   --aaa-fill-inverse-elevated: light-dark(var(--color-neutral-cool-100), var(--color-neutral-cool-10));
   --aaa-fill-inverse-sunken: light-dark(var(--color-neutral-cool-80), var(--color-neutral-cool-30));
   --aaa-fill-overlay: light-dark(var(--color-pure-white), var(--color-neutral-cool-90)); /** Modal/popover panel background (theme.color.surface.overlay) */
-  --aaa-fill-scrim: var(--color-alpha-dark-60); /** Backdrop behind modals; apply opacity at usage since this alias is fully opaque (theme.color.surface.scrim) */
-  --aaa-fill-selection: light-dark(var(--color-brand-main-20), var(--color-brand-main-90)); /** Selected item/text background (theme.color.selection.background) */
-  --aaa-fill-sunken: light-dark(var(--color-neutral-cool-20), var(--color-neutral-cool-90)); /** Recessed background, e.g. inputs/wells (theme.color.surface.sunken) */
+  --aaa-fill-scrim: var(
+    --color-alpha-dark-60
+  ); /** Backdrop behind modals; apply opacity at usage since this alias is fully opaque (theme.color.surface.scrim) */
+  --aaa-fill-selection: light-dark(
+    var(--color-brand-main-20),
+    var(--color-brand-main-90)
+  ); /** Selected item/text background (theme.color.selection.background) */
+  --aaa-fill-sunken: light-dark(
+    var(--color-neutral-cool-20),
+    var(--color-neutral-cool-90)
+  ); /** Recessed background, e.g. inputs/wells (theme.color.surface.sunken) */
   --aaa-fill-transparent: var(--color-alpha-light-0);
   --aaa-fill-transparent-elevate: light-dark(var(--color-alpha-dark-10), var(--color-alpha-light-10));
   --aaa-fill-transparent-emphasis: light-dark(var(--color-alpha-dark-5), var(--color-alpha-light-5));
@@ -444,15 +514,27 @@
   --aaa-gradient-subtle-end: light-dark(var(--color-extend-4-40), var(--color-extend-4-80));
   --aaa-gradient-subtle-start: light-dark(var(--color-accent-1-50), var(--color-accent-1-70));
   --aaa-ink-always-blank: var(--color-neutral-cool-100); /** Near-black that does not change with mode. Source for foreground/on-light. */
-  --aaa-ink-always-white: light-dark(var(--color-pure-white), var(--color-neutral-cool-100)); /** White that does not change with mode. Source for foreground/on-strong. */
+  --aaa-ink-always-white: light-dark(
+    var(--color-pure-white),
+    var(--color-neutral-cool-100)
+  ); /** White that does not change with mode. Source for foreground/on-strong. */
   --aaa-ink-brand: light-dark(var(--color-brand-main-90), var(--color-brand-main-20)); /** Ghost button text and input cursors. */
-  --aaa-ink-disabled: light-dark(var(--color-neutral-cool-80), var(--color-neutral-cool-40)); /** Disabled-state text/icon color (theme.color.content.disabled) */
+  --aaa-ink-disabled: light-dark(
+    var(--color-neutral-cool-80),
+    var(--color-neutral-cool-40)
+  ); /** Disabled-state text/icon color (theme.color.content.disabled) */
   --aaa-ink-high: light-dark(var(--color-neutral-cool-100), var(--color-pure-white)); /** High-emphasis text/icon color (theme.color.content.high) */
-  --aaa-ink-inverse: light-dark(var(--color-pure-white), var(--color-neutral-cool-100)); /** Text/icon color on inverse/dark surfaces (theme.color.content.inverse) */
+  --aaa-ink-inverse: light-dark(
+    var(--color-pure-white),
+    var(--color-neutral-cool-100)
+  ); /** Text/icon color on inverse/dark surfaces (theme.color.content.inverse) */
   --aaa-ink-link: light-dark(var(--color-brand-main-90), var(--color-brand-main-20)); /** Text links and subtle button text. */
   --aaa-ink-low: light-dark(var(--color-neutral-cool-80), var(--color-neutral-cool-40)); /** Low-emphasis text/icon color (theme.color.content.low) */
   --aaa-ink-medium: light-dark(var(--color-neutral-cool-80), var(--color-neutral-cool-30)); /** Medium-emphasis text/icon color (theme.color.content.medium) */
-  --aaa-ink-selection: light-dark(var(--color-neutral-cool-100), var(--color-neutral-cool-10)); /** Text color within a selection (theme.color.selection.text) */
+  --aaa-ink-selection: light-dark(
+    var(--color-neutral-cool-100),
+    var(--color-neutral-cool-10)
+  ); /** Text color within a selection (theme.color.selection.text) */
   --aaa-line-default: light-dark(var(--color-neutral-cool-60), var(--color-neutral-cool-50));
   --aaa-line-focus: light-dark(var(--color-brand-main-80), var(--color-brand-main-30)); /** Focus rings and outlines. */
   --aaa-line-inverse: light-dark(var(--color-pure-white), var(--color-pure-black));
@@ -460,9 +542,15 @@
   --aaa-line-strong: light-dark(var(--color-neutral-cool-70), var(--color-neutral-cool-40));
   --aaa-line-stronger: light-dark(var(--color-neutral-cool-80), var(--color-neutral-cool-30));
   --aaa-line-subtle: light-dark(var(--color-neutral-cool-50), var(--color-neutral-cool-60));
-  --aaa-status-error-deep: light-dark(var(--color-system-negative-100), var(--color-system-negative-10)); /** Error solid/strong emphasis (theme.color.error.strong) */
+  --aaa-status-error-deep: light-dark(
+    var(--color-system-negative-100),
+    var(--color-system-negative-10)
+  ); /** Error solid/strong emphasis (theme.color.error.strong) */
   --aaa-status-error-default: light-dark(var(--color-system-negative-80), var(--color-system-negative-30)); /** Error color (theme.color.error.default) */
-  --aaa-status-error-faint: light-dark(var(--color-system-negative-10), var(--color-system-negative-100)); /** Error background tint (theme.color.error.subtle) */
+  --aaa-status-error-faint: light-dark(
+    var(--color-system-negative-10),
+    var(--color-system-negative-100)
+  ); /** Error background tint (theme.color.error.subtle) */
   --aaa-status-error-strong: light-dark(var(--color-system-negative-90), var(--color-system-negative-20));
   --aaa-status-error-subtle: light-dark(var(--color-system-negative-30), var(--color-system-negative-40));
   --aaa-status-ghost-deep: light-dark(var(--color-alpha-dark-10), var(--color-alpha-light-10)); /** Ghost button when pressed. */
@@ -475,19 +563,34 @@
   --aaa-status-info-faint: light-dark(var(--color-system-info-10), var(--color-system-info-100)); /** Backgrounds of info messages and containers. */
   --aaa-status-info-strong: light-dark(var(--color-system-info-90), var(--color-system-info-20));
   --aaa-status-info-subtle: light-dark(var(--color-system-info-30), var(--color-system-info-40));
-  --aaa-status-neutral-deep: light-dark(var(--color-neutral-cool-100), var(--color-neutral-warm-20)); /** Neutral solid/strong emphasis (theme.color.neutral.strong) */
+  --aaa-status-neutral-deep: light-dark(
+    var(--color-neutral-cool-100),
+    var(--color-neutral-warm-20)
+  ); /** Neutral solid/strong emphasis (theme.color.neutral.strong) */
   --aaa-status-neutral-default: light-dark(var(--color-neutral-cool-80), var(--color-neutral-warm-40)); /** Neutral color (theme.color.neutral.default) */
-  --aaa-status-neutral-faint: light-dark(var(--color-neutral-cool-10), var(--color-neutral-warm-100)); /** Neutral background tint (theme.color.neutral.subtle) */
+  --aaa-status-neutral-faint: light-dark(
+    var(--color-neutral-cool-10),
+    var(--color-neutral-warm-100)
+  ); /** Neutral background tint (theme.color.neutral.subtle) */
   --aaa-status-neutral-strong: light-dark(var(--color-neutral-cool-90), var(--color-neutral-warm-30));
   --aaa-status-neutral-subtle: light-dark(var(--color-neutral-cool-50), var(--color-neutral-warm-50));
-  --aaa-status-success-deep: light-dark(var(--color-system-positive-100), var(--color-system-positive-10)); /** Success solid/strong emphasis (theme.color.success.strong) */
+  --aaa-status-success-deep: light-dark(
+    var(--color-system-positive-100),
+    var(--color-system-positive-10)
+  ); /** Success solid/strong emphasis (theme.color.success.strong) */
   --aaa-status-success-default: light-dark(var(--color-system-positive-80), var(--color-system-positive-30)); /** Success color (theme.color.success.default) */
-  --aaa-status-success-faint: light-dark(var(--color-system-positive-10), var(--color-system-positive-100)); /** Success background tint (theme.color.success.subtle) */
+  --aaa-status-success-faint: light-dark(
+    var(--color-system-positive-10),
+    var(--color-system-positive-100)
+  ); /** Success background tint (theme.color.success.subtle) */
   --aaa-status-success-strong: light-dark(var(--color-system-positive-90), var(--color-system-positive-20));
   --aaa-status-success-subtle: light-dark(var(--color-system-positive-30), var(--color-system-positive-40));
   --aaa-status-warning-deep: light-dark(var(--color-system-warning-100), var(--color-system-warning-10)); /** Highest emphasis warning elements. */
   --aaa-status-warning-default: light-dark(var(--color-system-warning-80), var(--color-system-warning-30)); /** Warning text, borders and bold banners. */
-  --aaa-status-warning-faint: light-dark(var(--color-system-warning-10), var(--color-system-warning-100)); /** Backgrounds of warning messages and containers. */
+  --aaa-status-warning-faint: light-dark(
+    var(--color-system-warning-10),
+    var(--color-system-warning-100)
+  ); /** Backgrounds of warning messages and containers. */
   --aaa-status-warning-strong: light-dark(var(--color-system-warning-90), var(--color-system-warning-20)); /** Emphasis on warning elements. */
   --aaa-status-warning-subtle: light-dark(var(--color-system-warning-30), var(--color-system-warning-40)); /** Soft warning accents. */
 }
@@ -598,7 +701,10 @@
   --status-warning-subtle: var(--aa-status-warning-subtle);
 }
 
-:where(:is([data-contrast="aaa"], [data-contrast="more"]), :is([data-contrast="aaa"], [data-contrast="more"]) :is([data-primitives], [data-palette]):not([data-contrast])) {
+:where(
+  :is([data-contrast="aaa"], [data-contrast="more"]),
+  :is([data-contrast="aaa"], [data-contrast="more"]) :is([data-primitives], [data-palette]):not([data-contrast])
+) {
   --status-ghost-tint: var(--aaa-status-ghost-tint);
   --brand-primary-deep: var(--aaa-brand-primary-deep);
   --brand-primary-default: var(--aaa-brand-primary-default);
@@ -762,13 +868,17 @@
   --foreground-inverse: var(--ink-inverse); /** Text/icon color for use on dark or inverse-colored surfaces */
   --foreground-link: var(--ink-link); /** Color for hyperlinks and other clickable inline text */
   --foreground-on-light: var(--ink-always-blank); /** Text/icon color on fills that stay light in every mode. Near-black in every mode. */
-  --foreground-on-strong: var(--ink-always-white); /** Text/icon color on strong, saturated fills (feedback background/strong, selected controls). White in every mode. */
+  --foreground-on-strong: var(
+    --ink-always-white
+  ); /** Text/icon color on strong, saturated fills (feedback background/strong, selected controls). White in every mode. */
   --foreground-primary: var(--ink-high); /** The default color for body text and primary icons, used as the highest-emphasis content color. */
   --foreground-secondary: var(--ink-medium); /** Lower-emphasis text/icon color, e.g. captions or supporting copy */
   --foreground-success: var(--status-success-default); /** Text/icon color that communicates success */
   --foreground-tertiary: var(--ink-low); /** Lowest-emphasis text/icon color, e.g. placeholders or metadata */
   --foreground-warning: var(--status-warning-default); /** Text/icon color that communicates a warning */
-  --interactive-destructive-background-default: var(--status-error-default); /** Default state for a destructive interactive element, signaling a harmful or irreversible action such as Delete. */
+  --interactive-destructive-background-default: var(
+    --status-error-default
+  ); /** Default state for a destructive interactive element, signaling a harmful or irreversible action such as Delete. */
   --interactive-destructive-background-disabled: var(--fill-disabled); /** Disabled state for a destructive interactive element. */
   --interactive-destructive-background-focused: var(--status-error-default); /** Focused state for a destructive interactive element. */
   --interactive-destructive-background-hover: var(--status-error-strong); /** Hover state for a destructive interactive element. */
@@ -778,9 +888,15 @@
   --interactive-destructive-border-disabled: var(--line-subtle); /** Disabled-state border for a destructive interactive element. */
   --interactive-destructive-border-hover: var(--status-error-strong); /** Hover-state border for a destructive interactive element. */
   --interactive-destructive-border-pressed: var(--status-error-deep); /** Pressed-state border for a destructive interactive element. */
-  --interactive-destructive-foreground-default: var(--brand-primary-on); /** Default-state text/icon color on a destructive interactive element&#39;s background. */
-  --interactive-destructive-foreground-disabled: var(--ink-disabled); /** Disabled-state text/icon color on a destructive interactive element&#39;s background. */
-  --interactive-ghost-background-default: var(--status-ghost-default); /** Default state for a ghost interactive element, minimal in styling with no fill, for low-emphasis actions. */
+  --interactive-destructive-foreground-default: var(
+    --brand-primary-on
+  ); /** Default-state text/icon color on a destructive interactive element&#39;s background. */
+  --interactive-destructive-foreground-disabled: var(
+    --ink-disabled
+  ); /** Disabled-state text/icon color on a destructive interactive element&#39;s background. */
+  --interactive-ghost-background-default: var(
+    --status-ghost-default
+  ); /** Default state for a ghost interactive element, minimal in styling with no fill, for low-emphasis actions. */
   --interactive-ghost-background-disabled: var(--status-ghost-default); /** Disabled state for a ghost interactive element. */
   --interactive-ghost-background-focused: var(--status-ghost-default); /** Focused state for a ghost interactive element. */
   --interactive-ghost-background-hover: var(--status-ghost-faint); /** Hover state for a ghost interactive element. */
@@ -802,7 +918,9 @@
   --interactive-inverse-border-hover: var(--fill-inverse-sunken); /** Hover-state border for an inverse-surface interactive element. */
   --interactive-inverse-border-pressed: var(--fill-inverse-elevated); /** Pressed-state border for an inverse-surface interactive element. */
   --interactive-inverse-foreground-default: var(--ink-inverse); /** Default-state text/icon color on an inverse-surface interactive element&#39;s background. */
-  --interactive-inverse-foreground-disabled: var(--ink-disabled); /** Disabled-state text/icon color on an inverse-surface interactive element&#39;s background. */
+  --interactive-inverse-foreground-disabled: var(
+    --ink-disabled
+  ); /** Disabled-state text/icon color on an inverse-surface interactive element&#39;s background. */
   --interactive-neutral-background-default: var(--fill-default); /** Inputs, outline buttons and other general controls at rest. */
   --interactive-neutral-background-disabled: var(--fill-disabled); /** Disabled general controls. */
   --interactive-neutral-background-focused: var(--fill-default); /** General controls with keyboard focus. */
@@ -815,19 +933,29 @@
   --interactive-neutral-border-pressed: var(--line-strong); /** Outline of general controls when pressed. */
   --interactive-neutral-foreground-default: var(--ink-high); /** Labels and icons on general controls. */
   --interactive-neutral-foreground-disabled: var(--ink-disabled); /** Labels and icons on disabled general controls. */
-  --interactive-positive-background-default: var(--status-success-default); /** Default state for a high-emphasis interactive element used for a positive confirmation action, such as Approve, Confirm, or Complete. */
+  --interactive-positive-background-default: var(
+    --status-success-default
+  ); /** Default state for a high-emphasis interactive element used for a positive confirmation action, such as Approve, Confirm, or Complete. */
   --interactive-positive-background-disabled: var(--fill-disabled); /** Disabled state for a high-emphasis positive-confirmation interactive element. */
   --interactive-positive-background-focused: var(--status-success-default); /** Focused state for a high-emphasis positive-confirmation interactive element. */
   --interactive-positive-background-hover: var(--status-success-strong); /** Hover state for a high-emphasis positive-confirmation interactive element. */
   --interactive-positive-background-pressed: var(--status-success-deep); /** Pressed state for a high-emphasis positive-confirmation interactive element. */
   --interactive-positive-background-selected: var(--status-success-deep); /** Selected state for a high-emphasis positive-confirmation interactive element. */
-  --interactive-positive-border-default: var(--status-success-default); /** Default-state border for a high-emphasis positive-confirmation interactive element. */
+  --interactive-positive-border-default: var(
+    --status-success-default
+  ); /** Default-state border for a high-emphasis positive-confirmation interactive element. */
   --interactive-positive-border-disabled: var(--line-subtle); /** Disabled-state border for a high-emphasis positive-confirmation interactive element. */
   --interactive-positive-border-hover: var(--status-success-strong); /** Hover-state border for a high-emphasis positive-confirmation interactive element. */
   --interactive-positive-border-pressed: var(--status-success-deep); /** Pressed-state border for a high-emphasis positive-confirmation interactive element. */
-  --interactive-positive-foreground-default: var(--brand-primary-on); /** Default-state text/icon color on a high-emphasis positive-confirmation interactive element&#39;s background. */
-  --interactive-positive-foreground-disabled: var(--ink-disabled); /** Disabled-state text/icon color on a high-emphasis positive-confirmation interactive element&#39;s background. */
-  --interactive-primary-background-default: var(--brand-primary-default); /** Default state for the primary interactive element, the main and highest-emphasis action or control on a screen. */
+  --interactive-positive-foreground-default: var(
+    --brand-primary-on
+  ); /** Default-state text/icon color on a high-emphasis positive-confirmation interactive element&#39;s background. */
+  --interactive-positive-foreground-disabled: var(
+    --ink-disabled
+  ); /** Disabled-state text/icon color on a high-emphasis positive-confirmation interactive element&#39;s background. */
+  --interactive-primary-background-default: var(
+    --brand-primary-default
+  ); /** Default state for the primary interactive element, the main and highest-emphasis action or control on a screen. */
   --interactive-primary-background-disabled: var(--fill-disabled); /** Disabled state for the primary interactive element. */
   --interactive-primary-background-focused: var(--brand-primary-default); /** Focused state for the primary interactive element. */
   --interactive-primary-background-hover: var(--brand-primary-strong); /** Hover state for the primary interactive element. */
@@ -839,7 +967,9 @@
   --interactive-primary-border-pressed: var(--brand-primary-deep); /** Pressed-state border for the primary interactive element. */
   --interactive-primary-foreground-default: var(--brand-primary-on); /** Default-state text/icon color on the primary interactive element&#39;s background. */
   --interactive-primary-foreground-disabled: var(--ink-disabled); /** Disabled-state text/icon color on the primary interactive element&#39;s background. */
-  --interactive-secondary-background-default: var(--brand-secondary-default); /** Default state for a secondary interactive element, an alternative and less prominent action alongside primary. */
+  --interactive-secondary-background-default: var(
+    --brand-secondary-default
+  ); /** Default state for a secondary interactive element, an alternative and less prominent action alongside primary. */
   --interactive-secondary-background-disabled: var(--fill-disabled); /** Disabled state for a secondary interactive element. */
   --interactive-secondary-background-focused: var(--brand-secondary-default); /** Focused state for a secondary interactive element. */
   --interactive-secondary-background-hover: var(--brand-secondary-strong); /** Hover state for a secondary interactive element. */
@@ -849,7 +979,9 @@
   --interactive-secondary-border-disabled: var(--line-subtle); /** Disabled-state border for a secondary interactive element. */
   --interactive-secondary-border-hover: var(--brand-secondary-strong); /** Hover-state border for a secondary interactive element. */
   --interactive-secondary-border-pressed: var(--brand-secondary-deep); /** Pressed-state border for a secondary interactive element. */
-  --interactive-secondary-foreground-default: var(--brand-secondary-on); /** Default-state text/icon color on a secondary interactive element&#39;s background. */
+  --interactive-secondary-foreground-default: var(
+    --brand-secondary-on
+  ); /** Default-state text/icon color on a secondary interactive element&#39;s background. */
   --interactive-secondary-foreground-disabled: var(--ink-disabled); /** Disabled-state text/icon color on a secondary interactive element&#39;s background. */
   --interactive-selection-background-default: var(--ink-low); /** Switch track when off. */
   --interactive-selection-background-disabled: var(--fill-disabled); /** Disabled checkboxes, radios and switches. */
@@ -863,7 +995,9 @@
   --interactive-selection-border-pressed: var(--line-selection); /** Outline of checkboxes and radios when pressed. */
   --interactive-selection-foreground-default: var(--ink-high); /** Labels and icons on selection controls. */
   --interactive-selection-foreground-disabled: var(--ink-disabled); /** Labels and icons on disabled selection controls. */
-  --interactive-subtle-background-default: var(--brand-primary-faint); /** Default state for a subtle interactive element, quieter in emphasis than secondary. */
+  --interactive-subtle-background-default: var(
+    --brand-primary-faint
+  ); /** Default state for a subtle interactive element, quieter in emphasis than secondary. */
   --interactive-subtle-background-disabled: var(--fill-disabled); /** Disabled state for a subtle interactive element. */
   --interactive-subtle-background-focused: var(--brand-primary-faint); /** Focused state for a subtle interactive element. */
   --interactive-subtle-background-hover: var(--brand-primary-muted); /** Hover state for a subtle interactive element. */
@@ -892,7 +1026,9 @@
   --surface-overlay: var(--fill-overlay); /** Background of dialog/modal windows */
   --surface-page: var(--fill-canvas); /** Default background color of the page or app canvas */
   --surface-section: var(--fill-default); /** Background for a section or panel that groups related content */
-  --surface-shade: var(--fill-transparent-elevate); /** Shade helps add a slightly darker tint to a surface. Useful for demarcating a secondary section of a surface. */
+  --surface-shade: var(
+    --fill-transparent-elevate
+  ); /** Shade helps add a slightly darker tint to a surface. Useful for demarcating a secondary section of a surface. */
   --surface-subtle: var(--fill-faint); /** Quiet containers, where the background is only decorative and can ignored. */
   --surface-success: var(--status-success-faint); /** Background for containers communicating a success state */
   --surface-tooltip: var(--fill-inverse); /** Background of tooltips */
@@ -1191,7 +1327,8 @@
   --heading-large: var(--heading-large-font-weight) var(--heading-large-font-size)/var(--heading-large-line-height) var(--heading-large-font-family);
   --heading-medium: var(--heading-medium-font-weight) var(--heading-medium-font-size)/var(--heading-medium-line-height) var(--heading-medium-font-family);
   --heading-small: var(--heading-small-font-weight) var(--heading-small-font-size)/var(--heading-small-line-height) var(--heading-small-font-family);
-  --indicator-medium: var(--indicator-medium-font-weight) var(--indicator-medium-font-size)/var(--indicator-medium-line-height) var(--indicator-medium-font-family);
+  --indicator-medium: var(--indicator-medium-font-weight) var(--indicator-medium-font-size)/var(--indicator-medium-line-height)
+    var(--indicator-medium-font-family);
   --indicator-small: var(--indicator-small-font-weight) var(--indicator-small-font-size)/var(--indicator-small-line-height) var(--indicator-small-font-family);
   --label-large: var(--label-large-font-weight) var(--label-large-font-size)/var(--label-large-line-height) var(--label-large-font-family);
   --label-medium: var(--label-medium-font-weight) var(--label-medium-font-size)/var(--label-medium-line-height) var(--label-medium-font-family);
