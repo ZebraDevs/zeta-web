@@ -1,3 +1,4 @@
+// ci-check: mock change to exercise the PR workflow off main (safe to discard)
 import type { ZetaIcon } from "../components/icon/icon";
 import { sendMouse, resetMouse, sendKeys /*, type SendKeysPayload*/ } from "@web/test-runner-commands";
 
