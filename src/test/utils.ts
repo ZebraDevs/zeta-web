@@ -7,13 +7,15 @@ import { sendMouse, resetMouse, sendKeys /*, type SendKeysPayload*/ } from "@web
  * @returns The RGB representation of the color.
  */
 export const toRGB = (color: string, context: Element = document.body) => {
-  // Resolve on an attached element so light-dark() and var() collapse to a single rgb value.
-  // Attach inside `context` so it inherits that element's color-scheme (e.g. data-mode="dark").
-  const el = document.createElement("span");
-  el.style.color = color;
-  context.append(el);
-  const rgb = getComputedStyle(el).color;
-  el.remove();
+  // Resolve on `context` itself so light-dark() and var() collapse to a single rgb value using its color-scheme.
+  // (Appending a child fails for elements that can't render children, e.g. <input> or a slotless <zeta-icon>.)
+  const { style } = context as HTMLElement;
+  const { color: previous, transition } = style;
+  style.transition = "none"; // otherwise a `transition: color` on the element returns a mid-transition value
+  style.color = color;
+  const rgb = getComputedStyle(context).color;
+  style.color = previous;
+  style.transition = transition;
   return rgb;
 };
 
