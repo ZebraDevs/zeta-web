@@ -119,7 +119,7 @@ export const Popup = <T extends Constructor<LitElement>>(superClass: T) => {
       (superClass as unknown as typeof LitElement).styles ?? [],
       css`
         dialog::backdrop {
-          background-color: var(--surface-overlay);
+          background-color: var(--overlay-modal);
         }
       `
     ];

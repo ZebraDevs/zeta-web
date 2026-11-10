@@ -223,13 +223,13 @@ To use this, install it in VSCode, and add the following into .vscode/settings.j
 {
   ...
   "cssVariables.lookupFiles": [
-    "node_modules/@zebra-fed/zeta-web/dist/index.css",
+    "node_modules/@zebra-fed/zeta-web/dist/tokens/tokens.css",
     // Add other css files here
   ]
 }
 ```
 
-> **Note:** `dist/primitives.css` and `dist/semantics.css` contain only the legacy tokens. Don't use them in your app; import **index.css**, which contains all rules.
+> **Note:** The individual token files (`tokens.css` plus the `palette/`, `primitives/`, `size/` and `typography/` extensions) are also exported as `@zebra-fed/zeta-web/tokens/*`. Use them for tooling. In your app, import **index.css**, which also includes the legacy token aliases.
 
 ## Licensing
 

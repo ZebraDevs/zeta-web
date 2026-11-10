@@ -1,4 +1,3 @@
-import { getContrast } from "polished";
 import { elementUpdated, expect } from "@open-wc/testing";
 import "../../index.css";
 
@@ -20,6 +19,20 @@ function rgbToHex(rgb: string): string {
   );
 }
 
+function getContrast(fg: string, bg: string): number {
+  const getLuminance = (rgb: string) => {
+    const values = rgb.match(/\d+/g)?.map(Number) || [0, 0, 0];
+    const [r, g, b] = values.map(x => x / 255);
+    const [rs, gs, bs] = [r, g, b].map(x => (x <= 0.03928 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4)));
+    return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs;
+  };
+  const l1 = getLuminance(fg);
+  const l2 = getLuminance(bg);
+  const lighter = Math.max(l1, l2);
+  const darker = Math.min(l1, l2);
+  return (lighter + 0.05) / (darker + 0.05);
+}
+
 const modes = [false, true];
 const tests: AccessibilityTests[] = modes.flatMap(darkMode => modes.map(highContrast => ({ darkMode, highContrast })));
 /**
@@ -39,7 +52,7 @@ export const contrastTest = async (testName: string, foreground: HTMLElement | E
       document.getElementById(contrastMode)!.remove();
     }
     const html = document.documentElement;
-    html.setAttribute("data-theme", test.darkMode ? "dark" : "light");
+    html.setAttribute("data-mode", test.darkMode ? "dark" : "light");
     html.setAttribute("data-contrast", test.highContrast ? "more" : "less");
 
     await elementUpdated(foreground);
@@ -65,7 +78,7 @@ export const contrastTest = async (testName: string, foreground: HTMLElement | E
       );
       throw error;
     }
-    html.removeAttribute("data-theme");
+    html.removeAttribute("data-mode");
     html.removeAttribute("data-contrast");
   }
 };
