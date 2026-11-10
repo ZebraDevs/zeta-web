@@ -7,9 +7,11 @@ const meta: Meta<ZetaBreadcrumb> = {
   component: "zeta-breadcrumb",
   title: "Components/Breadcrumb",
   args: {
-    rounded: true
+    rounded: true,
+    maxItems: 0
   },
   argTypes: {
+    maxItems: { control: { type: "number", min: 0, step: 1 } },
     disabled: { table: { disable: true } },
     tabIndex: { table: { disable: true } }
   },
@@ -27,7 +29,7 @@ export default meta;
 
 export const Breadcrumb2Items: StoryObj<ZetaBreadcrumb> = {
   render: args => html`
-    <zeta-breadcrumb .rounded=${args.rounded}>
+    <zeta-breadcrumb .maxItems=${args.maxItems} .rounded=${args.rounded}>
       <zeta-breadcrumb-item>Standard breadcrumb</zeta-breadcrumb-item>
       <zeta-breadcrumb-item>
         <zeta-icon slot="icon">star</zeta-icon>
@@ -39,7 +41,7 @@ export const Breadcrumb2Items: StoryObj<ZetaBreadcrumb> = {
 
 export const Breadcrumb3Items: StoryObj<ZetaBreadcrumb> = {
   render: args => html`
-    <zeta-breadcrumb .rounded=${args.rounded}>
+    <zeta-breadcrumb .maxItems=${args.maxItems} .rounded=${args.rounded}>
       <zeta-breadcrumb-item> Standard breadcrumb </zeta-breadcrumb-item>
       <zeta-breadcrumb-item> Text with separator </zeta-breadcrumb-item>
       <zeta-breadcrumb-item>
@@ -51,8 +53,12 @@ export const Breadcrumb3Items: StoryObj<ZetaBreadcrumb> = {
 };
 
 export const Breadcrumb4Items: StoryObj<ZetaBreadcrumb> = {
+  args: {
+    maxItems: 2
+  },
+
   render: args => html`
-    <zeta-breadcrumb .rounded=${args.rounded}>
+    <zeta-breadcrumb .maxItems=${args.maxItems} .rounded=${args.rounded}>
       <zeta-breadcrumb-item> Standard breadcrumb </zeta-breadcrumb-item>
       <zeta-breadcrumb-item> Text with separator </zeta-breadcrumb-item>
       <zeta-breadcrumb-item> Text with separator </zeta-breadcrumb-item>
@@ -65,8 +71,11 @@ export const Breadcrumb4Items: StoryObj<ZetaBreadcrumb> = {
 };
 
 export const BreadcrumbTruncated: StoryObj<ZetaBreadcrumb> = {
+  args: {
+    maxItems: 4
+  },
   render: args => html`
-    <zeta-breadcrumb maxItems=${4} .rounded=${args.rounded}>
+    <zeta-breadcrumb .maxItems=${args.maxItems} .rounded=${args.rounded}>
       <zeta-breadcrumb-item> Standard breadcrumb </zeta-breadcrumb-item>
       <zeta-breadcrumb-item> Text with separator 1</zeta-breadcrumb-item>
       <zeta-breadcrumb-item> Text with separator 2</zeta-breadcrumb-item>
