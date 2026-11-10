@@ -1,7 +1,8 @@
 import { LitElement, html } from "lit";
 import styles from "./button-group.styles.js";
-import { customElement, property } from "lit/decorators.js";
+import { customElement, property, queryAssignedElements } from "lit/decorators.js";
 import { Contourable } from "../../mixins/mixins.js";
+import type { ZetaButtonGroupItem } from "./button-group-item/button-group-item.js";
 
 export * from "./button-group-item/button-group-item.js";
 
@@ -11,17 +12,40 @@ export * from "./button-group-item/button-group-item.js";
  *
  * Does not render any other types of children.
  *
- * @slot - Children must be of type `zeta-group-button` otherwise they will not be displayed.
- * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-45&node-type=canvas&m=dev
+ * The group's `size` is applied to every slotted item. The host gets `role="group"` unless a role is already set; give it an `aria-label` describing the group.
+ *
+ * @slot - Children must be of type `zeta-button-group-item` otherwise they will not be displayed.
+ * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=5833-912
  * @storybook https://design.zebra.com/web/storybook/index.html?path=/docs/components-button-group--docs
  */
 @customElement("zeta-button-group")
 export class ZetaButtonGroup extends Contourable(LitElement) {
-  /** Size of button. */
-  @property({ type: String, reflect: true }) size: "medium" | "large" = "medium";
+  /**
+   * Size of the buttons in the group. Applied to every slotted `zeta-button-group-item`.
+   *
+   * Valid values: `"small"` (36px), `"medium"` (40px), `"large"` (48px).
+   *
+   * @defaultValue "medium"
+   */
+  @property({ type: String, reflect: true }) size: "small" | "medium" | "large" = "medium";
+
+  @queryAssignedElements({ selector: "zeta-button-group-item" }) private readonly items!: Array<ZetaButtonGroupItem>;
+
+  override connectedCallback() {
+    super.connectedCallback?.();
+    if (!this.hasAttribute("role")) this.setAttribute("role", "group");
+  }
+
+  protected override updated(changed: Map<string, unknown>) {
+    if (changed.has("size")) this.syncItemSize();
+  }
+
+  private syncItemSize = () => {
+    this.items.forEach(item => (item.size = this.size));
+  };
 
   protected override render() {
-    return html`<slot></slot>`;
+    return html`<slot @slotchange=${this.syncItemSize}></slot>`;
   }
 
   static styles = [super.styles ?? [], styles];
