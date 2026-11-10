@@ -17,7 +17,7 @@ import "../../icon/icon.js";
  * @fires item-expanded - Dispatched when the accordion item is expanded or collapsed.
  * @fires item-selected - Dispatched when the accordion item is selected or deselected.
  *
- * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=3427-67874
+ * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=5529-33
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-accordion--docs
  */
 @customElement("zeta-accordion-item")
