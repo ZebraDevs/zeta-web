@@ -8,5 +8,7 @@ export const templates = {
   se6ce0e7d35ca8a05: `Drop files here to upload`,
   sa192dac6f544578d: `Selection contains files with invalid types.`,
   s7008dc713aed8339: `Multiple files are not allowed.`,
-  s08b05407b5565ca4: `or`
+  s08b05407b5565ca4: `or`,
+  s5f4586bc1e2740e6: `Clear search`,
+  s315b443e51bb6303: `Voice search`
 };
