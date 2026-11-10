@@ -12,6 +12,7 @@ const meta: Meta<ZetaCheckbox> = {
   tags: ["autodocs"],
   args: {
     rounded: true,
+    size: "large",
     disabled: false,
     checked: false,
     indeterminate: false,
@@ -23,7 +24,7 @@ const meta: Meta<ZetaCheckbox> = {
   },
   argTypes: {
     size: {
-      options: ["small", "medium", "large"]
+      options: ["small", "large"]
     }
   },
   parameters: {

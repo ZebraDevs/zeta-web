@@ -1,34 +1,30 @@
 import { css } from "lit";
+/* Box, target, size, label and border states come from base-toggle-form-element.styles.js */
 export default css`
   :host {
     display: inline-block;
-    --checkbox-checked-background: var(--surface-primary);
-    --checkbox-hover-background: var(--border-hover);
-    --checkbox-border-color: var(--main-subtle);
-    --checkbox-background: var(--surface-default);
-    --checkbox-icon-color: var(--main-inverse);
+    --checkbox-checked-background: var(--interactive-selection-background-pressed);
+    --checkbox-hover-background: var(--interactive-selection-background-hover);
+    --checkbox-border-color: var(--interactive-selection-border-default);
+    --checkbox-background: transparent;
+    --checkbox-icon-color: var(--foreground-inverse);
   }
 
   .container {
-    min-width: 20px;
-    min-height: 20px;
-    border: var(--border-size-medium) solid var(--checkbox-border-color);
+    border-color: var(--checkbox-border-color);
     background-color: var(--checkbox-background);
+    /* Focus ring (from Interactive) drawn over the border, at the box's own size */
+    outline-offset: calc(-1 * var(--stroke-thick));
   }
 
-  :host([disabled]) *[part="icon"] {
-    color: var(--main-disabled);
-  }
   :host([indeterminate]) *[part="icon"],
   :host([checked]) *[part="icon"] {
     --icon-color: var(--checkbox-icon-color);
   }
 
-  :host([indeterminate]:not([disabled])) label,
-  :host([checked]:not([disabled])) label {
-    .container {
-      background-color: var(--checkbox-checked-background);
-    }
+  :host([indeterminate]:not([disabled])) label .container,
+  :host([checked]:not([disabled])) label .container {
+    background-color: var(--checkbox-checked-background);
   }
 
   @media (hover: hover), (hover: none) and (pointer: fine) {
@@ -38,42 +34,26 @@ export default css`
     }
   }
 
+  :host([disabled][indeterminate]) label .container,
+  :host([disabled][checked]) label .container {
+    background-color: var(--interactive-selection-background-disabled);
+  }
+
   :host([rounded]) .container {
-    border-radius: 2px;
+    border-radius: var(--radius-element-sm);
+  }
+  :host([size="small"][rounded]) .container {
+    border-radius: var(--radius-xs);
   }
 
   :host([reverse]) label {
     flex-direction: row-reverse;
   }
 
-  label {
-    cursor: pointer;
-    width: auto !important;
-    height: 100%;
-    display: flex;
+  *[part="icon"] {
+    --icon-size: var(--control-icon-md);
   }
-
-  /* Size Variants */
-  :host([size="small"]) label {
-    font: var(--label-small);
-    gap: var(--spacing-small);
-  }
-  :host([size="small"]) .container {
-    min-width: 15px;
-    min-height: 15px;
-  }
-  :host([size="small"]) .container [part="icon"] {
-    --icon-size: var(--spacing-large);
-  }
-
-  :host([size="large"]) label {
-    font: var(--body-medium);
-  }
-  :host([size="large"]) .container {
-    min-width: 25px;
-    min-height: 25px;
-  }
-  :host([size="large"]) .container [part="icon"] {
-    --icon-size: var(--spacing-2xl);
+  :host([size="small"]) *[part="icon"] {
+    --icon-size: var(--control-icon-xs);
   }
 `;
