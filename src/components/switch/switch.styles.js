@@ -3,7 +3,7 @@ export default css`
   :host {
     /* 24px thumb inside 4px padding: 32 x 64 track, 32px of travel */
     --_switch-thumb-size: var(--switch-thumb-size, var(--control-xs));
-    --_switch-height: var(--switch-height, calc(var(--_switch-thumb-size) + 2 * var(--space-xxs)));
+    --_switch-height: var(--switch-height, calc(var(--_switch-thumb-size) + 2 * var(--space-2xs)));
     /* Derived from height so a custom --switch-height still centres the thumb */
     --_switch-padding: calc((var(--_switch-height) - var(--_switch-thumb-size)) / 2);
     --_switch-width: var(--switch-width, calc(2 * var(--_switch-height)));

@@ -189,6 +189,7 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
           this.internals.setFormValue(null);
         }
       }
+      if (changedProperties.has("checked") || changedProperties.has("indeterminate")) this.syncAriaChecked();
     }
 
     public checkValidity(): boolean {
@@ -227,9 +228,17 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
 
       // Removed the below line as it violates accessability rules https://dequeuniversity.com/rules/axe/4.8/nested-interactive?application=axeAPI
       // if (this.internals.role) this.role = this.internals.role;
-      if (this.isCheckable) {
-        this.ariaChecked = String(this.checked);
-      }
+      this.syncAriaChecked();
+    }
+
+    /** Keeps the host `aria-checked` in step with `checked` / `indeterminate` (`mixed`). */
+    private syncAriaChecked() {
+      if (this.isCheckable) this.ariaChecked = this.ariaCheckedValue;
+    }
+
+    private get ariaCheckedValue() {
+      // A switch has no mixed state (ARIA), so it ignores indeterminate.
+      return this.indeterminate && this.internals.role !== "switch" ? "mixed" : String(this.checked);
     }
 
     firstUpdated(_changedProperties: PropertyValues): void {
@@ -420,7 +429,7 @@ export const FormField = <T extends AbstractConstructor<LitElement>>(superClass:
             aria-required=${this.required ? "true" : "false"}
             value=${ifDefined(live(this.value))}
             .checked=${live(this.checked !== undefined ? this.checked : false)}
-            aria-checked=${this.checked ? "true" : "false"}
+            aria-checked=${this.ariaCheckedValue}
             .indeterminate=${live(this.indeterminate)}
             @input=${this._handleInput}
             @change=${this._handleChange}

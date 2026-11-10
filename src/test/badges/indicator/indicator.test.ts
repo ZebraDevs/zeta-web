@@ -7,7 +7,7 @@ import "../../../css/styles.css";
 
 describe("zeta-indicator", () => {
   let subject: ZetaIndicator;
-  // "99+" hugs its text with space-xxs padding, so it can run just over the min-width token (font-dependent).
+  // "99+" hugs its text with space-2xs padding, so it can run just over the min-width token (font-dependent).
   const TEXT_WIDTH_TOLERANCE = 1;
   const createComponent = (template = `<zeta-indicator></zeta-indicator>`) => {
     // prettier-ignore

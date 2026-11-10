@@ -6,11 +6,11 @@ export default css`
   }
 
   .container {
-    padding: var(--space-xxs);
+    padding: var(--space-2xs);
     border-radius: var(--radius-pill) !important;
   }
   :host([size="small"]) .container {
-    padding: var(--space-2xs);
+    padding: var(--space-3xs);
   }
 
   /* Inner fill: fills the ring's padding box (12px at large, 8px at small) */

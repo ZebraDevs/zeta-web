@@ -47,10 +47,10 @@ describe("zeta-switch", () => {
   describe("Dimensions", () => {
     const part = (name: string) => subject.shadowRoot!.querySelector(`[part="${name}"]`) as HTMLElement;
 
-    it("renders a 64x32 track with a control-xs thumb inset by space-xxs", () => {
+    it("renders a 64x32 track with a control-xs thumb inset by space-2xs", () => {
       const track = part("track").getBoundingClientRect();
       const thumb = part("thumb").getBoundingClientRect();
-      const pad = getCssVarPxValue(subject, "--space-xxs");
+      const pad = getCssVarPxValue(subject, "--space-2xs");
       expect(track.width).to.equal(64);
       expect(track.height).to.equal(32);
       expect(thumb.width).to.equal(getCssVarPxValue(subject, "--control-xs"));
