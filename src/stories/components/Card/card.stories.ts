@@ -28,14 +28,14 @@ const meta: Meta<ZetaCard | any> = {
 export default meta;
 
 const placeholderStyle = styleMap({
-  background: "var(--color-cool-30)",
+  background: "var(--surface-subtle)",
   display: "flex",
   flex: "1",
   alignItems: "center",
   justifyContent: "center",
-  padding: "var(--spacing-8xl)",
+  padding: "var(--space-4xl)",
   "--icon-size": "48px",
-  "--icon-color": "var(--main-subtle)"
+  "--icon-color": "var(--foreground-secondary)"
 });
 
 const placeholderImg = html`<div style=${placeholderStyle}>
