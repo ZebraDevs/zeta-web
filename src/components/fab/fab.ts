@@ -3,10 +3,8 @@ import { customElement, property } from "lit/decorators.js";
 import styles from "./fab.styles.js";
 import "../icon/icon.js";
 import { ifDefined } from "lit/directives/if-defined.js";
-import { Flavored, type Flavor } from "../../mixins/flavor.js";
+import { Flavored, type FabFlavor } from "../../mixins/flavor.js";
 import { BaseButton } from "../button/base-button.js";
-
-export type FabFlavor = Extract<Flavor, "primary" | "secondary" | "inverse">;
 
 /** Floating Action Buttons are used to trigger the primary action on a screen. They are circular buttons that float above the content.
  *

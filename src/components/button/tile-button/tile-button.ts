@@ -1,7 +1,7 @@
 import { html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { type Shape } from "../../../mixins/contourable-three.js";
-import { Flavored, type Flavor } from "../../../mixins/flavor.js";
+import { Flavored, type TileButtonFlavor } from "../../../mixins/flavor.js";
 import { BaseButton } from "./../base-button.js";
 import styles from "./tile-button.styles.js";
 import type { ZetaIconName } from "@zebra-fed/zeta-icons";
@@ -14,9 +14,6 @@ import type { SizeType } from "../../../mixins/size.js";
 
 //Remove shape 'full'
 export type TileButtonShape = Exclude<Shape, "full">;
-
-//Extract only outline-subtle flavor
-export type TileButtonFlavor = Extract<Flavor, "outline-subtle">;
 
 /** A large, tappable button with an icon stacked above a label.
  * Ideal for grid layouts, dashboards, or mobile interfaces where quick, visually distinct actions are needed.

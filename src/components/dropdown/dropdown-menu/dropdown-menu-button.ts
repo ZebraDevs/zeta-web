@@ -11,7 +11,7 @@ import "../menu-item/dropdown-menu-item.js";
 import "./../droppable.js";
 import type { ZetaIconName } from "@zebra-fed/zeta-icons";
 import { ZetaDropdownEvent } from "../../../events.js";
-import type { ButtonFlavor } from "../../button/button.js";
+import type { ButtonFlavor } from "../../../mixins/flavor.js";
 
 export type ZetaDropdownItem = { label: string; icon?: ZetaIconName; checked?: boolean; disabled?: boolean; onClick?: () => void };
 export type ZetaDropdownType = Extract<ZetaInputType, "text-dropdown" | "checkbox-dropdown" | "radio-dropdown">;
