@@ -79,6 +79,11 @@ export default css`
     padding-block: calc(var(--space-md) - var(--stroke-thin));
   }
 
+  :host([size="small"]) .input-container:not(.text-area) {
+    /* 18 line-height + 2 * 8 padding + 2 * 1 border = control-sm (36) */
+    padding-block: var(--space-sm);
+  }
+
   :host([size="small"]) input {
     min-height: var(--control-icon-sm);
   }
