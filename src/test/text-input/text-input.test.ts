@@ -2,7 +2,7 @@ import { expect, assert, oneEvent, fixture, html } from "@open-wc/testing";
 import { setup } from "./setup.js";
 import type { ZetaIcon } from "../../components/icon/icon.js";
 import { ZetaTextInput } from "../../components/text-input/text-input.js";
-import { getSlotText, getCssVarColorValue, MouseActions, KeyboardActions } from "../utils.js";
+import { getSlotText, getCssVarColorValue, getCssVarPxValue, MouseActions, KeyboardActions } from "../utils.js";
 import "../../components/text-input/text-input.js";
 import "../../index.css";
 
@@ -213,7 +213,7 @@ describe("zeta-text-input", () => {
       await KeyboardActions.type("5");
       await MouseActions.clickOutside(el);
 
-      await expect(el.value).to.equal("5");
+      expect(el.value).to.equal("5");
     });
 
     it("should not strip leading minus when integer min is a non-numeric string", async () => {
@@ -223,23 +223,35 @@ describe("zeta-text-input", () => {
       await KeyboardActions.type("-5");
       await MouseActions.clickOutside(el);
 
-      await expect(el.value).to.equal("-5");
+      expect(el.value).to.equal("-5");
     });
   });
 
-  // describe("Dimensions", () => {});
+  describe("Dimensions", () => {
+    it("should size the field height from the control tokens", async () => {
+      const el = await setup({});
+      const field = el.shadowRoot!.querySelector(".input-container")!;
+      assert.equal(field.getBoundingClientRect().height, getCssVarPxValue(el, "--control-md"));
+      el.size = "small";
+      await el.updateComplete;
+      assert.equal(field.getBoundingClientRect().height, getCssVarPxValue(el, "--control-sm"));
+      el.size = "large";
+      await el.updateComplete;
+      assert.equal(field.getBoundingClientRect().height, getCssVarPxValue(el, "--control-lg"));
+    });
+  });
 
   describe("Styling", () => {
     it("should render error icon color", async () => {
       const el = await setup({ error: true, hint: "hint", disabled: false, errorText: "error" });
       const icon = el.shadowRoot?.querySelector(".hint-text zeta-icon");
-      assert.equal(getComputedStyle(icon!).color, getCssVarColorValue(icon!, "--main-negative"));
+      assert.equal(getComputedStyle(icon!).color, getCssVarColorValue(icon!, "--foreground-error"));
     });
 
     it("should render error text color", async () => {
       const el = await setup({ error: true, hint: "hint", disabled: false, errorText: "error" });
       const text = el.shadowRoot?.querySelector(".hint-text span");
-      assert.equal(getComputedStyle(text!).color, getCssVarColorValue(text!, "--main-negative"));
+      assert.equal(getComputedStyle(text!).color, getCssVarColorValue(text!, "--foreground-error"));
     });
 
     it("should set disabled color to icon when field is disabled", async () => {
@@ -248,7 +260,76 @@ describe("zeta-text-input", () => {
       expect(x).to.exist;
       assert.equal(x!.textContent?.trim(), "star");
 
-      return await expect(getComputedStyle(x!).color).to.equal(getCssVarColorValue(el, "--main-disabled"));
+      return await expect(getComputedStyle(x!).color).to.equal(getCssVarColorValue(el, "--foreground-disabled"));
+    });
+
+    it("should use neutral tokens for the field at rest", async () => {
+      const el = await setup({});
+      const field = el.shadowRoot!.querySelector(".input-container")!;
+      const style = getComputedStyle(field);
+      assert.equal(style.borderTopColor, getCssVarColorValue(el, "--interactive-neutral-border-default"));
+      assert.equal(style.backgroundColor, getCssVarColorValue(el, "--interactive-neutral-background-default"));
+      assert.equal(style.borderTopLeftRadius, `${getCssVarPxValue(el, "--radius-sm")}px`);
+    });
+
+    it("should use the error border when error is set", async () => {
+      const el = await setup({ error: true });
+      const field = el.shadowRoot!.querySelector(".input-container")!;
+      assert.equal(getComputedStyle(field).borderTopColor, getCssVarColorValue(el, "--border-error"));
+    });
+
+    it("should use the subtle border when read-only", async () => {
+      const el = await setup({});
+      el.readOnly = true;
+      await el.updateComplete;
+      const field = el.shadowRoot!.querySelector(".input-container")!;
+      assert.equal(getComputedStyle(field).borderTopColor, getCssVarColorValue(el, "--border-subtle"));
+    });
+
+    it("should use disabled tokens for the field when disabled", async () => {
+      const el = await setup({ disabled: true });
+      const field = el.shadowRoot!.querySelector(".input-container")!;
+      const style = getComputedStyle(field);
+      assert.equal(style.borderTopColor, getCssVarColorValue(el, "--interactive-neutral-border-disabled"));
+      assert.equal(style.backgroundColor, getCssVarColorValue(el, "--interactive-neutral-background-disabled"));
+    });
+
+    it("should set radius from shape, overriding rounded", async () => {
+      const el = await setup({});
+      const field = el.shadowRoot!.querySelector(".input-container")!;
+      el.rounded = false;
+      await el.updateComplete;
+      assert.equal(getComputedStyle(field).borderTopLeftRadius, "0px");
+      el.shape = "rounded";
+      await el.updateComplete;
+      assert.equal(getComputedStyle(field).borderTopLeftRadius, `${getCssVarPxValue(el, "--radius-sm")}px`);
+      el.shape = "sharp";
+      await el.updateComplete;
+      assert.equal(getComputedStyle(field).borderTopLeftRadius, "0px");
+    });
+
+    it("should draw a gradient border when flavor is gradient", async () => {
+      const el = await setup({});
+      el.flavor = "gradient";
+      await el.updateComplete;
+      const style = getComputedStyle(el.shadowRoot!.querySelector(".input-container")!);
+      assert.equal(style.borderTopColor, "rgba(0, 0, 0, 0)");
+      assert.include(style.backgroundImage, "linear-gradient");
+    });
+
+    it("should have no surface or visible border when flavor is ghost", async () => {
+      const el = await setup({});
+      el.flavor = "ghost";
+      await el.updateComplete;
+      const style = getComputedStyle(el.shadowRoot!.querySelector(".input-container")!);
+      assert.equal(style.backgroundColor, "rgba(0, 0, 0, 0)");
+      assert.equal(style.borderTopWidth, `${getCssVarPxValue(el, "--stroke-base")}px`);
+    });
+
+    it("should render the required marker in the error color", async () => {
+      const el = await setup({ label: "Label", required: true });
+      const label = el.shadowRoot!.querySelector(".label")!;
+      assert.equal(getComputedStyle(label, "::after").color, getCssVarColorValue(el, "--foreground-error"));
     });
 
     it("should default to 2 rows when type is textarea and rows is not specified", async () => {
@@ -296,7 +377,7 @@ describe("zeta-text-input", () => {
       await KeyboardActions.type("Test Value");
 
       const event = await eventListener;
-      await expect(event.type).to.equal("input");
+      expect(event.type).to.equal("input");
     });
     it("should dispatch onChange when value changes", async () => {
       const el = await setup({});
@@ -306,7 +387,7 @@ describe("zeta-text-input", () => {
       await MouseActions.clickOutside(el);
 
       const event = await eventListener;
-      await expect(event.type).to.equal("change");
+      expect(event.type).to.equal("change");
     });
     it("should dispatch onChange when field is deselected & value has changed", async () => {
       const el = await setup({});
@@ -342,7 +423,7 @@ describe("zeta-text-input", () => {
       await KeyboardActions.type("123.45");
       await MouseActions.clickOutside(el);
 
-      await expect(el.value).to.equal("12345");
+      expect(el.value).to.equal("12345");
     });
 
     it("should allow negative integers when type is integer", async () => {
@@ -353,7 +434,7 @@ describe("zeta-text-input", () => {
       await KeyboardActions.type("-123");
       await MouseActions.clickOutside(el);
 
-      await expect(el.value).to.equal("-123");
+      expect(el.value).to.equal("-123");
     });
 
     it("should filter out non-numeric characters except minus when type is integer", async () => {
@@ -364,7 +445,7 @@ describe("zeta-text-input", () => {
       await KeyboardActions.type("1a2b3.45c");
       await MouseActions.clickOutside(el);
 
-      await expect(el.value).to.equal("12345");
+      expect(el.value).to.equal("12345");
     });
 
     it("should filter out scientific notation 'e' when type is integer", async () => {
@@ -375,7 +456,7 @@ describe("zeta-text-input", () => {
       await KeyboardActions.type("123e4");
       await MouseActions.clickOutside(el);
 
-      await expect(el.value).to.equal("1234");
+      expect(el.value).to.equal("1234");
     });
 
     it("should filter out scientific notation 'E' when type is integer", async () => {
@@ -386,7 +467,7 @@ describe("zeta-text-input", () => {
       await KeyboardActions.type("123E4");
       await MouseActions.clickOutside(el);
 
-      await expect(el.value).to.equal("1234");
+      expect(el.value).to.equal("1234");
     });
 
     it("should not affect input when type is not integer", async () => {
@@ -397,7 +478,7 @@ describe("zeta-text-input", () => {
       await KeyboardActions.type("123.45");
       await MouseActions.clickOutside(el);
 
-      await expect(el.value).to.equal("123.45");
+      expect(el.value).to.equal("123.45");
     });
 
     it("should not affect input when type is not number", async () => {
@@ -408,7 +489,7 @@ describe("zeta-text-input", () => {
       await KeyboardActions.type("123.45");
       await MouseActions.clickOutside(el);
 
-      await expect(el.value).to.equal("123.45");
+      expect(el.value).to.equal("123.45");
     });
 
     it("should not go below min when type is integer and min is set", async () => {
@@ -418,7 +499,7 @@ describe("zeta-text-input", () => {
       await KeyboardActions.type("30");
       await MouseActions.clickOutside(el);
 
-      await expect(el.value).to.equal("50");
+      expect(el.value).to.equal("50");
     });
 
     it("should not go above max when type is integer and max is set", async () => {
@@ -428,7 +509,7 @@ describe("zeta-text-input", () => {
       await KeyboardActions.type("80");
       await MouseActions.clickOutside(el);
 
-      await expect(el.value).to.equal("50");
+      expect(el.value).to.equal("50");
     });
 
     it("should not go below min and should filter dots and non-numeric characters when type is integer and min is set", async () => {
@@ -438,7 +519,7 @@ describe("zeta-text-input", () => {
       await KeyboardActions.type("5.e5");
       await MouseActions.clickOutside(el);
 
-      await expect(el.value).to.equal("55");
+      expect(el.value).to.equal("55");
     });
 
     it("should not go above max and should filter dots and non-numeric characters when type is integer and max is set", async () => {
@@ -448,7 +529,7 @@ describe("zeta-text-input", () => {
       await KeyboardActions.type("7e1.5");
       await MouseActions.clickOutside(el);
 
-      await expect(el.value).to.equal("50");
+      expect(el.value).to.equal("50");
     });
 
     it("should clear the text input when the clear button is clicked", async () => {
@@ -459,7 +540,7 @@ describe("zeta-text-input", () => {
 
       clearButton?.dispatchEvent(new Event("click", { bubbles: true, composed: true }));
       await changeListener;
-      await expect(el.value).to.equal("");
+      expect(el.value).to.equal("");
     });
 
     // Increment / Decrement tests

@@ -18,8 +18,8 @@ describe("zeta-option", () => {
   });
 
   describe("Accessibility", () => {
-    it("meets accessibility requirements", async () => {
-      await expect(subject).shadowDom.to.be.accessible();
+    it("meets accessibility requirements", () => {
+      expect(subject).shadowDom.to.be.accessible();
     });
   });
 
@@ -50,13 +50,13 @@ describe("zeta-option", () => {
       expect(fired).to.be.true;
     });
 
-    it("dispatches a zeta-option-click event with the correct value", async () => {
+    it("dispatches a zeta-option-click event with the correct value", () => {
       let detail: ZetaOptionClickEventDetail | undefined;
       subject.addEventListener("zeta-option-click", (e: Event) => (detail = (e as CustomEvent<ZetaOptionClickEventDetail>).detail));
 
       (subject.shadowRoot?.querySelector(".option") as HTMLElement).click();
 
-      await expect(detail?.value).to.equal("1");
+      expect(detail?.value).to.equal("1");
     });
 
     it("dispatches a zeta-option-click event on space key press", () => {

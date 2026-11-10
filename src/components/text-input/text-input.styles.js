@@ -3,43 +3,30 @@ export default css`
   :host .container {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-minimum);
+    gap: var(--space-2xs);
     height: fit-content;
   }
 
   .cancel-icon {
     cursor: pointer;
-    transition: all 0.1s ease-in-out;
 
     &.cancel-icon-textarea {
       align-self: flex-start;
     }
 
-    &:hover {
-      --icon-color: var(--main-default);
-    }
-
-    &:active {
-      --icon-color: var(--state-inverse-selected);
-    }
-
     &:focus-visible {
-      outline: var(--border-size-medium) solid var(--border-primary);
+      outline: var(--stroke-thick) solid var(--border-focus);
     }
-  }
-
-  .hint-text {
-    --icon-size: 16px;
   }
 
   .left,
   .right {
-    --icon-size: 20px;
+    --icon-size: var(--control-icon-md);
   }
 
   :host([size="small"]) .left,
   :host([size="small"]) .right {
-    --icon-size: 16px;
+    --icon-size: var(--control-icon-sm);
   }
 
   :host * {
@@ -47,32 +34,135 @@ export default css`
     outline: none;
   }
 
-  zeta-icon {
-    --icon-color: var(--main-subtle);
+  .input-container zeta-icon {
+    --icon-color: var(--foreground-primary);
+  }
+
+  /* DEFAULT */
+  .input-container {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    /* height comes from padding: content (icon / line-height) + padding + border */
+    padding: calc(var(--space-sm) - var(--stroke-thin)) var(--space-md);
+    border: var(--stroke-thin) solid var(--interactive-neutral-border-default);
+    border-radius: var(--radius-sm);
+    background: var(--interactive-neutral-background-default);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .input-container.text-area {
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .input-container input,
+  .input-container textarea {
+    background-color: transparent;
+    caret-color: var(--foreground-cursor);
+    color: var(--foreground-primary);
+    flex: 1;
+    padding: 0 var(--space-2xs);
+    margin: 0;
+    font: var(--body-medium);
+    min-height: var(--control-icon-md);
+    width: 100%;
+  }
+
+  .input-container textarea::placeholder,
+  .input-container input::placeholder {
+    color: var(--foreground-disabled);
+  }
+
+  /* SIZE */
+  :host([size="large"]) .input-container:not(.text-area) {
+    padding-block: calc(var(--space-md) - var(--stroke-thin));
+  }
+
+  :host([size="small"]) .input-container:not(.text-area) {
+    /* 18 line-height + 2 * 8 padding + 2 * 1 border = control-sm (36) */
+    padding-block: var(--space-sm);
+  }
+
+  :host([size="small"]) input {
+    min-height: var(--control-icon-sm);
+  }
+
+  :host([size="small"]) input,
+  :host([size="small"]) textarea,
+  :host([size="small"]) .affix {
+    font: var(--body-small);
+  }
+
+  /* SHAPE: rounded boolean (legacy) first, so shape wins when both are set */
+  :host(:not([rounded])) .input-container,
+  :host([shape="sharp"]) .input-container {
+    border-radius: var(--radius-none);
+  }
+
+  :host([shape="rounded"]) .input-container {
+    border-radius: var(--radius-sm);
+  }
+
+  :host([shape="full"]) .input-container {
+    border-radius: var(--radius-pill);
+  }
+
+  /* FLAVOR */
+  :host([flavor="gradient"]) .input-container {
+    border-color: transparent;
+    background:
+      linear-gradient(var(--interactive-neutral-background-default) 0 0) padding-box,
+      linear-gradient(90deg, var(--foreground-gradient-start) 0%, var(--foreground-gradient-end) 100%) border-box;
+  }
+
+  :host([flavor="ghost"]) .input-container {
+    background: transparent;
+    border-color: var(--interactive-ghost-border-default);
+    border-width: var(--stroke-base);
+  }
+
+  /* HOVER */
+  @media (hover: hover), (hover: none) and (pointer: fine) {
+    :host(:not([disabled]):not([readonly]):not([error])) .input-container:hover {
+      border-color: var(--interactive-neutral-border-hover);
+    }
+
+    :host([flavor="gradient"]:not([disabled]):not([readonly]):not([error])) .input-container:hover {
+      border-color: var(--border-gradient-end);
+    }
+  }
+
+  /* FOCUS: drawn inside the border box so the footprint does not change */
+  .input-container:has(input:focus, textarea:focus) {
+    outline: var(--stroke-thick) solid var(--border-focus);
+    outline-offset: calc(-1 * var(--stroke-thick));
+  }
+
+  /* READ-ONLY */
+  :host([readonly]) .input-container {
+    border-color: var(--border-subtle);
   }
 
   /* ERROR */
   :host([error]:not([disabled])) .input-container {
-    background-color: var(--surface-negative-subtle);
-    box-shadow: 0 0 0 var(--border-size-medium) var(--border-negative);
-  }
-
-  :host([error]:not([disabled])) .hint-text zeta-icon {
-    --icon-color: var(--main-negative);
+    border-color: var(--border-error);
   }
 
   :host([error]:not([disabled])) .hint-text {
-    color: var(--main-negative);
+    color: var(--foreground-error);
+    --icon-color: var(--foreground-error);
   }
 
   /* DISABLED */
   :host([disabled]) .input-container {
     pointer-events: none;
-    background-color: var(--surface-disabled);
+    background: var(--interactive-neutral-background-disabled);
+    border-color: var(--interactive-neutral-border-disabled);
   }
 
   :host([disabled]) zeta-icon {
-    --icon-color: var(--main-disabled);
+    --icon-color: var(--foreground-disabled);
   }
 
   :host([disabled]) input,
@@ -80,81 +170,11 @@ export default css`
   :host([disabled]) .affix,
   :host([disabled]) .label,
   :host([disabled]) .hint-text span {
-    color: var(--main-disabled);
+    color: var(--foreground-disabled);
   }
   :host([disabled]) input::placeholder,
-  :host([disabled]) textarea::placeholder,
-  :host([disabled]) .affix::placeholder,
-  :host([disabled]) .label::placeholder,
-  :host([disabled]) .hint-text span::placeholder {
+  :host([disabled]) textarea::placeholder {
     color: inherit;
-  }
-
-  /* SIZE */
-  :host([size="small"]) .input-container:not(.text-area) {
-    padding: var(--spacing-small) var(--spacing-small);
-  }
-
-  :host([size="small"]) input,
-  :host([size="small"]) .affix {
-    font: var(--body-small);
-  }
-  :host([size="medium"]) .input-container:not(.text-area) {
-    padding: var(--spacing-small) var(--spacing-medium);
-  }
-
-  :host([size="medium"]) input,
-  :host([size="medium"]) .affix {
-    font: var(--body-medium);
-  }
-
-  :host([size="large"]) .input-container:not(.text-area) {
-    padding: var(--spacing-medium);
-  }
-
-  :host([size="large"]) input,
-  :host([size="large"]) .affix {
-    font: var(--body-medium);
-  }
-
-  /* DEFAULT */
-  .input-container {
-    border-radius: inherit;
-    display: flex;
-    align-items: center;
-    height: fit-content;
-    background-color: var(--surface-default);
-    padding: var(--spacing-medium);
-    box-shadow: 0 0 0 var(--border-size-small) var(--border-default);
-    -webkit-tap-highlight-color: transparent;
-  }
-
-  .input-container input,
-  .input-container textarea {
-    background-color: inherit;
-    caret-color: var(--main-primary);
-    color: var(--main-default);
-    flex: 1;
-    padding: 0;
-    margin: 0;
-    font: var(--body-medium);
-    width: 100%;
-  }
-
-  .input-container textarea::placeholder,
-  .input-container input::placeholder {
-    color: var(--main-subtle);
-  }
-
-  @media (hover: hover), (hover: none) and (pointer: fine) {
-    .input-container:hover {
-      box-shadow: 0 0 0 var(--border-size-small) var(--border-hover) !important;
-    }
-  }
-
-  .input-container:has(input:focus),
-  .input-container:has(textarea:focus) {
-    box-shadow: 0 0 0 var(--border-size-medium) var(--border-primary) !important;
   }
 
   input[type="date"]::-webkit-calendar-picker-indicator,
@@ -163,44 +183,28 @@ export default css`
     /* TODO: Firefox default date icon appears. */
   }
 
-  .left {
-    margin-right: var(--spacing-small);
-  }
-
-  .right {
-    margin-left: var(--spacing-small);
-  }
-
   .affix {
-    color: var(--main-subtle);
+    color: var(--foreground-secondary);
   }
 
   .label {
-    font: var(--body-small);
-    margin-bottom: var(--spacing-minimum);
-    display: flex;
-    color: var(--main-default);
-    position: relative;
-    width: fit-content;
+    font: var(--label-medium);
+    color: var(--foreground-primary);
   }
 
   .label.required::after {
-    content: "*";
-    display: flex;
-    position: absolute;
-    right: var(--spacing-small);
-    color: var(--main-negative);
+    content: " *";
+    color: var(--foreground-error);
   }
 
   .hint-text {
     display: flex;
     align-items: center;
-    column-gap: var(--spacing-minimum);
-  }
-
-  .hint-text {
-    font: var(--body-x-small);
-    color: var(--main-subtle);
+    column-gap: var(--space-2xs);
+    font: var(--body-xsmall);
+    color: var(--foreground-secondary);
+    --icon-color: var(--foreground-secondary);
+    --icon-size: var(--control-icon-sm);
   }
 
   textarea {
@@ -220,7 +224,7 @@ export default css`
     align-items: stretch;
     width: 16px;
     height: 24px;
-    background-color: var(--main-inverse);
+    background-color: var(--interactive-neutral-background-default);
   }
 
   :host([type="integer"]) .input-container .arrows-container .arrow {
@@ -234,12 +238,12 @@ export default css`
   }
 
   :host([type="integer"]) .input-container .arrows-container .arrow svg {
-    fill: var(--main-subtle);
+    fill: var(--foreground-secondary);
   }
 
   @media (hover: hover), (hover: none) and (pointer: fine) {
     :host([type="integer"]) .input-container .arrows-container .arrow:hover svg {
-      fill: var(--main-default);
+      fill: var(--foreground-primary);
     }
   }
 
