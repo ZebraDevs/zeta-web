@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.3](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.5.2...zeta-web-v1.5.3) (2026-11-10)
+
+
+### 🪲 Bug Fixes
+
+* **no-ticket:** Disabled radio button style ([#313](https://github.com/ZebraDevs/zeta-web/issues/313)) ([9dcb528](https://github.com/ZebraDevs/zeta-web/commit/9dcb528963525ff0616f18837139b3d643694b36))
+
 ## [1.5.2](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.5.1...zeta-web-v1.5.2) (2026-11-05)
 
 
