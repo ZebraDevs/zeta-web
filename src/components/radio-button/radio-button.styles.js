@@ -32,6 +32,9 @@ export default css`
     *[part="icon"] {
       background-color: var(--surface-disabled);
     }
+    .container {
+      background-color: transparent !important;
+    }
   }
 
   /* Size Variants */
