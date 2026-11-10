@@ -77,9 +77,9 @@ describe("zeta-label", () => {
     const px = (token: string) => getCssVarPxValue(subject, token);
     // Per side: padding + border. Outlined shrinks its padding by --stroke-thin, so the stroke sits inside the box.
     const cases: { name: string; bold: boolean; outlined: boolean; edge: string[] }[] = [
-      { name: "bold", bold: true, outlined: false, edge: ["--space-xxs", "--stroke-thin"] },
-      { name: "outlined", bold: false, outlined: true, edge: ["--space-xxs"] },
-      { name: "plain", bold: false, outlined: false, edge: ["--space-xxs", "--stroke-base"] }
+      { name: "bold", bold: true, outlined: false, edge: ["--space-2xs", "--stroke-thin"] },
+      { name: "outlined", bold: false, outlined: true, edge: ["--space-2xs"] },
+      { name: "plain", bold: false, outlined: false, edge: ["--space-2xs", "--stroke-base"] }
     ];
 
     cases.forEach(c => {

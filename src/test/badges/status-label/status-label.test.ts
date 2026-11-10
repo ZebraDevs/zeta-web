@@ -167,7 +167,7 @@ describe("zeta-status-label", () => {
 
         // border + container padding + leading box + text padding + text, each side
         const expectedWidth =
-          px("--stroke-thin") * 2 + px("--space-xxs") * 2 + (c.showIcon ? px("--control-icon-sm") : 0) + px("--space-xxs") * 2 + LABEL_TEXT_WIDTH;
+          px("--stroke-thin") * 2 + px("--space-2xs") * 2 + (c.showIcon ? px("--control-icon-sm") : 0) + px("--space-2xs") * 2 + LABEL_TEXT_WIDTH;
         const rect = subject.getBoundingClientRect();
 
         // Use a range to account for browser / font rendering differences
@@ -236,11 +236,10 @@ describe("zeta-status-label", () => {
         expect(getComputedStyle(subject.shadowRoot!.querySelector("[part='text']")!).color).to.equal(getCssVarColorValue(subject, "--foreground-primary"));
       });
     });
-    it("pads the container --space-2xs vertical and --space-xxs horizontal", () => {
+    it("pads the container --space-2xs on all sides", () => {
       const style = getComputedStyle(subject.shadowRoot!.querySelector("[part='container']")!);
-      const v = `${getCssVarPxValue(subject, "--space-2xs")}px`;
-      const h = `${getCssVarPxValue(subject, "--space-xxs")}px`;
-      expect([style.paddingTop, style.paddingRight, style.paddingBottom, style.paddingLeft]).to.deep.equal([v, h, v, h]);
+      const p = `${getCssVarPxValue(subject, "--space-2xs")}px`;
+      expect([style.paddingTop, style.paddingRight, style.paddingBottom, style.paddingLeft]).to.deep.equal([p, p, p, p]);
     });
   });
   // describe("Interaction", () => {});

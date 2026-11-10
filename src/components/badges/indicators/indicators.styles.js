@@ -35,7 +35,7 @@ export default css`
   :host([type="notification"]) .container.large {
     height: var(--control-icon-md);
     min-width: var(--control-icon-lg);
-    padding: 0 var(--space-xxs);
+    padding: 0 var(--space-2xs);
   }
 
   :host .container.small {

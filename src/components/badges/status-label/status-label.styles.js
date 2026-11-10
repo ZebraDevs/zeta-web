@@ -13,7 +13,7 @@ export default css`
     box-sizing: border-box;
     height: var(--scale-10);
     border-radius: var(--radius-none);
-    padding: var(--space-2xs) var(--space-xxs);
+    padding: var(--space-2xs) var(--space-2xs);
     border: var(--stroke-thin) solid;
 
     > [part="icon-container"] {
@@ -38,7 +38,7 @@ export default css`
     > [part="text"] {
       color: var(--foreground-primary);
       font: var(--body-small);
-      padding: 0 var(--space-xxs);
+      padding: 0 var(--space-2xs);
     }
   }
   :host([rounded]) > [part="container"] {

@@ -106,26 +106,26 @@ describe("zeta-priority-pill", () => {
         size: "large",
         type: "badge",
         circle: "--control-icon-md",
-        padding: "--space-xxs",
-        gap: "--space-xxs",
+        padding: "--space-2xs",
+        gap: "--space-2xs",
         paddingEnd: "--space-sm",
-        textPadding: "--space-xxs"
+        textPadding: "--space-2xs"
       },
       {
         size: "large",
         type: "lozenge",
         circle: "--control-icon-md",
-        padding: "--space-xxs",
-        gap: "--space-xxs",
+        padding: "--space-2xs",
+        gap: "--space-2xs",
         paddingEnd: "--space-sm",
-        textPadding: "--space-xxs"
+        textPadding: "--space-2xs"
       },
       {
         size: "small",
         type: "badge",
         circle: "--control-icon-sm",
         padding: "--space-2xs",
-        gap: "--space-xxs",
+        gap: "--space-2xs",
         paddingEnd: "--space-sm",
         textPadding: "--space-2xs"
       },
@@ -134,7 +134,7 @@ describe("zeta-priority-pill", () => {
         type: "lozenge",
         circle: "--control-icon-sm",
         padding: "--space-2xs",
-        gap: "--space-xxs",
+        gap: "--space-2xs",
         paddingEnd: "--space-sm",
         textPadding: "--space-2xs"
       }

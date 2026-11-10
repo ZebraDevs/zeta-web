@@ -32,7 +32,7 @@ export const getCssVarValue = (el: Element, cssVarName: string): string => {
 /**
  * Retrieves the numeric pixel value of a CSS length variable from an element.
  * @param el - The element to get the CSS variable value from.
- * @param cssVarName - The name of the CSS variable, e.g. `--space-xxs`.
+ * @param cssVarName - The name of the CSS variable, e.g. `--space-2xs`.
  * @returns The value in px as a number.
  */
 export const getCssVarPxValue = (el: Element, cssVarName: string): number => {

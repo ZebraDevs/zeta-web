@@ -43,7 +43,7 @@ export default css`
     width: fit-content;
     box-sizing: border-box;
     gap: var(--space-2xs);
-    padding: var(--space-xxs);
+    padding: var(--space-2xs);
     /* Bold: solid fill, 1px stroke matching the fill (26px tall) */
     background: var(--_label-strong);
     border: var(--stroke-thin) solid var(--_label-strong);
@@ -66,6 +66,6 @@ export default css`
   /* Outlined (only without bold): 1px stroke drawn inside the 24px box */
   :host(:not([bold])[outlined]) .container {
     border-width: var(--stroke-thin);
-    padding: calc(var(--space-xxs) - var(--stroke-thin));
+    padding: calc(var(--space-2xs) - var(--stroke-thin));
   }
 `;

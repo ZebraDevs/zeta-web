@@ -10,8 +10,8 @@ export default css`
   .container {
     display: flex;
     align-items: center;
-    gap: var(--space-xxs);
-    padding: var(--space-xxs) var(--space-sm) var(--space-xxs) var(--space-xxs);
+    gap: var(--space-2xs);
+    padding: var(--space-2xs) var(--space-sm) var(--space-2xs) var(--space-2xs);
     background: var(--priority-pill-background-color, var(--_background));
     white-space: nowrap;
     font: var(--body-small);
@@ -33,7 +33,7 @@ export default css`
     }
 
     > .text {
-      padding-right: var(--space-xxs);
+      padding-right: var(--space-2xs);
     }
   }
 
@@ -77,7 +77,7 @@ export default css`
 
   :host([type="badge"]) > .container {
     gap: 0;
-    padding-right: var(--space-xxs);
+    padding-right: var(--space-2xs);
   }
   :host([type="badge"][size="small"]) > .container {
     padding-right: var(--space-2xs);
