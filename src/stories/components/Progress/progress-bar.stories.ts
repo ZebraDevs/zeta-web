@@ -1,25 +1,29 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { ZetaProgressBar } from "../../../components/progress-indicators/progress-bar/progress-bar.js";
-import { html } from "lit";
+import { html, nothing } from "lit";
 import { spreadGenerator } from "../../utils.js";
 
 const spread = spreadGenerator(ZetaProgressBar);
 
-const meta: Meta<ZetaProgressBar> = {
+type ProgressBarStory = ZetaProgressBar & { details?: string; "--progress-bar-color"?: string };
+
+const meta: Meta<ProgressBarStory> = {
   component: "zeta-progress-bar",
   title: "Components/Progress",
   args: {
     rounded: true,
-    size: "medium",
-    value: 50,
+    size: "large",
+    value: 0.5,
     label: "Loading...",
     indeterminate: false,
     buffering: false,
-    maxValue: undefined
+    hideTrack: false,
+    maxValue: undefined,
+    details: ""
   },
   argTypes: {
     size: {
-      options: ["thin", "medium"],
+      options: ["small", "large"],
       control: {
         type: "select"
       }
@@ -32,7 +36,7 @@ const meta: Meta<ZetaProgressBar> = {
   },
   parameters: {
     design: {
-      url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=1358-31337&mode=design&t=DUHsS5bjWB5UW1iG-4"
+      url: "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=4275-1997&m=dev"
     },
     status: {
       type: "ready"
@@ -42,8 +46,8 @@ const meta: Meta<ZetaProgressBar> = {
 
 export default meta;
 
-export const ProgressBar: StoryObj = {
-  render: ({ ...args }) => {
+export const ProgressBar: StoryObj<ProgressBarStory> = {
+  render: ({ details, ...args }) => {
     return html`
       ${
         args["--progress-bar-color"] &&
@@ -53,7 +57,7 @@ export const ProgressBar: StoryObj = {
           }
         </style>`
       }
-      <zeta-progress-bar ${spread(args)}></zeta-progress-bar>
+      <zeta-progress-bar ${spread(args)}>${details ? html`<span slot="details">${details}</span>` : nothing}</zeta-progress-bar>
     `;
   }
 };
