@@ -7,15 +7,16 @@ import "../button/icon-button/icon-button.js";
 import "../icon/icon.js";
 
 //TODO: Disable buttons when at min or max
-//TODO: disabled prop changes size of box
 
 /** A stepper input, also called numeric stepper, is a common UI element that allows users to input a number or value simply by clicking the plus and minus buttons.
+ *
+ * When `disabled`, the step buttons switch to the primary disabled fill and the hint/error text is not rendered.
  *
  * @event {Event} change - Fired when the value of the stepper input changes.
  * @event {FocusEvent} focus - Fired when the stepper input receives focus.
  * @event {FocusEvent} blur - Fired when the stepper input loses focus.
  * @event {InputEvent} input - Fired when the value of the stepper input changes.
- * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21529-9963
+ * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=5595-122
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-stepper-input--docs
  */
 @customElement("zeta-stepper-input")
@@ -73,7 +74,7 @@ export class ZetaStepperInput extends FormField(Contourable(LitElement)) {
   /**
    * Hint text shown below text field.
    *
-   * if `error`, then `errorText` is shown instead.
+   * if `error`, then `errorText` is shown instead. Not shown while `disabled`.
    */
   @property() hintText?: string;
 
@@ -140,7 +141,7 @@ export class ZetaStepperInput extends FormField(Contourable(LitElement)) {
             .disabled=${this.disabled || (this.min !== undefined && isFinite(Number(this.min)) && Number(this.value) <= Number(this.min))}
             shape=${this.rounded ? "rounded" : "sharp"}
             size=${this.size}
-            flavor="outline-subtle"
+            flavor=${this.disabled ? "primary" : "outline-subtle"}
             @blur=${(e: FocusEvent) => this.handleBlur(e)}
             @focus=${(e: FocusEvent) => this.handleFocus(e)}
             @click=${() => this.onButtonClick(false)}
@@ -154,14 +155,14 @@ export class ZetaStepperInput extends FormField(Contourable(LitElement)) {
             size=${this.size}
             @blur=${(e: FocusEvent) => this.handleBlur(e)}
             @focus=${(e: FocusEvent) => this.handleFocus(e)}
-            flavor="outline-subtle"
+            flavor=${this.disabled ? "primary" : "outline-subtle"}
             @click=${() => this.onButtonClick(true)}
           >
             add
           </zeta-icon-button>
         </div>
         ${
-          this.error || this.hintText
+          !this.disabled && (this.error || this.hintText)
             ? html`<div class="hint-text">
                 <zeta-icon .rounded=${this.rounded}>${this.error ? "error" : "info"}</zeta-icon>
                 <span id="hint-text">${this.error ? this.errorText : this.hintText}</span>
