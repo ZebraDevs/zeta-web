@@ -45,7 +45,7 @@ describe("zeta-option", () => {
       let fired = false;
       subject.addEventListener("zeta-option-click", () => (fired = true));
 
-      (subject.shadowRoot?.querySelector(".option") as HTMLElement).click();
+      (subject.shadowRoot?.querySelector("[part=\"option\"]") as HTMLElement).click();
 
       expect(fired).to.be.true;
     });
@@ -54,7 +54,7 @@ describe("zeta-option", () => {
       let detail: ZetaOptionClickEventDetail | undefined;
       subject.addEventListener("zeta-option-click", (e: Event) => (detail = (e as CustomEvent<ZetaOptionClickEventDetail>).detail));
 
-      (subject.shadowRoot?.querySelector(".option") as HTMLElement).click();
+      (subject.shadowRoot?.querySelector("[part=\"option\"]") as HTMLElement).click();
 
       await expect(detail?.value).to.equal("1");
     });
@@ -64,7 +64,7 @@ describe("zeta-option", () => {
       subject.addEventListener("zeta-option-click", () => (fired = true));
 
       const event = new KeyboardEvent("keydown", { key: " ", bubbles: true, composed: true });
-      (subject.shadowRoot?.querySelector(".option") as HTMLElement).dispatchEvent(event);
+      (subject.shadowRoot?.querySelector("[part=\"option\"]") as HTMLElement).dispatchEvent(event);
 
       expect(fired).to.be.true;
     });
@@ -74,7 +74,7 @@ describe("zeta-option", () => {
       subject.addEventListener("zeta-option-click", () => (fired = true));
 
       const event = new KeyboardEvent("keydown", { key: "Enter", bubbles: true, composed: true });
-      (subject.shadowRoot?.querySelector(".option") as HTMLElement).dispatchEvent(event);
+      (subject.shadowRoot?.querySelector("[part=\"option\"]") as HTMLElement).dispatchEvent(event);
 
       expect(fired).to.be.true;
     });
@@ -85,7 +85,7 @@ describe("zeta-option", () => {
       let fired = false;
       subject.addEventListener("zeta-option-click", () => (fired = true));
 
-      (subject.shadowRoot?.querySelector(".option") as HTMLElement).click();
+      (subject.shadowRoot?.querySelector("[part=\"option\"]") as HTMLElement).click();
 
       expect(fired).to.be.false;
     });
@@ -97,7 +97,7 @@ describe("zeta-option", () => {
       subject.addEventListener("zeta-option-click", () => (fired = true));
 
       const event = new KeyboardEvent("keydown", { key: " ", bubbles: true, composed: true });
-      (subject.shadowRoot?.querySelector(".option") as HTMLElement).dispatchEvent(event);
+      (subject.shadowRoot?.querySelector("[part=\"option\"]") as HTMLElement).dispatchEvent(event);
 
       expect(fired).to.be.false;
     });

@@ -110,7 +110,7 @@ describe("zeta-select-input", () => {
       const options = (optionsContainer?.querySelector("slot") as HTMLSlotElement).assignedElements({ flatten: true }) as ZetaOption[];
 
       (input as HTMLElement).click();
-      (options[0].shadowRoot?.querySelector(".option") as HTMLElement).click();
+      (options[0].shadowRoot?.querySelector("[part=\"option\"]") as HTMLElement).click();
       await subject.updateComplete;
 
       const inputText = subject.shadowRoot?.querySelector("[part='input-text']");
@@ -248,7 +248,7 @@ describe("zeta-select-input", () => {
       (input as HTMLElement).click();
       expect(subject.open).to.be.true;
 
-      (options[0].shadowRoot?.querySelector(".option") as HTMLElement).click();
+      (options[0].shadowRoot?.querySelector("[part=\"option\"]") as HTMLElement).click();
 
       expect(subject.open).to.be.false;
       await expect(subject.value).to.equal("1");
@@ -266,7 +266,7 @@ describe("zeta-select-input", () => {
       (input as HTMLElement).dispatchEvent(event);
       expect(subject.open).to.be.true;
 
-      (options[0].shadowRoot?.querySelector(".option") as HTMLElement).dispatchEvent(event);
+      (options[0].shadowRoot?.querySelector("[part=\"option\"]") as HTMLElement).dispatchEvent(event);
 
       expect(subject.open).to.be.false;
       await expect(subject.value).to.equal("1");
@@ -283,7 +283,7 @@ describe("zeta-select-input", () => {
       (input as HTMLElement).click();
       expect(subject.open).to.be.true;
 
-      (options[0].shadowRoot?.querySelector(".option") as HTMLElement).click();
+      (options[0].shadowRoot?.querySelector("[part=\"option\"]") as HTMLElement).click();
 
       expect(subject.open).to.be.false;
       await expect(subject.value).to.equal("1");
@@ -291,7 +291,7 @@ describe("zeta-select-input", () => {
       (input as HTMLElement).click();
       expect(subject.open).to.be.true;
 
-      (options[0].shadowRoot?.querySelector(".option") as HTMLElement).click();
+      (options[0].shadowRoot?.querySelector("[part=\"option\"]") as HTMLElement).click();
 
       expect(subject.open).to.be.false;
       await expect(subject.value).to.equal("1");
@@ -309,7 +309,7 @@ describe("zeta-select-input", () => {
       (input as HTMLElement).dispatchEvent(event);
       expect(subject.open).to.be.true;
 
-      (options[0].shadowRoot?.querySelector(".option") as HTMLElement).dispatchEvent(event);
+      (options[0].shadowRoot?.querySelector("[part=\"option\"]") as HTMLElement).dispatchEvent(event);
 
       expect(subject.open).to.be.false;
       await expect(subject.value).to.equal("1");
@@ -317,7 +317,7 @@ describe("zeta-select-input", () => {
       (input as HTMLElement).dispatchEvent(event);
       expect(subject.open).to.be.true;
 
-      (options[0].shadowRoot?.querySelector(".option") as HTMLElement).dispatchEvent(event);
+      (options[0].shadowRoot?.querySelector("[part=\"option\"]") as HTMLElement).dispatchEvent(event);
 
       expect(subject.open).to.be.false;
       await expect(subject.value).to.equal("1");

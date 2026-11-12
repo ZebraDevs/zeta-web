@@ -3,7 +3,7 @@ export default css`
   :host {
     display: block;
   }
-  .option {
+  [part="option"] {
     display: flex;
     gap: var(--spacing-minimum);
     cursor: pointer;
@@ -28,32 +28,41 @@ export default css`
     --icon-color: var(--main-subtle);
   }
 
-  :host([size="small"]) .option {
+  :host([size="small"]) [part="option"] {
     margin: var(--spacing-0-5);
     padding: var(--spacing-small);
     font: var(--body-x-small);
   }
 
-  :host([size="medium"]) .option {
+  :host([size="medium"]) [part="option"] {
     margin: var(--spacing-medium);
     padding: var(--spacing-small);
     font: var(--body-medium);
   }
 
-  :host([size="large"]) .option {
+  :host([size="large"]) [part="option"] {
     margin: var(--spacing-large);
     padding: var(--spacing-medium);
     font: var(--body-medium);
   }
 
   @media (hover: hover), (hover: none) and (pointer: fine) {
-    .option:hover {
+    :host(:not([disabled])) [part="option"]:hover {
       background-color: rgb(0, 115, 230, 0.1);
     }
   }
 
-  :host([selected]) .option {
+  :host([selected]) [part="option"] {
     color: var(--main-default);
     outline: 1px solid var(--border-primary);
+  }
+
+  :host([disabled]) * {
+    cursor: not-allowed;
+
+    &[part="option"] {
+      background: var(--surface-disabled);
+      color: var(--main-disabled);
+    }
   }
 `;

@@ -21,7 +21,7 @@ export class ZetaOption extends Contourable(Interactive(Size(LitElement))) {
 
   @property({ type: Boolean, reflect: true }) selected: boolean = false;
 
-  @property({ type: Boolean }) disabled: boolean = false;
+  @property({ type: Boolean, reflect: true }) disabled: boolean = false;
 
   type = "option" as const;
 
@@ -53,7 +53,7 @@ export class ZetaOption extends Contourable(Interactive(Size(LitElement))) {
 
   protected override render() {
     return html`
-      <div tabindex="0" class="option" @click=${this._handleClick}>
+      <div tabindex="0" part="option" @click=${this._handleClick}>
         <span part="option-text"><slot></slot></span>
       </div>
     `;
