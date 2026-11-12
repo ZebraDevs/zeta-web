@@ -89,9 +89,15 @@ describe("zeta-pagination", () => {
       // prettier-ignore
       const el = await fixture<ZetaPagination>(html`<zeta-pagination totalPages="20" currentPage="1" siblingCount="10"></zeta-pagination>`);
       const pageButtons = [...(el.shadowRoot?.querySelectorAll("button.page") ?? [])].map(b => Number(b.textContent?.trim()));
-      assert.isTrue(pageButtons.every(page => page >= 1 && page <= 20), `All rendered pages must be within 1-20, got: ${pageButtons.join(", ")}`);
+      assert.isTrue(
+        pageButtons.every(page => page >= 1 && page <= 20),
+        `All rendered pages must be within 1-20, got: ${pageButtons.join(", ")}`
+      );
       assert.equal(new Set(pageButtons).size, pageButtons.length, `No page should be rendered twice, got: ${pageButtons.join(", ")}`);
-      assert.deepEqual(pageButtons, Array.from({ length: 20 }, (_, i) => i + 1));
+      assert.deepEqual(
+        pageButtons,
+        Array.from({ length: 20 }, (_, i) => i + 1)
+      );
     });
 
     it("should hide the overflow control when showMore is false, even if the range would otherwise collapse", async () => {

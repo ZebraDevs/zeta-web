@@ -143,9 +143,11 @@ export class ZetaPagination extends Contourable(LitElement) {
 
     return html`
       <div class="pagination">
-        ${this.showControls
-          ? html`${this.getIconButton("first_page", 1, disabledLeftControl)} ${this.getIconButton("chevron_left", this.currentPage - 1, disabledLeftControl)}`
-          : nothing}
+        ${
+          this.showControls
+            ? html`${this.getIconButton("first_page", 1, disabledLeftControl)} ${this.getIconButton("chevron_left", this.currentPage - 1, disabledLeftControl)}`
+            : nothing
+        }
         ${result.map(page => {
           const pageClass = classMap({
             selected: this.currentPage === page
@@ -156,9 +158,12 @@ export class ZetaPagination extends Contourable(LitElement) {
             return html` <button type="button" @click=${() => this.handlePageChange(page)} class="page ${pageClass}">${page}</button> `;
           }
         })}
-        ${this.showControls
-          ? html`${this.getIconButton("chevron_right", this.currentPage + 1, disabledRightControl)} ${this.getIconButton("last_page", this.totalPages, disabledRightControl)}`
-          : nothing}
+        ${
+          this.showControls
+            ? html`${this.getIconButton("chevron_right", this.currentPage + 1, disabledRightControl)}
+              ${this.getIconButton("last_page", this.totalPages, disabledRightControl)}`
+            : nothing
+        }
       </div>
     `;
   }
