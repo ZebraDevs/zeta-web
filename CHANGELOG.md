@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.4](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.5.3...zeta-web-v1.5.4) (2026-11-13)
+
+
+### 🪲 Bug Fixes
+
+* **NO-TICKET:** Add disabled styles to zeta option and a story ([#316](https://github.com/ZebraDevs/zeta-web/issues/316)) ([78eeeca](https://github.com/ZebraDevs/zeta-web/commit/78eeecadcb7f97c04173bac2833613c67185df34))
+
 ## [1.5.3](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.5.2...zeta-web-v1.5.3) (2026-11-10)
 
 
