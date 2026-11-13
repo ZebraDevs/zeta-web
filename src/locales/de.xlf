@@ -53,6 +53,48 @@
 <trans-unit id="s2c4b1cc433fce2d0">
   <source>Last page</source>
 </trans-unit>
+<trans-unit id="s6b77a8ce68ca416b">
+  <source>Select row: <x id="0" equiv-text="${this.name}"/></source>
+</trans-unit>
+<trans-unit id="s4409c655b1766f45">
+  <source>Actions for <x id="0" equiv-text="${this.name}"/></source>
+</trans-unit>
+<trans-unit id="s58bfb494feb8eb02">
+  <source><x id="0" equiv-text="${count}"/> selected</source>
+</trans-unit>
+<trans-unit id="s5d929ff1619ac0c9">
+  <source>Search</source>
+</trans-unit>
+<trans-unit id="s594f7f9a8ab72a68">
+  <source>Column settings</source>
+</trans-unit>
+<trans-unit id="s84cdd7a66f01be2f">
+  <source>No frozen columns</source>
+</trans-unit>
+<trans-unit id="s57740d9acef6e93a">
+  <source>Freeze up to <x id="0" equiv-text="${column.label}"/></source>
+</trans-unit>
+<trans-unit id="sdf6c22ec03252c91">
+  <source>Filter <x id="0" equiv-text="${column.label}"/></source>
+</trans-unit>
+<trans-unit id="s7c95876637f6a9d7">
+  <source>Filter</source>
+</trans-unit>
+<trans-unit id="s909e876731a8febb">
+  <source>Select all rows</source>
+</trans-unit>
+<trans-unit id="sda40aa3218cd82d7">
+  <source>Resize <x id="0" equiv-text="${column.label}"/></source>
+</trans-unit>
+<trans-unit id="s1e983dceeed1e078">
+  <source>Showing <x id="0" equiv-text="${first}"/>-<x id="1" equiv-text="${last}"/> of <x id="2" equiv-text="${total}"/></source>
+</trans-unit>
+<trans-unit id="s90a641043aa30c1e">
+  <source>Rows per page</source>
+</trans-unit>
+<trans-unit id="s991d216e6efc157c">
+  <source>No results</source>
+</trans-unit>
 </body>
 </file>
 </xliff>
