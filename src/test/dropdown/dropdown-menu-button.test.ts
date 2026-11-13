@@ -36,6 +36,14 @@ describe("zeta-dropdown-menu-button", () => {
     it.skip("meets accessability requirements", async () => {
       await expect(subject).shadowDom.to.be.accessible();
     });
+
+    it("exposes a menu of menuitems for the text-dropdown type", async () => {
+      (subject.shadowRoot?.querySelector("zeta-button") as ZetaButton).click();
+      await subject.updateComplete;
+
+      expect(subject.droppable).to.have.attribute("role", "menu");
+      expect(subject.shadowRoot?.querySelector("zeta-dropdown-menu-item")).to.have.attribute("role", "menuitem");
+    });
   });
 
   describe("Content", () => {

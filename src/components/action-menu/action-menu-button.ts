@@ -1,3 +1,4 @@
+import { msg } from "@lit/localize";
 import { customElement, property, query } from "lit/decorators.js";
 import { html } from "lit";
 import type { ZetaDroppable } from "../dropdown/droppable.js";
@@ -84,7 +85,15 @@ export class ZetaActionMenuButton extends ZetaButton {
         .flavor=${this.flavor}
         >${this.icon}</zeta-icon-button
       >
-      <zeta-droppable ?open=${this.open} ?rounded=${this.shape != "sharp"} .alignment=${this.alignment} .direction=${this.direction} .anchor=${this.anchor}>
+      <zeta-droppable
+        role="menu"
+        aria-label=${msg("Actions")}
+        ?open=${this.open}
+        ?rounded=${this.shape != "sharp"}
+        .alignment=${this.alignment}
+        .direction=${this.direction}
+        .anchor=${this.anchor}
+      >
         ${this.renderItems()}
       </zeta-droppable>
     `;
