@@ -133,7 +133,8 @@ describe("zeta-pagination", () => {
 
     it("renders a bordered page when outline is set", async () => {
       const el = await fixture<ZetaPagination>(html`<zeta-pagination totalPages="5" outline></zeta-pagination>`);
-      const page = el.shadowRoot?.querySelector(".page") as HTMLElement;
+      // The first page is the selected one, which takes the inverse border, so check an unselected page.
+      const page = el.shadowRoot?.querySelector(".page:not(.selected)") as HTMLElement;
       assert.equal(getComputedStyle(page).borderWidth, getCssVarValue(page, "--stroke-thin"));
       assert.equal(getComputedStyle(page).borderColor, getCssVarColorValue(page, "--interactive-neutral-border-default"));
     });
