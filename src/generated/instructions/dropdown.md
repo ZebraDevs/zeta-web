@@ -15,31 +15,31 @@ Source: https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-Sys
 
 ### Resolved tokens (default variant: Open=false, Position=bottom, Align=left)
 
-| Layer | Field | Raw | Token |
-| --- | --- | --- | --- |
-| Template/Dropdown | itemSpacing | 10 | — |
-| Template/Dropdown/Trigger Component | itemSpacing | 10 | — |
-| Template/Dropdown/Trigger Component/Button | height | 36 | control.sm |
-| Template/Dropdown/Trigger Component/Button | fill[0] | #1f69ff | interactive.primary.background.default |
-| Template/Dropdown/Trigger Component/Button | stroke[0] | #1f69ff | interactive.primary.border.default |
-| Template/Dropdown/Trigger Component/Button | cornerRadius | 4 | radius.element-sm |
-| Template/Dropdown/Trigger Component/Button | strokeWeight | 0 | stroke.base |
-| Template/Dropdown/Trigger Component/Button | padding.left | 12 | space.md |
-| Template/Dropdown/Trigger Component/Button | padding.right | 12 | space.md |
-| Template/Dropdown/Trigger Component/Button | padding.top | 4 | space.2xs |
-| Template/Dropdown/Trigger Component/Button | padding.bottom | 4 | space.2xs |
+| Layer                                      | Field          | Raw     | Token                                  |
+| ------------------------------------------ | -------------- | ------- | -------------------------------------- |
+| Template/Dropdown                          | itemSpacing    | 10      | —                                      |
+| Template/Dropdown/Trigger Component        | itemSpacing    | 10      | —                                      |
+| Template/Dropdown/Trigger Component/Button | height         | 36      | control.sm                             |
+| Template/Dropdown/Trigger Component/Button | fill[0]        | #1f69ff | interactive.primary.background.default |
+| Template/Dropdown/Trigger Component/Button | stroke[0]      | #1f69ff | interactive.primary.border.default     |
+| Template/Dropdown/Trigger Component/Button | cornerRadius   | 4       | radius.element-sm                      |
+| Template/Dropdown/Trigger Component/Button | strokeWeight   | 0       | stroke.base                            |
+| Template/Dropdown/Trigger Component/Button | padding.left   | 12      | space.md                               |
+| Template/Dropdown/Trigger Component/Button | padding.right  | 12      | space.md                               |
+| Template/Dropdown/Trigger Component/Button | padding.top    | 4       | space.2xs                              |
+| Template/Dropdown/Trigger Component/Button | padding.bottom | 4       | space.2xs                              |
 
 ### Token changes by property
 
-| Property | Value | Layer | Field | Token |
-| --- | --- | --- | --- | --- |
-| Open | true | Template/Dropdown/Dropdown Menu | fill[0] | surface.overlay |
-| Open | true | Template/Dropdown/Dropdown Menu | cornerRadius | radius.element-md |
-| Open | true | Template/Dropdown/Dropdown Menu | itemSpacing | space.3xs |
-| Open | true | Template/Dropdown/Dropdown Menu | padding.left | space.card |
-| Open | true | Template/Dropdown/Dropdown Menu | padding.right | space.card |
-| Open | true | Template/Dropdown/Dropdown Menu | padding.top | space.card |
-| Open | true | Template/Dropdown/Dropdown Menu | padding.bottom | space.card |
+| Property | Value | Layer                           | Field          | Token             |
+| -------- | ----- | ------------------------------- | -------------- | ----------------- |
+| Open     | true  | Template/Dropdown/Dropdown Menu | fill[0]        | surface.overlay   |
+| Open     | true  | Template/Dropdown/Dropdown Menu | cornerRadius   | radius.element-md |
+| Open     | true  | Template/Dropdown/Dropdown Menu | itemSpacing    | space.3xs         |
+| Open     | true  | Template/Dropdown/Dropdown Menu | padding.left   | space.card        |
+| Open     | true  | Template/Dropdown/Dropdown Menu | padding.right  | space.card        |
+| Open     | true  | Template/Dropdown/Dropdown Menu | padding.top    | space.card        |
+| Open     | true  | Template/Dropdown/Dropdown Menu | padding.bottom | space.card        |
 
 ## Menu Item
 
@@ -51,55 +51,55 @@ A single row inside a Dropdown Menu, with a leading element, a label and an opti
 
 ### Property Breakdown
 
-| Property | Type | Default | Description |
-| --- | --- | --- | --- |
-| State | Default | true | The resting row. |
-| State | hover | - | Documents the pointer-over treatment. The implementation drives this, so choosing it in a layout freezes the row in a state it should not be in. |
-| State | selected | - | The row's option is currently chosen. It shows a light brand tint behind the row, with the label and leading element unchanged. |
-| State | focus | - | Keyboard focus, drawn as a ring on all four edges with the background left alone. It is the only state that adds a border, which is what keeps it tellable apart from selected. |
-| State | selected focus | - | Both at once, for a keyboard user moving across an already-chosen option. Without it the two would be indistinguishable, which is the reason it exists. |
-| State | disabled | - | The option is unavailable. Only the label changes, so the difference between available and unavailable rests on contrast alone. |
-| Type | Icon | true | A leading Icon instance you set yourself. The glyph is exposed, so the row is configured from the menu without detaching. |
-| Type | radio | - | Names the row as a single-choice option. The leading element is a real Radio Button at Size=medium with no label, which shows the row's choice. |
-| Type | checkbox | - | Names the row as a multi-choice option. The leading element is a real Checkbox at Size=medium with no label, which shows the row's choice. |
-| Type | custom | - | Replaces the leading Icon with an empty slot, for a leading element the icon library cannot supply such as an avatar or a colour swatch. Nothing is provided by default, so the slot stays blank until filled. |
-| Rounded | false | true | Square corners, for a row inside a square menu panel. Match the panel rather than choosing per row. |
-| Rounded | true | - | Softened corners, for a rounded panel. Mixing the two inside one menu makes the rows look misaligned against the panel. |
-| Label | text | Menu Item | The option's name. The row fills the menu's width and the text neither wraps nor truncates, so a long label widens the entire menu. |
-| Leading Element | true | true | Shows the leading element: the Icon, the Checkbox or Radio Button, or the slot. |
-| Leading Element | false | - | Hides it and the label shifts to the leading edge. A menu mixing rows with and without it loses the alignment that makes a list scannable. |
-| Trailing Icon | false | true | — |
-| Trailing Icon | true | - | Adds an icon at the trailing edge, for a submenu arrow or an external-link mark. The label already reserves room on that side, so it takes space from the text. |
+| Property        | Type           | Default   | Description                                                                                                                                                                                                    |
+| --------------- | -------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| State           | Default        | true      | The resting row.                                                                                                                                                                                               |
+| State           | hover          | -         | Documents the pointer-over treatment. The implementation drives this, so choosing it in a layout freezes the row in a state it should not be in.                                                               |
+| State           | selected       | -         | The row's option is currently chosen. It shows a light brand tint behind the row, with the label and leading element unchanged.                                                                                |
+| State           | focus          | -         | Keyboard focus, drawn as a ring on all four edges with the background left alone. It is the only state that adds a border, which is what keeps it tellable apart from selected.                                |
+| State           | selected focus | -         | Both at once, for a keyboard user moving across an already-chosen option. Without it the two would be indistinguishable, which is the reason it exists.                                                        |
+| State           | disabled       | -         | The option is unavailable. Only the label changes, so the difference between available and unavailable rests on contrast alone.                                                                                |
+| Type            | Icon           | true      | A leading Icon instance you set yourself. The glyph is exposed, so the row is configured from the menu without detaching.                                                                                      |
+| Type            | radio          | -         | Names the row as a single-choice option. The leading element is a real Radio Button at Size=medium with no label, which shows the row's choice.                                                                |
+| Type            | checkbox       | -         | Names the row as a multi-choice option. The leading element is a real Checkbox at Size=medium with no label, which shows the row's choice.                                                                     |
+| Type            | custom         | -         | Replaces the leading Icon with an empty slot, for a leading element the icon library cannot supply such as an avatar or a colour swatch. Nothing is provided by default, so the slot stays blank until filled. |
+| Rounded         | false          | true      | Square corners, for a row inside a square menu panel. Match the panel rather than choosing per row.                                                                                                            |
+| Rounded         | true           | -         | Softened corners, for a rounded panel. Mixing the two inside one menu makes the rows look misaligned against the panel.                                                                                        |
+| Label           | text           | Menu Item | The option's name. The row fills the menu's width and the text neither wraps nor truncates, so a long label widens the entire menu.                                                                            |
+| Leading Element | true           | true      | Shows the leading element: the Icon, the Checkbox or Radio Button, or the slot.                                                                                                                                |
+| Leading Element | false          | -         | Hides it and the label shifts to the leading edge. A menu mixing rows with and without it loses the alignment that makes a list scannable.                                                                     |
+| Trailing Icon   | false          | true      | —                                                                                                                                                                                                              |
+| Trailing Icon   | true           | -         | Adds an icon at the trailing edge, for a submenu arrow or an external-link mark. The label already reserves room on that side, so it takes space from the text.                                                |
 
 ### States & Triggers
 
-| State | Trigger | Duration | What changes |
-| --- | --- | --- | --- |
-| Default | Resting | — | A fully transparent ghost background with the label on interactive/neutral/foreground/default. |
-| hover | Pointer over the row | — | The ghost background rises to 5 percent opacity. The label and the leading element do not change. |
-| selected | The option is chosen | — | A background on interactive/ghost/background/selected, which is brand primary at 10 percent. The label moves to foreground/primary, which looks the same as the resting label. Selected now reads stronger than hover. |
-| focus | Keyboard focus | — | A 1px ring on border/focus is drawn on all four edges, inside the row's own bounds. The background stays fully transparent. |
-| selected focus | Focus on a chosen option | — | The selected tint and the focus ring together. It is the only state carrying both. |
-| disabled | State set to disabled | — | The background stays transparent and the label moves to interactive/neutral/foreground/disabled. |
+| State          | Trigger                  | Duration | What changes                                                                                                                                                                                                           |
+| -------------- | ------------------------ | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Default        | Resting                  | —        | A fully transparent ghost background with the label on interactive/neutral/foreground/default.                                                                                                                         |
+| hover          | Pointer over the row     | —        | The ghost background rises to 5 percent opacity. The label and the leading element do not change.                                                                                                                      |
+| selected       | The option is chosen     | —        | A background on interactive/ghost/background/selected, which is brand primary at 10 percent. The label moves to foreground/primary, which looks the same as the resting label. Selected now reads stronger than hover. |
+| focus          | Keyboard focus           | —        | A 1px ring on border/focus is drawn on all four edges, inside the row's own bounds. The background stays fully transparent.                                                                                            |
+| selected focus | Focus on a chosen option | —        | The selected tint and the focus ring together. It is the only state carrying both.                                                                                                                                     |
+| disabled       | State set to disabled    | —        | The background stays transparent and the label moves to interactive/neutral/foreground/disabled.                                                                                                                       |
 
 ### Behavior & Motion Intent
 
-| Type | Description |
-| --- | --- |
-| Motion | No transition is defined. Every state change is colour or opacity only, with no movement, scale or elevation. |
+| Type         | Description                                                                                                                                       |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Motion       | No transition is defined. Every state change is colour or opacity only, with no movement, scale or elevation.                                     |
 | Click target | The whole row is the click target. Clicking anywhere on a checkbox row toggles it, and on a radio row selects it and clears the other radio rows. |
-| Focus ring | Drawn inside the row's own bounds rather than outside, so it never overlaps the neighbouring row or the panel's padding. |
-| Reflow | The row fills the width of the menu that holds it and its height is fixed, so a longer label reflows the menu rather than the row. |
+| Focus ring   | Drawn inside the row's own bounds rather than outside, so it never overlaps the neighbouring row or the panel's padding.                          |
+| Reflow       | The row fills the width of the menu that holds it and its height is fixed, so a longer label reflows the menu rather than the row.                |
 
 ### Content & Slot
 
-| Property | Type | Description |
-| --- | --- | --- |
-| Label | text property | The option's name. No truncation and no wrapping, the menu widens instead. |
-| Leading Icon | exposed nested Icon, Type Icon | Pinned to Size=small with Framed off and left exposed, so the glyph is set per instance from the menu. See the Icon Metadata frame. It arrives holding Verified, which suits almost no real option. |
-| Leading control | nested Checkbox or Radio Button, Types checkbox and radio | Size=medium with no label, 40px including its touch target. Checked should follow the row's selection, and disabled should follow the row. |
-| Leading Slot | slot, Type custom only | Replaces the leading Icon when Type is custom. It carries no suggested components and is empty by default, so it stays blank until something is placed in it. |
-| Trailing Icon | exposed nested Icon | Hidden until Trailing Icon is turned on, then a 16px glyph at the trailing edge. Also pinned to Size=small with Framed off and left exposed. |
+| Property        | Type                                                      | Description                                                                                                                                                                                         |
+| --------------- | --------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Label           | text property                                             | The option's name. No truncation and no wrapping, the menu widens instead.                                                                                                                          |
+| Leading Icon    | exposed nested Icon, Type Icon                            | Pinned to Size=small with Framed off and left exposed, so the glyph is set per instance from the menu. See the Icon Metadata frame. It arrives holding Verified, which suits almost no real option. |
+| Leading control | nested Checkbox or Radio Button, Types checkbox and radio | Size=medium with no label, 40px including its touch target. Checked should follow the row's selection, and disabled should follow the row.                                                          |
+| Leading Slot    | slot, Type custom only                                    | Replaces the leading Icon when Type is custom. It carries no suggested components and is empty by default, so it stays blank until something is placed in it.                                       |
+| Trailing Icon   | exposed nested Icon                                       | Hidden until Trailing Icon is turned on, then a 16px glyph at the trailing edge. Also pinned to Size=small with Framed off and left exposed.                                                        |
 
 ### Anatomy
 
@@ -111,10 +111,12 @@ A single row inside a Dropdown Menu, with a leading element, a label and an opti
 ### How to use
 
 **Do:**
+
 - Set the leading glyph on every Icon row. It holds Verified by default, which says nothing about the option the row represents.
 - Match Rounded to the menu panel that holds the row, rather than choosing it row by row.
 
 **Don't:**
+
 - Don't use the Icon type for a choice. Use checkbox or radio, which draw the real control.
 - Don't rely on selection alone being obvious. Selected is a 10 percent brand tint, which can fade on a busy or tinted surface.
 
@@ -128,18 +130,18 @@ A single row inside a Dropdown Menu, with a leading element, a label and an opti
 
 ### Layout & Theming Intents
 
-| Property | Type | Description |
-| --- | --- | --- |
-| Width | Fill | Fills the menu that holds it, drawn at 221px. The row never hugs its label, so the menu's width sets it. |
-| Height | Fixed | control/md at every variant. |
-| Padding | Fixed per Type | space/2xs top and bottom, space/md left and right. Checkbox and radio rows use space/none on the leading side, so the 40px control starts at the edge and its box lines up with an Icon row's glyph. |
-| Gap | Fixed | space/sm between the leading element, the label and the trailing icon. Checkbox and radio rows use space/none, because the control's 40px target already spaces the label. |
-| Label inset | Fixed | The label wrapper adds space/xs on its leading edge and reserves space/xl on its trailing edge, which keeps labels clear of a trailing icon even when one is not shown. |
-| Radius | Fixed per Rounded | radius/none when false, radius/sm when true. |
-| Leading and trailing icons | Fixed | Both 16px Icon instances at Size=small with Framed off. Checkbox and radio rows lead with a 40px control instead. |
-| Border | Fixed per State | None at rest. Focus and selected focus add a 1px ring on border/focus, drawn on all four edges inside the row. |
-| Label type | Fixed | label/medium. |
-| Colour | Theming | Backgrounds come from the interactive/ghost family: transparent at rest, 5 percent on hover, a 10 percent brand tint on selected, and transparent again on focus and disabled. The label is interactive/neutral/foreground/default, foreground/primary when selected (the same colour), and interactive/neutral/foreground/disabled when disabled. |
+| Property                   | Type              | Description                                                                                                                                                                                                                                                                                                                                        |
+| -------------------------- | ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Width                      | Fill              | Fills the menu that holds it, drawn at 221px. The row never hugs its label, so the menu's width sets it.                                                                                                                                                                                                                                           |
+| Height                     | Fixed             | control/md at every variant.                                                                                                                                                                                                                                                                                                                       |
+| Padding                    | Fixed per Type    | space/2xs top and bottom, space/md left and right. Checkbox and radio rows use space/none on the leading side, so the 40px control starts at the edge and its box lines up with an Icon row's glyph.                                                                                                                                               |
+| Gap                        | Fixed             | space/sm between the leading element, the label and the trailing icon. Checkbox and radio rows use space/none, because the control's 40px target already spaces the label.                                                                                                                                                                         |
+| Label inset                | Fixed             | The label wrapper adds space/xs on its leading edge and reserves space/xl on its trailing edge, which keeps labels clear of a trailing icon even when one is not shown.                                                                                                                                                                            |
+| Radius                     | Fixed per Rounded | radius/none when false, radius/sm when true.                                                                                                                                                                                                                                                                                                       |
+| Leading and trailing icons | Fixed             | Both 16px Icon instances at Size=small with Framed off. Checkbox and radio rows lead with a 40px control instead.                                                                                                                                                                                                                                  |
+| Border                     | Fixed per State   | None at rest. Focus and selected focus add a 1px ring on border/focus, drawn on all four edges inside the row.                                                                                                                                                                                                                                     |
+| Label type                 | Fixed             | label/medium.                                                                                                                                                                                                                                                                                                                                      |
+| Colour                     | Theming           | Backgrounds come from the interactive/ghost family: transparent at rest, 5 percent on hover, a 10 percent brand tint on selected, and transparent again on focus and disabled. The label is interactive/neutral/foreground/default, foreground/primary when selected (the same colour), and interactive/neutral/foreground/disabled when disabled. |
 
 ### Layer structure
 
@@ -152,50 +154,50 @@ A single row inside a Dropdown Menu, with a leading element, a label and an opti
 
 ### Resolved tokens (default variant: State=Default, Type=Icon, Rounded=false)
 
-| Layer | Field | Raw | Token |
-| --- | --- | --- | --- |
-| Menu Item | height | 40 | control.md |
-| Menu Item | fill[0] | #0c0d0e00 | interactive.ghost.background.default |
-| Menu Item | cornerRadius | 0 | radius.none |
-| Menu Item | itemSpacing | 8 | space.sm |
-| Menu Item | padding.left | 12 | space.md |
-| Menu Item | padding.right | 12 | space.md |
-| Menu Item | padding.top | 4 | space.2xs |
-| Menu Item | padding.bottom | 4 | space.2xs |
-| Menu Item/Leading Icon | fill[0] | #0c0d0e | interactive.neutral.foreground.default |
-| Menu Item/Label | padding.left | 4 | space.2xs |
-| Menu Item/Label | padding.right | 24 | space.xl |
-| Menu Item/Label/Label | fill[0] | #0c0d0e | interactive.neutral.foreground.default |
-| Menu Item/Label/Label | fontSize | 14 | label.medium.font size |
-| Menu Item/Label/Label | lineHeight | 20 | label.medium.line height |
-| Menu Item/Label/Label | letterSpacing | 0 | label.medium.letter spacing |
+| Layer                  | Field          | Raw       | Token                                  |
+| ---------------------- | -------------- | --------- | -------------------------------------- |
+| Menu Item              | height         | 40        | control.md                             |
+| Menu Item              | fill[0]        | #0c0d0e00 | interactive.ghost.background.default   |
+| Menu Item              | cornerRadius   | 0         | radius.none                            |
+| Menu Item              | itemSpacing    | 8         | space.sm                               |
+| Menu Item              | padding.left   | 12        | space.md                               |
+| Menu Item              | padding.right  | 12        | space.md                               |
+| Menu Item              | padding.top    | 4         | space.2xs                              |
+| Menu Item              | padding.bottom | 4         | space.2xs                              |
+| Menu Item/Leading Icon | fill[0]        | #0c0d0e   | interactive.neutral.foreground.default |
+| Menu Item/Label        | padding.left   | 4         | space.2xs                              |
+| Menu Item/Label        | padding.right  | 24        | space.xl                               |
+| Menu Item/Label/Label  | fill[0]        | #0c0d0e   | interactive.neutral.foreground.default |
+| Menu Item/Label/Label  | fontSize       | 14        | label.medium.font size                 |
+| Menu Item/Label/Label  | lineHeight     | 20        | label.medium.line height               |
+| Menu Item/Label/Label  | letterSpacing  | 0         | label.medium.letter spacing            |
 
 ### Token changes by property
 
-| Property | Value | Layer | Field | Token |
-| --- | --- | --- | --- | --- |
-| State | hover | Menu Item | fill[0] | interactive.ghost.background.hover |
-| State | selected | Menu Item | fill[0] | interactive.ghost.background.selected |
-| State | selected | Menu Item/Leading Icon | fill[0] | foreground.primary |
-| State | selected | Menu Item/Label/Label | fill[0] | foreground.primary |
-| State | focus | Menu Item | fill[0] | interactive.ghost.background.focused |
-| State | focus | Menu Item | stroke[0] | border.focus |
-| State | focus | Menu Item | strokeWeight | stroke.thin |
-| State | selected focus | Menu Item | fill[0] | interactive.ghost.background.selected |
-| State | selected focus | Menu Item | stroke[0] | border.focus |
-| State | selected focus | Menu Item | strokeWeight | stroke.thin |
-| State | disabled | Menu Item | fill[0] | interactive.ghost.background.disabled |
-| State | disabled | Menu Item/Leading Icon | fill[0] | interactive.neutral.foreground.disabled |
-| State | disabled | Menu Item/Label/Label | fill[0] | interactive.neutral.foreground.disabled |
-| Type | checkbox | Menu Item | itemSpacing | — |
-| Type | checkbox | Menu Item | padding.left | — |
-| Type | checkbox | Menu Item/Leading Icon | fill[0] | — |
-| Type | radio | Menu Item | itemSpacing | — |
-| Type | radio | Menu Item | padding.left | — |
-| Type | radio | Menu Item/Leading Icon | fill[0] | — |
-| Type | radio | Menu Item/Leading Icon | cornerRadius | radius.none |
-| Type | custom | Menu Item/Leading Icon | fill[0] | — |
-| Rounded | true | Menu Item | cornerRadius | radius.sm |
+| Property | Value          | Layer                  | Field        | Token                                   |
+| -------- | -------------- | ---------------------- | ------------ | --------------------------------------- |
+| State    | hover          | Menu Item              | fill[0]      | interactive.ghost.background.hover      |
+| State    | selected       | Menu Item              | fill[0]      | interactive.ghost.background.selected   |
+| State    | selected       | Menu Item/Leading Icon | fill[0]      | foreground.primary                      |
+| State    | selected       | Menu Item/Label/Label  | fill[0]      | foreground.primary                      |
+| State    | focus          | Menu Item              | fill[0]      | interactive.ghost.background.focused    |
+| State    | focus          | Menu Item              | stroke[0]    | border.focus                            |
+| State    | focus          | Menu Item              | strokeWeight | stroke.thin                             |
+| State    | selected focus | Menu Item              | fill[0]      | interactive.ghost.background.selected   |
+| State    | selected focus | Menu Item              | stroke[0]    | border.focus                            |
+| State    | selected focus | Menu Item              | strokeWeight | stroke.thin                             |
+| State    | disabled       | Menu Item              | fill[0]      | interactive.ghost.background.disabled   |
+| State    | disabled       | Menu Item/Leading Icon | fill[0]      | interactive.neutral.foreground.disabled |
+| State    | disabled       | Menu Item/Label/Label  | fill[0]      | interactive.neutral.foreground.disabled |
+| Type     | checkbox       | Menu Item              | itemSpacing  | —                                       |
+| Type     | checkbox       | Menu Item              | padding.left | —                                       |
+| Type     | checkbox       | Menu Item/Leading Icon | fill[0]      | —                                       |
+| Type     | radio          | Menu Item              | itemSpacing  | —                                       |
+| Type     | radio          | Menu Item              | padding.left | —                                       |
+| Type     | radio          | Menu Item/Leading Icon | fill[0]      | —                                       |
+| Type     | radio          | Menu Item/Leading Icon | cornerRadius | radius.none                             |
+| Type     | custom         | Menu Item/Leading Icon | fill[0]      | —                                       |
+| Rounded  | true           | Menu Item              | cornerRadius | radius.sm                               |
 
 ## Dropdown Menu
 
@@ -207,37 +209,37 @@ The surface a dropdown opens onto, a floating panel holding a list of Menu Item 
 
 ### Property Breakdown
 
-| Property | Type | Default | Description |
-| --- | --- | --- | --- |
-| Rounded | false | true | Square corners, for a panel sitting against surfaces and inputs that are also square. The rows inside square off with it. |
-| Rounded | true | - | Softened corners, for a panel that should read as a floating object rather than part of the surface beneath. The rows round with it, so panel and contents stay in agreement. |
-| Compact | false | true | The default inset. Use it unless the menu has to fit a rail that cannot spare the room. |
-| Compact | true | - | Tightens the inset for a cramped rail. A long list then reads as one dense block. |
-| More Items | true | true | Shows the slot below the two built-in rows, which is where the rest of the menu goes. |
-| More Items | false | - | Hides the slot along with everything placed in it, leaving only the two built-in rows. Fine for a deliberately short menu, but it will also hide content someone else added. |
+| Property   | Type  | Default | Description                                                                                                                                                                   |
+| ---------- | ----- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Rounded    | false | true    | Square corners, for a panel sitting against surfaces and inputs that are also square. The rows inside square off with it.                                                     |
+| Rounded    | true  | -       | Softened corners, for a panel that should read as a floating object rather than part of the surface beneath. The rows round with it, so panel and contents stay in agreement. |
+| Compact    | false | true    | The default inset. Use it unless the menu has to fit a rail that cannot spare the room.                                                                                       |
+| Compact    | true  | -       | Tightens the inset for a cramped rail. A long list then reads as one dense block.                                                                                             |
+| More Items | true  | true    | Shows the slot below the two built-in rows, which is where the rest of the menu goes.                                                                                         |
+| More Items | false | -       | Hides the slot along with everything placed in it, leaving only the two built-in rows. Fine for a deliberately short menu, but it will also hide content someone else added.  |
 
 ### States & Triggers
 
-| State | Trigger | Duration | What changes |
-| --- | --- | --- | --- |
-| Static | — | — | The panel has no interaction states of its own. Hover, selection, focus and disabled all live on the Menu Item rows inside it, so the menu never changes appearance on its own. |
+| State  | Trigger | Duration | What changes                                                                                                                                                                    |
+| ------ | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Static | —       | —        | The panel has no interaction states of its own. Hover, selection, focus and disabled all live on the Menu Item rows inside it, so the menu never changes appearance on its own. |
 
 ### Behavior & Motion Intent
 
-| Type | Description |
-| --- | --- |
-| Motion | No transition is defined. Opening and closing is driven by the Dropdown Template's Open property, which is a variant switch rather than something that animates here. |
+| Type      | Description                                                                                                                                                                   |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Motion    | No transition is defined. Opening and closing is driven by the Dropdown Template's Open property, which is a variant switch rather than something that animates here.         |
 | Elevation | The panel carries the Shadow/medium style, two stacked drop shadows. That is the only thing separating it from the surface beneath, and it does not change with any property. |
-| Reflow | Both axes hug their content, so the panel grows with the number and width of the rows placed in it. A long label widens the whole menu rather than wrapping inside a row. |
+| Reflow    | Both axes hug their content, so the panel grows with the number and width of the rows placed in it. A long label widens the whole menu rather than wrapping inside a row.     |
 
 ### Content & Slot
 
-| Property | Type | Description |
-| --- | --- | --- |
-| Slot Container | slot, holds Menu Item | Where the rest of the menu goes, below the two built-in rows. It takes two Menu Item instances by default. See the Menu Item Metadata frame. Figma only: the default variant stores its slot content separately from the other three, so content placed there does not carry when Rounded or Compact changes. |
-| Built-in rows | fixed nested instances | Two Menu Item instances above the slot, pinned to the menu's own Rounded value. Neither is a slot, so changing them means overriding the nested instance. |
-| Leading icon on a row | exposed nested Icon | Every Menu Item leaves its leading Icon exposed, so the glyph is reachable from the menu without detaching. See the Icon Metadata frame. |
-| Row count | not constrained | Nothing caps how many rows the slot holds. The panel neither scrolls nor limits its height, so a menu long enough to run past the viewport is a design decision rather than one the component prevents. |
+| Property              | Type                   | Description                                                                                                                                                                                                                                                                                                   |
+| --------------------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Slot Container        | slot, holds Menu Item  | Where the rest of the menu goes, below the two built-in rows. It takes two Menu Item instances by default. See the Menu Item Metadata frame. Figma only: the default variant stores its slot content separately from the other three, so content placed there does not carry when Rounded or Compact changes. |
+| Built-in rows         | fixed nested instances | Two Menu Item instances above the slot, pinned to the menu's own Rounded value. Neither is a slot, so changing them means overriding the nested instance.                                                                                                                                                     |
+| Leading icon on a row | exposed nested Icon    | Every Menu Item leaves its leading Icon exposed, so the glyph is reachable from the menu without detaching. See the Icon Metadata frame.                                                                                                                                                                      |
+| Row count             | not constrained        | Nothing caps how many rows the slot holds. The panel neither scrolls nor limits its height, so a menu long enough to run past the viewport is a design decision rather than one the component prevents.                                                                                                       |
 
 ### Anatomy
 
@@ -248,10 +250,12 @@ The surface a dropdown opens onto, a floating panel holding a list of Menu Item 
 ### How to use
 
 **Do:**
+
 - Place the menu through the Dropdown Template so its position relative to a trigger comes from a property rather than manual nudging.
 - Keep Rounded consistent with the surfaces around it. The rows inherit the choice, so the panel and its contents stay in agreement.
 
 **Don't:**
+
 - Don't fill the slot and then switch Rounded. Each Rounded variant holds that slot's content separately, so the content will not come with you.
 - Don't add a background or shadow behind the menu. It already carries its own surface and elevation, and a second one reads as two stacked panels.
 
@@ -264,14 +268,14 @@ The surface a dropdown opens onto, a floating panel holding a list of Menu Item 
 
 ### Layout & Theming Intents
 
-| Property | Type | Description |
-| --- | --- | --- |
-| Size | Hug on both axes | 213×196px at the default density and 201×184px when Compact is true, growing with whatever is placed inside. There is no fixed width, so the longest row sets the panel width. |
-| Padding | Fixed | space/card on all four sides, dropping to space/xs when Compact is true. |
-| Gap | Fixed | space/2xs between rows, both in the built-in stack and inside the slot. The panel's own item spacing is space/3xs, or none when Compact is true, but it holds a single content frame so that spacing never shows. |
-| Radius | Fixed per Rounded | radius/none when Rounded is false, radius/element-md when true. The rows inside take radius/none and radius/sm respectively, a lighter step than the panel itself. |
-| Elevation | Fixed | The Shadow/medium effect style, two stacked drop shadows. Applied to the panel only and unchanged by any property. |
-| Colour | Theming | The panel is surface/menu and binds nothing else. Every other colour in the menu comes from the rows. |
+| Property  | Type              | Description                                                                                                                                                                                                       |
+| --------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Size      | Hug on both axes  | 213×196px at the default density and 201×184px when Compact is true, growing with whatever is placed inside. There is no fixed width, so the longest row sets the panel width.                                    |
+| Padding   | Fixed             | space/card on all four sides, dropping to space/xs when Compact is true.                                                                                                                                          |
+| Gap       | Fixed             | space/2xs between rows, both in the built-in stack and inside the slot. The panel's own item spacing is space/3xs, or none when Compact is true, but it holds a single content frame so that spacing never shows. |
+| Radius    | Fixed per Rounded | radius/none when Rounded is false, radius/element-md when true. The rows inside take radius/none and radius/sm respectively, a lighter step than the panel itself.                                                |
+| Elevation | Fixed             | The Shadow/medium effect style, two stacked drop shadows. Applied to the panel only and unchanged by any property.                                                                                                |
+| Colour    | Theming           | The panel is surface/menu and binds nothing else. Every other colour in the menu comes from the rows.                                                                                                             |
 
 ### Layer structure
 
@@ -283,46 +287,46 @@ The surface a dropdown opens onto, a floating panel holding a list of Menu Item 
 
 ### Resolved tokens (default variant: Rounded=false, Compact=false)
 
-| Layer | Field | Raw | Token |
-| --- | --- | --- | --- |
-| Dropdown Menu | fill[0] | #ffffff | surface.overlay |
-| Dropdown Menu | cornerRadius | 0 | radius.none |
-| Dropdown Menu | itemSpacing | 2 | space.3xs |
-| Dropdown Menu | padding.left | 12 | space.card |
-| Dropdown Menu | padding.right | 12 | space.card |
-| Dropdown Menu | padding.top | 12 | space.card |
-| Dropdown Menu | padding.bottom | 12 | space.card |
-| Dropdown Menu/Content | itemSpacing | 4 | space.2xs |
-| Dropdown Menu/Content/Menu Item[1] | height | 40 | control.md |
-| Dropdown Menu/Content/Menu Item[1] | fill[0] | #0c0d0e00 | interactive.ghost.background.default |
-| Dropdown Menu/Content/Menu Item[1] | cornerRadius | 0 | radius.none |
-| Dropdown Menu/Content/Menu Item[1] | itemSpacing | 8 | space.sm |
-| Dropdown Menu/Content/Menu Item[1] | padding.left | 12 | space.md |
-| Dropdown Menu/Content/Menu Item[1] | padding.right | 12 | space.md |
-| Dropdown Menu/Content/Menu Item[1] | padding.top | 4 | space.2xs |
-| Dropdown Menu/Content/Menu Item[1] | padding.bottom | 4 | space.2xs |
-| Dropdown Menu/Content/Menu Item[2] | height | 40 | control.md |
-| Dropdown Menu/Content/Menu Item[2] | fill[0] | #0c0d0e00 | interactive.ghost.background.default |
-| Dropdown Menu/Content/Menu Item[2] | cornerRadius | 0 | radius.none |
-| Dropdown Menu/Content/Menu Item[2] | itemSpacing | 8 | space.sm |
-| Dropdown Menu/Content/Menu Item[2] | padding.left | 12 | space.md |
-| Dropdown Menu/Content/Menu Item[2] | padding.right | 12 | space.md |
-| Dropdown Menu/Content/Menu Item[2] | padding.top | 4 | space.2xs |
-| Dropdown Menu/Content/Menu Item[2] | padding.bottom | 4 | space.2xs |
-| Dropdown Menu/Content/Slot Container | itemSpacing | 4 | space.2xs |
+| Layer                                | Field          | Raw       | Token                                |
+| ------------------------------------ | -------------- | --------- | ------------------------------------ |
+| Dropdown Menu                        | fill[0]        | #ffffff   | surface.overlay                      |
+| Dropdown Menu                        | cornerRadius   | 0         | radius.none                          |
+| Dropdown Menu                        | itemSpacing    | 2         | space.3xs                            |
+| Dropdown Menu                        | padding.left   | 12        | space.card                           |
+| Dropdown Menu                        | padding.right  | 12        | space.card                           |
+| Dropdown Menu                        | padding.top    | 12        | space.card                           |
+| Dropdown Menu                        | padding.bottom | 12        | space.card                           |
+| Dropdown Menu/Content                | itemSpacing    | 4         | space.2xs                            |
+| Dropdown Menu/Content/Menu Item[1]   | height         | 40        | control.md                           |
+| Dropdown Menu/Content/Menu Item[1]   | fill[0]        | #0c0d0e00 | interactive.ghost.background.default |
+| Dropdown Menu/Content/Menu Item[1]   | cornerRadius   | 0         | radius.none                          |
+| Dropdown Menu/Content/Menu Item[1]   | itemSpacing    | 8         | space.sm                             |
+| Dropdown Menu/Content/Menu Item[1]   | padding.left   | 12        | space.md                             |
+| Dropdown Menu/Content/Menu Item[1]   | padding.right  | 12        | space.md                             |
+| Dropdown Menu/Content/Menu Item[1]   | padding.top    | 4         | space.2xs                            |
+| Dropdown Menu/Content/Menu Item[1]   | padding.bottom | 4         | space.2xs                            |
+| Dropdown Menu/Content/Menu Item[2]   | height         | 40        | control.md                           |
+| Dropdown Menu/Content/Menu Item[2]   | fill[0]        | #0c0d0e00 | interactive.ghost.background.default |
+| Dropdown Menu/Content/Menu Item[2]   | cornerRadius   | 0         | radius.none                          |
+| Dropdown Menu/Content/Menu Item[2]   | itemSpacing    | 8         | space.sm                             |
+| Dropdown Menu/Content/Menu Item[2]   | padding.left   | 12        | space.md                             |
+| Dropdown Menu/Content/Menu Item[2]   | padding.right  | 12        | space.md                             |
+| Dropdown Menu/Content/Menu Item[2]   | padding.top    | 4         | space.2xs                            |
+| Dropdown Menu/Content/Menu Item[2]   | padding.bottom | 4         | space.2xs                            |
+| Dropdown Menu/Content/Slot Container | itemSpacing    | 4         | space.2xs                            |
 
 ### Token changes by property
 
-| Property | Value | Layer | Field | Token |
-| --- | --- | --- | --- | --- |
-| Rounded | true | Dropdown Menu | cornerRadius | radius.element-md |
-| Rounded | true | Dropdown Menu/Content/Menu Item[1] | cornerRadius | radius.sm |
-| Rounded | true | Dropdown Menu/Content/Menu Item[2] | cornerRadius | radius.sm |
-| Compact | true | Dropdown Menu | itemSpacing | — |
-| Compact | true | Dropdown Menu | padding.left | space.xs |
-| Compact | true | Dropdown Menu | padding.right | space.xs |
-| Compact | true | Dropdown Menu | padding.top | space.xs |
-| Compact | true | Dropdown Menu | padding.bottom | space.xs |
+| Property | Value | Layer                              | Field          | Token             |
+| -------- | ----- | ---------------------------------- | -------------- | ----------------- |
+| Rounded  | true  | Dropdown Menu                      | cornerRadius   | radius.element-md |
+| Rounded  | true  | Dropdown Menu/Content/Menu Item[1] | cornerRadius   | radius.sm         |
+| Rounded  | true  | Dropdown Menu/Content/Menu Item[2] | cornerRadius   | radius.sm         |
+| Compact  | true  | Dropdown Menu                      | itemSpacing    | —                 |
+| Compact  | true  | Dropdown Menu                      | padding.left   | space.xs          |
+| Compact  | true  | Dropdown Menu                      | padding.right  | space.xs          |
+| Compact  | true  | Dropdown Menu                      | padding.top    | space.xs          |
+| Compact  | true  | Dropdown Menu                      | padding.bottom | space.xs          |
 
 ## Dropdown Template (documentation only)
 
@@ -334,27 +338,27 @@ A pattern rather than a component, pairing a trigger with a Dropdown Menu and pl
 
 ### Property Breakdown
 
-| Property | Type | Default | Description |
-| --- | --- | --- | --- |
-| Open | false | true | The resting state, trigger only. The menu is still present but hidden, so anything placed in it is kept. |
-| Open | true | - | Reveals the menu. Only one closed variant is built, so Position and Align have no effect until Open is true. |
-| Position | bottom | true | Opens below the trigger. The default, and the right choice unless the trigger sits low in the viewport. |
-| Position | top | - | Opens above the trigger, for a trigger near the bottom of the view. |
-| Position | right | - | Opens to the trailing side, for a trigger in a narrow column or a side rail. |
-| Position | left | - | Opens to the leading side, for a trigger near the trailing edge of the view. |
-| Align | left | true | With Position bottom or top, lines the menu's leading edge up with the trigger's. |
-| Align | right | - | With Position bottom or top, lines the trailing edges up instead, for a trigger near the trailing edge. |
-| Align | top | - | With Position left or right, lines the top edges up. It has no effect while Position is bottom or top. |
-| Align | bottom | - | With Position left or right, lines the bottom edges up. It has no effect while Position is bottom or top. |
-| Trigger Component | instance swap | Button | The control the menu opens from. Button and Icon Button are the suggested options, and the instance stays exposed so the trigger's own label and flavour remain editable. |
+| Property          | Type          | Default | Description                                                                                                                                                               |
+| ----------------- | ------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Open              | false         | true    | The resting state, trigger only. The menu is still present but hidden, so anything placed in it is kept.                                                                  |
+| Open              | true          | -       | Reveals the menu. Only one closed variant is built, so Position and Align have no effect until Open is true.                                                              |
+| Position          | bottom        | true    | Opens below the trigger. The default, and the right choice unless the trigger sits low in the viewport.                                                                   |
+| Position          | top           | -       | Opens above the trigger, for a trigger near the bottom of the view.                                                                                                       |
+| Position          | right         | -       | Opens to the trailing side, for a trigger in a narrow column or a side rail.                                                                                              |
+| Position          | left          | -       | Opens to the leading side, for a trigger near the trailing edge of the view.                                                                                              |
+| Align             | left          | true    | With Position bottom or top, lines the menu's leading edge up with the trigger's.                                                                                         |
+| Align             | right         | -       | With Position bottom or top, lines the trailing edges up instead, for a trigger near the trailing edge.                                                                   |
+| Align             | top           | -       | With Position left or right, lines the top edges up. It has no effect while Position is bottom or top.                                                                    |
+| Align             | bottom        | -       | With Position left or right, lines the bottom edges up. It has no effect while Position is bottom or top.                                                                 |
+| Trigger Component | instance swap | Button  | The control the menu opens from. Button and Icon Button are the suggested options, and the instance stays exposed so the trigger's own label and flavour remain editable. |
 
 ### Content & Slot
 
-| Property | Type | Description |
-| --- | --- | --- |
+| Property          | Type                                         | Description                                                                                                                                                                     |
+| ----------------- | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Trigger Component | instance swap, prefers Button or Icon Button | The control the menu opens from. Swap it through the property rather than replacing the layer, and the instance stays exposed so the trigger's own properties remain reachable. |
-| Dropdown Menu | exposed nested instance | The panel itself, pinned to Rounded=true. Exposed, so its More Items toggle and its slot are reachable from the template. See the Dropdown Menu Metadata frame. |
-| Menu content | through the nested menu | Rows go into the menu's slot, not into the template. The template surfaces the Rounded=true slot, so anything placed here belongs to that variant of the menu. |
+| Dropdown Menu     | exposed nested instance                      | The panel itself, pinned to Rounded=true. Exposed, so its More Items toggle and its slot are reachable from the template. See the Dropdown Menu Metadata frame.                 |
+| Menu content      | through the nested menu                      | Rows go into the menu's slot, not into the template. The template surfaces the Rounded=true slot, so anything placed here belongs to that variant of the menu.                  |
 
 ### Accessibility & Content Guidelines
 
@@ -365,9 +369,9 @@ A pattern rather than a component, pairing a trigger with a Dropdown Menu and pl
 
 ### Layout & Theming Intents
 
-| Property | Type | Description |
-| --- | --- | --- |
-| Bounds | Hug the trigger only | 76×36px, the size of its trigger. The menu is absolutely positioned and sits outside those bounds, so a layout containing this pattern reserves no space for the open menu. |
-| Offset | Fixed | The menu clears the trigger by 8px on whichever side Position selects. |
-| Alignment | Fixed per Align | Align pins opposite edges together. With Position bottom or top the menu's leading or trailing edge lines up with the trigger's, with Position left or right its top or bottom edge does. |
-| Fill and elevation | None on the template | The template paints nothing of its own. The surface and the shadow both belong to the menu. |
+| Property           | Type                 | Description                                                                                                                                                                               |
+| ------------------ | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Bounds             | Hug the trigger only | 76×36px, the size of its trigger. The menu is absolutely positioned and sits outside those bounds, so a layout containing this pattern reserves no space for the open menu.               |
+| Offset             | Fixed                | The menu clears the trigger by 8px on whichever side Position selects.                                                                                                                    |
+| Alignment          | Fixed per Align      | Align pins opposite edges together. With Position bottom or top the menu's leading or trailing edge lines up with the trigger's, with Position left or right its top or bottom edge does. |
+| Fill and elevation | None on the template | The template paints nothing of its own. The surface and the shadow both belong to the menu.                                                                                               |
