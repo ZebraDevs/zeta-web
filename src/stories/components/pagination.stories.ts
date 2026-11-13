@@ -33,5 +33,5 @@ const meta: Meta<PaginationStory> = {
 export default meta;
 
 export const Pagination: StoryObj<PaginationStory> = {
-  render: ({ onpagechange, ...args }) => html`<zeta-pagination @page-change=${onpagechange} ${spread(args)}></zeta-pagination>`
+  render: ({ onpagechange, ...args }) => html`<zeta-pagination @pagechange=${onpagechange} ${spread(args)}></zeta-pagination>`
 };
