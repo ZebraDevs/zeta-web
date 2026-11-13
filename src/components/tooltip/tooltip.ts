@@ -5,17 +5,33 @@ import { Contourable } from "../../mixins/mixins.js";
 
 /** Tooltips display informative text when users hover over, focus on, or tap an element.
  *
- * @slot - Pass in text or an icon. If using an icon, `<zeta-icon>` is recommended.
+ * The tooltip only draws the bubble. Showing, hiding and positioning belong to whatever owns the trigger.
+ * To float it, add the native `popover` attribute (e.g. `popover="manual"`), call `showPopover()`/`hidePopover()`,
+ * and place it with inline `left`/`top` (or CSS anchor positioning). It fades in while sliding toward the trigger,
+ * fades out on close, and does not move under `prefers-reduced-motion`.
  *
- * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21816-222
+ * It has `role="tooltip"`. When it only repeats text that is already visible (e.g. a truncated table cell),
+ * set `aria-hidden="true"` on it so assistive technology does not announce it twice.
+ *
+ * @slot - The label. Keep it to a short run of text. An icon (`<zeta-icon>`) is still supported for backwards compatibility.
+ *
+ * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=5508-57
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-tooltip--docs
  */
 @customElement("zeta-tooltip")
 export class ZetaTooltip extends Contourable(LitElement) {
-  /** Position of the tooltip. */
+  /**
+   * The edge the pointer sits on, which is the edge facing the trigger. `bottom` places the bubble above its trigger,
+   * `top` below, `left` to the right and `right` to the left.
+   */
   @property({ type: String, reflect: true }) point: "left" | "right" | "top" | "bottom" = "bottom";
 
-  static styles = [styles, super.styles ?? []];
+  static styles = [super.styles ?? [], styles];
+
+  constructor() {
+    super();
+    this.attachInternals().role = "tooltip";
+  }
 
   protected render() {
     return html`

@@ -1,44 +1,79 @@
 import { customElement, property } from "lit/decorators.js";
 import styles from "./pagination.styles.js";
-import { html, LitElement } from "lit";
-import { classMap } from "lit/directives/class-map.js";
+import { html, LitElement, nothing } from "lit";
+import { ifDefined } from "lit/directives/if-defined.js";
 import { Contourable } from "../../mixins/mixins.js";
 import { ZetaPageEvent } from "../../events.js";
-import "../button/icon-button/icon-button.js";
+import { msg, str } from "@lit/localize";
 import "../icon/icon.js";
 
-/** Buttons or a dropdown for navigating between pages.
+/** Buttons for navigating between pages.
  *
- *  @event {CustomEvent<ZetaPageEventDetail>} pageChange - Fired when page change. Contains a single value in details: `page: number`.
+ * The current page is exposed to assistive technology with `aria-current="page"`.
  *
- * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-24&node-type=canvas&m=dev
+ * @event {CustomEvent<ZetaPageEventDetail>} pagechange - Fired when the user picks a different page. Bubbles and is composed. `detail: { page: number }`.
+ * @event {CustomEvent<ZetaPageEventDetail>} pageChange - Deprecated: listen for `pagechange` instead. Fired alongside `pagechange` with the same detail.
+ *
+ * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=4489-1925&m=dev
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-pagination--docs
  */
+
+/** Boolean attribute converter for properties that default to `true`: only `="false"` turns them off. */
+const booleanDefaultTrue = {
+  fromAttribute: (value: string | null) => value !== "false",
+  toAttribute: (value: boolean) => (value ? "" : "false")
+};
 
 @customElement("zeta-pagination")
 export class ZetaPagination extends Contourable(LitElement) {
   static styles = [super.styles || [], styles];
 
-  /** Total number of pages. */
+  /** Total number of pages. Attribute: `totalpages`. */
   @property({ type: Number }) totalPages = 10;
 
   /** Number of pages on both sides of current active page. */
   @property({ type: Number }) siblingCount = 1;
 
-  /** Current active page. */
+  /**
+   * Whether every control and page indicator renders with a visible border.
+   *
+   * Applies to the whole bar at once; there is no per-control override.
+   *
+   * @defaultValue false
+   */
+  @property({ type: Boolean, reflect: true }) outline = false;
+
+  /**
+   * Whether the First Page, Chevron Left, Chevron Right and Last Page jump controls are shown as a group.
+   *
+   * Set to `false` (or the attribute `showcontrols="false"`) to hide all four jump controls at once, leaving only direct page number navigation.
+   *
+   * @defaultValue true
+   */
+  @property({ converter: booleanDefaultTrue }) showControls = true;
+
+  /**
+   * Whether the overflow ("...") control is shown when the page range doesn't fit in full.
+   *
+   * Set to `false` (or the attribute `showmore="false"`) to always render the full range of page numbers without ever collapsing it behind an overflow control.
+   *
+   * @defaultValue true
+   */
+  @property({ converter: booleanDefaultTrue }) showMore = true;
+
+  /**
+   * Current active page, clamped to `1`–`totalPages`. Attribute: `currentpage`.
+   *
+   * Setting it programmatically does not fire `pagechange`.
+   */
   @property({ type: Number })
   get currentPage() {
-    return this.page;
+    // Clamp on read, so attribute order (`currentpage` before `totalpages`) and later `totalPages` changes don't matter.
+    return Math.max(1, Math.min(this.page, this.totalPages));
   }
 
   set currentPage(page: number) {
-    if (page >= this.totalPages) {
-      this.page = this.totalPages;
-    } else if (page <= 1) {
-      this.page = 1;
-    } else {
-      this.page = page;
-    }
+    this.page = Number.isFinite(page) ? page : 1;
   }
 
   private range = (start: number, end: number) => {
@@ -46,17 +81,22 @@ export class ZetaPagination extends Contourable(LitElement) {
     return Array.from({ length }, (_, idx) => idx + start);
   };
 
-  /**
-   * @fires ZetaPageEvent:pageChange
-   */
   private handlePageChange = (page: number) => {
+    if (page === this.currentPage) return;
     this.currentPage = page;
-    this.dispatchEvent(new ZetaPageEvent({ page }).toEvent());
+    const event = new ZetaPageEvent({ page });
+    this.dispatchEvent(event.toEvent());
+    event.name = "pagechange";
+    this.dispatchEvent(event.toEvent());
   };
 
   private page = 1;
 
   private result = () => {
+    if (!this.showMore) {
+      return this.range(1, this.totalPages);
+    }
+
     const leftSiblingIndex = Math.max(this.currentPage - this.siblingCount, 1);
     const rightSiblingIndex = Math.min(this.currentPage + this.siblingCount, this.totalPages);
     const shouldShowLeftDots = leftSiblingIndex > 2;
@@ -64,7 +104,10 @@ export class ZetaPagination extends Contourable(LitElement) {
     const firstPageIndex = 1;
     const lastPageIndex = this.totalPages;
 
-    if (this.siblingCount + 5 >= this.totalPages) {
+    // The branches below show `3 + 2 * siblingCount` consecutive pages next to the one remaining
+    // boundary page. If that count reaches totalPages, range() would generate pages past the end
+    // (or below 1) and duplicate the boundary page, so fall back to the full range instead.
+    if (3 + 2 * this.siblingCount >= this.totalPages) {
       return this.range(1, this.totalPages);
     }
 
@@ -88,41 +131,43 @@ export class ZetaPagination extends Contourable(LitElement) {
     return this.range(1, this.totalPages);
   };
 
-  getIconButton(iconName: string, pageNumber: number, disabled: boolean) {
-    // TODO: need to migrate away from icon button, the icon colour and size is now incorrect on the text flavour
-    return html`<zeta-icon-button
-      class=${iconName}
-      .disabled=${disabled}
-      shape=${this.rounded ? "rounded" : "sharp"}
-      @click=${() => this.handlePageChange(pageNumber)}
-      flavor="text"
-      size="small"
-    >
-      ${iconName}
-    </zeta-icon-button>`;
+  private control(icon: string, label: string, page: number, disabled: boolean) {
+    return html`<button type="button" class="control ${icon}" aria-label=${label} ?disabled=${disabled} @click=${() => this.handlePageChange(page)}>
+      <zeta-icon>${icon}</zeta-icon>
+    </button>`;
   }
 
   protected render() {
-    const disabledLeftControl = this.currentPage === 1;
-    const disabledRightControl = this.currentPage === this.totalPages;
-    const result = this.result();
+    const current = this.currentPage;
+    const atStart = current === 1;
+    const atEnd = current === this.totalPages;
 
     return html`
-      <div class="pagination">
-        ${this.getIconButton("first_page", 1, disabledLeftControl)} ${this.getIconButton("chevron_left", this.currentPage - 1, disabledLeftControl)}
-        ${result.map(page => {
-          const pageClass = classMap({
-            selected: this.currentPage === page
-          });
-          if (typeof page === "string") {
-            return html`<zeta-icon class="more">more_horizontal</zeta-icon>`;
-          } else {
-            return html` <button @click=${() => this.handlePageChange(page)} class="page ${pageClass}">${page}</button> `;
-          }
-        })}
-        ${this.getIconButton("chevron_right", this.currentPage + 1, disabledRightControl)}
-        ${this.getIconButton("last_page", this.totalPages, disabledRightControl)}
-      </div>
+      <nav class="pagination" aria-label=${msg("Pagination")}>
+        ${
+          this.showControls
+            ? html`${this.control("first_page", msg("First page"), 1, atStart)} ${this.control("chevron_left", msg("Previous page"), current - 1, atStart)}`
+            : nothing
+        }
+        ${this.result().map(page =>
+          typeof page === "string"
+            ? html`<span class="control more" role="img" aria-label=${msg("More pages")}><zeta-icon>more_horizontal</zeta-icon></span>`
+            : html`<button
+                type="button"
+                class="page ${page === current ? "selected" : ""}"
+                aria-label=${msg(str`Page ${page}`)}
+                aria-current=${ifDefined(page === current ? "page" : undefined)}
+                @click=${() => this.handlePageChange(page)}
+              >
+                ${page}
+              </button>`
+        )}
+        ${
+          this.showControls
+            ? html`${this.control("chevron_right", msg("Next page"), current + 1, atEnd)} ${this.control("last_page", msg("Last page"), this.totalPages, atEnd)}`
+            : nothing
+        }
+      </nav>
     `;
   }
 }

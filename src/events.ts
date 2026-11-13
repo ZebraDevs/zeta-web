@@ -146,3 +146,77 @@ export class ZetaStepperChangeEvent extends ZetaEvent<ZetaStepperChangeEventDeta
     super(detail, { bubbles: true, composed: true });
   }
 }
+
+/** The sort direction of a `zeta-table-column`, matching the `aria-sort` values. */
+export type ZetaTableSortDirection = "none" | "ascending" | "descending";
+
+/** The type of the CustomEvent fired when the user sorts a `zeta-table`. */
+export interface ZetaTableSortEventDetail {
+  /** The `zeta-table-column` that was sorted. */
+  column: HTMLElement;
+  /** The new sort direction. */
+  direction: ZetaTableSortDirection;
+}
+/** A CustomEvent factory that creates events when the user sorts a table. */
+export class ZetaTableSortEvent extends ZetaEvent<ZetaTableSortEventDetail> {
+  name: string = "sort";
+  constructor(detail: ZetaTableSortEventDetail) {
+    super(detail, { bubbles: true, composed: true });
+  }
+}
+
+/** The type of the CustomEvent fired when the user filters a `zeta-table` column. */
+export interface ZetaTableFilterEventDetail {
+  /** The `zeta-table-column` that was filtered. */
+  column: HTMLElement;
+  /** The cell values the column is filtered to. Empty when the filter is cleared. */
+  values: string[];
+}
+/** A CustomEvent factory that creates events when the user filters a table column. */
+export class ZetaTableFilterEvent extends ZetaEvent<ZetaTableFilterEventDetail> {
+  name: string = "filter";
+  constructor(detail: ZetaTableFilterEventDetail) {
+    super(detail, { bubbles: true, composed: true });
+  }
+}
+
+/** The type of the CustomEvent fired when the user types in a `zeta-table` search field. */
+export interface ZetaTableSearchEventDetail {
+  /** The search text. */
+  query: string;
+}
+/** A CustomEvent factory that creates events when the user searches a table. */
+export class ZetaTableSearchEvent extends ZetaEvent<ZetaTableSearchEventDetail> {
+  name: string = "search";
+  constructor(detail: ZetaTableSearchEventDetail) {
+    super(detail, { bubbles: true, composed: true });
+  }
+}
+
+/** The type of the CustomEvent fired when the user changes which `zeta-table` rows are selected. */
+export interface ZetaTableRowSelectEventDetail {
+  /** Every selected `zeta-table-row`, on any page. */
+  rows: HTMLElement[];
+}
+/** A CustomEvent factory that creates events when the user selects or deselects table rows. */
+export class ZetaTableRowSelectEvent extends ZetaEvent<ZetaTableRowSelectEventDetail> {
+  name: string = "rowselect";
+  constructor(detail: ZetaTableRowSelectEventDetail) {
+    super(detail, { bubbles: true, composed: true });
+  }
+}
+
+/** The type of the CustomEvent fired when the user changes the page or page size of a `zeta-table`. */
+export interface ZetaTablePageEventDetail {
+  /** The new page, starting at 1. */
+  page: number;
+  /** The number of rows per page. */
+  pageSize: number;
+}
+/** A CustomEvent factory that creates events when the user changes a table's page or rows per page. */
+export class ZetaTablePageEvent extends ZetaEvent<ZetaTablePageEventDetail> {
+  name: string = "pagechange";
+  constructor(detail: ZetaTablePageEventDetail) {
+    super(detail, { bubbles: true, composed: true });
+  }
+}

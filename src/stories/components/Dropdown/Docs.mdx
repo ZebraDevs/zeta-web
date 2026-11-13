@@ -105,10 +105,10 @@ Droppable is used by the dropdown menu button to display the dropdown menu items
     margin: "0 15px",
   }}>
   ```jsx
-    <zeta-droppable rounded=true open=true >
-      <zeta-dropdown-menu-item icon="star" rounded=true > Menu Item </zeta-dropdown-menu-item>
-      <zeta-dropdown-menu-item icon="star" rounded=true > Menu Item </zeta-dropdown-menu-item>
-      <zeta-dropdown-menu-item icon="star" rounded=true > Menu Item </zeta-dropdown-menu-item>
+    <zeta-droppable rounded open role="menu" aria-label="Actions">
+      <zeta-dropdown-menu-item><zeta-icon slot="icon">star</zeta-icon>Menu Item</zeta-dropdown-menu-item>
+      <zeta-dropdown-menu-item type="checkbox" checked>Menu Item</zeta-dropdown-menu-item>
+      <zeta-dropdown-menu-item type="radio">Menu Item</zeta-dropdown-menu-item>
     </zeta-droppable>
   ```
 
@@ -138,12 +138,16 @@ Droppable is used by the dropdown menu button to display the dropdown menu items
   <Story of={DropdownMenuItem.DropdownMenuItem} />
 </div>
 
+Set `type` to `checkbox` or `radio` for a choice: the row leads with a checkbox or radio button and exposes `menuitemcheckbox` / `menuitemradio` with `aria-checked`. Clicking a checkbox row toggles `checked`; clicking a radio row checks it and clears the other radio rows in the same parent. Both fire a bubbling `change` event. Items work in any `role="menu"` container: arrow keys, Home and End move focus between sibling items, and Enter or Space activates. Use the `compact` attribute on `zeta-droppable` for a tighter panel.
+
+<Story of={DropdownMenuItem.DropdownMenuItemTypes} />
+
 <div
   style={{
     margin: "0 15px",
   }}>
   ```jsx
-        <zeta-dropdown-menu-item icon="star" rounded=true disabled=false > Menu Item </zeta-dropdown-menu-item>
+        <zeta-dropdown-menu-item rounded><zeta-icon slot="icon">star</zeta-icon>Menu Item</zeta-dropdown-menu-item>
 
 ```
 
