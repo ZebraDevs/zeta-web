@@ -18,8 +18,10 @@ export default css`
     }
   }
 
+  /* hidden applies at once, like on native elements; only a closing popover fades out. */
   :host([hidden]) {
     display: none;
+    transition: none;
   }
 
   :host(:not([rounded])),

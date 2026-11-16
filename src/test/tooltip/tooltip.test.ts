@@ -3,6 +3,7 @@ import type { ZetaTooltip } from "../../components/tooltip/tooltip.js";
 import "../../components/tooltip/tooltip.js";
 import { contrastTest } from "../accessibility-utils/accessibility-test-runner";
 import { getCssVarColorValue, getCssVarPxValue } from "../utils.js";
+import { emulateMedia } from "@web/test-runner-commands";
 import "../../index.css";
 
 describe("zeta-tooltip", () => {
@@ -119,6 +120,9 @@ describe("zeta-tooltip", () => {
     });
 
     it("hides with the hidden attribute", async () => {
+      // Allow motion and read the style first, so a transition would start: hidden must still apply at once.
+      await emulateMedia({ reducedMotion: "no-preference" });
+      expect(getComputedStyle(subject).display).to.equal("inline-block");
       subject.hidden = true;
       await elementUpdated(subject);
       expect(getComputedStyle(subject).display).to.equal("none");
