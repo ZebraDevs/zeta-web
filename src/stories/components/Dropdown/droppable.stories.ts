@@ -8,14 +8,15 @@ const meta: Meta<ZetaDroppable> = {
   title: "Components/Dropdown",
   args: {
     rounded: true,
-    open: true
+    open: true,
+    compact: false
   },
   argTypes: {
     matchParentWidth: { table: { disable: true } }
   },
   parameters: {
     design: {
-      url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=22391-10146&mode=design&t=DUHsS5bjWB5UW1iG-4"
+      url: "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2666-6863"
     },
     status: {
       type: "ready"
@@ -30,11 +31,11 @@ export const Droppable: StoryObj<ZetaDroppable> = {
     html`<div style="display: flex; align-items: center; gap: 100px; flex-wrap: wrap; ">
       <div>
         <h4>No Items</h4>
-        <zeta-droppable ?rounded=${args.rounded} ?open=${args.open}> </zeta-droppable>
+        <zeta-droppable ?rounded=${args.rounded} ?open=${args.open} ?compact=${args.compact}> </zeta-droppable>
       </div>
       <div>
         <h4>With Dropdown Menu Items</h4>
-        <zeta-droppable ?rounded=${args.rounded} ?open=${args.open}>
+        <zeta-droppable ?rounded=${args.rounded} ?open=${args.open} ?compact=${args.compact} role="menu" aria-label="Menu">
           <zeta-dropdown-menu-item ?rounded=${args.rounded}><zeta-icon slot="icon">star</zeta-icon> Menu Item </zeta-dropdown-menu-item>
           <zeta-dropdown-menu-item ?rounded=${args.rounded}><zeta-icon slot="icon">star</zeta-icon> Menu Item </zeta-dropdown-menu-item>
           <zeta-dropdown-menu-item ?rounded=${args.rounded}><zeta-icon slot="icon">star</zeta-icon> Menu Item </zeta-dropdown-menu-item>

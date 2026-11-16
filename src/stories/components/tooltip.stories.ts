@@ -8,7 +8,7 @@ const meta: Meta<ZetaTooltip> = {
   title: "Components/Tooltip",
   args: {
     point: "bottom",
-    rounded: false,
+    rounded: true,
     slot: "Label"
   },
   argTypes: {
@@ -19,7 +19,7 @@ const meta: Meta<ZetaTooltip> = {
   },
   parameters: {
     design: {
-      url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=21816-222&mode=design&t=DUHsS5bjWB5UW1iG-4"
+      url: "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=5508-57"
     },
     status: {
       type: "ready"

@@ -1,0 +1,39 @@
+import { Canvas, Meta, Description, ArgTypes, Title } from "@storybook/blocks";
+import * as Table from "./table.stories";
+
+<Meta of={Table} title="Table" />
+
+<Title />
+
+# Table
+
+<Description of="zeta-table" />
+<Canvas of={Table.Table} />
+<ArgTypes of="zeta-table" />
+
+## Plain
+
+<Canvas of={Table.Plain} />
+
+## Scrolling and frozen columns
+
+<Canvas of={Table.ScrollingAndFrozen} />
+
+## Manual
+
+<Canvas of={Table.Manual} />
+
+## Column
+
+<Description of="zeta-table-column" />
+<ArgTypes of="zeta-table-column" />
+
+## Row
+
+<Description of="zeta-table-row" />
+<ArgTypes of="zeta-table-row" />
+
+## Cell
+
+<Description of="zeta-table-cell" />
+<ArgTypes of="zeta-table-cell" />

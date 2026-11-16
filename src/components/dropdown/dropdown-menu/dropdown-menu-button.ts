@@ -1,6 +1,6 @@
 import { customElement, eventOptions, property, query, state } from "lit/decorators.js";
 import styles from "./dropdown-menu-button.styles.js";
-import { html, LitElement } from "lit";
+import { html, LitElement, nothing } from "lit";
 import { Contourable, Flavored, Size } from "../../../mixins/mixins.js";
 import { FormField, type ZetaInputType } from "../../../mixins/form-field.js";
 import type { ZetaDroppable } from "../droppable.js";
@@ -37,7 +37,7 @@ export type ZetaDropdownType = Extract<ZetaInputType, "text-dropdown" | "checkbo
  * @event {CustomEvent<ZetaDropdownEventDetail>} close - Fired when the dropdown is closed.
  * @event {InputEvent} input - Fired when the dropdown is closed.
  *
- * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=22391-10146
+ * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2364-5903
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-dropdown--docs
  */
 @customElement("zeta-dropdown-menu-button")
@@ -242,7 +242,13 @@ export class ZetaDropdownMenuButton extends FormField(Contourable(Flavored(Size(
           >chevron_left</zeta-icon
         ></zeta-button
       >
-      <zeta-droppable .anchor=${this.anchor} .direction=${this.direction} .matchParentWidth=${this.matchParentWidth} ?open=${this.open} ?rounded=${this.rounded}
+      <zeta-droppable
+        role=${this.type === "text-dropdown" ? "menu" : nothing}
+        .anchor=${this.anchor}
+        .direction=${this.direction}
+        .matchParentWidth=${this.matchParentWidth}
+        ?open=${this.open}
+        ?rounded=${this.rounded}
         >${this.renderItems()}</zeta-droppable
       >
       ${super.render()}

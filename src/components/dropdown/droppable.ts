@@ -6,13 +6,20 @@ import { Contourable } from "../../mixins/mixins.js";
 
 /** Zeta Droppable is a container that can be opened and closed and can be attached to an anchor which will determine it's position.
  *
- * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=22391-10146
+ * It is the Dropdown Menu panel: a `surface-menu` background with a medium shadow. When holding `zeta-dropdown-menu-item`s, give it `role="menu"` and an accessible name.
+ *
+ * @slot - The menu content, typically `zeta-dropdown-menu-item` elements.
+ *
+ * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2666-6863
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-dropdown--docs
  */
 @customElement("zeta-droppable")
 export class ZetaDroppable extends Contourable(LitElement) {
   /** Controls the open state of the droppable. */
   @property({ type: Boolean, reflect: true }) open: boolean = false;
+
+  /** Tightens the panel padding, for menus with little room to spare such as table menus. */
+  @property({ type: Boolean, reflect: true }) compact: boolean = false;
 
   /** Controls whether the droppable is fit to the width of the anchor */
   @property({ type: Boolean }) matchParentWidth: boolean = false;
@@ -176,7 +183,7 @@ export class ZetaDroppable extends Contourable(LitElement) {
     return nothing;
   }
 
-  static styles = [styles, super.styles || []];
+  static styles = [super.styles ?? [], styles];
 }
 
 declare global {

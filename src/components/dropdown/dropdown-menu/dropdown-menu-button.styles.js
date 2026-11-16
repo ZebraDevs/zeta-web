@@ -6,22 +6,26 @@ export default css`
     -webkit-tap-highlight-color: transparent;
   }
 
+  /* checkbox / radio rows */
   .droppable-item {
-    height: var(--spacing-6xl);
-    padding: 0 var(--spacing-medium);
+    box-sizing: border-box;
+    height: var(--control-md);
+    padding: var(--space-2xs) var(--space-md) var(--space-2xs) var(--space-none);
+    background-color: var(--interactive-ghost-background-default);
+    border-radius: var(--radius-none);
   }
 
   @media (hover: hover), (hover: none) and (pointer: fine) {
-    .droppable-item:hover {
-      background-color: var(--surface-hover);
+    .droppable-item:not([disabled]):not([checked]):hover {
+      background-color: var(--interactive-ghost-background-hover);
     }
   }
 
-  .droppable-item:active {
-    background-color: var(--surface-selected);
+  .droppable-item[checked] {
+    background-color: var(--interactive-ghost-background-selected);
   }
 
   :host([rounded]) .droppable-item {
-    border-radius: var(--radius-minimal);
+    border-radius: var(--radius-sm);
   }
 `;

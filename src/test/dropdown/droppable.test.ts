@@ -3,6 +3,7 @@ import type { ZetaDroppable } from "../../components/dropdown/droppable.js";
 import "../../components/dropdown/droppable.js";
 import "../../components/button/button.js";
 import "../../index.css";
+import { getCssVarColorValue, getCssVarPxValue, getCssVarValue } from "../utils.js";
 
 describe("zeta-droppable", () => {
   let subject: ZetaDroppable;
@@ -104,11 +105,28 @@ describe("zeta-droppable", () => {
   describe("Styling", () => {
     it("sets the correct border radius when rounded is true", async () => {
       subject.rounded = true;
+      subject.open = true;
       await elementUpdated(subject);
 
       const style = getComputedStyle(subject);
 
-      await expect(style.borderRadius).to.equal("4px");
+      await expect(style.borderRadius).to.equal(getCssVarValue(subject, "--radius-element-md"));
+    });
+
+    it("uses the menu surface and card padding", async () => {
+      subject.open = true;
+      await elementUpdated(subject);
+      const style = getComputedStyle(subject);
+      await expect(style.backgroundColor).to.equal(getCssVarColorValue(subject, "--surface-menu"));
+      await expect(parseFloat(style.paddingTop)).to.equal(getCssVarPxValue(subject, "--space-card"));
+      await expect(style.boxShadow).to.not.equal("none");
+    });
+
+    it("tightens the padding when compact", async () => {
+      subject.compact = true;
+      subject.open = true;
+      await elementUpdated(subject);
+      await expect(parseFloat(getComputedStyle(subject).paddingTop)).to.equal(getCssVarPxValue(subject, "--space-xs"));
     });
 
     it("sets the correct border radius when rounded is false", async () => {
