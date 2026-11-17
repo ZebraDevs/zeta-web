@@ -1,0 +1,17 @@
+/**
+ * target primitives extension - overrides only. Use with data-primitives="target".
+ * This file is auto-generated. Do not edit directly.
+ */
+
+[data-primitives="target"] {
+  --color-extend-4-10: #f9e5e5;
+  --color-extend-4-20: #efb2b2;
+  --color-extend-4-30: #e57f7f;
+  --color-extend-4-40: #db4c4c;
+  --color-extend-4-50: #d11919;
+  --color-extend-4-60: #cc0000;
+  --color-extend-4-70: #b70000;
+  --color-extend-4-80: #660000;
+  --color-extend-4-90: #3d0000;
+  --color-extend-4-100: #140000;
+}
