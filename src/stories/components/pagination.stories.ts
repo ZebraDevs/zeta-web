@@ -13,8 +13,8 @@ const meta: Meta<PaginationStory> = {
   args: {
     rounded: false,
     outline: false,
-    showControls: true,
-    showMore: true,
+    hideControls: false,
+    hideMore: false,
     totalPages: 10,
     currentPage: 1,
     siblingCount: 1,

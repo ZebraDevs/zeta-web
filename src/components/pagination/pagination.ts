@@ -36,22 +36,20 @@ export class ZetaPagination extends Contourable(LitElement) {
   @property({ type: Boolean, reflect: true }) outline = false;
 
   /**
-   * Whether the First Page, Chevron Left, Chevron Right and Last Page jump controls are shown as a group.
+   * Hides the First Page, Chevron Left, Chevron Right and Last Page jump controls as a group,
+   * leaving only direct page number navigation.
    *
-   * Set to `false` to hide all four jump controls at once, leaving only direct page number navigation.
-   *
-   * @defaultValue true
+   * @defaultValue false
    */
-  @property({ type: Boolean }) showControls = true;
+  @property({ type: Boolean }) hideControls = false;
 
   /**
-   * Whether the overflow ("...") control is shown when the page range doesn't fit in full.
+   * Hides the overflow ("...") indicator, so the full range of page numbers is always rendered
+   * instead of being collapsed.
    *
-   * Set to `false` to always render the full range of page numbers without ever collapsing it behind an overflow control.
-   *
-   * @defaultValue true
+   * @defaultValue false
    */
-  @property({ type: Boolean }) showMore = true;
+  @property({ type: Boolean }) hideMore = false;
 
   /** Current active page. */
   @property({ type: Number })
@@ -85,7 +83,7 @@ export class ZetaPagination extends Contourable(LitElement) {
   private page = 1;
 
   private result = () => {
-    if (!this.showMore) {
+    if (this.hideMore) {
       return this.range(1, this.totalPages);
     }
 
@@ -96,10 +94,10 @@ export class ZetaPagination extends Contourable(LitElement) {
     const firstPageIndex = 1;
     const lastPageIndex = this.totalPages;
 
-    // The branches below show `3 + 2 * siblingCount` consecutive pages next to the one remaining
-    // boundary page. If that count reaches totalPages, range() would generate pages past the end
-    // (or below 1) and duplicate the boundary page, so fall back to the full range instead.
-    if (3 + 2 * this.siblingCount >= this.totalPages) {
+    // A collapsed layout needs `5 + 2 * siblingCount` slots (pages, siblings, boundary pages and dots).
+    // With fewer pages than that, the dots would hide nothing, or range() would run past the ends
+    // and duplicate a boundary page, so render the full range instead.
+    if (4 + 2 * this.siblingCount >= this.totalPages) {
       return this.range(1, this.totalPages);
     }
 
@@ -144,7 +142,7 @@ export class ZetaPagination extends Contourable(LitElement) {
     return html`
       <div class="pagination">
         ${
-          this.showControls
+          !this.hideControls
             ? html`${this.getIconButton("first_page", 1, disabledLeftControl)} ${this.getIconButton("chevron_left", this.currentPage - 1, disabledLeftControl)}`
             : nothing
         }
@@ -155,11 +153,20 @@ export class ZetaPagination extends Contourable(LitElement) {
           if (typeof page === "string") {
             return html`<zeta-icon class="more" role="img" aria-label=${msg("More pages")} size="small">more_horizontal</zeta-icon>`;
           } else {
-            return html` <button type="button" @click=${() => this.handlePageChange(page)} class="page ${pageClass}">${page}</button> `;
+            return html`
+              <button
+                type="button"
+                aria-current=${this.currentPage === page ? "page" : nothing}
+                @click=${() => this.handlePageChange(page)}
+                class="page ${pageClass}"
+              >
+                ${page}
+              </button>
+            `;
           }
         })}
         ${
-          this.showControls
+          !this.hideControls
             ? html`${this.getIconButton("chevron_right", this.currentPage + 1, disabledRightControl)}
               ${this.getIconButton("last_page", this.totalPages, disabledRightControl)}`
             : nothing

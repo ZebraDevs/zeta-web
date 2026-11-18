@@ -19,6 +19,14 @@ describe("zeta-pagination", () => {
       expect(more).to.have.attribute("aria-label");
     });
 
+    it("marks only the selected page with aria-current", async () => {
+      const el = await fixture<ZetaPagination>(html`<zeta-pagination totalPages="5" currentPage="3"></zeta-pagination>`);
+      const current = el.shadowRoot?.querySelectorAll("button.page[aria-current]");
+      assert.equal(current?.length, 1);
+      expect(current?.[0]).to.have.attribute("aria-current", "page");
+      expect(current?.[0]).to.have.class("selected");
+    });
+
     [false, true].forEach(outline => {
       it(`meets contrast requirements for the selected page, outline=${outline}`, async () => {
         const el = await fixture<ZetaPagination>(html`<zeta-pagination totalPages="5" .outline=${outline}></zeta-pagination>`);
@@ -100,17 +108,27 @@ describe("zeta-pagination", () => {
       );
     });
 
-    it("should hide the overflow control when showMore is false, even if the range would otherwise collapse", async () => {
+    it("should not collapse the range when the dots would hide no pages", async () => {
+      // Regression test: with the default siblingCount=1, totalPages=6 rendered `1 2 3 4 5 … 6`.
       // prettier-ignore
-      const el = await fixture<ZetaPagination>(html`<zeta-pagination totalPages="20" currentPage="10" .showMore=${false}></zeta-pagination>`);
+      const el = await fixture<ZetaPagination>(html`<zeta-pagination totalPages="6" currentPage="1"></zeta-pagination>`);
+      const dots = el.shadowRoot?.querySelectorAll("zeta-icon.more");
+      const pages = el.shadowRoot?.querySelectorAll("button.page");
+      assert.equal(dots?.length, 0);
+      assert.equal(pages?.length, 6);
+    });
+
+    it("should hide the overflow control when hidemore is set, even if the range would otherwise collapse", async () => {
+      // prettier-ignore
+      const el = await fixture<ZetaPagination>(html`<zeta-pagination totalPages="20" currentPage="10" hidemore></zeta-pagination>`);
       const dots = el.shadowRoot?.querySelectorAll("zeta-icon.more");
       const pages = el.shadowRoot?.querySelectorAll("button.page");
       assert.equal(dots?.length, 0);
       assert.equal(pages?.length, 20);
     });
 
-    it("should hide all four jump controls when showControls is false", async () => {
-      const el = await fixture<ZetaPagination>(html`<zeta-pagination .showControls=${false}></zeta-pagination>`);
+    it("should hide all four jump controls when hidecontrols is set", async () => {
+      const el = await fixture<ZetaPagination>(html`<zeta-pagination hidecontrols></zeta-pagination>`);
       const controls = el.shadowRoot?.querySelectorAll("zeta-icon-button");
       assert.equal(controls?.length, 0);
     });
