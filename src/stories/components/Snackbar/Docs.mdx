@@ -25,13 +25,10 @@ import * as Snackbar from "./snackbar.stories";
   }}
 >
   ```jsx
-  <zeta-snackbar status="default" round="full" hasCloseAction actionLabel="Action" actionClick={() => console.log("Action Clicked")}>
-    <zeta-icon slot="icon">happy</zeta-icon>
-    Message
-  </zeta-snackbar>
+  <zeta-snackbar message="Message" status="info" variant="contextual"></zeta-snackbar>
   ```
 </div>
 
-The action button will only be shown if the `actionLabel` and `actionClick` props are provided.
+Contextual snackbars choose their icon and default controls from `status`. The legacy default slot, `actionLabel`, `actionClick`, `hasCloseAction`, and `closeActionIcon` APIs are still supported for existing consumers.
 
 <ArgTypes of="zeta-snackbar" />
