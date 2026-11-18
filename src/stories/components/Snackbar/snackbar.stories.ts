@@ -12,20 +12,24 @@ import { spreadGenerator } from "../../utils.js";
 const spread = spreadGenerator(ZetaSnackbar);
 
 const meta: Meta<ZetaSnackbar & { slotIcon: string }> = {
-  component: "zeta-Snackbar",
+  component: "zeta-snackbar",
   title: "Components/Snackbar",
   args: {
+    message: "Message",
+    variant: "contextual",
+    status: "info",
+    shape: "rounded",
+    showAction: true,
+    showClose: true,
+    showIcon: false,
     slotIcon: "happy",
-    slot: "Message",
-    hasCloseAction: true,
-    actionLabel: "Action",
-    status: "default",
     actionClick: fn(),
+    onaction: fn(),
     onclose: fn()
   },
   parameters: {
     design: {
-      url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=21816-4283&m=dev&t=lGrwQ4pCwYESXz6b-4"
+      url: "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=6551-170&m=dev"
     },
     status: {
       type: "ready"
@@ -38,6 +42,12 @@ const meta: Meta<ZetaSnackbar & { slotIcon: string }> = {
         type: "select"
       }
     },
+    variant: {
+      options: ["contextual", "standard"],
+      control: {
+        type: "inline-radio"
+      }
+    },
     shape: {
       options: ShapeList,
       control: {
@@ -45,7 +55,7 @@ const meta: Meta<ZetaSnackbar & { slotIcon: string }> = {
       }
     },
     status: {
-      options: ["default", "positive", "info", "warning", "negative", "view"],
+      options: ["default", "positive", "info", "warning", "negative", "deletion", "view", "action"],
       control: {
         type: "inline-radio"
       }
@@ -62,8 +72,7 @@ export default meta;
 export const Snackbar: StoryObj<ZetaSnackbar | any> = {
   render: args => html`
     <zeta-snackbar ${spread(args)} .actionClick=${args.actionClick}>
-      <zeta-icon slot="icon">${args.slotIcon}</zeta-icon>
-      ${args.slot}
+      ${args.showIcon ? html`<zeta-icon slot="icon">${args.slotIcon}</zeta-icon>` : null}
     </zeta-snackbar>
 
     <zeta-button
