@@ -269,6 +269,56 @@ describe("zeta-snackbar", () => {
       await MouseActions.click(subject.shadowRoot!.querySelector("#action") as HTMLElement, "left");
       await waitUntil(() => clicked, "Button Action fired", { timeout: 100 });
     });
+
+    it("dispatches the close event on mouse click and removes the element", async () => {
+      let closed = false;
+
+      subject.addEventListener("close", () => {
+        closed = true;
+      });
+
+      const closeIcon = subject.shadowRoot!.querySelector("#closeIcon") as ZetaIcon;
+      await MouseActions.click(closeIcon, "left");
+
+      await waitUntil(() => closed, "close event should be dispatched", { timeout: 100 });
+
+      const snackbar = document.querySelector("zeta-snackbar");
+      expect(snackbar).to.not.exist;
+    });
+
+    it("dispatches the close event on enter pressed and removes the element", async () => {
+      let closed = false;
+
+      subject.addEventListener("close", () => {
+        closed = true;
+      });
+
+      await sendKeys({ press: "Tab" });
+      await sendKeys({ press: "Tab" });
+      await sendKeys({ press: "Enter" });
+
+      await waitUntil(() => closed, "close event should be dispatched on Enter", { timeout: 200 });
+
+      const snackbar = document.querySelector("zeta-snackbar");
+      expect(snackbar).to.not.exist;
+    });
+
+    it("dispatches the close event on space pressed and removes the element", async () => {
+      let closed = false;
+
+      subject.addEventListener("close", () => {
+        closed = true;
+      });
+
+      await sendKeys({ press: "Tab" });
+      await sendKeys({ press: "Tab" });
+      await sendKeys({ press: " " });
+
+      await waitUntil(() => closed, "close event should be dispatched on Space", { timeout: 200 });
+
+      const snackbar = document.querySelector("zeta-snackbar");
+      expect(snackbar).to.not.exist;
+    });
   });
 
   // describe("Golden", () => {});

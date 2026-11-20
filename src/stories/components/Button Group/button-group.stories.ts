@@ -16,7 +16,7 @@ const meta: Meta<ZetaButtonGroup> = {
   },
   argTypes: {
     size: {
-      options: ["medium", "large"],
+      options: ["small", "medium", "large"],
       control: { type: "select" }
     },
     onclick: {
@@ -34,7 +34,7 @@ const meta: Meta<ZetaButtonGroup> = {
   },
   parameters: {
     design: {
-      url: "https://www.figma.com/file/zzzpriTQpJKlW4gB5Fn3bF/Design-System-Sprint-3?type=design&node-id=23116-95148&mode=design&t=C1QjqPlEoal6a5PI-4"
+      url: "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=5833-912"
     },
     status: {
       type: "ready"
@@ -66,6 +66,6 @@ export const ButtonGroup: StoryObj<ZetaButtonGroup & { count: number; showDropdo
       </zeta-button-group-item> `;
     });
 
-    return html` <zeta-button-group .rounded=${args.rounded} size=${args.size}> ${mappedArray.flat()} </zeta-button-group> `;
+    return html` <zeta-button-group aria-label="Button group" .rounded=${args.rounded} size=${args.size}> ${mappedArray.flat()} </zeta-button-group> `;
   }
 };

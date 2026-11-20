@@ -1,40 +1,45 @@
 import { Canvas, Meta, Description, ArgTypes, Title } from "@storybook/blocks";
 import * as Avatar from "./avatar.stories";
+import * as AvatarStatusIndicator from "./avatar-status-indicator.stories";
 
 <Meta of={Avatar} title="Avatar" />
 
 <Title />
-<Canvas of={Avatar.AvatarWithInitials} />
+<Canvas of={Avatar.Playground} />
 <Description of="zeta-avatar" />
-<ArgTypes of={Avatar.AvatarWithInitials} />
+<ArgTypes of={Avatar.Playground} />
 
 # Avatar with Initials
 
 To create an avatar with initials, slot the initials into the main slot of the `zeta-avatar` component.
 To change the color of the initials, set the `--avatar-initials-color` CSS variable to the desired color.
 
-<Canvas of={Avatar.AvatarWithInitials} />
-
 # Avatar with Image
 
 To create an avatar with an image, slot an img element into the main slot of the `zeta-avatar` component.
-
-<Canvas of={Avatar.AvatarWithImage} />
 
 # Avatar with Icon
 
 To create an avatar with an icon, slot a `zeta-icon` into the main slot of the `zeta-avatar` component.
 
-<Canvas of={Avatar.AvatarWithIcon} />
-
 # Avatar with Status badge
 
-To add a status badge to an avatar, slot the component into the `status` slot of the `zeta-avatar` component.
+Set `show-status` to `true` to show a default "available" `zeta-avatar-status-indicator`, sized to match the avatar automatically.
 
-<Canvas of={Avatar.AvatarWithStatus} />
+To show a different presence, or any other badge, slot your own content into the `status` slot instead, it takes precedence over the default.
 
 # Avatar with Close icon
 
-To show a close icon on an avatar, set `show-close` to `true`. The component will fire a `@avatar-close` event when this button is clicked.
+To show a close icon on an avatar, set `show-close` to `true`. The button renders a `zeta-avatar-status-indicator` with `status="close"`, and the component fires a `close` event when it's clicked.
 
-<Canvas of={Avatar.AvatarWithCloseIcon} />
+# Avatar Status Indicator
+
+`zeta-avatar-status-indicator` is the small colored badge used for `zeta-avatar`'s status slot and close button. It sizes itself
+to `--avatar-status-indicator-size`, which `zeta-avatar` sets automatically to match its own `size` — set that variable directly
+to use the indicator standalone at a custom size.
+
+<Canvas of={AvatarStatusIndicator.StatusIndicator} />
+<Description of="zeta-avatar-status-indicator" />
+<ArgTypes of={AvatarStatusIndicator.StatusIndicator} />
+
+<Canvas of={AvatarStatusIndicator.AllStatuses} />

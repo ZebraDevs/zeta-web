@@ -38,7 +38,7 @@ export const ContourableThree = <T extends Constructor<LitElement>>(superClass: 
       (superClass as unknown as typeof LitElement).styles ?? [],
       css`
         :host([shape="full"]) {
-          --contour: var(--radius-full);
+          --contour: var(--radius-pill);
           --computed-icon-font: "zeta-icons-round";
         }
 
@@ -48,14 +48,15 @@ export const ContourableThree = <T extends Constructor<LitElement>>(superClass: 
         }
 
         :host([shape="rounded"]) {
-          --contour: var(--radius-minimal);
+          --contour: var(--radius-element-sm);
           --computed-icon-font: "zeta-icons-round";
         }
 
         :host > *,
+        :host .contourable-target:before,
         :host .contourable-target {
           --icon-font: var(--computed-icon-font, "zeta-icons-round");
-          border-radius: var(--contour, var(--radius-minimal));
+          border-radius: var(--contour, var(--radius-element-sm));
         }
       `
     ];

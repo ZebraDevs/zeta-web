@@ -137,13 +137,22 @@ export class ZetaDialog extends Contourable(Popup(LitElement)) {
    */
   @property({ type: String }) confirmButtonFlavor: "primary" | "positive" | "negative" = "primary";
 
-  /** Action button 1 (Confirm). */
+  /**
+   * Action button 1 (Confirm).
+   * @internal
+   */
   @queryAssignedElements({ slot: "confirm", flatten: true }) confirmBtn!: NodeList;
 
-  /** Action button 2 (Cancel). */
+  /**
+   * Action button 2 (Cancel).
+   * @internal
+   */
   @queryAssignedElements({ slot: "cancel", flatten: true }) cancelBtn!: NodeList;
 
-  /** Action button 3 (Learn more/Other). */
+  /**
+   * Action button 3 (Learn more/Other).
+   * @internal
+   */
   @queryAssignedElements({ slot: "other", flatten: true }) otherBtn!: NodeList;
 
   // set props to buttons

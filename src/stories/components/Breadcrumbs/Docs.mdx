@@ -61,7 +61,7 @@ The `maxItems` prop allows you to specify the maximum number of items to display
 
 Specify maxItems like this: `<zeta-breadcrumb maxItems={4}>...</zeta-breadcrumb>`
 
-You must not programmatically change the `maxItems` prop. It is a static prop that should be set when the component is first rendered.
+`maxItems` can be changed at any time; the breadcrumb re-truncates and collapses again. `0` (the default) shows every item, and `1` is treated as `2`. Items stay as children of `zeta-breadcrumb`, so they can be added, removed or queried as normal.
 
 Clicking the ellipse button will reveal the hidden items.
 

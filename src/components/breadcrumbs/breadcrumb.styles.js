@@ -1,24 +1,21 @@
 import { css } from "lit";
 export default css`
   :host([rounded]) ::slotted(zeta-breadcrumb-item:not(:first-child))::before,
-  :host([rounded]) zeta-breadcrumb-item:not(:first-child)::before,
   :host([rounded]) .more-menu::before {
     font-family: "zeta-icons-round";
   }
 
   :host ::slotted(zeta-breadcrumb-item:not(:first-child))::before,
-  :host zeta-breadcrumb-item:not(:first-child)::before,
   .more-menu::before {
     font-family: "zeta-icons-sharp";
   }
 
   ::slotted(zeta-breadcrumb-item:not(:first-child))::before,
-  .container zeta-breadcrumb-item:not(:first-child)::before,
   .more-menu::before {
     content: "chevron_right";
-    font-size: var(--spacing-large);
-    color: var(--main-subtle);
-    margin: 0 var(--spacing-small) 0 var(--spacing-small);
+    font-size: var(--control-icon-sm);
+    color: var(--foreground-secondary);
+    margin: 0 var(--space-sm);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -36,24 +33,32 @@ export default css`
   }
 
   button {
-    padding: var(--spacing-minimum) var(--spacing-small);
-    border: var(--border-size-small) solid var(--border-default);
-    background-color: var(--surface-warm);
+    display: flex;
+    align-items: center;
+    padding: var(--space-2xs) var(--space-sm);
+    border: var(--stroke-thin) solid var(--interactive-neutral-border-default);
+    background-color: var(--interactive-neutral-background-default);
     cursor: pointer;
 
     zeta-icon {
-      --icon-size: var(--spacing-medium);
+      --icon-size: var(--control-icon-xs);
+      --icon-color: var(--interactive-neutral-foreground-default);
     }
+  }
+
+  button:focus-visible {
+    outline: var(--stroke-thick) solid var(--border-focus);
+    outline-offset: var(--stroke-thin);
   }
 
   @media (hover: hover), (hover: none) and (pointer: fine) {
     button:hover {
-      background: var(--surface-hover);
-      border: var(--border-size-small) solid transparent;
+      background: var(--interactive-neutral-background-hover);
+      border-color: transparent;
     }
   }
 
   button:active {
-    background: var(--surface-selected);
+    background: var(--interactive-neutral-background-pressed);
   }
 `;

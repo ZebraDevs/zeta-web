@@ -27,6 +27,10 @@ const meta: Meta<ZetaTileButton> = {
     },
     status: {
       type: "ready"
+    },
+    // Hide the CSS variables from the Controls panel
+    controls: {
+      exclude: /^--/
     }
   },
   argTypes: {
@@ -53,6 +57,6 @@ export default meta;
 
 export const TileButton: StoryObj = {
   render: ({ slot, ...args }) => {
-    return html`<zeta-tile-button ${spread(args)}>${slot}</zeta-tile-button> `;
+    return html`<zeta-tile-button ${spread(args)}>${slot}</zeta-tile-button>`;
   }
 };

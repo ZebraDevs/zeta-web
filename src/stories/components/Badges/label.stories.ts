@@ -7,7 +7,9 @@ const meta: Meta<ZetaLabel> = {
   args: {
     label: "Label",
     rounded: true,
-    status: "neutral"
+    status: "neutral",
+    bold: true,
+    outlined: false
   },
   argTypes: {
     status: {
@@ -15,6 +17,14 @@ const meta: Meta<ZetaLabel> = {
       control: {
         type: "select"
       }
+    },
+    bold: {
+      control: "boolean",
+      description: "Solid strong fill with light text. When false, a tinted fill with dark text."
+    },
+    outlined: {
+      control: "boolean",
+      description: "Adds a 1px border. Only for `bold` false."
     },
     slot: { table: { disable: true } }
   },

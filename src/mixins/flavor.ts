@@ -3,7 +3,27 @@ import type { Constructor } from "./utils.js";
 import { property } from "lit/decorators.js";
 import styles from "./flavor.styles.js";
 
-export type Flavor = "primary" | "positive" | "negative" | "outline" | "outline-subtle" | "text" | "inverse" | "subtle";
+export type Flavor =
+  | "primary"
+  | "positive"
+  | "negative"
+  | "outline"
+  | "outline-subtle"
+  | "text"
+  | "inverse"
+  | "subtle"
+  | "gradient"
+  | "text-gradient"
+  | "contrast"
+  | "outline-contrast"
+  | "custom";
+
+export type ButtonFlavor = Exclude<Flavor, "inverse" | "ghost" | "default">;
+export type FabFlavor = Extract<Flavor, "primary" | "secondary" | "inverse">;
+export type TileButtonFlavor = Extract<Flavor, "outline-subtle">;
+export type SearchFlavor = "gradient" | "ghost" | "default";
+export type DialogFlavor = "default" | "info" | "success" | "warning" | "error";
+export type StepperItemFlavor = "partial" | "success" | "active" | "default";
 
 export declare class FlavoredInterface {
   flavor: Flavor;
@@ -13,8 +33,10 @@ export declare class FlavoredInterface {
  * A mixin class that adds a `flavor` property to components, allowing them to be styled with predefined visual variants.
  *
  * Adds flavor attribute and associated styles.
- * @cssproperty --flavor-background-color  an override to set the background color of the element.
- * @cssproperty --flavor-disabled-background-color an override to set the background color of the element when it is disabled.
+ * @cssproperty --flavor-background-color - Override to set the background color of the element when flavor is `custom`.
+ * @cssproperty --flavor-text-color - Override to set the text color of the element when flavor is `custom`.
+ * @cssproperty --flavor-disabled-background-color - Override to set the background color of the element when disabled and flavor is `custom`.
+ * @cssproperty --flavor-disabled-text-color - Override to set the text color of the element when disabled and flavor is `custom`.
  * @param superClass - LitElement to add mixin to
  * @returns - component with mixin applied.
  */
@@ -31,6 +53,11 @@ export const Flavored = <T extends Constructor<LitElement>>(superClass: T) => {
      * * text - primary text only.
      * * inverse - black/white background. Note that this flavor is not supported in all components.
      * * subtle - white background with grey text. Same action colors as 'text' flavor.
+     * * gradient - gradient background.
+     * * text-gradient - gradient text/icon with no background.
+     * * contrast - (Experimental) near-black background in light mode, near-white in dark. Only supported by buttons.
+     * * outline-contrast - (Experimental) near-black outline and text in light mode, near-white in dark. Only supported by buttons.
+     * * custom - custom color background with custom color text/icon.
      *
      * @remarks The value `"secondary"` is no longer supported and should not be used.
      */

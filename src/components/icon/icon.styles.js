@@ -11,6 +11,13 @@ export default [
       --icon-font: "zeta-icons-sharp";
     }
 
+    :host([size="small"]) {
+      --icon-size: var(--control-icon-sm);
+    }
+    :host([size="large"]) {
+      --icon-size: var(--control-icon-lg);
+    }
+
     :host,
     slot {
       display: flex;
@@ -28,22 +35,34 @@ export default [
       text-rendering: optimizeLegibility;
       font-feature-settings: "liga";
       user-select: none;
-      transition: all 0.3s ease-in-out;
-      color: var(--icon-color, var(--main-default));
-      font-size: var(--icon-size, var(--spacing-2xl));
-      line-height: var(--icon-size, 1);
+      color: var(--icon-color, inherit);
+      font-size: var(--icon-size, var(--control-icon-md));
+      line-height: var(--icon-size, var(--control-icon-md));
       font-family: var(--icon-font, "zeta-icons-round");
-      width: var(--icon-size, var(--spacing-2xl));
-      height: var(--icon-size, var(--spacing-2xl));
+      width: var(--icon-size, var(--control-icon-md));
+      height: var(--icon-size, var(--control-icon-md));
       -webkit-text-stroke-width: var(--icon-border-width, 2px);
       -webkit-text-stroke-color: var(--icon-border-color, transparent);
       paint-order: stroke fill;
     }
 
+    :host([framed]) {
+      width: var(--control-target-min);
+      height: var(--control-target-min);
+      align-items: center;
+      justify-content: center;
+    }
+
+    .icon-frame {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     :host ::slotted(svg) {
-      width: var(--icon-size, var(--spacing-2xl));
-      height: var(--icon-size, var(--spacing-2xl));
-      fill: var(--icon-color, var(--main-default));
+      width: var(--icon-size, var(--control-icon-md));
+      height: var(--icon-size, var(--control-icon-md));
+      fill: var(--icon-color, currentColor);
     }
   `
 ];

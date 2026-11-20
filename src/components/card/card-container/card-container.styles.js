@@ -1,24 +1,29 @@
 import { css } from "lit";
 
 export default css`
+  :host([rounded]) {
+    --_card-radius: var(--radius-sm);
+  }
+  :host([rounded="false"]) {
+    --_card-radius: var(--radius-none);
+  }
+  :host {
+    --_card-radius: var(--radius-none);
+  }
+
   .card-header {
     display: flex;
-    padding-left: calc(var(--spacing-2xl) - var(--border-size-medium));
-    padding-top: calc(var(--spacing-2xl) - var(--border-size-medium));
-    padding-right: calc(var(--spacing-2xl) - var(--border-size-medium));
-    padding-bottom: calc(var(--spacing-2xl) - var(--border-size-medium));
-    width: calc(100% - var(--spacing-7xl));
-    border-radius: calc(var(--spacing-medium) - var(--border-size-small));
+    box-sizing: border-box;
+    width: 100%;
+    padding: var(--space-lg) var(--space-xl);
+    gap: var(--space-sm);
+    background-color: var(--interactive-ghost-background-default);
     transition: background 0.1s ease-in-out;
   }
 
   .card-header zeta-icon {
-    width: var(--spacing-2xl);
-    height: var(--spacing-2xl);
-  }
-
-  :host(:not([collapsible])) .card.slot-populated .card-header {
-    padding-bottom: var(--spacing-large);
+    width: var(--space-2xl);
+    height: var(--space-2xl);
   }
 
   :host(:not([collapsible])) .card:not(.slot-populated) .card-content-wrapper {
@@ -27,7 +32,7 @@ export default css`
 
   @media (hover: hover), (hover: none) and (pointer: fine) {
     :host([collapsible]) .card-header:hover {
-      background-color: var(--surface-hover);
+      background-color: var(--interactive-ghost-background-hover);
     }
   }
 
@@ -38,46 +43,51 @@ export default css`
   .card-header .header-content {
     flex-direction: column;
     display: flex;
-    gap: var(--border-size-small);
+    gap: var(--space-2xs);
   }
   .card-header .title-container {
     display: flex;
+    gap: var(--space-xs);
   }
   .card-header .title-container .required {
-    color: var(--main-negative);
-    font: var(--h4);
+    color: var(--foreground-error);
+    font: var(--title-large);
+    font-size: var(--title-large-font-size);
+    line-height: var(--title-large-line-height);
+    letter-spacing: var(--title-large-letter-spacing);
   }
 
   .card-header .title-container h4 {
-    font: var(--h4);
-    margin: var(--spacing-none);
-    color: var(--main-default);
+    font: var(--title-large);
+    font-size: var(--title-large-font-size);
+    line-height: var(--title-large-line-height);
+    letter-spacing: var(--title-large-letter-spacing);
+    margin: 0;
+    color: var(--foreground-primary);
   }
 
   .card-header h5 {
-    font: var(--h5);
-    margin: var(--spacing-none);
-    color: var(--main-subtle);
+    font: var(--title-medium);
+    font-size: var(--title-medium-font-size);
+    line-height: var(--title-medium-line-height);
+    letter-spacing: var(--title-medium-letter-spacing);
+    margin: 0;
+    color: var(--foreground-secondary);
   }
 
   :host([collapsible]) .card-header {
     cursor: pointer;
   }
 
-  :host([collapsible][expanded]) .card-header {
-    padding-bottom: var(--spacing-large);
-  }
-
   .card-content-wrapper {
-    width: calc(100% - var(--spacing-7xl));
     position: relative;
-    margin-left: calc(var(--spacing-2xl) - var(--border-size-medium));
-    margin-right: calc(var(--spacing-2xl) - var(--border-size-medium));
+    margin-left: var(--space-xl);
+    margin-right: var(--space-xl);
     display: grid;
     grid-template-rows: 0fr;
     transition:
-      grid-template-rows 0.3s ease-in-out,
-      margin-bottom 0.3s ease-in-out;
+      grid-template-rows 0.2s ease-in-out,
+      margin-bottom 0.2s ease-in-out;
   }
 
   .card-content {
@@ -87,29 +97,33 @@ export default css`
   :host([collapsible][expanded]) .card-content-wrapper,
   :host(:not([collapsible])) .card-content-wrapper {
     grid-template-rows: 1fr;
-    margin-bottom: calc(var(--spacing-2xl) - var(--border-size-medium));
+    margin-bottom: var(--space-xl);
   }
 
   .card {
     display: flex;
-    align-items: center;
     position: relative;
     box-sizing: border-box;
     background-clip: padding-box;
-    border-radius: calc(var(--spacing-medium) - var(--border-size-small));
+    border-radius: var(--_card-radius);
+    overflow: hidden;
     flex-direction: column;
     align-items: flex-start;
-    transition: all 0.4s ease-in-out;
-    background-color: var(--surface-default);
+    transition: all 0.2s ease-in-out;
+    background-color: var(--surface-card);
     -webkit-tap-highlight-color: transparent;
   }
 
   .border {
-    border-radius: var(--spacing-medium);
-    padding: var(--border-size-medium);
+    border-radius: var(--_card-radius);
   }
 
   :host([ai]) .border {
-    background: linear-gradient(to right, #1f6aff, #ff40fc 77%);
+    padding: var(--stroke-thick);
+    background: linear-gradient(129deg, var(--foreground-gradient-start) 0%, var(--foreground-gradient-end) 100%);
+  }
+
+  :host([ai]) .card {
+    border-radius: calc(var(--_card-radius) - var(--stroke-thick));
   }
 `;

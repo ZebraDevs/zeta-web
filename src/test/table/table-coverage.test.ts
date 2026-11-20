@@ -46,11 +46,11 @@ describe("zeta-table additional coverage", () => {
       expect(shadow(el).querySelector(".zeta-table-nested-row")).to.exist;
     });
 
-    it("dispatches tableExport event with CSV data", async () => {
+    it("dispatches tableexport event with CSV data", async () => {
       const el = await make({ exportable: true });
       const exportBtn = shadow(el).querySelector("[title='Export to CSV']") as HTMLElement;
       setTimeout(() => exportBtn.click());
-      const ev = await oneEvent(el, "tableExport");
+      const ev = await oneEvent(el, "tableexport");
       assert.isString(ev.detail.csv as string);
       assert.isArray(ev.detail.columns);
       assert.isArray(ev.detail.data);
@@ -96,12 +96,12 @@ describe("zeta-table additional coverage", () => {
 
     it("shows global search when searchable is true", async () => {
       const el = await make({ searchable: true });
-      expect(shadow(el).querySelector(".zeta-table-global-search-input")).to.exist;
+      expect(shadow(el).querySelector("zeta-search.zeta-table-global-search")).to.exist;
     });
 
     it("does not show global search when searchable is false", async () => {
       const el = await make({ searchable: false });
-      expect(shadow(el).querySelector(".zeta-table-global-search-input")).to.not.exist;
+      expect(shadow(el).querySelector(".zeta-table-global-search")).to.not.exist;
     });
 
     it("shows refresh button when refreshable is true", async () => {
@@ -124,20 +124,20 @@ describe("zeta-table additional coverage", () => {
   });
 
   describe("Interaction", () => {
-    it("dispatches rowClick event when clickableRows is true", async () => {
+    it("dispatches rowclick event when clickableRows is true", async () => {
       const el = await make({ clickableRows: true });
       const row = shadow(el).querySelector(".zeta-table-tbody .zeta-table-row") as HTMLElement;
       setTimeout(() => row.click());
-      const ev = await oneEvent(el, "rowClick");
+      const ev = await oneEvent(el, "rowclick");
       assert.equal(ev.detail.row.id, 1);
       assert.equal(ev.detail.rowIndex, 0);
       assert.deepEqual(ev.detail.row, rows3[0]);
     });
 
-    it("does not dispatch rowClick when clickableRows is false", async () => {
+    it("does not dispatch rowclick when clickableRows is false", async () => {
       let called = false;
       const el = await make();
-      el.addEventListener("rowClick", () => {
+      el.addEventListener("rowclick", () => {
         called = true;
       });
       const row = shadow(el).querySelector(".zeta-table-tbody .zeta-table-row") as HTMLElement;
@@ -146,11 +146,11 @@ describe("zeta-table additional coverage", () => {
       assert.isFalse(called);
     });
 
-    it("does not dispatch rowClick for disabled rows", async () => {
+    it("does not dispatch rowclick for disabled rows", async () => {
       let called = false;
       const data: ZetaTableRow[] = [{ id: 1, name: "A", age: 30, email: "a@t.com", _disabled: true }];
       const el = await make({ data, clickableRows: true });
-      el.addEventListener("rowClick", () => {
+      el.addEventListener("rowclick", () => {
         called = true;
       });
       const row = shadow(el).querySelector(".zeta-table-tbody .zeta-table-row") as HTMLElement;
@@ -159,12 +159,12 @@ describe("zeta-table additional coverage", () => {
       assert.isFalse(called);
     });
 
-    it("dispatches rowClick for disabled rows when allowDisabledSelection is true", async () => {
+    it("dispatches rowclick for disabled rows when allowDisabledSelection is true", async () => {
       const data: ZetaTableRow[] = [{ id: 1, name: "A", age: 30, email: "a@t.com", _disabled: true }];
       const el = await make({ data, clickableRows: true, allowDisabledSelection: true });
       const row = shadow(el).querySelector(".zeta-table-tbody .zeta-table-row") as HTMLElement;
       setTimeout(() => row.click());
-      const ev = await oneEvent(el, "rowClick");
+      const ev = await oneEvent(el, "rowclick");
       assert.equal(ev.detail.row.id, 1);
     });
 
@@ -172,7 +172,7 @@ describe("zeta-table additional coverage", () => {
       const el = await make({ selectable: true, selectOnRowClick: true });
       const row = shadow(el).querySelector(".zeta-table-tbody .zeta-table-row") as HTMLElement;
       setTimeout(() => row.click());
-      const ev = await oneEvent(el, "selectionChange");
+      const ev = await oneEvent(el, "rowselect");
       assert.include(ev.detail.selectedIds as (string | number)[], 1);
     });
 
@@ -180,16 +180,16 @@ describe("zeta-table additional coverage", () => {
       const el = await make({ selectable: true, selectOnRowClick: true, selectedRows: [1] });
       const row = shadow(el).querySelector(".zeta-table-tbody .zeta-table-row") as HTMLElement;
       setTimeout(() => row.click());
-      const ev = await oneEvent(el, "selectionChange");
+      const ev = await oneEvent(el, "rowselect");
       assert.notInclude(ev.detail.selectedIds as (string | number)[], 1);
     });
 
-    it("dispatches rowExpand event on toggle", async () => {
+    it("dispatches rowexpand event on toggle", async () => {
       const data: ZetaTableRow[] = [{ id: 1, name: "Alice", age: 30, email: "alice@t.com", _nested: [{ id: 11, name: "Child", age: 5, email: "c@t.com" }] }];
       const el = await make({ data, expandable: true });
       const btn = shadow(el).querySelector(".zeta-table-expand-btn") as HTMLElement;
       setTimeout(() => btn.click());
-      const ev = await oneEvent(el, "rowExpand");
+      const ev = await oneEvent(el, "rowexpand");
       assert.equal(ev.detail.rowId, 1);
       assert.isTrue(ev.detail.expanded);
     });
@@ -201,7 +201,7 @@ describe("zeta-table additional coverage", () => {
       btn.click();
       await el.updateComplete;
       setTimeout(() => btn.click());
-      const ev = await oneEvent(el, "rowExpand");
+      const ev = await oneEvent(el, "rowexpand");
       assert.equal(ev.detail.rowId, 1);
       assert.isFalse(ev.detail.expanded);
     });
@@ -213,7 +213,7 @@ describe("zeta-table additional coverage", () => {
         { field: "age", title: "Age" }
       ];
       const el = await make({ columns: cols });
-      el.addEventListener("sortChange", () => {
+      el.addEventListener("sortchange", () => {
         called = true;
       });
       const headers = shadow(el).querySelectorAll(".zeta-table-header-title");
@@ -224,11 +224,11 @@ describe("zeta-table additional coverage", () => {
 
     it("navigates to a specific page number on click", async () => {
       const el = await make({ paginationType: "numbered", totalItems: 100, pageSize: 20 });
-      const pageButtons = shadow(el).querySelectorAll<HTMLButtonElement>(".zeta-table-page-btn:not([title])");
+      const pageButtons = shadow(el).querySelector("zeta-pagination")!.shadowRoot!.querySelectorAll<HTMLButtonElement>("button.page");
       const page2Btn = Array.from(pageButtons).find(b => b.textContent?.trim() === "2");
       assert.exists(page2Btn);
       setTimeout(() => page2Btn?.click());
-      const ev = await oneEvent(el, "pageChange");
+      const ev = await oneEvent(el, "pagechange");
       assert.equal(ev.detail.page, 2);
     });
 

@@ -6,14 +6,14 @@ export default css`
 
   :host {
     cursor: pointer;
-    background-color: var(--surface-default);
+    background-color: var(--surface-section);
     -webkit-tap-highlight-color: transparent;
   }
 
   h4 {
-    font: var(--h4);
-    margin: var(--spacing-large) var(--spacing-none);
-    color: var(--main-default);
+    font: var(--title-large);
+    margin: var(--space-lg) var(--space-none);
+    color: var(--foreground-primary);
   }
 
   .row {
@@ -26,16 +26,16 @@ export default css`
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: var(--spacing-medium) var(--spacing-small) var(--spacing-medium) var(--spacing-large);
+    padding: var(--space-md) var(--space-sm) var(--space-md) var(--space-lg);
   }
 
   :host([rounded]) .chevron-wrapper {
-    border-radius: var(--radius-rounded);
+    border-radius: var(--radius-md);
   }
 
   @media (hover: hover), (hover: none) and (pointer: fine) {
     .chevron-wrapper:hover {
-      background-color: var(--surface-selected-hover);
+      background-color: var(--interactive-ghost-background-hover);
     }
   }
 
@@ -45,7 +45,7 @@ export default css`
   }
 
   zeta-icon.check {
-    --icon-color: var(--main-primary);
+    --icon-color: var(--foreground-info);
   }
 
   :host([expanded]) zeta-icon.chevron {
@@ -69,7 +69,7 @@ export default css`
 
   @media (hover: hover), (hover: none) and (pointer: fine) {
     .accordion-item-header .row:hover {
-      background-color: var(--surface-hover);
+      background-color: var(--interactive-neutral-background-hover);
     }
   }
 
@@ -82,11 +82,11 @@ export default css`
   }
 
   :host(:not([selectable])) .title-wrapper {
-    margin-left: var(--spacing-large);
+    margin-left: var(--space-lg);
   }
 
   zeta-icon.trailing {
-    margin-right: var(--spacing-large);
+    margin-right: var(--space-lg);
   }
 
   :host([expanded]) zeta-icon.expand {
@@ -94,12 +94,12 @@ export default css`
   }
 
   .body {
-    padding: var(--spacing-none) var(--spacing-large);
+    padding: var(--space-none) var(--space-lg);
   }
 
   .body:not([hidden]) .body-content {
-    padding-top: var(--spacing-large);
-    padding-bottom: var(--spacing-large);
+    padding-top: var(--space-lg);
+    padding-bottom: var(--space-lg);
   }
 
   :host([navigation]) .body {
@@ -107,7 +107,7 @@ export default css`
   }
 
   ::slotted([slot="header"]) {
-    margin: var(--spacing-large);
-    margin-top: var(--spacing-0);
+    margin: var(--space-lg);
+    margin-top: var(--space-none);
   }
 `;

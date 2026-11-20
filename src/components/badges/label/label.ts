@@ -13,13 +13,27 @@ import { Contourable } from "../../../mixins/mixins.js";
 export class ZetaLabel extends Contourable(LitElement) {
   /** Type of text label.
    *
-   * @defaultValue `BannerStatus.default` */
+   * @defaultValue `"neutral"` */
   @property({ type: String, reflect: true }) status: "info" | "positive" | "warning" | "negative" | "neutral" = "neutral";
 
   /** Text displayed on label.
    *
    * Can also be slotted. */
   @property({ type: String }) label?: string;
+
+  /** Whether the label has a solid, strong fill with light text.
+   *
+   * When false, the label has a tinted fill with dark text.
+   *
+   * @defaultValue `true` */
+  @property({ type: Boolean, reflect: true }) bold = true;
+
+  /** Whether the label has a 1px border around a tinted fill.
+   *
+   * Only applies when `bold` is false; ignored when `bold` is true.
+   *
+   * @defaultValue `false` */
+  @property({ type: Boolean, reflect: true }) outlined = false;
 
   static styles = [styles, super.styles ?? []];
 

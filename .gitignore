@@ -2,6 +2,7 @@
 /build
 /dist
 /output
+/generated
 .yarn/*
 !.yarn/cache
 !.yarn/patches
@@ -241,4 +242,3 @@ node_modules
 src/test/test-results.xml
 scripts/test/output/test_counts.md
 coverage/
-.claude/

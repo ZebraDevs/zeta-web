@@ -64,11 +64,11 @@ export type PaginationType = "none" | "numbered" | "infinite";
  * Consumers provide these via `rowActions` (global fallback) or `row._actions` (per-row override).
  */
 export interface ZetaTableAction {
-  /** Unique key for this action — included in `rowAction` event detail to identify which action was clicked */
+  /** Unique key for this action — included in `rowaction` event detail to identify which action was clicked */
   key: string;
   /** Display label shown in the menu dropdown */
   label: string;
-  /** Optional icon (SVG string or emoji) rendered before the label */
+  /** Optional icon rendered before the label. A Zeta icon name such as `edit` or `delete` is drawn as an icon; any other text, such as an emoji, is shown as is. */
   icon?: string;
   /** Whether this action is disabled for a specific row (checked at render time) */
   disabled?: boolean;

@@ -7,15 +7,16 @@ import "../button/icon-button/icon-button.js";
 import "../icon/icon.js";
 
 //TODO: Disable buttons when at min or max
-//TODO: disabled prop changes size of box
 
 /** A stepper input, also called numeric stepper, is a common UI element that allows users to input a number or value simply by clicking the plus and minus buttons.
+ *
+ * When `disabled`, the step buttons switch to the primary disabled fill and the hint/error text is not rendered.
  *
  * @event {Event} change - Fired when the value of the stepper input changes.
  * @event {FocusEvent} focus - Fired when the stepper input receives focus.
  * @event {FocusEvent} blur - Fired when the stepper input loses focus.
  * @event {InputEvent} input - Fired when the value of the stepper input changes.
- * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=21529-9963
+ * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=5595-122
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-stepper-input--docs
  */
 @customElement("zeta-stepper-input")
@@ -73,7 +74,7 @@ export class ZetaStepperInput extends FormField(Contourable(LitElement)) {
   /**
    * Hint text shown below text field.
    *
-   * if `error`, then `errorText` is shown instead.
+   * if `error`, then `errorText` is shown instead. Not shown while `disabled`.
    */
   @property() hintText?: string;
 
@@ -108,12 +109,14 @@ export class ZetaStepperInput extends FormField(Contourable(LitElement)) {
 
   private validateValue(value: string): string {
     const valueToNumber = Number(value);
+    const max = this.max !== undefined ? Number(this.max) : undefined;
+    const min = this.min !== undefined ? Number(this.min) : undefined;
     if (isNaN(valueToNumber) || valueToNumber === undefined) {
       value = "0";
-    } else if (this.max && valueToNumber >= this.max) {
-      value = this.max.toString();
-    } else if (this.min !== undefined && valueToNumber <= this.min) {
-      value = this.min.toString();
+    } else if (max !== undefined && isFinite(max) && valueToNumber >= max) {
+      value = String(max);
+    } else if (min !== undefined && isFinite(min) && valueToNumber <= min) {
+      value = String(min);
     } else {
       value = valueToNumber.toString();
     }
@@ -135,10 +138,10 @@ export class ZetaStepperInput extends FormField(Contourable(LitElement)) {
       <div>
         <div class="container">
           <zeta-icon-button
-            .disabled=${this.disabled || (this.min !== undefined && Number(this.value) <= this.min)}
+            .disabled=${this.disabled || (this.min !== undefined && isFinite(Number(this.min)) && Number(this.value) <= Number(this.min))}
             shape=${this.rounded ? "rounded" : "sharp"}
             size=${this.size}
-            flavor="outline-subtle"
+            flavor=${this.disabled ? "primary" : "outline-subtle"}
             @blur=${(e: FocusEvent) => this.handleBlur(e)}
             @focus=${(e: FocusEvent) => this.handleFocus(e)}
             @click=${() => this.onButtonClick(false)}
@@ -147,19 +150,19 @@ export class ZetaStepperInput extends FormField(Contourable(LitElement)) {
           </zeta-icon-button>
           <div class="input-container contourable-target">${super.render()}</div>
           <zeta-icon-button
-            .disabled=${this.disabled || (this.max !== undefined && Number(this.value) >= this.max)}
+            .disabled=${this.disabled || (this.max !== undefined && isFinite(Number(this.max)) && Number(this.value) >= Number(this.max))}
             shape=${this.rounded ? "rounded" : "sharp"}
             size=${this.size}
             @blur=${(e: FocusEvent) => this.handleBlur(e)}
             @focus=${(e: FocusEvent) => this.handleFocus(e)}
-            flavor="outline-subtle"
+            flavor=${this.disabled ? "primary" : "outline-subtle"}
             @click=${() => this.onButtonClick(true)}
           >
             add
           </zeta-icon-button>
         </div>
         ${
-          this.error || this.hintText
+          !this.disabled && (this.error || this.hintText)
             ? html`<div class="hint-text">
                 <zeta-icon .rounded=${this.rounded}>${this.error ? "error" : "info"}</zeta-icon>
                 <span id="hint-text">${this.error ? this.errorText : this.hintText}</span>

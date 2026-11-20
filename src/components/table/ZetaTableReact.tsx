@@ -9,7 +9,7 @@ type SortChangeEvent = CustomEvent<{ field: string; direction: SortDirection }>;
 type LoadMoreEvent = CustomEvent<{ currentCount: number }>;
 type RowActionEvent = CustomEvent<{ actionKey: string; row: ZetaTableRow; rowIndex: number }>;
 type RowClickEvent = CustomEvent<{ row: ZetaTableRow; rowIndex: number }>;
-type SelectionChangeEvent = CustomEvent<{ selectedIds: (string | number)[] }>;
+type RowSelectEvent = CustomEvent<{ selectedIds: (string | number)[] }>;
 type PageChangeEvent = CustomEvent<{ page: number; pageSize: number }>;
 type TableExportEvent = CustomEvent<{ csv: string; columns: ZetaTableColumn[]; data: ZetaTableRow[] }>;
 type RowExpandEvent = CustomEvent<{ rowId: string | number; expanded: boolean }>;
@@ -23,18 +23,18 @@ const ZetaTableBase = createComponent({
   elementClass: ZetaTableElement,
   react: React,
   events: {
-    onSortChange: "sortChange" as EventName<SortChangeEvent>,
-    onLoadMore: "loadMore" as EventName<LoadMoreEvent>,
-    onRowAction: "rowAction" as EventName<RowActionEvent>,
-    onRowClick: "rowClick" as EventName<RowClickEvent>,
-    onSelectionChange: "selectionChange" as EventName<SelectionChangeEvent>,
-    onPageChange: "pageChange" as EventName<PageChangeEvent>,
-    onTableExport: "tableExport" as EventName<TableExportEvent>,
-    onRowExpand: "rowExpand" as EventName<RowExpandEvent>,
-    onColumnSearch: "columnSearch" as EventName<ColumnSearchEvent>,
-    onColumnFilter: "columnFilter" as EventName<ColumnFilterEvent>,
-    onTableSearch: "tableSearch" as EventName<TableSearchEvent>,
-    onTableRefresh: "tableRefresh" as EventName<TableRefreshEvent>
+    onSortChange: "sortchange" as EventName<SortChangeEvent>,
+    onLoadMore: "loadmore" as EventName<LoadMoreEvent>,
+    onRowAction: "rowaction" as EventName<RowActionEvent>,
+    onRowClick: "rowclick" as EventName<RowClickEvent>,
+    onRowSelect: "rowselect" as EventName<RowSelectEvent>,
+    onPageChange: "pagechange" as EventName<PageChangeEvent>,
+    onTableExport: "tableexport" as EventName<TableExportEvent>,
+    onRowExpand: "rowexpand" as EventName<RowExpandEvent>,
+    onColumnSearch: "columnsearch" as EventName<ColumnSearchEvent>,
+    onColumnFilter: "columnfilter" as EventName<ColumnFilterEvent>,
+    onTableSearch: "tablesearch" as EventName<TableSearchEvent>,
+    onTableRefresh: "tablerefresh" as EventName<TableRefreshEvent>
   }
 });
 
@@ -54,19 +54,21 @@ export interface ZetaTableReactProps extends Omit<ZetaTableBaseProps, "data" | "
  *
  * Detects React elements in `data` cell values, extracts them,
  * and renders them as slotted children projected into Shadow DOM cells.
+ * Each one goes to the `cell-{field}-row-{id}` slot, so it stays with its row when the table sorts, filters or changes page.
+ * Children are passed on as slotted content, so `<zeta-icon-button slot="controls" />` reaches the `controls` slot.
  * All other props are passed through to the base createComponent wrapper.
  */
 export const ZetaTableReact = React.forwardRef<ZetaTableElement, ZetaTableReactProps>(function ZetaTableReact(
-  { data, loadingContent, noDataContent, ...rest },
+  { data, loadingContent, noDataContent, children, ...rest },
   ref
 ) {
-  const slots: { field: string; rowIdx: number; element: ReactNode; key: string }[] = [];
+  const slots: { slotName: string; element: ReactNode; key: string }[] = [];
 
-  const cleanData: ZetaTableRow[] = data.map((row, rowIdx) => {
+  const cleanData: ZetaTableRow[] = data.map(row => {
     const cleanRow: Record<string, unknown> = {};
     for (const [field, value] of Object.entries(row)) {
       if (isValidElement(value)) {
-        slots.push({ field, rowIdx, element: value, key: `${row.id ?? rowIdx}-${field}` });
+        slots.push({ slotName: `cell-${field}-row-${row.id}`, element: value, key: `${row.id}-${field}` });
         cleanRow[field] = "";
       } else {
         cleanRow[field] = value;
@@ -79,8 +81,9 @@ export const ZetaTableReact = React.forwardRef<ZetaTableElement, ZetaTableReactP
     <ZetaTableBase ref={ref} data={cleanData} {...rest}>
       {loadingContent && <div slot="loading">{loadingContent}</div>}
       {noDataContent && <div slot="no-data">{noDataContent}</div>}
-      {slots.map(({ field, rowIdx, element, key }) => (
-        <div slot={`cell-${field}-${rowIdx}`} key={key}>
+      {children}
+      {slots.map(({ slotName, element, key }) => (
+        <div slot={slotName} key={key}>
           {element}
         </div>
       ))}

@@ -6,10 +6,17 @@ import { sendMouse, resetMouse, sendKeys /*, type SendKeysPayload*/ } from "@web
  * @param color - The color string to convert.
  * @returns The RGB representation of the color.
  */
-export const toRGB = (color: string) => {
-  const { style } = new Option();
+export const toRGB = (color: string, context: Element = document.body) => {
+  // Resolve on `context` itself so light-dark() and var() collapse to a single rgb value using its color-scheme.
+  // (Appending a child fails for elements that can't render children, e.g. <input> or a slotless <zeta-icon>.)
+  const { style } = context as HTMLElement;
+  const { color: previous, transition } = style;
+  style.transition = "none"; // otherwise a `transition: color` on the element returns a mid-transition value
   style.color = color;
-  return style.color;
+  const rgb = getComputedStyle(context).color;
+  style.color = previous;
+  style.transition = transition;
+  return rgb;
 };
 
 /**
@@ -23,13 +30,23 @@ export const getCssVarValue = (el: Element, cssVarName: string): string => {
 };
 
 /**
+ * Retrieves the numeric pixel value of a CSS length variable from an element.
+ * @param el - The element to get the CSS variable value from.
+ * @param cssVarName - The name of the CSS variable, e.g. `--space-2xs`.
+ * @returns The value in px as a number.
+ */
+export const getCssVarPxValue = (el: Element, cssVarName: string): number => {
+  return parseFloat(getCssVarValue(el, cssVarName));
+};
+
+/**
  * Retrieves the RGB representation of a CSS variable color from an element.
  * @param el - The element to get the CSS variable color from.
  * @param cssVarName - The name of the CSS variable.
  * @returns The RGB representation of the CSS variable color.
  */
 export const getCssVarColorValue = (el: Element, cssVarName: string): string => {
-  return toRGB(getCssVarValue(el, cssVarName));
+  return toRGB(getCssVarValue(el, cssVarName), el);
 };
 
 /**

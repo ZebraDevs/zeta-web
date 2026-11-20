@@ -13,6 +13,7 @@ const meta: Meta<ZetaRadioButton> = {
   title: "Components/Radio Button",
   args: {
     disabled: false,
+    size: "large",
     checked: false,
     name: "",
     id: "",
@@ -21,7 +22,7 @@ const meta: Meta<ZetaRadioButton> = {
   },
   argTypes: {
     size: {
-      options: ["small", "medium", "large"]
+      options: ["small", "large"]
     }
   },
   parameters: {

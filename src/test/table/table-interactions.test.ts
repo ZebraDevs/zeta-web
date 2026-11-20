@@ -1,5 +1,6 @@
 import { fixture, html, expect, assert, oneEvent } from "@open-wc/testing";
 import type { ZetaTable, ZetaTableColumn, ZetaTableRow } from "../../components/table/table.js";
+import type { ZetaCheckbox } from "../../components/checkbox/checkbox.js";
 import "../../components/table/table.js";
 import "../../index.css";
 
@@ -28,6 +29,16 @@ function shadow(el: ZetaTable) {
   return el.shadowRoot!;
 }
 
+/** The zeta-checkbox matching the selector, inside the table. */
+function checkbox(el: ZetaTable, selector: string) {
+  return shadow(el).querySelector<ZetaCheckbox>(selector)!;
+}
+
+/** The native input inside a zeta-checkbox, which is what a user clicks. */
+function nativeInput(cb: Element) {
+  return cb.shadowRoot!.querySelector<HTMLInputElement>("input")!;
+}
+
 describe("zeta-table interactions", () => {
   describe("Content", () => {
     it("creates element and renders structure", async () => {
@@ -47,11 +58,29 @@ describe("zeta-table interactions", () => {
       assert.equal(shadow(el2).querySelector(".zeta-table-no-data")?.textContent?.trim(), "No data available");
     });
 
+    // Regression: a custom element that points back to itself (like zeta-avatar) made JSON.stringify throw in the row label
+    it("renders custom cells that point back to themselves, and names the row checkbox from the first text", async () => {
+      const avatar = Object.assign(document.createElement("span"), { textContent: "AB" });
+      Object.assign(avatar, { renderOptions: { host: avatar } });
+      const name = document.createElement("span");
+      name.textContent = "Alice";
+      const el = await make({
+        selectable: true,
+        columns: [
+          { field: "avatar", title: "Avatar" },
+          { field: "name", title: "Name" }
+        ],
+        data: [{ id: 1, avatar, name }]
+      });
+      assert.equal(shadow(el).querySelectorAll(".zeta-table-tbody .zeta-table-row").length, 1);
+      assert.equal(shadow(el).querySelector(".zeta-table-tbody zeta-checkbox")!.textContent.trim(), "Select row: AB");
+    });
+
     it("renders header bar with title, count, and toolbar", async () => {
       const el = await make({ tableTitle: "T", showDataCount: true, selectable: true, selectedRows: [1, 2] });
       assert.equal(shadow(el).querySelector(".zeta-table-title")?.textContent?.trim(), "T");
       assert.include(shadow(el).querySelector(".zeta-table-data-count")?.textContent, "3 out of 3");
-      assert.include(shadow(el).querySelector(".zeta-table-selection-info")?.textContent, "2 row(s) selected");
+      assert.include(shadow(el).querySelector(".zeta-table-selection-info")?.textContent, "2 selected");
     });
   });
 
@@ -59,7 +88,7 @@ describe("zeta-table interactions", () => {
     it("renders checkboxes and pre-selects rows", async () => {
       const el = await make({ selectable: true, selectedRows: [1, 3] });
       expect(shadow(el).querySelectorAll(".zeta-table-col-checkbox").length).to.be.greaterThan(0);
-      const cbs = shadow(el).querySelectorAll<HTMLInputElement>(".zeta-table-tbody .zeta-table-col-checkbox input[type='checkbox']");
+      const cbs = shadow(el).querySelectorAll<ZetaCheckbox>(".zeta-table-tbody .zeta-table-col-checkbox zeta-checkbox");
       assert.isTrue(cbs[0]?.checked);
       assert.isFalse(cbs[1]?.checked);
       assert.isTrue(cbs[2]?.checked);
@@ -67,21 +96,21 @@ describe("zeta-table interactions", () => {
 
     it("toggles selection and dispatches event", async () => {
       const el = await make({ selectable: true });
-      const cb = shadow(el).querySelector(".zeta-table-tbody .zeta-table-col-checkbox input[type='checkbox']") as HTMLInputElement;
-      setTimeout(() => cb.click());
-      const ev = await oneEvent(el, "selectionChange");
+      const cb = checkbox(el, ".zeta-table-tbody .zeta-table-col-checkbox zeta-checkbox");
+      setTimeout(() => nativeInput(cb).click());
+      const ev = await oneEvent(el, "rowselect");
       const selectedIds: (string | number)[] = ev.detail.selectedIds;
       assert.include(selectedIds, 1);
     });
 
     it("select-all toggles all", async () => {
       const el = await make({ selectable: true });
-      const sa = shadow(el).querySelector<HTMLInputElement>(".zeta-table-header-row .zeta-table-col-checkbox input[type='checkbox']")!;
+      const sa = nativeInput(checkbox(el, ".zeta-table-header-row .zeta-table-col-checkbox zeta-checkbox"));
       setTimeout(() => sa.click());
-      const ev1 = await oneEvent(el, "selectionChange");
+      const ev1 = await oneEvent(el, "rowselect");
       assert.equal(ev1.detail.selectedIds.length, 3);
       setTimeout(() => sa.click());
-      const ev2 = await oneEvent(el, "selectionChange");
+      const ev2 = await oneEvent(el, "rowselect");
       assert.equal(ev2.detail.selectedIds.length, 0);
     });
 
@@ -92,7 +121,7 @@ describe("zeta-table interactions", () => {
         { id: 3, name: "C", age: 35, email: "c@t.com" }
       ];
       const el = await make({ data, selectable: true });
-      const cbs = shadow(el).querySelectorAll<HTMLInputElement>(".zeta-table-tbody .zeta-table-col-checkbox input[type='checkbox']");
+      const cbs = shadow(el).querySelectorAll<ZetaCheckbox>(".zeta-table-tbody .zeta-table-col-checkbox zeta-checkbox");
       assert.isTrue(cbs[0]?.disabled);
       assert.isTrue(cbs[1]?.disabled);
       assert.isFalse(cbs[2]?.disabled);
@@ -102,13 +131,13 @@ describe("zeta-table interactions", () => {
       const el = await make();
       const t = shadow(el).querySelector(".zeta-table-header-title--sortable") as HTMLElement;
       setTimeout(() => t.click());
-      const ev1 = await oneEvent(el, "sortChange");
+      const ev1 = await oneEvent(el, "sortchange");
       assert.equal(ev1.detail.direction, "asc");
       setTimeout(() => t.click());
-      const ev2 = await oneEvent(el, "sortChange");
+      const ev2 = await oneEvent(el, "sortchange");
       assert.equal(ev2.detail.direction, "desc");
       setTimeout(() => t.click());
-      const ev3 = await oneEvent(el, "sortChange");
+      const ev3 = await oneEvent(el, "sortchange");
       assert.equal(ev3.detail.direction, null);
     });
 
@@ -116,8 +145,92 @@ describe("zeta-table interactions", () => {
       const el = await make();
       const arrow = shadow(el).querySelector(".zeta-table-sort-arrow") as HTMLElement;
       setTimeout(() => arrow.dispatchEvent(new MouseEvent("click", { bubbles: true })));
-      const ev = await oneEvent(el, "sortChange");
+      const ev = await oneEvent(el, "sortchange");
       assert.equal(ev.detail.direction, "asc");
+    });
+
+    const many: ZetaTableRow[] = Array.from({ length: 25 }, (_, i) => ({ id: i + 1, name: `Row ${i + 1}`, age: (i * 7) % 25, email: `r${i + 1}@t.com` }));
+    /** The text of the first column on the rows that are on screen. */
+    const names = (el: ZetaTable) =>
+      Array.from(shadow(el).querySelectorAll(".zeta-table-tbody .zeta-table-row")).map(r =>
+        r.querySelector(".zeta-table-td--data .zeta-table-cell-content")!.textContent.trim()
+      );
+    const sortBy = async (el: ZetaTable, index: number) => {
+      shadow(el).querySelectorAll<HTMLElement>(".zeta-table-header-title--sortable")[index].click();
+      await el.updateComplete;
+    };
+
+    it("sorts every row, not only the rows of the current page, and then shows the page", async () => {
+      const el = await make({ data: many, paginationType: "numbered", pageSize: 10 });
+      await sortBy(el, 1);
+      assert.equal(names(el).length, 10);
+      // age is (i * 7) % 25, so 0..24 once each: the first page of an ascending sort holds the ten smallest of all 25 rows
+      const ages = Array.from(shadow(el).querySelectorAll(".zeta-table-tbody .zeta-table-row")).map(r =>
+        Number(r.querySelectorAll(".zeta-table-td--data .zeta-table-cell-content")[1].textContent)
+      );
+      assert.deepEqual(ages, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
+      await sortBy(el, 1);
+      const desc = Array.from(shadow(el).querySelectorAll(".zeta-table-tbody .zeta-table-row")).map(r =>
+        Number(r.querySelectorAll(".zeta-table-td--data .zeta-table-cell-content")[1].textContent)
+      );
+      assert.deepEqual(desc, [24, 23, 22, 21, 20, 19, 18, 17, 16, 15]);
+    });
+
+    it("goes back to the first page when the sort changes", async () => {
+      const el = await make({ data: many, paginationType: "numbered", pageSize: 10, currentPage: 3 });
+      assert.equal(names(el).length, 5);
+      await sortBy(el, 0);
+      assert.equal(shadow(el).querySelector(".zeta-table-page-details")!.textContent.trim(), "Showing 1-10 of 25");
+      assert.equal(names(el).length, 10);
+    });
+
+    it("puts the original order back when the sort is cleared", async () => {
+      const el = await make({ data: many, paginationType: "numbered", pageSize: 5 });
+      await sortBy(el, 1);
+      await sortBy(el, 1);
+      await sortBy(el, 1);
+      assert.deepEqual(names(el), ["Row 1", "Row 2", "Row 3", "Row 4", "Row 5"]);
+    });
+
+    it("orders text naturally, so Row 2 comes before Row 10", async () => {
+      const el = await make({ data: many, paginationType: "numbered", pageSize: 12 });
+      await sortBy(el, 0);
+      assert.deepEqual(names(el).slice(0, 3), ["Row 1", "Row 2", "Row 3"]);
+      assert.equal(names(el)[9], "Row 10");
+    });
+
+    it("sorts the text of custom cells, and leaves empty cells last in both directions", async () => {
+      const cell = (text: string) => {
+        const span = document.createElement("span");
+        span.textContent = text;
+        return span;
+      };
+      const data: ZetaTableRow[] = [
+        { id: 1, name: cell("b"), age: 1, email: "" },
+        { id: 2, name: cell("a"), age: 1, email: "" },
+        { id: 3, name: "", age: 1, email: "" }
+      ];
+      const el = await make({ data });
+      const first = () =>
+        Array.from(shadow(el).querySelectorAll(".zeta-table-tbody .zeta-table-row")).map(r => r.querySelector(".zeta-table-td--data")!.textContent.trim());
+      await sortBy(el, 0);
+      assert.deepEqual(first(), ["a", "b", ""]);
+      await sortBy(el, 0);
+      assert.deepEqual(first(), ["b", "a", ""]);
+    });
+
+    it("leaves the order to the consumer when data is one page of a larger collection", async () => {
+      const page = many.slice(0, 5);
+      const el = await make({ data: page, paginationType: "numbered", pageSize: 5, totalItems: 25 });
+      await sortBy(el, 1);
+      assert.deepEqual(names(el), ["Row 1", "Row 2", "Row 3", "Row 4", "Row 5"]);
+    });
+
+    it("leaves the order to the consumer when it cancels sortchange", async () => {
+      const el = await make({ data: many.slice(0, 5) });
+      el.addEventListener("sortchange", e => e.preventDefault());
+      await sortBy(el, 1);
+      assert.deepEqual(names(el), ["Row 1", "Row 2", "Row 3", "Row 4", "Row 5"]);
     });
 
     it("renders search row only when columnSearchable is true", async () => {
@@ -125,14 +238,14 @@ describe("zeta-table interactions", () => {
       expect(shadow(await make({ columnSearchable: true })).querySelector(".zeta-table-search-row")).to.exist;
     });
 
-    it("dispatches columnSearch event on input", async () => {
+    it("dispatches columnsearch event on input", async () => {
       const el = await make({ columnSearchable: true });
       const input = shadow(el).querySelector(".zeta-table-search-input:not([disabled])") as HTMLInputElement;
       setTimeout(() => {
         input.value = "test";
         input.dispatchEvent(new InputEvent("input", { bubbles: true }));
       });
-      const ev = await oneEvent(el, "columnSearch");
+      const ev = await oneEvent(el, "columnsearch");
       assert.equal(ev.detail.field, "name");
       assert.equal(ev.detail.value, "test");
     });
@@ -153,17 +266,17 @@ describe("zeta-table interactions", () => {
       input.value = "t";
       input.dispatchEvent(new InputEvent("input", { bubbles: true }));
       await el.updateComplete;
-      assert.include(shadow(el).querySelector(".zeta-table-page-info span")?.textContent, "Page 1");
+      assert.include(shadow(el).querySelector(".zeta-table-page-info span")?.textContent, "Showing 1-20 of 100");
     });
 
-    it("dispatches tableSearch event on global search input", async () => {
+    it("dispatches tablesearch event on global search input", async () => {
       const el = await make({ searchable: true });
-      const input = shadow(el).querySelector(".zeta-table-global-search-input") as HTMLInputElement;
+      const input = shadow(el).querySelector(".zeta-table-global-search")!.shadowRoot!.querySelector("input")!;
       setTimeout(() => {
         input.value = "Alice";
-        input.dispatchEvent(new InputEvent("input", { bubbles: true }));
+        input.dispatchEvent(new InputEvent("input", { bubbles: true, composed: true }));
       });
-      const ev = await oneEvent(el, "tableSearch");
+      const ev = await oneEvent(el, "tablesearch");
       assert.equal(ev.detail.value, "Alice");
     });
 
@@ -182,10 +295,10 @@ describe("zeta-table interactions", () => {
       const el = await make({ columnFilterable: true });
       (shadow(el).querySelector(".zeta-table-header-icon-btn") as HTMLElement).click();
       await el.updateComplete;
-      (shadow(el).querySelector(".zeta-table-filter-panel-item input[type='checkbox']") as HTMLInputElement).click();
+      nativeInput(checkbox(el, ".zeta-table-filter-panel-item")).click();
       await el.updateComplete;
       setTimeout(() => (shadow(el).querySelector(".zeta-table-filter-panel-btn--apply") as HTMLElement).click());
-      const ev = await oneEvent(el, "columnFilter");
+      const ev = await oneEvent(el, "columnfilter");
       assert.equal(ev.detail.field, "name");
       assert.isAbove((ev.detail.selectedValues as string[]).length, 0);
     });
@@ -195,7 +308,7 @@ describe("zeta-table interactions", () => {
       (shadow(el).querySelector(".zeta-table-header-icon-btn") as HTMLElement).click();
       await el.updateComplete;
       setTimeout(() => (shadow(el).querySelector(".zeta-table-filter-panel-btn--apply") as HTMLElement).click());
-      const ev = await oneEvent(el, "columnFilter");
+      const ev = await oneEvent(el, "columnfilter");
       assert.equal(ev.detail.selectedValues.length, 0);
     });
 
@@ -206,9 +319,7 @@ describe("zeta-table interactions", () => {
       await el.updateComplete;
       expect(shadow(el).querySelector(".zeta-table-column-panel")).to.exist;
       const initial = shadow(el).querySelectorAll(".zeta-table-header-row .zeta-table-th").length;
-      (
-        shadow(el).querySelector(".zeta-table-column-panel-section:first-child .zeta-table-column-panel-item input[type='checkbox']") as HTMLInputElement
-      ).click();
+      nativeInput(checkbox(el, ".zeta-table-column-panel-section:first-child .zeta-table-column-panel-item")).click();
       await el.updateComplete;
       assert.equal(shadow(el).querySelectorAll(".zeta-table-header-row .zeta-table-th").length, initial - 1);
     });
@@ -217,19 +328,14 @@ describe("zeta-table interactions", () => {
       const el = await make({ columns: [{ field: "name", title: "Name" }], data: [{ id: 1, name: "A" }], columnConfigure: true });
       (shadow(el).querySelector(".zeta-table-column-panel-wrapper .zeta-table-toolbar-btn") as HTMLElement).click();
       await el.updateComplete;
-      assert.isTrue(
-        (shadow(el).querySelector(".zeta-table-column-panel-section:first-child .zeta-table-column-panel-item input[type='checkbox']") as HTMLInputElement)
-          .disabled
-      );
+      assert.isTrue(checkbox(el, ".zeta-table-column-panel-section:first-child .zeta-table-column-panel-item").disabled);
     });
 
     it("toggles column freeze", async () => {
       const el = await make({ columnConfigure: true });
       (shadow(el).querySelector(".zeta-table-column-panel-wrapper .zeta-table-toolbar-btn") as HTMLElement).click();
       await el.updateComplete;
-      (
-        shadow(el).querySelector(".zeta-table-column-panel-section:last-child .zeta-table-column-panel-item input[type='checkbox']") as HTMLInputElement
-      ).click();
+      nativeInput(checkbox(el, ".zeta-table-column-panel-section:last-child .zeta-table-column-panel-item")).click();
       await el.updateComplete;
       expect(shadow(el).querySelectorAll(".zeta-table-header-row .zeta-table-cell--frozen").length).to.be.greaterThan(0);
     });

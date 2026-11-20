@@ -1,6 +1,6 @@
 export * from "./breadcrumb-item/breadcrumb-item.js";
-import { html, LitElement, type TemplateResult } from "lit";
-import { customElement, property, queryAssignedElements, state } from "lit/decorators.js";
+import { html, LitElement, nothing, type PropertyValues } from "lit";
+import { customElement, property, query, state } from "lit/decorators.js";
 import styles from "./breadcrumb.styles.js";
 import "../icon/icon.js";
 import { Contourable } from "../../mixins/contour.js";
@@ -16,8 +16,11 @@ import { Interactive } from "../../mixins/interactive.js";
 export class ZetaBreadcrumb extends Contourable(Interactive(LitElement)) {
   static styles = [super.styles ?? [], styles];
 
+  // Items stay in the light DOM; render() picks which ones are assigned to the slots.
+  static override shadowRootOptions: ShadowRootInit = { ...LitElement.shadowRootOptions, slotAssignment: "manual" };
+
   /**
-   * The maximum number of items to display in the breadcrumb.
+   * The maximum number of items to display in the breadcrumb. `0` (the default) shows every item; `1` is treated as `2`.
    * For example, if the value is 3 and there are 5 items in the breadcrumb:
    * * The first item will always be displayed.
    * * The last 2 items will always be displayed.
@@ -25,50 +28,64 @@ export class ZetaBreadcrumb extends Contourable(Interactive(LitElement)) {
    */
   @property({ type: Number }) maxItems: number = 0;
 
-  @state() itemsTruncated: (TemplateResult | HTMLElement)[] = [];
+  /** Set when the more menu is clicked; reset whenever `maxItems` changes. */
+  @state() private expanded = false;
 
-  @queryAssignedElements() items!: HTMLElement[];
+  @query("#leading") private leadingSlot!: HTMLSlotElement;
+  @query("#trailing") private trailingSlot!: HTMLSlotElement;
 
-  private handleClick = () => {
-    if (this.maxItems == 1) {
-      this.itemsTruncated = [...this.itemsTruncated.slice(0, 1), ...this.items];
-    } else {
-      this.itemsTruncated = [...this.itemsTruncated.slice(0, 1), ...this.items, ...this.itemsTruncated.slice(-(this.maxItems - 1))];
-    }
-  };
+  /** The breadcrumb items (the element's children). */
+  get items(): HTMLElement[] {
+    return [...this.children] as HTMLElement[];
+  }
 
-  private handleSlotChange = () => {
-    // Only truncate items if maxItems is set
-    if (this.maxItems != undefined && this.maxItems >= 1 && this.itemsTruncated.length == 0) {
-      // Minimum number of items to display is 2
-      if (this.maxItems == 1) this.maxItems = 2;
+  #observer = new MutationObserver(() => this.requestUpdate());
 
-      const moreMenu =
-        this.maxItems < this.items.length
-          ? html`<div class="more-menu">
-              <button class="contourable-target" @click="${this.handleClick}"><zeta-icon>more_horizontal</zeta-icon></button>
-            </div>`
-          : html``;
+  override connectedCallback() {
+    super.connectedCallback?.();
+    // Expose the breadcrumb as a navigation landmark unless the consumer has set their own
+    if (!this.hasAttribute("role")) this.setAttribute("role", "navigation");
+    if (!this.hasAttribute("aria-label")) this.setAttribute("aria-label", "Breadcrumb");
+    this.#observer.observe(this, { childList: true });
+  }
 
-      const leadingItem: HTMLElement[] = [];
-      const trailingItems: HTMLElement[] = [];
+  override disconnectedCallback() {
+    super.disconnectedCallback?.();
+    this.#observer.disconnect();
+  }
 
-      this.items.map((item, index) => {
-        if (index == 0) leadingItem.push(item);
-        if (index > this.items.length - this.maxItems) trailingItems.push(item);
-      });
+  protected override willUpdate(changed: PropertyValues<this>) {
+    if (changed.has("maxItems")) this.expanded = false;
+  }
 
-      this.itemsTruncated = [...leadingItem, moreMenu, ...trailingItems];
+  /** How many items to show, or 0 when everything fits / the menu was expanded. */
+  private get visibleCount() {
+    const max = this.maxItems === 1 ? 2 : this.maxItems;
+    return !this.expanded && max >= 1 && max < this.items.length ? max : 0;
+  }
 
-      const slot = this.shadowRoot?.querySelector("slot");
-      slot!.style.display = "none";
-    }
-  };
+  protected override updated() {
+    const items = this.items;
+    const count = this.visibleCount;
+    this.leadingSlot.assign(...(count ? items.slice(0, 1) : items));
+    this.trailingSlot.assign(...(count ? items.slice(items.length - (count - 1)) : []));
+  }
 
   protected override render() {
     return html`
-      <slot @slotchange=${this.handleSlotChange}></slot>
-      <div class="container">${this.itemsTruncated}</div>
+      <div class="container">
+        <slot id="leading"></slot>
+        ${
+          this.visibleCount
+            ? html`<div class="more-menu">
+                <button class="contourable-target" aria-label="Show all breadcrumbs" @click=${() => (this.expanded = true)}>
+                  <zeta-icon aria-hidden="true">more_horizontal</zeta-icon>
+                </button>
+              </div>`
+            : nothing
+        }
+        <slot id="trailing"></slot>
+      </div>
     `;
   }
 }

@@ -19,6 +19,8 @@ const meta: Meta<SearchStory> = {
     size: "medium",
     // formAction: "https://google.com/search", // BK to @mikecoomber, I removed this to get the story working after search was changed to a FormField.
     hasIcon: true,
+    flavor: "default",
+    hideFocusOutline: false,
     oninput: fn(),
     onchange: fn(),
     onfocus: fn(),
@@ -30,6 +32,15 @@ const meta: Meta<SearchStory> = {
       control: {
         type: "inline-radio"
       }
+    },
+    flavor: {
+      options: ["default", "gradient", "ghost"],
+      control: {
+        type: "inline-radio"
+      }
+    },
+    hideFocusOutline: {
+      if: { arg: "flavor", eq: "ghost" }
     },
     shape: {
       options: ShapeList,
@@ -44,7 +55,7 @@ const meta: Meta<SearchStory> = {
   },
   parameters: {
     design: {
-      url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=21286-35997&mode=design&t=DUHsS5bjWB5UW1iG-4"
+      url: "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=2152-8811&m=dev"
     },
     status: {
       type: "ready"

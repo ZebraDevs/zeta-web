@@ -34,6 +34,10 @@ export class ZetaNavigationDrawerFooter extends LitElement {
   @property({ type: String, reflect: true }) variant: "profile" | "logo" = "profile";
 
   @property({ type: Boolean, reflect: true }) hideDefaultLogo?: boolean;
+
+  /**
+   * @internal
+   */
   @queryAssignedElements({ slot: "logo", flatten: true }) customLogo!: NodeList;
 
   private getProfileFooter() {

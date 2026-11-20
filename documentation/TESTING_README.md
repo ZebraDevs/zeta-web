@@ -1,6 +1,6 @@
 ## Directory structure {/* #directory-structure-web */}
 
-Test files are stored in the `src/tests` folder. Each test file should replicate the directory structure of the corresponding component in the `src/components` directory to ensure consistency and easy navigation.
+Test files are stored in the `src/test` folder. Each test file should replicate the directory structure of the corresponding component in the `src/components` directory to ensure consistency and easy navigation.
 For example, if your component is located at `src/components/button/button.ts`, the test should be placed at `src/test/button/button.test.ts`.
 
 ## Test groups {/* #test-groups-web */}
@@ -85,6 +85,7 @@ See [utils.ts](https://github.com/ZebraDevs/zeta-web/blob/main/src/test/utils.ts
 
 ## Guidelines {/* #guidelines-web */}
 
+- These rules are enforced by `yarn lint` (`scripts/enforce-testing-structure.js`): the root describe name starts with `zeta-`, every `it` sits inside a category describe, and category names must come from the list above.
 - Test group describe blocks must be nested in "component" describe blocks `describe("replace-with-zeta-tag", () => {`.
 - You can have multiple "component" describe blocks.
 - Aim to keep nesting to a minimum. Use only the "component" and "category" describe blocks. Do not nest any further.

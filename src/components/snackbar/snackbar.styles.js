@@ -43,6 +43,7 @@ export default css`
   :host([status="positive"]) .snackbar-root {
     background-color: var(--surface-positive-subtle);
     color: var(--main-default);
+    --icon-color: var(--main-default);
   }
 
   :host([status="positive"]) ::slotted([slot="icon"]) {
@@ -56,6 +57,7 @@ export default css`
   :host([status="info"]) .snackbar-root {
     background-color: var(--surface-info-subtle);
     color: var(--main-default);
+    --icon-color: var(--main-default);
   }
 
   :host([status="info"]) ::slotted([slot="icon"]) {
@@ -69,6 +71,7 @@ export default css`
   :host([status="warning"]) .snackbar-root {
     background-color: var(--surface-warning-subtle);
     color: var(--main-default);
+    --icon-color: var(--main-default);
   }
 
   :host([status="warning"]) ::slotted([slot="icon"]) {
@@ -82,6 +85,7 @@ export default css`
   :host([status="negative"]) .snackbar-root {
     background-color: var(--surface-negative-subtle);
     color: var(--main-default);
+    --icon-color: var(--main-default);
   }
 
   :host([status="negative"]) ::slotted([slot="icon"]) {
@@ -95,6 +99,7 @@ export default css`
   :host([status="view"]) .snackbar-root {
     background-color: var(--surface-primary-subtle);
     color: var(--main-default);
+    --icon-color: var(--main-default);
   }
 
   :host([status="view"]) ::slotted([slot="icon"]) {

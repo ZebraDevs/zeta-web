@@ -40,50 +40,50 @@ describe("zeta-select-input", () => {
   });
 
   describe("Accessibility", () => {
-    it("meets accessibility requirements", async () => {
-      await expect(subject).shadowDom.to.be.accessible();
+    it("meets accessibility requirements", () => {
+      expect(subject).shadowDom.to.be.accessible();
     });
   });
 
   describe("Content", () => {
-    it("renders a label", async () => {
+    it("renders a label", () => {
       const label = subject.shadowRoot?.querySelector(".label label");
       expect(label).to.exist;
-      await expect(label?.textContent).to.equal("Label");
+      expect(label?.textContent).to.equal("Label");
     });
 
-    it("renders required", async () => {
+    it("renders required", () => {
       const required = subject.shadowRoot?.querySelector(".label .required");
       expect(required).to.exist;
-      await expect(required?.textContent).to.equal("*");
+      expect(required?.textContent).to.equal("*");
     });
 
-    it("renders a hint", async () => {
+    it("renders a hint", () => {
       const hintText = subject.shadowRoot?.querySelector(".hint .hint-text");
       expect(hintText).to.exist;
-      await expect(hintText?.textContent).to.equal("Hint Text");
+      expect(hintText?.textContent).to.equal("Hint Text");
 
       const hintIcon = subject.shadowRoot?.querySelector(".hint .hint-icon") as ZetaIcon;
       expect(hintIcon).to.exist;
-      await expect(hintIcon?.textContent).to.equal("info");
+      expect(hintIcon?.textContent).to.equal("info");
     });
 
-    it("renders a select input", async () => {
+    it("renders a select input", () => {
       const input = subject.shadowRoot?.querySelector(".input");
       expect(input).to.exist;
 
       const inputChildren = Array.from(input?.children || []);
 
-      await expect((inputChildren[0] as ZetaIcon).textContent).to.equal("star");
-      await expect(inputChildren[1].getAttribute("part")).to.equal("input-text");
-      await expect((inputChildren[2] as ZetaIcon).textContent).to.equal("expand_more");
+      expect((inputChildren[0] as ZetaIcon).textContent).to.equal("star");
+      expect(inputChildren[1].getAttribute("part")).to.equal("input-text");
+      expect((inputChildren[2] as ZetaIcon).textContent).to.equal("expand_more");
       expect(input?.textContent).to.include("Select an option");
     });
 
-    it("renders placeholder text in input-text part", async () => {
+    it("renders placeholder text in input-text part", () => {
       const inputText = subject.shadowRoot?.querySelector("[part='input-text']");
       expect(inputText).to.exist;
-      await expect(inputText?.textContent?.trim()).to.equal("Select an option");
+      expect(inputText?.textContent?.trim()).to.equal("Select an option");
     });
 
     it("renders custom placeholder in input-text part", async () => {
@@ -92,7 +92,7 @@ describe("zeta-select-input", () => {
       </zeta-select-input>`);
       const inputText = subject.shadowRoot?.querySelector("[part='input-text']");
       expect(inputText).to.exist;
-      await expect(inputText?.textContent?.trim()).to.equal("Choose one");
+      expect(inputText?.textContent?.trim()).to.equal("Choose one");
     });
 
     it("renders empty string when placeholder is empty in input-text part", async () => {
@@ -101,7 +101,7 @@ describe("zeta-select-input", () => {
       </zeta-select-input>`);
       const inputText = subject.shadowRoot?.querySelector("[part='input-text']");
       expect(inputText).to.exist;
-      await expect(inputText?.textContent?.trim()).to.equal("");
+      expect(inputText?.textContent?.trim()).to.equal("");
     });
 
     it("renders selected option text in input-text part after selection", async () => {
@@ -115,15 +115,15 @@ describe("zeta-select-input", () => {
 
       const inputText = subject.shadowRoot?.querySelector("[part='input-text']");
       expect(inputText).to.exist;
-      await expect(inputText?.textContent?.trim()).to.equal("Option 1");
+      expect(inputText?.textContent?.trim()).to.equal("Option 1");
     });
 
-    it("renders a hidden options div", async () => {
+    it("renders a hidden options div", () => {
       const options = subject.shadowRoot?.querySelector(".options");
       expect(options).to.exist;
       expect(options?.classList.contains("open")).to.be.false;
       const style = window.getComputedStyle(options as HTMLElement);
-      await expect(style.display).to.equal("none");
+      expect(style.display).to.equal("none");
     });
   });
 
@@ -141,7 +141,7 @@ describe("zeta-select-input", () => {
       const inputWidth = input?.getBoundingClientRect().width;
       const optionsWidth = options?.getBoundingClientRect().width;
 
-      await expect(inputWidth).to.equal(optionsWidth);
+      expect(inputWidth).to.equal(optionsWidth);
     });
 
     it("renders the options box with the correct height", async () => {
@@ -155,7 +155,7 @@ describe("zeta-select-input", () => {
       await subject.updateComplete;
 
       const optionsHeight = options?.getBoundingClientRect().height;
-      await expect(optionsHeight).to.equal(200);
+      expect(optionsHeight).to.equal(200);
     });
   });
 
@@ -174,7 +174,7 @@ describe("zeta-select-input", () => {
 
       expect(subject.open).to.be.true;
       const style = window.getComputedStyle(options as HTMLElement);
-      await expect(style.display).to.equal("block");
+      expect(style.display).to.equal("block");
     });
 
     it("renders the options box on input space key press", async () => {
@@ -190,7 +190,7 @@ describe("zeta-select-input", () => {
 
       expect(subject.open).to.be.true;
       const style = window.getComputedStyle(options as HTMLElement);
-      await expect(style.display).to.equal("block");
+      expect(style.display).to.equal("block");
     });
 
     it("closes the options box on outside click", () => {
@@ -237,7 +237,7 @@ describe("zeta-select-input", () => {
       expect(subject.open).to.be.false;
     });
 
-    it("sets the selected option on option click", async () => {
+    it("sets the selected option on option click", () => {
       const input = subject.shadowRoot?.querySelector(".input");
       const optionsContainer = subject.shadowRoot?.querySelector(".options");
       const options = (optionsContainer?.querySelector("slot") as HTMLSlotElement).assignedElements({ flatten: true }) as ZetaOption[];
@@ -251,10 +251,10 @@ describe("zeta-select-input", () => {
       (options[0].shadowRoot?.querySelector(".option") as HTMLElement).click();
 
       expect(subject.open).to.be.false;
-      await expect(subject.value).to.equal("1");
+      expect(subject.value).to.equal("1");
     });
 
-    it("sets the selected option on option space key press", async () => {
+    it("sets the selected option on option space key press", () => {
       const input = subject.shadowRoot?.querySelector(".input");
       const optionsContainer = subject.shadowRoot?.querySelector(".options");
       const options = (optionsContainer?.querySelector("slot") as HTMLSlotElement).assignedElements({ flatten: true }) as ZetaOption[];
@@ -269,10 +269,10 @@ describe("zeta-select-input", () => {
       (options[0].shadowRoot?.querySelector(".option") as HTMLElement).dispatchEvent(event);
 
       expect(subject.open).to.be.false;
-      await expect(subject.value).to.equal("1");
+      expect(subject.value).to.equal("1");
     });
 
-    it("doesn't deselect the selected option on option click", async () => {
+    it("doesn't deselect the selected option on option click", () => {
       const input = subject.shadowRoot?.querySelector(".input");
       const optionsContainer = subject.shadowRoot?.querySelector(".options");
       const options = (optionsContainer?.querySelector("slot") as HTMLSlotElement).assignedElements({ flatten: true }) as ZetaOption[];
@@ -286,7 +286,7 @@ describe("zeta-select-input", () => {
       (options[0].shadowRoot?.querySelector(".option") as HTMLElement).click();
 
       expect(subject.open).to.be.false;
-      await expect(subject.value).to.equal("1");
+      expect(subject.value).to.equal("1");
 
       (input as HTMLElement).click();
       expect(subject.open).to.be.true;
@@ -294,10 +294,10 @@ describe("zeta-select-input", () => {
       (options[0].shadowRoot?.querySelector(".option") as HTMLElement).click();
 
       expect(subject.open).to.be.false;
-      await expect(subject.value).to.equal("1");
+      expect(subject.value).to.equal("1");
     });
 
-    it("doesn't deselect the selected option on option space key press", async () => {
+    it("doesn't deselect the selected option on option space key press", () => {
       const input = subject.shadowRoot?.querySelector(".input");
       const optionsContainer = subject.shadowRoot?.querySelector(".options");
       const options = (optionsContainer?.querySelector("slot") as HTMLSlotElement).assignedElements({ flatten: true }) as ZetaOption[];
@@ -312,7 +312,7 @@ describe("zeta-select-input", () => {
       (options[0].shadowRoot?.querySelector(".option") as HTMLElement).dispatchEvent(event);
 
       expect(subject.open).to.be.false;
-      await expect(subject.value).to.equal("1");
+      expect(subject.value).to.equal("1");
 
       (input as HTMLElement).dispatchEvent(event);
       expect(subject.open).to.be.true;
@@ -320,7 +320,7 @@ describe("zeta-select-input", () => {
       (options[0].shadowRoot?.querySelector(".option") as HTMLElement).dispatchEvent(event);
 
       expect(subject.open).to.be.false;
-      await expect(subject.value).to.equal("1");
+      expect(subject.value).to.equal("1");
     });
   });
 

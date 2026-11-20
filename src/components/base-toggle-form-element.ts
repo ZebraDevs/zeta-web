@@ -7,6 +7,10 @@ import "./icon/icon.js";
 /**
  * Base Class for Form Elements that toggle (i.e. Checkbox, Radio, Switch)
  *
+ * For checkbox and radio it renders, and styles, a box/ring centred in a fixed `--control-target-min` touch target followed by the label,
+ * with the shared `interactive-selection` border states and the `small` / `large` sizes. Subclasses add only their own shape and fill.
+ * Switch renders its own template.
+ *
  * @event {InputEvent} input - Fired when the value of the element changes.
  * @event {Event} change - Fired when the value of the element changes and is committed.
  *

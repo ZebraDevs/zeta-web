@@ -12,9 +12,49 @@ import * as TableStories from "./table.stories";
 
 ---
 
-## All Features Enabled
+## Default
+
+The default table follows the Figma design: a toolbar with search, refresh and a slotted `controls` button (export and column settings are opt-in); selectable, clickable rows with sortable columns; a row action menu; and a footer with the selected count, rows per page and numbered pagination.
 
 <Canvas of={TableStories.TableAll} />
+
+### Layout and shape
+
+- `shape="rounded"` (default) or `shape="sharp"` applies to the table and to every component inside it.
+- `hascontrol`, `hasfooter`, `hasselectedcount`, `hasrowsperpage` and `hasrowactions` are on by default. Turn one off with, for example, `hasfooter="false"`.
+- `verticalscroll` caps the content height so rows scroll under a sticky header.
+- The title, the top "x out of y" data count (`showdatacount`), expandable rows, and the per-column search and filter are all opt-in, so the default toolbar stays as drawn in Figma.
+
+### Adding your own toolbar buttons
+
+Slot any element into `controls` and it is placed at the end of the toolbar, after the built-in buttons:
+
+```html
+<zeta-table>
+  <zeta-icon-button slot="controls" flavor="outline-subtle" size="small" aria-label="More">more_vertical</zeta-icon-button>
+</zeta-table>
+```
+
+---
+
+## Events
+
+All events bubble and are composed, so they cross the shadow root. Their names are lowercase, like native events: listen with `addEventListener("sortchange", …)`, `@sortchange=${…}` (Lit), `(sortchange)` (Angular) or `@sortchange` (Vue).
+
+| Event          | Fires when                                                                      | `event.detail`                   |
+| -------------- | ------------------------------------------------------------------------------- | -------------------------------- |
+| `rowclick`     | A clickable row is clicked                                                      | `{ row, rowIndex }`              |
+| `rowselect`    | Row selection changes                                                           | `{ selectedIds }`                |
+| `rowaction`    | A row action menu item is chosen                                                | `{ actionKey, row, rowIndex }`   |
+| `rowexpand`    | A row's nested rows expand or collapse                                          | `{ rowId, expanded }`            |
+| `sortchange`   | The sort changes. Cancelable: call `preventDefault()` to sort the data yourself | `{ field, direction }`           |
+| `columnsearch` | A column search input changes                                                   | `{ field, value, searchValues }` |
+| `columnfilter` | A column filter is applied                                                      | `{ field, selectedValues }`      |
+| `tablesearch`  | The global search input changes                                                 | `{ value }`                      |
+| `pagechange`   | The page changes (numbered pagination)                                          | `{ page, pageSize }`             |
+| `loadmore`     | More rows are needed (infinite scroll)                                          | `{ currentCount }`               |
+| `tableexport`  | The export button is clicked                                                    | `{ csv, columns, data }`         |
+| `tablerefresh` | The refresh button is clicked                                                   | none                             |
 
 ---
 
@@ -68,15 +108,15 @@ import "@zebra-fed/zeta-web/index.css";
     { id: 3, name: "Carol", email: "carol@acme.com", role: "Viewer" }
   ];
 
-  table.addEventListener("rowClick", e => {
+  table.addEventListener("rowclick", e => {
     console.log("Clicked:", e.detail);
   });
 
-  table.addEventListener("sortChange", e => {
+  table.addEventListener("sortchange", e => {
     console.log("Sort:", e.detail.field, e.detail.direction);
   });
 
-  table.addEventListener("tableRefresh", () => {
+  table.addEventListener("tablerefresh", () => {
     console.log("Refresh triggered");
   });
 </script>
@@ -110,7 +150,7 @@ table.data = [
   }
 ];
 
-table.addEventListener("rowAction", e => {
+table.addEventListener("rowaction", e => {
   const { actionKey, row, rowIndex } = e.detail;
   console.log("Action:", actionKey, "on", row.name);
 });
@@ -127,7 +167,8 @@ The `ZetaTableReact` wrapper from `@zebra-fed/zeta-web/react` provides:
 - Full prop/event typing via `@lit/react`
 - Automatic slotting of React elements passed as cell values
 - Works with React 18+ (matches the published `peerDependencies`)
-- In React 19+, `onSortChange` maps to the `sortChange` event natively; the wrapper handles this for all versions.
+- Event props such as `onSortChange` and `onRowClick`, which the wrapper maps to the `sortchange` and `rowclick` events on both React 18 and 19.
+- Children passed on as slotted content, for example the `controls` slot
 
 #### Plain text cells
 
@@ -170,7 +211,7 @@ export function UsersTable() {
 
 #### React components as cell values
 
-Pass React elements directly in `data` — the wrapper automatically handles slot-based rendering:
+Pass React elements directly in `data`. The wrapper automatically handles slot-based rendering: each element is slotted into `cell-{field}-row-{id}`, so it stays with its row when the table sorts, filters or changes page. `loadingContent` and `noDataContent` use the `loading` and `no-data` slots.
 
 ```tsx
 import { ZetaTableReact } from "@zebra-fed/zeta-web/react";
@@ -220,6 +261,18 @@ export function UsersTable() {
 }
 ```
 
+#### Toolbar buttons and other slotted children
+
+Children of `ZetaTableReact` are passed on as slotted content, so a child with `slot="controls"` is placed at the end of the toolbar:
+
+```tsx
+<ZetaTableReact columns={columns} data={users}>
+  <zeta-icon-button slot="controls" flavor="outline-subtle" size="small" aria-label="More">
+    more_vertical
+  </zeta-icon-button>
+</ZetaTableReact>
+```
+
 #### Event handler typing
 
 All event handlers receive a typed `CustomEvent`:
@@ -244,16 +297,37 @@ const handleLoadMore = (e: CustomEvent<{ currentCount: number }>) => {
 
 ### Without the wrapper (raw element + ref)
 
-For plain text data without React components in cells, you can use the raw element directly:
+You can use the raw element directly. `ZetaTableReact` is easier because it also types the events and slots React elements for you.
 
-**React 19+** — native custom element support:
+**React 19+** — native custom element support. React sets `columns` and `data` as properties, and it listens for the event named by everything after `on`, so `onsortchange` listens for `sortchange`. All the table's event names are lowercase, so each one is `on` plus the event name.
 
 ```tsx
 import "@zebra-fed/zeta-web/components/table/table.js";
 
 export function UsersTable() {
-  return <zeta-table columns={columns} data={users} selectable onSortChange={e => console.log(e.detail)} style={{ "--table-row-height": "36px" }} />;
+  return (
+    <zeta-table
+      columns={columns}
+      data={users}
+      selectable
+      onrowclick={(e: CustomEvent) => console.log("Clicked:", e.detail.row)}
+      onsortchange={(e: CustomEvent) => console.log("Sort:", e.detail.field, e.detail.direction)}
+      style={{ "--table-row-height": "36px" } as React.CSSProperties}
+    />
+  );
 }
+```
+
+To put your own content in a cell, slot an element into `cell-{field}-row-{id}`. It stays with its row when the table sorts, filters or changes page:
+
+```tsx
+<zeta-table columns={columns} data={users}>
+  {users.map(user => (
+    <span key={user.id} slot={`cell-status-row-${user.id}`}>
+      {user.status}
+    </span>
+  ))}
+</zeta-table>
 ```
 
 **React 18 and below** — use a ref:
@@ -270,11 +344,11 @@ export function UsersTable() {
     if (!el) return;
     el.columns = columns;
     el.data = users;
-    el.addEventListener("sortChange", handleSort);
-    el.addEventListener("rowClick", handleRowClick);
+    el.addEventListener("sortchange", handleSort);
+    el.addEventListener("rowclick", handleRowClick);
     return () => {
-      el.removeEventListener("sortChange", handleSort);
-      el.removeEventListener("rowClick", handleRowClick);
+      el.removeEventListener("sortchange", handleSort);
+      el.removeEventListener("rowclick", handleRowClick);
     };
   }, []);
 
@@ -322,9 +396,9 @@ export class AppModule {}
   pagination-type="numbered"
   page-size="5"
   [style.--table-row-height]="'36px'"
-  (sortChange)="onSort($event)"
-  (rowClick)="onRowClick($event)"
-  (tableRefresh)="onRefresh()"
+  (sortchange)="onSort($event)"
+  (rowclick)="onRowClick($event)"
+  (tablerefresh)="onRefresh()"
 >
 </zeta-table>
 ```
@@ -458,9 +532,9 @@ app.mount("#app");
     pagination-type="numbered"
     page-size="5"
     :style="{ '--table-row-height': '36px' }"
-    @rowClick="e => console.log('Clicked:', e.detail)"
-    @sortChange="e => console.log('Sort:', e.detail)"
-    @tableRefresh="() => console.log('Refresh')"
+    @rowclick="e => console.log('Clicked:', e.detail)"
+    @sortchange="e => console.log('Sort:', e.detail)"
+    @tablerefresh="() => console.log('Refresh')"
   />
 </template>
 

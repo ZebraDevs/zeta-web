@@ -1,5 +1,89 @@
 # Changelog
 
+## [1.5.1](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.5.0...zeta-web-v1.5.1) (2026-10-26)
+
+
+### ⛓️ Dependencies
+
+* Update zeta-icons and other deps ([bbede01](https://github.com/ZebraDevs/zeta-web/commit/bbede01a871144d8bc499f54760ff1e25c8bb98a))
+
+
+### 🧹 Miscellaneous Chores
+
+* **HMX-19527:** add export zeta bundle and documentation generation scripts ([#271](https://github.com/ZebraDevs/zeta-web/issues/271)) ([9362c97](https://github.com/ZebraDevs/zeta-web/commit/9362c974854b29519e3649c3331785097359f3cc))
+
+## [1.5.0](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.4.2...zeta-web-v1.5.0) (2026-10-13)
+
+
+### ✨ New Features
+
+* zeta react skills ([#257](https://github.com/ZebraDevs/zeta-web/issues/257)) ([c6fc6c0](https://github.com/ZebraDevs/zeta-web/commit/c6fc6c012df96168f2c4c7eca1b2061cd64aa6de))
+
+
+### 🪲 Bug Fixes
+
+* exclude internal DOM query properties from JSX type generation ([#246](https://github.com/ZebraDevs/zeta-web/issues/246)) ([f0c1ac8](https://github.com/ZebraDevs/zeta-web/commit/f0c1ac89b83692f21c7523a153ec9002976dcf5e))
+
+
+### ⛓️ Dependencies
+
+* Update ([bffe45c](https://github.com/ZebraDevs/zeta-web/commit/bffe45cbbf63c209741039b9d8c752495f03d3d5))
+* Update deps from dependabot ([#255](https://github.com/ZebraDevs/zeta-web/issues/255)) ([3d2e84b](https://github.com/ZebraDevs/zeta-web/commit/3d2e84b81358db45d98349e5f189a382db4f7c08))
+
+
+### 🧹 Miscellaneous Chores
+
+* Add dan ([#259](https://github.com/ZebraDevs/zeta-web/issues/259)) ([0166036](https://github.com/ZebraDevs/zeta-web/commit/01660360696518005feb7ca4d2919b4b4599635c))
+* **deps:** bump axios from 1.19.0 to 1.20.0 ([#263](https://github.com/ZebraDevs/zeta-web/issues/263)) ([ca9e2b7](https://github.com/ZebraDevs/zeta-web/commit/ca9e2b70dc99b4789f5198b9c39e6c6904e48799))
+* **deps:** bump ip-address from 10.7.0 to 10.7.4 ([#264](https://github.com/ZebraDevs/zeta-web/issues/264)) ([c3e727b](https://github.com/ZebraDevs/zeta-web/commit/c3e727bbd79096b4c33783f7d14cde0ba2f1b7b5))
+* **deps:** bump joi from 17.13.3 to 17.13.7 ([#256](https://github.com/ZebraDevs/zeta-web/issues/256)) ([296ca9c](https://github.com/ZebraDevs/zeta-web/commit/296ca9c535a49caba6e7f1b1091b109c411ec950))
+* **deps:** bump joi from 17.13.7 to 17.13.8 ([#262](https://github.com/ZebraDevs/zeta-web/issues/262)) ([4b6c296](https://github.com/ZebraDevs/zeta-web/commit/4b6c29652071bbd2526d8371f362d86a3f524565))
+* **deps:** bump markdown-it from 14.3.0 to 14.3.2 ([#265](https://github.com/ZebraDevs/zeta-web/issues/265)) ([dfc0875](https://github.com/ZebraDevs/zeta-web/commit/dfc0875a15fbd70c0f9270df7b5982742e3ae7ca))
+* **deps:** bump source-map-js from 1.2.1 to 1.2.2 ([#260](https://github.com/ZebraDevs/zeta-web/issues/260)) ([ef3c449](https://github.com/ZebraDevs/zeta-web/commit/ef3c4498ef4989da566b496357c03eb41ca5d9e3))
+
+
+### 👷 Continuous Integration
+
+* new-component claude skill ([#245](https://github.com/ZebraDevs/zeta-web/issues/245)) ([204a132](https://github.com/ZebraDevs/zeta-web/commit/204a1322c9e63af82fa8f8ce19209b1bc9e9bfb1))
+* **NO-TICKET:** add update-component claude skill ([#248](https://github.com/ZebraDevs/zeta-web/issues/248)) ([f2ba139](https://github.com/ZebraDevs/zeta-web/commit/f2ba1391da1c792ecfb48e9835c488030b624519))
+* npm trusted auth ([#266](https://github.com/ZebraDevs/zeta-web/issues/266)) ([2ff8de9](https://github.com/ZebraDevs/zeta-web/commit/2ff8de9c404c51329fa062695b6772c5cf746fb9))
+
+## [1.4.2](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.4.1...zeta-web-v1.4.2) (2026-08-14)
+
+
+### ✨ New Features
+
+* **UX-1579:** Add close event to ZetaSnackbar ([#243](https://github.com/ZebraDevs/zeta-web/issues/243)) ([f6188a4](https://github.com/ZebraDevs/zeta-web/commit/f6188a408068eea41a4279321a5fc4e13c021cae))
+
+
+### 🧹 Miscellaneous Chores
+
+* release 1.4.2 ([0d78c29](https://github.com/ZebraDevs/zeta-web/commit/0d78c294e64803ae7766e21262b6146d4b09116c))
+
+## [1.4.1](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.4.0...zeta-web-v1.4.1) (2026-08-03)
+
+
+### ✨ New Features
+
+* **UX-1538:** Button custom color overrides ([#232](https://github.com/ZebraDevs/zeta-web/issues/232)) ([56ead48](https://github.com/ZebraDevs/zeta-web/commit/56ead483a068a3c14bc179e05d0da11542868d74))
+
+
+### 🪲 Bug Fixes
+
+* Min / Max types on text input ([#231](https://github.com/ZebraDevs/zeta-web/issues/231)) ([2376786](https://github.com/ZebraDevs/zeta-web/commit/23767863a642c949be98c6cdd47e10e631fb8241))
+
+
+### 🧹 Miscellaneous Chores
+
+* **deps:** security dependency updates (PRs [#233](https://github.com/ZebraDevs/zeta-web/issues/233)–[#240](https://github.com/ZebraDevs/zeta-web/issues/240)) ([#241](https://github.com/ZebraDevs/zeta-web/issues/241)) ([f72eff4](https://github.com/ZebraDevs/zeta-web/commit/f72eff41b0163cf901a30e87ecb81506cd946c26))
+
+## [1.4.0](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.3.6...zeta-web-v1.4.0) (2026-07-21)
+
+
+### ✨ New Features
+
+* **UX-1578:** Add clear button to text input component ([#229](https://github.com/ZebraDevs/zeta-web/issues/229)) ([324655d](https://github.com/ZebraDevs/zeta-web/commit/324655d2a2f227646d8c6701eb4dd1f95b42cab8))
+
 ## [1.3.6](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.3.5...zeta-web-v1.3.6) (2026-07-01)
 
 

@@ -4,23 +4,23 @@ export default css`
     display: block;
     position: relative;
     overflow: hidden;
-    background-color: var(--surface-default);
+    background-color: var(--surface-section);
     box-sizing: border-box;
   }
   :host([inCard]) {
-    border: var(--border-size-small) solid var(--border-subtle);
+    border: var(--stroke-thin) solid var(--border-subtle);
   }
   :host(:not([inCard])) {
-    border: var(--border-size-small) solid transparent;
+    border: var(--stroke-thin) solid transparent;
   }
 
   :host([rounded]) {
-    border-radius: var(--radius-rounded);
+    border-radius: var(--radius-md);
   }
 
   :host([inCard]) ::slotted(zeta-accordion-item:not(:first-child))::before {
     content: "";
-    height: var(--border-size-small);
+    height: var(--stroke-thin);
     background: var(--border-subtle);
     position: absolute;
     width: 100%;

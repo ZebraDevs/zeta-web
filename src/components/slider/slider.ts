@@ -3,6 +3,7 @@ import { customElement, property, query } from "lit/decorators.js";
 import styles from "./slider.styles.js";
 import { Contourable } from "../../mixins/mixins.js";
 import { styleMap } from "lit/directives/style-map.js";
+import { msg } from "@lit/localize";
 import { ZetaRangeSliderEvent, ZetaSliderEvent } from "../../events.js";
 
 export * from "./slider-input-field/slider-input-field.js";
@@ -12,7 +13,9 @@ export * from "./slider-input-field/slider-input-field.js";
  * @event {CustomEvent<ZetaSliderEventDetail>} change - Fired whenever value of slider is changed. Contains a single entry in details: `value:number`.
  * @event {CustomEvent<ZetaRangeSliderEventDetail>} change - Fired whenever value of range slider is changed. Contains 2 values in details: `min:number`, `max:number`.
  *
- * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=875-11860
+ * Each thumb is focusable and exposed as an ARIA `slider`; arrow keys move it by `stepIncrement` (or 1), Home/End jump to the ends.
+ *
+ * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=6132-3190
  * @storybook https://design.zebra.com/web/storybook/index.html?path=/docs/components-slider--docs
  */
 @customElement("zeta-slider")
@@ -109,23 +112,15 @@ export class ZetaSlider extends Contourable(LitElement) {
     return this.convertValueToProgress(roundedVal);
   }
 
-  private setStyles() {
-    // TODO I don't like this but also can't move it to CSS
-    const selectedColor = "var(--main-primary)";
-
-    this.leftHandle.style.backgroundColor = selectedColor;
-    this.selectedArea.style.backgroundColor = selectedColor;
-    if (this.type == "range") {
-      this.rightHandle.style.backgroundColor = selectedColor;
-    }
+  // Selected state lives in CSS; a class is used because :active is lost once the pointer leaves the thumb mid-drag.
+  private setStyles(handle: HTMLDivElement) {
+    this.selectedArea.parentElement?.classList.add("selected");
+    handle.classList.add("dragging");
   }
 
-  private removeStyles() {
-    this.leftHandle.style.removeProperty("background-color");
-    this.selectedArea.style.removeProperty("background-color");
-    if (this.type == "range") {
-      this.rightHandle.style.removeProperty("background-color");
-    }
+  private removeStyles(handle: HTMLDivElement) {
+    this.selectedArea.parentElement?.classList.remove("selected");
+    handle.classList.remove("dragging");
   }
   /**
    * @fires ZetaSliderEvent:change when the Slider value changes.
@@ -157,7 +152,7 @@ export class ZetaSlider extends Contourable(LitElement) {
   private mouseDownHandler = (e: Event, handle: HTMLDivElement, offHandle: HTMLDivElement) => {
     if (!this.disabled) {
       e.preventDefault();
-      this.setStyles();
+      this.setStyles(handle);
 
       handle.style.zIndex = "7";
       if (offHandle != undefined) {
@@ -167,7 +162,7 @@ export class ZetaSlider extends Contourable(LitElement) {
       const dragHandler = (e: MouseEvent) => this.dragHandler(e, handle);
 
       const onMouseUp = () => {
-        this.removeStyles();
+        this.removeStyles(handle);
 
         this.onHandleMoved(handle);
 
@@ -210,10 +205,10 @@ export class ZetaSlider extends Contourable(LitElement) {
   };
 
   private trackClickHandler = (e: MouseEvent) => {
-    if (this.type == "default") {
-      const val = this.convertPxToPercent(e.clientX - this.leftHandle.getBoundingClientRect().width * 2);
+    if (this.type == "default" && !this.disabled) {
+      const progress = this.convertPxToPercent(e.clientX - this.track.getBoundingClientRect().x);
 
-      this.moveHandle(this.leftHandle, val);
+      this.moveHandle(this.leftHandle, this.getHandlePosition(progress, this.leftHandle));
       this.onHandleMoved(this.leftHandle);
     }
   };
@@ -247,12 +242,56 @@ export class ZetaSlider extends Contourable(LitElement) {
   // Updates the size of the area between the handles
   private updateSelectedArea = () => {
     if (this.type == "range") {
-      this.selectedArea.style.left = this.leftHandle.style.left;
+      // Start at the handle's centre, not its box edge: the box is wider than the visible thumb
+      this.selectedArea.style.left = `${this.getHandleProgress(this.leftHandle)}%`;
       this.selectedArea.style.right = `${100 - this.getHandleProgress(this.rightHandle)}%`;
     } else {
       this.selectedArea.style.right = `${100 - this.getHandleProgress(this.leftHandle)}%`;
     }
   };
+
+  private keyDownHandler = (e: KeyboardEvent, handle: "value" | "lowerValue" | "upperValue") => {
+    if (this.disabled) return;
+    const step = this.stepIncrement || 1;
+    const deltas: Record<string, number> = { ArrowLeft: -step, ArrowDown: -step, ArrowRight: step, ArrowUp: step };
+    let next: number;
+    if (e.key in deltas) next = this[handle] + deltas[e.key];
+    else if (e.key == "Home") next = this.min;
+    else if (e.key == "End") next = this.max;
+    else return;
+    e.preventDefault();
+
+    // Land on a step, matching where the thumb is drawn.
+    if (this.stepIncrement) next = Math.round(next / step) * step;
+    // In range mode a thumb cannot pass the other one.
+    const lower = handle == "upperValue" ? this.lowerValue : this.min;
+    const upper = handle == "lowerValue" ? this.upperValue : this.max;
+    next = Math.min(upper, Math.max(lower, next));
+    if (next == this[handle]) return;
+    this[handle] = next;
+
+    if (this.type == "default") {
+      this.dispatchEvent(new ZetaSliderEvent({ value: this.value }).toEvent());
+    } else {
+      this.dispatchEvent(new ZetaRangeSliderEvent({ min: this.lowerValue, max: this.upperValue }).toEvent());
+    }
+  };
+
+  private renderHandle(id: string, handle: "value" | "lowerValue" | "upperValue", label: string, onMouseDown: (e: MouseEvent) => void) {
+    return html`<div
+      id=${id}
+      class="handle"
+      role="slider"
+      tabindex=${this.disabled ? -1 : 0}
+      aria-label=${label}
+      aria-valuemin=${this.min}
+      aria-valuemax=${this.max}
+      aria-valuenow=${this[handle]}
+      aria-disabled=${this.disabled ? "true" : "false"}
+      @mousedown=${onMouseDown}
+      @keydown=${(e: KeyboardEvent) => this.keyDownHandler(e, handle)}
+    ></div>`;
+  }
 
   private getSteps = () => {
     if (!this.stepIncrement) return nothing;
@@ -300,13 +339,13 @@ export class ZetaSlider extends Contourable(LitElement) {
   protected override render() {
     return html`
       <div class="slider">
-        <div id="track" class="track contourable-target" @click=${this.trackClickHandler}>${this.getSteps()}</div>
-        <div id="selected-area" class="selected-area contourable-target" @click=${this.trackClickHandler}></div>
-        <div id="handle-l" class="handle" @mousedown=${(e: MouseEvent) => this.mouseDownHandler(e, this.leftHandle, this.rightHandle)}></div>
+        <div id="track" class="track" @click=${this.trackClickHandler}>${this.getSteps()}</div>
+        <div id="selected-area" class="selected-area" @click=${this.trackClickHandler}></div>
         ${
           this.type == "range"
-            ? html`<div id="handle-r" class="handle" @mousedown=${(e: MouseEvent) => this.mouseDownHandler(e, this.rightHandle, this.leftHandle)}></div>`
-            : nothing
+            ? html`${this.renderHandle("handle-l", "lowerValue", msg("Minimum"), (e: MouseEvent) => this.mouseDownHandler(e, this.leftHandle, this.rightHandle))}
+              ${this.renderHandle("handle-r", "upperValue", msg("Maximum"), (e: MouseEvent) => this.mouseDownHandler(e, this.rightHandle, this.leftHandle))}`
+            : this.renderHandle("handle-l", "value", msg("Slider"), (e: MouseEvent) => this.mouseDownHandler(e, this.leftHandle, this.rightHandle))
         }
       </div>
     `;

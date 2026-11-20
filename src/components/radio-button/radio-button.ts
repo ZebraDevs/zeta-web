@@ -1,9 +1,10 @@
-import { customElement } from "lit/decorators.js";
+import { customElement, property } from "lit/decorators.js";
 
 import { BaseToggleFormElement } from "../base-toggle-form-element.js";
 import styles from "./radio-button.styles.js";
 import { RadioButtonController } from "./radio-button-controller.js";
 import type { ZetaInputType } from "../../mixins/form-field.js";
+import type { SizeType } from "../../mixins/size.js";
 
 /** Radio buttons are used for mutually exclusive choices, not for multiple choices. Only one radio button can be selected at a time. When a user chooses a new item, the previous choice is automatically deselected.
  *
@@ -22,11 +23,19 @@ export class ZetaRadioButton extends BaseToggleFormElement {
   }
   override type: Extract<ZetaInputType, "radio"> = "radio";
 
+  /**
+   * Size of the radio ring. Valid values are `large` (default, 24px ring) and `small` (16px ring).
+   * The label and the 40px touch target do not change with size.
+   *
+   * `medium` is accepted for backward compatibility but renders as `large`.
+   */
+  @property({ type: String, reflect: true }) override size: SizeType = "large";
+
   override handleChange(event: Event): void {
     if (this.checked) super.handleChange(event); //Fires change Event only if checked.
     this.radioButtonController.handleChange();
   }
-  static styles = [styles, super.styles];
+  static styles = [super.styles, styles];
 }
 
 declare global {

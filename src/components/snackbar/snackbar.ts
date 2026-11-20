@@ -14,6 +14,8 @@ import { type ZetaIconName } from "@zebra-fed/zeta-icons";
  * @slot - The text of the snackbar.
  * @slot icon - The icon of the snackbar.
  *
+ * @event {Event} close - Fired when the snackbar is closed.
+ *
  * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-13&node-type=canvas&m=dev
  * @storybook https://design.zebra.com/web/storybook/index.html?path=/docs/components-snackbar--docs
  */
@@ -47,6 +49,11 @@ export class ZetaSnackbar extends ContourableThree(Interactive(LitElement)) {
    */
   @property() actionClick?: () => void;
 
+  _onClose() {
+    this.dispatchEvent(new Event("close"));
+    this.remove();
+  }
+
   render() {
     return html`
       <div class="snackbar-root contourable-target">
@@ -59,7 +66,7 @@ export class ZetaSnackbar extends ContourableThree(Interactive(LitElement)) {
           ${
             this.hasCloseAction
               ? html`
-                  <button id="closeButton" @click=${() => this.remove()}>
+                  <button id="closeButton" @click=${this._onClose.bind(this)}>
                     <zeta-icon id="closeIcon" .rounded=${this.shape !== "sharp"}>${this.closeActionIcon ?? "cancel"}</zeta-icon>
                   </button>
                 `

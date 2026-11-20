@@ -5,6 +5,7 @@ import { ZetaActionMenuButton } from "./components/action-menu/action-menu-butto
 import { ZetaAssistChip } from "./components/chips/assist-chip/assist-chip.js";
 import { ZetaAvatar } from "./components/avatar/avatar.js";
 import { ZetaAvatarRail } from "./components/avatar-rail/avatar-rail.js";
+import { ZetaAvatarStatusIndicator } from "./components/avatar/status-indicator/avatar-status-indicator.js";
 import { ZetaBottomSheet } from "./components/bottom-sheets/bottom-sheet.js";
 import { ZetaBreadcrumb } from "./components/breadcrumbs/breadcrumb.js";
 import { ZetaBreadcrumbItem } from "./components/breadcrumbs/breadcrumb-item/breadcrumb-item.js";
@@ -19,6 +20,7 @@ import { ZetaCardHeader } from "./components/card/card-header/card-header.js";
 import { ZetaChartCard } from "./components/chart-card/chart-card.js";
 import { ZetaCheckbox } from "./components/checkbox/checkbox.js";
 import { ZetaDialog } from "./components/dialog/dialog.js";
+import { ZetaDivider } from "./components/divider/divider.js";
 import { ZetaDropdownMenuButton } from "./components/dropdown/dropdown-menu/dropdown-menu-button.js";
 import { ZetaDropdownMenuItem } from "./components/dropdown/menu-item/dropdown-menu-item.js";
 import { ZetaDroppable } from "./components/dropdown/droppable.js";
@@ -87,6 +89,7 @@ export {
   ZetaAssistChip,
   ZetaAvatar,
   ZetaAvatarRail,
+  ZetaAvatarStatusIndicator,
   ZetaBottomSheet,
   ZetaBreadcrumb,
   ZetaBreadcrumbItem,
@@ -101,6 +104,7 @@ export {
   ZetaChartCard,
   ZetaCheckbox,
   ZetaDialog,
+  ZetaDivider,
   ZetaDropdownMenuButton,
   ZetaDropdownMenuItem,
   ZetaDroppable,

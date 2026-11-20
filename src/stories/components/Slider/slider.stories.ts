@@ -21,7 +21,7 @@ const meta: Meta<ZetaSlider> = {
   },
   parameters: {
     design: {
-      url: "https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=875-11860&m=dev"
+      url: "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=6132-3190&m=dev"
     },
     status: {
       type: "ready"

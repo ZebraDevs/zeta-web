@@ -27,7 +27,10 @@ export class ZetaBottomSheet extends LitElement {
   /** If the bottom sheet is collapsed or not */
   @property({ type: Boolean, reflect: true }) isExpanded: boolean = true;
 
-  /** Default slot */
+  /**
+   * Default slot
+   * @internal
+   */
   @queryAssignedElements({ flatten: true }) items: NodeList | undefined;
 
   static styles = [super.styles ?? [], styles];

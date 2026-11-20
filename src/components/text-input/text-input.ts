@@ -6,6 +6,9 @@ import { classMap } from "lit/directives/class-map.js";
 import { Contourable, Interactive, Size } from "../../mixins/mixins.js";
 import "../icon/icon.js";
 import { FormField } from "../../mixins/form-field.js";
+import type { Shape } from "../../mixins/contourable-three.js";
+
+export type TextInputFlavor = "default" | "gradient" | "ghost";
 
 // TODO: Split into separate TextInput and TextArea components, as the shared code is minimal and this would simplify the implementation of both components. This would also allow us to remove the `rows` property from TextInput, which is not applicable to it.
 
@@ -20,7 +23,7 @@ import { FormField } from "../../mixins/form-field.js";
  * @event {Event} change - Fired when the input value changes and is committed
  * @event {InputEvent} input - Fired when the input value changes
  *
- * @figma https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=23116-92946
+ * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=6288-997
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-text-input--docs
  */
 @customElement("zeta-text-input")
@@ -60,6 +63,15 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
   @property({ type: Number }) rows?: number;
 
   /**
+   * Displays a button to clear the text field when true.
+   * This will always display in the right most position and will push any trailing icon or suffix to the left.
+   * It will apply to all text field types and will push any type specific interactions to the left as well.
+   * For type `textarea`, the clear button will be displayed in the top right corner of the text area.
+   * The clear button will not be displayed if the text field is disabled or read-only.
+   */
+  @property({ type: Boolean }) showClearButton = false;
+
+  /**
    * Label shown above text field.
    *
    */
@@ -78,6 +90,21 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
    * Shown if `error`, replaces `hintText`.
    */
   @property() errorText?: string;
+
+  /**
+   * Corner shape of the field. Valid values are `sharp` (no radius), `rounded` (small radius) and `full` (pill).
+   *
+   * When set, this takes precedence over `rounded`. When unset, `rounded` decides between `rounded` and `sharp`.
+   */
+  @property({ type: String, reflect: true }) shape?: Shape;
+
+  /**
+   * Visual flavor of the field.
+   *  - `default`: bordered field on a neutral surface; use inside forms.
+   *  - `gradient`: gradient border, for a special interaction highlight such as an AI companion field.
+   *  - `ghost`: no surface and no visible border at rest, for a field on a surface that already bounds it.
+   */
+  @property({ type: String, reflect: true }) flavor: TextInputFlavor = "default";
 
   /** Type of field */
   @property({ type: String, reflect: true }) type: "text" | "textarea" | "password" | "time" | "date" | "number" | "integer" = "text";
@@ -113,14 +140,14 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
 
   /* INTEGER MODE */
   increment() {
-    if (this.type === "integer" && Number(this.value) !== this.max) {
+    if (this.type === "integer" && (this.max === undefined || !isFinite(Number(this.max)) || Number(this.value) < Number(this.max))) {
       this.value = ((parseFloat(this.value) || 0) + 1).toString();
       this.dispatchEvent(new Event("change"));
     }
   }
 
   decrement() {
-    if (this.type === "integer" && Number(this.value) !== this.min) {
+    if (this.type === "integer" && (this.min === undefined || !isFinite(Number(this.min)) || Number(this.value) > Number(this.min))) {
       this.value = ((parseFloat(this.value) || 0) - 1).toString();
       this.dispatchEvent(new Event("change"));
     }
@@ -163,7 +190,9 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
 
   protected render() {
     if (this.label) {
-      return html`<label class="container"> ${this.label} ${this.renderInput()} </label>`;
+      return html`<label class="container">
+        <span class=${classMap({ label: true, required: this.required })}>${this.label}</span> ${this.renderInput()}
+      </label>`;
     } else {
       return html`<div class="container">${this.renderInput()}</div>`;
     }
@@ -176,11 +205,13 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
       "text-area": this.type === "textarea"
     });
     return html`
-      <div class=${containerClass}>${this.renderLeftIcon()} ${this.renderPrefix()} ${super.render()} ${this.renderRightIcon()} ${this.renderSuffix()}</div>
+      <div class=${containerClass}>
+        ${this.renderLeftIcon()} ${this.renderPrefix()} ${super.render()} ${this.renderRightIcon()} ${this.renderSuffix()} ${this.renderCloseIcon()}
+      </div>
       ${
         this.error || this.hintText
           ? html`<div class="hint-text">
-              <zeta-icon .rounded=${this.rounded}>${this.error ? "error" : "info"}</zeta-icon>
+              <zeta-icon .rounded=${this.iconRounded}>${this.error ? "error" : "info"}</zeta-icon>
               <span id="hint-text">${this.error ? this.errorText : this.hintText}</span>
             </div> `
           : nothing
@@ -188,15 +219,48 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
     `;
   }
 
+  private clearValue() {
+    if (this.disabled || this.readOnly) return;
+    this.value = "";
+    this.internals.setFormValue(this.value);
+    this._valueOnLastFocus = this.value;
+    this.dispatchEvent(new Event("change", { bubbles: true, composed: true }));
+  }
+
+  private handleClearKeyDown(e: KeyboardEvent) {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      this.clearValue();
+    }
+  }
+
+  private renderCloseIcon() {
+    return this.showClearButton && !this.disabled && !this.readOnly && (this.value ?? "") !== ""
+      ? html`<zeta-icon
+          class="cancel-icon right ${this.type === "textarea" ? "cancel-icon-textarea" : ""}"
+          @click=${() => {
+            this.clearValue();
+          }}
+          @keydown=${(e: KeyboardEvent) => {
+            this.handleClearKeyDown(e);
+          }}
+          tabindex="0"
+          role="button"
+          aria-label="Clear input"
+          >cancel</zeta-icon
+        >`
+      : nothing;
+  }
+
   private renderLeftIcon() {
     return this.leadingIcon && this.type === "text" && !this.toggled
-      ? html`<zeta-icon class="left" .rounded=${this.rounded}>${this.leadingIcon}</zeta-icon> `
+      ? html`<zeta-icon class="left" .rounded=${this.iconRounded}>${this.leadingIcon}</zeta-icon> `
       : nothing;
   }
 
   private renderRightIcon() {
     return this.trailingIcon && this.type === "text" && !this.toggled
-      ? html`<zeta-icon class="right" .rounded=${this.rounded}>${this.trailingIcon}</zeta-icon>`
+      ? html`<zeta-icon class="right" .rounded=${this.iconRounded}>${this.trailingIcon}</zeta-icon>`
       : this.type === "password" || this.toggled
         ? html`<zeta-icon
             @click=${() => {
@@ -204,12 +268,12 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
               this.type = this.type === "text" ? "password" : "text";
             }}
             class="right"
-            .rounded=${this.rounded}
+            .rounded=${this.iconRounded}
           >
             ${this.toggled ? "visibility" : "visibility_off"}
           </zeta-icon>`
         : this.type === "time" || this.type === "date"
-          ? html`<zeta-icon @click=${() => this.inputEl.showPicker()} class="right" .rounded=${this.rounded}
+          ? html`<zeta-icon @click=${() => this.inputEl.showPicker()} class="right" .rounded=${this.iconRounded}
               >${this.type === "time" ? "clock_outline" : "calendar_3_day"}</zeta-icon
             >`
           : this.type === "integer"
@@ -249,6 +313,10 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
   }
 
   private toggled = false;
+
+  private get iconRounded() {
+    return this.shape ? this.shape !== "sharp" : this.rounded;
+  }
 }
 
 declare global {

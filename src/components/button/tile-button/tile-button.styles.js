@@ -2,10 +2,10 @@ import { css } from "lit";
 export default css`
   :host > button {
     flex-direction: column;
-    width: var(--spacing-10xl);
-    height: var(--spacing-10xl);
-    gap: var(--spacing-minimum);
-    padding: var(--spacing-large) var(--spacing-small);
+    width: calc((var(--space-2xl) * 2) + var(--space-lg));
+    height: calc((var(--space-2xl) * 2) + var(--space-lg));
+    gap: var(--space-xs);
+    padding: var(--space-lg) var(--space-sm);
   }
   .button-text {
     overflow: hidden;

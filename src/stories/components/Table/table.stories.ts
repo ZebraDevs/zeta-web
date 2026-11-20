@@ -3,11 +3,20 @@ import { html } from "lit";
 import { ZetaTable, type ZetaTableColumn, type ZetaTableRow, type ZetaTableAction } from "../../../components/table/table.js";
 import { fn } from "@storybook/test";
 import { spreadGenerator, cssVarsStyle } from "../../utils.js";
+// The cells and the controls slot in these stories use these components
+import "../../../components/avatar/avatar.js";
+import "../../../components/badges/status-label/status-label.js";
+import "../../../components/button/button.js";
+import "../../../components/button/icon-button/icon-button.js";
+import "../../../components/icon/icon.js";
+import "../../../components/progress-indicators/progress-circle/progress-circle.js";
+import type { ZetaProgressCircle } from "../../../components/progress-indicators/progress-circle/progress-circle.js";
 
 const spread = spreadGenerator(ZetaTable);
 
 const sampleColumns: ZetaTableColumn[] = [
   { field: "id", title: "ID", width: 60, sortable: true, filterable: true, frozen: true, tooltip: true, resizable: true },
+  { field: "avatar", title: "Avatar", width: 80, sortable: false, filterable: false, frozen: true, resizable: false },
   { field: "name", title: "Name", width: 180, sortable: true, filterable: true, frozen: true, tooltip: true, resizable: true },
   { field: "email", title: "Email", width: 240, sortable: true, filterable: true, tooltip: true, resizable: true },
   {
@@ -51,70 +60,84 @@ const locations = ["New York", "San Francisco", "London", "Berlin", "Tokyo", "Mu
 
 function getActionsForRole(role: string, disabled: boolean): ZetaTableAction[] | null | undefined {
   if (disabled) return null;
-  if (role === "Director") return [{ key: "view", label: "View Details", icon: "👁" }];
+  if (role === "Director") return [{ key: "view", label: "View Details", icon: "visibility" }];
   if (role === "Intern")
     return [
-      { key: "view", label: "View Details", icon: "👁" },
-      { key: "edit", label: "Edit", icon: "✏️" }
+      { key: "view", label: "View Details", icon: "visibility" },
+      { key: "edit", label: "Edit", icon: "edit" }
     ];
   return [
-    { key: "view", label: "View Details", icon: "👁" },
-    { key: "edit", label: "Edit", icon: "✏️" },
-    { key: "wipe", label: "Wipe Computer", icon: "💻" },
-    { key: "delete", label: "Delete Computer", icon: "🗑️" }
+    { key: "view", label: "View Details", icon: "visibility" },
+    { key: "edit", label: "Edit", icon: "edit" },
+    { key: "wipe", label: "Wipe Computer", icon: "laptop" },
+    { key: "delete", label: "Delete Computer", icon: "delete" }
   ];
 }
 
-/** Creates a DOM element styled as a colored status badge */
-function createStatusBadge(text: string, color: string, bg: string): HTMLElement {
-  const badge = document.createElement("span");
-  badge.textContent = text;
-  badge.style.cssText = `display:inline-flex; align-items:center; padding:var(--spacing-0-5) var(--spacing-small); border-radius:var(--spacing-medium); font:var(--body-x-small); font-weight:var(--medium); color:${color}; background:${bg};`;
-  return badge;
+type StatusLabelStatus = "info" | "positive" | "warning" | "negative" | "neutral";
+
+/** Creates a status label from the design system, so its colours always follow the current tokens */
+function createStatusLabel(text: string, status: StatusLabelStatus): HTMLElement {
+  const label = document.createElement("zeta-status-label");
+  label.setAttribute("status", status);
+  label.textContent = text;
+  return label;
 }
 
-/** Creates a DOM element with an inline SVG user icon + name side by side */
-function createIconName(name: string): HTMLElement {
+/**
+ * Creates an avatar with the initials of a name.
+ * The avatar has its own column, so a Name cell holds only the name and sorts by it (the initials would otherwise be part of its text).
+ */
+function createAvatar(name: string): HTMLElement {
+  const avatar = document.createElement("zeta-avatar");
+  avatar.setAttribute("size", "xs");
+  avatar.textContent = name
+    .split(" ")
+    .map(part => part[0])
+    .join("")
+    .slice(0, 2);
+  return avatar;
+}
+
+/** Creates a person cell: an avatar with the initials, then a title and a subtitle, as in the design */
+function createIconName(name: string, subtitle?: string): HTMLElement {
   const wrapper = document.createElement("div");
-  wrapper.style.cssText = "display:flex; align-items:center; gap:var(--spacing-small);";
-  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  svg.setAttribute("viewBox", "0 0 24 24");
-  svg.setAttribute("width", "20");
-  svg.setAttribute("height", "20");
-  svg.style.cssText = "fill:var(--main-subtle); flex-shrink:0;";
-  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-  path.setAttribute("d", "M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z");
-  svg.appendChild(path);
-  const span = document.createElement("span");
-  span.textContent = name;
-  wrapper.appendChild(svg);
-  wrapper.appendChild(span);
+  wrapper.style.cssText = "display:flex; align-items:center; gap:var(--space-sm);";
+  wrapper.appendChild(createAvatar(name));
+  wrapper.appendChild(createNameText(name, subtitle));
   return wrapper;
 }
 
-const STAR_FILLED_PATH = "M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z";
-const STAR_OUTLINE_PATH =
-  "M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z";
+/** Creates a title with an optional subtitle under it, for a Name cell */
+function createNameText(name: string, subtitle?: string): HTMLElement {
+  const text = document.createElement("div");
+  text.style.cssText = "display:flex; flex-direction:column; min-width:0;";
+  const title = document.createElement("span");
+  title.textContent = name;
+  text.appendChild(title);
+  if (subtitle) {
+    const sub = document.createElement("span");
+    sub.textContent = subtitle;
+    sub.style.cssText = "font:var(--body-xsmall); color:var(--foreground-secondary);";
+    text.appendChild(sub);
+  }
+  return text;
+}
 
-/** Creates a star rating toggle button (interactive DOM Node) */
+/** Creates a star toggle (interactive DOM Node) from the icon set */
 function createStarButton(filled: boolean): HTMLElement {
   const btn = document.createElement("button");
-  btn.title = filled ? "Unstar" : "Star";
-  btn.style.cssText = "background:none; border:none; cursor:pointer; padding:var(--spacing-0-5); display:inline-flex; align-items:center;";
-
-  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  svg.setAttribute("viewBox", "0 0 24 24");
-  svg.setAttribute("width", "18");
-  svg.setAttribute("height", "18");
-  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-  svg.appendChild(path);
-  btn.appendChild(svg);
+  btn.type = "button";
+  btn.style.cssText = "background:none; border:none; cursor:pointer; padding:var(--space-3xs); display:inline-flex; align-items:center;";
+  const icon = document.createElement("zeta-icon");
+  btn.appendChild(icon);
 
   let isFilled = filled;
   const applyState = () => {
-    svg.style.fill = isFilled ? "var(--main-warning)" : "var(--main-disabled)";
-    path.setAttribute("d", isFilled ? STAR_FILLED_PATH : STAR_OUTLINE_PATH);
+    icon.textContent = isFilled ? "star" : "star_outline";
+    icon.style.setProperty("--icon-color", isFilled ? "var(--foreground-warning)" : "var(--foreground-disabled)");
     btn.title = isFilled ? "Unstar" : "Star";
+    btn.setAttribute("aria-pressed", String(isFilled));
   };
   applyState();
 
@@ -126,13 +149,13 @@ function createStarButton(filled: boolean): HTMLElement {
   return btn;
 }
 
-const roleStyles: Record<string, { color: string; bg: string }> = {
-  Manager: { color: "var(--main-positive)", bg: "var(--surface-positive-subtle)" },
-  Senior: { color: "var(--main-primary)", bg: "var(--surface-primary-subtle)" },
-  Junior: { color: "var(--main-warning)", bg: "var(--surface-warning-subtle)" },
-  Lead: { color: "var(--surface-info)", bg: "var(--surface-info-subtle)" },
-  Director: { color: "var(--main-negative)", bg: "var(--surface-negative-subtle)" },
-  Intern: { color: "var(--main-subtle)", bg: "var(--surface-hover)" }
+const roleStatuses: Record<string, StatusLabelStatus> = {
+  Manager: "positive",
+  Senior: "info",
+  Junior: "warning",
+  Lead: "info",
+  Director: "negative",
+  Intern: "neutral"
 };
 
 function generateData(count: number): ZetaTableRow[] {
@@ -140,13 +163,13 @@ function generateData(count: number): ZetaTableRow[] {
   for (let i = 1; i <= count; i++) {
     const role = roles[i % roles.length];
     const isDisabled = i === 7;
-    const rs = roleStyles[role] || { color: "var(--main-default)", bg: "var(--surface-hover)" };
     data.push({
       id: i,
-      name: createIconName(`Employee ${i}`),
+      avatar: createAvatar(`Employee ${i}`),
+      name: createNameText(`Employee ${i}`),
       email: `employee${i}@company.com`,
       department: departments[i % departments.length],
-      role: createStatusBadge(role, rs.color, rs.bg),
+      role: createStatusLabel(role, roleStatuses[role] ?? "neutral"),
       salary: `$${50000 + i * 1500}`,
       location: locations[i % locations.length],
       startDate: `2020-${String((i % 12) + 1).padStart(2, "0")}-${String((i % 28) + 1).padStart(2, "0")}`,
@@ -155,25 +178,20 @@ function generateData(count: number): ZetaTableRow[] {
         i % 5 === 0
           ? (() => {
               const el = document.createElement("div");
-              el.style.cssText = "padding:var(--spacing-medium); display:flex; gap:var(--spacing-large); align-items:center;";
-              const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-              svg.setAttribute("viewBox", "0 0 24 24");
-              svg.setAttribute("width", "48");
-              svg.setAttribute("height", "48");
-              svg.style.cssText = "fill:var(--main-subtle); flex-shrink:0;";
-              const p = document.createElementNS("http://www.w3.org/2000/svg", "path");
-              p.setAttribute("d", "M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z");
-              svg.appendChild(p);
+              el.style.cssText = "padding:var(--space-md); display:flex; gap:var(--space-lg); align-items:center;";
+              const avatar = document.createElement("zeta-avatar");
+              avatar.setAttribute("size", "md");
+              avatar.textContent = `E${i}`.slice(0, 2);
               const info = document.createElement("div");
               const strong = document.createElement("strong");
               strong.textContent = `Employee ${i} — Custom View`;
               info.appendChild(strong);
               info.appendChild(document.createElement("br"));
               const desc = document.createElement("span");
-              desc.style.color = "var(--main-subtle)";
+              desc.style.color = "var(--foreground-secondary)";
               desc.textContent = "This nested content is a DOM Node. Consumers can render anything here: icons, charts, forms, etc.";
               info.appendChild(desc);
-              el.appendChild(svg);
+              el.appendChild(avatar);
               el.appendChild(info);
               return el;
             })()
@@ -182,14 +200,14 @@ function generateData(count: number): ZetaTableRow[] {
                 {
                   id: `${i}-1`,
                   task: "Sub-task 1",
-                  status: createStatusBadge("Done", "var(--main-positive)", "var(--surface-positive-subtle)"),
-                  priority: createStatusBadge("High", "var(--main-negative)", "var(--surface-negative-subtle)")
+                  status: createStatusLabel("Done", "positive"),
+                  priority: createStatusLabel("High", "negative")
                 },
                 {
                   id: `${i}-2`,
                   task: "Sub-task 2",
-                  status: createStatusBadge("In Progress", "var(--main-primary)", "var(--surface-primary-subtle)"),
-                  priority: createStatusBadge("Medium", "var(--main-warning)", "var(--surface-warning-subtle)")
+                  status: createStatusLabel("In Progress", "info"),
+                  priority: createStatusLabel("Medium", "warning")
                 }
               ]
             : undefined,
@@ -199,6 +217,77 @@ function generateData(count: number): ZetaTableRow[] {
     });
   }
   return data;
+}
+
+/** The four columns of the Figma frame: a person, a status, plain text and an action button */
+const figmaColumns: ZetaTableColumn[] = [
+  { field: "avatar", title: "Avatar", width: 90, sortable: false, filterable: false, resizable: false },
+  { field: "name", title: "Name", width: 220, sortable: true },
+  { field: "status", title: "Status", width: 210, sortable: true },
+  { field: "department", title: "Department", width: 210, sortable: true },
+  { field: "details", title: "Details", sortable: true }
+];
+
+const figmaStatuses: StatusLabelStatus[] = ["neutral", "info", "positive", "warning", "negative"];
+const figmaStatusText: Record<StatusLabelStatus, string> = {
+  neutral: "Draft",
+  info: "In review",
+  positive: "Approved",
+  warning: "Pending",
+  negative: "Rejected"
+};
+
+/** Creates the outline "Button" cell of the Figma frame */
+function createDetailsButton(): HTMLElement {
+  const button = document.createElement("zeta-button");
+  button.setAttribute("flavor", "outline");
+  button.setAttribute("size", "small");
+  button.textContent = "Open";
+  button.addEventListener("click", e => e.stopPropagation());
+  return button;
+}
+
+/** Nested content for the Figma rows: a custom DOM view (every 5th row) or a sub-table (every 3rd row) */
+function createFigmaNested(id: number): ZetaTableRow["_nested"] {
+  if (id % 5 === 0) {
+    const el = document.createElement("div");
+    el.style.cssText = "padding:var(--space-md); display:flex; gap:var(--space-lg); align-items:center;";
+    el.appendChild(createIconName(`Employee ${id}`, "Custom View"));
+    const desc = document.createElement("span");
+    desc.style.color = "var(--foreground-secondary)";
+    desc.textContent = "This nested content is a DOM Node. Consumers can render anything here: icons, charts, forms, etc.";
+    el.appendChild(desc);
+    return el;
+  }
+  if (id % 3 === 0) {
+    return [
+      { id: `${id}-1`, task: "Sub-task 1", status: createStatusLabel("Done", "positive"), priority: createStatusLabel("High", "negative") },
+      { id: `${id}-2`, task: "Sub-task 2", status: createStatusLabel("In Progress", "info"), priority: createStatusLabel("Medium", "warning") }
+    ];
+  }
+  return undefined;
+}
+
+/** Rows shaped like the Figma frame: every row has the same four cells and a more menu */
+function generateFigmaData(count: number): ZetaTableRow[] {
+  return Array.from({ length: count }, (_, index) => {
+    const id = index + 1;
+    const status = figmaStatuses[index % figmaStatuses.length];
+    return {
+      id,
+      avatar: createAvatar(`Employee ${id}`),
+      name: createNameText(`Employee ${id}`, "Subtitle"),
+      status: createStatusLabel(figmaStatusText[status], status),
+      department: departments[index % departments.length],
+      details: createDetailsButton(),
+      _nested: createFigmaNested(id),
+      _actions: [
+        { key: "view", label: "View Details", icon: "visibility" },
+        { key: "edit", label: "Edit", icon: "edit" },
+        { key: "delete", label: "Delete", icon: "delete" }
+      ]
+    };
+  });
 }
 
 type TableStory = ZetaTable & {
@@ -230,7 +319,7 @@ const meta: Meta<TableStory> = {
     loading: false,
     hasMoreData: true,
     columns: sampleColumns,
-    data: generateData(50),
+    // Rows hold DOM nodes (cells), which can't be serialized into args (circular structure), so each story builds its own rows
     selectedRows: [1, 3],
     disabledRows: [7],
     onselectionchange: fn(),
@@ -244,6 +333,25 @@ const meta: Meta<TableStory> = {
     onrowaction: fn()
   },
   argTypes: {
+    hasControl: {
+      control: "boolean",
+      description: 'Show the controls bar above the content (search and the controls slot). On by default; `hascontrol="false"` turns it off from markup.'
+    },
+    hasFooter: { control: "boolean", description: "Show the footer with the page summary, rows per page and pagination. On by default." },
+    hasSelectedCount: {
+      control: "boolean",
+      description: "Show the selected count label at the start of the controls bar while rows are selected. On by default."
+    },
+    hasRowsPerPage: { control: "boolean", description: "Show the rows per page select in the footer. On by default." },
+    hasRowActions: { control: "boolean", description: "Show the actions column with a more button per row. On by default." },
+    verticalScroll: { control: "boolean", description: "Cap the content height so rows scroll under a sticky header" },
+    shape: { control: { type: "select" }, options: ["rounded", "sharp"], description: "Shape of the table and of every component inside it" },
+    searchable: { control: "boolean", description: "Show the global search field in the controls bar" },
+    refreshable: { control: "boolean", description: "Show the refresh button in the controls bar" },
+    columnSearchable: { control: "boolean", description: "Show a search input under each column header" },
+    columnFilterable: { control: "boolean", description: "Show a filter button in each column header" },
+    selectOnRowClick: { control: "boolean", description: "Clicking a row toggles its selection" },
+    clickableRows: { control: "boolean", description: "Rows show a pointer cursor and fire `rowclick`" },
     selectable: { control: "boolean", description: "Show checkbox selection column" },
     selectAll: { control: "boolean", description: "Show select-all checkbox in header" },
     expandable: { control: "boolean", description: "Enable nested/expandable rows" },
@@ -281,7 +389,7 @@ const meta: Meta<TableStory> = {
   },
   parameters: {
     design: {
-      url: "https://www.figma.com/design/WRSQZYj9aiXyxEHSZcRHol/Antuit---Predictive-Ordering?node-id=728-210&m=dev"
+      url: "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=6717-3146&m=dev"
     },
     status: {
       type: "beta"
@@ -291,7 +399,30 @@ const meta: Meta<TableStory> = {
 
 export default meta;
 
+/** The default story. It matches the Figma frame: a selected count, search and controls above the content, and a footer below. */
 export const TableAll: StoryObj<TableStory> = {
+  args: {
+    // The Figma frame has no title, no data count, and no column search or filter. Expandable shows the nested rows (every 3rd and 5th row)
+    tableTitle: "",
+    showDataCount: false,
+    expandable: true,
+    searchable: true,
+    refreshable: true,
+    columnSearchable: false,
+    columnFilterable: false,
+    selectOnRowClick: true,
+    clickableRows: true,
+    hasControl: true,
+    hasFooter: true,
+    hasSelectedCount: true,
+    hasRowsPerPage: true,
+    hasRowActions: true,
+    verticalScroll: false,
+    pageSize: 5,
+    columns: figmaColumns,
+    selectedRows: [2],
+    disabledRows: [4]
+  },
   render: args => {
     const {
       onselectionchange: onSelChange,
@@ -317,10 +448,23 @@ export const TableAll: StoryObj<TableStory> = {
       columnConfigure,
       paginationType,
       pageSize,
+      searchable,
+      refreshable,
+      columnSearchable,
+      columnFilterable,
+      selectOnRowClick,
+      clickableRows,
+      hasControl,
+      hasFooter,
+      hasSelectedCount,
+      hasRowsPerPage,
+      hasRowActions,
+      verticalScroll,
+      shape,
       ...rest
     } = args;
 
-    const masterData = data as ZetaTableRow[];
+    const masterData = (data as ZetaTableRow[] | undefined) ?? generateFigmaData(21);
     let filteredData = [...masterData];
     let currentSort: { field: string; direction: "asc" | "desc" | null } = { field: "", direction: null };
     let currentPageNum = 1;
@@ -344,7 +488,7 @@ export const TableAll: StoryObj<TableStory> = {
         if (typeof aVal === "number" && typeof bVal === "number") {
           return direction === "asc" ? aVal - bVal : bVal - aVal;
         }
-        const cmp = String(aVal).localeCompare(String(bVal));
+        const cmp = String(aVal).localeCompare(String(bVal), undefined, { numeric: true });
         return direction === "asc" ? cmp : -cmp;
       });
     }
@@ -464,44 +608,56 @@ export const TableAll: StoryObj<TableStory> = {
     const initialPageSize = pageSize || 10;
     const initialData = paginationType === "numbered" ? masterData.slice(0, initialPageSize) : [...masterData];
 
+    // The table fills this container, so the footer floats to the bottom of the window. The rows scroll under the sticky header when they don't fit
     return html`
-      <zeta-table
-        ${spread(rest)}
-        .columns=${columns}
-        .data=${initialData}
-        .totalItems=${masterData.length}
-        .selectedRows=${selectedRows}
-        .disabledRows=${disabledRows || []}
-        .showDataCount=${showDataCount}
-        .tableTitle=${tableTitle}
-        .allowDisabledSelection=${allowDisabledSelection || false}
-        .selectable=${selectable || false}
-        .selectAll=${selectAll || false}
-        .expandable=${expandable || false}
-        .exportable=${exportable || false}
-        .columnConfigure=${columnConfigure || false}
-        .paginationType=${paginationType || "none"}
-        .pageSize=${pageSize || 10}
-        select-on-row-click
-        clickable-rows
-        searchable
-        column-searchable
-        column-filterable
-        refreshable
-        @rowAction=${handleRowAction}
-        @tableSearch=${handleTableSearch}
-        @columnSearch=${handleColumnSearch}
-        @columnFilter=${handleColumnFilter}
-        @tableRefresh=${handleRefresh}
-        @sortChange=${handleSortChange}
-        @selectionChange=${handleSelectionChange}
-        @pageChange=${handlePageChange}
-        @loadMore=${handleLoadMore}
-        @tableExport=${handleExport}
-        @rowExpand=${handleRowExpand}
-        @rowClick=${onRowClick}
-        style=${cssVarsStyle(args, { "--table-max-height": "500px" })}
-      ></zeta-table>
+      <div style="height: calc(100vh - var(--space-xl) * 2); min-height: 480px;">
+        <zeta-table
+          ${spread(rest)}
+          .columns=${columns}
+          .data=${initialData}
+          .totalItems=${masterData.length}
+          .selectedRows=${selectedRows}
+          .disabledRows=${disabledRows || []}
+          .showDataCount=${showDataCount}
+          .tableTitle=${tableTitle}
+          .allowDisabledSelection=${allowDisabledSelection || false}
+          .selectable=${selectable || false}
+          .selectAll=${selectAll || false}
+          .expandable=${expandable || false}
+          .exportable=${exportable || false}
+          .columnConfigure=${columnConfigure || false}
+          .paginationType=${paginationType || "none"}
+          .pageSize=${pageSize || 10}
+          .searchable=${searchable ?? false}
+          .refreshable=${refreshable ?? false}
+          .columnSearchable=${columnSearchable ?? false}
+          .columnFilterable=${columnFilterable ?? false}
+          .selectOnRowClick=${selectOnRowClick ?? false}
+          .clickableRows=${clickableRows ?? false}
+          .hasControl=${hasControl ?? true}
+          .hasFooter=${hasFooter ?? true}
+          .hasSelectedCount=${hasSelectedCount ?? true}
+          .hasRowsPerPage=${hasRowsPerPage ?? true}
+          .hasRowActions=${hasRowActions ?? true}
+          .verticalScroll=${verticalScroll ?? false}
+          .shape=${shape ?? "rounded"}
+          @rowaction=${handleRowAction}
+          @tablesearch=${handleTableSearch}
+          @columnsearch=${handleColumnSearch}
+          @columnfilter=${handleColumnFilter}
+          @tablerefresh=${handleRefresh}
+          @sortchange=${handleSortChange}
+          @rowselect=${handleSelectionChange}
+          @pagechange=${handlePageChange}
+          @loadmore=${handleLoadMore}
+          @tableexport=${handleExport}
+          @rowexpand=${handleRowExpand}
+          @rowclick=${onRowClick}
+          style=${cssVarsStyle(args)}
+        >
+          <zeta-icon-button slot="controls" flavor="outline-subtle" size="small" title="More" aria-label="More">more_vertical</zeta-icon-button>
+        </zeta-table>
+      </div>
     `;
   }
 };
@@ -510,7 +666,7 @@ export const InfiniteScrollWithAPI: StoryObj<TableStory> = {
   args: {
     paginationType: "infinite",
     expandable: false,
-    showDataCount: true,
+    showDataCount: false,
     tableTitle: "Infinite Scroll",
     selectable: true,
     selectAll: true,
@@ -518,7 +674,7 @@ export const InfiniteScrollWithAPI: StoryObj<TableStory> = {
     exportable: false
   },
   render: args => {
-    const { columns } = args;
+    const { columns, selectable, selectAll, columnConfigure, showDataCount, tableTitle } = args;
     const totalRecords = 100;
     let currentData = generateData(20);
     let isLoading = false;
@@ -543,48 +699,33 @@ export const InfiniteScrollWithAPI: StoryObj<TableStory> = {
       }, 2000);
     };
 
-    if (!document.querySelector("style[data-zeta-table-spin]")) {
-      const styleEl = document.createElement("style");
-      styleEl.setAttribute("data-zeta-table-spin", "");
-      styleEl.textContent = "@keyframes spin { to { transform: rotate(360deg); } }";
-      document.head.appendChild(styleEl);
-    }
-
+    // Use the design-system spinner. A hand-rolled SVG needs its @keyframes inside the table's
+    // shadow root (document-level keyframes don't reach it), so it never rotated and only
+    // showed a static partial arc.
     const loadingEl = document.createElement("div");
-    loadingEl.style.cssText = "display:flex; align-items:center; justify-content:center; gap:var(--spacing-small); padding:var(--spacing-medium);";
-    const spinnerSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    spinnerSvg.setAttribute("width", "20");
-    spinnerSvg.setAttribute("height", "20");
-    spinnerSvg.setAttribute("viewBox", "0 0 24 24");
-    spinnerSvg.style.animation = "spin 1s linear infinite";
-    const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-    circle.setAttribute("cx", "12");
-    circle.setAttribute("cy", "12");
-    circle.setAttribute("r", "10");
-    circle.setAttribute("stroke", "var(--main-primary)");
-    circle.setAttribute("stroke-width", "3");
-    circle.setAttribute("fill", "none");
-    circle.setAttribute("stroke-dasharray", "31.4 31.4");
-    circle.setAttribute("stroke-linecap", "round");
-    spinnerSvg.appendChild(circle);
+    loadingEl.style.cssText = "display:flex; align-items:center; justify-content:center; gap:var(--space-sm); padding:var(--space-md);";
+    const spinner = document.createElement("zeta-progress-circle") as ZetaProgressCircle;
+    spinner.size = 24;
+    spinner.indeterminate = true;
+    spinner.hideTrack = true;
     const loadingText = document.createElement("span");
-    loadingText.style.cssText = "color:var(--main-primary); font:var(--body-x-small); font-weight:var(--medium);";
+    loadingText.style.cssText = "color:var(--foreground-cursor); font:var(--label-small);";
     loadingText.textContent = "Fetching more records...";
-    loadingEl.appendChild(spinnerSvg);
+    loadingEl.appendChild(spinner);
     loadingEl.appendChild(loadingText);
 
     return html`
       <zeta-table
-        pagination-type="infinite"
-        selectable
-        select-all
-        column-configure
-        show-data-count
-        table-title="Infinite Scroll"
+        .paginationType=${"infinite"}
+        .selectable=${selectable ?? false}
+        .selectAll=${selectAll ?? false}
+        .columnConfigure=${columnConfigure ?? false}
+        .showDataCount=${showDataCount ?? false}
+        .tableTitle=${tableTitle ?? ""}
         .columns=${columns}
         .data=${currentData}
         .totalItems=${totalRecords}
-        @loadMore=${handleLoadMore}
+        @loadmore=${handleLoadMore}
         .loadingContent=${loadingEl}
         style=${cssVarsStyle(args, { "--table-max-height": "500px" })}
       ></zeta-table>
@@ -605,7 +746,7 @@ export const PaginationWithAPI: StoryObj<TableStory> = {
     exportable: false
   },
   render: args => {
-    const { columns } = args;
+    const { columns, pageSize, selectable, selectAll, columnConfigure, showDataCount, tableTitle } = args;
     const totalRecords = 55;
     const allData = generateData(totalRecords);
 
@@ -637,19 +778,19 @@ export const PaginationWithAPI: StoryObj<TableStory> = {
 
     return html`
       <zeta-table
-        pagination-type="numbered"
-        page-size="10"
-        selectable
-        select-all
-        column-configure
-        show-data-count
-        table-title="Server Pagination"
+        .paginationType=${"numbered"}
+        .pageSize=${pageSize ?? 10}
+        .selectable=${selectable ?? false}
+        .selectAll=${selectAll ?? false}
+        .columnConfigure=${columnConfigure ?? false}
+        .showDataCount=${showDataCount ?? false}
+        .tableTitle=${tableTitle ?? ""}
         .columns=${columns}
         .data=${allData.slice(0, 10)}
         .totalItems=${totalRecords}
         refreshable
-        @tableRefresh=${handleRefresh}
-        @pageChange=${handlePageChange}
+        @tablerefresh=${handleRefresh}
+        @pagechange=${handlePageChange}
         style=${cssVarsStyle(args, { "--table-max-height": "500px" })}
       ></zeta-table>
     `;
@@ -705,14 +846,14 @@ export const DisabledRowsAndColumns: StoryObj<TableStory> = {
         .disabledRows=${disabledRows || []}
         .showDataCount=${showDataCount}
         .tableTitle=${tableTitle}
-        @selectionChange=${onSelChange}
-        @sortChange=${onSortChange}
-        @columnSearch=${onColumnSearch}
-        @pageChange=${onPageChange}
-        @loadMore=${onLoadMore}
-        @tableExport=${onExport}
-        @rowExpand=${onExpand}
-        @rowClick=${onRowClick}
+        @rowselect=${onSelChange}
+        @sortchange=${onSortChange}
+        @columnsearch=${onColumnSearch}
+        @pagechange=${onPageChange}
+        @loadmore=${onLoadMore}
+        @tableexport=${onExport}
+        @rowexpand=${onExpand}
+        @rowclick=${onRowClick}
         style=${cssVarsStyle(args, { "--table-max-height": "450px" })}
       ></zeta-table>
     `;
@@ -724,8 +865,7 @@ export const CustomStyling: StoryObj<TableStory> = {
     paginationType: "numbered",
     pageSize: 5,
     expandable: false,
-    exportable: false,
-    data: generateData(25)
+    exportable: false
   },
   render: args => {
     const {
@@ -748,47 +888,103 @@ export const CustomStyling: StoryObj<TableStory> = {
     return html`
       <style>
         .custom-table .zeta-table-wrapper {
-          border-radius: var(--spacing-medium);
+          border-radius: var(--radius-md);
         }
         .custom-table .zeta-table-thead {
-          background: var(--main-default);
+          background: var(--interactive-inverse-background-default);
         }
         .custom-table .zeta-table-th {
-          background: var(--main-default);
-          color: var(--state-default-enabled);
+          background: var(--interactive-inverse-background-default);
+          color: var(--foreground-inverse);
         }
         .custom-table .zeta-table-row:hover .zeta-table-td {
-          background: var(--surface-hover);
+          background: var(--interactive-neutral-background-hover);
         }
       </style>
       <zeta-table
         class="custom-table"
         ${spread(rest)}
         .columns=${columns}
-        .data=${data}
+        .data=${data ?? generateData(25)}
         .selectedRows=${selectedRows || []}
         .disabledRows=${disabledRows || []}
         .showDataCount=${showDataCount}
         .tableTitle=${"Styled Table"}
-        @selectionChange=${onSelChange}
-        @sortChange=${onSortChange}
-        @columnSearch=${onColumnSearch}
-        @pageChange=${onPageChange}
-        @loadMore=${onLoadMore}
-        @tableExport=${onExport}
-        @rowExpand=${onExpand}
-        @rowClick=${onRowClick}
+        @rowselect=${onSelChange}
+        @sortchange=${onSortChange}
+        @columnsearch=${onColumnSearch}
+        @pagechange=${onPageChange}
+        @loadmore=${onLoadMore}
+        @tableexport=${onExport}
+        @rowexpand=${onExpand}
+        @rowclick=${onRowClick}
         style=${cssVarsStyle(args, {
-          "--table-header-bg": "var(--main-default)",
-          "--table-header-text": "var(--state-default-enabled)",
-          "--table-header-height": "var(--spacing-8xl)",
-          "--table-row-height": "var(--spacing-7xl)",
-          "--table-row-hover-bg": "var(--surface-hover)",
-          "--table-row-selected-bg": "var(--surface-selected)",
-          "--table-row-active-bg": "var(--surface-selected-hover)",
-          "--table-border-radius": "var(--spacing-medium)",
+          "--table-header-bg": "var(--interactive-inverse-background-default)",
+          "--table-header-text": "var(--foreground-inverse)",
+          "--table-header-height": "calc(var(--space-md) * 2 + var(--control-sm))",
+          "--table-row-height": "calc(var(--space-sm) * 2 + var(--control-sm))",
+          "--table-row-hover-bg": "var(--interactive-neutral-background-hover)",
+          "--table-row-selected-bg": "var(--interactive-neutral-background-selected)",
+          "--table-row-active-bg": "var(--interactive-neutral-background-pressed)",
+          "--table-border-radius": "var(--radius-md)",
           "--table-max-height": "400px"
         })}
+      ></zeta-table>
+    `;
+  }
+};
+
+/** Expandable rows. `_nested` is either a DOM Node (custom content, every 5th row) or an array of rows (a sub-table, every 3rd row). */
+export const NestedRows: StoryObj<TableStory> = {
+  args: {
+    paginationType: "numbered",
+    pageSize: 10,
+    expandable: true,
+    selectable: true,
+    selectAll: true,
+    showDataCount: true,
+    tableTitle: "Nested rows",
+    columnConfigure: true,
+    exportable: true
+  },
+  render: args => {
+    const {
+      onselectionchange: onSelChange,
+      onsortchange: onSortChange,
+      oncolumnsearch: onColumnSearch,
+      onpagechange: onPageChange,
+      onloadmore: onLoadMore,
+      ontableexport: onExport,
+      onrowexpand: onExpand,
+      onrowclick: onRowClick,
+      onrowaction: onAction,
+      columns,
+      data,
+      selectedRows,
+      disabledRows,
+      showDataCount,
+      tableTitle,
+      ...rest
+    } = args;
+    return html`
+      <zeta-table
+        ${spread(rest)}
+        .columns=${columns}
+        .data=${data ?? generateData(50)}
+        .selectedRows=${selectedRows || []}
+        .disabledRows=${disabledRows || []}
+        .showDataCount=${showDataCount}
+        .tableTitle=${tableTitle}
+        @rowselect=${onSelChange}
+        @sortchange=${onSortChange}
+        @columnsearch=${onColumnSearch}
+        @pagechange=${onPageChange}
+        @loadmore=${onLoadMore}
+        @tableexport=${onExport}
+        @rowexpand=${onExpand}
+        @rowclick=${onRowClick}
+        @rowaction=${onAction}
+        style=${cssVarsStyle(args, { "--table-max-height": "500px" })}
       ></zeta-table>
     `;
   }
@@ -832,8 +1028,8 @@ export const PerRowActions: StoryObj<TableStory> = {
         location: "NYC",
         startDate: "2021-01-15",
         _actions: [
-          { key: "view", label: "View Details", icon: "👁" },
-          { key: "audit", label: "View Audit Log", icon: "📋" }
+          { key: "view", label: "View Details", icon: "visibility" },
+          { key: "audit", label: "View Audit Log", icon: "assignment" }
         ]
       },
       {
@@ -846,10 +1042,10 @@ export const PerRowActions: StoryObj<TableStory> = {
         location: "London",
         startDate: "2020-06-10",
         _actions: [
-          { key: "view", label: "View Details", icon: "👁" },
-          { key: "edit", label: "Edit", icon: "✏️" },
-          { key: "wipe", label: "Wipe Computer", icon: "💻" },
-          { key: "delete", label: "Delete Computer", icon: "🗑️" }
+          { key: "view", label: "View Details", icon: "visibility" },
+          { key: "edit", label: "Edit", icon: "edit" },
+          { key: "wipe", label: "Wipe Computer", icon: "laptop" },
+          { key: "delete", label: "Delete Computer", icon: "delete" }
         ]
       },
       {
@@ -862,9 +1058,9 @@ export const PerRowActions: StoryObj<TableStory> = {
         location: "Berlin",
         startDate: "2023-03-01",
         _actions: [
-          { key: "view", label: "View Details", icon: "👁" },
-          { key: "edit", label: "Edit", icon: "✏️" },
-          { key: "promote", label: "Promote", icon: "⬆️" }
+          { key: "view", label: "View Details", icon: "visibility" },
+          { key: "edit", label: "Edit", icon: "edit" },
+          { key: "promote", label: "Promote", icon: "upload" }
         ]
       },
       {
@@ -876,7 +1072,7 @@ export const PerRowActions: StoryObj<TableStory> = {
         salary: "$120000",
         location: "Tokyo",
         startDate: "2019-09-20",
-        _actions: [{ key: "view", label: "View Details", icon: "👁" }]
+        _actions: [{ key: "view", label: "View Details", icon: "visibility" }]
       },
       {
         id: 5,
@@ -899,9 +1095,9 @@ export const PerRowActions: StoryObj<TableStory> = {
         location: "NYC",
         startDate: "2021-04-18",
         _actions: [
-          { key: "view", label: "View Details", icon: "👁" },
-          { key: "edit", label: "Edit", icon: "✏️" },
-          { key: "delete", label: "Delete Computer", icon: "🗑️", disabled: true }
+          { key: "view", label: "View Details", icon: "visibility" },
+          { key: "edit", label: "Edit", icon: "edit" },
+          { key: "delete", label: "Delete Computer", icon: "delete", disabled: true }
         ]
       }
     ];
@@ -913,7 +1109,7 @@ export const PerRowActions: StoryObj<TableStory> = {
     };
 
     return html`
-      <p style="margin-bottom:var(--spacing-medium); font:var(--body-x-small); color:var(--main-subtle);">
+      <p style="margin-bottom:var(--space-md); font:var(--body-xsmall); color:var(--foreground-secondary);">
         <strong>Per-row _actions:</strong> Each row defines its own menu options via <code>_actions</code>. Row 5 (Eve) has <code>_actions: null</code> so no
         menu is shown. Row 6 has "Delete" disabled.
       </p>
@@ -925,11 +1121,11 @@ export const PerRowActions: StoryObj<TableStory> = {
         .disabledRows=${disabledRows || []}
         .showDataCount=${showDataCount}
         .tableTitle=${tableTitle}
-        @rowAction=${handleRowAction}
-        @selectionChange=${onSelChange}
-        @sortChange=${onSortChange}
-        @columnSearch=${onColumnSearch}
-        @pageChange=${onPageChange}
+        @rowaction=${handleRowAction}
+        @rowselect=${onSelChange}
+        @sortchange=${onSortChange}
+        @columnsearch=${onColumnSearch}
+        @pagechange=${onPageChange}
         style=${cssVarsStyle(args, { "--table-max-height": "500px" })}
       ></zeta-table>
     `;
@@ -1024,7 +1220,7 @@ export const GlobalAndColumnSearch: StoryObj<TableStory> = {
     };
 
     return html`
-      <p style="margin-bottom:var(--spacing-medium); font:var(--body-x-small); color:var(--main-subtle);">
+      <p style="margin-bottom:var(--space-md); font:var(--body-xsmall); color:var(--foreground-secondary);">
         <strong>Features demonstrated:</strong> Global search bar (top-left), per-column search inputs, column filter icons (header), kebab actions menu
         (per-row), refresh, export, column configure, pagination.
       </p>
@@ -1041,15 +1237,15 @@ export const GlobalAndColumnSearch: StoryObj<TableStory> = {
         column-searchable
         column-filterable
         refreshable
-        @tableSearch=${handleTableSearch}
-        @columnSearch=${handleColumnSearch}
-        @columnFilter=${handleColumnFilter}
-        @rowAction=${handleRowAction}
-        @tableRefresh=${handleRefresh}
+        @tablesearch=${handleTableSearch}
+        @columnsearch=${handleColumnSearch}
+        @columnfilter=${handleColumnFilter}
+        @rowaction=${handleRowAction}
+        @tablerefresh=${handleRefresh}
         search-placeholder="Search all columns..."
-        @selectionChange=${onSelChange}
-        @sortChange=${onSortChange}
-        @pageChange=${onPageChange}
+        @rowselect=${onSelChange}
+        @sortchange=${onSortChange}
+        @pagechange=${onPageChange}
         style=${cssVarsStyle(args, { "--table-max-height": "500px" })}
       ></zeta-table>
     `;
