@@ -77,6 +77,11 @@ export class ZetaSelectInput extends FormField(Size(Contourable(Interactive(LitE
   /** Whether to use fixed positioning for the options dropdown, so it escapes overflow:hidden ancestors. */
   @property({ type: Boolean }) fixedDropdown = false;
 
+  /** Which side of the field the options dropdown opens on when `fixedDropdown` is set.
+   *  `bottom` (default) always opens below, `top` always opens above, and `auto` opens below
+   *  unless there isn't enough room in the viewport and there is more room above. */
+  @property({ type: String }) dropdownPlacement: "bottom" | "top" | "auto" = "bottom";
+
   @queryAssignedNodes() optionsNodeList: NodeListOf<HTMLOptionElement>;
 
   @state() private _selectedOption: HTMLOptionElement | undefined = undefined;
@@ -129,17 +134,37 @@ export class ZetaSelectInput extends FormField(Size(Contourable(Interactive(LitE
         if (input && options) {
           const rect = input.getBoundingClientRect();
           options.style.position = "fixed";
-          options.style.top = `${rect.bottom + 2}px`;
+          // Fixed dropdowns can overlap sticky/frozen cells in the page, which have their own z-index. Stay above them.
+          options.style.zIndex = "9999";
+          if (this._shouldOpenAbove(rect, options)) {
+            options.style.top = "";
+            options.style.bottom = `${window.innerHeight - rect.top + 2}px`;
+          } else {
+            options.style.bottom = "";
+            options.style.top = `${rect.bottom + 2}px`;
+          }
           options.style.left = `${rect.left}px`;
           options.style.width = `${rect.width}px`;
         }
       } else if (options) {
         options.style.position = "";
+        options.style.zIndex = "";
         options.style.top = "";
+        options.style.bottom = "";
         options.style.left = "";
         options.style.width = "";
       }
     }
+  }
+
+  /** Decides whether a fixed dropdown opens above the field, based on `dropdownPlacement` and the space available in the viewport. */
+  private _shouldOpenAbove(rect: DOMRect, options: HTMLElement): boolean {
+    if (this.dropdownPlacement === "top") return true;
+    if (this.dropdownPlacement !== "auto") return false;
+    const height = options.offsetHeight || this.optionsDialogHeight;
+    const spaceBelow = window.innerHeight - rect.bottom;
+    const spaceAbove = rect.top;
+    return spaceBelow < height && spaceAbove > spaceBelow;
   }
 
   setValue(v: string): void {

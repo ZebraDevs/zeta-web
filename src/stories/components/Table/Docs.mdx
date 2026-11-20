@@ -1,0 +1,644 @@
+import { Canvas, Meta, Description, ArgTypes, Title } from "@storybook/blocks";
+import * as TableStories from "./table.stories";
+
+<Meta of={TableStories} title="Table" />
+
+<Title />
+<Description of="zeta-table" />
+
+## Component API
+
+<ArgTypes of="zeta-table" />
+
+---
+
+## Default
+
+The default table follows the Figma design: a toolbar with search, refresh and a slotted `controls` button (export and column settings are opt-in); selectable, clickable rows with sortable columns; a row action menu; and a footer with the selected count, rows per page and numbered pagination.
+
+<Canvas of={TableStories.TableAll} />
+
+### Layout and shape
+
+- `shape="rounded"` (default) or `shape="sharp"` applies to the table and to every component inside it.
+- `hascontrol`, `hasfooter`, `hasselectedcount`, `hasrowsperpage` and `hasrowactions` are on by default. Turn one off with, for example, `hasfooter="false"`.
+- `verticalscroll` caps the content height so rows scroll under a sticky header.
+- The title, the top "x out of y" data count (`showdatacount`), expandable rows, and the per-column search and filter are all opt-in, so the default toolbar stays as drawn in Figma.
+
+### Adding your own toolbar buttons
+
+Slot any element into `controls` and it is placed at the end of the toolbar, after the built-in buttons:
+
+```html
+<zeta-table>
+  <zeta-icon-button slot="controls" flavor="outline-subtle" size="small" aria-label="More">more_vertical</zeta-icon-button>
+</zeta-table>
+```
+
+---
+
+## Events
+
+All events bubble and are composed, so they cross the shadow root. Their names are lowercase, like native events: listen with `addEventListener("sortchange", …)`, `@sortchange=${…}` (Lit), `(sortchange)` (Angular) or `@sortchange` (Vue).
+
+| Event          | Fires when                                                                      | `event.detail`                   |
+| -------------- | ------------------------------------------------------------------------------- | -------------------------------- |
+| `rowclick`     | A clickable row is clicked                                                      | `{ row, rowIndex }`              |
+| `rowselect`    | Row selection changes                                                           | `{ selectedIds }`                |
+| `rowaction`    | A row action menu item is chosen                                                | `{ actionKey, row, rowIndex }`   |
+| `rowexpand`    | A row's nested rows expand or collapse                                          | `{ rowId, expanded }`            |
+| `sortchange`   | The sort changes. Cancelable: call `preventDefault()` to sort the data yourself | `{ field, direction }`           |
+| `columnsearch` | A column search input changes                                                   | `{ field, value, searchValues }` |
+| `columnfilter` | A column filter is applied                                                      | `{ field, selectedValues }`      |
+| `tablesearch`  | The global search input changes                                                 | `{ value }`                      |
+| `pagechange`   | The page changes (numbered pagination)                                          | `{ page, pageSize }`             |
+| `loadmore`     | More rows are needed (infinite scroll)                                          | `{ currentCount }`               |
+| `tableexport`  | The export button is clicked                                                    | `{ csv, columns, data }`         |
+| `tablerefresh` | The refresh button is clicked                                                   | none                             |
+
+---
+
+## Usage
+
+### Installation
+
+```bash
+npm install @zebra-fed/zeta-web
+```
+
+Import global styles once in your app entry:
+
+```js
+import "@zebra-fed/zeta-web/index.css";
+```
+
+---
+
+## Plain HTML / JavaScript
+
+```html
+<zeta-table
+  id="demo"
+  selectable
+  searchable
+  refreshable
+  clickable-rows
+  show-data-count
+  table-title="Users"
+  pagination-type="numbered"
+  page-size="5"
+  style="--table-row-height: 36px;"
+>
+</zeta-table>
+
+<script type="module">
+  import "@zebra-fed/zeta-web/components/table/table.js";
+
+  const table = document.getElementById("demo");
+
+  table.columns = [
+    { field: "name", title: "Name", width: 180, sortable: true },
+    { field: "email", title: "Email", width: 220 },
+    { field: "role", title: "Role", width: 120 }
+  ];
+
+  table.data = [
+    { id: 1, name: "Alice", email: "alice@acme.com", role: "Admin" },
+    { id: 2, name: "Bob", email: "bob@acme.com", role: "Editor" },
+    { id: 3, name: "Carol", email: "carol@acme.com", role: "Viewer" }
+  ];
+
+  table.addEventListener("rowclick", e => {
+    console.log("Clicked:", e.detail);
+  });
+
+  table.addEventListener("sortchange", e => {
+    console.log("Sort:", e.detail.field, e.detail.direction);
+  });
+
+  table.addEventListener("tablerefresh", () => {
+    console.log("Refresh triggered");
+  });
+</script>
+```
+
+---
+
+## Row Actions Example
+
+Row actions add a kebab menu (three-dot icon) as the last column. Each row defines its own actions via `_actions`, or you can set a fallback via the `rowActions` property.
+
+```javascript
+table.data = [
+  {
+    id: 1,
+    name: "Alice",
+    role: "Admin",
+    _actions: [
+      { key: "edit", label: "Edit" },
+      { key: "delete", label: "Delete" }
+    ]
+  },
+  {
+    id: 2,
+    name: "Bob",
+    role: "Viewer",
+    _actions: [
+      { key: "edit", label: "Edit" },
+      { key: "delete", label: "Delete", disabled: true }
+    ]
+  }
+];
+
+table.addEventListener("rowaction", e => {
+  const { actionKey, row, rowIndex } = e.detail;
+  console.log("Action:", actionKey, "on", row.name);
+});
+```
+
+---
+
+## How to use in React
+
+### Using `ZetaTableReact` wrapper (recommended)
+
+The `ZetaTableReact` wrapper from `@zebra-fed/zeta-web/react` provides:
+
+- Full prop/event typing via `@lit/react`
+- Automatic slotting of React elements passed as cell values
+- Works with React 18+ (matches the published `peerDependencies`)
+- Event props such as `onSortChange` and `onRowClick`, which the wrapper maps to the `sortchange` and `rowclick` events on both React 18 and 19.
+- Children passed on as slotted content, for example the `controls` slot
+
+#### Plain text cells
+
+```tsx
+import { ZetaTableReact } from "@zebra-fed/zeta-web/react";
+
+const columns = [
+  { field: "name", title: "Name", width: 180, sortable: true },
+  { field: "email", title: "Email", width: 220 },
+  { field: "role", title: "Role", width: 120 }
+];
+
+const users = [
+  { id: 1, name: "Alice", email: "alice@acme.com", role: "Admin" },
+  { id: 2, name: "Bob", email: "bob@acme.com", role: "Editor" },
+  { id: 3, name: "Carol", email: "carol@acme.com", role: "Viewer" }
+];
+
+export function UsersTable() {
+  return (
+    <ZetaTableReact
+      columns={columns}
+      data={users}
+      selectable
+      searchable
+      refreshable
+      clickableRows
+      showDataCount
+      tableTitle="Users"
+      paginationType="numbered"
+      pageSize={5}
+      onSortChange={e => console.log("Sort:", e.detail.field, e.detail.direction)}
+      onRowClick={e => console.log("Clicked:", e.detail.row)}
+      onTableRefresh={() => console.log("Refresh")}
+      style={{ "--table-row-height": "36px" } as React.CSSProperties}
+    />
+  );
+}
+```
+
+#### React components as cell values
+
+Pass React elements directly in `data`. The wrapper automatically handles slot-based rendering: each element is slotted into `cell-{field}-row-{id}`, so it stays with its row when the table sorts, filters or changes page. `loadingContent` and `noDataContent` use the `loading` and `no-data` slots.
+
+```tsx
+import { ZetaTableReact } from "@zebra-fed/zeta-web/react";
+
+function StatusBadge({ status }: { status: string }) {
+  return (
+    <span
+      style={{
+        background: status === "active" ? "#d1fae5" : "#fee2e2",
+        color: status === "active" ? "#065f46" : "#991b1b",
+        padding: "2px 8px",
+        borderRadius: "10px",
+        fontSize: "12px"
+      }}
+    >
+      {status}
+    </span>
+  );
+}
+
+const columns = [
+  { field: "name", title: "Name", width: 180, sortable: true },
+  { field: "email", title: "Email", width: 220 },
+  { field: "status", title: "Status", width: 120 }
+];
+
+export function UsersTable() {
+  const data = [
+    { id: 1, name: "Alice", email: "alice@acme.com", status: <StatusBadge status="active" /> },
+    { id: 2, name: "Bob", email: "bob@acme.com", status: <StatusBadge status="inactive" /> },
+    { id: 3, name: "Carol", email: "carol@acme.com", status: <StatusBadge status="active" /> }
+  ];
+
+  return (
+    <ZetaTableReact
+      columns={columns}
+      data={data}
+      selectable
+      showDataCount
+      tableTitle="Users"
+      paginationType="numbered"
+      pageSize={5}
+      onRowAction={e => console.log("Action:", e.detail.actionKey, e.detail.row)}
+      style={{ "--table-row-height": "36px" } as React.CSSProperties}
+    />
+  );
+}
+```
+
+#### Toolbar buttons and other slotted children
+
+Children of `ZetaTableReact` are passed on as slotted content, so a child with `slot="controls"` is placed at the end of the toolbar:
+
+```tsx
+<ZetaTableReact columns={columns} data={users}>
+  <zeta-icon-button slot="controls" flavor="outline-subtle" size="small" aria-label="More">
+    more_vertical
+  </zeta-icon-button>
+</ZetaTableReact>
+```
+
+#### Event handler typing
+
+All event handlers receive a typed `CustomEvent`:
+
+```tsx
+import type { SortDirection } from "@zebra-fed/zeta-web/react";
+
+const handleSortChange = (e: CustomEvent<{ field: string; direction: SortDirection }>) => {
+  const { field, direction } = e.detail;
+};
+
+const handleRowAction = (e: CustomEvent<{ actionKey: string; row: any; rowIndex: number }>) => {
+  const { actionKey, row } = e.detail;
+};
+
+const handleLoadMore = (e: CustomEvent<{ currentCount: number }>) => {
+  fetchNextPage();
+};
+```
+
+---
+
+### Without the wrapper (raw element + ref)
+
+You can use the raw element directly. `ZetaTableReact` is easier because it also types the events and slots React elements for you.
+
+**React 19+** — native custom element support. React sets `columns` and `data` as properties, and it listens for the event named by everything after `on`, so `onsortchange` listens for `sortchange`. All the table's event names are lowercase, so each one is `on` plus the event name.
+
+```tsx
+import "@zebra-fed/zeta-web/components/table/table.js";
+
+export function UsersTable() {
+  return (
+    <zeta-table
+      columns={columns}
+      data={users}
+      selectable
+      onrowclick={(e: CustomEvent) => console.log("Clicked:", e.detail.row)}
+      onsortchange={(e: CustomEvent) => console.log("Sort:", e.detail.field, e.detail.direction)}
+      style={{ "--table-row-height": "36px" } as React.CSSProperties}
+    />
+  );
+}
+```
+
+To put your own content in a cell, slot an element into `cell-{field}-row-{id}`. It stays with its row when the table sorts, filters or changes page:
+
+```tsx
+<zeta-table columns={columns} data={users}>
+  {users.map(user => (
+    <span key={user.id} slot={`cell-status-row-${user.id}`}>
+      {user.status}
+    </span>
+  ))}
+</zeta-table>
+```
+
+**React 18 and below** — use a ref:
+
+```tsx
+import { useRef, useEffect } from "react";
+import "@zebra-fed/zeta-web/components/table/table.js";
+
+export function UsersTable() {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    el.columns = columns;
+    el.data = users;
+    el.addEventListener("sortchange", handleSort);
+    el.addEventListener("rowclick", handleRowClick);
+    return () => {
+      el.removeEventListener("sortchange", handleSort);
+      el.removeEventListener("rowclick", handleRowClick);
+    };
+  }, []);
+
+  return (
+    <zeta-table
+      ref={ref}
+      selectable
+      show-data-count
+      table-title="Users"
+      pagination-type="numbered"
+      page-size="5"
+      style={{ "--table-row-height": "36px" } as React.CSSProperties}
+    />
+  );
+}
+```
+
+---
+
+## How to use in Angular
+
+Add `CUSTOM_ELEMENTS_SCHEMA` to your module:
+
+```typescript
+// app.module.ts
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
+import "@zebra-fed/zeta-web/components/table/table.js";
+
+@NgModule({ schemas: [CUSTOM_ELEMENTS_SCHEMA] })
+export class AppModule {}
+```
+
+### Plain text cells
+
+```html
+<!-- users-table.component.html -->
+<zeta-table
+  #zetaTable
+  selectable
+  searchable
+  refreshable
+  clickable-rows
+  show-data-count
+  table-title="Users"
+  pagination-type="numbered"
+  page-size="5"
+  [style.--table-row-height]="'36px'"
+  (sortchange)="onSort($event)"
+  (rowclick)="onRowClick($event)"
+  (tablerefresh)="onRefresh()"
+>
+</zeta-table>
+```
+
+```typescript
+// users-table.component.ts
+import { Component, ViewChild, ElementRef, AfterViewInit } from "@angular/core";
+
+@Component({ selector: "app-users-table", templateUrl: "./users-table.component.html" })
+export class UsersTableComponent implements AfterViewInit {
+  @ViewChild("zetaTable") tableRef!: ElementRef;
+
+  columns = [
+    { field: "name", title: "Name", width: 180, sortable: true },
+    { field: "email", title: "Email", width: 220 },
+    { field: "role", title: "Role", width: 120 }
+  ];
+
+  users = [
+    { id: 1, name: "Alice", email: "alice@acme.com", role: "Admin" },
+    { id: 2, name: "Bob", email: "bob@acme.com", role: "Editor" },
+    { id: 3, name: "Carol", email: "carol@acme.com", role: "Viewer" }
+  ];
+
+  ngAfterViewInit() {
+    const table = this.tableRef.nativeElement;
+    table.columns = this.columns;
+    table.data = this.users;
+  }
+
+  onSort(e: CustomEvent) {
+    console.log("Sort:", e.detail.field, e.detail.direction);
+  }
+
+  onRowClick(e: CustomEvent) {
+    console.log("Clicked:", e.detail.row);
+  }
+
+  onRefresh() {
+    console.log("Refresh");
+  }
+}
+```
+
+#### Custom elements in cells
+
+**Using `document.createElement`:**
+
+```typescript
+private mapData(users: any[]): any[] {
+  return users.map((user) => {
+    const badge = document.createElement("span");
+    badge.textContent = user.status;
+    badge.className = `badge badge-${user.status}`;
+
+    return {
+      id: user.id,
+      name: user.name,
+      status: badge,
+    };
+  });
+}
+```
+
+**Using Angular components (via `ViewContainerRef`):**
+
+```html
+<!-- Add a hidden host for dynamic components -->
+<ng-container #cellHost></ng-container>
+```
+
+```typescript
+import { ViewChild, ViewContainerRef, ComponentRef, Type } from "@angular/core";
+
+@ViewChild("cellHost", { read: ViewContainerRef }) cellHost!: ViewContainerRef;
+
+private cellRefs: ComponentRef<any>[] = [];
+
+private mapData(users: any[]): any[] {
+  this.cellRefs.forEach((ref) => ref.destroy());
+  this.cellRefs = [];
+
+  return users.map((user) => ({
+    id: user.id,
+    name: user.name,
+    status: this.renderCell(StatusBadgeComponent, { status: user.status }),
+  }));
+}
+
+private renderCell(component: Type<any>, data: any): HTMLElement {
+  const ref = this.cellHost.createComponent(component);
+  Object.assign(ref.instance, data);
+  ref.changeDetectorRef.detectChanges();
+  this.cellRefs.push(ref);
+  const el = ref.location.nativeElement as HTMLElement;
+  el.style.display = "contents";
+  return el;
+}
+```
+
+---
+
+### How to use in Vue 3
+
+Use the `.prop` modifier to pass JS objects as properties:
+
+```typescript
+// main.ts
+import { createApp } from "vue";
+import "@zebra-fed/zeta-web/index.css";
+import "@zebra-fed/zeta-web/components/table/table.js";
+
+const app = createApp(App);
+app.config.compilerOptions.isCustomElement = tag => tag.startsWith("zeta-");
+app.mount("#app");
+```
+
+#### Plain text cells
+
+```vue
+<template>
+  <zeta-table
+    :columns.prop="columns"
+    :data.prop="users"
+    selectable
+    searchable
+    refreshable
+    clickable-rows
+    show-data-count
+    table-title="Users"
+    pagination-type="numbered"
+    page-size="5"
+    :style="{ '--table-row-height': '36px' }"
+    @rowclick="e => console.log('Clicked:', e.detail)"
+    @sortchange="e => console.log('Sort:', e.detail)"
+    @tablerefresh="() => console.log('Refresh')"
+  />
+</template>
+
+<script setup>
+const columns = [
+  { field: "name", title: "Name", width: 180, sortable: true },
+  { field: "email", title: "Email", width: 220 },
+  { field: "role", title: "Role", width: 120 }
+];
+
+const users = [
+  { id: 1, name: "Alice", email: "alice@acme.com", role: "Admin" },
+  { id: 2, name: "Bob", email: "bob@acme.com", role: "Editor" },
+  { id: 3, name: "Carol", email: "carol@acme.com", role: "Viewer" }
+];
+</script>
+```
+
+#### Custom elements in cells
+
+**Using Vue components (via `render` + `h`):**
+
+```vue
+<template>
+  <zeta-table :columns.prop="columns" :data.prop="tableData" selectable show-data-count table-title="Users" :style="{ '--table-row-height': '36px' }" />
+</template>
+
+<script setup>
+import { computed, h, render, onUnmounted } from "vue";
+import StatusBadge from "./StatusBadge.vue";
+
+const columns = [
+  { field: "name", title: "Name", width: 180, sortable: true },
+  { field: "email", title: "Email", width: 220 },
+  { field: "status", title: "Status", width: 120 },
+];
+
+const users = [
+  { id: 1, name: "Alice", email: "alice@acme.com", status: "active" },
+  { id: 2, name: "Bob",   email: "bob@acme.com",   status: "inactive" },
+  { id: 3, name: "Carol", email: "carol@acme.com",  status: "active" },
+];
+
+const containers: HTMLElement[] = [];
+
+function renderVueComponent(component, props) {
+  const container = document.createElement("div");
+  container.style.display = "contents";
+  render(h(component, props), container);
+  containers.push(container);
+  return container;
+}
+
+const tableData = computed(() => {
+  containers.forEach((el) => render(null, el));
+  containers.length = 0;
+
+  return users.map((user) => ({
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    status: renderVueComponent(StatusBadge, { status: user.status }),
+  }));
+});
+
+onUnmounted(() => {
+  containers.forEach((el) => render(null, el));
+});
+</script>
+```
+
+```vue
+<!-- StatusBadge.vue -->
+<template>
+  <span :style="badgeStyle">{{ status }}</span>
+</template>
+
+<script setup>
+import { computed } from "vue";
+const props = defineProps({ status: String });
+
+const badgeStyle = computed(() => ({
+  background: props.status === "active" ? "#d1fae5" : "#fee2e2",
+  color: props.status === "active" ? "#065f46" : "#991b1b",
+  padding: "2px 8px",
+  borderRadius: "10px",
+  fontSize: "12px"
+}));
+</script>
+```
+
+**Using `document.createElement`:**
+
+```javascript
+const tableData = computed(() =>
+  users.map(user => {
+    const badge = document.createElement("span");
+    badge.textContent = user.status;
+    badge.style.cssText =
+      user.status === "active"
+        ? "background:#d1fae5; color:#065f46; padding:2px 8px; border-radius:10px; font-size:12px;"
+        : "background:#fee2e2; color:#991b1b; padding:2px 8px; border-radius:10px; font-size:12px;";
+
+    return { id: user.id, name: user.name, email: user.email, status: badge };
+  })
+);
+```
