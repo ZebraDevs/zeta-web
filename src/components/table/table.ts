@@ -2269,6 +2269,7 @@ export class ZetaTable extends ContourableThree(LitElement) {
                     size="small"
                     .rounded=${rounded}
                     .fixedDropdown=${true}
+                    dropdownplacement="auto"
                     .value=${String(this.pageSize)}
                     aria-label=${msg("Rows per page")}
                     @change=${this._handlePageSizeChange}
