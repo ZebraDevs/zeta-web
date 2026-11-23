@@ -1,7 +1,7 @@
 import { expect, assert } from "@open-wc/testing";
 import React from "react";
 import { createRoot, type Root } from "react-dom/client";
-import { ZetaTableReact } from "../../components/table/ZetaTableReact.js";
+import { ZetaTableReact, type ZetaTableReactProps } from "../../components/table/ZetaTableReact.js";
 import type { ZetaTable, ZetaTableColumn } from "../../components/table/table.js";
 import "../../index.css";
 
@@ -23,6 +23,11 @@ async function until(check: () => boolean, message: string) {
     await new Promise(resolve => setTimeout(resolve, 20));
   }
   assert.fail(`${message}. Rendered rows: ${JSON.stringify(renderedRows())}; host html: ${host.innerHTML.slice(0, 300)}`);
+}
+
+/** Mounts the React wrapper with the shared columns. The rows and children are fixed test fixtures, never user input. */
+function renderTable(props: Omit<ZetaTableReactProps, "columns">, ...children: React.ReactNode[]) {
+  root.render(React.createElement(ZetaTableReact, { columns, ...props }, ...children));
 }
 
 function table(): ZetaTable {
@@ -64,7 +69,7 @@ describe("zeta-table react wrapper", () => {
 
   describe("Content", () => {
     it("renders React elements from data inside their cells", async () => {
-      root.render(React.createElement(ZetaTableReact, { columns, data: [row(1, "Alice"), row(2, "Bob")] }));
+      renderTable({ data: [row(1, "Alice"), row(2, "Bob")] });
       await until(() => renderedRows().length === 2, "rows did not render");
       await until(() => renderedRows().every(r => r.badge !== ""), "React cells did not render");
       assert.deepEqual(renderedRows(), [
@@ -76,7 +81,7 @@ describe("zeta-table react wrapper", () => {
     // Regression: cells were slotted by their index in `data`, which is not the row's index on screen once the table pages
     it("keeps React cells with their row on page 2", async () => {
       const data = [row(1, "Alice"), row(2, "Bob"), row(3, "Carol"), row(4, "Dave")];
-      root.render(React.createElement(ZetaTableReact, { columns, data, paginationType: "numbered", pageSize: 2, currentPage: 2 }));
+      renderTable({ data, paginationType: "numbered", pageSize: 2, currentPage: 2 });
       await until(() => renderedRows().length === 2 && renderedRows().every(r => r.badge !== ""), "page 2 did not render");
       assert.deepEqual(renderedRows(), [
         { name: "Carol", badge: "badge-Carol" },
@@ -85,9 +90,7 @@ describe("zeta-table react wrapper", () => {
     });
 
     it("forwards children into the controls slot", async () => {
-      root.render(
-        React.createElement(ZetaTableReact, { columns, data: [row(1, "Alice")] }, React.createElement("button", { slot: "controls", id: "extra" }, "More"))
-      );
+      renderTable({ data: [row(1, "Alice")] }, React.createElement("button", { slot: "controls", id: "extra" }, "More"));
       await until(() => !!table()?.shadowRoot?.querySelector("slot[name='controls']"), "controls slot did not render");
       const slot = table().shadowRoot!.querySelector<HTMLSlotElement>("slot[name='controls']")!;
       expect(slot.assignedElements().map(el => el.id)).to.deep.equal(["extra"]);
@@ -98,7 +101,7 @@ describe("zeta-table react wrapper", () => {
     // Regression: the rows are sorted by the table, so a cell slotted by its index in `data` ended up on the wrong row
     it("keeps React cells with their row after the table sorts", async () => {
       const data = [row(1, "Carol"), row(2, "Alice"), row(3, "Bob")];
-      root.render(React.createElement(ZetaTableReact, { columns, data }));
+      renderTable({ data });
       await until(() => renderedRows().length === 3 && renderedRows().every(r => r.badge !== ""), "rows did not render");
 
       table().shadowRoot!.querySelector<HTMLButtonElement>(".zeta-table-sort-btn")!.click();
