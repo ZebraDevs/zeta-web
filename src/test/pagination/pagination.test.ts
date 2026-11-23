@@ -119,7 +119,8 @@ describe("zeta-pagination", () => {
     });
 
     it("hides the four jump controls with showControls off, from markup and from the property", async () => {
-      const el = await fixture<ZetaPagination>(html`<zeta-pagination showcontrols="false" totalPages="5"></zeta-pagination>`);
+      // A plain string, not an html template: this tests the `="false"` markup that lit-analyzer rejects on a boolean attribute
+      const el = await fixture<ZetaPagination>(`<zeta-pagination showcontrols="false" totalPages="5"></zeta-pagination>`);
       assert.isFalse(el.showControls);
       expect(el.shadowRoot!.querySelector(".control")).to.not.exist;
       assert.deepEqual(pageLabels(el), ["1", "2", "3", "4", "5"]);
@@ -130,11 +131,12 @@ describe("zeta-pagination", () => {
     });
 
     it("drops the overflow marker and its paired page with showMore off", async () => {
-      const el = await fixture<ZetaPagination>(html`<zeta-pagination showmore="false" totalPages="10" currentPage="5"></zeta-pagination>`);
+      // A plain string, not an html template: this tests the `="false"` markup that lit-analyzer rejects on a boolean attribute
+      const el = await fixture<ZetaPagination>(`<zeta-pagination showmore="false" totalPages="10" currentPage="5"></zeta-pagination>`);
       assert.isFalse(el.showMore);
       expect(el.shadowRoot!.querySelector(".more-control")).to.not.exist;
       assert.deepEqual(pageLabels(el), ["4", "5", "6"]);
-      const start = await fixture<ZetaPagination>(html`<zeta-pagination showmore="false" totalPages="10" currentPage="1"></zeta-pagination>`);
+      const start = await fixture<ZetaPagination>(`<zeta-pagination showmore="false" totalPages="10" currentPage="1"></zeta-pagination>`);
       assert.deepEqual(pageLabels(start), ["1", "2", "3", "4", "5"]);
     });
   });
