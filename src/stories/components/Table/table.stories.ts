@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
+import { styleMap } from "lit/directives/style-map.js";
 import { ZetaTable, type ZetaTableColumn, type ZetaTableRow, type ZetaTableAction } from "../../../components/table/table.js";
 import { fn } from "@storybook/test";
-import { spreadGenerator, cssVarsStyle } from "../../utils.js";
+import { spreadGenerator } from "../../utils.js";
 // The cells and the controls slot in these stories use these components
 import "../../../components/avatar/avatar.js";
 import "../../../components/badges/status-label/status-label.js";
@@ -13,6 +14,18 @@ import "../../../components/progress-indicators/progress-circle/progress-circle.
 import type { ZetaProgressCircle } from "../../../components/progress-indicators/progress-circle/progress-circle.js";
 
 const spread = spreadGenerator(ZetaTable);
+
+// `spread` skips `--*` keys (they have no declared property type), so CSS custom property args go through a style map.
+// Args override `defaults`.
+const cssVarStyles = (args: object, defaults: Record<string, string> = {}) =>
+  styleMap({
+    ...defaults,
+    ...Object.fromEntries(
+      Object.entries(args)
+        .filter(([key, value]) => key.startsWith("--") && value != null && value !== "")
+        .map(([key, value]) => [key, String(value)])
+    )
+  });
 
 const sampleColumns: ZetaTableColumn[] = [
   { field: "id", title: "ID", width: 60, sortable: true, filterable: true, frozen: true, tooltip: true, resizable: true },
@@ -653,7 +666,7 @@ export const TableAll: StoryObj<TableStory> = {
           @tableexport=${handleExport}
           @rowexpand=${handleRowExpand}
           @rowclick=${onRowClick}
-          style=${cssVarsStyle(args)}
+          style=${cssVarStyles(args)}
         >
           <zeta-icon-button slot="controls" flavor="outline-subtle" size="small" title="More" aria-label="More">more_vertical</zeta-icon-button>
         </zeta-table>
@@ -727,7 +740,7 @@ export const InfiniteScrollWithAPI: StoryObj<TableStory> = {
         .totalItems=${totalRecords}
         @loadmore=${handleLoadMore}
         .loadingContent=${loadingEl}
-        style=${cssVarsStyle(args, { "--table-max-height": "500px" })}
+        style=${cssVarStyles(args, { "--table-max-height": "500px" })}
       ></zeta-table>
     `;
   }
@@ -791,7 +804,7 @@ export const PaginationWithAPI: StoryObj<TableStory> = {
         refreshable
         @tablerefresh=${handleRefresh}
         @pagechange=${handlePageChange}
-        style=${cssVarsStyle(args, { "--table-max-height": "500px" })}
+        style=${cssVarStyles(args, { "--table-max-height": "500px" })}
       ></zeta-table>
     `;
   }
@@ -854,7 +867,7 @@ export const DisabledRowsAndColumns: StoryObj<TableStory> = {
         @tableexport=${onExport}
         @rowexpand=${onExpand}
         @rowclick=${onRowClick}
-        style=${cssVarsStyle(args, { "--table-max-height": "450px" })}
+        style=${cssVarStyles(args, { "--table-max-height": "450px" })}
       ></zeta-table>
     `;
   }
@@ -918,7 +931,7 @@ export const CustomStyling: StoryObj<TableStory> = {
         @tableexport=${onExport}
         @rowexpand=${onExpand}
         @rowclick=${onRowClick}
-        style=${cssVarsStyle(args, {
+        style=${cssVarStyles(args, {
           "--table-header-bg": "var(--interactive-inverse-background-default)",
           "--table-header-text": "var(--foreground-inverse)",
           "--table-header-height": "calc(var(--space-md) * 2 + var(--control-sm))",
@@ -984,7 +997,7 @@ export const NestedRows: StoryObj<TableStory> = {
         @rowexpand=${onExpand}
         @rowclick=${onRowClick}
         @rowaction=${onAction}
-        style=${cssVarsStyle(args, { "--table-max-height": "500px" })}
+        style=${cssVarStyles(args, { "--table-max-height": "500px" })}
       ></zeta-table>
     `;
   }
@@ -1126,7 +1139,7 @@ export const PerRowActions: StoryObj<TableStory> = {
         @sortchange=${onSortChange}
         @columnsearch=${onColumnSearch}
         @pagechange=${onPageChange}
-        style=${cssVarsStyle(args, { "--table-max-height": "500px" })}
+        style=${cssVarStyles(args, { "--table-max-height": "500px" })}
       ></zeta-table>
     `;
   }
@@ -1246,7 +1259,7 @@ export const GlobalAndColumnSearch: StoryObj<TableStory> = {
         @rowselect=${onSelChange}
         @sortchange=${onSortChange}
         @pagechange=${onPageChange}
-        style=${cssVarsStyle(args, { "--table-max-height": "500px" })}
+        style=${cssVarStyles(args, { "--table-max-height": "500px" })}
       ></zeta-table>
     `;
   }
