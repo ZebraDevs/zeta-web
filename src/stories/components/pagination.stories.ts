@@ -11,15 +11,30 @@ const meta: Meta<PaginationStory> = {
   tags: ["autodocs"],
   title: "Components/Pagination",
   args: {
-    rounded: false,
+    rounded: true,
+    outline: false,
+    showControls: true,
+    showMore: true,
     totalPages: 10,
     currentPage: 1,
     siblingCount: 1,
     onpagechange: fn()
   },
+  argTypes: {
+    rounded: { control: "boolean", description: "Rounded corners (4px) on every button. Off gives sharp corners." },
+    outline: { control: "boolean", description: "Gives every button a 1px border." },
+    showControls: {
+      control: "boolean",
+      description: 'Shows the first, previous, next and last buttons. On by default; `showcontrols="false"` turns it off from markup.'
+    },
+    showMore: {
+      control: "boolean",
+      description: 'Shows the overflow marker and the page paired with it. On by default; `showmore="false"` turns it off from markup.'
+    }
+  },
   parameters: {
     design: {
-      url: "https://www.figma.com/file/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?type=design&node-id=1348-33899&mode=design&t=DUHsS5bjWB5UW1iG-4"
+      url: "https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3853-1209&m=dev"
     },
     status: {
       type: "ready"
@@ -29,6 +44,14 @@ const meta: Meta<PaginationStory> = {
 
 export default meta;
 
+// showControls and showMore are on by default, so they are bound as properties instead of attributes
 export const Pagination: StoryObj<PaginationStory> = {
-  render: ({ onpagechange, ...args }) => html`<zeta-pagination @page-change=${onpagechange} ${spread(args)}></zeta-pagination>`
+  render: ({ onpagechange, showControls, showMore, ...args }) =>
+    html`<zeta-pagination @pageChange=${onpagechange} .showControls=${showControls ?? true} .showMore=${showMore ?? true} ${spread(args)}></zeta-pagination>`
+};
+
+export const Outline: StoryObj<PaginationStory> = {
+  args: { outline: true },
+  render: ({ onpagechange, showControls, showMore, ...args }) =>
+    html`<zeta-pagination @pageChange=${onpagechange} .showControls=${showControls ?? true} .showMore=${showMore ?? true} ${spread(args)}></zeta-pagination>`
 };

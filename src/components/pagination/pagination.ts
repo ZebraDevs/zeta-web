@@ -1,17 +1,35 @@
 import { customElement, property } from "lit/decorators.js";
 import styles from "./pagination.styles.js";
-import { html, LitElement } from "lit";
+import { html, LitElement, nothing } from "lit";
 import { classMap } from "lit/directives/class-map.js";
+import { ifDefined } from "lit/directives/if-defined.js";
+import { msg, str } from "@lit/localize";
 import { Contourable } from "../../mixins/mixins.js";
 import { ZetaPageEvent } from "../../events.js";
-import "../button/icon-button/icon-button.js";
 import "../icon/icon.js";
 
-/** Buttons or a dropdown for navigating between pages.
+/**
+ * Converter for options that are on by default.
+ * An attribute turns the option off when its value is `"false"`, so `showcontrols="false"` works from markup and from React 18.
+ * Any other value, or removing the attribute, turns it on.
+ */
+const defaultTrueConverter = {
+  fromAttribute: (value: string | null) => value !== "false"
+};
+
+/**
+ * Buttons for navigating between pages: first, previous, next and last jump controls around a row of page numbers.
  *
- *  @event {CustomEvent<ZetaPageEventDetail>} pageChange - Fired when page change. Contains a single value in details: `page: number`.
+ * Every control and page number is a native `<button>`, so each is focusable and keyboard-operable.
+ * The bar is a `nav` landmark and the current page carries `aria-current="page"`.
  *
- * @figma https://www.figma.com/design/JesXQFLaPJLc1BdBM4sisI/%F0%9F%A6%93-ZDS---Components?node-id=229-24&node-type=canvas&m=dev
+ * @event {CustomEvent<ZetaPageEventDetail>} pageChange - Fired when page change. Contains a single value in details: `page: number`.
+ *
+ * @part control - Each of the first, previous, next and last jump buttons.
+ * @part page - Each page number button.
+ * @part more - The overflow marker shown in place of hidden pages.
+ *
+ * @figma https://www.figma.com/design/hvRmnZZOZrmTW0wf8hbrt5/The-Zebra-Design-System?node-id=3853-1209&m=dev
  * @storybook https://design.zebra.com/web/storybook/?path=/docs/components-pagination--docs
  */
 
@@ -24,6 +42,21 @@ export class ZetaPagination extends Contourable(LitElement) {
 
   /** Number of pages on both sides of current active page. */
   @property({ type: Number }) siblingCount = 1;
+
+  /**
+   * Shows the first, previous, next and last jump buttons as one group.
+   * Turn it off when only direct page number navigation is offered. Set `showcontrols="false"` from markup.
+   */
+  @property({ converter: defaultTrueConverter, reflect: false }) showControls = true;
+
+  /**
+   * Shows the overflow marker, together with the page number that follows it, when the page range is collapsed.
+   * Turn it off to show only the page numbers around the current page. Set `showmore="false"` from markup.
+   */
+  @property({ converter: defaultTrueConverter, reflect: false }) showMore = true;
+
+  /** Gives every button a 1px border. Applies to the whole bar at once. */
+  @property({ type: Boolean, reflect: true }) outline = false;
 
   /** Current active page. */
   @property({ type: Number })
@@ -56,7 +89,7 @@ export class ZetaPagination extends Contourable(LitElement) {
 
   private page = 1;
 
-  private result = () => {
+  private result = (): (number | "dots")[] => {
     const leftSiblingIndex = Math.max(this.currentPage - this.siblingCount, 1);
     const rightSiblingIndex = Math.min(this.currentPage + this.siblingCount, this.totalPages);
     const shouldShowLeftDots = leftSiblingIndex > 2;
@@ -88,41 +121,79 @@ export class ZetaPagination extends Contourable(LitElement) {
     return this.range(1, this.totalPages);
   };
 
-  getIconButton(iconName: string, pageNumber: number, disabled: boolean) {
-    // TODO: need to migrate away from icon button, the icon colour and size is now incorrect on the text flavour
-    return html`<zeta-icon-button
-      class=${iconName}
-      .disabled=${disabled}
-      shape=${this.rounded ? "rounded" : "sharp"}
+  /** The pages to show. With `showMore` off, each overflow marker and the page paired with it (the first or last page) are dropped. */
+  private visiblePages() {
+    const pages = this.result();
+    if (this.showMore) return pages;
+    // The first/last page sits right before/after its marker, so it is the entry next to a marker at the list's edge.
+    const last = pages.length - 1;
+    return pages.filter((page, index) => {
+      if (page === "dots") return false;
+      if (index === 0 && pages[1] === "dots") return false;
+      if (index === last && pages[last - 1] === "dots") return false;
+      return true;
+    });
+  }
+
+  /** Renders one of the jump buttons. The icon is the button's class name, so each stays addressable. */
+  private renderControl(iconName: string, label: string, pageNumber: number, disabled: boolean) {
+    return html`<button
+      type="button"
+      part="control"
+      class="control ${iconName}"
+      aria-label=${label}
+      ?disabled=${disabled}
       @click=${() => this.handlePageChange(pageNumber)}
-      flavor="text"
-      size="small"
     >
-      ${iconName}
-    </zeta-icon-button>`;
+      <zeta-icon>${iconName}</zeta-icon>
+    </button>`;
   }
 
   protected render() {
     const disabledLeftControl = this.currentPage === 1;
     const disabledRightControl = this.currentPage === this.totalPages;
-    const result = this.result();
 
     return html`
-      <div class="pagination">
-        ${this.getIconButton("first_page", 1, disabledLeftControl)} ${this.getIconButton("chevron_left", this.currentPage - 1, disabledLeftControl)}
-        ${result.map(page => {
-          const pageClass = classMap({
-            selected: this.currentPage === page
-          });
-          if (typeof page === "string") {
-            return html`<zeta-icon class="more">more_horizontal</zeta-icon>`;
-          } else {
-            return html` <button @click=${() => this.handlePageChange(page)} class="page ${pageClass}">${page}</button> `;
+      <nav class="pagination" aria-label=${msg("Pagination")}>
+        ${
+          this.showControls
+            ? html`${this.renderControl("first_page", msg("First page"), 1, disabledLeftControl)}${this.renderControl(
+                "chevron_left",
+                msg("Previous page"),
+                this.currentPage - 1,
+                disabledLeftControl
+              )}`
+            : nothing
+        }
+        ${this.visiblePages().map(page => {
+          if (page === "dots") {
+            return html`<span part="more" class="more-control" role="img" aria-label=${msg("More pages")}
+              ><zeta-icon class="more">more_horizontal</zeta-icon></span
+            >`;
           }
+          const isCurrent = this.currentPage === page;
+          return html`<button
+            type="button"
+            part="page"
+            class=${classMap({ page: true, selected: isCurrent })}
+            aria-label=${msg(str`Page ${page}`)}
+            aria-current=${ifDefined(isCurrent ? "page" : undefined)}
+            @click=${() => this.handlePageChange(page)}
+          >
+            ${page}
+          </button>`;
         })}
-        ${this.getIconButton("chevron_right", this.currentPage + 1, disabledRightControl)}
-        ${this.getIconButton("last_page", this.totalPages, disabledRightControl)}
-      </div>
+        ${
+          this.showControls
+            ? html`${this.renderControl("chevron_right", msg("Next page"), this.currentPage + 1, disabledRightControl)}${this.renderControl(
+                "last_page",
+                msg("Last page"),
+                this.totalPages,
+                disabledRightControl
+              )}`
+            : nothing
+        }
+      </nav>
     `;
   }
 }

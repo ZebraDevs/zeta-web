@@ -29,6 +29,57 @@
 <trans-unit id="s0043cbab8a7a7cfc">
   <source>Slider</source>
 </trans-unit>
+<trans-unit id="s3dc14a4b8129f989">
+  <source>Pagination</source>
+</trans-unit>
+<trans-unit id="s17d7735daef94b08">
+  <source>First page</source>
+</trans-unit>
+<trans-unit id="s5b6a1140834aa043">
+  <source>Previous page</source>
+</trans-unit>
+<trans-unit id="s2816ef93a50d74a8">
+  <source>More pages</source>
+</trans-unit>
+<trans-unit id="sc2b31c8d71636c74">
+  <source>Page <x id="0" equiv-text="${page}"/></source>
+</trans-unit>
+<trans-unit id="s542ffff558768ea3">
+  <source>Next page</source>
+</trans-unit>
+<trans-unit id="s2c4b1cc433fce2d0">
+  <source>Last page</source>
+</trans-unit>
+<trans-unit id="s58bfb494feb8eb02">
+  <source><x id="0" equiv-text="${selectedCount}"/> selected</source>
+</trans-unit>
+<trans-unit id="s7b065b45809d07b0">
+  <source>Export to CSV</source>
+</trans-unit>
+<trans-unit id="sb35d157c693049c3">
+  <source>Show / Hide</source>
+</trans-unit>
+<trans-unit id="saf63b1436123eb22">
+  <source>Freeze</source>
+</trans-unit>
+<trans-unit id="sd0b6082239185272">
+  <source>Select all</source>
+</trans-unit>
+<trans-unit id="s909e876731a8febb">
+  <source>Select all rows</source>
+</trans-unit>
+<trans-unit id="s3a9da439c961a22c">
+  <source>Sort by <x id="0" equiv-text="${col.title}"/></source>
+</trans-unit>
+<trans-unit id="s6b77a8ce68ca416b">
+  <source>Select row: <x id="0" equiv-text="${this._getRowLabel(row, cols)}"/></source>
+</trans-unit>
+<trans-unit id="s1e983dceeed1e078">
+  <source>Showing <x id="0" equiv-text="${rangeStart}"/>-<x id="1" equiv-text="${rangeEnd}"/> of <x id="2" equiv-text="${totalItems}"/></source>
+</trans-unit>
+<trans-unit id="s90a641043aa30c1e">
+  <source>Rows per page</source>
+</trans-unit>
 </body>
 </file>
 </xliff>

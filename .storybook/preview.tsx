@@ -89,7 +89,39 @@ const preview: Preview = {
       },
     },
   },
-  decorators: [withActions],
+  globalTypes: {
+    mode: {
+      description: "Zeta color mode (sets data-mode on the preview <html>)",
+      toolbar: {
+        title: "Mode",
+        icon: "circlehollow",
+        items: [
+          { value: "auto", title: "Auto (follow OS)", icon: "browser" },
+          { value: "light", title: "Light", icon: "sun" },
+          { value: "dark", title: "Dark", icon: "moon" },
+        ],
+        dynamicTitle: true,
+      },
+    },
+  },
+  initialGlobals: { mode: "auto" },
+  decorators: [
+    withActions,
+    (story, context) => {
+      const mode = context.globals.mode as string | undefined;
+      const root = document.documentElement;
+      if (mode === "light" || mode === "dark") {
+        root.setAttribute("data-mode", mode);
+        root.style.colorScheme = mode;
+        document.body.style.background = "var(--surface-default)";
+      } else {
+        root.removeAttribute("data-mode");
+        root.style.colorScheme = "";
+        document.body.style.background = "";
+      }
+      return story();
+    },
+  ],
 };
 
 export default preview;
