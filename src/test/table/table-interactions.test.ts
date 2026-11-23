@@ -1,4 +1,5 @@
 import { fixture, html, expect, assert, oneEvent } from "@open-wc/testing";
+import { sendMouse } from "@web/test-runner-commands";
 import type { ZetaTable, ZetaTableColumn, ZetaTableRow } from "../../components/table/table.js";
 import type { ZetaCheckbox } from "../../components/checkbox/checkbox.js";
 import "../../components/table/table.js";
@@ -322,6 +323,20 @@ describe("zeta-table interactions", () => {
       nativeInput(checkbox(el, ".zeta-table-column-panel-section:first-child .zeta-table-column-panel-item")).click();
       await el.updateComplete;
       assert.equal(shadow(el).querySelectorAll(".zeta-table-header-row .zeta-table-th").length, initial - 1);
+    });
+
+    it("toggles column visibility when clicking the row outside the box and label", async () => {
+      const el = await make({ columnConfigure: true });
+      (shadow(el).querySelector(".zeta-table-column-panel-wrapper .zeta-table-toolbar-btn") as HTMLElement).click();
+      await el.updateComplete;
+      const initial = shadow(el).querySelectorAll(".zeta-table-header-row .zeta-table-th").length;
+      const item = checkbox(el, ".zeta-table-column-panel-section:first-child .zeta-table-column-panel-item");
+      const rect = item.getBoundingClientRect();
+      // A real (trusted) click on the empty area to the right of the label text
+      await sendMouse({ type: "click", position: [Math.round(rect.right - 5), Math.round(rect.top + rect.height / 2)] });
+      await el.updateComplete;
+      assert.equal(shadow(el).querySelectorAll(".zeta-table-header-row .zeta-table-th").length, initial - 1);
+      assert.isFalse(item.checked);
     });
 
     it("prevents hiding last column", async () => {

@@ -176,6 +176,11 @@ export default css`
     display: flex;
     padding: 0 var(--space-xs);
     font: var(--body-small);
+    cursor: pointer;
+  }
+
+  .zeta-table-column-panel-item[disabled] {
+    cursor: default;
   }
 
   .zeta-table-column-panel-item:hover {

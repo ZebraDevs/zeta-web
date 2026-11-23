@@ -12,6 +12,7 @@ import "../icon/icon.js";
 import "../badges/label/label.js";
 import "../button/icon-button/icon-button.js";
 import "../checkbox/checkbox.js";
+import type { ZetaCheckbox } from "../checkbox/checkbox.js";
 import "../pagination/pagination.js";
 import "../search/search.js";
 import "../select-input/select-input.js";
@@ -976,6 +977,20 @@ export class ZetaTable extends ContourableThree(LitElement) {
     this._visibleColumns = newSet;
   }
 
+  /**
+   * Makes the whole column panel row clickable. The checkbox's inner label is only as wide as its
+   * content, so clicks on the rest of the row land on the `<zeta-checkbox>` host itself and would
+   * otherwise do nothing. Clicks on the box or label text are handled natively (via `change`).
+   *
+   * Only trusted clicks are forwarded: the checkbox re-dispatches a synthetic `click` on its own host
+   * for every click it receives, and forwarding that too would toggle the column a second time.
+   */
+  private _handleColumnConfigureItemClick = (e: MouseEvent) => {
+    const checkbox = e.currentTarget as ZetaCheckbox;
+    if (!e.isTrusted || e.composedPath()[0] !== checkbox || checkbox.disabled) return;
+    checkbox.input?.click();
+  };
+
   /** Toggles the frozen (pinned) state of a column */
   private _toggleColumnFreeze(field: string) {
     const newSet = new Set(this._frozenColumns);
@@ -1592,6 +1607,7 @@ export class ZetaTable extends ContourableThree(LitElement) {
                           .checked=${live(this._visibleColumns.has(col.field))}
                           ?disabled=${this._visibleColumns.has(col.field) && this._visibleColumns.size === 1}
                           @change=${() => this._toggleColumnVisibility(col.field)}
+                          @click=${this._handleColumnConfigureItemClick}
                           >${col.title}</zeta-checkbox
                         >
                       `
@@ -1609,6 +1625,7 @@ export class ZetaTable extends ContourableThree(LitElement) {
                             .rounded=${this._isRounded}
                             .checked=${live(this._frozenColumns.has(col.field))}
                             @change=${() => this._toggleColumnFreeze(col.field)}
+                            @click=${this._handleColumnConfigureItemClick}
                             >${col.title}</zeta-checkbox
                           >
                         `

@@ -160,14 +160,6 @@
       ]
     }
   },
-  "overrides": {
-    "@storybook/blocks": {
-      "react": "$react"
-    },
-    "@storybook/addon-designs": {
-      "react": "$react"
-    }
-  },
   "resolutions": {
     "@isaacs/brace-expansion": "^5.0.1",
     "@xmldom/xmldom": "^0.8.15",
