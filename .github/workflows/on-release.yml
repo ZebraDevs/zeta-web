@@ -3,15 +3,16 @@ name: CI - On Release
 on:
   release:
     types: [released]
-  workflow_dispatch: # TEMP: remove before merging
+
+permissions:
+  contents: read
 
 jobs:
   deploy-website:
-    if: github.event_name == 'release' # TEMP: remove before merging
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - uses: actions/github-script@v7
+      - uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           github-token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           script: |
@@ -32,12 +33,14 @@ jobs:
       contents: read
       id-token: write # npm trusted publishing (OIDC)
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          node-version: 20
-          # cache: "yarn" Removed due to https://github.com/actions/setup-node/issues/1027
+          persist-credentials: false
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: "^26.12.1"
+          package-manager-cache: false # never restore caches into the publish job
 
       - name: Install packages
         run: yarn install --immutable
@@ -46,4 +49,4 @@ jobs:
         run: yarn run build
 
       - name: Publish
-        run: yarn npm publish
+        run: yarn npm publish --provenance
