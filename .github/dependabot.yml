@@ -1,0 +1,28 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    commit-message:
+      prefix: ci
+    groups:
+      actions:
+        patterns: ["*"]
+
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    commit-message:
+      prefix: deps
+    ignore:
+      - dependency-name: "@zebra-fed/zeta-icons" # handled by update-icons.yml
+    groups:
+      dev-dependencies:
+        dependency-type: development
+        update-types: [minor, patch]

@@ -1,6 +1,6 @@
 import core from "@actions/core";
-import manifest from "../../../custom-elements.json" assert { type: "json" };
-import { log } from "../../../scripts/utils";
+import manifest from "../../../custom-elements.json" with { type: "json" };
+import { log } from "../../../scripts/utils.js";
 
 const FILE_KEY = "JesXQFLaPJLc1BdBM4sisI";
 

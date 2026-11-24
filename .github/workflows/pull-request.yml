@@ -1,80 +1,69 @@
 name: CI - Pull Request
-on: pull_request_target
+on: pull_request
 
 # Pull Request Runs on the same branch will be cancelled
 concurrency:
-  group: ${{ github.head_ref }}
+  group: ${{ github.workflow }}-${{ github.head_ref }}
   cancel-in-progress: true
+
+permissions: {}
 
 jobs:
   generate-localizations:
     name: Generate localizations.
     timeout-minutes: 20
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
-
-      - name: Enable Corepack
-        run: corepack enable
+          persist-credentials: false
 
       - name: Setup node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: 20
-          # cache: "yarn" Removed due to https://github.com/actions/setup-node/issues/1027
+          node-version: "^26.12.1"
+          cache: yarn
 
       - name: Install dependencies
         run: yarn install --immutable
 
-      - name: Run lit-localize extract
-        run: yarn run localize:extract
+      - name: Generate files
+        run: yarn generate
 
-      - name: Run lit-localize build
-        run: yarn run localize:build
-
-      - name: Format code
-        run: npx prettier src --write --ignore-unknown
-
-      - name: Run test-count
-        run: yarn test:count
-
-      - name: Check diff
-        id: diff
-        run: git diff --quiet --ignore-all-space . || echo "changed=true" >> $GITHUB_OUTPUT
-
-      - name: Commit files
-        if: steps.diff.outputs.changed == 'true'
+      # Bot commits pushed with GITHUB_TOKEN don't trigger CI, so required checks would never report on them
+      - name: Check generated files are committed
         run: |
-          git config --global user.name 'github-actions'
-          git config --global user.email 'github-actions@github.com'
-          git add .
-          git commit -m "Generated locales"
-          git push
+          git add -A
+          if ! git diff --cached --quiet --ignore-all-space; then
+            git diff --cached --stat
+            echo "::error::Generated files are out of date. Run 'yarn generate' and commit the result."
+            exit 1
+          fi
 
   code-quality:
     name: Check the code quality
-    needs: [generate-localizations]
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    permissions:
+      contents: read
+      pull-requests: write # results comment
     steps:
-      - uses: actions/checkout@v4
+      # No persisted credentials: if formatting changes files, the action's push fails and so does this check
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
           ref: ${{ github.head_ref }}
+          persist-credentials: false
 
       - name: Setup node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: 20
+          node-version: "^26.12.1"
+          cache: yarn
 
-      # - name: Setup node
-      #   uses: actions/setup-node@v4
-      #   with:
-      #     node-version: 20
-      # cache: "yarn" Removed due to https://github.com/actions/setup-node/issues/1027
       - name: Install dependencies
         run: yarn install --immutable
 
@@ -90,21 +79,22 @@ jobs:
   deploy-preview:
     timeout-minutes: 20
     name: Deploy preview version of the storybook on firebase
-    needs: [generate-localizations]
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      checks: write
+      pull-requests: write # preview URL comment
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: ${{ github.event.pull_request.head.ref }}
-
-      - name: Enable Corepack
-        run: corepack enable
+          persist-credentials: false
 
       - name: Setup node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
-          node-version: 20
-          # cache: "yarn" Removed due to https://github.com/actions/setup-node/issues/1027
+          node-version: "^26.12.1"
+          cache: yarn
 
       - name: Install dependencies
         run: yarn install --immutable
@@ -115,7 +105,7 @@ jobs:
       - name: Build storybook
         run: yarn run storybook:build
 
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+      - uses: FirebaseExtended/action-hosting-deploy@500ac625ca2dd40cbd15f7659af953801858032a # v0.11.0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_ZETA_DS }}"
