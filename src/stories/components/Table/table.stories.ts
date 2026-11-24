@@ -235,10 +235,24 @@ function generateData(count: number): ZetaTableRow[] {
 /** The four columns of the Figma frame: a person, a status, plain text and an action button */
 const figmaColumns: ZetaTableColumn[] = [
   { field: "avatar", title: "Avatar", width: 90, sortable: false, filterable: false, resizable: false },
-  { field: "name", title: "Name", width: 220, sortable: true },
-  { field: "status", title: "Status", width: 210, sortable: true },
-  { field: "department", title: "Department", width: 210, sortable: true },
-  { field: "details", title: "Details", sortable: true }
+  { field: "name", title: "Name", width: 220, sortable: true, filterable: false },
+  {
+    field: "status",
+    title: "Status",
+    width: 210,
+    sortable: true,
+    filterable: true,
+    filterOptions: ["Draft", "In review", "Approved", "Pending", "Rejected"]
+  },
+  {
+    field: "department",
+    title: "Department",
+    width: 210,
+    sortable: true,
+    filterable: true,
+    filterOptions: ["Engineering", "Marketing", "Sales", "HR", "Finance", "Operations"]
+  },
+  { field: "details", title: "Details", sortable: true, filterable: false }
 ];
 
 const figmaStatuses: StatusLabelStatus[] = ["neutral", "info", "positive", "warning", "negative"];
@@ -415,14 +429,14 @@ export default meta;
 /** The default story. It matches the Figma frame: a selected count, search and controls above the content, and a footer below. */
 export const TableAll: StoryObj<TableStory> = {
   args: {
-    // The Figma frame has no title, no data count, and no column search or filter. Expandable shows the nested rows (every 3rd and 5th row)
+    // The Figma frame has no title, no data count, and no column search. Column filters are on for Status and Department. Expandable shows the nested rows (every 3rd and 5th row)
     tableTitle: "",
     showDataCount: false,
     expandable: true,
     searchable: true,
     refreshable: true,
     columnSearchable: false,
-    columnFilterable: false,
+    columnFilterable: true,
     selectOnRowClick: true,
     clickableRows: true,
     hasControl: true,
@@ -603,7 +617,12 @@ export const TableAll: StoryObj<TableStory> = {
       if (selectedValues.length === 0) {
         filteredData = [...masterData];
       } else {
-        filteredData = masterData.filter(row => selectedValues.includes(String(row[field] ?? "")));
+        // Cells such as Status hold DOM nodes, so compare their text instead of String(node)
+        filteredData = masterData.filter(row => {
+          const val = row[field];
+          const text = val instanceof Node ? (val.textContent?.trim() ?? "") : String(val ?? "");
+          return selectedValues.includes(text);
+        });
       }
       currentPageNum = 1;
       updateTable(this);
