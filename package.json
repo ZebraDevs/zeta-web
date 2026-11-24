@@ -74,7 +74,7 @@
     "@custom-elements-manifest/analyzer": "^0.11.0",
     "@eslint/js": "^9.39.5",
     "@etchteam/storybook-addon-status": "^5.0.0",
-    "@figma/code-connect": "^1.5.3",
+    "@figma/code-connect": "^2.1.0",
     "@lit/localize-tools": "^0.8.2",
     "@open-wc/lit-helpers": "^0.7.0",
     "@open-wc/testing": "^4.0.0",
