@@ -22,7 +22,12 @@ updates:
       prefix: deps
     ignore:
       - dependency-name: "@zebra-fed/zeta-icons" # handled by update-icons.yml
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"] # majors are deliberate upgrades
+      - dependency-name: "@playwright/test" # pinned with playwright in resolutions (#299)
     groups:
+      storybook:
+        patterns: ["storybook", "@storybook/*"]
       dev-dependencies:
         dependency-type: development
         update-types: [minor, patch]
