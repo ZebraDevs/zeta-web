@@ -11,7 +11,7 @@ import { spreadGenerator } from "../../utils.js";
 
 const spread = spreadGenerator(ZetaSnackbar);
 
-const meta: Meta<ZetaSnackbar & { slotIcon: string }> = {
+const meta: Meta<ZetaSnackbar & { slotIcon: string; onaction: () => void }> = {
   component: "zeta-snackbar",
   title: "Components/Snackbar",
   args: {

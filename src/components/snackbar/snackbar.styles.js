@@ -88,13 +88,18 @@ export default css`
     --_snackbar-root-radius: var(--radius-md);
   }
 
+  :host([variant="standard"][shape="full"]) {
+    --_snackbar-root-radius: var(--radius-pill);
+  }
+
   :host([shape="sharp"]) {
     --_snackbar-action-radius: var(--radius-none);
     --_snackbar-close-radius: var(--radius-none);
     --_snackbar-root-radius: var(--radius-none);
   }
 
-  .snackbar-root {
+  /* ":host .snackbar-root" matches the specificity of the ContourableThree mixin rule and comes later, so the preset radius wins. */
+  :host .snackbar-root {
     display: flex;
     align-items: center;
     justify-content: space-between;

@@ -130,7 +130,7 @@ export class ZetaSnackbar extends ContourableThree(Interactive(LitElement)) {
     warning: "warning",
     negative: "error",
     deletion: "delete",
-    view: "open_in_new"
+    view: "open_in_new_window"
   };
 
   private get usesMessageProperty() {

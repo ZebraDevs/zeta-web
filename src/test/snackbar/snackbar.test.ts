@@ -154,7 +154,7 @@ describe("zeta-snackbar", () => {
         { status: "warning", background: "--feedback-warning-background-subtle", icon: "warning" },
         { status: "negative", background: "--feedback-error-background-subtle", icon: "error" },
         { status: "deletion", background: "--feedback-error-background-subtle", icon: "delete" },
-        { status: "view", background: "--feedback-neutral-background-subtle", icon: "open_in_new" }
+        { status: "view", background: "--feedback-neutral-background-subtle", icon: "open_in_new_window" }
       ] as const;
 
       for (const testCase of cases) {
