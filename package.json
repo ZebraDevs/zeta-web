@@ -80,7 +80,7 @@
     "@open-wc/testing": "^4.0.0",
     "@playwright/test": "1.64.1",
     "@remcovaes/web-test-runner-vite-plugin": "^1.4.1",
-    "@storybook/addon-a11y": "^8.6.19",
+    "@storybook/addon-a11y": "^10.6.7",
     "@storybook/addon-actions": "^8.6.19",
     "@storybook/addon-designs": "^8.2.1",
     "@storybook/addon-docs": "^8.6.19",
