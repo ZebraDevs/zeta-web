@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.5.4](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.5.3...zeta-web-v1.5.4) (2026-11-25)
+
+
+### 🪲 Bug Fixes
+
+* **NO-TICKET:** Add disabled styles to zeta option and a story ([#316](https://github.com/ZebraDevs/zeta-web/issues/316)) ([78eeeca](https://github.com/ZebraDevs/zeta-web/commit/78eeecadcb7f97c04173bac2833613c67185df34))
+
+
+### ⛓️ Dependencies
+
+* security updates for ci, workflows, and deps ([#320](https://github.com/ZebraDevs/zeta-web/issues/320)) ([71c9ee0](https://github.com/ZebraDevs/zeta-web/commit/71c9ee03c7beb6688205f60aa8d8ebc417d79e54))
+
+
+### 👷 Continuous Integration
+
+* dependabot ignore major bumps  ([#326](https://github.com/ZebraDevs/zeta-web/issues/326)) ([809055a](https://github.com/ZebraDevs/zeta-web/commit/809055a1d3a8ec256fefc86dd4c2269f90541df5))
+
 ## [1.5.3](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.5.2...zeta-web-v1.5.3) (2026-11-10)
 
 
