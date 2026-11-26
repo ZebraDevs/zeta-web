@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.5](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.5.4...zeta-web-v1.5.5) (2026-11-26)
+
+
+### 🧹 Miscellaneous Chores
+
+* Add prefix and suffix titles to text input ([#329](https://github.com/ZebraDevs/zeta-web/issues/329)) ([7d6856b](https://github.com/ZebraDevs/zeta-web/commit/7d6856b965d2280bb1a534712c313aae99367edd))
+
 ## [1.5.4](https://github.com/ZebraDevs/zeta-web/compare/zeta-web-v1.5.3...zeta-web-v1.5.4) (2026-11-25)
 
 
