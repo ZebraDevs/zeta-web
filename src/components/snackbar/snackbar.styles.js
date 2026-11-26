@@ -1,10 +1,15 @@
 import { css } from "lit";
 
 export default css`
+  /*
+   * default, action and standard are a dark overlay surface in Figma on every page theme. Pinning color-scheme: dark
+   * makes the light-dark() tokens resolve to their dark values here. Feedback statuses reset it below.
+   */
   :host {
-    --_snackbar-background-color: var(--surface-inverse);
-    --_snackbar-foreground-color: var(--foreground-inverse);
-    --_snackbar-icon-color: var(--foreground-inverse);
+    color-scheme: dark;
+    --_snackbar-background-color: var(--fill-overlay);
+    --_snackbar-foreground-color: var(--foreground-primary);
+    --_snackbar-icon-color: var(--foreground-primary);
     --_snackbar-action-background-color: var(--interactive-ghost-background-default);
     --_snackbar-action-border-color: var(--border-transparent);
     --_snackbar-action-border-width: var(--stroke-base);
@@ -29,6 +34,7 @@ export default css`
   }
 
   :host([status="info"]) {
+    color-scheme: inherit;
     --_snackbar-background-color: var(--feedback-info-background-subtle);
     --_snackbar-foreground-color: var(--foreground-primary);
     --_snackbar-icon-color: var(--foreground-primary);
@@ -36,6 +42,7 @@ export default css`
   }
 
   :host([status="positive"]) {
+    color-scheme: inherit;
     --_snackbar-background-color: var(--feedback-success-background-subtle);
     --_snackbar-foreground-color: var(--foreground-primary);
     --_snackbar-icon-color: var(--foreground-primary);
@@ -43,6 +50,7 @@ export default css`
   }
 
   :host([status="warning"]) {
+    color-scheme: inherit;
     --_snackbar-background-color: var(--feedback-warning-background-subtle);
     --_snackbar-foreground-color: var(--foreground-primary);
     --_snackbar-icon-color: var(--foreground-primary);
@@ -50,6 +58,7 @@ export default css`
   }
 
   :host([status="negative"]) {
+    color-scheme: inherit;
     --_snackbar-background-color: var(--feedback-error-background-subtle);
     --_snackbar-foreground-color: var(--foreground-primary);
     --_snackbar-icon-color: var(--foreground-primary);
@@ -57,6 +66,7 @@ export default css`
   }
 
   :host([status="deletion"]) {
+    color-scheme: inherit;
     --_snackbar-background-color: var(--feedback-error-background-subtle);
     --_snackbar-foreground-color: var(--foreground-primary);
     --_snackbar-icon-color: var(--foreground-primary);
@@ -64,6 +74,7 @@ export default css`
   }
 
   :host([status="view"]) {
+    color-scheme: inherit;
     --_snackbar-background-color: var(--feedback-neutral-background-subtle);
     --_snackbar-foreground-color: var(--foreground-primary);
     --_snackbar-icon-color: var(--foreground-primary);

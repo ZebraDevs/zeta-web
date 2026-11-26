@@ -6,6 +6,7 @@ import "../../components/snackbar/snackbar.js";
 import type { ZetaIcon } from "../../components/icon/icon.js";
 import "../../components/icon/icon.js";
 import "../../index.css";
+import { contrastTest } from "../accessibility-utils/accessibility-test-runner.js";
 
 describe("zeta-snackbar", () => {
   let subject: ZetaSnackbar;
@@ -19,6 +20,20 @@ describe("zeta-snackbar", () => {
   describe("Accessibility", () => {
     it("meets accessibility requirements", async () => {
       await expect(subject).shadowDom.to.be.accessible();
+    });
+
+    it("meets contrast requirements for the dark default, action and standard surfaces", async () => {
+      const cases = [
+        { status: "default", variant: "contextual" },
+        { status: "action", variant: "contextual" },
+        { status: "default", variant: "standard" }
+      ] as const;
+
+      for (const testCase of cases) {
+        subject = await createComponent(html`<zeta-snackbar message="Message" status=${testCase.status} variant=${testCase.variant}></zeta-snackbar>`);
+        const root = subject.shadowRoot!.querySelector(".snackbar-root") as HTMLDivElement;
+        await contrastTest(`Snackbar ${testCase.variant} ${testCase.status}`, root, root);
+      }
     });
   });
 
@@ -171,14 +186,21 @@ describe("zeta-snackbar", () => {
       }
     });
 
-    it("sets inverse colors for default and action statuses", async () => {
-      for (const status of ["default", "action"] as const) {
-        subject.status = status;
-        await subject.updateComplete;
+    it("keeps default and action statuses on the dark overlay surface in light and dark pages", async () => {
+      for (const mode of ["light", "dark"] as const) {
+        document.documentElement.setAttribute("data-mode", mode);
+        try {
+          for (const status of ["default", "action"] as const) {
+            subject.status = status;
+            await subject.updateComplete;
 
-        const root = subject.shadowRoot!.querySelector(".snackbar-root") as HTMLDivElement;
-        expect(getComputedStyle(root).backgroundColor).to.equal(getCssVarColorValue(subject, "--surface-inverse"));
-        expect(getComputedStyle(root).color).to.equal(getCssVarColorValue(subject, "--foreground-inverse"));
+            const root = subject.shadowRoot!.querySelector(".snackbar-root") as HTMLDivElement;
+            expect(getComputedStyle(root).backgroundColor, `${status} on ${mode} page`).to.equal(getCssVarColorValue(subject, "--fill-overlay"));
+            expect(getComputedStyle(root).color, `${status} on ${mode} page`).to.equal(getCssVarColorValue(subject, "--foreground-primary"));
+          }
+        } finally {
+          document.documentElement.removeAttribute("data-mode");
+        }
       }
     });
   });
