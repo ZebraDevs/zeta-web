@@ -61,6 +61,20 @@ describe("zeta-text-input", () => {
       assert.equal(t.shadowRoot?.querySelector(".right.affix")?.textContent, "SUFFIX");
     });
 
+    it("should set title on prefix and suffix", async () => {
+      const el = await fixture<ZetaTextInput>(
+        html`<zeta-text-input prefix="P" suffix="S" prefixTitle="Prefix title" suffixTitle="Suffix title"></zeta-text-input>`
+      );
+      assert.equal(el.shadowRoot?.querySelector(".left.affix")?.getAttribute("title"), "Prefix title");
+      assert.equal(el.shadowRoot?.querySelector(".right.affix")?.getAttribute("title"), "Suffix title");
+    });
+
+    it("should not set title on prefix and suffix by default", async () => {
+      const el = await setup({ prefix: "P", suffix: "S" });
+      assert.isFalse(el.shadowRoot?.querySelector(".left.affix")?.hasAttribute("title"));
+      assert.isFalse(el.shadowRoot?.querySelector(".right.affix")?.hasAttribute("title"));
+    });
+
     it("should render label", async () => {
       const labelText = "Label";
       const t = await setup({ label: labelText });

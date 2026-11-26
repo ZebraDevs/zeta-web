@@ -6,6 +6,7 @@ import { classMap } from "lit/directives/class-map.js";
 import { Contourable, Interactive, Size } from "../../mixins/mixins.js";
 import "../icon/icon.js";
 import { FormField } from "../../mixins/form-field.js";
+import { ifDefined } from "lit/directives/if-defined.js";
 
 // TODO: Split into separate TextInput and TextArea components, as the shared code is minimal and this would simplify the implementation of both components. This would also allow us to remove the `rows` property from TextInput, which is not applicable to it.
 
@@ -92,6 +93,16 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
   @property({ type: String, reflect: true }) type: "text" | "textarea" | "password" | "time" | "date" | "number" | "integer" = "text";
 
   private _valueOnLastFocus: string | null = null;
+
+  /**
+   * Native HTML title given to suffix.
+   */
+  @property({ type: String }) suffixTitle?: string;
+
+  /**
+   * Native HTML title given to prefix.
+   */
+  @property({ type: String }) prefixTitle?: string;
 
   override focus() {
     this.inputEl?.focus();
@@ -285,11 +296,15 @@ export class ZetaTextInput extends FormField(Size(Contourable(Interactive(LitEle
   }
 
   private renderPrefix() {
-    return this.prefix && (this.type === "text" || this.type === "number") && !this.toggled ? html`<span class="left affix">${this.prefix}</span>` : nothing;
+    return this.prefix && (this.type === "text" || this.type === "number") && !this.toggled
+      ? html`<span title=${ifDefined(this.prefixTitle)} class="left affix">${this.prefix}</span>`
+      : nothing;
   }
 
   private renderSuffix() {
-    return this.suffix && (this.type === "text" || this.type === "number") && !this.toggled ? html`<span class="right affix">${this.suffix}</span>` : nothing;
+    return this.suffix && (this.type === "text" || this.type === "number") && !this.toggled
+      ? html`<span title=${ifDefined(this.suffixTitle)} class="right affix">${this.suffix}</span>`
+      : nothing;
   }
 
   private toggled = false;
