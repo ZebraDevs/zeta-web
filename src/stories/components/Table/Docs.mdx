@@ -41,20 +41,20 @@ Slot any element into `controls` and it is placed at the end of the toolbar, aft
 
 All events bubble and are composed, so they cross the shadow root. Their names are lowercase, like native events: listen with `addEventListener("sortchange", …)`, `@sortchange=${…}` (Lit), `(sortchange)` (Angular) or `@sortchange` (Vue).
 
-| Event          | Fires when                                                                      | `event.detail`                   |
-| -------------- | ------------------------------------------------------------------------------- | -------------------------------- |
-| `rowclick`     | A clickable row is clicked                                                      | `{ row, rowIndex }`              |
-| `rowselect`    | Row selection changes                                                           | `{ selectedIds }`                |
-| `rowaction`    | A row action menu item is chosen                                                | `{ actionKey, row, rowIndex }`   |
-| `rowexpand`    | A row's nested rows expand or collapse                                          | `{ rowId, expanded }`            |
-| `sortchange`   | The sort changes. Cancelable: call `preventDefault()` to sort the data yourself | `{ field, direction }`           |
-| `columnsearch` | A column search input changes                                                   | `{ field, value, searchValues }` |
-| `columnfilter` | A column filter is applied                                                      | `{ field, selectedValues }`      |
-| `tablesearch`  | The global search input changes                                                 | `{ value }`                      |
-| `pagechange`   | The page changes (numbered pagination)                                          | `{ page, pageSize }`             |
-| `loadmore`     | More rows are needed (infinite scroll)                                          | `{ currentCount }`               |
-| `tableexport`  | The export button is clicked                                                    | `{ csv, columns, data }`         |
-| `tablerefresh` | The refresh button is clicked                                                   | none                             |
+| Event          | Fires when                                                                                      | `event.detail`                   |
+| -------------- | ----------------------------------------------------------------------------------------------- | -------------------------------- |
+| `rowclick`     | A clickable row is clicked                                                                      | `{ row, rowIndex }`              |
+| `rowselect`    | Row selection changes                                                                           | `{ selectedIds }`                |
+| `rowaction`    | A row action menu item is chosen                                                                | `{ actionKey, row, rowIndex }`   |
+| `rowexpand`    | A row's nested rows expand or collapse                                                          | `{ rowId, expanded }`            |
+| `sortchange`   | The sort changes. Cancelable: call `preventDefault()` to sort the data yourself                 | `{ field, direction }`           |
+| `columnsearch` | A column search input changes                                                                   | `{ field, value, searchValues }` |
+| `columnfilter` | A column filter is applied                                                                      | `{ field, selectedValues }`      |
+| `tablesearch`  | The global search input changes                                                                 | `{ value }`                      |
+| `pagechange`   | The page changes (numbered pagination)                                                          | `{ page, pageSize }`             |
+| `loadmore`     | More rows are needed (infinite scroll)                                                          | `{ currentCount }`               |
+| `tableexport`  | The export button is clicked. Cancelable: call `preventDefault()` to skip the built-in download | `{ csv, columns, data }`         |
+| `tablerefresh` | The refresh button is clicked                                                                   | none                             |
 
 ---
 

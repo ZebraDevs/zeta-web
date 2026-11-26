@@ -112,5 +112,23 @@ describe("zeta-table react wrapper", () => {
         { name: "Carol", badge: "badge-Carol" }
       ]);
     });
+
+    // Regression: React elements in a row were replaced with "" in rowclick/rowaction detail.row
+    it("passes the original row, with its React elements, to onRowClick", async () => {
+      const data = [row(1, "Alice")];
+      let clicked: Record<string, unknown> | undefined;
+      renderTable({
+        data,
+        clickableRows: true,
+        onRowClick: e => {
+          clicked = e.detail.row;
+        }
+      });
+      await until(() => renderedRows().length === 1, "rows did not render");
+      table().shadowRoot!.querySelector<HTMLElement>(".zeta-table-tbody .zeta-table-row")!.click();
+      await until(() => clicked !== undefined, "onRowClick did not fire");
+      assert.strictEqual(clicked!.badge, data[0].badge);
+      assert.equal(clicked!.name, "Alice");
+    });
   });
 });

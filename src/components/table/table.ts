@@ -136,7 +136,7 @@ const SORT_COLLATOR = new Intl.Collator(undefined, { numeric: true, sensitivity:
  * @event {CustomEvent} tablesearch - Global search input changes. Detail: { value }
  * @event {CustomEvent} pagechange - Page changes (numbered). Detail: { page, pageSize }
  * @event {CustomEvent} loadmore - More data needed (infinite scroll)
- * @event {CustomEvent} tableexport - Export button clicked. Detail: { csv, columns, data }
+ * @event {CustomEvent} tableexport - Export button clicked. Cancelable: call `preventDefault()` to skip the built-in CSV download and export the data yourself. Detail: { csv, columns, data }
  * @event {CustomEvent} rowexpand - Row expanded/collapsed. Detail: { rowId, expanded }
  * @event {CustomEvent} rowclick - Row clicked. Detail: { row, rowIndex }
  * @event {CustomEvent} tablerefresh - Refresh button clicked
@@ -704,10 +704,12 @@ export class ZetaTable extends ContourableThree(LitElement) {
     const pathHas = (...tags: string[]) => inRow.some(node => node instanceof HTMLElement && tags.includes(node.tagName));
     if (pathHas("INPUT", "ZETA-CHECKBOX")) return;
 
-    this._activeRow = row.id;
+    // Only highlight the row when clicking a row does something
+    const clickable = this._isClickable();
+    if (clickable) this._activeRow = row.id;
 
     if (pathHas("BUTTON", "ZETA-ICON-BUTTON")) return;
-    if (!this._isClickable()) return;
+    if (!clickable) return;
 
     if (this.selectOnRowClick) {
       this._handleRowSelect(row);
@@ -1089,6 +1091,9 @@ export class ZetaTable extends ContourableThree(LitElement) {
 
   /** Toggles expansion of a row's nested sub-rows. Dispatches `rowexpand` event. */
   private _toggleExpand(rowId: string | number) {
+    // A disabled row takes no interaction unless allowDisabledSelection is set
+    const row = this.data.find(r => r.id === rowId);
+    if (row && this._isRowDisabled(row) && !this.allowDisabledSelection) return;
     const newSet = new Set(this._expandedRows);
     if (newSet.has(rowId)) {
       newSet.delete(rowId);
@@ -1178,6 +1183,8 @@ export class ZetaTable extends ContourableThree(LitElement) {
    */
   private _getTotalPages(): number {
     const total = this.totalItems >= 0 ? this.totalItems : this._getData().length;
+    // A zero, negative or non-numeric pageSize would give Infinity/NaN pages, so fall back to one page
+    if (!Number.isFinite(this.pageSize) || this.pageSize < 1) return 1;
     return Math.max(1, Math.ceil(total / this.pageSize));
   }
 
@@ -1215,21 +1222,22 @@ export class ZetaTable extends ContourableThree(LitElement) {
 
   /**
    * Handles the export button click.
-   * Generates a CSV from visible columns and filtered/sorted data,
-   * notifies the consumer, and triggers a browser download.
+   * Generates a CSV from visible columns and the sorted rows in `data`, then dispatches the cancelable `tableexport` event.
+   * The built-in browser download runs only if the consumer did not call `preventDefault()`, so the consumer can export its own data instead.
    */
   private _handleExport = () => {
     const visibleCols = this._getVisibleColumns();
     const data = this._getFilteredSortedData();
     const csvContent = this._generateCSV(visibleCols, data);
-    this.dispatchEvent(
+    const notPrevented = this.dispatchEvent(
       new CustomEvent("tableexport", {
         detail: { csv: csvContent, columns: visibleCols, data },
         bubbles: true,
-        composed: true
+        composed: true,
+        cancelable: true
       })
     );
-    this._downloadCSV(csvContent);
+    if (notPrevented) this._downloadCSV(csvContent);
   };
 
   /** Handles the refresh button click. Delegates data reload entirely to the consumer. */
@@ -1268,15 +1276,25 @@ export class ZetaTable extends ContourableThree(LitElement) {
     return `${val as string | number | boolean | bigint}`;
   }
 
-  /** Generates a CSV string with proper escaping (double-quotes for values containing quotes) */
+  /**
+   * Quotes one CSV field. Double-quotes are escaped, and a value that a spreadsheet would read as a formula
+   * (it starts with `=`, `+`, `-`, `@`, a tab or a carriage return) gets a leading `'` so it stays plain text (CSV/formula injection).
+   * Pass `neutralise = false` for real numbers, so a value like `-5` is exported unchanged.
+   */
+  private _escapeCSVField(value: string, neutralise = true): string {
+    const safe = neutralise && /^[=+\-@\t\r]/.test(value) ? `'${value}` : value;
+    return `"${safe.replace(/"/g, '""')}"`;
+  }
+
+  /** Generates a CSV string with proper escaping (double-quotes for values containing quotes, formula-like values neutralised) */
   private _generateCSV(cols: ZetaTableColumn[], data: ZetaTableRow[]): string {
-    const header = cols.map(c => `"${c.title.replace(/"/g, '""')}"`).join(",");
+    const header = cols.map(c => this._escapeCSVField(c.title)).join(",");
     const rows = data.map(row =>
       cols
         .map(c => {
           const val = row[c.field];
           const str = this._fieldToString(val);
-          return `"${str.replace(/"/g, '""')}"`;
+          return this._escapeCSVField(str, typeof val !== "number");
         })
         .join(",")
     );
@@ -1384,16 +1402,26 @@ export class ZetaTable extends ContourableThree(LitElement) {
   private _getFrozenLeftOffset(colIndex: number): string {
     const visibleCols = this._getVisibleColumns();
     let pixels = 0;
-    for (let i = 0; i < colIndex; i++) {
-      const col = visibleCols[i];
-      if (this._isColumnFrozen(col)) {
-        const w = this._columnWidths[col.field] ?? (typeof col.width === "number" ? col.width : 150);
-        pixels += w;
-      }
-    }
     const parts: string[] = [];
     if (this.selectable) parts.push("var(--_table-select-col-width)");
     if (this.expandable) parts.push("var(--_table-expand-col-width)");
+    for (let i = 0; i < colIndex; i++) {
+      const col = visibleCols[i];
+      if (!this._isColumnFrozen(col)) continue;
+      const resized = this._columnWidths[col.field];
+      if (typeof resized === "number") {
+        pixels += resized;
+      } else if (typeof col.width === "number") {
+        pixels += col.width;
+      } else if (typeof col.width === "string" && /^\d*\.?\d+(px|rem|em|vw|ch)$/.test(col.width.trim())) {
+        // An absolute CSS length can go straight into calc()
+        parts.push(col.width.trim());
+      } else {
+        // A percentage or an unset width depends on the table's layout, so use the rendered header cell's width
+        const th = this.shadowRoot?.querySelector<HTMLElement>(`th[data-field="${CSS.escape(col.field)}"]`);
+        pixels += th?.offsetWidth || 150;
+      }
+    }
     parts.push(`${pixels}px`);
     return `calc(${parts.join(" + ")})`;
   }
@@ -1729,14 +1757,14 @@ export class ZetaTable extends ContourableThree(LitElement) {
     if (isFrozen) cellStyles.left = leftOffset;
     if (isDisabled) cellStyles.opacity = "0.5";
 
-    const isFilterable = this.columnFilterable && col.filterable !== false;
+    const isFilterable = this.columnFilterable && col.filterable !== false && !isDisabled;
 
     // A sortable header exposes its sort state to assistive technology
     const sortDirection = this._sortState.field === col.field ? this._sortState.direction : null;
     const ariaSort = isSortable ? (sortDirection === "asc" ? "ascending" : sortDirection === "desc" ? "descending" : "none") : undefined;
 
     return html`
-      <th class=${classMap(cellClasses)} style=${styleMap(cellStyles)} scope="col" aria-sort=${ifDefined(ariaSort)}>
+      <th class=${classMap(cellClasses)} style=${styleMap(cellStyles)} scope="col" data-field=${col.field} aria-sort=${ifDefined(ariaSort)}>
         <div class="zeta-table-header-content">
           ${
             isSortable
@@ -1926,6 +1954,7 @@ export class ZetaTable extends ContourableThree(LitElement) {
                       ? html`
                           <button
                             class="zeta-table-expand-btn ${isExpanded ? "zeta-table-expand-btn--expanded" : ""}"
+                            ?disabled=${isDisabled && !this.allowDisabledSelection}
                             @click=${() => this._toggleExpand(row.id)}
                             title="${isExpanded ? "Collapse" : "Expand"}"
                           >
@@ -1973,6 +2002,7 @@ export class ZetaTable extends ContourableThree(LitElement) {
                     aria-label=${this.actionsLabel}
                     aria-haspopup="menu"
                     aria-expanded=${isOpen ? "true" : "false"}
+                    ?disabled=${this._isRowDisabled(row) && !this.allowDisabledSelection}
                     @click=${(e: MouseEvent) => {
                       e.stopPropagation();
                       this._toggleActionMenu(row.id, e);
@@ -2092,6 +2122,8 @@ export class ZetaTable extends ContourableThree(LitElement) {
       const viewportHeight = window.innerHeight;
 
       const row = this.data.find(r => r.id === rowId);
+      // A disabled row takes no actions unless allowDisabledSelection is set
+      if (row && this._isRowDisabled(row) && !this.allowDisabledSelection) return;
       const actions = row ? this._getActionsForRow(row) : this.rowActions;
       const itemCount = actions?.length || 0;
       const menuHeight = itemCount * 36 + 8;
@@ -2110,7 +2142,10 @@ export class ZetaTable extends ContourableThree(LitElement) {
         top = Math.max(8, viewportHeight - maxMenuHeight - 8);
       }
 
-      this._actionMenuPos = { top, left: rect.right - 160 };
+      // Keep the menu (about 160px wide) inside the viewport
+      const menuWidth = 160;
+      const left = Math.max(8, Math.min(rect.right - menuWidth, window.innerWidth - menuWidth - 8));
+      this._actionMenuPos = { top, left };
       this._actionMenuRowId = rowId;
       this._activeRow = rowId;
     }

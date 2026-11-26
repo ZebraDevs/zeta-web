@@ -124,6 +124,50 @@ describe("zeta-table additional coverage", () => {
   });
 
   describe("Interaction", () => {
+    // Counts the CSV downloads the table starts, by wrapping URL.createObjectURL
+    // eslint-disable-next-line @typescript-eslint/unbound-method
+    const originalCreateObjectURL = URL.createObjectURL;
+    let downloads = 0;
+
+    beforeEach(() => {
+      downloads = 0;
+      URL.createObjectURL = (blob: Blob | MediaSource) => {
+        downloads++;
+        return originalCreateObjectURL.call(URL, blob);
+      };
+    });
+
+    afterEach(() => {
+      URL.createObjectURL = originalCreateObjectURL;
+    });
+
+    it("tableexport is cancelable and bubbles and is composed", async () => {
+      const el = await make({ exportable: true });
+      setTimeout(() => (shadow(el).querySelector("[title='Export to CSV']") as HTMLElement).click());
+      const ev = await oneEvent(el, "tableexport");
+      assert.isTrue(ev.cancelable);
+      assert.isTrue(ev.bubbles);
+      assert.isTrue(ev.composed);
+    });
+
+    it("downloads the built-in CSV when tableexport is not cancelled", async () => {
+      const el = await make({ exportable: true });
+      (shadow(el).querySelector("[title='Export to CSV']") as HTMLElement).click();
+      assert.equal(downloads, 1);
+    });
+
+    it("skips the built-in CSV download when the consumer calls preventDefault on tableexport", async () => {
+      const el = await make({ exportable: true });
+      let csv = "";
+      el.addEventListener("tableexport", e => {
+        e.preventDefault();
+        csv = (e as CustomEvent<{ csv: string }>).detail.csv;
+      });
+      (shadow(el).querySelector("[title='Export to CSV']") as HTMLElement).click();
+      assert.equal(downloads, 0);
+      assert.include(csv, "Alice");
+    });
+
     it("dispatches rowclick event when clickableRows is true", async () => {
       const el = await make({ clickableRows: true });
       const row = shadow(el).querySelector(".zeta-table-tbody .zeta-table-row") as HTMLElement;
@@ -238,6 +282,96 @@ describe("zeta-table additional coverage", () => {
       row.click();
       await el.updateComplete;
       assert.isTrue(row.classList.contains("zeta-table-row--active"));
+    });
+
+    // Regression: the row got the active highlight even though clicking a row does nothing
+    it("does not set the active row class when rows are not clickable", async () => {
+      const el = await make();
+      const row = shadow(el).querySelector(".zeta-table-tbody .zeta-table-row") as HTMLElement;
+      row.click();
+      await el.updateComplete;
+      assert.isFalse(row.classList.contains("zeta-table-row--active"));
+    });
+
+    // Regression: a disabled column still showed a filter button
+    it("does not render a filter button on a disabled column", async () => {
+      const cols: ZetaTableColumn[] = [
+        { field: "name", title: "Name", disabled: true },
+        { field: "age", title: "Age" }
+      ];
+      const el = await make({ columns: cols, columnFilterable: true });
+      const filterButtons = shadow(el).querySelectorAll("th .zeta-table-header-icon-btn");
+      assert.equal(filterButtons.length, 1);
+      assert.isNull(shadow(el).querySelector("th[data-field='name'] .zeta-table-header-icon-btn"));
+    });
+
+    // Regression: expanding and the actions menu ignored the disabled state of the row
+    it("blocks expand and the actions menu on a disabled row unless allowDisabledSelection is set", async () => {
+      const data: ZetaTableRow[] = [
+        { id: 1, name: "A", age: 1, email: "a@t.com", _disabled: true, _nested: [{ id: 11, name: "C", age: 2, email: "c@t.com" }] }
+      ];
+      const el = await make({ data, expandable: true, rowActions: [{ key: "edit", label: "Edit" }] });
+      let expanded = false;
+      el.addEventListener("rowexpand", () => {
+        expanded = true;
+      });
+      const expandBtn = shadow(el).querySelector<HTMLButtonElement>(".zeta-table-expand-btn")!;
+      const actionBtn = shadow(el).querySelector<HTMLButtonElement>(".zeta-table-action-btn")!;
+      assert.isTrue(expandBtn.disabled);
+      assert.isTrue(actionBtn.disabled);
+      expandBtn.click();
+      actionBtn.click();
+      await el.updateComplete;
+      assert.isFalse(expanded);
+      assert.isNull(shadow(el).querySelector(".zeta-table-action-menu--open"));
+
+      el.allowDisabledSelection = true;
+      await el.updateComplete;
+      assert.isFalse(shadow(el).querySelector<HTMLButtonElement>(".zeta-table-expand-btn")!.disabled);
+      assert.isFalse(shadow(el).querySelector<HTMLButtonElement>(".zeta-table-action-btn")!.disabled);
+    });
+
+    it("keeps the actions menu inside the viewport", async () => {
+      const el = await make({ rowActions: [{ key: "edit", label: "Edit" }] });
+      shadow(el).querySelector<HTMLButtonElement>(".zeta-table-action-btn")!.click();
+      await el.updateComplete;
+      const menu = shadow(el).querySelector<HTMLElement>(".zeta-table-action-menu--open")!;
+      assert.isAtLeast(menu.getBoundingClientRect().left, 0);
+      assert.isAtMost(menu.getBoundingClientRect().right, window.innerWidth);
+    });
+
+    // Regression: values starting with = + - @ were exported as spreadsheet formulas
+    it("neutralises formula-like values in the exported CSV", async () => {
+      const data: ZetaTableRow[] = [{ id: 1, name: '=HYPERLINK("http://x")', age: -5, email: "@sum" }];
+      const el = await make({ data, exportable: true });
+      setTimeout(() => shadow(el).querySelector<HTMLElement>("[title='Export to CSV']")!.click());
+      const ev = await oneEvent(el, "tableexport");
+      const csv = ev.detail.csv as string;
+      assert.include(csv, '"\'=HYPERLINK(""http://x"")"');
+      assert.include(csv, '"\'@sum"');
+      // A real number is not a formula, so it is exported unchanged
+      assert.include(csv, '"-5"');
+    });
+
+    // Regression: a pageSize of 0 made the page count Infinity/NaN
+    it("falls back to a single page when pageSize is not positive", async () => {
+      const el = await make({ paginationType: "numbered", pageSize: 0 });
+      await el.updateComplete;
+      expect(shadow(el).querySelector(".zeta-table-tbody")).to.exist;
+    });
+
+    it("offsets a frozen column after a percentage-width one using its rendered width", async () => {
+      const cols: ZetaTableColumn[] = [
+        { field: "name", title: "Name", width: "25%", frozen: true },
+        { field: "age", title: "Age", width: 100, frozen: true }
+      ];
+      const el = await make({ columns: cols });
+      const first = shadow(el).querySelector<HTMLElement>("th[data-field='name']")!;
+      const second = shadow(el).querySelector<HTMLElement>("th[data-field='age']")!;
+      // The first render has no layout to measure yet, so render again before checking
+      el.requestUpdate();
+      await el.updateComplete;
+      assert.approximately(parseFloat(getComputedStyle(second).left), first.offsetWidth, 1);
     });
   });
 });

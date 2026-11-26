@@ -50,6 +50,20 @@ export interface ZetaTableReactProps extends Omit<ZetaTableBaseProps, "data" | "
 }
 
 /**
+ * Returns a view of an event whose `detail` is replaced. Everything else (target, preventDefault, ...) still comes from the real event.
+ * Used so handlers get the consumer's original rows, with their React elements, rather than the sanitised rows sent to the element.
+ */
+function withDetail<E extends CustomEvent>(event: E, detail: E["detail"]): E {
+  return new Proxy(event, {
+    get(target, prop) {
+      if (prop === "detail") return detail;
+      const value = Reflect.get(target, prop, target) as unknown;
+      return typeof value === "function" ? (value as (...args: unknown[]) => unknown).bind(target) : value;
+    }
+  });
+}
+
+/**
  * React wrapper for `<zeta-table>` with automatic slot handling.
  *
  * Detects React elements in `data` cell values, extracts them,
@@ -59,10 +73,12 @@ export interface ZetaTableReactProps extends Omit<ZetaTableBaseProps, "data" | "
  * All other props are passed through to the base createComponent wrapper.
  */
 export const ZetaTableReact = React.forwardRef<ZetaTableElement, ZetaTableReactProps>(function ZetaTableReact(
-  { data, loadingContent, noDataContent, children, ...rest },
+  { data, loadingContent, noDataContent, children, onRowClick, onRowAction, onTableExport, ...rest },
   ref
 ) {
   const slots: { slotName: string; element: ReactNode; key: string }[] = [];
+  const originalRows = new Map<string | number, ReactTableRow>(data.map(row => [row.id, row]));
+  const original = (row: ZetaTableRow): ZetaTableRow => (originalRows.get(row.id) ?? row) as ZetaTableRow;
 
   const cleanData: ZetaTableRow[] = data.map(row => {
     const cleanRow: Record<string, unknown> = {};
@@ -78,7 +94,14 @@ export const ZetaTableReact = React.forwardRef<ZetaTableElement, ZetaTableReactP
   });
 
   return (
-    <ZetaTableBase ref={ref} data={cleanData} {...rest}>
+    <ZetaTableBase
+      ref={ref}
+      data={cleanData}
+      onRowClick={onRowClick && (e => onRowClick(withDetail(e, { ...e.detail, row: original(e.detail.row) })))}
+      onRowAction={onRowAction && (e => onRowAction(withDetail(e, { ...e.detail, row: original(e.detail.row) })))}
+      onTableExport={onTableExport && (e => onTableExport(withDetail(e, { ...e.detail, data: e.detail.data.map(original) })))}
+      {...rest}
+    >
       {loadingContent && <div slot="loading">{loadingContent}</div>}
       {noDataContent && <div slot="no-data">{noDataContent}</div>}
       {children}
