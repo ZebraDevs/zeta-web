@@ -88,7 +88,9 @@ export const TimeInput: StoryObj<InputStory> = {
     leadingIcon: { table: { disable: true } },
     trailingIcon: { table: { disable: true } },
     prefix: { table: { disable: true } },
-    suffix: { table: { disable: true } }
+    suffix: { table: { disable: true } },
+    prefixTitle: { table: { disable: true } },
+    suffixTitle: { table: { disable: true } }
   },
   parameters: {
     design: {
@@ -112,7 +114,9 @@ export const DateInput: StoryObj<InputStory> = {
     leadingIcon: { table: { disable: true } },
     trailingIcon: { table: { disable: true } },
     prefix: { table: { disable: true } },
-    suffix: { table: { disable: true } }
+    suffix: { table: { disable: true } },
+    prefixTitle: { table: { disable: true } },
+    suffixTitle: { table: { disable: true } }
   },
   parameters: {
     design: {
@@ -134,7 +138,9 @@ export const TextArea: StoryObj<InputStory> = {
     leadingIcon: { table: { disable: true } },
     trailingIcon: { table: { disable: true } },
     prefix: { table: { disable: true } },
-    suffix: { table: { disable: true } }
+    suffix: { table: { disable: true } },
+    prefixTitle: { table: { disable: true } },
+    suffixTitle: { table: { disable: true } }
   },
   render: TextInput.render
 };
@@ -149,7 +155,9 @@ export const PasswordField: StoryObj<InputStory> = {
     trailingIcon: { table: { disable: true } },
     placeholder: { table: { disable: true } },
     prefix: { table: { disable: true } },
-    suffix: { table: { disable: true } }
+    suffix: { table: { disable: true } },
+    prefixTitle: { table: { disable: true } },
+    suffixTitle: { table: { disable: true } }
   },
   parameters: {
     design: {
