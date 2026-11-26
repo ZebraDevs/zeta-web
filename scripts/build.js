@@ -13,6 +13,9 @@ try {
   });
   copyFileSync('custom-elements.json', 'dist/custom-elements.json');
 
+  // Per-component usage docs for consumer AI tools: dist/instructions/<component>.md
+  cpSync('src/generated/instructions', 'dist/instructions', { recursive: true });
+
   execSync('npx tsx scripts/add-declarations.ts --silent', { stdio: 'inherit' });
 } catch (err) {
   console.error('Build failed:', err.message, err);

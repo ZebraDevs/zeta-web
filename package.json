@@ -20,6 +20,7 @@
   "exports": {
     ".": "./dist/index.js",
     "./assets/*": "./assets/*",
+    "./instructions/*": "./dist/instructions/*",
     "./components/*": "./dist/components/*",
     "./events.js": "./dist/events.js",
     "./custom-elements.json": "./dist/custom-elements.json",
