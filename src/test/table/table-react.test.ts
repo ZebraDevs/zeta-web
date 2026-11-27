@@ -130,5 +130,34 @@ describe("zeta-table react wrapper", () => {
       assert.strictEqual(clicked!.badge, data[0].badge);
       assert.equal(clicked!.name, "Alice");
     });
+
+    // Regression: a React element cell was stored as "", so the table's own search could not find the text the user sees
+    it("finds rows by the text of a React element cell with global search", async () => {
+      renderTable({ data: [row(1, "Alice"), row(2, "Bob")], searchable: true });
+      await until(() => renderedRows().length === 2 && renderedRows().every(r => r.badge !== ""), "rows did not render");
+
+      const input = table().shadowRoot!.querySelector(".zeta-table-global-search")!.shadowRoot!.querySelector("input")!;
+      input.value = "badge-Bob";
+      input.dispatchEvent(new InputEvent("input", { bubbles: true, composed: true }));
+      await until(() => renderedRows().length === 1, "search did not filter the rows");
+      assert.equal(renderedRows()[0].name, "Bob");
+    });
+
+    // Regression: the filter menu listed no values for a React element column, because every value was ""
+    it("lists and applies the text of a React element cell in the column filter", async () => {
+      renderTable({ data: [row(1, "Alice"), row(2, "Bob")], columnFilterable: true });
+      await until(() => renderedRows().length === 2 && renderedRows().every(r => r.badge !== ""), "rows did not render");
+
+      table().shadowRoot!.querySelectorAll<HTMLButtonElement>(".zeta-table-header-icon-btn")[1].click();
+      await until(() => !!table().shadowRoot!.querySelector(".zeta-table-filter-panel-item"), "filter menu did not open");
+      const options = Array.from(table().shadowRoot!.querySelectorAll(".zeta-table-filter-panel-item")).map(el => el.textContent?.trim());
+      assert.deepEqual(options, ["badge-Alice", "badge-Bob"]);
+
+      const bobOption = Array.from(table().shadowRoot!.querySelectorAll(".zeta-table-filter-panel-item")).find(el => el.textContent?.trim() === "badge-Bob")!;
+      (bobOption as HTMLElement & { input: HTMLInputElement }).input.click();
+      table().shadowRoot!.querySelector<HTMLButtonElement>(".zeta-table-filter-panel-btn--apply")!.click();
+      await until(() => renderedRows().length === 1, "filter did not apply");
+      assert.equal(renderedRows()[0].name, "Bob");
+    });
   });
 });

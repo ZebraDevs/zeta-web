@@ -295,6 +295,13 @@ function createFigmaNested(id: number): ZetaTableRow["_nested"] {
   return undefined;
 }
 
+/** The text a cell shows: a DOM node's text, or a primitive value. Objects such as nested rows have no text of their own. */
+function cellText(val: unknown): string {
+  if (val instanceof Node) return val.textContent?.trim() ?? "";
+  if (val == null || typeof val === "object") return "";
+  return String(val);
+}
+
 /** Rows shaped like the Figma frame: every row has the same four cells and a more menu */
 function generateFigmaData(count: number): ZetaTableRow[] {
   return Array.from({ length: count }, (_, index) => {
@@ -577,10 +584,9 @@ export const TableAll: StoryObj<TableStory> = {
       if (!searchTerm.trim()) {
         filteredData = [...masterData];
       } else {
+        // Match the text each column shows, the same text the table searches, so the story and the table agree on the rows
         const term = searchTerm.toLowerCase();
-        filteredData = masterData.filter(row =>
-          Object.values(row).some(val => val != null && typeof val !== "object" && String(val).toLowerCase().includes(term))
-        );
+        filteredData = masterData.filter(row => columns.some(col => cellText(row[col.field]).toLowerCase().includes(term)));
       }
       currentPageNum = 1;
       updateTable(this);
@@ -1162,10 +1168,10 @@ export const GlobalSearchAndFilter: StoryObj<TableStory> = {
         this.data = [...allData];
         this.totalItems = allData.length;
       } else {
+        // Match the text each column shows, the same text the table searches. Without columns the table shows every key.
         const term = searchTerm.toLowerCase();
-        const filtered = allData.filter(row =>
-          Object.values(row).some(val => val != null && typeof val !== "object" && String(val).toLowerCase().includes(term))
-        );
+        const fields = columns ? columns.map(col => col.field) : Object.keys(allData[0] ?? {});
+        const filtered = allData.filter(row => fields.some(field => cellText(row[field]).toLowerCase().includes(term)));
         this.data = filtered;
         this.totalItems = filtered.length;
       }

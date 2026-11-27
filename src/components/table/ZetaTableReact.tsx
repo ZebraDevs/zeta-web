@@ -1,4 +1,4 @@
-import React, { isValidElement, type ReactNode, type ComponentProps } from "react";
+﻿import React, { isValidElement, type ReactNode, type ComponentProps } from "react";
 import { createComponent, type EventName } from "@lit/react";
 import { ZetaTable as ZetaTableElement } from "./table.js";
 import type { ZetaTableRow, ZetaTableColumn, SortDirection } from "./table.js";
@@ -62,6 +62,18 @@ function withDetail<E extends CustomEvent>(event: E, detail: E["detail"]): E {
 }
 
 /**
+ * The text a React node shows: its string and number children, read recursively.
+ * The table searches, filters and sorts on this text, so a cell whose content is a React element still matches what the user sees.
+ */
+function textOf(node: ReactNode): string {
+  if (node == null || typeof node === "boolean") return "";
+  if (typeof node === "string" || typeof node === "number" || typeof node === "bigint") return String(node);
+  if (Array.isArray(node)) return node.map(textOf).join("");
+  if (isValidElement<{ children?: ReactNode }>(node)) return textOf(node.props.children);
+  return "";
+}
+
+/**
  * React wrapper for `<zeta-table>` with automatic slot handling.
  *
  * Detects React elements in `data` cell values, extracts them,
@@ -83,7 +95,7 @@ export const ZetaTableReact = React.forwardRef<ZetaTableElement, ZetaTableReactP
     for (const [field, value] of Object.entries(row)) {
       if (isValidElement(value)) {
         slots.push({ slotName: `cell-${field}-row-${row.id}`, element: value, key: `${row.id}-${field}` });
-        cleanRow[field] = "";
+        cleanRow[field] = textOf(value);
       } else {
         cleanRow[field] = value;
       }
