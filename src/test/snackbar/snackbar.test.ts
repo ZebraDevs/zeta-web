@@ -1,60 +1,82 @@
-import { fixture, html, unsafeStatic, expect, waitUntil } from "@open-wc/testing";
-import type { ZetaSnackbar } from "../../components/snackbar/snackbar";
-import { getCssVarColorValue, getCssVarValue, getIconColor, MouseActions } from "../utils";
+import { fixture, html, expect, waitUntil } from "@open-wc/testing";
 import { sendKeys } from "@web/test-runner-commands";
+import type { ZetaSnackbar } from "../../components/snackbar/snackbar";
+import { getCssVarColorValue, getCssVarPxValue, getCssVarValue, getIconColor, MouseActions } from "../utils";
 import "../../components/snackbar/snackbar.js";
 import type { ZetaIcon } from "../../components/icon/icon.js";
 import "../../components/icon/icon.js";
 import "../../index.css";
+import { contrastTest } from "../accessibility-utils/accessibility-test-runner.js";
 
 describe("zeta-snackbar", () => {
   let subject: ZetaSnackbar;
 
-  const createComponent = (
-    template = `<zeta-snackbar actionLabel="Action" status="default" hasCloseAction><zeta-icon slot="icon">happy</zeta-icon>Message</zeta-snackbar>`
-  ) => {
-    // prettier-ignore
-    return fixture<ZetaSnackbar>(html`${unsafeStatic(template)}`);
-  };
+  const createComponent = async (template = html`<zeta-snackbar message="Message" status="info"></zeta-snackbar>`) => fixture<ZetaSnackbar>(template);
 
   beforeEach(async () => {
     subject = await createComponent();
-    subject.actionClick = () => console.log("Action Clicked");
   });
 
   describe("Accessibility", () => {
-    // TODO: collaborate with design to fix contrast ratio of action button text in default status
-    it.skip("meets accessibility requirements", async () => {
+    it("meets accessibility requirements", async () => {
       await expect(subject).shadowDom.to.be.accessible();
+    });
+
+    it("meets contrast requirements for the dark default, action and standard surfaces", async () => {
+      const cases = [
+        { status: "default", variant: "contextual" },
+        { status: "action", variant: "contextual" },
+        { status: "default", variant: "standard" }
+      ] as const;
+
+      for (const testCase of cases) {
+        subject = await createComponent(html`<zeta-snackbar message="Message" status=${testCase.status} variant=${testCase.variant}></zeta-snackbar>`);
+        const root = subject.shadowRoot!.querySelector(".snackbar-root") as HTMLDivElement;
+        await contrastTest(`Snackbar ${testCase.variant} ${testCase.status}`, root, root);
+      }
     });
   });
 
   describe("Content", () => {
-    it("displays the correct text in the slot", async () => {
-      const slotContent = (subject.shadowRoot!.querySelector("slot:not([name='icon'])") as HTMLSlotElement)?.assignedNodes({ flatten: true });
-      const textNode = slotContent.find(node => node.nodeType === Node.TEXT_NODE) as Text;
+    it("displays the message property", () => {
+      const message = subject.shadowRoot!.querySelector('[part="message"]') as HTMLElement;
 
-      await expect(textNode.textContent).to.equal("Message");
+      expect(message.textContent).to.equal("Message");
     });
 
-    it("displays the correct text in the action button", async () => {
-      const actionButton = subject.shadowRoot!.querySelector("button") as HTMLElement;
-      await expect(actionButton.textContent).to.equal("Action");
+    it("keeps the default slot as a message fallback", async () => {
+      subject = await createComponent(html`<zeta-snackbar hasCloseAction>Slotted message</zeta-snackbar>`);
+      const slot = subject.shadowRoot!.querySelector("slot:not([name='icon'])") as HTMLSlotElement;
+      const textNode = slot.assignedNodes({ flatten: true }).find(node => node.nodeType === Node.TEXT_NODE) as Text;
+
+      expect(textNode.textContent).to.equal("Slotted message");
     });
 
-    it("displays the correct icon in the slot", async () => {
-      const iconSlotContent = (subject.shadowRoot!.querySelector("slot[name='icon']") as HTMLSlotElement)?.assignedNodes({ flatten: true });
-      const iconElement = iconSlotContent.find(node => node.nodeType === Node.ELEMENT_NODE && (node as HTMLElement).tagName === "ZETA-ICON") as ZetaIcon;
+    it("uses the preset icon for contextual statuses", () => {
+      const icon = subject.shadowRoot!.querySelector('[part="icon"] zeta-icon') as ZetaIcon;
 
-      expect(iconElement).to.not.be.null;
-      await expect(iconElement.textContent).to.equal("happy");
+      expect(icon.textContent).to.equal("info");
     });
 
-    it("displays the default close icon when closeActionIcon is not provided", async () => {
+    it("lets a slotted icon override the preset icon", async () => {
+      subject = await createComponent(html`
+        <zeta-snackbar message="Message" status="info">
+          <zeta-icon slot="icon">happy</zeta-icon>
+        </zeta-snackbar>
+      `);
+      await subject.updateComplete;
+
+      const iconSlotContent = (subject.shadowRoot!.querySelector('slot[name="icon"]') as HTMLSlotElement).assignedElements({ flatten: true });
+      const presetIcon = subject.shadowRoot!.querySelector('[part="icon"] zeta-icon');
+
+      expect(presetIcon).to.not.exist;
+      expect(iconSlotContent[0].textContent).to.equal("happy");
+    });
+
+    it("displays the default close icon when closeActionIcon is not provided", () => {
       const closeIcon = subject.shadowRoot!.querySelector("#closeIcon") as ZetaIcon;
 
-      expect(closeIcon).to.not.be.null;
-      await expect(closeIcon.textContent).to.equal("cancel");
+      expect(closeIcon.textContent).to.equal("cancel");
     });
 
     it("displays the custom close icon when closeActionIcon is provided", async () => {
@@ -62,266 +84,196 @@ describe("zeta-snackbar", () => {
       await subject.updateComplete;
 
       const closeIcon = subject.shadowRoot!.querySelector("#closeIcon") as ZetaIcon;
-      await expect(closeIcon.textContent).to.equal("close");
+      expect(closeIcon.textContent).to.equal("close");
     });
 
-    it("updates the close icon when closeActionIcon property is changed", async () => {
-      let closeIcon = subject.shadowRoot!.querySelector("#closeIcon") as ZetaIcon;
-      await expect(closeIcon.textContent).to.equal("cancel");
-
-      subject.closeActionIcon = "delete";
+    it("uses preset action labels for action statuses", async () => {
+      subject.status = "deletion";
       await subject.updateComplete;
 
-      closeIcon = subject.shadowRoot!.querySelector("#closeIcon") as ZetaIcon;
-      await expect(closeIcon.textContent).to.equal("delete");
-    });
-  });
-
-  // describe("Dimensions", () => {});
-
-  describe("Styling", () => {
-    beforeEach(async () => {
-      subject = await createComponent();
-      subject.actionClick = () => console.log("Action Clicked");
-    });
-    it("sets full border radius correctly", async () => {
-      subject.shape = "full";
-      const root = subject.shadowRoot!.querySelector(".snackbar-root") as HTMLDivElement;
-      await subject.updateComplete;
-      await expect(subject.shape).to.equal("full");
-      await expect(getComputedStyle(root).borderRadius).to.equal(getCssVarValue(subject, "--radius-full"));
-    });
-
-    it("sets true border radius correctly", async () => {
-      subject.shape = "rounded";
-      const root = subject.shadowRoot!.querySelector(".snackbar-root") as HTMLDivElement;
-      await subject.updateComplete;
-      await expect(subject.shape).to.equal("rounded");
-      await expect(getComputedStyle(root).borderRadius).to.equal(getCssVarValue(subject, "--radius-minimal"));
-    });
-
-    it("sets false border radius correctly", async () => {
-      subject.shape = "sharp";
-      await subject.updateComplete;
-      await expect(subject.shape).to.equal("sharp");
-      const root = subject.shadowRoot!.querySelector(".snackbar-root") as HTMLDivElement;
-      await expect(getComputedStyle(root).borderRadius).to.equal(getCssVarValue(subject, "--radius-none"));
-    });
-
-    it("sets the correct colors for default status", async () => {
-      const icon = subject.querySelector("zeta-icon") as ZetaIcon;
-      const closeIcon = subject.shadowRoot!.querySelector("#closeIcon") as ZetaIcon;
-      const actionButton = subject.shadowRoot!.querySelector("button") as HTMLElement;
-      const root = subject.shadowRoot!.querySelector(".snackbar-root") as HTMLDivElement;
-
-      subject.status = "default";
-      await subject.updateComplete;
-      await expect(subject.status).to.equal("default");
-      await expect(getComputedStyle(root).backgroundColor).to.equal(getCssVarColorValue(subject, "--surface-default-inverse"));
-      await expect(getComputedStyle(root).color).to.equal(getCssVarColorValue(subject, "--main-inverse"));
-      await expect(getIconColor(icon)).to.equal(getCssVarColorValue(subject, "--main-inverse"));
-      await expect(getIconColor(closeIcon)).to.equal(getCssVarColorValue(subject, "--main-inverse"));
-      await expect(getComputedStyle(actionButton).color).to.equal(getCssVarColorValue(subject, "--main-primary"));
-    });
-
-    it("sets the correct colors for positive status", async () => {
-      const icon = subject.querySelector("zeta-icon") as ZetaIcon;
-      const closeIcon = subject.shadowRoot!.querySelector("#closeIcon") as ZetaIcon;
-      const actionButton = subject.shadowRoot!.querySelector("button") as HTMLElement;
-      const root = subject.shadowRoot!.querySelector(".snackbar-root") as HTMLDivElement;
-
-      subject.status = "positive";
-      await subject.updateComplete;
-      await expect(subject.status).to.equal("positive");
-      await expect(getComputedStyle(root).backgroundColor).to.equal(getCssVarColorValue(subject, "--surface-positive-subtle"));
-      await expect(getComputedStyle(root).color).to.equal(getCssVarColorValue(subject, "--main-default"));
-      await expect(getIconColor(icon)).to.equal(getCssVarColorValue(subject, "--main-positive"));
-      await expect(getIconColor(closeIcon)).to.equal(getCssVarColorValue(subject, "--main-default"));
-      await expect(getComputedStyle(actionButton).color).to.equal(getCssVarColorValue(subject, "--main-default"));
-    });
-
-    it("sets the correct colors for info status", async () => {
-      const icon = subject.querySelector("zeta-icon") as ZetaIcon;
-      const closeIcon = subject.shadowRoot!.querySelector("#closeIcon") as ZetaIcon;
-      const actionButton = subject.shadowRoot!.querySelector("button") as HTMLElement;
-      const root = subject.shadowRoot!.querySelector(".snackbar-root") as HTMLDivElement;
-
-      subject.status = "info";
-      await subject.updateComplete;
-      await expect(subject.status).to.equal("info");
-      await expect(getComputedStyle(root).backgroundColor).to.equal(getCssVarColorValue(subject, "--surface-info-subtle"));
-      await expect(getComputedStyle(root).color).to.equal(getCssVarColorValue(subject, "--main-default"));
-      await expect(getIconColor(icon)).to.equal(getCssVarColorValue(subject, "--main-info"));
-      await expect(getIconColor(closeIcon)).to.equal(getCssVarColorValue(subject, "--main-default"));
-      await expect(getComputedStyle(actionButton).color).to.equal(getCssVarColorValue(subject, "--main-default"));
-    });
-
-    it("sets the correct colors for warning status", async () => {
-      const icon = subject.querySelector("zeta-icon") as ZetaIcon;
-      const closeIcon = subject.shadowRoot!.querySelector("#closeIcon") as ZetaIcon;
-      const actionButton = subject.shadowRoot!.querySelector("button") as HTMLElement;
-      const root = subject.shadowRoot!.querySelector(".snackbar-root") as HTMLDivElement;
-
-      subject.status = "warning";
-      await subject.updateComplete;
-      await expect(subject.status).to.equal("warning");
-      await expect(getComputedStyle(root).backgroundColor).to.equal(getCssVarColorValue(subject, "--surface-warning-subtle"));
-      await expect(getComputedStyle(root).color).to.equal(getCssVarColorValue(subject, "--main-default"));
-      await expect(getIconColor(icon)).to.equal(getCssVarColorValue(subject, "--main-warning"));
-      await expect(getIconColor(closeIcon)).to.equal(getCssVarColorValue(subject, "--main-default"));
-      await expect(getComputedStyle(actionButton).color).to.equal(getCssVarColorValue(subject, "--main-default"));
-    });
-
-    it("sets the correct colors for negative status", async () => {
-      const icon = subject.querySelector("zeta-icon") as ZetaIcon;
-      const closeIcon = subject.shadowRoot!.querySelector("#closeIcon") as ZetaIcon;
-      const actionButton = subject.shadowRoot!.querySelector("button") as HTMLElement;
-      const root = subject.shadowRoot!.querySelector(".snackbar-root") as HTMLDivElement;
-
-      subject.status = "negative";
-      await subject.updateComplete;
-      await expect(subject.status).to.equal("negative");
-      await expect(getComputedStyle(root).backgroundColor).to.equal(getCssVarColorValue(subject, "--surface-negative-subtle"));
-      await expect(getComputedStyle(root).color).to.equal(getCssVarColorValue(subject, "--main-default"));
-      await expect(getIconColor(icon)).to.equal(getCssVarColorValue(subject, "--main-negative"));
-      await expect(getIconColor(closeIcon)).to.equal(getCssVarColorValue(subject, "--main-default"));
-      await expect(getComputedStyle(actionButton).color).to.equal(getCssVarColorValue(subject, "--main-default"));
-    });
-
-    it("sets the correct colors for view status", async () => {
-      const icon = subject.querySelector("zeta-icon") as ZetaIcon;
-      const closeIcon = subject.shadowRoot!.querySelector("#closeIcon") as ZetaIcon;
-      const actionButton = subject.shadowRoot!.querySelector("button") as HTMLElement;
-      const root = subject.shadowRoot!.querySelector(".snackbar-root") as HTMLDivElement;
+      const actionButton = subject.shadowRoot!.querySelector("#action") as HTMLButtonElement;
+      expect(actionButton.textContent).to.equal("Undo");
 
       subject.status = "view";
       await subject.updateComplete;
-      await expect(subject.status).to.equal("view");
-      await expect(getComputedStyle(root).backgroundColor).to.equal(getCssVarColorValue(subject, "--surface-primary-subtle"));
-      await expect(getComputedStyle(root).color).to.equal(getCssVarColorValue(subject, "--main-default"));
-      await expect(getIconColor(icon)).to.equal(getCssVarColorValue(subject, "--main-primary"));
-      await expect(getIconColor(closeIcon)).to.equal(getCssVarColorValue(subject, "--main-default"));
-      await expect(getComputedStyle(actionButton).color).to.equal(getCssVarColorValue(subject, "--main-default"));
+
+      expect(actionButton.textContent).to.equal("View");
+    });
+
+    it("keeps legacy actionLabel and actionClick support", async () => {
+      let clicked = false;
+      subject = await createComponent(html`<zeta-snackbar actionLabel="Legacy action" hasCloseAction>Message</zeta-snackbar>`);
+      subject.actionClick = () => {
+        clicked = true;
+      };
+      await subject.updateComplete;
+
+      const actionButton = subject.shadowRoot!.querySelector("#action") as HTMLButtonElement;
+      expect(actionButton.textContent).to.equal("Legacy action");
+
+      await MouseActions.click(actionButton, "left");
+      await waitUntil(() => clicked, "legacy actionClick should be called", { timeout: 100 });
+    });
+  });
+
+  describe("Dimensions", () => {
+    it("uses the contextual preset width", () => {
+      const root = subject.shadowRoot!.querySelector(".snackbar-root") as HTMLDivElement;
+      const expectedWidth =
+        getCssVarPxValue(subject, "--scale-21") +
+        getCssVarPxValue(subject, "--scale-17") +
+        getCssVarPxValue(subject, "--space-md") +
+        getCssVarPxValue(subject, "--stroke-thin");
+
+      expect(parseFloat(getComputedStyle(root).inlineSize)).to.equal(expectedWidth);
+    });
+
+    it("allows the message to wrap within the max viewport width", () => {
+      const message = subject.shadowRoot!.querySelector('[part="message"]') as HTMLElement;
+
+      expect(getComputedStyle(message).whiteSpace).to.equal("normal");
+    });
+  });
+
+  describe("Styling", () => {
+    it("sets rounded contextual radius correctly", async () => {
+      subject.shape = "rounded";
+      await subject.updateComplete;
+
+      const root = subject.shadowRoot!.querySelector(".snackbar-root") as HTMLDivElement;
+      expect(getComputedStyle(root).borderRadius).to.equal(getCssVarValue(subject, "--radius-pill"));
+    });
+
+    it("sets rounded standard radius correctly", async () => {
+      subject.variant = "standard";
+      subject.status = "default";
+      subject.shape = "rounded";
+      await subject.updateComplete;
+
+      const root = subject.shadowRoot!.querySelector(".snackbar-root") as HTMLDivElement;
+      expect(getComputedStyle(root).borderRadius).to.equal(getCssVarValue(subject, "--radius-md"));
+    });
+
+    it("sets sharp radius correctly", async () => {
+      subject.shape = "sharp";
+      await subject.updateComplete;
+
+      const root = subject.shadowRoot!.querySelector(".snackbar-root") as HTMLDivElement;
+      expect(getComputedStyle(root).borderRadius).to.equal(getCssVarValue(subject, "--radius-none"));
+    });
+
+    it("sets the correct colors for status presets", async () => {
+      const cases = [
+        { status: "info", background: "--feedback-info-background-subtle", icon: "info" },
+        { status: "positive", background: "--feedback-success-background-subtle", icon: "check_circle" },
+        { status: "warning", background: "--feedback-warning-background-subtle", icon: "warning" },
+        { status: "negative", background: "--feedback-error-background-subtle", icon: "error" },
+        { status: "deletion", background: "--feedback-error-background-subtle", icon: "delete" },
+        { status: "view", background: "--feedback-neutral-background-subtle", icon: "open_in_new_window" }
+      ] as const;
+
+      for (const testCase of cases) {
+        subject.status = testCase.status;
+        await subject.updateComplete;
+
+        const root = subject.shadowRoot!.querySelector(".snackbar-root") as HTMLDivElement;
+        const icon = subject.shadowRoot!.querySelector('[part="icon"] zeta-icon') as ZetaIcon;
+
+        expect(getComputedStyle(root).backgroundColor).to.equal(getCssVarColorValue(subject, testCase.background));
+        expect(getComputedStyle(root).color).to.equal(getCssVarColorValue(subject, "--foreground-primary"));
+        expect(getIconColor(icon)).to.equal(getCssVarColorValue(subject, "--foreground-primary"));
+        expect(icon.textContent).to.equal(testCase.icon);
+      }
+    });
+
+    it("keeps default and action statuses on the dark overlay surface in light and dark pages", async () => {
+      for (const mode of ["light", "dark"] as const) {
+        document.documentElement.setAttribute("data-mode", mode);
+        try {
+          for (const status of ["default", "action"] as const) {
+            subject.status = status;
+            await subject.updateComplete;
+
+            const root = subject.shadowRoot!.querySelector(".snackbar-root") as HTMLDivElement;
+            expect(getComputedStyle(root).backgroundColor, `${status} on ${mode} page`).to.equal(getCssVarColorValue(subject, "--fill-overlay"));
+            expect(getComputedStyle(root).color, `${status} on ${mode} page`).to.equal(getCssVarColorValue(subject, "--foreground-primary"));
+          }
+        } finally {
+          document.documentElement.removeAttribute("data-mode");
+        }
+      }
     });
   });
 
   describe("Interaction", () => {
-    it("removes the element from the screen when the close icon is clicked", async () => {
-      const closeIcon = subject.shadowRoot!.querySelector("#closeIcon") as ZetaIcon;
-      await MouseActions.click(closeIcon, "left");
-      await subject.updateComplete;
+    it("removes the element from the screen when the close button is clicked", async () => {
+      const closeButton = subject.shadowRoot!.querySelector("#closeButton") as HTMLButtonElement;
+
+      await MouseActions.click(closeButton, "left");
 
       const snackbar = document.querySelector("zeta-snackbar");
       expect(snackbar).to.not.exist;
     });
 
-    it("removes the element from the screen when the close icon is enter pressed", async () => {
-      await sendKeys({ press: "Tab" });
-      await sendKeys({ press: "Tab" });
+    it("removes the element from the screen when the close button is enter pressed", async () => {
+      const closeButton = subject.shadowRoot!.querySelector("#closeButton") as HTMLButtonElement;
+      closeButton.focus();
       await sendKeys({ press: "Enter" });
-      await subject.updateComplete;
 
       const snackbar = document.querySelector("zeta-snackbar");
       expect(snackbar).to.not.exist;
     });
 
-    it("removes the element from the screen when the close icon is space pressed", async () => {
-      await sendKeys({ press: "Tab" });
-      await sendKeys({ press: "Tab" });
-      await sendKeys({ press: " " });
-      await subject.updateComplete;
-
-      const snackbar = document.querySelector("zeta-snackbar");
-      expect(snackbar).to.not.exist;
-    });
-
-    it("calls the action function on enter pressed", async () => {
-      let clicked = false;
-
-      subject.actionClick = () => {
-        console.log("Action Clicked");
-        clicked = true;
-      };
-      await sendKeys({ press: "Tab" });
-      void sendKeys({ press: "Enter" });
-      await waitUntil(() => clicked, "Button Action fired", { timeout: 200 });
-    });
-
-    it("calls the action function on space pressed", async () => {
-      let clicked = false;
-
-      subject.actionClick = () => {
-        console.log("Action Clicked");
-        clicked = true;
-      };
-      await sendKeys({ press: "Tab" });
-      void sendKeys({ press: " " });
-      await waitUntil(() => clicked, "Button Action fired", { timeout: 100 });
-    });
-
-    it("calls the action function on mouse click", async () => {
-      let clicked = false;
-
-      subject.actionClick = () => {
-        console.log("Action Clicked");
-        clicked = true;
-      };
-      await MouseActions.click(subject.shadowRoot!.querySelector("#action") as HTMLElement, "left");
-      await waitUntil(() => clicked, "Button Action fired", { timeout: 100 });
-    });
-
-    it("dispatches the close event on mouse click and removes the element", async () => {
+    it("dispatches the close event when the close button is clicked", async () => {
       let closed = false;
-
       subject.addEventListener("close", () => {
         closed = true;
       });
 
-      const closeIcon = subject.shadowRoot!.querySelector("#closeIcon") as ZetaIcon;
-      await MouseActions.click(closeIcon, "left");
+      await MouseActions.click(subject.shadowRoot!.querySelector("#closeButton") as HTMLButtonElement, "left");
 
       await waitUntil(() => closed, "close event should be dispatched", { timeout: 100 });
-
-      const snackbar = document.querySelector("zeta-snackbar");
-      expect(snackbar).to.not.exist;
     });
 
-    it("dispatches the close event on enter pressed and removes the element", async () => {
-      let closed = false;
-
-      subject.addEventListener("close", () => {
-        closed = true;
+    it("dispatches an action event and removes the element when the action button is clicked", async () => {
+      let actionEvent: Event | undefined;
+      subject.status = "deletion";
+      await subject.updateComplete;
+      subject.addEventListener("action", event => {
+        actionEvent = event;
       });
 
-      await sendKeys({ press: "Tab" });
-      await sendKeys({ press: "Tab" });
-      await sendKeys({ press: "Enter" });
+      await MouseActions.click(subject.shadowRoot!.querySelector("#action") as HTMLButtonElement, "left");
 
-      await waitUntil(() => closed, "close event should be dispatched on Enter", { timeout: 200 });
-
-      const snackbar = document.querySelector("zeta-snackbar");
-      expect(snackbar).to.not.exist;
+      await waitUntil(() => actionEvent, "action event should be dispatched", { timeout: 100 });
+      expect(actionEvent!.bubbles).to.be.true;
+      expect(actionEvent!.composed).to.be.true;
+      expect(document.querySelector("zeta-snackbar")).to.not.exist;
     });
 
-    it("dispatches the close event on space pressed and removes the element", async () => {
-      let closed = false;
-
-      subject.addEventListener("close", () => {
-        closed = true;
+    it("dispatches an action event when the action button is space pressed", async () => {
+      let actionEvent: Event | undefined;
+      subject.status = "view";
+      await subject.updateComplete;
+      subject.addEventListener("action", event => {
+        actionEvent = event;
       });
 
-      await sendKeys({ press: "Tab" });
-      await sendKeys({ press: "Tab" });
+      const actionButton = subject.shadowRoot!.querySelector("#action") as HTMLButtonElement;
+      actionButton.focus();
       await sendKeys({ press: " " });
 
-      await waitUntil(() => closed, "close event should be dispatched on Space", { timeout: 200 });
+      await waitUntil(() => actionEvent, "action event should be dispatched", { timeout: 100 });
+    });
 
-      const snackbar = document.querySelector("zeta-snackbar");
-      expect(snackbar).to.not.exist;
+    it("respects showAction and showClose for preset controls", async () => {
+      subject.showAction = false;
+      subject.showClose = false;
+      subject.status = "deletion";
+      await subject.updateComplete;
+
+      expect(subject.shadowRoot!.querySelector("#action")).to.not.exist;
+      expect(subject.shadowRoot!.querySelector("#closeButton")).to.not.exist;
     });
   });
-
-  // describe("Golden", () => {});
-
-  // describe("Performance", () => {});
 });
