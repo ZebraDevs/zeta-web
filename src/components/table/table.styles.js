@@ -724,36 +724,6 @@ export default css`
     fill: var(--table-sort-active-color);
   }
 
-  /* Filter */
-  .zeta-table-search-row .zeta-table-th {
-    padding: var(--space-2xs) var(--space-sm);
-    background: var(--table-header-bg);
-    height: auto;
-    border-top: none;
-  }
-
-  .zeta-table-search-input {
-    width: 100%;
-    padding: var(--space-2xs) var(--space-sm);
-    border: var(--stroke-thin) solid var(--interactive-neutral-border-default);
-    border-radius: var(--radius-sm);
-    background: var(--interactive-neutral-background-default);
-    color: var(--foreground-primary);
-    font: var(--body-xsmall);
-    outline: none;
-    box-sizing: border-box;
-    transition: border-color 0.15s;
-  }
-
-  .zeta-table-search-input:focus {
-    border-color: var(--border-focus);
-  }
-
-  .zeta-table-search-input:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-  }
-
   /* Resize handle: a full cell height bar, in the neutral hover border while hovered and in the focus border while dragging */
   .zeta-table-resize-handle {
     position: absolute;

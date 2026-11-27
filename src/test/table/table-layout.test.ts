@@ -51,7 +51,7 @@ describe("zeta-table layout", () => {
         { field: "age", title: "Age", sortable: false }
       ];
       const el = await make({ columns: cols });
-      const [nameTh, ageTh] = Array.from(shadow(el).querySelectorAll(".zeta-table-header-row .zeta-table-th"));
+      const [nameTh, ageTh] = Array.from(shadow(el).querySelectorAll(".zeta-table-header-row .zeta-table-th[data-field]"));
       assert.equal(nameTh.getAttribute("aria-sort"), "none");
       assert.isFalse(ageTh.hasAttribute("aria-sort"));
       const title = nameTh.querySelector<HTMLElement>(".zeta-table-header-title--sortable")!;
@@ -217,7 +217,7 @@ describe("zeta-table layout", () => {
 
     it("puts the sort button right after the column title and the filter button after it", async () => {
       const el = await make({ columns: [{ field: "name", title: "Name", sortable: true }], columnFilterable: true });
-      const th = shadow(el).querySelector(".zeta-table-header-row .zeta-table-th")!;
+      const th = shadow(el).querySelector(".zeta-table-header-row .zeta-table-th[data-field='name']")!;
       const title = th.querySelector(".zeta-table-header-title")!;
       assert.isTrue(title.nextElementSibling?.classList.contains("zeta-table-sort-btn"), "sort button follows the title");
       assert.isNotNull(th.querySelector(".zeta-table-header-icons .zeta-table-header-icon-btn"), "filter button is in the trailing icons");

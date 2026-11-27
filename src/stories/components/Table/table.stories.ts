@@ -320,7 +320,6 @@ function generateFigmaData(count: number): ZetaTableRow[] {
 type TableStory = ZetaTable & {
   onselectionchange: () => void;
   onsortchange: () => void;
-  oncolumnsearch: () => void;
   onpagechange: () => void;
   onloadmore: () => void;
   ontableexport: () => void;
@@ -351,7 +350,6 @@ const meta: Meta<TableStory> = {
     disabledRows: [7],
     onselectionchange: fn(),
     onsortchange: fn(),
-    oncolumnsearch: fn(),
     onpagechange: fn(),
     onloadmore: fn(),
     ontableexport: fn(),
@@ -375,7 +373,6 @@ const meta: Meta<TableStory> = {
     shape: { control: { type: "select" }, options: ["rounded", "sharp"], description: "Shape of the table and of every component inside it" },
     searchable: { control: "boolean", description: "Show the global search field in the controls bar" },
     refreshable: { control: "boolean", description: "Show the refresh button in the controls bar" },
-    columnSearchable: { control: "boolean", description: "Show a search input under each column header" },
     columnFilterable: { control: "boolean", description: "Show a filter button in each column header" },
     selectOnRowClick: { control: "boolean", description: "Clicking a row toggles its selection" },
     clickableRows: { control: "boolean", description: "Rows show a pointer cursor and fire `rowclick`" },
@@ -435,7 +432,6 @@ export const TableAll: StoryObj<TableStory> = {
     expandable: true,
     searchable: true,
     refreshable: true,
-    columnSearchable: false,
     columnFilterable: true,
     selectOnRowClick: true,
     clickableRows: true,
@@ -454,7 +450,6 @@ export const TableAll: StoryObj<TableStory> = {
     const {
       onselectionchange: onSelChange,
       onsortchange: onSortChange,
-      oncolumnsearch: onColumnSearch,
       onpagechange: onPageChange,
       onloadmore: onLoadMore,
       ontableexport: onExport,
@@ -477,7 +472,6 @@ export const TableAll: StoryObj<TableStory> = {
       pageSize,
       searchable,
       refreshable,
-      columnSearchable,
       columnFilterable,
       selectOnRowClick,
       clickableRows,
@@ -593,25 +587,6 @@ export const TableAll: StoryObj<TableStory> = {
       console.log("Global search:", searchTerm);
     };
 
-    const handleColumnSearch = function (this: ZetaTable, e: CustomEvent<{ field: string; value: string; searchValues: Record<string, string> }>) {
-      const { field, value, searchValues: allSearchValues } = e.detail;
-      const filterKeys = Object.keys(allSearchValues);
-      if (filterKeys.length === 0) {
-        filteredData = [...masterData];
-      } else {
-        filteredData = masterData.filter(row =>
-          filterKeys.every(f =>
-            String(row[f] ?? "")
-              .toLowerCase()
-              .includes(allSearchValues[f].toLowerCase())
-          )
-        );
-      }
-      currentPageNum = 1;
-      updateTable(this);
-      console.log("Column search:", { field, value, allSearchValues });
-    };
-
     const handleColumnFilter = function (this: ZetaTable, e: CustomEvent<{ field: string; selectedValues: string[] }>) {
       const { field, selectedValues } = e.detail;
       if (selectedValues.length === 0) {
@@ -662,7 +637,6 @@ export const TableAll: StoryObj<TableStory> = {
           .pageSize=${pageSize || 10}
           .searchable=${searchable ?? false}
           .refreshable=${refreshable ?? false}
-          .columnSearchable=${columnSearchable ?? false}
           .columnFilterable=${columnFilterable ?? false}
           .selectOnRowClick=${selectOnRowClick ?? false}
           .clickableRows=${clickableRows ?? false}
@@ -675,7 +649,6 @@ export const TableAll: StoryObj<TableStory> = {
           .shape=${shape ?? "rounded"}
           @rowaction=${handleRowAction}
           @tablesearch=${handleTableSearch}
-          @columnsearch=${handleColumnSearch}
           @columnfilter=${handleColumnFilter}
           @tablerefresh=${handleRefresh}
           @sortchange=${handleSortChange}
@@ -855,7 +828,6 @@ export const DisabledRowsAndColumns: StoryObj<TableStory> = {
     const {
       onselectionchange: onSelChange,
       onsortchange: onSortChange,
-      oncolumnsearch: onColumnSearch,
       onpagechange: onPageChange,
       onloadmore: onLoadMore,
       ontableexport: onExport,
@@ -880,7 +852,6 @@ export const DisabledRowsAndColumns: StoryObj<TableStory> = {
         .tableTitle=${tableTitle}
         @rowselect=${onSelChange}
         @sortchange=${onSortChange}
-        @columnsearch=${onColumnSearch}
         @pagechange=${onPageChange}
         @loadmore=${onLoadMore}
         @tableexport=${onExport}
@@ -903,7 +874,6 @@ export const CustomStyling: StoryObj<TableStory> = {
     const {
       onselectionchange: onSelChange,
       onsortchange: onSortChange,
-      oncolumnsearch: onColumnSearch,
       onpagechange: onPageChange,
       onloadmore: onLoadMore,
       ontableexport: onExport,
@@ -944,7 +914,6 @@ export const CustomStyling: StoryObj<TableStory> = {
         .tableTitle=${"Styled Table"}
         @rowselect=${onSelChange}
         @sortchange=${onSortChange}
-        @columnsearch=${onColumnSearch}
         @pagechange=${onPageChange}
         @loadmore=${onLoadMore}
         @tableexport=${onExport}
@@ -983,7 +952,6 @@ export const NestedRows: StoryObj<TableStory> = {
     const {
       onselectionchange: onSelChange,
       onsortchange: onSortChange,
-      oncolumnsearch: onColumnSearch,
       onpagechange: onPageChange,
       onloadmore: onLoadMore,
       ontableexport: onExport,
@@ -1009,7 +977,6 @@ export const NestedRows: StoryObj<TableStory> = {
         .tableTitle=${tableTitle}
         @rowselect=${onSelChange}
         @sortchange=${onSortChange}
-        @columnsearch=${onColumnSearch}
         @pagechange=${onPageChange}
         @loadmore=${onLoadMore}
         @tableexport=${onExport}
@@ -1038,7 +1005,6 @@ export const PerRowActions: StoryObj<TableStory> = {
     const {
       onselectionchange: onSelChange,
       onsortchange: onSortChange,
-      oncolumnsearch: onColumnSearch,
       onpagechange: onPageChange,
       onrowaction: onAction,
       columns,
@@ -1156,7 +1122,6 @@ export const PerRowActions: StoryObj<TableStory> = {
         @rowaction=${handleRowAction}
         @rowselect=${onSelChange}
         @sortchange=${onSortChange}
-        @columnsearch=${onColumnSearch}
         @pagechange=${onPageChange}
         style=${cssVarStyles(args, { "--table-max-height": "500px" })}
       ></zeta-table>
@@ -1164,7 +1129,7 @@ export const PerRowActions: StoryObj<TableStory> = {
   }
 };
 
-export const GlobalAndColumnSearch: StoryObj<TableStory> = {
+export const GlobalSearchAndFilter: StoryObj<TableStory> = {
   args: {
     paginationType: "numbered",
     pageSize: 10,
@@ -1207,26 +1172,6 @@ export const GlobalAndColumnSearch: StoryObj<TableStory> = {
       console.log(`Global search "${searchTerm}": ${this.data.length} results`);
     };
 
-    const handleColumnSearch = function (this: ZetaTable, e: CustomEvent<{ field: string; value: string; searchValues: Record<string, string> }>) {
-      const { field, value, searchValues: allFilters } = e.detail;
-      const filterKeys = Object.keys(allFilters);
-      if (filterKeys.length === 0) {
-        this.data = [...allData];
-        this.totalItems = allData.length;
-      } else {
-        const filtered = allData.filter(row =>
-          filterKeys.every(f =>
-            String(row[f] ?? "")
-              .toLowerCase()
-              .includes(allFilters[f].toLowerCase())
-          )
-        );
-        this.data = filtered;
-        this.totalItems = filtered.length;
-      }
-      console.log(`Column search "${field}=${value}": ${this.data.length} results`, allFilters);
-    };
-
     const handleColumnFilter = function (this: ZetaTable, e: CustomEvent<{ field: string; selectedValues: string[] }>) {
       const { field, selectedValues } = e.detail;
       if (selectedValues.length === 0) {
@@ -1253,8 +1198,8 @@ export const GlobalAndColumnSearch: StoryObj<TableStory> = {
 
     return html`
       <p style="margin-bottom:var(--space-md); font:var(--body-xsmall); color:var(--foreground-secondary);">
-        <strong>Features demonstrated:</strong> Global search bar (top-left), per-column search inputs, column filter icons (header), kebab actions menu
-        (per-row), refresh, export, column configure, pagination.
+        <strong>Features demonstrated:</strong> Global search bar (top-left), column filter icons (header), kebab actions menu (per-row), refresh, export,
+        column configure, pagination.
       </p>
       <zeta-table
         ${spread(rest)}
@@ -1266,11 +1211,9 @@ export const GlobalAndColumnSearch: StoryObj<TableStory> = {
         .showDataCount=${showDataCount}
         .tableTitle=${tableTitle}
         searchable
-        column-searchable
         column-filterable
         refreshable
         @tablesearch=${handleTableSearch}
-        @columnsearch=${handleColumnSearch}
         @columnfilter=${handleColumnFilter}
         @rowaction=${handleRowAction}
         @tablerefresh=${handleRefresh}

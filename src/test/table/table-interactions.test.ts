@@ -45,7 +45,7 @@ describe("zeta-table interactions", () => {
     it("creates element and renders structure", async () => {
       const el = document.createElement("zeta-table");
       assert.equal("ZETA-TABLE", el.nodeName);
-      const el2 = await make();
+      const el2 = await make({ selectable: false });
       expect(shadow(el2).querySelector("table.zeta-table")).to.exist;
       assert.equal(shadow(el2).querySelectorAll(".zeta-table-header-row .zeta-table-th").length, 3);
       assert.equal(shadow(el2).querySelectorAll(".zeta-table-tbody .zeta-table-row").length, 3);
@@ -234,42 +234,58 @@ describe("zeta-table interactions", () => {
       assert.deepEqual(names(el), ["Row 1", "Row 2", "Row 3", "Row 4", "Row 5"]);
     });
 
-    it("renders search row only when columnSearchable is true", async () => {
-      expect(shadow(await make()).querySelector(".zeta-table-search-row")).to.not.exist;
-      expect(shadow(await make({ columnSearchable: true })).querySelector(".zeta-table-search-row")).to.exist;
-    });
-
-    it("dispatches columnsearch event on input", async () => {
-      const el = await make({ columnSearchable: true });
-      const input = shadow(el).querySelector(".zeta-table-search-input:not([disabled])") as HTMLInputElement;
-      setTimeout(() => {
-        input.value = "test";
-        input.dispatchEvent(new InputEvent("input", { bubbles: true }));
-      });
-      const ev = await oneEvent(el, "columnsearch");
-      assert.equal(ev.detail.field, "name");
-      assert.equal(ev.detail.value, "test");
-    });
-
-    it("disables search for disabled/non-filterable columns", async () => {
-      const cols: ZetaTableColumn[] = [
-        { field: "name", title: "Name", disabled: true },
-        { field: "age", title: "Age", filterable: false },
-        { field: "email", title: "Email" }
-      ];
-      const el = await make({ columns: cols, columnSearchable: true });
-      assert.equal(shadow(el).querySelectorAll(".zeta-table-search-input:not([disabled])").length, 1);
-    });
-
-    it("resets page on column search with numbered pagination", async () => {
-      const el = await make({ paginationType: "numbered", currentPage: 3, totalItems: 100, columnSearchable: true });
-      const input = shadow(el).querySelector(".zeta-table-search-input:not([disabled])") as HTMLInputElement;
-      input.value = "t";
-      input.dispatchEvent(new InputEvent("input", { bubbles: true }));
+    it("filters rows by the global search across every visible cell", async () => {
+      const el = await make({ searchable: true });
+      const input = shadow(el).querySelector(".zeta-table-global-search")!.shadowRoot!.querySelector("input")!;
+      input.value = "bob@";
+      input.dispatchEvent(new InputEvent("input", { bubbles: true, composed: true }));
       await el.updateComplete;
-      assert.include(shadow(el).querySelector(".zeta-table-page-info span")?.textContent, "Showing 1-20 of 100");
+      const rows = shadow(el).querySelectorAll(".zeta-table-tbody .zeta-table-row");
+      assert.equal(rows.length, 1);
+      assert.include(rows[0].textContent, "Bob");
     });
 
+    it("leaves global search filtering to the consumer when data is one page of a larger collection", async () => {
+      const el = await make({ searchable: true, paginationType: "numbered", totalItems: 100 });
+      const input = shadow(el).querySelector(".zeta-table-global-search")!.shadowRoot!.querySelector("input")!;
+      input.value = "bob@";
+      input.dispatchEvent(new InputEvent("input", { bubbles: true, composed: true }));
+      await el.updateComplete;
+      assert.equal(shadow(el).querySelectorAll(".zeta-table-tbody .zeta-table-row").length, 3);
+    });
+
+    it("filters rows by the column filter and returns to page 1 under numbered pagination", async () => {
+      const statusRows: ZetaTableRow[] = Array.from({ length: 30 }, (_, i) => ({ id: i + 1, name: `Row ${i + 1}`, status: i % 2 ? "Closed" : "Open" }));
+      const el = await make({
+        columns: [
+          { field: "name", title: "Name" },
+          { field: "status", title: "Status" }
+        ],
+        data: statusRows,
+        paginationType: "numbered",
+        pageSize: 10,
+        currentPage: 3,
+        columnFilterable: true
+      });
+      assert.include(shadow(el).querySelector(".zeta-table-page-info span")?.textContent, "Showing 21-30 of 30");
+      (shadow(el).querySelectorAll(".zeta-table-header-icon-btn")[1] as HTMLElement).click();
+      await el.updateComplete;
+      nativeInput(checkbox(el, ".zeta-table-filter-panel-item")).click();
+      await el.updateComplete;
+      (shadow(el).querySelector(".zeta-table-filter-panel-btn--apply") as HTMLElement).click();
+      await el.updateComplete;
+      assert.equal(shadow(el).querySelectorAll(".zeta-table-tbody .zeta-table-row").length, 10);
+      assert.include(shadow(el).querySelector(".zeta-table-page-info span")?.textContent, "Showing 1-10 of 15");
+    });
+
+    it('shows the selection column by default, and hides it with selectable="false"', async () => {
+      const el = await make();
+      assert.isTrue(el.selectable);
+      expect(shadow(el).querySelector(".zeta-table-col-checkbox")).to.exist;
+      const el2 = await fixture<ZetaTable>(html`<zeta-table selectable="false"></zeta-table>`);
+      assert.isFalse(el2.selectable);
+      expect(shadow(el2).querySelector(".zeta-table-col-checkbox")).to.not.exist;
+    });
     it("dispatches tablesearch event on global search input", async () => {
       const el = await make({ searchable: true });
       const input = shadow(el).querySelector(".zeta-table-global-search")!.shadowRoot!.querySelector("input")!;

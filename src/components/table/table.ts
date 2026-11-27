@@ -38,10 +38,9 @@ const SORT_COLLATOR = new Intl.Collator(undefined, { numeric: true, sensitivity:
  *
  * ## Features
  * - **Sorting**: 3-state per-column sort indicator (asc → desc → none). The table sorts the whole `data` collection, not only the rows on the current page. When `data` is one page of a larger collection (`totalItems` is larger than `data`), the consumer sorts it from the `sortchange` event instead. Calling `preventDefault()` on `sortchange` also turns the built-in sort off. Configurable per column via `sortable`.
- * - **Column Search**: Optional per-column search inputs. Enabled via `column-searchable` attribute.
- * - **Column Filter**: Optional per-column filter dropdown with checkboxes (Clear/Apply). Enabled via `column-filterable` attribute. Options via `filterOptions` on column or auto-populated from data.
- * - **Global Search**: Optional search bar in header. Enabled via `searchable` attribute.
- * - **Selection**: Checkbox column with select-all. Optional `select-on-row-click` for click-to-select.
+ * - **Column Filter**: Optional per-column filter dropdown with checkboxes (Clear/Apply). Enabled via `column-filterable` attribute. Options via `filterOptions` on column or auto-populated from data. When the table holds the whole collection it filters the rows itself; otherwise the consumer filters from `columnfilter`.
+ * - **Global Search**: Optional search bar in header. Enabled via `searchable` attribute. Matches the text of every visible cell. When the table holds the whole collection it filters the rows itself; otherwise the consumer filters from `tablesearch`.
+ * - **Selection**: Checkbox column with select-all, on by default. Turn it off with `selectable="false"` (attribute) or `.selectable=${false}` (property). Optional `select-on-row-click` for click-to-select.
  * - **Row Click**: Optional via `clickable-rows` attribute. Rows show pointer cursor and highlight on click.
  * - **Disabled Rows**: Rows can be disabled via `disabledRows` array or `_disabled` property. Use `allowDisabledSelection` to allow selection/actions on disabled rows.
  * - **Frozen Columns**: Columns can be frozen via `frozen` property or the column configure panel.
@@ -64,7 +63,6 @@ const SORT_COLLATOR = new Intl.Collator(undefined, { numeric: true, sensitivity:
  *   .columns=${columns}
  *   .data=${data}
  *   searchable
- *   column-searchable
  *   column-filterable
  *   refreshable
  *   clickable-rows
@@ -78,7 +76,6 @@ const SORT_COLLATOR = new Intl.Collator(undefined, { numeric: true, sensitivity:
  *   @rowexpand=${handleExpand}
  *   @rowclick=${handleRowClick}
  *   @rowaction=${handleAction}
- *   @columnsearch=${handleColumnSearch}
  *   @columnfilter=${handleFilter}
  *   @tablesearch=${handleSearch}
  *   @tablerefresh=${handleRefresh}
@@ -131,9 +128,8 @@ const SORT_COLLATOR = new Intl.Collator(undefined, { numeric: true, sensitivity:
  *
  * @event {CustomEvent} rowselect - Row selection changes. Detail: { selectedIds: [] }
  * @event {CustomEvent} sortchange - Column sort changes. Cancelable: call `preventDefault()` to sort the data yourself. Detail: { field, direction }
- * @event {CustomEvent} columnsearch - Column search input changes. Detail: { field, value, searchValues }
  * @event {CustomEvent} columnfilter - Column filter applied. Detail: { field, selectedValues }
- * @event {CustomEvent} tablesearch - Global search input changes. Detail: { value }
+ * @event {CustomEvent} tablesearch - Global search input changes. Detail: { value }. The table filters its own rows when it holds the whole collection.
  * @event {CustomEvent} pagechange - Page changes (numbered). Detail: { page, pageSize }
  * @event {CustomEvent} loadmore - More data needed (infinite scroll)
  * @event {CustomEvent} tableexport - Export button clicked. Cancelable: call `preventDefault()` to skip the built-in CSV download and export the data yourself. Detail: { csv, columns, data }
@@ -239,9 +235,12 @@ export class ZetaTable extends ContourableThree(LitElement) {
   @property({ type: Array })
   data: ZetaTableRow[] = [];
 
-  /** Enable checkbox selection column */
-  @property({ type: Boolean, reflect: true })
-  selectable = false;
+  /**
+   * Shows the checkbox selection column with select-all in the header. On by default.
+   * Attribute `selectable`; set `selectable="false"` to turn it off from markup.
+   */
+  @property({ type: Boolean, reflect: true, converter: defaultTrueConverter })
+  selectable = true;
 
   /** Show select-all checkbox in header */
   @property({ type: Boolean, reflect: true, attribute: "select-all" })
@@ -305,10 +304,6 @@ export class ZetaTable extends ContourableThree(LitElement) {
   @property({ type: Boolean, reflect: true })
   exportable = false;
 
-  /** When true, shows search inputs on columns. Emits `columnsearch` event. */
-  @property({ type: Boolean, attribute: "column-searchable" })
-  columnSearchable = false;
-
   /** When true, shows a filter icon on each column header with a dropdown menu. Emits `columnfilter` event. */
   @property({ type: Boolean, attribute: "column-filterable" })
   columnFilterable = false;
@@ -363,9 +358,6 @@ export class ZetaTable extends ContourableThree(LitElement) {
 
   /** Current sort state: which field, which direction, and click count for the 3-state cycle */
   @state() private _sortState: SortState = { field: "", direction: null, clickCount: 0 };
-
-  /** Per-column search input values, keyed by field name */
-  @state() private _searchValues: Record<string, string> = {};
 
   /** Current value of the global (toolbar) search input */
   @state() private _globalSearchValue = "";
@@ -434,8 +426,16 @@ export class ZetaTable extends ContourableThree(LitElement) {
   private _resizeStartWidth = 0;
   /** True when the consumer called `preventDefault()` on the last `sortchange`, so it sorts the data itself and the built-in sort stays off */
   private _consumerSorts = false;
-  /** The rows of the last built-in sort, with what they were sorted from */
-  private _sortedCache?: { source: ZetaTableRow[]; length: number; field: string; direction: string; rows: ZetaTableRow[] };
+  /** The rows of the last search, filter and sort, with what they were built from */
+  private _sortedCache?: {
+    source: ZetaTableRow[];
+    length: number;
+    field: string;
+    direction: string | null;
+    search: string;
+    filters: Record<string, Set<string>>;
+    rows: ZetaTableRow[];
+  };
   /** Set of field names that the user has manually drag-resized */
   private _manuallyResizedColumns: Set<string> = new Set();
 
@@ -840,6 +840,10 @@ export class ZetaTable extends ContourableThree(LitElement) {
     }
 
     this._filterPanelField = null;
+    // Fewer rows can match now, so the first page shows its start (like a sort or a search does)
+    if (this.paginationType === "numbered") {
+      this._currentPage = 1;
+    }
 
     this.dispatchEvent(
       new CustomEvent("columnfilter", {
@@ -872,37 +876,10 @@ export class ZetaTable extends ContourableThree(LitElement) {
     this._manuallyResizedColumns.delete(field);
   }
 
-  // ─── Column Search ───
-
-  /**
-   * Handles per-column search input changes.
-   * Updates internal search values, resets pagination to page 1,
-   * and delegates the actual filtering to the consumer via callback and CustomEvent.
-   */
-  private _handleColumnSearch(field: string, value: string) {
-    if (value) {
-      this._searchValues = { ...this._searchValues, [field]: value };
-    } else {
-      const s = { ...this._searchValues };
-      delete s[field];
-      this._searchValues = s;
-    }
-    if (this.paginationType === "numbered") {
-      this._currentPage = 1;
-    }
-
-    this.dispatchEvent(
-      new CustomEvent("columnsearch", {
-        detail: { field, value, searchValues: { ...this._searchValues } },
-        bubbles: true,
-        composed: true
-      })
-    );
-  }
-
   /**
    * Handles global (toolbar) search input changes.
-   * Resets pagination to page 1 and delegates filtering to the consumer.
+   * Resets pagination to page 1 and notifies the consumer with `tablesearch`. The table filters the rows itself
+   * when it holds the whole collection (see `_getFilteredSortedData`).
    */
   private _handleGlobalSearch = (e: InputEvent) => {
     const value = (e.target as HTMLInputElement).value;
@@ -1177,12 +1154,12 @@ export class ZetaTable extends ContourableThree(LitElement) {
 
   /**
    * Calculates total page count.
-   * Uses `totalItems` if provided (recommended), otherwise falls back to `data.length`.
+   * Uses `totalItems` when `data` is one page of a larger collection (recommended there). Otherwise it counts the rows left after the search and the filters.
    * Since pagination is consumer-driven, `totalItems` should be set so the pagination
    * UI can render the correct number of pages even when `data` contains only the current page.
    */
   private _getTotalPages(): number {
-    const total = this.totalItems >= 0 ? this.totalItems : this._getData().length;
+    const total = this._totalRowCount;
     // A zero, negative or non-numeric pageSize would give Infinity/NaN pages, so fall back to one page
     if (!Number.isFinite(this.pageSize) || this.pageSize < 1) return 1;
     return Math.max(1, Math.ceil(total / this.pageSize));
@@ -1340,21 +1317,53 @@ export class ZetaTable extends ContourableThree(LitElement) {
   }
 
   /**
-   * Returns the rows in the current sort order, before pagination.
+   * Returns the rows that match the global search and the column filters, in the current sort order, before pagination.
    *
-   * The sort covers every row in `data`, not only the rows on the current page, like the global search does.
-   * It is skipped when there is no sort, when `data` is only one page of a larger collection (see `_holdsWholeCollection`),
-   * or when the consumer took over the sort by calling `preventDefault()` on `sortchange`.
+   * The search, filters and sort cover every row in `data`, not only the rows on the current page.
+   * They are skipped when `data` is only one page of a larger collection (see `_holdsWholeCollection`): the consumer does them then.
+   * The sort is also skipped when there is no sort, or when the consumer took over the sort by calling `preventDefault()` on `sortchange`.
    */
   private _getFilteredSortedData(): ZetaTableRow[] {
+    if (!this._holdsWholeCollection) return this._getData();
     const { field, direction } = this._sortState;
-    if (!field || !direction || this._consumerSorts || !this._holdsWholeCollection) return this._getData();
-    // Render asks for the rows several times, so the sorted rows are kept until the data or the sort changes
+    const sortField = field && direction && !this._consumerSorts ? field : "";
+    const search = this._globalSearchValue.trim().toLowerCase();
+    const filters = this._activeFilters;
+    // Render asks for the rows several times, so the result is kept until the data, the search, the filters or the sort change
     const cache = this._sortedCache;
-    if (cache && cache.source === this.data && cache.length === this.data.length && cache.field === field && cache.direction === direction) return cache.rows;
-    const rows = this._getData().sort((a, b) => this._compareRows(a, b, field, direction));
-    this._sortedCache = { source: this.data, length: this.data.length, field, direction, rows };
+    if (
+      cache &&
+      cache.source === this.data &&
+      cache.length === this.data.length &&
+      cache.field === sortField &&
+      cache.direction === direction &&
+      cache.search === search &&
+      cache.filters === filters
+    ) {
+      return cache.rows;
+    }
+
+    let rows = this._getData();
+    if (search) {
+      const cols = this._getVisibleColumns();
+      rows = rows.filter(row => cols.some(col => this._fieldToString(row[col.field]).toLowerCase().includes(search)));
+    }
+    for (const [key, values] of Object.entries(filters)) {
+      if (values.size > 0) rows = rows.filter(row => values.has(this._fieldToString(row[key])));
+    }
+    if (sortField && direction) {
+      rows = rows.sort((a, b) => this._compareRows(a, b, sortField, direction));
+    }
+    this._sortedCache = { source: this.data, length: this.data.length, field: sortField, direction, search, filters, rows };
     return rows;
+  }
+
+  /**
+   * The number of rows that pagination counts. With the whole collection in `data` this is the rows left after the
+   * search and the filters. Otherwise it is the `totalItems` the consumer gave for the full collection.
+   */
+  private get _totalRowCount(): number {
+    return this._holdsWholeCollection ? this._getFilteredSortedData().length : this.totalItems;
   }
 
   /** Reduces a cell value to something comparable. Nodes (custom cells) compare by their text, empty values compare as `null`. */
@@ -1461,8 +1470,6 @@ export class ZetaTable extends ContourableThree(LitElement) {
   protected override render() {
     const visibleCols = this._getVisibleColumns();
     const displayedData = this._getDisplayedData();
-    const hasSearch = this.columnSearchable && visibleCols.some(c => c.filterable !== false && !c.disabled);
-
     return html`
       <div class="zeta-table-wrapper">
         ${this._renderHeaderBar()}
@@ -1470,7 +1477,7 @@ export class ZetaTable extends ContourableThree(LitElement) {
           <table class="zeta-table">
             ${this._renderColgroup(visibleCols)}
             <thead class="zeta-table-thead">
-              ${this._renderHeaderRow(visibleCols)} ${hasSearch ? this._renderSearchRow(visibleCols) : nothing}
+              ${this._renderHeaderRow(visibleCols)}
             </thead>
             <tbody class="zeta-table-tbody">
               ${
@@ -1847,57 +1854,6 @@ export class ZetaTable extends ContourableThree(LitElement) {
           />
         </svg>
       </span>
-    `;
-  }
-
-  /**
-   * Renders the per-column search input row (second header row).
-   * Only shown when `columnSearchable` is true.
-   * Each column gets a text input unless disabled or filterable=false.
-   */
-  private _renderSearchRow(cols: ZetaTableColumn[]) {
-    return html`
-      <tr class="zeta-table-search-row">
-        ${this.selectable ? html`<th class="zeta-table-th zeta-table-col-checkbox zeta-table-cell--frozen zeta-table-cell--frozen-start"></th>` : nothing}
-        ${
-          this.expandable
-            ? html`<th
-                class="zeta-table-th zeta-table-col-expand zeta-table-cell--frozen ${
-                  this.selectable ? "zeta-table-cell--frozen-after-checkbox" : "zeta-table-cell--frozen-start"
-                }"
-              ></th>`
-            : nothing
-        }
-        ${cols.map((col, i) => {
-          const isFrozen = this._isColumnFrozen(col);
-          const leftOffset = isFrozen ? this._getFrozenLeftOffset(i) : "";
-          const isLastFrozen = isFrozen && this._isLastFrozen(i);
-          const cellClasses = { "zeta-table-cell--frozen": isFrozen, "zeta-table-cell--frozen-last": isLastFrozen };
-          const cellStyles: Record<string, string> = {};
-          if (isFrozen) cellStyles.left = leftOffset;
-
-          const isSearchable = col.filterable !== false && !col.disabled;
-
-          return html`
-            <th class="zeta-table-th ${classMap(cellClasses)}" style=${styleMap(cellStyles)}>
-              ${
-                isSearchable
-                  ? html`<input
-                      type="text"
-                      class="zeta-table-search-input"
-                      placeholder="Search..."
-                      .value=${this._searchValues[col.field] || ""}
-                      @input=${(e: InputEvent) => this._handleColumnSearch(col.field, (e.target as HTMLInputElement).value)}
-                    />`
-                  : col.filterable !== false
-                    ? html`<input type="text" class="zeta-table-search-input" disabled placeholder="—" />`
-                    : nothing
-              }
-            </th>
-          `;
-        })}
-        ${this._showActionsColumn ? html`<th class="zeta-table-th zeta-table-col-actions"></th>` : nothing}
-      </tr>
     `;
   }
 
@@ -2303,7 +2259,7 @@ export class ZetaTable extends ContourableThree(LitElement) {
 
     const rounded = this._isRounded;
     const totalPages = this._getTotalPages();
-    const totalItems = this.totalItems >= 0 ? this.totalItems : this._getData().length;
+    const totalItems = this._totalRowCount;
     const rangeStart = totalItems === 0 ? 0 : (this._currentPage - 1) * this.pageSize + 1;
     const rangeEnd = Math.min(this._currentPage * this.pageSize, totalItems);
     const pageSizes = [...new Set([10, 20, 50, 100, this.pageSize])].sort((a, b) => a - b);

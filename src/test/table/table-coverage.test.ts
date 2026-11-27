@@ -365,7 +365,7 @@ describe("zeta-table additional coverage", () => {
         { field: "name", title: "Name", width: "25%", frozen: true },
         { field: "age", title: "Age", width: 100, frozen: true }
       ];
-      const el = await make({ columns: cols });
+      const el = await make({ columns: cols, selectable: false });
       const first = shadow(el).querySelector<HTMLElement>("th[data-field='name']")!;
       const second = shadow(el).querySelector<HTMLElement>("th[data-field='age']")!;
       // The first render has no layout to measure yet, so render again before checking

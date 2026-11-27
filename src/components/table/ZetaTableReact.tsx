@@ -13,7 +13,6 @@ type RowSelectEvent = CustomEvent<{ selectedIds: (string | number)[] }>;
 type PageChangeEvent = CustomEvent<{ page: number; pageSize: number }>;
 type TableExportEvent = CustomEvent<{ csv: string; columns: ZetaTableColumn[]; data: ZetaTableRow[] }>;
 type RowExpandEvent = CustomEvent<{ rowId: string | number; expanded: boolean }>;
-type ColumnSearchEvent = CustomEvent<{ field: string; value: string; searchValues: Record<string, string> }>;
 type ColumnFilterEvent = CustomEvent<{ field: string; selectedValues: string[] }>;
 type TableSearchEvent = CustomEvent<{ value: string }>;
 type TableRefreshEvent = CustomEvent<void>;
@@ -31,7 +30,6 @@ const ZetaTableBase = createComponent({
     onPageChange: "pagechange" as EventName<PageChangeEvent>,
     onTableExport: "tableexport" as EventName<TableExportEvent>,
     onRowExpand: "rowexpand" as EventName<RowExpandEvent>,
-    onColumnSearch: "columnsearch" as EventName<ColumnSearchEvent>,
     onColumnFilter: "columnfilter" as EventName<ColumnFilterEvent>,
     onTableSearch: "tablesearch" as EventName<TableSearchEvent>,
     onTableRefresh: "tablerefresh" as EventName<TableRefreshEvent>

@@ -23,7 +23,7 @@ The default table follows the Figma design: a toolbar with search, refresh and a
 - `shape="rounded"` (default) or `shape="sharp"` applies to the table and to every component inside it.
 - `hascontrol`, `hasfooter`, `hasselectedcount`, `hasrowsperpage` and `hasrowactions` are on by default. Turn one off with, for example, `hasfooter="false"`.
 - `verticalscroll` caps the content height so rows scroll under a sticky header.
-- The title, the top "x out of y" data count (`showdatacount`), expandable rows, and the per-column search and filter are all opt-in, so the default toolbar stays as drawn in Figma.
+- The title, the top "x out of y" data count (`showdatacount`), expandable rows, and the column filter menus are all opt-in, so the default toolbar stays as drawn in Figma.
 
 ### Adding your own toolbar buttons
 
@@ -41,20 +41,19 @@ Slot any element into `controls` and it is placed at the end of the toolbar, aft
 
 All events bubble and are composed, so they cross the shadow root. Their names are lowercase, like native events: listen with `addEventListener("sortchange", …)`, `@sortchange=${…}` (Lit), `(sortchange)` (Angular) or `@sortchange` (Vue).
 
-| Event          | Fires when                                                                                      | `event.detail`                   |
-| -------------- | ----------------------------------------------------------------------------------------------- | -------------------------------- |
-| `rowclick`     | A clickable row is clicked                                                                      | `{ row, rowIndex }`              |
-| `rowselect`    | Row selection changes                                                                           | `{ selectedIds }`                |
-| `rowaction`    | A row action menu item is chosen                                                                | `{ actionKey, row, rowIndex }`   |
-| `rowexpand`    | A row's nested rows expand or collapse                                                          | `{ rowId, expanded }`            |
-| `sortchange`   | The sort changes. Cancelable: call `preventDefault()` to sort the data yourself                 | `{ field, direction }`           |
-| `columnsearch` | A column search input changes                                                                   | `{ field, value, searchValues }` |
-| `columnfilter` | A column filter is applied                                                                      | `{ field, selectedValues }`      |
-| `tablesearch`  | The global search input changes                                                                 | `{ value }`                      |
-| `pagechange`   | The page changes (numbered pagination)                                                          | `{ page, pageSize }`             |
-| `loadmore`     | More rows are needed (infinite scroll)                                                          | `{ currentCount }`               |
-| `tableexport`  | The export button is clicked. Cancelable: call `preventDefault()` to skip the built-in download | `{ csv, columns, data }`         |
-| `tablerefresh` | The refresh button is clicked                                                                   | none                             |
+| Event          | Fires when                                                                                      | `event.detail`                 |
+| -------------- | ----------------------------------------------------------------------------------------------- | ------------------------------ |
+| `rowclick`     | A clickable row is clicked                                                                      | `{ row, rowIndex }`            |
+| `rowselect`    | Row selection changes                                                                           | `{ selectedIds }`              |
+| `rowaction`    | A row action menu item is chosen                                                                | `{ actionKey, row, rowIndex }` |
+| `rowexpand`    | A row's nested rows expand or collapse                                                          | `{ rowId, expanded }`          |
+| `sortchange`   | The sort changes. Cancelable: call `preventDefault()` to sort the data yourself                 | `{ field, direction }`         |
+| `columnfilter` | A column filter is applied                                                                      | `{ field, selectedValues }`    |
+| `tablesearch`  | The global search input changes                                                                 | `{ value }`                    |
+| `pagechange`   | The page changes (numbered pagination)                                                          | `{ page, pageSize }`           |
+| `loadmore`     | More rows are needed (infinite scroll)                                                          | `{ currentCount }`             |
+| `tableexport`  | The export button is clicked. Cancelable: call `preventDefault()` to skip the built-in download | `{ csv, columns, data }`       |
+| `tablerefresh` | The refresh button is clicked                                                                   | none                           |
 
 ---
 

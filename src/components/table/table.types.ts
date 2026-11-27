@@ -20,7 +20,7 @@ export interface ZetaTableColumn {
   minWidth?: number;
   /** Enable sorting on this column (default: true) */
   sortable?: boolean;
-  /** Enable filter input on this column (default: true) */
+  /** Show the filter menu on this column's header (default: true) */
   filterable?: boolean;
   /** Predefined filter options for this column (shown in a dropdown when filter icon is clicked) */
   filterOptions?: string[];

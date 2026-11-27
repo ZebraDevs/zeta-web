@@ -172,7 +172,7 @@ describe("zeta-table features", () => {
     });
 
     it("syncs currentPage and rebuilds columns", async () => {
-      const el = await make({ paginationType: "numbered", totalItems: 100, pageSize: 20 });
+      const el = await make({ paginationType: "numbered", totalItems: 100, pageSize: 20, selectable: false });
       el.currentPage = 3;
       await el.updateComplete;
       assert.include(shadow(el).querySelector(".zeta-table-page-info span")?.textContent, "Showing 41-60 of 100");
